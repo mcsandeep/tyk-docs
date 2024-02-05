@@ -10,7 +10,10 @@ menu:
 ---
 
 Welcome to the Tyk Cloud Platform! 
-This documentation is your gateway to effortlessly deploying and utilizing Tyk on our servers. This guide walks you through the process of creating your first API using the intuitive Tyk Dashboard, eliminating the need for complex setup procedures. 
+This guide will lead you through the following steps: 
+1. Signing up with Tyk Cloud.
+2. Establishing dedicated infrastructure within Tyk Cloud.
+3. Creating and securing your first API using the Tyk Dashboard.
 No installation required!
 
 ## Step 1: Sign Up for Tyk Cloud
@@ -60,9 +63,9 @@ With your Tyk Cloud account set up, it's time to create your first API:
 
 ## Step 3: Set up a Policy and Key
 
-Implementing a policy and key system is crucial when creating an API. In this step, we will show you how to do this.
+In this step, we will guide you through the process of creating a policy and key system to secure your APIs.
 
-#### Implementing a Policy:
+#### Create a Policy:
 
 * Click on "Policies" under the "System Management" section on the left-hand side.
 * Click on the button "ADD POLICY."
@@ -79,7 +82,7 @@ Implementing a policy and key system is crucial when creating an API. In this st
 
 {{< img src="/img/cloud/tyk-cloud-policy-configurations.png" alt="Policy section" width="500px" >}}
 
-#### Implementing a Key:
+#### Create a Key:
 
 * Click on "Keys" under the "System Management" section on the left-hand side.
 * Click on the button "ADD KEY."
@@ -99,10 +102,35 @@ Congratulations! Your key has now been created!
 
 Now that your API is created, you can explore and manage it through the Tyk Dashboard.
 
-If this documentation is not clear to you, please watch this video on how to create your first API using the Tyk Dashboard:
-https://tyk-5898904.hs-sites.com/share/hubspotvideo/131350338337
+#### Step 4: Validate the correctness of your API implementation
 
+After creating a Policy and a Key, proceed to "Postman" to test and interact with the API you've just created.
 
+* Click on "APIs" under the "System Management" section on the left-hand side.
+* Select the previously created API (eg.,httpbin).
+* Copy the API URL.
+
+{{< img src="/img/cloud/tyk-cloud-copy-api-url.png" alt="API section" width="500px" >}}
+
+* In Postman, choose "Send an API request."
+
+{{< img src="/img/cloud/tyk-cloud-postman-send-api-request.png" alt="Postman section" width="500px" >}}
+
+* Enter the copied URL and add "https://" at the beginning.
+
+{{< img src="/img/cloud/tyk-cloud-postman-enter-url.png" alt="Postman section" width="500px" >}}
+
+* In the Tyk Gateway Dashboard, navigate to "Keys" under the "System Management" section on the left-hand side.
+* Copy the previously created "Key ID."
+
+{{< img src="/img/cloud/tyk-cloud-copy-key-url.png" alt="Key section" width="500px" >}}
+
+* On Postman, navigate to "Authorization" tab.
+* Change the authentication type from "Inherit auth from parent" to "API Key."
+* Paste the "Key ID" into the "Value" field.
+* Click the "Send button to submit the request.
+
+{{< img src="/img/cloud/tyk-cloud-postman-authorization.png" alt="Key section" width="500px" >}}
 
 ## Next Steps
 
