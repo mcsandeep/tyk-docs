@@ -133,6 +133,17 @@ After creating a Policy and a Key, proceed to "Postman" to test and interact wit
 
 {{< img src="/img/cloud/tyk-cloud-postman-authorization.png" alt="Key section" width="500px" >}}
 
+## CURL
+
+To test and interact with the API you've just created in the command-line tool (curl), 
+use the following command:
+
+* -X GET "${API URL}" -H "Authorization: ${KEY ID}"
+* <b>Example:</b> '-X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
+mEyNTVkNzIxM2NkIiwiaCI6Im11cm11cjEyOCJ9"'
+
+{{< img src="/img/cloud/tyk-cloud-cmd-example.png" alt="Key section" width="800px" >}}
+
 ## Next Steps
 
 This quick start guide has covered the essentials to get you up and running with Tyk Cloud. As you explore further, you might want to learn more about [creating APIs]({{< ref "../../getting-started/create-api" >}}) and [importing APIs definition]({{< ref "../../getting-started/import-apis" >}}) in Tyk Dashboard or [managing the infrastructure and environments]({{< ref "../../tyk-cloud/environments-&-deployments/managing-organisations" >}}) in Tyk Cloud.
