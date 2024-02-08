@@ -139,14 +139,9 @@ After creating a Policy and a Key, proceed to "Postman" to test and interact wit
 
 To test and interact with the API, you can also use the curl command:
 
-* curl -X GET "${API URL}" -H "Authorization: ${KEY ID}"
-
-An example is illustrated below:
-
-```bash
-curl '-X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
+- curl -X GET "${API URL}" -H "Authorization: ${KEY ID}"
+- **Example:** 'curl -X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
 mEyNTVkNzIxM2NkIiwiaCI6Im11cm11cjEyOCJ9"'
-```
 
 {{< img src="/img/cloud/tyk-cloud-cmd-example.png" alt="Key section" width="800px" >}}
 
