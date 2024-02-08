@@ -74,8 +74,8 @@ In this step, we will guide you through the process of creating a policy and key
 
 {{< img src="/img/cloud/tyk-cloud-policy-access-rights.png" alt="Policy section" width="500px" >}}
 
-* Go to the "Configurations" section and add a Policy Name (eg., 'Default Policy httpbin').
-* Under the "Settings" section, add an expiry date (eg., '2 weeks').
+* Go to the "Configurations" section and add a Policy Name (e.g., 'Default Policy httpbin').
+* Under the "Settings" section, add an expiry date (e.g., '2 weeks').
 * Click on the button "Create Policy".
 {{< img src="/img/cloud/tyk-cloud-policy-configurations.png" alt="Policy section" width="500px" >}}
 
@@ -86,11 +86,11 @@ In this step, we will guide you through the process of creating a policy and key
 
 {{< img src="/img/cloud/tyk-cloud-add-key.png" alt="Key section" width="500px" >}}
 
-* In the "Access Rights" section, please select the previously created Policy (eg., 'Default Policy httpbin').
+* In the "Access Rights" section, please select the previously created Policy (e.g., 'Default Policy httpbin').
 
 {{< img src="/img/cloud/tyk-cloud-key-access-rights.png" alt="Key section" width="500px" >}}
 
-* Go to the "Configurations" section and give your key an alias (eg., 'platform_team').
+* Go to the "Configurations" section and give your key an alias (e.g., 'platform_team').
 * Click on the button "Create Key".
 
 {{< img src="/img/cloud/tyk-cloud-key-configurations.png" alt="Key section" width="500px" >}}
@@ -103,12 +103,14 @@ Congratulations! Your key has now been created!
 
 Now that your API is created, you can explore and manage it through the Tyk Dashboard.
 
-#### Step 4: Send a test API request to the secured endpoint
+## Step 4: Send a test API request to the secured endpoint
+
+#### Postman
 
 After creating a Policy and a Key, proceed to "Postman" to test and interact with the API you've just created.
 
 * Click on "APIs" under the "System Management" section on the left-hand side.
-* Select the previously created API (eg., 'httpbin').
+* Select the previously created API (e.g., 'httpbin').
 * Copy the API URL.
 
 {{< img src="/img/cloud/tyk-cloud-copy-api-url.png" alt="API section" width="500px" >}}
@@ -133,14 +135,18 @@ After creating a Policy and a Key, proceed to "Postman" to test and interact wit
 
 {{< img src="/img/cloud/tyk-cloud-postman-authorization.png" alt="Key section" width="500px" >}}
 
-## CURL
+#### Curl
 
-To test and interact with the API you've just created in the command-line tool (curl), 
-use the following command:
+To test and interact with the API you've just created in the command-line tool (curl), use the following command:
 
-* -X GET "${API URL}" -H "Authorization: ${KEY ID}"
-* <b>Example:</b> '-X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
+* curl -X GET "${API URL}" -H "Authorization: ${KEY ID}"
+
+An example is iilustrated below:
+
+```bash
+curl '-X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
 mEyNTVkNzIxM2NkIiwiaCI6Im11cm11cjEyOCJ9"'
+```
 
 {{< img src="/img/cloud/tyk-cloud-cmd-example.png" alt="Key section" width="800px" >}}
 
