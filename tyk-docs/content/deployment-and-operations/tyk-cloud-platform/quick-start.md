@@ -137,11 +137,11 @@ After creating a Policy and a Key, proceed to "Postman" to test and interact wit
 
 #### Curl
 
-To test and interact with the API you've just created in the command-line tool (curl), use the following command:
+To test and interact with the API, you can also use the curl command:
 
 * curl -X GET "${API URL}" -H "Authorization: ${KEY ID}"
 
-An example is iilustrated below:
+An example is illustrated below:
 
 ```bash
 curl '-X GET "https://corporate-bakery-gw.aws-euw2.cloud-ara.tyk.io/httpbin/" -H "Authorization: eyJvcmciOiI2NWIxMmYxMWJkZjg0YTAwMDEzY2UzZDkiLCJpZCI6IjRmYzM2OTc4NDg1MzQ3NzRiMDhhZ
