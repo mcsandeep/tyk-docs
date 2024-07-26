@@ -4396,12 +4396,11 @@ menu:
       category: Page
       show: True
     - title: "Security"
-      path: /developer-support/security/owasp-top-ten
       category: Directory
       show: True
       menu:
       - title: "Tyk and OWASP Top Ten Threats"
-        path: /developer-support/owasp-top-ten
+        path: /developer-support/security/owasp-top-ten
         category: Page
         show: True
     - title: "Debugging Series"
