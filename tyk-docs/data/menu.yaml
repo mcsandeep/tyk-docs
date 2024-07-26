@@ -1437,10 +1437,6 @@ menu:
             path: /basic-config-and-security/security/key-level-security
             category: Page
             show: True
-          - title: "Tyk and OWASP Top Ten Threats"
-            path: /basic-config-and-security/security/owasp-top-ten
-            category: Page
-            show: True
           - title: "TLS and SSL"
             path: /basic-config-and-security/security/tls-and-ssl
             category: Page
@@ -4397,6 +4393,10 @@ menu:
       menu:
     - title: "Environment Variables and Configs"
       path: /tyk-environment-variables
+      category: Page
+      show: True
+    - title: "Tyk and OWASP Top Ten Threats"
+      path: /basic-config-and-security/security/owasp-top-ten
       category: Page
       show: True
     - title: "Debugging Series"
