@@ -3,10 +3,6 @@ date: 2017-03-23T16:58:50Z
 title: Tyk and OWASP Top Ten Threats
 tags: ["OWASP", "Security", "Top Ten"]
 description: "How Tyk guards agains the OWASP top ten threats"
-menu:
-  main:
-    parent: "Security"
-weight: 9
 ---
 
 The Open Web Application Security Project (OWASP) provides a top ten threat awareness document compiled by security experts. For more details on the OWASP project visit [https://www.owasp.org](https://www.owasp.org). Below are the top ten threats and how Tyk guards against them. For further details please visit our [blog](https://tyk.io/blog/res-owasp-api-security-intro/)
