@@ -78,7 +78,7 @@ Content-Length: 46
 
  
 
-Tyk Operator supported authentication types are listed in [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
+Tyk Operator supported authentication types are listed in the [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
 
 {{< /note >}}
 
