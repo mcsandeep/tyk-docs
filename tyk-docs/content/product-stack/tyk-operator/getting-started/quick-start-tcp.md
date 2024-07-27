@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
-```yaml
+```yaml {hl_lines=["8-11"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:

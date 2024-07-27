@@ -31,46 +31,41 @@ Here are the supported features:
 | API Categories                 | ✅      | v0.1           | - | [API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-category">}}) |
 | API ID                         | ✅      | v0.1           | - | [API ID]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-id">}}) |-                            |                                                                                            |
 | API Ownership                  | ✅      | v0.12          | - | [API Ownership]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-ownership">}}) |
-| API Versioning                 | ✅      | v0.1           | - | [API Versioning]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-versioning">}}) |
+| API Versioning                 | ✅      | v0.1           | - | [API Versioning]({{<ref "product-stack/tyk-operator/advanced-configurations/api-versioning">}}) |
 
 ## Traffic Routing
 <!--| API Listen Path                | ✅      | v0.1           | - | [API Listen Path]() |-->
 
 | Type                        | Supported | Supported From | Comments | Sample        |
 | --------------------------- | --------- | -------------- | -------- | ------------- |
-| API Listen Path             | ✅        | v0.1           | - | - |
-| Path-Based                  | ✅        | v0.1           | -        | [Sample](./../config/samples/httpbin.yaml) |
-| Host-Based                  | ✅        | v0.1           | -        | [Sample](./../config/samples/httpbin_routing_by_hostname.yaml) |
-| Version-Based (Header)      | ⚠️         | v0.1           | Untested |        |
-| Version-Based (QueryString) | ⚠️         | v0.1           | Untested |        |
-| Version-Based (Subdomain)   | ⚠️         | v0.1           | Untested |        |
+| Path-Based Proxy            | ✅        | v0.1           | - | [HTTP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-proxy">}}) |
+| Host-Based Proxy            | ✅        | v0.1           | - | [HTTP Host-based Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-host-based-proxy">}}) |
+| Target URL                  | ✅        | v0.1           | - | [HTTP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-proxy">}}) |
 
 ## Client to Gateway Authentication and Authorization
 
 | Type                          | Supported | Supported From | Comments | Sample        |
 | ----------------------------- | --------- | -------------- | -------- | ------------- |
-| Keyless                       | ✅        | v0.1           | -        | [Sample](./../config/samples/httpbin.yaml) |
-| Auth Token                    | ✅        | v0.1           | -        | [Sample](./../config/samples/httpbin_protected.yaml) |
-| JWT                           | ✅️        | v0.5           | -        | [Sample](./../config/samples/jwt-auth) |
+| Keyless                       | ✅        | v0.1           | -        | [Keyless]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#keyless-open">}}) |
+| Auth Token                    | ✅        | v0.1           | -        | [Auth Token]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#auth-token-bearer-token">}}) |
+| JWT                           | ✅️        | v0.5           | -        | [JWT]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#jwt">}}) |
 | OpenID Connect                | ❌        | -              | JWT is the recommended way configuring OIDC. Please see [OpenID Connect]({{<ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) documentation for details. | |
 | OAuth2                        | ❌        | -              | JWT is the recommended way to configure OAuth2. Please see [OpenID Connect]({{<ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) documentation for details. | |
-| mTLS                          | ✅        | v0.11              | Only static client mTLS is supported | [Sample](./../config/samples/mtls/client/) |
+| Client mTLS                   | ✅        | v0.11              | Only static client mTLS is supported | [mTLS]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#mtls">}}) |
 | HMAC                          | ❌        | -              | Not implemented | |
-| Basic Authentication          | ✅        | v0.12          | Only enabling with default metadata values is supported  | [Sample](./../config/samples/basic-auth/httpbin_basic_authentication.yaml) |
-| Custom Authentication Plugin (Go)   | ✅        | v0.11          | - | [Sample](./api_definitions/custom_plugin_goauth.yaml) |
-| Custom Authentication Plugin (gRPC) | ✅        | v0.1           | - | [Sample](./../bdd/features/api_http_grpc_plugin.feature) |
-| Multiple Authentication       | ✅        | v0.14          | - | [Sample](./../config/samples/multiple-auth/httpbin_basic_authentication_and_mTLS.yaml) |
-| IP Allowlist                  | ✅        | v0.5           | - | [Sample](./api_definitions/ip.md#whitelisting) |
-| IP Blocklist                  | ✅        | v0.5           | - | [Sample](./api_definitions/ip.md#blacklisting) |
-| GW Request Signing            | ❌        | -              | Not implemented | |
-| Token expiration (session_lifetime) | ✅  | v0.5           | - | |
+| Basic Authentication          | ✅        | v0.12          | Only enabling with default metadata values is supported  | [Basic Auth]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#basic-authentication">}}) |
+| Custom Authentication Plugin (Go)   | ✅        | v0.11          | - | [Custom Auth (go)]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#custom-plugin-auth-go">}}) |
+| Custom Authentication Plugin (gRPC) | ✅        | v0.1           | - | [Custom Auth (gRPC)]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#custom-plugin-auth-grpc">}}) |
+| Multiple Authentication       | ✅        | v0.14          | - | [Multiple Auth]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#multiple-chained-auth">}}) |
+| IP Allowlist                  | ✅        | v0.5           | - | [IP Allowlist]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#ip-allowlist">}}) |
+| IP Blocklist                  | ✅        | v0.5           | - | [IP Blocklist]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#ip-blocklist">}}) |
 
 ## Gateway to Upstream Authentication
 
 | Type                                            | Supported | Supported From | Comments        | Sample        |
 |-------------------------------------------------|-----------|----------------|-----------------| ------------- |
-| Upstream Certificates mTLS                      | ✅        | v0.9           |                 | [From Secret](../config/samples/httpbin_upstream_cert.yaml) or [Manual Upload](../config/samples/httpbin_upstream_cert_manual.yaml) |
-| Public Key Certificate Pinning                  | ✅        | v0.9           |                 | [Sample](../config/samples/httpbin_certificate_pinning.yaml) |
+| Upstream Certificates mTLS                      | ✅        | v0.9           |                 | [Upstream mTLS]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls">}}) |
+| Public Key Certificate Pinning                  | ✅        | v0.9           |                 | [Certificate Pinning]({{<ref "security/certificate-pinning">}}) |
 | Upstream Request Signing                        | ❌        | -              | Not implemented | |
 
 ## API-level (Global) Features
@@ -78,55 +73,55 @@ Here are the supported features:
 | Feature                              | Supported | Supported From | Comments                                                               | Sample                                                          |
 |--------------------------------------|-----------|----------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
 | Detailed recording (in Log Browser)  | ✅        | v0.4.0         | -                                                                      |                                                                 |
-| Config Data                          | ✅        | v0.8.2         | -                                                                      | [Sample](./../config/samples/config_data_virtual_endpoint.yaml) |
+| Config Data                          | ✅        | v0.8.2         | -                                                                      | [Config Data](.) |
 | Context Variables                    | ✅        | v0.1           | -                                                                      |
-| Cross Origin Resource Sharing (CORS) | ✅        | v0.2           | - | [Sample](./../config/samples/httpbin_cors.yaml)                 |
+| Cross Origin Resource Sharing (CORS) | ✅        | v0.2           | - | [CORS]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors">}})                 |
 | Service Discovery                    | ⚠️         | -              | Untested                                                                |                                                                 |
-| Segment Tags                         | ✅        | v0.1           | -                                                                      | [Sample](./../config/samples/httpbin_tagged.yaml)               |
-| Internal API (not exposed by Gateway)| ✅        | v0.6.0         | -                                                                      |                                                                 |
-| Global (API-level) Header Transform  | ✅        | v0.1.0         | -                                                                      | [Sample](../config/samples/httpbin_global-headers.yaml)         |
-| Global (API-level) Rate Limit        | ✅        | v0.10          | -                                                                      | [Sample](./../config/samples/httpbin_global_rate_limit.yaml)    |
+| Segment Tags                         | ✅        | v0.1           | -                                                                      | [Segment Tags]({{<ref "advanced-configuration/manage-multiple-environments/with-tyk-multi-cloud">}})               |
+| Internal API (not exposed by Gateway)| ✅        | v0.6.0         | -                                                                      |                                                                |
+| Global (API-level) Header Transform  | ✅        | v0.1.0         | -                                                                      | [Global Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}})         |
+| Global (API-level) Rate Limit        | ✅        | v0.10          | -                                                                      | [Global Rate Limit]({{<ref "basic-config-and-security/control-limit-traffic/rate-limiting">}})    |
 | Plugin Bundles                       | ❌        | -              | -                                                                      |                                                                 |
 | Custom Plugins - Go                  | ⚠️         | v0.1           | Untested                                                               |
-| Custom Plugins - gRPC                | ✅        | v0.1           | -                                                                      | [Sample](./../bdd/features/api_http_grpc_plugin.feature)        |
-| Custom Plugins - Javascript          | ✅        | v0.1           | -                                                                      | [Sample](./api_definitions/custom_plugin.md)                    |
+| Custom Plugins - gRPC                | ✅        | v0.1           | -                                                                      | [Custom Plugin gRPC]({{<ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin">}})        |
+| Custom Plugins - Javascript          | ✅        | v0.1           | -                                                                      | [Custom Plugin Javascript](./advanced-configurations/custom_plugin.md)                    |
 | Custom Plugins - Lua                 | ⚠️         | v0.1           | Untested                                                               |
 | Custom Plugins - Python              | ⚠️         | v0.1           | Untested                                                               |
-| Custom Plugins - Analytics Plugin    | ✅        | v0.16.0        | - | [Sample](./../config/samples/analytics_plugin.yaml)|
+| Custom Plugins - Analytics Plugin    | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
 | Batch Requests                       | ❌        | -              | -                                                                      |                                                                 |
 | Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        | Untested                                                               |
 | Expire Analytics After               | ❌        | -              | -                                                                      |                                                                 |
 | Do not track Analytics (per API)     | ✅        | v0.1.0         | -                                                                      |                                                                 |
 | Webhooks                             | ❌        | -              | -   | |
-| Looping                              | ⚠️         | v0.6           | Untested                                                               | [Sample](./api_definitions/looping.md)                          |
-| Round Robin Load Balancing           | ✅        | -              | -                                                                    | [Sample](./../config/samples/enable_round_robin_load_balancing.yaml)                    |
+| Looping                              | ⚠️         | v0.6           | Untested                                                               | [Internal Looping](../advanced-configurations/looping.md)                          |
+| Round Robin Load Balancing           | ✅        | -              | -                                                                    | [Load Balancing]({{<ref "planning-for-production/ensure-high-availability/load-balancing">}})                    |
 
 ## Endpoint-level Features
 
-| Endpoint Middleware               | Supported | Supported From | Comments                                       | Sample        | Path |
-|-----------------------------------|-----------|----------------|------------------------------------------------|---------------|--------------------------------------------|
-| Allow list                        | ✅️        | v0.8.2         | -                                              | [Sample](./../config/samples/httpbin_whitelist.yaml) | "white_list" |
-| Block list                        | ✅️        | v0.8.2         | -                                              | [Sample](./../config/samples/httpbin_blacklist.yaml) | "black_list" |
-| Cache                             | ✅        | v0.1           | -                                              | [Sample](./../config/samples/httpbin_cache.yaml) | "cache" |
-| Advance Cache                     | ✅        | v0.1           | -                                              | [Sample](./../config/samples/httpbin_advance_cache.yaml) | "advance_cache_config" |
-| Circuit Breaker                   | ✅        | v0.5           | -                                              | [Sample](./../config/samples/httpbin_timeout.yaml)  | "circuit_breakers" |
-| Track Endpoint                    | ✅        | v0.1           |                                                | [Sample](../config/samples/httpbin_endpoint_tracking.yaml) | "track_endpoints" |
-| Do Not Track Endpoint             | ✅        | v0.1           |                                                | [Sample](../config/samples/httpbin_endpoint_tracking.yaml) | "do_not_track_endpoints" |
-| Enforced Timeouts                 | ✅        | v0.1           | -                                              | [Sample](./../config/samples/httpbin_timeout.yaml) | "hard_timeouts" |
-| Ignore Authentication             | ✅        | v0.8.2         | -                                              | [Sample](./../config/samples/httpbin_ignored.yaml) | "ignore" |
-| Internal Endpoint                 | ✅        | v0.1           | -                                              | [Sample](./../config/samples/httpbin_endpoint_internal.yaml) | "internal" |
-| URL Rewrite Basic                 | ✅️        | v0.1           | -                                              | [Sample](../config/samples/url_rewrite_basic.yaml) | "url_rewrites" |
-| URL Rewrite (Advanced Trigger)    | ❌        | -              | -                                              | | "url_rewrites" |
-| Validate Request                  | ✅        | v0.8.2         | -                                              | [Sample](../config/samples/httpbin_json_schema_validation.yaml) | "validate_json" |
-| Request Size Limit                | ✅️        | v0.1           | -                                              | [Sample](../config/samples/request_size.yaml) | "size_limits" |
-| Request Method Transform          | ✅        | v0.5           | -                                              | [Sample](../bdd/custom_resources/transform/method.yaml) | "method_transforms" |
-| Request Header Transform          | ✅        | v0.1           | -                                              | - | "transform_headers" |
-| Request Body Transform            | ✅        | v0.1           | -                                              | [Sample](../config/samples/httpbin_transform.yaml) | "transform" |
-| Request Body JQ Transform         | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | | "transform_jq" |
-| Response Header Transform         | ✅        | v0.1           | -                                              | - | "transform_response_headers" |
-| Response Body Transform           | ✅        | v0.1           | -                                              | [Sample](../config/samples/httpbin_transform.yaml) | "transform_response" |
-| Response Body JQ Transform        | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | | "transform_jq_response" |
-| Mock Response                     | ✅        | v0.1           | -                                             | [Sample](../config/samples/httpbin_mock.yaml)|
-| Virtual Endpoint                  | ✅        | v0.1           | -                                              | [Sample](./../config/samples/config_data_virtual_endpoint.yaml) | "virtual" |
-| Go Plugin                         | ❌        | -              | -                                              |  | "go_plugin" |
-| Persist Graphql                   | ❌        | -              | -                                              |  | "persist_graphql" |
+| Endpoint Middleware               | Supported | Supported From | Comments                                       | Sample        |
+|-----------------------------------|-----------|----------------|------------------------------------------------|---------------|
+| Allow list                        | ✅️        | v0.8.2         | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/allow-list-tyk-classic">}}) |
+| Block list                        | ✅️        | v0.8.2         | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/block-list-tyk-classic">}}) |
+| Cache                             | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/endpoint-cache-tyk-classic">}}) |
+| Advance Cache                     | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/endpoint-cache-tyk-classic">}}) |
+| Circuit Breaker                   | ✅        | v0.5           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/circuit-breaker-tyk-classic">}})  |
+| Track Endpoint                    | ✅        | v0.1           |                                                | [Sample]({{<ref "product-stack/tyk-gateway/middleware/do-not-track-tyk-classic">}}) |
+| Do Not Track Endpoint             | ✅        | v0.1           |                                                | [Sample]({{<ref "product-stack/tyk-gateway/middleware/do-not-track-tyk-classic">}}) |
+| Enforced Timeouts                 | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/enforced-timeout-tyk-classic">}}) |
+| Ignore Authentication             | ✅        | v0.8.2         | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/ignore-tyk-classic">}}) |
+| Internal Endpoint                 | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/internal-endpoint-tyk-classic">}}) |
+| URL Rewrite Basic                 | ✅️        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic">}}) |
+| URL Rewrite (Advanced Trigger)    | ❌        | -              | -                                              | |
+| Validate Request                  | ✅        | v0.8.2         | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/validate-request-tyk-classic">}}) |
+| Request Size Limit                | ✅️        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/request-size-limit-tyk-classic">}}) |
+| Request Method Transform          | ✅        | v0.5           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/request-method-tyk-classic">}}) |
+| Request Header Transform          | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}}) |
+| Request Body Transform            | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/request-body-tyk-classic">}}) |
+| Request Body JQ Transform         | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
+| Response Header Transform         | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/response-header-tyk-classic">}}) |
+| Response Body Transform           | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/response-body-tyk-classic">}}) |
+| Response Body JQ Transform        | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
+| Mock Response                     | ✅        | v0.1           | -                                             | [Sample]({{<ref "product-stack/tyk-gateway/middleware/mock-response-tyk-classic">}})|
+| Virtual Endpoint                  | ✅        | v0.1           | -                                              | [Sample]({{<ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-classic">}}) |
+| Go Plugin                         | ❌        | -              | -                                              |  |
+| Persist Graphql                   | ❌        | -              | -                                              |  |

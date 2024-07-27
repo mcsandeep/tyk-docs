@@ -7,7 +7,7 @@ description: "Tyk Operator manifest example"
 
 ## UDG v2 (Tyk 3.2 and above)
 
-```yaml
+```yaml {hl_lines=["20-39", "46-80"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:

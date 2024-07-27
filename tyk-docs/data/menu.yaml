@@ -3828,14 +3828,22 @@ menu:
               path: /product-stack/tyk-operator/getting-started/quick-start-udg
               category: Page
               show: True
-        - title: "Secure an API with Auth token"
-          path: /tyk-stack/tyk-operator/access-an-api
-          category: Page
+        - title: "Secure an API"
+          category: Directory
           show: True
+          menu:
+          - title: "Secure an API with Auth token"
+            path: /tyk-stack/tyk-operator/access-an-api
+            category: Page
+            show: True
+          - title: "Authentication types"
+            path: /product-stack/tyk-operator/advanced-configurations/client-authentication
+            category: Page
+            show: True
         - title: "Protect an API with Policy"
-          path: /tyk-stack/tyk-operator/secure-an-api
           category: Page
           show: True
+          path: /tyk-stack/tyk-operator/secure-an-api
         - title: "Publish an API to Dev Portal"
           path: /tyk-stack/tyk-operator/publish-an-api
           category: Page
@@ -3862,6 +3870,10 @@ menu:
           show: True
         - title: "Manage API Ownership"
           path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
+          category: Page
+          show: True
+        - title: "API Versioning"
+          path: /product-stack/tyk-operator/advanced-configurations/api-versioning
           category: Page
           show: True
         - title: "GraphQL Federation"
