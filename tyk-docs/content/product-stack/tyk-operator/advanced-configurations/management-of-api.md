@@ -54,7 +54,7 @@ spec:
 
 ## API Category
 
-For Tyk Classic API, you can specify the category name using the `spec.name` field with a `#` qualifier. This will categorize the API in the Tyk Dashboard.
+For a Tyk Classic API, you can specify the category name using the `spec.name` field with a `#` qualifier. This will categorize the API in the Tyk Dashboard.
 
 Example
 

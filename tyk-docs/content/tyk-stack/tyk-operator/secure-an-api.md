@@ -1,6 +1,6 @@
 ---
 date: 2017-03-24T16:39:31Z
-title: Protect an API with Policy
+title: Protect an API with a Security Policy
 ---
 
 ### Introduction
