@@ -55,11 +55,32 @@ While we maintain a regular release schedule, it's important to clarify that the
 
 Although feature releases receive support, it's essential to note their limited support duration, extending only until the arrival of the subsequent release that supersedes them. For users prioritizing stability and consistent patching, the LTS releases offer a more suitable choice.
 
-Consequently, versioning between feature releases is dynamic and non-deterministic. When a feature release supersedes another feature release there are three possible semantic versioning outcomes:
+### Semantic Versioning of Feature Releases
 
-- **Breaking change**: The major version is bumped, e.g. if the current release is v5.5 then the new release is will be v6.0
-- **Backwards compatible change or a new / improved capability**: The minor version is bumped, e.g. if the current release is v5.5 then the new release will be v5.6.
-- **Bug fixes**: The patch version is bumped, e.g. if the current release is v5.5.0 then the new release is v5.5.1. Bug fixes in a feature release are bundled into a new patched LTS release. For example, if the current LTS release is v5.3.2 then bug fixes from tv5.5.1 will be patched into a new LTS release, v5.3.3.
+Feature releases follow a semantic versioning scheme that ensures clarity about the nature of changes introduced. Versioning between feature releases is dynamic and non-deterministic. When a feature release supersedes another feature release, the versioning can change in one of three ways:
+
+- **Breaking Change**: A change that is not backwards compatible. In this case, the major version number is incremented. For example, if the current release is v5.5, the new release will be v6.0.
+- **Backwards Compatible Change**: This includes new or improved capabilities that do not break existing functionality. Here, the minor version number is incremented. For example, if the current release is v5.5, the new release will be v5.6.
+- **Bug Fixes**: These are updates that address bugs without adding new features or breaking existing functionality. In this scenario, the patch version number is incremented. For example, if the current release is v5.5.0, the new release will be v5.5.1.
+
+### Handling Bug Fixes in Feature Releases
+
+Bug fixes in feature releases are incorporated into new patched LTS releases. For example, if the current LTS release is v5.3.2 and a bug fix is made in a feature release, such as v5.5.1, this fix will be included in a new LTS release, which will then be v5.3.3.
+
+### Comparison of Feature Releases vs LTS Releases
+
+To aid your understanding, here's a comparison table highlighting the key differences between feature and LTS releases:
+
+| **Aspect**            | **Feature Releases**                              | **LTS Releases**                                  |
+|-----------------------|---------------------------------------------------|---------------------------------------------------|
+| **Release Frequency** | Regular intervals                                 | Less frequent, based on stability and support needs |
+| **Support Duration**  | Limited, until the next feature release           | Extended, with regular patches and updates        |
+| **Target Audience**   | Teams needing the latest features                 | Users prioritizing stability and long-term support|
+| **Versioning**        | Dynamic and non-deterministic                     | Stable and deterministic                          |
+
+### What Type Of Release Should I Choose?
+
+Understanding the nature of feature releases and their versioning ensures you can make informed decisions based on your needs for new features or stability. For cutting-edge capabilities, feature releases are ideal. For a stable and supported environment, LTS releases are the recommended choice.
 
 ---
 
