@@ -55,6 +55,12 @@ While we maintain a regular release schedule, it's important to clarify that the
 
 Although these releases receive support, it's essential to note their limited support duration, extending only until the arrival of the subsequent release that supersedes them. For users prioritizing stability and consistent patching, the LTS releases offer a more suitable choice.
 
+Versioning between feature releases is there dynamic and non-deterministic. When a feature release supersedes another feature release there are three possible outcomes:
+
+- Major breaking change: The major version is bumped
+- Backwards compatible change or new / improved capability: The minor version is bumped
+- Bug fixes: The patch version is bumped. Bug fixes in feature releases are bundled into the LTS release also.
+
 ---
 
 ## Major / Minor / Patch - How Do We Decide?
