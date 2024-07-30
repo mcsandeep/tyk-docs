@@ -51,15 +51,15 @@ In case there's a need to operate on a version beyond the established LTS policy
 
 ## What About Non LTS Gateway Releases?
 
-While we maintain a regular release schedule, it's important to clarify that these releases do not fall under the Long Term Support (LTS) category. They introduce new capabilities, appealing to teams seeking the latest features upon release. However, these specific features become part of the subsequent LTS release.
+While we maintain a regular release schedule, it's important to clarify that these releases do not fall under the Long Term Support (LTS) category. They introduce new capabilities, appealing to teams seeking the latest features upon release. However, these specific features become part of the subsequent LTS release. These types of releases are termed *feature* releases.
 
-Although these releases receive support, it's essential to note their limited support duration, extending only until the arrival of the subsequent release that supersedes them. For users prioritizing stability and consistent patching, the LTS releases offer a more suitable choice.
+Although feature releases receive support, it's essential to note their limited support duration, extending only until the arrival of the subsequent release that supersedes them. For users prioritizing stability and consistent patching, the LTS releases offer a more suitable choice.
 
-Versioning between feature releases is there dynamic and non-deterministic. When a feature release supersedes another feature release there are three possible outcomes:
+Consequently, versioning between feature releases is dynamic and non-deterministic. When a feature release supersedes another feature release there are three possible semantic versioning outcomes:
 
-- Major breaking change: The major version is bumped
-- Backwards compatible change or new / improved capability: The minor version is bumped
-- Bug fixes: The patch version is bumped. Bug fixes in feature releases are bundled into the LTS release also.
+- **Breaking change**: The major version is bumped, e.g. if the current release is v5.5 then the new release is will be v6.0
+- **Backwards compatible change or a new / improved capability**: The minor version is bumped, e.g. if the current release is v5.5 then the new release will be v5.6.
+- **Bug fixes**: The patch version is bumped, e.g. if the current release is v5.5.0 then the new release is v5.5.1. Bug fixes in a feature release are bundled into a new patched LTS release. For example, if the current LTS release is v5.3.2 then bug fixes from tv5.5.1 will be patched into a new LTS release, v5.3.3.
 
 ---
 
