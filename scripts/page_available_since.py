@@ -4,7 +4,16 @@ import json
 versions = [
     {
         "path": "/docs/",
+<<<<<<< HEAD
         "name": "5.4 - Latest",
+=======
+        "name": "5.5 - Latest",
+        "branch": "release-5.5"
+    },
+    {
+        "path": "/docs/5.4/",
+        "name": "5.4",
+>>>>>>> 1fad83569... Update page_available_since.py for 5.4 (#5198)
         "branch": "release-5.4"
     },
     {
