@@ -18,12 +18,23 @@ It includes:
 - Tyk Developer Portal, a full-fledged CMS-like system for API providers to publish, monetize and drive the adoption of APIs.
 
 By default, this chart installs the following components as sub-charts on a [Kubernetes](https://kubernetes.io/) cluster using the [Helm](https://helm.sh/) package manager.
+<<<<<<< HEAD
 | Component | Enabled by Default? | Flag |
 | --------- | ------------------ | ---- |
 | Tyk Gateway   |true  | n/a                    |
 | Tyk Dashboard |true  | n/a                    |
 | Tyk Pump      |true  | global.components.pump |
 | Tyk Developer Portal | false | global.components.devPortal |
+=======
+
+| Component                       | Enabled by Default | Flag                        |
+|---------------------------------|--------------------|-----------------------------|
+| Tyk Gateway                     | true               | n/a                         |
+| Tyk Dashboard                   | true               | n/a                         |
+| Tyk Pump                        | false              | global.components.pump      |
+| Tyk Enterprise Developer Portal | false              | global.components.devPortal | 
+| Tyk Operator                    | false              | global.components.operator  |
+>>>>>>> 0b0f37d75... [DX-1610] Removed MDCB from components table (#5213)
 
 To enable or disable each component, change the corresponding enabled flag.
 
