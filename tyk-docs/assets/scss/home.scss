@@ -65,7 +65,7 @@ a {
   display: flex;
   align-items: center;
   min-height: 37px;
-  max-width: 250px;
+  max-width: 200px;
 }
 
 .banner {
@@ -255,4 +255,11 @@ ol, ul {
   .container-xl {
       max-width: 97%;
   }
+}
+
+
+.main-bar{
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 20px;
 }

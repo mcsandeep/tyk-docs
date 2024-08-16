@@ -4,7 +4,7 @@ menu:
   - title: "Home"
     path: /
     category: Tab
-    show: True
+    show: false
     menu:
     - title: "Tyk API Gateway Documentation"
       path: /
@@ -13,7 +13,7 @@ menu:
   - title: "Deployment and Operations"
     path: /apim
     category: Tab
-    show: True
+    show: false
     menu:
     - title: "Overview"
       path: /apim
