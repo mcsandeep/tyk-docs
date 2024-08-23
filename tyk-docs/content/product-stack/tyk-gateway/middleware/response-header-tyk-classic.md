@@ -190,7 +190,7 @@ Use the *save* or *create* buttons to save the changes and activate the middlewa
 
 The process for configuring a response header transform in Tyk Operator is similar to that defined in section [configuring the Response Header Transform in the Tyk Classic API Definition](#tyk-classic). Tyk Operator allows you to configure a response header transformation for [all endpoints of an API](#tyk-operator-endpoint) or for a [specific API endpoint](#tyk-operator-api).
 
-### API level transform {#tyk-operator-api}
+### API-level transform {#tyk-operator-api}
 
 The process of configuring transformation of response headers for a specific API in Tyk Operator is similar to that defined in section [API-level transform](#tyk-classic-api) for the Tyk Classic API definition. 
 
@@ -246,13 +246,13 @@ It will also delete one header (if present) from each response:
 - `X-Secret`
 
 
-### Endpoint transform {#tyk-operator-endpoint}
+### Endpoint-level transform {#tyk-operator-endpoint}
 
 The process of configuring a transformation of a response header for a specific endpoint in Tyk Operator is similar to that defined in section [endpoint-level transform](#tyk-classic-endpoint) for the Tyk Classic API definition. To configure a transformation of the response headers for a specific endpoint you must add a new `transform_response_headers` object to the `extended_paths` section of your API definition.
 
 In this example the Response Header Transform middleware (`transform_response_headers`) has been configured for HTTP `GET` requests to the `/xml` endpoint. Any response received from the upstream service following a request to that endpoint will have the `Content-Type` header added with a value set to `application/json`.
 
-#### Example
+##### Example
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["54-60"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -317,7 +317,7 @@ spec:
               delete_headers: []
 ```
 
-#### Tyk Gateway < 5.3.0 Example
+##### Tyk Gateway < 5.3.0 Example
 
 If using Tyk Gateway < v5.3.0 then a `response_processor` object must be added to the API definition containing a `header_injector` item, as highlighted below:
 
