@@ -40,10 +40,10 @@ spec:
 You can link this Security Policy to any APIs you have defined in `access_rights_array`. In this example, the security policy is applied to `httpbin` API in `default` namespace.
 
 #### Step 2: Deploy the SecurityPolicy resource
-You can do so either by applying the above manifest:
+You can do so by applying the above manifest:
 
 ```console
-$ kubectl apply -f docs/policies/ratelimit.yaml
+$ kubectl apply -f ratelimit.yaml
 ```
 
 Or, if you don’t have the manifest with you, you can run the following command:

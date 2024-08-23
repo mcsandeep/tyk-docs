@@ -5,6 +5,8 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
+This page provides sample manifest for creating TCP proxy APIs. Follow the example to learn how to configure your APIs.
+
 ```yaml {hl_lines=["8-11"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition

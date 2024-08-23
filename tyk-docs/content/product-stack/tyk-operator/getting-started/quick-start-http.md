@@ -5,6 +5,8 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
+This page provides some sample manifests for creating different types of HTTP proxy APIs. Follow these examples to learn how to configure your APIs.
+
 ## HTTP Proxy
 
 This example creates a basic API definition that routes requests to listen path `/httpbin` to target URL `http://httpbin.org`.
@@ -57,17 +59,7 @@ spec:
 
 This example creates a API definition that routes requests to a http://httpbin.org via port 8443.
 
-```yaml {hl_lines=["45-48"],linenos=false}
-# Delete a secret
-# kubectl delete secret my-test-tls
-# self-signed issuer & certificate should generate a new secret, reconciler
-#  associates with Tyk API Definition and deletes old certificate
-
-# Rotate a secret
-# kubectl cert-manager renew my-test-cert
-# self-signed issuer & certificate should generate a new secret, reconciler
-#  associates with Tyk API Definition - old cert is left as artifact because
-#  it was not explicitly deleted
+```yaml {hl_lines=["35-38"],linenos=false}
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:

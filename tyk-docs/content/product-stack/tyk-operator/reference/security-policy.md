@@ -17,4 +17,4 @@ Here are the supported features:
 | Partitions                 | ✅ |
 | Per API limit              | ❌ |
 
-Consult [Security Policy CRD]({{<ref "tyk-stack/tyk-operator/secure-an-api">}}) to see examples of setting these features.
+Consult [Security Policy CRD]({{<ref "tyk-stack/tyk-operator/secure-an-api#securitypolicy-crd">}}) to see examples of setting these features.

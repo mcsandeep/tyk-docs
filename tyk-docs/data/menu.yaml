@@ -3922,10 +3922,6 @@ menu:
           path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
           category: Page
           show: True
-        - title: "API Versioning"
-          path: /product-stack/tyk-operator/advanced-configurations/api-versioning
-          category: Page
-          show: True
         - title: "GraphQL Federation"
           path: /product-stack/tyk-operator/advanced-configurations/graphql-federation
           category: Page

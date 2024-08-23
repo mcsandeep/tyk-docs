@@ -5,7 +5,11 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
+This page provides sample manifest for creating UDG APIs. Follow the example to learn how to configure your APIs.
+
 ## UDG v2 (Tyk 3.2 and above)
+
+If you are on Tyk 3.2 and above, you can use the following manifest to create an UDG API. This example configures a Universal Data Graph from a [GraphQL datasource]({{<ref "universal-data-graph/datasources/graphql">}}) and a [REST Datasource]({{<ref "universal-data-graph/datasources/rest">}}).
 
 ```yaml {hl_lines=["20-39", "46-80"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -92,7 +96,7 @@ spec:
 
 ## UDG v1 (Tyk 3.1 or before)
 
-If you are on Tyk 3.1, you can use the following manifest to create an UDG API.
+If you are on Tyk 3.1, you can use the following manifest to create an UDG API. This example creates a Universal Data Graph with GraphQL datasource and HTTP JSON datasource.
 
 ```yaml
 apiVersion: tyk.tyk.io/v1alpha1

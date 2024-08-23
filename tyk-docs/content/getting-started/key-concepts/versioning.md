@@ -224,3 +224,91 @@ From the **Endpoint Designer** tab, you can select the version that you wish to 
 {{< img src="/img/dashboard/endpoint-designer/tyk-classic-version-endpoint.png" alt="Choosing the API version for which to configure endpoint middleware" >}}
 
 Select **Update** to save the changes to your API.
+
+## Configuring API versioning in Tyk Operator
+The process for configuring API versioning is similar to that defined in section [Configuring API versioning in the Tyk Classic API Definition](#configuring-api-versioning-in-the-tyk-classic-api-definition). Here is an example for specifying API version using header value.
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: versioned-api
+spec:
+  name: Versioned API
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://version-api.example.com
+    listen_path: /version-api
+    strip_listen_path: true
+  definition:
+  # Tyk should find version data in Header
+    location: header
+    key: x-api-version
+
+  # Tyk should find version data in First URL Element
+    #location: url
+
+  # Tyk should find version data in URL/Form Parameter
+    #location: url-param
+    #key: api-version
+  version_data:
+    default_version: v1
+    not_versioned: false
+    versions:
+      v1:
+        name: v1
+        expires: ""
+        override_target: "http://test.org"
+        use_extended_paths: true
+        extended_paths:
+          ignored:
+            - path: /v1/ignored/noregex
+              method_actions:
+                GET:
+                  action: no_action
+                  code: 200
+                  data: ""
+                  headers:
+                    x-tyk-override-test: tyk-override
+                    x-tyk-override-test-2: tyk-override-2
+          white_list:
+            - path: v1/allowed/allowlist/literal
+              method_actions:
+                GET:
+                  action: no_action
+                  code: 200
+                  data: ""
+                  headers:
+                    x-tyk-override-test: tyk-override
+                    x-tyk-override-test-2: tyk-override-2
+            - path: v1/allowed/allowlist/reply/{id}
+              method_actions:
+                GET:
+                  action: reply
+                  code: 200
+                  data: flump
+                  headers:
+                    x-tyk-override-test: tyk-override
+                    x-tyk-override-test-2: tyk-override-2
+            - path: v1/allowed/allowlist/{id}
+              method_actions:
+                GET:
+                  action: no_action
+                  code: 200
+                  data: ""
+                  headers:
+                    x-tyk-override-test: tyk-override
+                    x-tyk-override-test-2: tyk-override-2
+          black_list:
+            - path: v1/disallowed/blocklist/literal
+              method_actions:
+                GET:
+                  action: no_action
+                  code: 200
+                  data: ""
+                  headers:
+                    x-tyk-override-test: tyk-override
+                    x-tyk-override-test-2: tyk-override-2
+```
