@@ -143,7 +143,7 @@ Use the *save* or *create* buttons to save the changes and activate the middlewa
 
 The process for configuring a request header transform is similar to that defined in section [Configuring the Request Header Transform in the Tyk Classic API Definition](#tyk-classic). Tyk Operator allows you to configure a request size limit for [all endpoints of an API](#tyk-operator-api) or for a [specific API endpoint](#tyk-operator-endpoint).
 
-### API Level {#tyk-operator-api}
+### API-level transform {#tyk-operator-api}
 
 Request headers can be removed and inserted using the following fields within an `ApiDefinition`:
 
@@ -184,7 +184,7 @@ spec:
           - hello
 ```
 
-### Endpoint Level {#tyk-operator-endpoint}
+### Endpoint-level transform {#tyk-operator-endpoint}
 
 The process of configuring a transformation of a request header for a specific endpoint is similar to that defined in section [Endpoint-level transform](#tyk-classic-endpoint). To configure a transformation of the request header for a specific endpoint you must add a new `transform_headers` object to the `extended_paths` section of your API definition.
 
