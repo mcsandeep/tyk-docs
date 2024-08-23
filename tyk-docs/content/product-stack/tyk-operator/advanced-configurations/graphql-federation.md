@@ -198,5 +198,5 @@ kubectl delete supergraphs.tyk.tyk.io <SUPERGRAPH_NAME>
 ### SuperGraph referenced in ApiDefinition
 If a supergraph is referenced in any ApiDefinition, the Tyk Operator will not delete the SuperGraph CRD.
 
-In order to delete this supergraph, ApiDefinition that has a reference to the supergraph must de-reference the supergraph
+In order to delete this supergraph, the ApiDefinition that has a reference to the supergraph must de-reference the supergraph
 or be deleted.
