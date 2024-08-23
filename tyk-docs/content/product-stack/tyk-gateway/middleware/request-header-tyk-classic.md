@@ -145,7 +145,44 @@ The process for configuring a request header transform is similar to that define
 
 ### API Level {#tyk-operator-api}
 
-<!-- need an example here -->
+Request headers can be removed and inserted using the following fields within an `ApiDefinition`:
+
+- `global_headers`: Mapping of key values corresponding to headers to add to API requests.
+- `global_headers_remove`: List containing the name of headers to remove from API requests.
+
+The example below shows an `ApiDefinition` custom resource that adds *foo-req* and *bar-req* headers to the request before it is sent upstream. The *foo-req* header has a value of *foo-val* and the *bar-req* header has a value of *bar-val*. Furthermore, the *hello* header is removed from the request before it is sent upstream.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["25-29"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-global-headers
+spec:
+  name: httpbin-global-headers
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin-global-headers
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+        use_extended_paths: true
+        paths:
+          black_list: []
+          ignored: []
+          white_list: []
+        global_headers:
+          foo-req: my-foo
+          bar-req: my-bar
+        global_headers_remove:
+          - hello
+```
 
 ### Endpoint Level {#tyk-operator-endpoint}
 

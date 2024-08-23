@@ -204,3 +204,5 @@ spec:
               rewrite_to: /xml
               triggers: []
 ```
+
+For further examples check out the [internal looping]({{< ref "/product-stack/tyk-operator/advanced-configurations/internal-looping" >}}) page.
