@@ -1,3 +1,5 @@
+# yamllint disable rule:line-length rule:truthy
+---
 menu:
   - title: "Home"
     path: /
@@ -345,7 +347,7 @@ menu:
         path: /tyk-on-premises
         category: Page
         show: True
-      - title: "Quick Start - Free Trial"
+      - title: "Quick Start"
         path: /getting-started/quick-start
         category: Page
         show: True
@@ -1135,10 +1137,6 @@ menu:
             path: /getting-started/key-concepts/paths
             category: Page
             show: True
-          - title: "Versioning"
-            path: /getting-started/key-concepts/oas-versioning
-            category: Page
-            show: True
           - title: "Tyk OAS Maturity"
             path: /getting-started/using-oas-definitions/oas-reference
             category: Page
@@ -1189,14 +1187,6 @@ menu:
             show: True
           - title: "Uptime Tests"
             path: /tyk-apis/tyk-gateway-api/api-definition-objects/uptime-tests
-            category: Page
-            show: True
-          - title: "Tyk Classic API Versioning"
-            path: /getting-started/key-concepts/versioning
-            category: Page
-            show: True
-          - title: "Versioning and Endpoint Handling"
-            path: /tyk-apis/tyk-gateway-api/api-definition-objects/versioning-endpoint
             category: Page
             show: True
         - title: "GraphQL"
@@ -1467,10 +1457,6 @@ menu:
             path: /basic-config-and-security/control-limit-traffic/key-expiry
             category: Page
             show: True
-          - title: "Rate Limits"
-            path: /basic-config-and-security/control-limit-traffic/rate-limiting
-            category: Page
-            show: True
           - title: "Request Quotas"
             path: /basic-config-and-security/control-limit-traffic/request-quotas
             category: Page
@@ -1493,6 +1479,22 @@ menu:
               show: True
           - title: "Request Throttling"
             path: /basic-config-and-security/control-limit-traffic/request-throttling
+            category: Page
+            show: True
+        - title: "Rate Limits"
+          category: Directory
+          show: True
+          menu:
+          - title: "Overview"
+            path: /basic-config-and-security/control-limit-traffic/rate-limiting
+            category: Page
+            show: True
+          - title: "Tyk OAS configuration"
+            path: /product-stack/tyk-gateway/middleware/endpoint-rate-limit-oas
+            category: Page
+            show: True
+          - title: "Tyk Classic configuration"
+            path: /product-stack/tyk-gateway/middleware/endpoint-rate-limit-classic
             category: Page
             show: True
         - title: "Reduce latency"
@@ -1571,36 +1573,48 @@ menu:
               path: /product-stack/tyk-gateway/middleware/do-not-track-tyk-classic
               category: Page
               show: True
-        - title: "Report, monitor and trigger events"
+        - title: "Gateway events"
           category: Directory
           show: True
           menu:
-          - title: "Report, Monitor and Trigger Events"
+          - title: "Overview"
             path: /basic-config-and-security/report-monitor-trigger-events
             category: Page
             show: True
-          - title: "Custom Handlers (JavaScript)"
-            path: /basic-config-and-security/report-monitor-trigger-events/custom-handlers-javascript
-            category: Page
-            show: True
-          - title: "Event Data"
-            path: /basic-config-and-security/report-monitor-trigger-events/event-data
-            category: Page
-            show: True
-          - title: "Event Types"
+          - title: "Event types"
             path: /basic-config-and-security/report-monitor-trigger-events/event-types
             category: Page
             show: True
-          - title: "Instrumentation"
-            path: /basic-config-and-security/report-monitor-trigger-events/instrumentation
+          - title: "Event metadata"
+            path: /basic-config-and-security/report-monitor-trigger-events/event-data
             category: Page
             show: True
-          - title: "Monitors"
+          - title: "Event handling with webhooks"
+            category: Directory
+            show: True
+            menu:   
+            - title: "Overview"
+              path: /basic-config-and-security/report-monitor-trigger-events/webhooks
+              category: Page
+              show: True
+            - title: "Tyk OAS configuration"
+              path: /product-stack/tyk-gateway/basic-config-and-security/report-monitor-and-trigger-events/event-webhook-tyk-oas
+              category: Page
+              show: True
+            - title: "Tyk Classic configuration"
+              path: /product-stack/tyk-gateway/basic-config-and-security/report-monitor-and-trigger-events/event-webhook-tyk-classic
+              category: Page
+              show: True  
+          - title: "Logging events"
+            path: /product-stack/tyk-gateway/basic-config-and-security/report-monitor-and-trigger-events/log-handlers
+            category: Page
+            show: True
+          - title: "Custom event handlers"
+            path: /basic-config-and-security/report-monitor-trigger-events/custom-handlers-javascript
+            category: Page
+            show: True
+          - title: "Advanced quota monitoring"
             path: /basic-config-and-security/report-monitor-trigger-events/monitors
-            category: Page
-            show: True
-          - title: "Webhooks"
-            path: /basic-config-and-security/report-monitor-trigger-events/webhooks
             category: Page
             show: True
       - title: "Advanced configurations"
@@ -1851,6 +1865,22 @@ menu:
             path: /advanced-configuration/transform-traffic/jq-transformations
             category: Page
             show: True
+        - title: "API Versioning"
+          category: Directory
+          show: True
+          menu:
+          - title: "Overview"
+            path: /product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning
+            category: Page
+            show: True          
+          - title: "Tyk OAS versioning"
+            path: /getting-started/key-concepts/oas-versioning
+            category: Page
+            show: True
+          - title: "Tyk Classic versioning"
+            path: /getting-started/key-concepts/versioning
+            category: Page
+            show: True
         - title: "Integration options"
           category: Directory
           show: True
@@ -1899,12 +1929,20 @@ menu:
               path: /advanced-configuration/integrate/api-auth-mode
               category: Page
               show: True
-        - title: "Distributed Tracing"
+        - title: "Observability"
           category: Directory
           show: True
           menu:
           - title: "Overview"
-            path: /product-stack/tyk-gateway/advanced-configurations/distributed-tracing/distributed-tracing-overview
+            path: /product-stack/tyk-gateway/advanced-configurations/distributed-tracing/observability
+            category: Page
+            show: True
+          - title: "Metrics"
+            path: /basic-config-and-security/report-monitor-trigger-events/instrumentation
+            category: Page
+            show: True
+          - title: "System logs"
+            path: /log-data
             category: Page
             show: True
           - title: "OpenTelemetry"
@@ -2252,10 +2290,6 @@ menu:
           path: /context-variables
           category: Page
           show: True
-        - title: "Gateway Logs"
-          path: /log-data
-          category: Page
-          show: True
         - title: "Securing System Payloads"
           path: /tyk-configuration-reference/securing-system-payloads
           category: Page
@@ -2387,11 +2421,15 @@ menu:
           path: /product-stack/tyk-gateway/release-notes/overview
           category: page
           show: True
+        - title: "Tyk Gateway v5.5"
+          path: /product-stack/tyk-gateway/release-notes/version-5.5
+          category: Page
+          show: True
         - title: "Tyk Gateway v5.4"
           path: /product-stack/tyk-gateway/release-notes/version-5.4
           category: Page
           show: True
-        - title: "Tyk Gateway v5.3"
+        - title: "Tyk Gateway v5.3 LTS"
           path: /product-stack/tyk-gateway/release-notes/version-5.3
           category: Page
           show: True
@@ -2854,11 +2892,15 @@ menu:
           category: Page
           path: /product-stack/tyk-dashboard/release-notes/overview
           show: True
+        - title: "Tyk Dashboard v5.5"
+          path: /product-stack/tyk-dashboard/release-notes/version-5.5
+          category: Page
+          show: True
         - title: "Tyk Dashboard v5.4"
           category: Page
           path: /product-stack/tyk-dashboard/release-notes/version-5.4
           show: True
-        - title: "Tyk Dashboard v5.3"
+        - title: "Tyk Dashboard v5.3 LTS"
           category: Page
           path: /product-stack/tyk-dashboard/release-notes/version-5.3
           show: True
@@ -3581,6 +3623,10 @@ menu:
         category: Directory
         show: True
         menu:
+        - title: "MDCB v2.7"
+          path: /product-stack/tyk-enterprise-mdcb/release-notes/version-2.7
+          category: Page
+          show: True
         - title: "MDCB v2.6"
           path: /product-stack/tyk-enterprise-mdcb/release-notes/version-2.6
           category: Page
@@ -3752,6 +3798,10 @@ menu:
         category: Directory
         show: True
         menu:
+          - title: "Pump v1.11"
+            path: /product-stack/tyk-pump/release-notes/pump-1.11
+            category: Page
+            show: True
           - title: "Pump v1.10"
             path: /product-stack/tyk-pump/release-notes/pump-1.10
             category: Page
@@ -3880,6 +3930,14 @@ menu:
           path: /product-stack/tyk-operator/advanced-configurations/graphql-federation
           category: Page
           show: True
+        - title: "Custom Plugins"
+          path: /product-stack/tyk-operator/advanced-configurations/custom-plugins
+          category: Page
+          show: True
+        - title: "Looping"
+          path: /product-stack/tyk-operator/advanced-configurations/internal-looping
+          category: Page
+          show: True
       - title: "Troubleshooting"
         category: Directory
         show: True
@@ -3964,6 +4022,10 @@ menu:
             path: /product-stack/tyk-streaming/configuration/inputs/amqp-1
             category: Page
             show: True
+          - title: "Broker"
+            path: /product-stack/tyk-streaming/configuration/inputs/broker
+            category: Page
+            show: True
           - title: "Http Server"
             path: /product-stack/tyk-streaming/configuration/inputs/http-server
             category: Page
@@ -4002,6 +4064,14 @@ menu:
             show: True
           - title: "Amqp_1"
             path: /product-stack/tyk-streaming/configuration/outputs/amqp-1
+            category: Page
+            show: True
+          - title: "Broker"
+            path: /product-stack/tyk-streaming/configuration/outputs/broker 
+            category: Page
+            show: True
+          - title: "Drop on"
+            path: /product-stack/tyk-streaming/configuration/outputs/drop_on
             category: Page
             show: True
           - title: "Fallback"
@@ -4092,6 +4162,14 @@ menu:
             path: /product-stack/tyk-streaming/configuration/processors/for-each
             category: Page
             show: True
+          - title: "Group By"
+            path: /product-stack/tyk-streaming/configuration/processors/group-by
+            category: Page
+            show: True
+          - title: "Group By Value"
+            path: /product-stack/tyk-streaming/configuration/processors/group-by-value
+            category: Page
+            show: True
           - title: "Insert Part"
             path: /product-stack/tyk-streaming/configuration/processors/insert-part
             category: Page
@@ -4128,6 +4206,10 @@ menu:
             path: /product-stack/tyk-streaming/configuration/processors/noop
             category: Page
             show: True
+          - title: "Parallel"
+            path: /product-stack/tyk-streaming/configuration/processors/parallel
+            category: Page
+            show: True
           - title: "Parse Log"
             path: /product-stack/tyk-streaming/configuration/processors/parse-log
             category: Page
@@ -4138,6 +4220,10 @@ menu:
             show: True
           - title: "Protobuf"
             path: /product-stack/tyk-streaming/configuration/processors/protobuf
+            category: Page
+            show: True
+          - title: "Rate Limit"
+            path: /product-stack/tyk-streaming/configuration/processors/rate-limit 
             category: Page
             show: True
           - title: "Redis"
@@ -4156,18 +4242,34 @@ menu:
             path: /product-stack/tyk-streaming/configuration/processors/schema-registry-encode
             category: Page
             show: True
+          - title: "Select Parts"
+            path: /product-stack/tyk-streaming/configuration/processors/select-parts
+            category: Page
+            show: True
           - title: "Split"
             path: /product-stack/tyk-streaming/configuration/processors/split
+            category: Page
+            show: True
+          - title: "Switch"
+            path: /product-stack/tyk-streaming/configuration/processors/switch
             category: Page
             show: True
           - title: "Try"
             path: /product-stack/tyk-streaming/configuration/processors/try
             category: Page
             show: True
+          - title: "While"
+            path: /product-stack/tyk-streaming/configuration/processors/while
+            catgeory: Page
+            show: True
         - title: "Common Configurations"
           category: Directory
           show: True
           menu:
+          - title: "Batching"
+            path: /product-stack/tyk-streaming/configuration/common-configuration/batching
+            category: Page
+            show: True
           - title: "Error Handling"
             path: /product-stack/tyk-streaming/configuration/common-configuration/error-handling
             category: Page
@@ -4178,6 +4280,10 @@ menu:
             show: True
           - title: "Interpolation"
             path: /product-stack/tyk-streaming/configuration/common-configuration/interpolation
+            category: Page
+            show: True
+          - title: "Windowed Processing"
+            path: /product-stack/tyk-streaming/configuration/common-configuration/windowed_processing
             category: Page
             show: True
       - title: "Guides"
@@ -4256,6 +4362,18 @@ menu:
               path: "/product-stack/tyk-streaming/guides/bloblang/methods/type-coercion"
               category: Page
               show: True
+      - title: "Rate Limits"
+        category: Directory
+        show: true
+        menu:
+        - title: "Overview"
+          path: /product-stack/tyk-streaming/configuration/rate-limits/overview 
+          category: Page
+          show: True
+        - title: "Local"
+          path: /product-stack/tyk-streaming/configuration/rate-limits/local
+          category: Page
+          show: True
       - title: "Deployment Considerations"
         path: /product-stack/tyk-streaming/deployment-considerations
         category: Page
@@ -4396,6 +4514,10 @@ menu:
         category: Directory
         show: True
         menu:
+        - title: "Tyk Charts 1.6"
+          path: /product-stack/tyk-charts/release-notes/version-1.6
+          category: Page
+          show: True
         - title: "Tyk Charts 1.5"
           path: /product-stack/tyk-charts/release-notes/version-1.5
           category: Page
@@ -4467,6 +4589,10 @@ menu:
           show: True
         - title: "Early Access Features"
           path: /developer-support/special-releases-and-features/early-access-features
+          category: Page
+          show: True
+        - title: "FIPS Releases"
+          path: /developer-support/special-releases-and-features/fips-release
           category: Page
           show: True
     - title: "Frequently Asked Questions"

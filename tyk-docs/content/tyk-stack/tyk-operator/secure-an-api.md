@@ -165,4 +165,4 @@ Meta data:
 
 - `meta_data`: Metadata key and values.
 
-You can go to the [Security Policy features]({{<ref "product-stack/tyk-operator/reference/security-policy">}}) page to see all the latest Security Policies fields and features Operator support.
+You can visit the [Security Policy features]({{<ref "product-stack/tyk-operator/reference/security-policy">}}) page to see all the latest Security Policies fields and features Tyk Operator supports.
