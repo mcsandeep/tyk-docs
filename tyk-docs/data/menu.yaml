@@ -3858,7 +3858,7 @@ menu:
           category: Directory
           show: True
           menu:
-            - title: "Create an API"
+            - title: "Create an API with Tyk Operator"
               path: /tyk-stack/tyk-operator/create-an-api
               category: Page
               show: True

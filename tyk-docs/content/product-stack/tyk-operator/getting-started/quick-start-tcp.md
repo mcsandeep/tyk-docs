@@ -7,6 +7,8 @@ description: "Tyk Operator manifest example"
 
 This page provides sample manifest for creating TCP proxy APIs. Follow the example to learn how to configure your APIs.
 
+This example creates a API definition that proxies request from TCP port `6380` to `tcp://localhost:6379`.
+
 ```yaml {hl_lines=["8-11"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition

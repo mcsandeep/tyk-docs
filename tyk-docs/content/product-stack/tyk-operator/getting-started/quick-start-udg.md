@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
-This page provides sample manifest for creating UDG APIs. Follow the example to learn how to configure your APIs.
+This page provides sample manifest for creating [Universal Data Graph (UDG)]({{<ref "universal-data-graph/getting-started-with-udg">}}) APIs. Follow the example to learn how to configure your APIs.
 
 ## UDG v2 (Tyk 3.2 and above)
 

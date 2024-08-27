@@ -31,7 +31,7 @@ Here are the supported features:
 | API Categories                 | ✅      | v0.1           | - | [API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-category">}}) |
 | API ID                         | ✅      | v0.1           | - | [API ID]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-id">}}) |-                            |                                                                                            |
 | API Ownership                  | ✅      | v0.12          | - | [API Ownership]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-ownership">}}) |
-| API Versioning                 | ✅      | v0.1           | - | [API Versioning]({{<ref "product-stack/tyk-operator/advanced-configurations/api-versioning">}}) |
+| API Versioning                 | ✅      | v0.1           | - | [API Versioning]({{<ref "getting-started/key-concepts/versioning#configuring-api-versioning-in-tyk-operator">}}) |
 
 ## Traffic Routing
 <!--| API Listen Path                | ✅      | v0.1           | - | [API Listen Path]() |-->
@@ -51,7 +51,7 @@ Here are the supported features:
 | JWT                           | ✅️        | v0.5           | -        | [JWT]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#jwt">}}) |
 | OpenID Connect                | ❌        | -              | JWT is the recommended way configuring OIDC. Please see [OpenID Connect]({{<ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) documentation for details. | |
 | OAuth2                        | ❌        | -              | JWT is the recommended way to configure OAuth2. Please see [OpenID Connect]({{<ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) documentation for details. | |
-| Client mTLS                   | ✅        | v0.11              | Only static client mTLS is supported | [mTLS]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#mtls">}}) |
+| Client mTLS                   | ✅        | v0.11              | Only static client mTLS is supported | [mTLS]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#client-mtls">}}) |
 | HMAC                          | ❌        | -              | Not implemented | |
 | Basic Authentication          | ✅        | v0.12          | Only enabling with default metadata values is supported  | [Basic Auth]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#basic-authentication">}}) |
 | Custom Authentication Plugin (Go)   | ✅        | v0.11          | - | [Custom Auth (go)]({{<ref "product-stack/tyk-operator/advanced-configurations/client-authentication#custom-plugin-auth-go">}}) |
@@ -81,7 +81,7 @@ Here are the supported features:
 | Internal API (not exposed by Gateway)| ✅        | v0.6.0         | -                                                                      |                                                                |
 | Global (API-level) Header Transform  | ✅        | v0.1.0         | -                                                                      | [Global Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}})         |
 | Global (API-level) Rate Limit        | ✅        | v0.10          | -                                                                      | [Global Rate Limit]({{<ref "basic-config-and-security/control-limit-traffic/rate-limiting">}})    |
-| Plugin Bundles                       | ❌        | -              | -                                                                      |                                                                 |
+| Plugin Bundles                       | ?        | -              | -                                                                      |                                                                 |
 | Custom Plugins - Go                  | ⚠️         | v0.1           | Untested                                                               |
 | Custom Plugins - gRPC                | ✅        | v0.1           | -                                                                      | [Custom Plugin gRPC]({{<ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin">}})        |
 | Custom Plugins - Javascript          | ✅        | v0.1           | -                                                                      | [Custom Plugin Javascript]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})                    |
@@ -113,14 +113,15 @@ Here are the supported features:
 | URL Rewrite Basic                 | ✅️        | v0.1           | -                                              | [URL Rewrite Basic]({{<ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic">}}) |
 | URL Rewrite (Advanced Trigger)    | ❌        | -              | -                                              | |
 | Validate Request                  | ✅        | v0.8.2         | -                                              | [Validate Request]({{<ref "product-stack/tyk-gateway/middleware/validate-request-tyk-classic">}}) |
+| Rate Limit                        | ?         | -              | -                                              | [Rate Limit]({{<ref "product-stack/tyk-gateway/middleware/endpoint-rate-limit-classic">}}) |
 | Request Size Limit                | ✅️        | v0.1           | -                                              | [Request Size Limit]({{<ref "product-stack/tyk-gateway/middleware/request-size-limit-tyk-classic">}}) |
 | Request Method Transform          | ✅        | v0.5           | -                                              | [Request Method Transform]({{<ref "product-stack/tyk-gateway/middleware/request-method-tyk-classic">}}) |
 | Request Header Transform          | ✅        | v0.1           | -                                              | [Request Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}}) |
 | Request Body Transform            | ✅        | v0.1           | -                                              | [Request Body Transform]({{<ref "product-stack/tyk-gateway/middleware/request-body-tyk-classic">}}) |
-| Request Body JQ Transform         | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
+| Request Body JQ Transform         | ⚠️         | v0.1           | Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
 | Response Header Transform         | ✅        | v0.1           | -                                              | [Response Header Transform]({{<ref "product-stack/tyk-gateway/middleware/response-header-tyk-classic">}}) |
 | Response Body Transform           | ✅        | v0.1           | -                                              | [Response Body Transform]({{<ref "product-stack/tyk-gateway/middleware/response-body-tyk-classic">}}) |
-| Response Body JQ Transform        | ⚠️         | v0.1           | Untested - Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
+| Response Body JQ Transform        | ⚠️         | v0.1           | Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
 | Mock Response                     | ✅        | v0.1           | -                                             | [Mock Response]({{<ref "product-stack/tyk-gateway/middleware/mock-response-tyk-classic">}})|
 | Virtual Endpoint                  | ✅        | v0.1           | -                                              | [Virtual Endpoint]({{<ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-classic">}}) |
 | Go Plugin                         | ❌        | -              | -                                              |  |
