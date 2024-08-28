@@ -36,7 +36,7 @@ spec:
 
 `spec.domain` is the domain to bind this API to. This enforces domain matching for client requests.
 
-In thiis example, requests to `httpbin.tyk.io` will be proxied to upstream URL `http://httpbin.org`
+In this example, requests to `httpbin.tyk.io` will be proxied to upstream URL `http://httpbin.org`
 
 ```yaml {hl_lines=["10-10"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
