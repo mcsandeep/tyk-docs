@@ -255,7 +255,9 @@ The resulting bundle file should then be uploaded to the webserver that hosts yo
 
 #### Configure API
 
-To add a gRPC plugin to your API definition, you must specify the bundle file name within the `custom_middleware_bundle` field:
+To add a gRPC plugin to your API definition, you must specify the bundle file name within the `custom_middleware_bundle` field.
+
+##### Tyk Classic API Definition
 
 ```yaml
 {
@@ -266,6 +268,10 @@ To add a gRPC plugin to your API definition, you must specify the bundle file na
 ```
 
 The value of the `custom_middleware_bundle` field will be used in combination with the gateway settings to construct a bundle URL. For example, if Tyk Gateway is configured with a webserver base URL of https://my-bundle-server.com/bundles/ then an attempt would be made to download the bundle from https://my-bundle-server.com/bundles/mybundle.zip.
+
+##### Tyk Operator
+
+Currently gRPC plugin bundles is unsupported and untested with Tyk Operator.
 
 ---
 
