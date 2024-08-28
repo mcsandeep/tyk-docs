@@ -85,7 +85,7 @@ SuperGraph CRD takes `subgraph_refs` and `schema` values for your supergraph. `s
 
 Tyk Operator will update your SuperGraph ApiDefinition when one of the subgraphs that you reference in `subgraph_refs` changes.
 
-To create a SuperGraph API in Tyk, you can reference the supergraph's metadata name through graphql.graph_ref field, as follows:
+To create a SuperGraph API in Tyk, you can reference the supergraph's metadata name through `graphql.graph_ref field`, as follows:
 
 ```yaml
 apiVersion: tyk.tyk.io/v1alpha1
