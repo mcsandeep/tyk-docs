@@ -136,3 +136,7 @@ In this example, the API with ID `12345` will be updated according to the provid
 ## API Ownership
 
 To configure API ownership, ensure Tyk Operator is also an owner of the API. This can be done using Operator Context. For details, refer to Tyk [Operator API Ownership]({{< ref "product-stack/tyk-operator/getting-started/tyk-operator-api-ownership">}}).
+
+## API Versioning
+
+For details on how to configure API versions, refer to [configuring API versioning in Tyk Operator]({{< ref "getting-started/key-concepts/versioning#tyk-operator" >}})

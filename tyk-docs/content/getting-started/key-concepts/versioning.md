@@ -231,7 +231,7 @@ Select **Update** to save the changes to your API.
 
 The process for configuring API versioning is similar to that defined in section [Configuring API versioning in the Tyk Classic API Definition](#configuring-api-versioning-in-the-tyk-classic-api-definition).
 
-We can see in the example below that one version is configured for the API:
+We can see in the example below that one version is configured for the API within `spec.version_data`:
 
 - the version name is `v1`
 - the default version (`default_version`) is `v1`
@@ -239,7 +239,7 @@ We can see in the example below that one version is configured for the API:
 - an allow list, black list and ignore authentication middleware have been configured for version `v1`
 - an alternative upstream URL (`override_target`) is configured for `v1` to send requests to `http://test.org`.
 
-```yaml {linenos=table,hl_lines=["14-17", "26-27", "29-82"], linenostart=1}
+```yaml {linenos=table,hl_lines=["14-17", "25-27", "29-82"], linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
