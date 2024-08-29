@@ -15,6 +15,8 @@ API versioning is configured in the Tyk Classic API Definition. You can do this 
 
 If you're using the newer Tyk OAS APIs, then check out the [Tyk OAS]({{< ref "getting-started/key-concepts/oas-versioning" >}}) page.
 
+If you're using Tyk Operator then check out the [configuring API versioning in Tyk Operator](#tyk-operator) section below.
+
 ### Controlling access to Tyk Classic API versions
 
 You can explicitly grant access to specific version(s) of an API by specifying only those version(s) in the [key]({{< ref "tyk-apis/tyk-gateway-api/token-session-object-details" >}}) (also known as an *authorization token*, *bearer token*, *access token*, *API token* or *token session object* - see [here]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}})).
@@ -225,10 +227,19 @@ From the **Endpoint Designer** tab, you can select the version that you wish to 
 
 Select **Update** to save the changes to your API.
 
-## Configuring API versioning in Tyk Operator
-The process for configuring API versioning is similar to that defined in section [Configuring API versioning in the Tyk Classic API Definition](#configuring-api-versioning-in-the-tyk-classic-api-definition). Here is an example for specifying API version using header value.
+## Configuring API versioning in Tyk Operator {#tyk-operator}
 
-```yaml
+The process for configuring API versioning is similar to that defined in section [Configuring API versioning in the Tyk Classic API Definition](#configuring-api-versioning-in-the-tyk-classic-api-definition).
+
+We can see in the example below that one version is configured for the API:
+
+- the version name is `v1`
+- the default version (`default_version`) is `v1`
+- the `definition` configuration block contains a `location` field set to `header` and has an accompanying `key` field set to `x-api-version`. Subsequently, the version identifier for the API will be retrieved from the `x-api-version` header. The comments provide examples for how to configure the version identifier to be retrieved from URL or a named URL parameter
+- an allow list, black list and ignore authentication middleware have been configured for version `v1`
+- an alternative upstream URL (`override_target`) is configured for `v1` to send requests to `http://test.org`.
+
+```yaml {linenos=table,hl_lines=["14-17", "26-27", "29-82"], linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
