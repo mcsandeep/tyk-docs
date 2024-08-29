@@ -148,6 +148,8 @@ For configurations directly embedded within the Tyk Gateway, plugin hooks can be
 }
 ```
 
+For example, a Post request plugin hook has been configured with name `MyPostMiddleware`. Before the request is sent upstream Tyk Gateway will serialize the request into a [Object protobuf message]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures#object" >}}) with the `hook_name` property set to `MyPostMiddleware` and the `hook_type` property set to `Post`. This message will then then be dispatched to the gRPC server for processing before the request is sent upstream.
+
 </br>
 {{< note success >}}
 **Note**
@@ -157,9 +159,13 @@ Ensure the plugin driver is configured as type *grpc*. Tyk will issue a request 
 
 #### Tyk Operator
 
-The examples below illustrate how to configure plugin hooks for an API Definition within Tyk Operator:
+The examples below illustrate how to configure plugin hooks for an API Definition within Tyk Operator.
+
+Setting the `driver` configuring parameter to `gRPC` instructs Tyk Gateway to issue a request to your gRPC server for each plugin hook that you have configured.
 
 **Pre plugin hook example**
+
+In this example we can see that a `custom_middleware` configuration block has been used to configure a gRPC Pre request plugin hook with name `HelloFromPre`. Before any middleware is executed Tyk Gateway will serialize the request into a [Object protobuf message]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures#object" >}}) with the `hook_name` property set to `HelloFromPre` and the `hook_type` property set to `Pre`. This message will then then be dispatched to the gRPC server.
 
 ```yaml {linenos=table,hl_lines=["14-18"],linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -183,6 +189,10 @@ spec:
 ```
 
 **Post plugin hook example**
+
+In the example we can see that a `custom_middleware` configuration block has been used to configure a gRPC Post plugin with name `HelloFromPost`. 
+
+Before the request is sent upstream Tyk Gateway will serialize the request and session details into a [Object protobuf message]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures#object" >}}) with the `hook_name` property set to `HelloFromPost` and the `hook_type` property set to `Post`. This message will then then be dispatched to the gRPC server for processing before the request is sent upstream.
 
 ```yaml {linenos=table,hl_lines=["14-18"],linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
