@@ -89,11 +89,11 @@ Here are the supported features:
 | Custom Plugins - Python              | ⚠️         | v0.1           | Untested                                                               |
 | Custom Plugins - Analytics Plugin    | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
 | Batch Requests                       | ❌        | -              | -                                                                      |                                                                 |
-| Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        | Untested                                                               |
+| Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        |                                                             |
 | Expire Analytics After               | ❌        | -              | -                                                                      |                                                                 |
 | Do not track Analytics (per API)     | ✅        | v0.1.0         | -                                                                      |                                                                 |
 | Webhooks                             | ❌        | -              | -   | |
-| Looping                              | ⚠️         | v0.6           | Untested                                                               | [Internal Looping]({{< ref "advanced-configuration/transform-traffic/looping" >}})                          |
+| Looping                              | ✅         | v0.6           |                                                                | [Internal Looping]({{< ref "product-stack/tyk-operator/advanced-configurations/internal-looping" >}})                          |
 | Round Robin Load Balancing           | ✅        | -              | -                                                                    | [Load Balancing]({{<ref "planning-for-production/ensure-high-availability/load-balancing">}})                    |
 
 ## Endpoint-level Features
@@ -124,5 +124,5 @@ Here are the supported features:
 | Response Body JQ Transform        | ⚠️         | v0.1           | Requires [JQ on Gateway Docker Image]({{<ref "advanced-configuration/transform-traffic/jq-transformations">}}) | |
 | Mock Response                     | ✅        | v0.1           | -                                             | [Mock Response]({{<ref "product-stack/tyk-gateway/middleware/mock-response-tyk-classic">}})|
 | Virtual Endpoint                  | ✅        | v0.1           | -                                              | [Virtual Endpoint]({{<ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-classic">}}) |
-| Go Plugin                         | ❌        | -              | -                                              |  |
+| Per-Endpoint Plugin                         | ❌        | -              | -                                              |  |
 | Persist Graphql                   | ❌        | -              | -                                              |  |
