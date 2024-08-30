@@ -73,7 +73,7 @@ Here are the supported features:
 | Feature                              | Supported | Supported From | Comments                                                               | Sample                                                          |
 |--------------------------------------|-----------|----------------|------------------------------------------------------------------------|-----------------------------------------------------------------|
 | Detailed recording (in Log Browser)  | ✅        | v0.4.0         | -                                                                      |                                                                 |
-| Config Data                          | ✅        | v0.8.2         | -                                                                      | [Config Data](.) |
+| Config Data                          | ✅        | v0.8.2         | -                                                                      | [Config Data]({{<ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-classic#tyk-operator">}}) |
 | Context Variables                    | ✅        | v0.1           | -                                                                      |
 | Cross Origin Resource Sharing (CORS) | ✅        | v0.2           | - | [CORS]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors">}})                 |
 | Service Discovery                    | ⚠️         | -              | Untested                                                                |                                                                 |
@@ -81,19 +81,14 @@ Here are the supported features:
 | Internal API (not exposed by Gateway)| ✅        | v0.6.0         | -                                                                      |                                                                |
 | Global (API-level) Header Transform  | ✅        | v0.1.0         | -                                                                      | [Global Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}})         |
 | Global (API-level) Rate Limit        | ✅        | v0.10          | -                                                                      | [Global Rate Limit]({{<ref "basic-config-and-security/control-limit-traffic/rate-limiting">}})    |
-| Plugin Bundles                       | ?        | -              | -                                                                      |                                                                 |
-| Custom Plugins - Go                  | ⚠️         | v0.1           | Untested                                                               |
-| Custom Plugins - gRPC                | ✅        | v0.1           | -                                                                      | [Custom Plugin gRPC]({{<ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin">}})        |
-| Custom Plugins - Javascript          | ✅        | v0.1           | -                                                                      | [Custom Plugin Javascript]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})                    |
-| Custom Plugins - Lua                 | ⚠️         | v0.1           | Untested                                                               |
-| Custom Plugins - Python              | ⚠️         | v0.1           | Untested                                                               |
-| Custom Plugins - Analytics Plugin    | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
+| Custom Plugins                       | ✅       | v0.1           | Plugin Bundles are also supported    | [Custom Plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})
+| Analytics Plugin                     | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
 | Batch Requests                       | ❌        | -              | -                                                                      |                                                                 |
 | Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        |                                                             |
 | Expire Analytics After               | ❌        | -              | -                                                                      |                                                                 |
 | Do not track Analytics (per API)     | ✅        | v0.1.0         | -                                                                      |                                                                 |
 | Webhooks                             | ❌        | -              | -   | |
-| Looping                              | ✅         | v0.6           |                                                                | [Internal Looping]({{< ref "product-stack/tyk-operator/advanced-configurations/internal-looping" >}})                          |
+| Looping                              | ✅        | v0.6           | -   | [Internal Looping]({{< ref "product-stack/tyk-operator/advanced-configurations/internal-looping" >}})                          |
 | Round Robin Load Balancing           | ✅        | -              | -                                                                    | [Load Balancing]({{<ref "planning-for-production/ensure-high-availability/load-balancing">}})                    |
 
 ## Endpoint-level Features
@@ -110,10 +105,9 @@ Here are the supported features:
 | Enforced Timeouts                 | ✅        | v0.1           | -                                              | [Enforced Timeouts]({{<ref "product-stack/tyk-gateway/middleware/enforced-timeout-tyk-classic">}}) |
 | Ignore Authentication             | ✅        | v0.8.2         | -                                              | [Ignore Authentication]({{<ref "product-stack/tyk-gateway/middleware/ignore-tyk-classic">}}) |
 | Internal Endpoint                 | ✅        | v0.1           | -                                              | [Internal Endpoint]({{<ref "product-stack/tyk-gateway/middleware/internal-endpoint-tyk-classic">}}) |
-| URL Rewrite Basic                 | ✅️        | v0.1           | -                                              | [URL Rewrite Basic]({{<ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic">}}) |
-| URL Rewrite (Advanced Trigger)    | ❌        | -              | -                                              | |
+| URL Rewrite                       | ✅️        | v0.1           | -                                              | [URL Rewrite]({{<ref "product-stack/tyk-gateway/middleware/url-rewrite-tyk-classic">}}) |
 | Validate Request                  | ✅        | v0.8.2         | -                                              | [Validate Request]({{<ref "product-stack/tyk-gateway/middleware/validate-request-tyk-classic">}}) |
-| Rate Limit                        | ?         | -              | -                                              | [Rate Limit]({{<ref "product-stack/tyk-gateway/middleware/endpoint-rate-limit-classic">}}) |
+| Rate Limit                        | ❌        | -              | -                                              | |
 | Request Size Limit                | ✅️        | v0.1           | -                                              | [Request Size Limit]({{<ref "product-stack/tyk-gateway/middleware/request-size-limit-tyk-classic">}}) |
 | Request Method Transform          | ✅        | v0.5           | -                                              | [Request Method Transform]({{<ref "product-stack/tyk-gateway/middleware/request-method-tyk-classic">}}) |
 | Request Header Transform          | ✅        | v0.1           | -                                              | [Request Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}}) |

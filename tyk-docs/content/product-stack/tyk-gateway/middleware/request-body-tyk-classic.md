@@ -98,9 +98,6 @@ kind: ApiDefinition
 metadata:
   name: httpbin-transform
 spec:
-  contextRef:
-    name: tyk-cp-ctx
-    namespace: tyk-cp
   name: httpbin-transform
   use_keyless: true
   protocol: http
