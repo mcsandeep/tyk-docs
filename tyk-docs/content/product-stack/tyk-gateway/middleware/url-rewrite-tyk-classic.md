@@ -165,11 +165,9 @@ Use the *save* or *create* buttons to save the changes and activate the middlewa
 
 ## Configuring the URL rewriter in Tyk Operator {#tyk-operator}
 
-The process for configuring the URL rewriter in Tyk Operator is similar to that explained in [configuring the URL rewriter in the Tyk Classic API Definition](#tyk-classic). To configure the URL rewriter you must add a new `url_rewrites` object to the `extended_paths` section of your API definition, for example:
+The process for configuring the URL rewriter in Tyk Operator is similar to that explained in [configuring the URL rewriter in the Tyk Classic API Definition](#tyk-classic). To configure the URL rewriter you must add a new `url_rewrites` object to the `extended_paths` section of your API definition.
 
-The example API Definition below configures an API to listen on path `/url-rewrite` and forwards requests upstream to http://httpbin.org.
-
-The following provides the corresponding custom resource configuration for [Tyk Classic API Definition example](#tyk-classic). The URL rewrites middleware would matche the path for a request to the `GET /anything/books/author` endpoint against the pure regex `/anything/(\w+)/(\w+)`. The request (target) URL will then be rewritten to `/anything/library/service?value1=$1&value2=$2`.
+The example API Definition provides the corresponding custom resource configuration for the [Tyk Classic API Definition example](#tyk-classic), configuring an API to listen on path `/url-rewrite` and forward requests upstream to http://httpbin.org. The URL rewrites middleware would match the path for a request to the `GET /anything/books/author` endpoint against the pure regex `/anything/(\w+)/(\w+)`. The request (target) URL will then be rewritten to `/anything/library/service?value1=$1&value2=$2`.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["26-31"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -205,7 +203,7 @@ spec:
               triggers: []
 ```
 
-URL Rewrites Triggers can be specified in a similar way.
+URL Rewrite Triggers can be specified in a similar way. The Tyk Operator example below is the equivalent for the advanced triggers example included in the [configuring the URL rewriter in the Tyk Classic API Definition](#tyk-classic) section above.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["26-49"]}
 apiVersion: tyk.tyk.io/v1alpha1
