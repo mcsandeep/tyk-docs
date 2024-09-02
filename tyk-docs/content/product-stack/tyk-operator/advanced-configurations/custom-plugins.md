@@ -6,11 +6,100 @@ description: "This documentation explains how to configure plugins using Tyk Ope
 keywords: [ "Tyk Operator", "custom plugins", "plugins" ]
 ---
 
-This guide explains how to configure a plugin within an API Definition. The souce code referenced in the API Definition is located on the Gateway file system.
+This guide explains how to configure one or more custom plugins where the source code and associated configuration is co-located on Tyk Gateway’s file system. The process is similar to that for configuring the API Definition of a Tyk Classic API to use custom plugins.
 
-In this example we will create a JavaScript plugin that will inject a request header *Hello* with a value of *World*. This will be configured as a pre request hook.
+Using [Tyk Classic APIs]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#basic-usage" >}}) developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}) and [Response]({{< ref "plugins/plugin-types/response-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
 
-## 1. Create source code file
+## How It Works {#tyk-classic}
+
+In Tyk Classic APIs, the *custom_middleware* section of the Tyk Classic API Definition is where you configure plugins that will run at different points during the lifecycle of an API request.
+
+The table below illustrates the Tyk Classic API configuration parameters that correspond to each phase of the API request lifecycle:
+
+| Phase | Description       | Config Value |
+| ----- | ---               | ----   |
+| Pre   | Occurs before main request processing. | pre    |            
+| Auth  | Custom authentication can be handled during this phase. | auth_check |  
+| Post Auth | Occurs after key authentication | post_key_auth |
+| Post | Occurs after the main request processing but before the response is sent. | post |       
+| Response | Occurs after the main request processing but before the response is sent. | response |   
+
+The example configuration below illustrates how to set up multiple plugins for different phases of the request lifecycle:
+
+```json  {linenos=true, linenostart=1}
+{
+    "custom_middleware": {
+        "pre": [
+            {
+                "name": "PreHook1",
+                "path": "/path/to/plugin1.so",
+                "disabled": false,
+                "require_session": false,
+                "raw_body_only": false
+            }
+        ],
+        "auth_check": {
+            "name": "AuthCheck",
+            "path": "/path/to/plugin.so",
+            "disabled": false,
+            "require_session": false,
+            "raw_body_only": false
+        },
+        "post_key_auth": [
+            {
+                "name": "PostKeyAuth",
+                "path": "/path/to/plugin.so",
+                "disabled": false,
+                "require_session": false,
+                "raw_body_only": false
+            }
+        ],
+        "post": [
+            {
+                "name": "PostHook1",
+                "path": "/path/to/plugin1.so",
+                "disabled": false,
+                "require_session": false,
+                "raw_body_only": false
+            },
+            {
+                "name": "PostHook2",
+                "path": "/path/to/plugin2.so",
+                "disabled": false,
+                "require_session": false,
+                "raw_body_only": false
+            }
+        ],
+        "response": [
+            {
+                "name": "ResponseHook",
+                "path": "/path/to/plugin.so",
+                "disabled": false,
+                "require_session": false,
+                "raw_body_only": false
+            }
+        ],
+        "driver": "goplugin"
+    }
+}
+```
+
+In the `custom_middleware` section of the API definition above we can see that there are Golang custom authentication (`auth_check`), post authentication (`post_key_auth`), post, pre and response plugins configured.
+
+It can be seen that each plugin is configured with the specific function name and associated source file path of the file that contains the function. Furthermore, each lifecycle phase can have a list of plugins configured, allowing for complex processing workflows. For example, you might develop one plugin for logging and another for modifying the request in the pre request phase.
+
+The `driver` configuration parameter describes the plugin implementation language. Please refer to the [supported languages]({{< ref "/plugins/supported-languages#plugin-driver-names" >}}) section for list of supported plugin driver names.
+
+Each plugin can have additional settings, such as:
+- `disabled`: When true, disables the plugin.
+- `raw_body_only`: When true, indicates that only the raw body should be processed.
+- `require_session`: When true, indicates that the plugin requires an active session. This is applicable only for post, post authentication and response plugins.
+
+## Tyk Operator Example
+
+In this example we will create a JavaScript plugin that will inject a request header *Hello* with a value of *World*. This will be configured as a pre request [hook]({{< ref "" >}}).
+
+### 1. Implement Plugin
 
 The first step is to create the plugin source code. 
 
@@ -32,7 +121,7 @@ exampleJavaScriptMiddlewarePreHook.NewProcessRequest(function(request, session) 
 Copy the source code above and save it to the following file on the Gateway file system at `/opt/tyk-gateway/middleware/example-javascript-middleware.js`
 
 
-## 2. Create API Definition Resource
+### 2. Create API Definition Resource
 
 The example API Definition resource listed below listens on path */httpbin* and forwards requests upstream to *http://httpbin.org*.
 
@@ -59,8 +148,11 @@ spec:
 
 At lines 14-18 we can see the *custom_middleware* section contains the configuration for our plugin:
 
-- The *driver* configuration parameter is set to *otto* at line 15, since our plugin is a Javascript plugin.
-- A *pre* plugin hook configuration block is specified at line 16, containing the *name* and *path* for our plugin. The name matches the name of the middleware variable in the source file. The path contains the path to the source file, relative to the base installation folder, i.e `/opt/tyk-gateway`.
+- The `driver` configuration parameter is set to `otto` at line 15, since our plugin is a Javascript plugin. For other valid values please refer to the [plugins driver page]({{< ref "plugins/supported-languages#plugin-driver-names" >}}).
+- A plugin hook configuration block is specified at line 16, containing the `name` and `path` for our plugin. The plugin configuration block identifies the "hook" or phase in the API request lifecycle when Tyk Gateway will execute the plugin. In the example above the configuration block is for a `pre` request plugin that will be executed before any middleware.  Valid values are the same as the [Tyk Classic API Definition]({{< ref "#tyk-classic" >}}) equivalent, i.e. `pre`, `auth_check`, `post`, `post-auth` and `response`. We can see that the following fields are set within the `pre` plugin hook configuration object:
+
+  - The `name` field represents the name of the function that implements the plugin in your source code. For Javascript plugins this must match the name of the middleware object that was created. In the example above we created the middleware object, `exampleJavaScriptMiddlewarePreHook`, by calling `var exampleJavaScriptMiddlewarePreHook = new TykJS.TykMiddleware.NewMiddleware({});`.
+  - The `path` field contains the path to the source file `middleware/example-javascript-middleware.js`, relative to the base installation folder, i.e `/opt/tyk-gateway`.
 
 Save the API Definition to file and create the APIDefinition resource:  
 
@@ -69,7 +161,7 @@ $ kubectl apply -f path_to_your_apidefinition.yaml
 apidefinition.tyk.tyk.io/httpbin created
 ```
 
-## 3. Test Plugin
+### 3. Test Plugin
 
 We can test that our plugin injects a *Hello* header with a corresponding value of *World* by using the curl command:
 
