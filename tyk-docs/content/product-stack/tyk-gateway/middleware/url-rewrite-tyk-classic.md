@@ -169,7 +169,7 @@ The process for configuring the URL rewriter in Tyk Operator is similar to that 
 
 The example API Definition below configures an API to listen on path `/url-rewrite` and forwards requests upstream to http://httpbin.org.
 
-In this example a basic trigger has been configured to match the path for a request to the `GET /get` endpoint against the pure regex `/get`. The request (target) URL will then be rewritten to `/xml` ready for processing by the next middleware in the chain.
+The following provides the corresponding custom resource configuration for [Tyk Classic API Definition example](#tyk-classic). The URL rewrites middleware would matche the path for a request to the `GET /anything/books/author` endpoint against the pure regex `/anything/(\w+)/(\w+)`. The request (target) URL will then be rewritten to `/anything/library/service?value1=$1&value2=$2`.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["26-31"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -198,11 +198,65 @@ spec:
           white_list: []
         extended_paths:
           url_rewrites:
-            - path: /get
-              match_pattern: /get
+            - path: /anything/books/author
+              match_pattern: /anything/(\w+)/(\w+)
               method: GET
-              rewrite_to: /xml
+              rewrite_to: /anything/library/service?value1=$1&value2=$2
               triggers: []
+```
+
+URL Rewrites Triggers can be specified in a similar way.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["26-49"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: url-rewrite-advanced
+spec:
+  name: URL Rewrite Advanced
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /url-rewrite
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+        use_extended_paths: true
+        paths:
+          black_list: []
+          ignored: []
+          white_list: []
+        extended_paths:
+          url_rewrites:
+            - path: /anything/books/author
+              match_pattern: /anything/(\w+)/(\w+)
+              method: GET
+              rewrite_to: /anything/library/service?value1=$1&value2=$2
+              triggers: 
+                - "on": "any"
+                  "rewrite_to": "library/service/author?genre=$tyk_context.trigger-0-genre-0"
+                  "options":
+                    "query_val_matches": 
+                      "genre": 
+                          "match_rx": "fiction"
+                          "reverse": false
+                - "on": "all"
+                  "options": 
+                    "header_matches": 
+                        "X-Enable-Beta": 
+                            "match_rx": "true"
+                            "reverse": false
+                    "session_meta_matches": 
+                        "beta_enabled": 
+                            "match_rx": "true"
+                            "reverse": false
+                  "rewrite_to": "https://beta.library.com/books/author"
 ```
 
 For further examples check out the [internal looping]({{< ref "/product-stack/tyk-operator/advanced-configurations/internal-looping" >}}) page.
