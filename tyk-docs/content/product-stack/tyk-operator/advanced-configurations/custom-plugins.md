@@ -8,7 +8,16 @@ keywords: [ "Tyk Operator", "custom plugins", "plugins" ]
 
 This guide explains how to configure one or more custom plugins where the source code and associated configuration is co-located on Tyk Gateway’s file system. The process is similar to that for configuring the API Definition of a Tyk Classic API to use custom plugins.
 
-Using [Tyk Classic APIs]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#basic-usage" >}}) developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}) and [Response]({{< ref "plugins/plugin-types/response-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
+Using [Tyk Classic APIs]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#basic-usage" >}}) developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}), [Response]({{< ref "plugins/plugin-types/response-plugins" >}}) and [Analytics]({{< ref "plugins/plugin-types/analytics-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
+
+Please refer to [Analytics Plugins]({{< ref "plugins/plugin-types/analytics-plugins" >}}) to learn how to configure Analytics plugins using Tyk Operator.
+
+{{< note >}}
+**Note**
+
+At the endpoint-level, Tyk provides the facility to attach a custom Golang plugin at the end of the request processing chain (immediately before the API-level post-plugin is executed). Please note that endpoint level plugins are not currently supported by Tyk Operator.
+
+{{< /note >}}
 
 ## How It Works {#tyk-classic}
 
