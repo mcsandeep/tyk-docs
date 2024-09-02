@@ -84,9 +84,9 @@ Here are the supported features:
 | Custom Plugins                       | ✅       | v0.1           | Plugin Bundles are also supported    | [Custom Plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})
 | Analytics Plugin                     | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
 | Batch Requests                       | ❌        | -              | -                                                                      |                                                                 |
-| Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        |                                                             |
+| Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        | - | [Custom Analytics]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/custom-analytics#tyk-operator" >}}) |
 | Expire Analytics After               | ❌        | -              | -                                                                      |                                                                 |
-| Do not track Analytics (per API)     | ✅        | v0.1.0         | -                                                                      |                                                                 |
+| Do not track Analytics (per API)     | ✅        | v0.1.0         | - | [Do Not Track]({{< ref "product-stack/tyk-gateway/middleware/do-not-track-tyk-classic" >}}) |-                                                                      |                                                                 |
 | Webhooks                             | ❌        | -              | -   | |
 | Looping                              | ✅        | v0.6           | -   | [Internal Looping]({{< ref "product-stack/tyk-operator/advanced-configurations/internal-looping" >}})                          |
 | Round Robin Load Balancing           | ✅        | -              | -                                                                    | [Load Balancing]({{<ref "planning-for-production/ensure-high-availability/load-balancing">}})                    |
