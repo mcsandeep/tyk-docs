@@ -27,7 +27,7 @@ Here are the supported features:
 | Type                           | Support | Supported From | Comments                     | Sample |
 |--------------------------------|---------|----------------|------------------------------|--------|
 | API Name                       | ✅      | v0.1           | - | [API Name]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-name">}}) |
-| API Status (inactive/active)   | ✅      | v0.2           | - | [API Status]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-status-inactiveactive">}}) |
+| API Status (inactive/active)   | ✅      | v0.2           | - | [API Active Status]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-active-status">}}) |
 | API Categories                 | ✅      | v0.1           | - | [API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-category">}}) |
 | API ID                         | ✅      | v0.1           | - | [API ID]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-id">}}) |-                            |                                                                                            |
 | API Ownership                  | ✅      | v0.12          | - | [API Ownership]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-ownership">}}) |
@@ -78,7 +78,7 @@ Here are the supported features:
 | Cross Origin Resource Sharing (CORS) | ✅        | v0.2           | - | [CORS]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors">}})                 |
 | Service Discovery                    | ⚠️         | -              | Untested                                                                |                                                                 |
 | Segment Tags                         | ✅        | v0.1           | -                                                                      | [Segment Tags]({{<ref "advanced-configuration/manage-multiple-environments/with-tyk-multi-cloud">}})               |
-| Internal API (not exposed by Gateway)| ✅        | v0.6.0         | - | [Internal API]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api">}})                                                               |
+| Internal API (not exposed by Gateway)| ✅        | v0.6.0         | - | [API Accessibility]({{< ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-accessibility" >}})                                                               |
 | Global (API-level) Header Transform  | ✅        | v0.1.0         | -                                                                      | [Global Header Transform]({{<ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic">}})         |
 | Global (API-level) Rate Limit        | ✅        | v0.10          | -                                                                      | [Global Rate Limit]({{<ref "basic-config-and-security/control-limit-traffic/rate-limiting">}})    |
 | Custom Plugins                       | ✅       | v0.1           | Currently this feature is not documented for plugin bundles. For further details please [contact us](https://tyk.io/contact) | [Custom Plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})

@@ -30,15 +30,13 @@ spec:
     strip_listen_path: true
 ```
 
-## API Status (inactive/active, external/internal)
+## API Status
 
-The following fields configures status of an API within Tyk - if it is currently active and if it is exposed externally.
+### API Active Status
 
-- `spec.active`: when set to true, enables the API so that Tyk will listen for and process requests made to the listenPath. An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
+An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
 
-- `spec.internal`: when set to true, makes the API accessible only internally.
-
-Inactive API Example: 
+The active status of an API can be set by modifying the `spec.active` configuration parameter. When set to `true`, this enables the API so that Tyk will listen for and process requests made to the `listenPath`. 
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["9-9"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -56,7 +54,10 @@ spec:
     strip_listen_path: true
 ```
 
-Internal API Example: 
+### API Accessibility
+
+An API can be configured as internal so that external requests are not processed. This is achieved by setting the `spec.internal`configuration parameter as shown in the example below.
+
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["10-10"]}
 apiVersion: tyk.tyk.io/v1alpha1
