@@ -84,7 +84,7 @@ Here are the supported features:
 | Custom Plugins                       | ✅       | v0.1           | Currently this feature is not documented for plugin bundles. For further details please [contact us](https://tyk.io/contact) | [Custom Plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/custom-plugins" >}})
 | Analytics Plugin                     | ✅        | v0.16.0        | - | [Analytics Plugins]({{<ref "plugins/plugin-types/analytics-plugins">}})|
 | Batch Requests                       | ❌        | -              | -                                                                      |                                                                 |
-| Analytics API Tagging (Tag Headers)  | ✅        | v0.10.0        | - | [Custom Analytics]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/custom-analytics#tyk-operator" >}}) |
+| Custom Analytics Tags (Tag Headers)  | ✅        | v0.10.0        | - | [Custom Analytics Tags (Tag Headers)]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/custom-analytics#tyk-operator" >}}) |
 | Expire Analytics After               | ❌        | -              | -                                                                      |                                                                 |
 | Do not track Analytics (per API)     | ✅        | v0.1.0         | - | [Do Not Track]({{< ref "product-stack/tyk-gateway/middleware/do-not-track-tyk-classic" >}}) |-                                                                      |                                                                 |
 | Webhooks                             | ❌        | -              | -   | |
