@@ -10,7 +10,7 @@ This guide explains how to configure one or more custom plugins where the source
 
 ---
 
-## Undocumented Features
+## Unsupported Features
 
 ##### Per-Endpoint Plugins
 
@@ -18,7 +18,7 @@ At the endpoint-level, Tyk provides the facility to attach a custom Golang plugi
 
 ---
 
-## Unsupported Features
+## Undocumented Features
 
 ##### Plugin Bundles
 
