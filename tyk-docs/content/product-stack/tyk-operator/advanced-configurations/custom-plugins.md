@@ -10,6 +10,13 @@ This guide explains how to configure one or more custom plugins where the source
 
 Using [Tyk Classic APIs]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#basic-usage" >}}) developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}), [Response]({{< ref "plugins/plugin-types/response-plugins" >}}) and [Analytics]({{< ref "plugins/plugin-types/analytics-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
 
+This document explains how to configure the following plugin types with different drivers (plugin languages):
+- Pre (Request)
+- Authentication
+- Post-Auth (Request)
+- Post (Request)
+- Response
+
 Please refer to [Analytics Plugins]({{< ref "plugins/plugin-types/analytics-plugins" >}}) to learn how to configure Analytics plugins using Tyk Operator.
 
 {{< note >}}
