@@ -8,14 +8,11 @@ keywords: [ "Tyk Operator", "custom plugins", "plugins" ]
 
 This guide explains how to configure one or more custom plugins where the source code and associated configuration is co-located on Tyk Gateway’s file system. The process is similar to that for configuring the API Definition of a Tyk Classic API to use custom plugins.
 
-{{< note >}}
-**Note**
-
 Tyk Operator also supports configuring custom plugins to use plugin bundles, where the source code and associated configuration is packaged into a zip file and uploaded to a remote webserver. Tyk Gateway will then download, extract, cache and execute the plugin bundles for each of the configured phases of the [API request lifecycle]({{< ref "concepts/middleware-execution-order" >}}).
 
 Currently, there are no examples documented for configuring plugin bundles with Tyk Operator. Please refer to [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) for further details of the equivalent Tyk Classic API configuration or reach out on the [community forum](https://community.tyk.io).
 
-{{</ note >}}
+## Introduction
 
 Using Tyk Classic APIs developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}), [Response]({{< ref "plugins/plugin-types/response-plugins" >}}) and [Analytics]({{< ref "plugins/plugin-types/analytics-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
 
