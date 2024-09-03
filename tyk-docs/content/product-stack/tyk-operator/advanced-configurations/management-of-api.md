@@ -14,7 +14,7 @@ To set the name of an API in the `ApiDefinition`, use the `spec.name` string fie
 
 Example:
 
-```yaml
+```yaml {linenos=true, linenostart=1, hl_lines=["6-6"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -30,13 +30,17 @@ spec:
     strip_listen_path: true
 ```
 
-## API Status (inactive/active)
+## API Status (inactive/active, external/internal)
 
-The status determines whether the API definition will be loaded on the Tyk Gateway. Use the `spec.active` boolean field to set the API status. An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
+The following fields configures status of an API within Tyk - if it is currently active and if it is exposed externally.
 
-Example
+- `spec.active`: when set to true, enables the API so that Tyk will listen for and process requests made to the listenPath. An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
 
-```yaml
+- `spec.internal`: when set to true, makes the API accessible only internally.
+
+Inactive API Example: 
+
+```yaml {linenos=true, linenostart=1, hl_lines=["9-9"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -52,13 +56,32 @@ spec:
     strip_listen_path: true
 ```
 
+Internal API Example: 
+
+```yaml {linenos=true, linenostart=1, hl_lines=["10-10"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: inactive-api
+spec:
+  name: Inactive API
+  use_keyless: true
+  protocol: http
+  active: true
+  internal: true
+  proxy:
+    target_url: http://inactive.example.com
+    listen_path: /inactive
+    strip_listen_path: true
+```
+
 ## API Category
 
 For a Tyk Classic API, you can specify the category name using the `spec.name` field with a `#` qualifier. This will categorize the API in the Tyk Dashboard.
 
 Example
 
-```yaml
+```yaml  {linenos=true, linenostart=1, hl_lines=["6-6"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -82,7 +105,7 @@ If you're creating a new API using Tyk Operator, you don't need to specify the I
 
 Example
 
-```yaml
+```yaml  {linenos=true, linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -113,7 +136,7 @@ If you already have API configurations created in the Tyk Dashboard and want to 
 
 Example
 
-```yaml
+```yaml  {linenos=true, linenostart=1, hl_lines=["8-8"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
