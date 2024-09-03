@@ -117,7 +117,7 @@ Each plugin can have additional settings, such as:
 - `raw_body_only`: When true, indicates that only the raw body should be processed.
 - `require_session`: When true, indicates that the plugin requires an active session. This is applicable only for post, post authentication and response plugins.
 
-## Tyk Operator Example
+## Example: Configure Custom Plugins (JavaScript) With Tyk Operator
 
 In this example we will create a JavaScript plugin that will inject a request header *Hello* with a value of *World*. This will be configured as a pre request [hook]({{< ref "" >}}).
 
