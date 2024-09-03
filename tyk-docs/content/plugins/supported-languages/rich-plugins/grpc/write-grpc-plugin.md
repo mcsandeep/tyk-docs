@@ -281,7 +281,7 @@ The value of the `custom_middleware_bundle` field will be used in combination wi
 
 ##### Tyk Operator
 
- Currently this feature is not yet documented with a Tyk Operator example for configuring an API to use plugin bundles. For further details please [contact us](https://tyk.io/contact).
+ Currently this feature is not yet documented with a Tyk Operator example for configuring an API to use plugin bundles. For further details please reach out and contact us on the [community support forum](https://community.tyk.io).
 
 ---
 
