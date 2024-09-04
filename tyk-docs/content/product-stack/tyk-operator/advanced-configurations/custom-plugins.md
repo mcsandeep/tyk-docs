@@ -66,7 +66,6 @@ The example configuration below illustrates how to set up multiple plugins for d
             {
                 "name": "PreHook1",
                 "path": "/path/to/plugin1.so",
-                "disabled": false,
                 "require_session": false,
                 "raw_body_only": false
             }
@@ -74,7 +73,6 @@ The example configuration below illustrates how to set up multiple plugins for d
         "auth_check": {
             "name": "AuthCheck",
             "path": "/path/to/plugin.so",
-            "disabled": false,
             "require_session": false,
             "raw_body_only": false
         },
@@ -82,7 +80,6 @@ The example configuration below illustrates how to set up multiple plugins for d
             {
                 "name": "PostKeyAuth",
                 "path": "/path/to/plugin.so",
-                "disabled": false,
                 "require_session": false,
                 "raw_body_only": false
             }
@@ -91,14 +88,12 @@ The example configuration below illustrates how to set up multiple plugins for d
             {
                 "name": "PostHook1",
                 "path": "/path/to/plugin1.so",
-                "disabled": false,
                 "require_session": false,
                 "raw_body_only": false
             },
             {
                 "name": "PostHook2",
                 "path": "/path/to/plugin2.so",
-                "disabled": false,
                 "require_session": false,
                 "raw_body_only": false
             }
@@ -107,7 +102,6 @@ The example configuration below illustrates how to set up multiple plugins for d
             {
                 "name": "ResponseHook",
                 "path": "/path/to/plugin.so",
-                "disabled": false,
                 "require_session": false,
                 "raw_body_only": false
             }
