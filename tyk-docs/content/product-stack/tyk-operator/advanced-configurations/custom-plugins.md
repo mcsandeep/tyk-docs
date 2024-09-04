@@ -10,24 +10,6 @@ This guide explains how to configure one or more custom plugins where the source
 
 ---
 
-## Unsupported Features
-
-##### Per-Endpoint Plugins
-
-At the endpoint-level, Tyk provides the facility to attach a custom Golang plugin at the end of the request processing chain (immediately before the API-level post-plugin is executed). Please note that [per-endpoint]({{< ref "product-stack/tyk-gateway/middleware/endpoint-plugin" >}}) level plugins are not currently supported by Tyk Operator.
-
----
-
-## Undocumented Features
-
-##### Plugin Bundles
-
-Tyk Operator also supports configuring custom plugins using plugin bundles, where the source code and associated configuration is packaged into a zip file and uploaded to a remote webserver. Tyk Gateway will then download, extract, cache and execute the plugin bundles for each of the configured phases of the [API request lifecycle]({{< ref "concepts/middleware-execution-order" >}}).
-
-Currently, there are no examples documented for configuring plugin bundles with Tyk Operator. Please refer to [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) for further details of the equivalent Tyk Classic API configuration or reach out on the [community forum](https://community.tyk.io).
-
----
-
 ## Overview
 
 Using Tyk Classic APIs, developers can implement API-level custom plugins that can be optionally setup to execute for each of the following [hooks]({{< ref "plugins/plugin-types/plugintypes#plugin-and-hook-types" >}}) in the API request lifecycle: [Pre (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Authentication]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}), [Post (Request)]({{< ref "plugins/plugin-types/request-plugins" >}}), [Post Authentication]({{< ref "plugins/plugin-types/request-plugins" >}}), [Response]({{< ref "plugins/plugin-types/response-plugins" >}}) and [Analytics]({{< ref "plugins/plugin-types/analytics-plugins" >}}). Subsequently, users can execute, or “hook”, their plugin into these phases of the API request lifecycle based on their specific use case.
@@ -118,9 +100,22 @@ It can be seen that each plugin is configured with the specific function name an
 The `driver` configuration parameter describes the plugin implementation language. Please refer to the [supported languages]({{< ref "/plugins/supported-languages#plugin-driver-names" >}}) section for list of supported plugin driver names.
 
 Each plugin can have additional settings, such as:
-- `disabled`: When true, disables the plugin.
 - `raw_body_only`: When true, indicates that only the raw body should be processed.
-- `require_session`: When true, indicates that the plugin requires an active session. This is applicable only for post, post authentication and response plugins.
+- `require_session`: When true, indicates that session metadata will be available to the plugin. This is applicable only for post, post authentication and response plugins.
+
+### Unsupported
+
+##### Per-Endpoint Plugins
+
+At the endpoint-level, Tyk provides the facility to attach a custom Golang plugin at the end of the request processing chain (immediately before the API-level post-plugin is executed). Please note that [per-endpoint]({{< ref "product-stack/tyk-gateway/middleware/endpoint-plugin" >}}) level plugins are not currently supported by Tyk Operator.
+
+### Undocumented
+
+##### Plugin Bundles
+
+Tyk Operator also supports configuring custom plugins using plugin bundles, where the source code and associated configuration is packaged into a zip file and uploaded to a remote webserver. Tyk Gateway will then download, extract, cache and execute the plugin bundles for each of the configured phases of the [API request lifecycle]({{< ref "concepts/middleware-execution-order" >}}).
+
+Currently, there are no examples documented for configuring plugin bundles with Tyk Operator. Please refer to [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) for further details of the equivalent Tyk Classic API configuration or reach out on the [community forum](https://community.tyk.io).
 
 ---
 
