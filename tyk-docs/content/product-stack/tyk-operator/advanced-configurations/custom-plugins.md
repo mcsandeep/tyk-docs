@@ -152,7 +152,7 @@ Copy the source code above and save it to the following file on the Gateway file
 
 ### 2. Create API Definition Resource
 
-The example API Definition resource listed below listens on path */httpbin* and forwards requests upstream to *http://httpbin.org*.
+The example API Definition resource listed below listens on path */httpbin* and forwards requests to upstream *http://httpbin.org*.
 
 ```yaml {linenos=table,hl_lines=["14-18"],linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
