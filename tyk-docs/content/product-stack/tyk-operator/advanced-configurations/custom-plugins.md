@@ -22,7 +22,7 @@ At the endpoint-level, Tyk provides the facility to attach a custom Golang plugi
 
 ##### Plugin Bundles
 
-Tyk Operator also supports configuring custom plugins to use plugin bundles, where the source code and associated configuration is packaged into a zip file and uploaded to a remote webserver. Tyk Gateway will then download, extract, cache and execute the plugin bundles for each of the configured phases of the [API request lifecycle]({{< ref "concepts/middleware-execution-order" >}}).
+Tyk Operator also supports configuring custom plugins using plugin bundles, where the source code and associated configuration is packaged into a zip file and uploaded to a remote webserver. Tyk Gateway will then download, extract, cache and execute the plugin bundles for each of the configured phases of the [API request lifecycle]({{< ref "concepts/middleware-execution-order" >}}).
 
 Currently, there are no examples documented for configuring plugin bundles with Tyk Operator. Please refer to [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) for further details of the equivalent Tyk Classic API configuration or reach out on the [community forum](https://community.tyk.io).
 
