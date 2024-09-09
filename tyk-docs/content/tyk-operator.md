@@ -24,7 +24,7 @@ Managing, checking, and synchronizing APIs from multiple teams across environmen
 
 ### Key Features
 
-1. [Manage Classic API definitions]({{< ref "tyk-stack/tyk-operator/create-an-api" >}})
+1. [Manage API definitions]({{< ref "tyk-stack/tyk-operator/create-an-api" >}})
 2. [Manage Security policies]({{< ref "tyk-stack/tyk-operator/secure-an-api" >}})
 3. [Manage Tyk Classic Dev Portal]({{< ref "tyk-stack/tyk-operator/publish-an-api" >}})
 4. [Kubernetes Ingress Controller]({{< ref "product-stack/tyk-operator/tyk-ingress-controller">}})
@@ -34,9 +34,8 @@ Managing, checking, and synchronizing APIs from multiple teams across environmen
 Consider using Tyk Operator if:
 
 - You are running applications in a Kubernetes environment.
-- You need to manage multiple Tyk API Gateway instances efficiently.
 - You want to leverage Kubernetes-native automation for API management.
-- You aim to streamline the operations of your API gateways with minimal manual intervention.
+- You aim to streamline the operations of your APIs with minimal manual intervention.
 
 ### Getting Started
 To get started with Tyk Operator, learn about Operator key concepts:
