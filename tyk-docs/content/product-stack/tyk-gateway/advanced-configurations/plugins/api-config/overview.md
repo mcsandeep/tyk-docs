@@ -44,6 +44,6 @@ For a given API it is not possible to mix the implementation language for the pl
 
 ## Next steps
 
-If you’re using the newer Tyk OAS APIs, then check out the [configuring plugins for Tyk OAS APis]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/api-config/oas" >}}) page for further details.
+If you’re using the newer Tyk OAS APIs, then check out the [configuring plugins for Tyk OAS APIs]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/api-config/oas" >}}) page for further details.
 
 If you’re using the legacy Tyk Classic APIs, then check out the [configuring plugins for Tyk Classic APIs]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/api-config/classic" >}}) page for further details.
