@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Kubernetes", "Tyk OAS API Definition"]
 description: "Support features of TykOasApiDefinition CRD"
 ---
 
-The TykOasApiDefinition custom resource definition (CRD) manages [Tyk OAS API Definition object]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) within a Kubernetes environment. This CRD enables the integration and management of Tyk API definitions using Kubernetes-native tools, simplifying the process of deploying and managing OAS APIs on the Tyk Dashboard.
+The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API Definition object]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) within a Kubernetes environment. This CRD enables the integration and management of Tyk API definitions using Kubernetes-native tools, simplifying the process of deploying and managing OAS APIs on the Tyk Dashboard.
 
 ## TykOasApiDefinition Features
 
