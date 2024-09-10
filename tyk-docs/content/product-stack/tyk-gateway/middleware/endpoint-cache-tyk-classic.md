@@ -50,14 +50,14 @@ For example:
 }
 ```
 
-In this example the endpoint caching middleware has been configured to cache all safe requests to two endpoints (`/widget` and `/fish`) with a cache refresh period of 60 seconds.
+In this example, the endpoint caching middleware has been configured to cache all safe requests to two endpoints (`/widget` and `/fish`) with a cache refresh period of 60 seconds.
 
 #### Advanced endpoint cache
 
 For ultimate control over what Tyk caches, you should use the advanced configuration options for the per-endpoint cache. You can separately configure, for each HTTP method for an endpoint:
 - an individual cache refresh (timeout)
 - a list of HTTP response codes that should be cached
-- a pattern match to cache only requests containing specific data in the [request body]({{< ref " basic-config-and-security/reduce-latency/caching/advanced-cache#selective-caching-by-body-value" >}})
+- a pattern match to cache only requests containing specific data in the [request body]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#selective-caching-by-body-value" >}})
 
 To enable the advanced middleware you must add a new `advance_cache_config` object to the `extended_paths` section of your API definition.
 
@@ -67,7 +67,7 @@ The `advance_cache_config` object has the following configuration:
 - `path`: the endpoint path
 - `method`: the endpoint method
 - `timeout`: set to the refresh period for the cache (in seconds)
-- `cache_response_codes`: HTTP responses codes to be cached (for example `200`)
+- `cache_response_codes`: HTTP response codes to be cached (for example `200`)
 - `cache_key_regex`: pattern match for selective caching by body value
 
 For example:
