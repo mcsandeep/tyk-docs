@@ -21,6 +21,24 @@ There are three locations where Tyk Gateway can find plugin functions:
 
 ## Plugin configuration
 
+Plugins are implemented using functions. Each plugin function has access to the following state:
+
+- config (API Definition)
+- request
+- session (optional)
+- response (optional)
+
+For go plugins they access request, API Definition (config) and session through ctx (context)
+For javascript & python plugins they have direct access to the request and session state as parameters to a function
+For gRPC we already have researched
+For Python there are the following arguments which depend on the hook - is this the same for other langs?
+    - request
+    - response (optional)
+    - session
+    - spec is this the API Definition, i.e  the equivalent to the config object in JS plugins
+    - metadata
+
+
 Each plugin for an API can be configured within the API Definition with the following details:
 
 | Property | Description |
