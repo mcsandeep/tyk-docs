@@ -17,9 +17,8 @@ Tyk Operator manages two custom resources to help users create and maintain thei
 
 These custom resources enable users to leverage Kubernetes' declarative configuration management to define, modify, and version their APIs, seamlessly integrating with other Kubernetes-based workflows and tools.
 
-## Creating an API with Tyk Operator
+<hr>
 
-This section covers creating and configuring APIs with Tyk Operator. You can find step by step guide and example manifests in each section:
+If you're using Tyk OAS APIs, then you can find details and examples of how to create an configure APIs with Tyk Operator [here]({{< ref "product-stack/tyk-operator/getting-started/create-an-oas-api" >}}).
 
-- [Create Tyk OAS API]({{<ref "product-stack/tyk-operator/getting-started/create-an-oas-api">}}) with Tyk Operator
-- [Create Tyk Classic API]({{<ref "tyk-stack/tyk-operator/create-an-api">}}) with Tyk Operator
+If you're using Tyk Classic APIs, then you can find details and examples of how to create an configure APIs with Tyk Operator [here]({{< ref "tyk-stack/tyk-operator/create-an-api" >}}).

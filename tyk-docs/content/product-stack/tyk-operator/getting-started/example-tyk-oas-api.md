@@ -1,7 +1,7 @@
 ---
 date: 2017-03-24T16:39:31Z
-title: Sample Tyk OAS API
-tags: ["Tyk Operator", "Sample", "Kubernetes"]
+title: Example Tyk OAS API
+tags: ["Tyk Operator", "Example", "Kubernetes"]
 description: "Tyk Operator OAS manifest example"
 ---
 

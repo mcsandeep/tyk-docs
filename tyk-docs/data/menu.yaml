@@ -3899,7 +3899,7 @@ menu:
                 category: Page
                 show: True
               - title: "Tyk OAS API example"
-                path: /product-stack/tyk-operator/getting-started/quick-start-oas
+                path: /product-stack/tyk-operator/getting-started/example-tyk-oas-api
                 category: Page
                 show: True
             - title: "Create Tyk Classic API"

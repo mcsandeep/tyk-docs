@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Kubernetes", "Create an API"]
 description: ""
 ---
 
-This step-by-step tutorial will guide you through the process of creating a Tyk OAS API using the Tyk Operator in your Kubernetes environment. The Tyk Operator allows you to manage your APIs declaratively, utilizing the `TykOasApiDefinition` custom resource.
+This step-by-step tutorial will guide you through the process of creating a Tyk OAS API using Tyk Operator in your Kubernetes environment. Tyk Operator allows you to manage your APIs declaratively, utilizing the `TykOasApiDefinition` custom resource.
 
 ## Prerequisites
 Before you begin, ensure you have the following:
@@ -19,7 +19,8 @@ Before you begin, ensure you have the following:
 First, you need to have a complete Tyk OAS API definition file ready. This file will contain all the necessary configuration details for your API in OpenAPI Specification (OAS) format.
 
 Here is an example of what the Tyk OAS API definition might look like. Note that Tyk extension `x-tyk-api-gateway` section should be present.
-```json
+
+```json {hl_lines=["9-25"],linenos=true}
 {
   "info": {
     "title": "Petstore",
@@ -110,9 +111,7 @@ This command creates a new `TykOasApiDefinition` resource in your cluster. The T
 
 ## Step 5: Verify the Tyk OAS API Creation
 
-To verify that the API has been successfully created:
-
-Check the status of the TykOasApiDefinition resource:
+To verify that the API has been successfully created, check the status of the TykOasApiDefinition resource:
 
 ```sh
 kubectl get tykoasapidefinition petstore
@@ -120,7 +119,7 @@ kubectl get tykoasapidefinition petstore
 
 You should see the status of the resource, which will indicate if the API creation was successful.
 
-```
+```bash
 NAME       DOMAIN   LISTENPATH   PROXY.TARGETURL                  ENABLED   SYNCSTATUS   INGRESSTEMPLATE
 petstore            /petstore/   https://petstore.swagger.io/v2   true      Successful
 ```
@@ -131,7 +130,7 @@ After the Tyk OAS API has been successfully created, you can test it by sending 
 For example, if your API endpoint is `/store/inventory"`, you can use `curl` or any API client to test it:
 
 ```sh
-curl curl "TYK_GATEWAY_URL/petstore/store/inventory"
+curl "TYK_GATEWAY_URL/petstore/store/inventory"
 ```
 
 Replace TYK_GATEWAY_URL with a URL of Tyk Gateway.
