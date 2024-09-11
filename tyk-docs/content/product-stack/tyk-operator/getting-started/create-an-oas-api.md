@@ -64,7 +64,7 @@ You can create and configure your API easily using Tyk Dashboard in a developer 
 
 ## Step 2: Create a ConfigMap for the Tyk OAS API Definition
 
-You need to create a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object) in Kubernetes to store your OAS API definition. The Tyk Operator will reference this ConfigMap to retrieve the API configuration.
+You need to create a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object) in Kubernetes to store your Tyk OAS API definition. The Tyk Operator will reference this ConfigMap to retrieve the API configuration.
 
 To create the ConfigMap, run the following command:
 
