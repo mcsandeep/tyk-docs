@@ -29,7 +29,8 @@ A custom plugin is implemented as function that accepts the following informatio
   - add / remove request headers and parameters
   - stop middleware execution and return a custom response
 
-- `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently, this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
+- `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently, this is available only for Custom Authentication, Post, Post Authentication and Response hooks. Session data is read only with the exception of a `meta_data` key/value field that is written to the session store, allowing different plugins to share data.
+ 
 - `response`: Populated with the upstream HTTP response data. Consequently, this is only available to Post and Response hooks.
 
 The availability of data for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}) is summarized in the table below:
@@ -53,15 +54,21 @@ For a given API it is not possible to mix the implementation language for the pl
 
 ## How Tyk runs local plugins
 
-Recall that plugins can be run at predefined phases or [hooks]({{< ref "plugins/plugin-types/plugintypes" >}}) in the API request / response lifecycle.
+We have seen that plugins run at predefined stages or [hooks]({{< ref "plugins/plugin-types/plugintypes" >}}) in the API request / response lifecycle.
 
 Tyk Gateway requires the following information to configure and trigger a plugin for each hook:
 
-- Path to plugin source code or, in the case of Go plugins a shared object file, containing the function that implements the plugin hook
-- Function name that implements the plugin
-- Plugin language type
+- `Path`: Path to plugin source code or, in the case of Go plugins a shared object file, containing the function that implements the plugin hook
+- `Function name`: Function name that implements the plugin
+- `Driver`: The plugin language type
 
-When an API request is issued, Tyk Gateway inspects the API definition to determine if there are any plugins configured for each hook. If there are plugins configured for a hook then Tyk Gateway will use the configuration data to locate the source code and invoke the function.
+When an API request is issued, Tyk Gateway inspects the API definition to determine if plugins are configured for each hook. If there are plugins configured for a hook then Tyk Gateway will integrate with the plugin based on the source code path, function name and driver.
+
+For language specific details please refer to:
+
+- [GoLang plugins]({{< ref "" >}})
+- [Javascript plugins]({{< ref "" >}})
+- [Python plugins]({{< ref "" >}})
 
 ## Plugin configuration
 
