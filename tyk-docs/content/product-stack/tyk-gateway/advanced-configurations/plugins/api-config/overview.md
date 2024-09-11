@@ -35,6 +35,7 @@ A custom plugin is implemented as function that accepts the following informatio
 The availability of plugin data for each response is summarized in the table below:
 
 | Data | Pre | Custom Authentication | Post | Post Authentication | Response |  
+|:----|:----:|:----:|:----:|:----:|:----:|
 | config | yes | yes | yes | yes | yes |
 | request | yes | yes | yes | yes | yes |
 | session | no | yes | yes | yes | yes |
