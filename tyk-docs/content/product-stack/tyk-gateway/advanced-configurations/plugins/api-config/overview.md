@@ -19,25 +19,24 @@ There are three locations where Tyk Gateway can find plugin functions:
 2. **Local plugins**: Plugins are implemented by functions within source code files located on the Gateway's file system. The API Definition allows the source code file path and function name to be configured for each plugin. For further details read on.
 3. **Plugin bundles**: The plugin source code and configuration are bundled into a zip file that is served by a remote web server. For further details see the [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) page.
 
+## Plugin data
+
+A custom plugin is implemented as function that accepts the following information:
+
+- `config`: Allows access to configuration properties defined in the API Definition such as the unique API identifier, organization identifier and custom attributes. 
+- `request`: Allows access to information relating to the request that triggered the plugin, e.g. headers, request method URL etc. A plugin can manipulate information relating to the request, for example:
+
+  - add / remove request headers and parameters
+  - stop middleware execution and return a custom response
+
+- `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
+- `response`: Populated with the upstream HTTP response data. Subsequently, this is only available to Post and Response hooks. 
+
+Please refer to documentation in the supported languages section for [Golang plugins]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins" >}}), [gRPC plugins]({{< ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin" >}}), [Javascript plugins]({{< ref "plugins/supported-languages/javascript-middleware/middleware-scripting-guide#javascript-resources" >}}) and [Python plugins]({{< ref "plugins/supported-languages/rich-plugins/python/python" >}}) for further details and examples.
+
+TODO: For Python plugins we have metadata argument too. In other supported languages this is part of session object
+
 ## Plugin configuration
-
-Plugins are implemented using functions. Each plugin function has access to the following state:
-
-- config (API Definition)
-- request
-- session (optional)
-- response (optional)
-
-For go plugins they access request, API Definition (config) and session through ctx (context)
-For javascript & python plugins they have direct access to the request and session state as parameters to a function
-For gRPC we already have researched
-For Python there are the following arguments which depend on the hook - is this the same for other langs?
-    - request
-    - response (optional)
-    - session
-    - spec is this the API Definition, i.e  the equivalent to the config object in JS plugins
-    - metadata
-
 
 Each plugin for an API can be configured within the API Definition with the following details:
 
