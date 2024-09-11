@@ -29,8 +29,8 @@ A custom plugin is implemented as function that accepts the following informatio
   - add / remove request headers and parameters
   - stop middleware execution and return a custom response
 
-- `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
-- `response`: Populated with the upstream HTTP response data. Subsequently, this is only available to Post and Response hooks. 
+- `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently, this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
+- `response`: Populated with the upstream HTTP response data. Consequently, this is only available to Post and Response hooks.
 
 The availability of data for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}) is summarized in the table below:
 
