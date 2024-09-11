@@ -32,7 +32,7 @@ A custom plugin is implemented as function that accepts the following informatio
 - `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
 - `response`: Populated with the upstream HTTP response data. Subsequently, this is only available to Post and Response hooks. 
 
-The availability of plugin data for each [plugin type]({{< ref "" >}}) is summarized in the table below:
+The availability of data for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}) is summarized in the table below:
 
 | Data | Pre Authentication | Custom Authentication | Post Authentication | Post | Response |  
 |:----|:----:|:----:|:----:|:----:|:----:|
@@ -43,7 +43,25 @@ The availability of plugin data for each [plugin type]({{< ref "" >}}) is summar
 
 Please refer to documentation in the supported languages section for [Golang plugins]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins" >}}), [gRPC plugins]({{< ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin" >}}), [Javascript plugins]({{< ref "plugins/supported-languages/javascript-middleware/middleware-scripting-guide#javascript-resources" >}}) and [Python plugins]({{< ref "plugins/supported-languages/rich-plugins/python/python" >}}) for further details and examples.
 
-TODO: For Python plugins we have metadata argument too. In other supported languages this is part of session object
+---
+
+## Language configuration
+
+For local and bundle plugins a [plugin driver]({{< ref "plugins/supported-languages#plugin-driver-names" >}}) is configured to specify the plugin implementation language. If using gRPC plugins a `grpc` plugin driver should be used to instruct Tyk to request execution of plugins from within a gRPC server that is external to the Tyk process. This offers additional language support since Tyk can integrate with a gRPC server that is implemented using any supported [gRPC language](https://grpc.io/docs/).
+
+For a given API it is not possible to mix the implementation language for the plugin types: Pre, Custom Authentication, Post, Post Authentication and Response plugins. For example, it is not possible to implement a pre request plugin in *Go* and also implement a post request plugin in *Python* for the same API.
+
+## How Tyk runs local plugins
+
+Recall that plugins can be run at predefined phases or [hooks]({{< ref "plugins/plugin-types/plugintypes" >}}) in the API request / response lifecycle.
+
+Tyk Gateway requires the following information to configure and trigger a plugin for each hook:
+
+- Path to plugin source code or, in the case of Go plugins a shared object file, containing the function that implements the plugin hook
+- Function name that implements the plugin
+- Plugin language type
+
+When an API request is issued, Tyk Gateway inspects the API definition to determine if there are any plugins configured for each hook. If there are plugins configured for a hook then Tyk Gateway will use the configuration data to locate the source code and invoke the function.
 
 ## Plugin configuration
 
@@ -57,27 +75,6 @@ Each plugin for an API can be configured within the API Definition with the foll
 | `Function name` | The name of the function that implements the plugin. The function should exist within the source code file referenced in `path` |
 | `Raw body only` | When set to true, this flag indicates that only the raw request body should be processed |
 | `Require session state`| When set to true, Tyk Gateway will serialize the request session state and pass it as an argument to the function that implements the plugin in the target language. This is applicable to Post, Response, and Authentication hooks only |
-
----
-
-## Language configuration
-
-For local and bundle plugins a [plugin driver]({{< ref "plugins/supported-languages#plugin-driver-names" >}}) is configured to specify the plugin implementation language. If using gRPC plugins a `grpc` plugin driver should be used to instruct Tyk to request execution of plugins from within a gRPC server that is external to the Tyk process. This offers additional language support since Tyk can integrate with a gRPC server that is implemented using any supported [gRPC language](https://grpc.io/docs/).
-
-For a given API it is not possible to mix the implementation language for the plugin types: Pre, Authentication, Post, Post Authentication and Response plugins. For example, it is not possible to implement a pre request plugin in *Go* and also implement a post request plugin in *Python* for the same API.
-
-## How Tyk runs local plugins
-
-Recall that plugins can be run at predefined phases or [hooks]({{< ref "plugins/plugin-types/plugintypes" >}}) in the API request / response lifecycle.
-
-Tyk Gateway requires the following information to load a plugin:
-
-- Path to plugin source code or, in the case of Go plugins a shared object file, containing the function that implements the plugin hook.
-- Function name that implements the plugin.
-- Configuration section in the API Definition that references the name of the function and the path to the source code file or shared object file in the case of Go Plugins.
-- Plugin language type
-
-When an API request is issued, Tyk Gateway inspects the API definition to determine if there are any plugins configured for each hook. If there are plugins configured for a hook then Tyk Gateway will use the configuration data to locate the source code and invoke the function.
 
 ---
 
