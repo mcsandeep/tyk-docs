@@ -32,6 +32,14 @@ A custom plugin is implemented as function that accepts the following informatio
 - `session`: Provides access to information relating to the session such as quota, rate limits, access allowances and auth data for a specific key. Consequently this is available only for Custom Authentication, Post, Post Authentication and Response hooks.
 - `response`: Populated with the upstream HTTP response data. Subsequently, this is only available to Post and Response hooks. 
 
+The availability of plugin data for each response is summarized in the table below:
+
+| Data | Pre | Custom Authentication | Post | Post Authentication | Response |  
+| config | yes | yes | yes | yes | yes |
+| request | yes | yes | yes | yes | yes |
+| session | no | yes | yes | yes | yes |
+| response | no | no | no | no | yes
+
 Please refer to documentation in the supported languages section for [Golang plugins]({{< ref "/product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins" >}}), [gRPC plugins]({{< ref "plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin" >}}), [Javascript plugins]({{< ref "plugins/supported-languages/javascript-middleware/middleware-scripting-guide#javascript-resources" >}}) and [Python plugins]({{< ref "plugins/supported-languages/rich-plugins/python/python" >}}) for further details and examples.
 
 TODO: For Python plugins we have metadata argument too. In other supported languages this is part of session object
