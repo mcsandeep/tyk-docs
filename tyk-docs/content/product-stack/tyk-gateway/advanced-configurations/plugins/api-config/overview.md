@@ -19,6 +19,8 @@ There are three locations where Tyk Gateway can find plugin functions:
 2. **Local plugins**: Plugins are implemented by functions within source code files located on the Gateway's file system. The API Definition allows the source code file path and function name to be configured for each plugin. For further details read on.
 3. **Plugin bundles**: The plugin source code and configuration are bundled into a zip file that is served by a remote web server. For further details see the [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) page.
 
+---
+
 ## Plugin data
 
 A custom plugin is implemented as function that accepts the following information:
@@ -51,6 +53,8 @@ Please refer to documentation in the supported languages section for [Golang plu
 For local and bundle plugins a [plugin driver]({{< ref "plugins/supported-languages#plugin-driver-names" >}}) is configured to specify the plugin implementation language. If using gRPC plugins a `grpc` plugin driver should be used to instruct Tyk to request execution of plugins from within a gRPC server that is external to the Tyk process. This offers additional language support since Tyk can integrate with a gRPC server that is implemented using any supported [gRPC language](https://grpc.io/docs/).
 
 For a given API it is not possible to mix the implementation language for the plugin types: Pre, Custom Authentication, Post, Post Authentication and Response plugins. For example, it is not possible to implement a pre request plugin in *Go* and also implement a post request plugin in *Python* for the same API.
+
+---
 
 ## How Tyk runs local plugins
 
