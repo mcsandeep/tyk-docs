@@ -35,7 +35,7 @@ A custom plugin is implemented as function that accepts the following informatio
 
 The availability of data for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}) is summarized in the table below:
 
-| Data | Pre | Custom Authentication | Post Authentication | Post | Response |  
+| Data | Pre Authentication | Custom Authentication | Post Authentication | Post | Response |  
 |:----|:----:|:----:|:----:|:----:|:----:|
 | config | yes | yes | yes | yes | yes |
 | request | yes | yes | yes | yes | yes |
