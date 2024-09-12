@@ -68,7 +68,7 @@ For language specific details please refer to:
 
 - [GoLang plugins]({{< ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins" >}})
 - [Javascript plugins]({{< ref "plugins/supported-languages/javascript-middleware/middleware-scripting-guide" >}})
-- [Python plugins]({{< ref plugins/supported-languages/rich-plugins/python/python" >}})
+- [Python plugins]({{< ref "plugins/supported-languages/rich-plugins/python/python" >}})
 
 ---
 
