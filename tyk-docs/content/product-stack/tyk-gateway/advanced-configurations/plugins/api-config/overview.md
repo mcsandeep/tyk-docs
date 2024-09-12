@@ -35,7 +35,7 @@ A custom plugin is implemented as function that accepts the following informatio
 
 The availability of data for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}) is summarized in the table below:
 
-| Data | Pre Authentication | Custom Authentication | Post Authentication | Post | Response |  
+| Data | Pre | Custom Authentication | Post Authentication | Post | Response |  
 |:----|:----:|:----:|:----:|:----:|:----:|
 | config | yes | yes | yes | yes | yes |
 | request | yes | yes | yes | yes | yes |
@@ -46,7 +46,7 @@ Please refer to documentation in the supported languages section for [Golang plu
 
 ---
 
-## Language configuration
+## Plugin language type
 
 For local and bundle plugins a [plugin driver]({{< ref "plugins/supported-languages#plugin-driver-names" >}}) is configured to specify the plugin implementation language. If using gRPC plugins a `grpc` plugin driver should be used to instruct Tyk to request execution of plugins from within a gRPC server that is external to the Tyk process. This offers additional language support since Tyk can integrate with a gRPC server that is implemented using any supported [gRPC language](https://grpc.io/docs/).
 
@@ -66,22 +66,9 @@ When an API request is issued, Tyk Gateway inspects the API definition to determ
 
 For language specific details please refer to:
 
-- [GoLang plugins]({{< ref "" >}})
-- [Javascript plugins]({{< ref "" >}})
-- [Python plugins]({{< ref "" >}})
-
-## Plugin configuration
-
-Each plugin for an API can be configured within the API Definition with the following details:
-
-| Property | Description |
-|-------|-------------|
-| `Enabled` | When true, the plugin is activated |
-| `Name` | A name used to identify the plugin |
-| `Path` | The path to the source code file on the Tyk Gateway file system |
-| `Function name` | The name of the function that implements the plugin. The function should exist within the source code file referenced in `path` |
-| `Raw body only` | When set to true, this flag indicates that only the raw request body should be processed |
-| `Require session state`| When set to true, Tyk Gateway will serialize the request session state and pass it as an argument to the function that implements the plugin in the target language. This is applicable to Post, Response, and Authentication hooks only |
+- [GoLang plugins]({{< ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins" >}})
+- [Javascript plugins]({{< ref "plugins/supported-languages/javascript-middleware/middleware-scripting-guide" >}})
+- [Python plugins]({{< ref plugins/supported-languages/rich-plugins/python/python" >}})
 
 ---
 
