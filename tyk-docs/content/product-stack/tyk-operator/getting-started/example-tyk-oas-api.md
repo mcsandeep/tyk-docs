@@ -9,8 +9,12 @@ In addition to following a step-by-step approach using the Tyk Operator, you can
 
 This example shows the minimum resources and fields required to define a Tyk OAS API using Tyk Operator. 
 
-```yaml
+```yaml{hl_lines=["7-7", "41-44"],linenos=true}
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm
+  namespace: default
 data:
   test_oas.json: |-
     {
@@ -39,10 +43,6 @@ data:
           }
         }
       }
-kind: ConfigMap
-metadata:
-  name: cm
-  namespace: default
 ---
 apiVersion: tyk.tyk.io/v1alpha1
 kind: TykOasApiDefinition
@@ -55,5 +55,7 @@ spec:
       namespace: default
       keyName: test_oas.json
 ```
+
+Here, a `ConfigMap` is created that contains the Tyk OAS API Definition with the `data` field with key `test_oas.json`. This is linked to from a `TykOasApiDefinition` resource via `spec.tykOAS.configmapRef` and add syntax highlighting to the yaml example highlighting the relevant lines.
 
 To apply it, simply save the manifest into a file (e.g., `tyk-oas-api.yaml`) and use `kubectl apply -f tyk-oas-api.yaml` to create the required resources in your Kubernetes cluster. This command will create the necessary ConfigMap and TykOasApiDefinition resources in the `default` namespace.
