@@ -61,13 +61,28 @@ Here's how it works:
   In the given example, there are two important annotations in the Ingress metadata:
 
   ```yaml
-  tyk.io/template: myapideftemplate
-  tyk.io/template-kind: ApiDefinition
+    annotations:
+      tyk.io/template: myapideftemplate
+      tyk.io/template-kind: ApiDefinition
   ```
 
   These annotations specify that Tyk Operator should use a resource named `myapideftemplate` in the same namespace as the reference for API configuration. The `tyk.io/template-kind` annotation indicates that this reference is of type `ApiDefinition`. Alternatively, it could be a `TykOasApiDefinition`, depending on the user's choice. Tyk Operator detects these annotations and looks for the specified resource in the same namespace. For each path defined in the Ingress, Tyk Operator creates a corresponding API in Tyk by copying the specification from `myapideftemplate` resource (such as authentication type, rate limiting, etc.) and then updates only the relevant fields like custom domain, certificates, listen path, and upstream URL based on the Ingress spec.
 
-  Note that `ApiDefinition` or `TykOasApiDefinition` created for use as a template for Ingress resources should have a label `template: "true"` so that Tyk Operator would not manage it as ordinary APIs. See [Configuration Examples](#apidefinition-template) section for examples.
+  Note that `ApiDefinition` or `TykOasApiDefinition` created for use as a template for Ingress resources should have special label set so that Tyk Operator would not manage it as ordinary APIs. Here is the required label for `ApiDefinition` and `TykOasApiDefinition` respectively:
+
+  Label for `ApiDefinition` indicating it is a resource template.
+
+  ```yaml
+    labels:
+      template: "true"
+  ```
+
+  Label for `TykOasApiDefinition` indicating it is a resource template.
+
+  ```yaml
+    labels:
+      tyk.io/template: "true"
+  ```
 
 - **Automated Resource Handling**: Tyk Operator handles the automatic discovery and management of existing Ingress resources, eliminating the need for manual migration of all Ingress rules into API definitions. You can simply define an API configuration template as a `TykOasApiDefinition` resource or `ApiDefinition` resource and then let Tyk Operator creates all the APIs from your existing Ingress rules using the referenced resource as template, streamlining the transition process.
 
@@ -306,7 +321,7 @@ kind: TykOasApiDefinition
 metadata:
   name: oasapitemplate
   labels:
-    template: "true"
+    tyk.io/template: "true"
 spec:
   tykOAS:
     configmapRef:
@@ -315,7 +330,7 @@ spec:
       keyName: test_oas.json
 ```
 
-Here provides a minimum template as `TykOasApiDefinition`. Same as `ApiDefinition`, the `TykOasApiDefinition` must have a label `template: "true"` so that Tyk Operator will not reconcile it with Tyk.
+Here provides a minimum template as `TykOasApiDefinition`. The `TykOasApiDefinition` must have a label `tyk.io/template: "true"` so that Tyk Operator will not reconcile it with Tyk.
 
 ```yaml{hl_lines=["7-8"],linenos=true}
 apiVersion: networking.k8s.io/v1
