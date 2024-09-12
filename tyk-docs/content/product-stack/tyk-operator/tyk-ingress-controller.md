@@ -18,7 +18,7 @@ When you use Tyk Operator as an Ingress Controller, each "path" defined in your 
 
 Using this Ingress spec as example:
 
-```yaml
+```yaml{hl_lines=["6-8", "13-13", "15-24"],linenos=true}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -370,7 +370,7 @@ ApiDefinition's name comes from:
 - `httpbin-ingress`: The name of this Ingress resource,
 - `78acd160d`: Short hash (first 9 characters) of Host (`""`) and Path (`/httpbin`). The hash algorithm is SHA256.
 
-```yaml
+```yaml{hl_lines=["4-4"],linenos=true}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
