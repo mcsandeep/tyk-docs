@@ -3950,7 +3950,7 @@ menu:
         category: Directory
         show: True
         menu:
-        - title: "Management of APIs"
+        - title: "Manage API metadata"
           path: /product-stack/tyk-operator/advanced-configurations/management-of-api
           category: Page
           show: True
@@ -3966,8 +3966,12 @@ menu:
           path: /product-stack/tyk-operator/getting-started/tyk-operator-multiple-organisations
           category: Page
           show: True
-        - title: "Manage API Ownership"
+        - title: "Manage API ownership"
           path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
+          category: Page
+          show: True
+        - title: "Manage API category"
+          path: /product-stack/tyk-operator/advanced-configurations/api-category
           category: Page
           show: True
         - title: "GraphQL Federation"

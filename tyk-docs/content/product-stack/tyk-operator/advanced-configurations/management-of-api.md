@@ -1,5 +1,5 @@
 ---
-title: "Management of APIs"
+title: "Manage API metadata"
 date: 2024-06-25
 tags: ["Tyk", "Kubernetes", "API Management", "CRD", "DevOps", "API Gateway Configuration"]
 description: "This documentation provides a comprehensive guide on configuring various aspects of API descriptions and metadata using Tyk Operator. It includes detailed instructions and examples for setting API name, status, category, ID, path, ownership, and versioning within the ApiDefinition Custom Resource Definition (CRD). The guide ensures that users can manage their Tyk API Gateway configurations effectively within a Kubernetes environment."
@@ -9,6 +9,14 @@ keywords: ["Tyk Operator", "Kubernetes", "API Gateway", "API Configuration", "AP
 This documentation provides a comprehensive guide on configuring various aspects of API descriptions and metadata using Tyk Operator.
 
 ## API Name
+
+**Tyk OAS API:**
+
+API name can be set through `info.name` field in Tyk OAS API Definition object.
+
+Refer to the [full specification here]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}).
+
+**Tyk Classic API:**
 
 To set the name of an API in the `ApiDefinition`, use the `spec.name` string field. This name is displayed on the Tyk Dashboard and should concisely describe what the API represents.
 
@@ -29,6 +37,41 @@ spec:
     listen_path: /example
     strip_listen_path: true
 ```
+
+## API Name (tab)
+{{<tabs_start>}}
+
+{{<tab_start "Tyk OAS API">}}
+API name can be set through `info.name` field in Tyk OAS API Definition object.
+
+Refer to the [full specification here]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}).
+
+{{<tab_end>}}
+
+{{<tab_start "Tyk Classic API">}}
+
+To set the name of an API in the `ApiDefinition`, use the `spec.name` string field. This name is displayed on the Tyk Dashboard and should concisely describe what the API represents.
+
+Example:
+
+```yaml {linenos=true, linenostart=1, hl_lines=["6-6"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: example-api # This is the metadata name of the Kubernetes resource
+spec:
+  name: Example API # This is the "API NAME" in Tyk
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://example.com
+    listen_path: /example
+    strip_listen_path: true
+```
+{{<tab_end>}}
+
+{{<tabs_end>}}
 
 ## API Status
 
@@ -73,28 +116,6 @@ spec:
   proxy:
     target_url: http://inactive.example.com
     listen_path: /inactive
-    strip_listen_path: true
-```
-
-## API Category
-
-For a Tyk Classic API, you can specify the category name using the `spec.name` field with a `#` qualifier. This will categorize the API in the Tyk Dashboard.
-
-Example
-
-```yaml  {linenos=true, linenostart=1, hl_lines=["6-6"]}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: ApiDefinition
-metadata:
-  name: categorized-api
-spec:
-  name: "my-classic-api #global #staging"
-  use_keyless: true
-  protocol: http
-  active: true
-  proxy:
-    target_url: http://categorized.example.com
-    listen_path: /categorized
     strip_listen_path: true
 ```
 
@@ -157,9 +178,13 @@ spec:
 
 In this example, the API with ID `12345` will be updated according to the provided spec instead of creating a new API.
 
+## API Category
+
+For details on how to configure API category, refer to [Manage API category]({{< ref "product-stack/tyk-operator/advanced-configurations/api-category" >}})
+
 ## API Ownership
 
-To configure API ownership, ensure Tyk Operator is also an owner of the API. This can be done using Operator Context. For details, refer to Tyk [Operator API Ownership]({{< ref "product-stack/tyk-operator/getting-started/tyk-operator-api-ownership">}}).
+To configure API ownership, ensure Tyk Operator is also an owner of the API. This can be done using Operator Context. For details, refer to Tyk Operator [API Ownership]({{< ref "product-stack/tyk-operator/getting-started/tyk-operator-api-ownership">}}).
 
 ## API Versioning
 
