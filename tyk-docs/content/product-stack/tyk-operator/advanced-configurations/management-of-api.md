@@ -10,13 +10,11 @@ This documentation provides a comprehensive guide on configuring various aspects
 
 ## API Name
 
-**Tyk OAS API:**
+##### Tyk OAS API
 
-API name can be set through `info.name` field in Tyk OAS API Definition object.
+API name can be set through `x-tyk-api-gateway.info.name` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
 
-Refer to the [full specification here]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}).
-
-**Tyk Classic API:**
+##### Tyk Classic API
 
 To set the name of an API in the `ApiDefinition`, use the `spec.name` string field. This name is displayed on the Tyk Dashboard and should concisely describe what the API represents.
 
@@ -37,47 +35,18 @@ spec:
     listen_path: /example
     strip_listen_path: true
 ```
-
-## API Name (tab)
-{{<tabs_start>}}
-
-{{<tab_start "Tyk OAS API">}}
-API name can be set through `info.name` field in Tyk OAS API Definition object.
-
-Refer to the [full specification here]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}).
-
-{{<tab_end>}}
-
-{{<tab_start "Tyk Classic API">}}
-
-To set the name of an API in the `ApiDefinition`, use the `spec.name` string field. This name is displayed on the Tyk Dashboard and should concisely describe what the API represents.
-
-Example:
-
-```yaml {linenos=true, linenostart=1, hl_lines=["6-6"]}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: ApiDefinition
-metadata:
-  name: example-api # This is the metadata name of the Kubernetes resource
-spec:
-  name: Example API # This is the "API NAME" in Tyk
-  use_keyless: true
-  protocol: http
-  active: true
-  proxy:
-    target_url: http://example.com
-    listen_path: /example
-    strip_listen_path: true
-```
-{{<tab_end>}}
-
-{{<tabs_end>}}
 
 ## API Status
 
 ### API Active Status
 
 An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
+
+##### Tyk OAS API
+
+API active state can be set through `x-tyk-api-gateway.info.state.active` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
 
 The active status of an API can be set by modifying the `spec.active` configuration parameter. When set to `true`, this enables the API so that Tyk will listen for and process requests made to the `listenPath`. 
 
@@ -99,8 +68,15 @@ spec:
 
 ### API Accessibility
 
-An API can be configured as internal so that external requests are not processed. This is achieved by setting the `spec.internal`configuration parameter as shown in the example below.
+An API can be configured as internal so that external requests are not processed. 
 
+##### Tyk OAS API
+
+API accessibility can be set through `x-tyk-api-gateway.info.state.internal` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
+
+API accessibility can be set through the `spec.internal` configuration parameter as shown in the example below.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["10-10"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -123,36 +99,37 @@ spec:
 
 ### Creating a new API
 
-If you're creating a new API using Tyk Operator, you don't need to specify the ID in the manifest. The API ID will be generated in a deterministic way. You can inspect `status.api_id` field to get the generated API ID.
+If you're creating a new API using Tyk Operator, you don't need to specify the ID. The API ID will be generated in a deterministic way.
 
-Example
+##### Tyk OAS API
 
-```yaml  {linenos=true, linenostart=1}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: ApiDefinition
-metadata:
-  name: order
-  namespace: shop
-spec:
-  name: Order API
-  use_keyless: true
-  protocol: http
-  active: true
-  proxy:
-    target_url: http://order.example.com
-    listen_path: /order
-    strip_listen_path: true
-```
-
-Run the following command to inspect generated API ID.
+The generated ID is stored in `status.id` field. Run the following command to inspect generated API ID of a Tyk OAS API.
 
 ```bash
-% kubectl get apidefinition order --namespace shop -o yaml | grep api_id -B 1
-status:
-  api_id: c2hvcC9vcmRlcg
+% kubectl get tykoasapidefinition [API_NAME] --namespace [NAMESPACE] -o jsonpath='{.status.id}'
+ZGVmYXVsdC9wZXRzdG9yZQ
 ```
 
+In this example, the generated API ID is `ZGVmYXVsdC9wZXRzdG9yZQ`.
+
+##### Tyk Classic API
+
+The generated ID is stored in `status.api_id` field. Run the following command to inspect generated API ID of a Tyk Classic API.
+
+```bash
+% kubectl get apidefinition [API_NAME] --namespace [NAMESPACE] -o jsonpath='{.status.api_id}'
+ZGVmYXVsdC90ZXN0
+```
+
+In this example, the generated API ID is `ZGVmYXVsdC90ZXN0`.
+
 ### Updating an existing API
+
+##### Tyk OAS API
+
+If you already have API configurations created in the Tyk Dashboard and want to start using Tyk Operator to manage these APIs, you can include the existing API ID in the manifest under the `x-tyk-api-gateway.info.id` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
 
 If you already have API configurations created in the Tyk Dashboard and want to start using Tyk Operator to manage these APIs, you can include the existing API ID in the manifest under the `spec.api_id` field. This way, when you apply the manifest, Tyk Operator will not create a new API in the Dashboard. Instead, it will update the original API with the Kubernetes spec.
 
