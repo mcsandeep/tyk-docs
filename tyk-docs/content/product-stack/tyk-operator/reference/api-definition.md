@@ -28,7 +28,7 @@ Here are the supported features:
 |--------------------------------|---------|----------------|------------------------------|--------|
 | API Name                       | ✅      | v0.1           | - | [API Name]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-name">}}) |
 | API Status (inactive/active)   | ✅      | v0.2           | - | [API Active Status]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-active-status">}}) |
-| API Categories                 | ✅      | v0.1           | - | [API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/api-category">}}) |
+| API Categories                 | ✅      | v0.1           | - | [API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/api-categories">}}) |
 | API ID                         | ✅      | v0.1           | - | [API ID]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-id">}}) |-                            |                                                                                            |
 | API Ownership                  | ✅      | v0.12          | - | [API Ownership]({{<ref "product-stack/tyk-operator/advanced-configurations/management-of-api#api-ownership">}}) |
 | API Versioning                 | ✅      | v0.1           | - | [API Versioning]({{<ref "getting-started/key-concepts/versioning#configuring-api-versioning-in-tyk-operator">}}) |

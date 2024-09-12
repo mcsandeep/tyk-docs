@@ -3970,8 +3970,8 @@ menu:
           path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
           category: Page
           show: True
-        - title: "Manage API category"
-          path: /product-stack/tyk-operator/advanced-configurations/api-category
+        - title: "Manage API categories"
+          path: /product-stack/tyk-operator/advanced-configurations/api-categories
           category: Page
           show: True
         - title: "GraphQL Federation"

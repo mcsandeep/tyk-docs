@@ -157,7 +157,7 @@ In this example, the API with ID `12345` will be updated according to the provid
 
 ## API Category
 
-For details on how to configure API category, refer to [Manage API category]({{< ref "product-stack/tyk-operator/advanced-configurations/api-category" >}})
+For details on how to configure API category, refer to [Manage API category]({{< ref "product-stack/tyk-operator/advanced-configurations/api-categories" >}})
 
 ## API Ownership
 
