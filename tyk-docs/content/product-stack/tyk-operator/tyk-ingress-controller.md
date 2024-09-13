@@ -49,7 +49,7 @@ Here's how it works:
 
 - **Path Mapping**: Tyk Operator will automatically create APIs in Tyk for each path for a specific rule defined in Ingress resource. Just as with traditional Ingress, incoming requests are routed to the correct backend service within the cluster based on the host and paths defined in the Ingress rules.
 
-  In the given example, Tyk Operator is designated as the Ingress Controller for this Ingress resource. Tyk Operator reads this Ingress definition and automatically creates a corresponding API in the Tyk Gateway. The API will have:
+In the given example, Tyk Operator is designated as the Ingress Controller for this Ingress resource. Tyk Operator reads this Ingress definition and automatically creates a corresponding API in the Tyk Gateway. The API will have:
   
   - A **custom domain** set to `myingress.do.poc.tyk.technology`, as defined by the `host` field in the Ingress rule.
   - The TLS certificate from secret `httpbin-ingress-tls` uploaded to Tyk and **certificates** field set to the resulting certificate ID.
@@ -58,7 +58,7 @@ Here's how it works:
 
 - **API Management Through Tyk**: At the same time, Tyk allows you to apply API management features by referencing a configuration template. This template is defined using either an `ApiDefinition` or `TykOasApiDefinition` resource. These resources provide a reference configuration that includes details on how the API should be managed, such as security policies, traffic controls, and transformations.
 
-  In the given example, there are two important annotations in the Ingress metadata:
+In the given example, there are two important annotations in the Ingress metadata:
 
   ```yaml
     annotations:
