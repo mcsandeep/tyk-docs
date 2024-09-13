@@ -165,4 +165,4 @@ To configure API ownership, ensure Tyk Operator is also an owner of the API. Thi
 
 ## API Versioning
 
-For details on how to configure API versions, refer to [configuring API versioning in Tyk Operator]({{< ref "getting-started/key-concepts/versioning#tyk-operator" >}})
+For details on how to configure API versions, refer to [configuring API versioning in Tyk Operator]({{< ref "product-stack/tyk-operator/advanced-configurations/api-versioning" >}})
