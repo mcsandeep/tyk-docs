@@ -1,6 +1,5 @@
 ---
-publishdate: 2020-03-09
-lastmod: 2020-03-09
+publishDate: 2020-03-09
 title: Deploy Tyk Self managed On Windows Using Helm
 tags: ["Tyk Stack", "Self Managed", "Installation", "Kubernetes", "Helm Chart", "Helm", "Windows", "Tyk Self managed", "Tyk Pro", "API Management"]
 description: "Guide to install Tyk Self managed on premise using Kubernetes on Windows" 
