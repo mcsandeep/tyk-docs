@@ -111,7 +111,6 @@ metadata:
   name: petstore
 spec:
   contextRef:
-    kind: TykOasApiDefinition # Set to "TykOasApiDefinition" for TykOasApiDefinition resources
     name: team-alpha
     namespace: default
   tykOAS:
@@ -135,7 +134,6 @@ metadata:
   namespace: alpha
 spec:
   contextRef:
-    kind: ApiDefinition # If kind is not defined, it is default to "ApiDefinition"
     name: team-alpha
     namespace: default
   name: httpbin
