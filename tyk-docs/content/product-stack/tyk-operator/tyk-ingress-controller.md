@@ -68,7 +68,7 @@ In the given example, there are two important annotations in the Ingress metadat
 
   These annotations specify that Tyk Operator should use a resource named `myapideftemplate` in the same namespace as the reference for API configuration. The `tyk.io/template-kind` annotation indicates that this reference is of type `ApiDefinition`. Alternatively, it could be a `TykOasApiDefinition`, depending on the user's choice. Tyk Operator detects these annotations and looks for the specified resource in the same namespace. For each path defined in the Ingress, Tyk Operator creates a corresponding API in Tyk by copying the specification from `myapideftemplate` resource (such as authentication type, rate limiting, etc.) and then updates only the relevant fields like custom domain, certificates, listen path, and upstream URL based on the Ingress spec.
 
-  Note that `ApiDefinition` or `TykOasApiDefinition` created for use as a template for Ingress resources should have special label set so that Tyk Operator would not manage it as ordinary APIs. Here is the required label for `ApiDefinition` and `TykOasApiDefinition` respectively:
+  Note that `ApiDefinition` or `TykOasApiDefinition` created for use as a template for Ingress resources should have a special label set so that Tyk Operator would not manage it as ordinary APIs. Here is the required label for `ApiDefinition` and `TykOasApiDefinition` respectively:
 
   Label for `ApiDefinition` indicating it is a resource template.
 

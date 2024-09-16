@@ -120,7 +120,7 @@ spec:
       keyName: test_oas.json
 ```
 
-In this example, the `ApiDefinition` object references the `team-alpha` context, ensuring that it is managed under the ownership of the specified users and user groups.
+In this example, the `TykOasApiDefinition` object references the `team-alpha` context, ensuring that it is managed under the ownership of the specified users and user groups.
 
 ## Tyk Classic API
 
