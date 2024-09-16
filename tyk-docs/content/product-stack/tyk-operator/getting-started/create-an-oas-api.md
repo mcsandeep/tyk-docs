@@ -80,6 +80,12 @@ This command creates a ConfigMap named `tyk-oas-api-config` in the `tyk` namespa
 There are inherent size limit of a ConfigMap. The data stored in a ConfigMap cannot exceed 1 MiB. In case your OpenAPI document exceeds this size limit, it is recommended to split your API into smaller sub-APIs for easy management. For details, please consult [Best Practices for Describing Large APIs](https://learn.openapis.org/best-practices.html#describing-large-apis) from the OpenAPI initiative.
 {{< /note >}}
 
+{{< note success >}}
+**Notes**
+
+If you prefer to create ConfigMap with a manifest using `kubectl apply` command, you may get an error that the annotation metadata cannot exceed 256KB. It is because by using `kubectl apply`, `kubectl` automatically saves the whole configuration in the annotation [kubectl.kubernetes.io/last-applied-configuration](https://kubernetes.io/docs/reference/labels-annotations-taints/#kubectl-kubernetes-io-last-applied-configuration) for tracking changes. Your OAS API Definition may easily exceed the size limit of annotations (256KB). Therefore, `kubectl create` is used here to get around the problem.
+{{< /note >}}
+
 ## Step 3: Create a TykOasApiDefinition Custom Resource
 
 Now, create a `TykOasApiDefinition` resource to tell the Tyk Operator to use the OAS API definition stored in the ConfigMap.
