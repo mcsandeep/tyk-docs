@@ -13,13 +13,13 @@ The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API De
 
 | Features | Support | Supported From | Comments | Sample |
 |----------|---------|-----------------|----------|--------|
-| API Category | ✅      | v1.0 | - | |
-| API Version | ✅      | v1.0 | - | |
+| API Category | ✅      | v1.0 | - | [Manage API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/api-categories">}}) |
+| API Version | ✅      | v1.0 | - | [Manage API versioning]({{<ref "product-stack/tyk-operator/advanced-configurations/api-versioning">}}) |
 | API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership]({{<ref "product-stack/tyk-operator/getting-started/tyk-operator-api-ownership">}}) |
-| Client Certificates | ✅      | v1.0 | - | |
-| Custom Domain Certificates | ✅      | v1.0 | - | |
-| Kubernetes Ingress | ✅      | v1.0 | - | |
-| Link with SecurityPolicy | ✅      | v1.0 | - | |
+| Client Certificates | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
+| Custom Domain Certificates | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
+| Kubernetes Ingress | ✅      | v1.0 | - | [Kubernetes Ingress Controller]({{<ref "product-stack/tyk-operator/tyk-ingress-controller">}}) |
+| Link with SecurityPolicy | ✅      | v1.0 | - | [Protect an API]({{<ref "tyk-stack/tyk-operator/secure-an-api">}}) |
 
 ## CRD Specification
 

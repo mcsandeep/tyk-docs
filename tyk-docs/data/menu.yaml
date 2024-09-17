@@ -3955,9 +3955,17 @@ menu:
                   category: Page
                   show: True
         - title: "Protect an API with Policy"
-          category: Page
+          category: Directory
           show: True
-          path: /tyk-stack/tyk-operator/secure-an-api
+          menu:
+            - title: "Create Security Policy with Tyk Operator"
+              category: Page
+              show: True
+              path: /tyk-stack/tyk-operator/secure-an-api
+            - title: "Security Policy example"
+              category: Page
+              show: True
+              path: /product-stack/tyk-operator/getting-started/security-policy-example
         - title: "Publish an API to Dev Portal"
           path: /tyk-stack/tyk-operator/publish-an-api
           category: Page

@@ -45,7 +45,7 @@ Modify your Tyk OAS API Definition `oas-api-definition.json` as follow.
     "securitySchemes": {
       "petstore_auth": {
         "type": "apiKey",
-        "name": "api_key",
+        "name": "Authorization",
         "in": "header"
       }
     }
@@ -158,4 +158,4 @@ You have now secured your Tyk OAS APIs with authentication and authorization by 
 
 If you plan to secure your API using Client mTLS, also review [Manage TLS certificates]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) documentation to see how to let Tyk Operator manage the TLS certificates stored in Kubernetes.
 
-Next, you can protect access to your APIs by applying Security Policy.
+Next, you can [protect access to your APIs]({{<ref "tyk-stack/tyk-operator/secure-an-api">}}) by applying Security Policy.
