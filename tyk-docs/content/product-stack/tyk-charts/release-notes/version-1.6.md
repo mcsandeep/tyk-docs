@@ -15,6 +15,137 @@ tags: ["Tyk Charts", "Release notes", "changelog", "v1.6" ]
 Our minor releases are supported until our next minor comes out. 
 
 ---
+## 1.6.1 Release Notes
+
+##### Release Date <TBD>
+
+#### Breaking Changes
+<!-- Required. Use the following statement if there are no breaking changes, or explain if there are -->
+This release has no breaking changes.
+
+<!-- The following "Changed error log messages" section is Optional!
+Instructions: We should mention in the changelog section ALL changes in our application log messages. In case we made such changes, this section should also be added, to make sure the users don't miss this notice among other changelog lines. -->
+<!-- #### Changed error log messages
+Important for users who monitor Tyk components using the application logs (i.e. Tyk Gateway log, Tyk Dashboard log etc.).
+We try to avoid making changes to our log messages, especially at error and critical levels. However, sometimes it's necessary. Please find the list of changes made to the application log in this release: -->
+
+<!-- The following "|Planned Breaking Changes" section is optional!
+Announce future scheduled breaking changes, e.g. Go version updates, DB driver updates etc.
+#### Planned Breaking Changes
+ -->
+
+<!--
+#### Dependencies
+Required. Use this section to announce the following types of dependencies compatible with the release:
+
+Version compatibility with other components in the Tyk stack. This takes the form of a compatibility matrix and is only required for Gateway and Portal.
+
+3rd party dependencies and tools 
+-->
+
+<!-- 
+##### Compatibility Matrix For Tyk Components
+Required. Version compatibility with other components in the Tyk stack. This takes the form of a compatibility matrix and is only required for Gateway and Portal.
+An illustrative example is shown below. 
+| Gateway Version | Recommended Compatibility | Backwards Compatibility |
+|----    |---- |---- |
+| 5.3 LTS | Helm v2.2     | Helm vX - vY |
+|         | MDCB v2.5     | MDCB v1.7 - v2.4 |
+|         | Operator v1.8 | Operator vX - vY |
+|         | Sync v2.4.1   | Sync vX - vY |
+| | | EDP vX - vY |
+| | | Pump vX - vY |
+| | | TIB vX - vY |
+-->
+
+#### 3rd Party Dependencies & Tools
+<!-- Required. Third-party dependencies encompass tools (GoLang, Helm etc.), databases (PostgreSQL, MongoDB etc.) and external software libraries. This section should be a table that presents the third-party dependencies and tools compatible with the release. Compatible is used in the sense of those versions tested with the releases. Such information assists customers considering upgrading to a specific release.
+
+Additionally, a disclaimer statement was added below the table, for customers to check that the third-party dependency they decide to install remains in support.
+
+An example is given below for illustrative purposes only. Tested Versions and Compatible Versions information will require discussion with relevant squads and QA. -->
+
+| Third Party Dependency                                     | Tested Versions        | Compatible Versions    | Comments | 
+| ---------------------------------------------------------- | ---------------------- | ---------------------- | -------- | 
+| [Kubernetes](https://kubernetes.io)                        | 1.26.x, 1.27.x, 1.28.x, 1.29.x, 1.30.x | 1.19+          |          | 
+| [Helm](https://helm.sh)                                    | 3.14.x                 | 3.x                    |          | 
+| [Redis](https://redis.io)                                  | 6.2.x, 7.x    | 6.2.x, 7.x    | Used by Tyk Gateway and Dashboard | 
+| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.0.x, 6.0.x, 7.0.x | 5.0.x, 6.0.x, 7.0.x | Used by Tyk Dashboard, Pump, and MDCB | 
+| [PostgreSQL](https://www.postgresql.org/download/)         | 12.x - 16.x        | 12.x - 16.x            | Used by Tyk Dashboard, Pump, and MDCB | 
+
+Given the time difference between your upgrade and the release of this version, we recommend customers verify the ongoing support of third-party dependencies they install, as their status may have changed since the release.
+
+#### Deprecations
+<!-- Required. Use the following statement if there are no deprecations, or explain if there are -->
+There are no deprecation in this release.
+
+<!-- Optional section!
+Used to share and notify users about our plan to deprecate features, configs etc. 
+Once you put an item in this section, we must keep this item listed in all the following releases till the deprecation happens
+##### Future deprecations. -->
+
+#### Upgrade instructions
+<!-- Required. For patches release (Z>0) use this: -->
+For users currently on v1.4.x, we strongly recommend promptly upgrading to the latest release. 
+<br/>
+<!-- Go to the [Upgrading Tyk](#upgrading-tyk) section for detailed upgrade Instructions.
+-->
+You can use helm upgrade to upgrade your release
+
+```bash
+helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
+helm repo update
+
+helm upgrade [RELEASE_NAME] tyk-helm/[CHART_NAME]
+```
+
+#### Release Highlights
+<!-- Required. Use similar ToV to previous release notes. For example for a patch release: -->
+
+##### Updated default Tyk versions
+This release introduces a change in the default Tyk component versions that will be installed with Tyk Charts 1.6.1. Instead of using the latest feature release versions, the Tyk Gateway and Tyk Dashboard will now default to the Long-Term Support (LTS) versions (currently 5.3.x). This ensures greater stability and long-term support for production environments.
+
+Default Tyk Component Versions in Tyk Charts 1.6.1
+
+| Tyk Component	| Default Version	| Changeable Version Parameter |
+|---------------|-----------------|------------------------------|
+|Tyk Gateway	   | 5.3.5 LTS       | --set tyk-gateway.gateway.image.tag=<desired-version> |
+|Tyk Dashboard	 | 5.3.5 LTS       | --set tyk-dashboard.dashboard.image.tag=<desired-version> |
+|Tyk Pump       |	1.11.0	         | --set tyk-pump.pump.image.tag=<desired-version> |
+|Tyk MDCB       |	2.7.0	          | --set tyk-mdcb.mdcb.image.tag=<desired-version> |
+|Tyk Developer Portal|	1.10.0	    | --set tyk-dev-portal.image.tag=<desired-version> |
+|Tyk Operator   |	0.18.0	         | --set tyk-operator.image.tag=<desired-version> |
+
+For users who require a different version, the default Tyk component versions can be adjusted by setting the corresponding parameter for the component with helm install or helm upgrade commands.
+
+#### Downloads
+- [Source code](https://github.com/TykTechnologies/tyk-charts/archive/refs/tags/v1.6.1.tar.gz)
+- [ArtifactHub - tyk-stack](https://artifacthub.io/packages/helm/tyk-helm/tyk-stack/1.6.1)
+- [ArtifactHub - tyk-control-plane](https://artifacthub.io/packages/helm/tyk-helm/tyk-control-plane/1.6.1)
+- [ArtifactHub - tyk-data-plane](https://artifacthub.io/packages/helm/tyk-helm/tyk-data-plane/1.6.1)
+- [ArtifactHub - tyk-oss](https://artifacthub.io/packages/helm/tyk-helm/tyk-oss/1.6.1)
+
+#### Changelog {#Changelog-v1.6.1}
+<!-- Required. The change log should include the following ordered set of sections below that briefly summarise the features, updates and fixed issues of the release.
+
+Here it is important to explain the benefit of each changelog item. As mentioned by James in a previous Slack message (https://tyktech.slack.com/archives/C044R3ZTN6L/p1686812207060839?thread_ts=1686762128.651249&cid=C044R3ZTN6L):
+"...it is important to document the customer impact for the work delivered, so we can share it with prospects/install base. For example:
+"New Chart delivers x and y benefit to a and b customer use cases. The business impact for them will be this and that" -->
+
+##### Added
+
+<ul>
+
+<li>
+<details>
+<summary></summary>
+
+</details>
+</li>
+</ul>
+
+
+---
 
 ## 1.6.0 Release Notes
 
