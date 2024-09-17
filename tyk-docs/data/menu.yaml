@@ -3930,14 +3930,30 @@ menu:
           category: Directory
           show: True
           menu:
-          - title: "Secure an API with Auth token"
-            path: /tyk-stack/tyk-operator/access-an-api
-            category: Page
-            show: True
-          - title: "Authentication types"
-            path: /product-stack/tyk-operator/advanced-configurations/client-authentication
-            category: Page
-            show: True
+            - title: "Overview"
+              path: /product-stack/tyk-operator/getting-started/secure-an-api-overview
+              category: Page
+              show: True
+            - title: "Secure Tyk OAS API"
+              category: Directory
+              show: True
+              menu:
+              - title: "Secure Tyk OAS API with Tyk Operator"
+                path: /product-stack/tyk-operator/getting-started/secure-an-oas-api
+                category: Page
+                show: True
+            - title: "Secure Tyk Classic API"
+              category: Directory
+              show: True
+              menu:
+                - title: "Secure an API with Auth token"
+                  path: /tyk-stack/tyk-operator/access-an-api
+                  category: Page
+                  show: True
+                - title: "Authentication types"
+                  path: /product-stack/tyk-operator/advanced-configurations/client-authentication
+                  category: Page
+                  show: True
         - title: "Protect an API with Policy"
           category: Page
           show: True
@@ -3976,6 +3992,10 @@ menu:
           show: True
         - title: "Manage API versioning"
           path: /product-stack/tyk-operator/advanced-configurations/api-versioning
+          category: Page
+          show: True
+        - title: "Manage TLS certificate"
+          path: /product-stack/tyk-operator/advanced-configurations/tls-certificate
           category: Page
           show: True
         - title: "GraphQL Federation"

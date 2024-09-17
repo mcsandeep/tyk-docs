@@ -19,6 +19,6 @@ These custom resources enable users to leverage Kubernetes' declarative configur
 
 <hr>
 
-If you're using Tyk OAS APIs, then you can find details and examples of how to create an configure APIs with Tyk Operator [here]({{< ref "product-stack/tyk-operator/getting-started/create-an-oas-api" >}}).
+If you're using Tyk OAS APIs, then you can find details and examples of how to create and configure APIs with Tyk Operator [here]({{< ref "product-stack/tyk-operator/getting-started/create-an-oas-api" >}}).
 
-If you're using Tyk Classic APIs, then you can find details and examples of how to create an configure APIs with Tyk Operator [here]({{< ref "tyk-stack/tyk-operator/create-an-api" >}}).
+If you're using Tyk Classic APIs, then you can find details and examples of how to create and configure APIs with Tyk Operator [here]({{< ref "tyk-stack/tyk-operator/create-an-api" >}}).

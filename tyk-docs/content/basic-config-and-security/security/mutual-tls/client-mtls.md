@@ -93,7 +93,7 @@ The base Identity can be anything as the client cert is the only thing configure
 Here's what it should look like:
 {{< img src="/img/2.10/client_mtls_multiple_auth.png" alt="enable_cert" >}}
 
-Please consult the Tyk Operator supporting documentation for an example of how to [configure static mTLS]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#client-mtls" >}}) with Tyk Operator.
+Please consult the Tyk Operator supporting documentation for an example of how to [configure static mTLS]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#client-mtls" >}}) with Tyk Operator for Classic APIs.
 
 ## FAQ
 

@@ -2,7 +2,7 @@
 title: "Create an OAS API with Tyk Operator"
 date: 2024-06-25
 tags: ["Tyk Operator", "Kubernetes", "Create an API"]
-description: ""
+description: "Create an OAS API"
 ---
 
 This step-by-step tutorial will guide you through the process of creating a Tyk OAS API using Tyk Operator in your Kubernetes environment. Tyk Operator allows you to manage your APIs declaratively, utilizing the `TykOasApiDefinition` custom resource.
@@ -158,3 +158,5 @@ The Tyk Operator will automatically detect the change and update the API in the 
 
 ## Conclusion
 By following these steps, you can easily create and manage Tyk OAS APIs using the Tyk Operator in your Kubernetes environment. The Tyk Operator allows for a declarative approach to API management, integrating seamlessly with Kubernetes-native tools and workflows.
+
+Next, you may want to [secure your OAS API]({{<ref "product-stack/tyk-operator/getting-started/secure-an-oas-api">}}) with authentication and authorization.
