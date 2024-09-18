@@ -1,15 +1,12 @@
 ---
 date: 2017-03-24T16:39:31Z
-title: Access an API with Tyk Operator
+title: Secure an API with Auth token
 weight: 3
-menu:
-    main:
-        parent: "Getting started with Tyk Operator"
 ---
 
 ### Tutorial: Update an API to require a key
 
-You might already have realised that our `httpbin` API is keyless. If you check the APIDefinition's specification, the `use_keyless` field is set to `true`.
+You might already have realized that our `httpbin` API is keyless. If you check the APIDefinition's specification, the `use_keyless` field is set to `true`.
 Tyk keyless access represents completely open access for your API and causes Tyk to bypass any session-based middleware (middleware that requires access to token-related metadata). Keyless access will enable all requests through.
 You can disable keyless access by setting `use_keyless` to false. 
 
@@ -81,7 +78,7 @@ Content-Length: 46
 
  
 
-Tyk Operator supported authentication types are listed [here](https://github.com/TykTechnologies/tyk-operator/blob/master/docs/api_definitions.md#client-to-gateway-authentication).
+Tyk Operator supported authentication types are listed in the [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
 
 {{< /note >}}
 
@@ -103,7 +100,7 @@ Metadata:
   ...
 Spec:
   ...
-  api_id:  ZGVmYXVsdC9odHRwYmlu
+  Name: httpbin
   ...
 Status:
   api_id:  ZGVmYXVsdC9odHRwYmlu

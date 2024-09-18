@@ -1,6 +1,6 @@
 ---
 date: 2017-03-27T17:02:56+01:00
-title: “Organisation quota has been exceeded“ error in the Dashboard API
+title: “Organization quota has been exceeded“ error in the Dashboard API
 menu:
   main:
     parent: "Tyk Cloud Classic"
@@ -17,6 +17,6 @@ Free cloud users are capped at 50 000 API requests a day. Pro users are capped a
 
 ### Solution
 
-Quotas are reset every 24 hours so users can attempt to send further API requests the next day. High-traffic users may want to consider upgrading to either our Pro or Enterprise plans (further details on how to buy a new licence can be found at this [link][1]).
+Quotas are reset every 24 hours so users can attempt to send further API requests the next day. High-traffic users may want to consider upgrading to either our Pro or Enterprise plans (further details on how to buy a new license can be found at this [link][1]).
 
  [1]: https://tyk.io/pricing/compare-api-management-platforms/

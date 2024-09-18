@@ -5,7 +5,7 @@ description: "Using API categories with Tyk"
 tags: ["category", "categories", "governance", "API governance"]
 ---
 
-API categorisation is a governance feature provided within the Tyk Dashboard that helps you to manage a portfolio of APIs. You can filter the list of APIs visible in the Dashboard UI or to be returned by the Dashboard API by category. You can assign an API to any number of categories and any number of APIs to a category. All category names are entirely user defined.
+API categorization is a governance feature provided within the Tyk Dashboard that helps you to manage a portfolio of APIs. You can filter the list of APIs visible in the Dashboard UI or to be returned by the Dashboard API by category. You can assign an API to any number of categories and any number of APIs to a category. All category names are entirely user defined.
 
 ## When to use API categories
 #### Managing a large portfolio of APIs
@@ -23,12 +23,6 @@ Categories can be defined, added to and removed from APIs without limitation.
 
 ### Tyk OAS APIs
 When a Tyk OAS API is assigned to a category, the category name (string) is appended to a list in the database object where the API definition is stored by Tyk Dashboard. No change is made to the API definition itself.
-
-{{< note success >}}
-**Note**  
-
-When a Tyk OAS API is migrated from one environment to another using Tyk Sync, it will lose any category labels that it has been assigned.
-{{< /note >}}
 
 ### Tyk Classic APIs
 When a Tyk Classic API is assigned to a category, the category name (string) is appended to the `name` field in the API definition using a `#` qualifier. For example, let's say you have an API with this (partial) API definition:

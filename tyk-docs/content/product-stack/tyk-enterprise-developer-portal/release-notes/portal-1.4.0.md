@@ -34,7 +34,7 @@ This is especially inconvenient in Kubernetes environment when customers had to 
 With this new feature, customers can simply use the same SQL database (MySQL, MariaDB and PostgreSQL) for both assets and metadata. To use the `db` [storage type]({{< ref "/content/product-stack/tyk-enterprise-developer-portal/deploy/configuration.md#portal_storage" >}}) just set the `PORTAL_STORAGE=db` for environment variables or `"Storage": "db"` in a config file and you are good to go!
 
 #### Response status code added to API analytics filters
-API Consumers now can filter API analytics by response status codes. This allows them to analyse traffic and error rate for specific response code for their API Products.
+API Consumers now can filter API analytics by response status codes. This allows them to analyze traffic and error rate for specific response code for their API Products.
 {{< img src="/img/dashboard/portal-management/enterprise-portal/1.4.0-response-code-filters.png" width="500px" alt="API Analytics UI - Response code filters">}}
 
 #### Displaying Basic Auth APIs
@@ -56,7 +56,7 @@ We introduced display-only support for basic APIs. That means API Providers can 
 
 ## Security Fixes
 - [ZipSlip vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2023-27475) in the theme upload flow is now resolved.
-- Added input validation for preventing XSS attacks for catalogues and organisations in the admin app.
+- Added input validation for preventing XSS attacks for catalogs and organizations in the admin app.
 
 ## Further Information
 

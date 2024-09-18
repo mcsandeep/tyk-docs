@@ -34,7 +34,7 @@ You use this at your own risk. Tyk is not supported on the Windows platform. How
 - PowerShell running as administrator
 - Postman for [Windows](https://www.getpostman.com/downloads/)
 - Our Pro Demo Docker [GitHub repo](https://github.com/TykTechnologies/tyk-pro-docker-demo)
-- A free Tyk Self-Managed [Developer licence](https://tyk.io/product/tyk-on-premises-free-edition/)
+- A free Tyk Self-Managed [Developer license](https://tyk.io/product/tyk-on-premises-free-edition/)
 - Optional: Ubuntu on Windows
 
 ### Step One - Clone the Repo
@@ -56,9 +56,9 @@ You can do that by going to the Docker settings, Shared Drives view, and manage 
 If after all you will get issue regarding path permissions, you will need to create a separate user specifically for the docker according to this instructions https://github.com/docker/for-win/issues/3385#issuecomment-571267988
 
 
-### Step Four - Add your Developer Licence
+### Step Four - Add your Developer License
 
-You should have received your free developer licence via email. Copy the licence key in the following location from your `\confs\tyk_analytics.conf` file:
+You should have received your free developer license via email. Copy the license key in the following location from your `\confs\tyk_analytics.conf` file:
 
 ```
 "license_key": ""
@@ -94,12 +94,12 @@ You should get to the Tyk Dashboard Setup screen:
 
 {{< img src="/img/dashboard/system-management/bootstrap_screen.png" alt="Tyk Dashboard Bootstrap Screen" >}}
 
-### Step Seven - Create your Organisation and Default User
+### Step Seven - Create your Organization and Default User
 
 You need to enter the following:
 
-- Your **Organisation Name**
-- Your **Organisation Slug**
+- Your **Organization Name**
+- Your **Organization Slug**
 - Your User **Email Address**
 - Your User **First and Last Name**
 - A **Password** for your User
@@ -118,4 +118,4 @@ You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the usernam
 
 ## Configure your Developer Portal
 
-To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}) follow our Self-Managed [tutorial on publishing an API to the Portal Catalogue]({{< ref "/content/getting-started/tutorials/publish-api.md" >}}).
+To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}) follow our Self-Managed [tutorial on publishing an API to the Portal Catalog]({{< ref "/content/getting-started/tutorials/publish-api.md" >}}).

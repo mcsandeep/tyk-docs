@@ -9,6 +9,26 @@ ENV: <b>TYK_MDCB_HEALTHCHECKPORT</b><br />
 Type: `int`<br />
 
 This port lets MDCB allow standard health checks.<br>If this value is not set, the MDCB component will apply a default value of 8181.
+Deprecated: Use `http_port` instead.
+
+### healthcheck
+Healthcheck settings
+
+### healthcheck.cache_renewal_period
+ENV: <b>TYK_MDCB_HEALTHCHECK_CACHERENEWALPERIOD</b><br />
+Type: `int`<br />
+
+Specifies the time interval (in seconds) at which the healthchecker refreshes its cached health status information (redis and DB).
+
+### http_port
+ENV: <b>TYK_MDCB_HTTPPORT</b><br />
+Type: `int`<br />
+
+The HTTP port exposes different endpoints for monitoring and debugging MDCB. The default value is 8181.
+Exposed endpoints include:
+* /health - Provides the health status of MDCB.
+* /dataplanes - Provides information about the dataplanes connected to MDCB (`security.enable_http_secure_endpoints` must be enabled).
+* /debug/pprof/* - Provides profiling information (`enable_http_profiler` must be enabled).
 
 ### enable_http_profiler
 ENV: <b>TYK_MDCB_HTTPPROFILE</b><br />
@@ -60,7 +80,7 @@ SSL certificates used by your MDCB server. A list of certificate IDs or path to 
 
 ### http_server_options
 HTTPServerOptions configures SSL/TLS for the HTTP server, affecting security settings.
-It applies to endpoints like /health for health checks
+It applies to endpoints like /health for health checks, /dataplanes for node information
 and /debug/pprof/ for performance profiling.
 
 ### http_server_options.use_ssl
@@ -108,8 +128,23 @@ Type: `string`<br />
 
 Allows MDCB to use Mutual TLS. This requires to set `server_options.use_ssl` to true. See [Mutual TLS]({{< ref "basic-config-and-security/security/mutual-tls" >}}) for more details.
 
+### security.enable_http_secure_endpoints
+ENV: <b>TYK_MDCB_SECURITY_ENABLEHTTPSECUREENDPOINTS</b><br />
+Type: `bool`<br />
+
+`EnableHTTPSecureEndpoints` controls the availability of HTTP endpoints for monitoring and debugging MDCB. These endpoints provide critical system information and are disabled by default for security reasons. Access to these endpoints requires a secret, defined in the `security.secret` configuration field.
+Available endpoints include:
+- /dataplanes - Provides information about the dataplanes connected to MDCB.
+- /config - Provides information about the current settings of the MDCB instance in JSON format
+
+### security.secret
+ENV: <b>TYK_MDCB_SECURITY_SECRET</b><br />
+Type: `string`<br />
+
+Secret is the secret key required for authenticating access to the secure HTTP endpoints. This secret should be provided as the `X-Tyk-Authorization` header in requests to these endpoints. Tyk assumes that you are sensible enough not to expose the management endpoints publicly and to keep this configuration value to yourself.
+
 ### storage
-This section describes your centralised Redis DB. This will act as your master key store for all of your clusters.
+This section describes your centralised Redis DB. This will act as your main key store for all of your clusters.
 
 ### storage.type
 ENV: <b>TYK_MDCB_STORAGE_TYPE</b><br />
@@ -467,13 +502,13 @@ Type: `int`<br />
 ENV: <b>TYK_MDCB_OMITANALYTICSINDEXCREATION</b><br />
 Type: `bool`<br />
 
-Set to true to disable the Mongo storages default index creation. More detailed behaviour explained at https://tyk.io/docs/tyk-pump/tyk-pump-configuration/tyk-pump-dashboard-config/#omitting-indexes.
+Set to true to disable the Mongo storages default index creation. More detailed behavior explained at https://tyk.io/docs/tyk-pump/tyk-pump-configuration/tyk-pump-dashboard-config/#omitting-indexes.
 
 ### enable_separate_analytics_store
 ENV: <b>TYK_MDCB_ENABLESEPERATEANALYTICSSTORE</b><br />
 Type: `bool`<br />
 
-Set it to true if you are using a separated analytic storage in the master gateway. If `forward_analytics_to_pump` is true, it will forward the analytics to the separated storage specified in `analytics_storage`.
+Set it to true if you are using a separated analytic storage in the Control Plane Gateway. If `forward_analytics_to_pump` is true, it will forward the analytics to the separated storage specified in `analytics_storage`.
 
 ### analytics_storage
 This section describes your separated analytic Redis DB. It has the same fields as `storage`. It requires `enable_separate_analytics_store` set to true.

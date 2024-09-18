@@ -5,7 +5,7 @@ tags: ["API Security", "security configuration"]
 description: "General security configuration"
 ---
 
-Modern APIs are often backed by large technology stacks composed of numerous components and libraries. Each of these is a potential weak link in the security chain, so efforts must be made to ensure that security measures are implemented throughout. The API gateway plays a critical part in an overall security strategy, by utilising its ability to process requests in a secure manner.
+Modern APIs are often backed by large technology stacks composed of numerous components and libraries. Each of these is a potential weak link in the security chain, so efforts must be made to ensure that security measures are implemented throughout. The API gateway plays a critical part in an overall security strategy, by utilizing its ability to process requests in a secure manner.
 
 ### Secure Connections
 
@@ -21,7 +21,7 @@ Restrict any URL-based input data to specific schemas, hosts and paths by using 
 
 ### Protect Secrets
 
-Prevent sensitive data, such as usernames, passwords, licence keys and other secrets, from being stored as plain text in application configuration files. Use [key value secret storage]({{< ref "tyk-configuration-reference/kv-store" >}}) to dynamically load sensitive data from a secure secret manager.
+Prevent sensitive data, such as usernames, passwords, license keys and other secrets, from being stored as plain text in application configuration files. Use [key value secret storage]({{< ref "tyk-configuration-reference/kv-store" >}}) to dynamically load sensitive data from a secure secret manager.
 
 ### Sanitise Responses
 

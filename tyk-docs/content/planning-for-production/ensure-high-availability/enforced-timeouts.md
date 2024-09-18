@@ -9,7 +9,7 @@ In any system, a task or operation takes a certain period of time to complete. W
 
 Tyk's Enforced Timeout middleware can be used to apply a maximum time that the Gateway will wait for a response before it terminates (or times out) the request. If the timeout expires, then Tyk will notify the client with an `HTTP 504 Gateway Timeout` error.
 
-This feature helps to maintain system stability and prevents unresponsive or long-running tasks from affecting the overall performance of the system. The enforced timeout can be customised and configured to suit specific requirements, providing control over resource allocation and ensuring optimal system functionality.
+This feature helps to maintain system stability and prevents unresponsive or long-running tasks from affecting the overall performance of the system. The enforced timeout can be customized and configured to suit specific requirements, providing control over resource allocation and ensuring optimal system functionality.
 
 ## When to use an enforced timeout
 
@@ -17,9 +17,9 @@ This feature helps to maintain system stability and prevents unresponsive or lon
 
 The enforced timeout can be implemented to manage system resources efficiently, particularly in high-traffic environments, preventing long-running tasks from monopolising resources, ensuring fair distribution and optimal performance.
 
-#### Task prioritisation
+#### Task prioritization
 
-Prioritising critical tasks by setting timeouts based on their expected time-to-complete helps to ensure that essential tasks are completed by reducing the impact of non-responsive upstream services.
+Prioritizing critical tasks by setting timeouts based on their expected time-to-complete helps to ensure that essential tasks are completed by reducing the impact of non-responsive upstream services.
 
 #### Security measures
 

@@ -1,15 +1,26 @@
 ---
-title: Getting Started
+title: Tyk Streams Quick Start
 description: Guide for how to quickly get started using Tyk Streaming
 tags: [ "streaming", "getting started" ]
 ---
 
-In this guide, you'll learn how to set up Tyk Streams and configure your first asynchronous API. By the end of this guide, you will have a fully functional API that allows you to subscribe to a WebSocket and see the messages you post to Tyk (REST) in real-time.
+In this guide, you'll learn how to set up Tyk Streams and configure your first asynchronous API. By the end of this
+guide, you will have a fully functional API that allows you to subscribe to a WebSocket and see the messages you post to
+Tyk (REST) in real-time.
 
-Let's get started and unlock the power of Tyk for your asynchronous API needs!
-
+## Your feedback
+Before you start we have a small request -
+</br>
+Tyk Streams is currently in the
+[Lab Release]({{< ref "developer-support/special-releases-and-features/lab-releases">}}) phase. Your feedback is crucial
+in helping us improve and shape this capability while it’s still in the making. We'd love your input on your experience
+using Tyk Streams, the documentation, learning about your use case, areas for improvement and any other relevant
+information you can share with us.
+{{< button_left href="https://survey.hsforms.com/1lb_eMrtRR5W3WoEEuACQ2Q3ifmg" color="green" content="Feedback" >}}
 
 ---
+
+Let's get started and unlock the power of Tyk for your asynchronous API needs!
 
 ## Prerequisites
 
@@ -48,10 +59,20 @@ Once downloaded, create and save a *.env* file with your Tyk Dashboard license k
 
 ```env
 DASH_LICENSE=<paste_your_license_here>
-GATEWAY_VERSION="v5.4.0-alpha5"
-DASHBOARD_VERSION="s5.4.0-alpha1"
+GATEWAY_VERSION="v5.5.0-alpha2"
+DASHBOARD_VERSION="s5.5.0-alpha1"
 PORTAL_VERSION="v1.10.0-alpha2"
 ```
+
+Additionally add the following line to `confs/tyk.env`:
+```env
+ TYK_GW_LABS='{"streaming":{"enabled": true}}'
+```
+And similar to `confs/tyk_analytics.env`:
+```env
+ TYK_DB_LABS='{"streaming":{"enabled": true}}'
+```
+
 
 ### Start Demo
 
@@ -117,7 +138,7 @@ wscat -c ws://localhost:8080/<listen-path>/subscribe
 
 2. Post a message to the `/post` endpoint using curl:
 
-```bash
+```curl
 curl -X POST -d '{"message":"Hello, Tyk Streams!"}' http://localhost:8080/<listen-path>/post
 ```
 
@@ -143,9 +164,17 @@ docker compose restart tyk-gateway
 docker compose logs tyk-gateway -f
 ```
 
----
+</br>
+{{< note success>}}
+**You did it!!!**
 
+**You have successfully set up Tyk Streams and created your first async API!**
+{{< /note >}}
 
 ## Next Steps
 
-With this getting started guide, you have successfully set up Tyk Streams and created your first async API! You can now start exploring more [advanced configurations]({{< ref "api-management/async-apis/advanced-use-cases" >}}) and [use cases]({{< ref "api-management/async-apis/use-cases" >}}).
+- Thanks for getting started with Tyk Streams! Please take a moment to share your thoughts and experiences with us
+{{< button_left href="https://survey.hsforms.com/1lb_eMrtRR5W3WoEEuACQ2Q3ifmg" color="green" content="Feedback" >}}
+
+- You can now start exploring [Tyk Stream capabilities]({{< ref "api-management/async-apis/use-cases" >}}) and
+[use cases]({{< ref "api-management/async-apis/advanced-use-cases" >}})

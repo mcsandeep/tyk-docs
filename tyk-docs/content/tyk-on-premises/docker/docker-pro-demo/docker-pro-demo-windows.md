@@ -34,7 +34,7 @@ You use this at your own risk. Tyk is not supported on the Windows platform. How
 - PowerShell running as administrator
 - Postman for [Windows](https://www.getpostman.com/downloads/)
 - Our Pro Demo Docker [GitHub repo](https://github.com/TykTechnologies/tyk-pro-docker-demo)
-- A free Tyk Self-Managed [Developer licence](https://tyk.io/product/tyk-on-premises-free-edition/)
+- A free Tyk Self-Managed [Developer license](https://tyk.io/product/tyk-on-premises-free-edition/)
 
 ### Step One - Clone the Repo
 
@@ -49,9 +49,9 @@ You need to add the following to your Windows hosts file:
 127.0.0.1 www.tyk-test.com
 ```
 
-### Step Three - Add your Developer Licence
+### Step Three - Add your Developer License
 
-You should have received your free developer licence via email. Copy the licence key in the following location from your `\confs\tyk_analytics.conf` file:
+You should have received your free developer license via email. Copy the license key in the following location from your `\confs\tyk_analytics.conf` file:
 
 ```yaml
 {
@@ -83,12 +83,12 @@ You should get to the Tyk Dashboard Setup screen:
 
 {{< img src="/img/dashboard/system-management/bootstrap_screen.png" alt="Tyk Dashboard Bootstrap Screen" >}}
 
-### Step Six - Create your Organisation and Default User
+### Step Six - Create your Organization and Default User
 
 You need to enter the following:
 
-- Your **Organisation Name**
-- Your **Organisation Slug**
+- Your **Organization Name**
+- Your **Organization Slug**
 - Your User **Email Address**
 - Your User **First and Last Name**
 - A **Password** for your User
@@ -105,9 +105,9 @@ Click **Bootstrap** to save the details.
 
 You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the username and password created in the Dashboard Setup screen.
 
-### Step Seven - Set up a Portal Catalogue
+### Step Seven - Set up a Portal Catalog
 
-This creates a portal catalogue for your developer portal. For the `Authorization` Header, the Value you need to enter is the `access_key` value from the create user request. In the body add the `org_id` value created in **Step One**.
+This creates a portal catalog for your developer portal. For the `Authorization` Header, the Value you need to enter is the `access_key` value from the create user request. In the body add the `org_id` value created in **Step One**.
 
 - **Request**: POST
 - **URL**: `127.0.0.1:3000/api/portal/catalogue`

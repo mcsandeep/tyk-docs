@@ -363,9 +363,11 @@ In this configuration, Tyk Gateway will allow policy management through the Gate
 ENV: <b>TYK_GW_PORTWHITELIST</b><br />
 Type: `PortsWhiteList`<br />
 
-Defines the ports that will be available for the API services to bind to in the following format: `"{“":“”}"`. Remember to escape JSON strings.
-This is a map of protocol to PortWhiteList. This allows per protocol
-configurations.
+Defines the ports that will be available for the API services to bind to in the format
+documented here https://tyk.io/docs/key-concepts/tcp-proxy/#allowing-specific-ports.
+Ports can be configured per protocol, e.g. https, tls etc.
+If configuring via environment variable `TYK_GW_PORTWHITELIST` then remember to escape
+JSON strings.
 
 ### disable_ports_whitelist
 ENV: <b>TYK_GW_DISABLEPORTWHITELIST</b><br />
@@ -591,7 +593,7 @@ Your organisation ID to connect to the MDCB installation.
 ENV: <b>TYK_GW_SLAVEOPTIONS_APIKEY</b><br />
 Type: `string`<br />
 
-This the API key of a user used to authenticate and authorise the Gateway’s access through MDCB.
+This the API key of a user used to authenticate and authorize the Gateway’s access through MDCB.
 The user should be a standard Dashboard user with minimal privileges so as to reduce any risk if the user is compromised.
 The suggested security settings are read for Real-time notifications and the remaining options set to deny.
 
@@ -673,11 +675,17 @@ This is to ensure visibility for the management node across all APIs.
 ### auth_override
 This is used as part of the RPC / Hybrid back-end configuration in a Tyk Enterprise installation and isn’t used anywhere else.
 
+### enable_fixed_window_rate_limiter
+ENV: <b>TYK_GW_ENABLEFIXEDWINDOWRATELIMITER</b><br />
+Type: `bool`<br />
+
+EnableFixedWindow enables fixed window rate limiting.
+
 ### enable_redis_rolling_limiter
 ENV: <b>TYK_GW_ENABLEREDISROLLINGLIMITER</b><br />
 Type: `bool`<br />
 
-Redis based rate limiter with fixed window. Provides 100% rate limiting accuracy, but require two additional Redis roundtrip for each request.
+Redis based rate limiter with sliding log. Provides 100% rate limiting accuracy, but require two additional Redis roundtrips for each request.
 
 ### enable_sentinel_rate_limiter
 ENV: <b>TYK_GW_ENABLESENTINELRATELIMITER</b><br />
@@ -687,6 +695,13 @@ To enable, set to `true`. The sentinel-based rate limiter delivers a smoother pe
 Disabling the sentinel based rate limiter will make rate-limit calculations happen on-thread and therefore offers a staggered cool-down and a smoother rate-limit experience for the client.
 For example, you can slow your connection throughput to regain entry into your rate limit. This is more of a “throttle” than a “block”.
 The standard rate limiter offers similar performance as the sentinel-based limiter. This is disabled by default.
+
+### enable_rate_limit_smoothing
+ENV: <b>TYK_GW_ENABLERATELIMITSMOOTHING</b><br />
+Type: `bool`<br />
+
+EnableRateLimitSmoothing enables or disables rate limit smoothing. The rate smoothing is only supported on the
+Redis Rate Limiter, or the Sentinel Rate Limiter, as both algorithms implement a sliding log.
 
 ### enable_non_transactional_rate_limiter
 ENV: <b>TYK_GW_ENABLENONTRANSACTIONALRATELIMITER</b><br />
@@ -1268,7 +1283,9 @@ Defaults to "1.2".
 ENV: <b>TYK_GW_LIVENESSCHECK_CHECKDURATION</b><br />
 Type: `time.Duration`<br />
 
-Frequencies of performing interval healthchecks for Redis, Dashboard, and RPC layer. Default: 10 seconds.
+Frequencies of performing interval healthchecks for Redis, Dashboard, and RPC layer.
+Expressed in Nanoseconds. For example: 1000000000 -> 1s.
+Default: 10 seconds.
 
 ### dns_cache
 This section enables the global configuration of the expireable DNS records caching for your Gateway API endpoints.
@@ -2004,7 +2021,7 @@ Sample Override Message Setting
 "override_messages": {
   "oauth.auth_field_missing" : {
    "code": 401,
-   "message": "Token is not authorised"
+   "message": "Token is not authorized"
  }
 }
 ```

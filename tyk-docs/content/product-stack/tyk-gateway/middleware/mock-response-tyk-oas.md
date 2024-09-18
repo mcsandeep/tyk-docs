@@ -17,7 +17,7 @@ To configure or create a Mock Response middleware you have two modes, manual and
 
 ## Manual configuration 
 
-you can configure a mock response directly in the API definition, in the middleware object under the Tyk extension section, `x-tyk-api-gateway`. Once added, you need to update or import it to Tyk Dashboard using Tyk Dashboard API or via Tyk Dashboard UI. This is useful when you have already tested your API in dev environments and now you need to deploy it to staging or production in a declarative manner.
+You can configure a mock response directly in the API definition, in the middleware object under the Tyk extension section, `x-tyk-api-gateway`. Once added, you need to update or import it to Tyk Dashboard using Tyk Dashboard API or via Tyk Dashboard UI. This is useful when you have already tested your API in dev environments and now you need to deploy it to staging or production in a declarative manner.
 
 The design of the Tyk OAS API Definition takes advantage of the `operationId` defined in the OpenAPI Document that declares both the path and method for which the middleware should be added.
 
@@ -31,7 +31,7 @@ For basic operation, the `mockResponse` object has the following configuration:
 
 Please remember that this API definition needs to be updated in Tyk Dashboard. In the Dashboard UI it might be trivial but if you are doing it declaratively, you need to use the Tyk Dashboard API endpoint to update an existing API (PUT) or import as a new API (POST). Once updated, Tyk Gateway/s will return mock responses to all valid requests to the endpoint, depending on the [content of the request](#working-with-multiple-mock-responses-for-an-endpoint).
 
-In the following example, we configured a mock response middleware for requests to the `GET /example-mock-response1/anything` endpoint:
+In the following example, we configure a mock response middleware for requests to the `GET /example-mock-response1/anything` endpoint:
 
 ```json {hl_lines=["39-49"],linenos=true, linenostart=1}
 {
@@ -142,10 +142,10 @@ In the following example, the OpenAPI description declares three possible respon
                             "text/plain": {
                                 "examples": {
                                     "first-example": {
-                                        "value": "My favourite is pasta"
+                                        "value": "My favorite is pasta"
                                     },
                                     "second-example": {
-                                        "value": "My second favourite is pizza"
+                                        "value": "My second favorite is pizza"
                                     }
                                 }
                             }
@@ -204,7 +204,7 @@ Once this API definition is updated in Tyk Dashboard, a call to `GET /example-mo
 HTTP/1.1 200 OK
 Content-Type: text/plain
  
-"My second favourite is pizza"
+"My second favorite is pizza"
 ```
 
 If you add `"code":300` in the `fromOASExamples` object, a call to `GET /example-mock-response2/anything` would instead respond as follows:
@@ -367,9 +367,9 @@ Select **ADD MIDDLEWARE** and choose **Mock Response** middleware from the *Add 
 
 #### Step 3: Configure the middleware
 
-Select **Tyk Classic mock response**
+Select **Manually configure mock response**
 
-{{< img src="/img/dashboard/api-designer/tyk-oas-mock-added.png" alt="Mock Response middleware added to endpoint - select the configuration method you require" >}}
+{{< img src="/img/dashboard/api-designer/tyk-oas-manual-mock-response.png" alt="Mock Response middleware added to endpoint - select the configuration method you require" >}}
 
 This takes you to the middleware configuration screen where you can:
 - choose the HTTP status code that you want Tyk Gateway to return
@@ -378,7 +378,7 @@ This takes you to the middleware configuration screen where you can:
 - define headers to be provided with the response
 - define the body that will be returned in the response (note that this must be defined as a JSON schema)
 
-{{< img src="/img/dashboard/api-designer/tyk-oas-mock-manual.png" alt="Configuring the mock response" >}}
+{{< img src="/img/dashboard/api-designer/tyk-oas-manual-mock-response-config.png" alt="Configuring the mock response" >}}
 
 Select **UPDATE MIDDLEWARE** to apply the change to the middleware configuration.
 
@@ -400,7 +400,7 @@ Selecting this option will cause Tyk Dashboard to check for sample responses or 
 
 Select **EDIT** and then the **Mock Response** middleware from the **Endpoints** tab. This will take you to the Edit Middleware screen. Note that *Use mock response from Open API Specification* has been selected.
 
-{{< img src="/img/dashboard/api-designer/tyk-oas-mock-auto-edit.png" alt="Editing the Mock Response middleware" >}}
+{{< img src="/img/dashboard/api-designer/tyk-oas-manual-step-2.png" alt="Editing the Mock Response middleware" >}}
 
 #### Step 3: Configure the middleware
 
