@@ -21,6 +21,7 @@ The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API De
 | Kubernetes Ingress | ✅      | v1.0 | - | [Kubernetes Ingress Controller]({{<ref "product-stack/tyk-operator/tyk-ingress-controller">}}) |
 | Link with SecurityPolicy | ✅      | v1.0 | - | [Protect an API]({{<ref "tyk-stack/tyk-operator/secure-an-api">}}) |
 
+<!--
 ## CRD Specification
 
 ### Group and Version
@@ -103,3 +104,4 @@ The status (`status`) of a `TykOasApiDefinition` resource provides the observed 
 - **name** (`string`): Name of the OAS API within Tyk.
 - **targetURL** (`string`): Upstream address for proxying requests.
 - **versioningStatus** (`object`): Status of a Versioned TykOasAPIDefinition.
+-->
