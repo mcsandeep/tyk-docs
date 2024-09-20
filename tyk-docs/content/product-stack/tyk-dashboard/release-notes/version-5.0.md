@@ -25,28 +25,28 @@ This release fixes some display issues in Tyk Dashboard and Tyk Classic Portal w
 <ul>
 <li>
 <details>
-<summary>Fixed display issue for API statistics</summary>
+<summary>Tyk Dashboard UI: Fixed display issue for API statistics</summary>
 
 Fixed an issue where API statistics were not being shown when using PostgreSQL and adding two or more tags in the Activity page
 </details>
 </li>
 <li>
 <details>
-<summary>Fixed issue with display of HTTP 429 status codes on the Activity page</summary>
+<summary>Tyk Dashboard UI:  Fixed issue with display of HTTP 429 status codes on the Activity page</summary>
 
 Fixed an issue where HTTP 429 status codes were not being shown on the Activity page when using PostgreSQL
 </details>
 </li>
 <li>
 <details>
-<summary>Fixed display of graphs and requests counter on Tyk Classic Portal</summary>
+<summary>Tyk Classic Portal UI: Fixed display of graphs and requests counter</summary>
 
 Fixed wrong graphs and incorrect requests counter on Tyk Classic Portal when using PostgreSQL
 </details>
 </li>
 <li>
 <details>
-<summary>Fixed Error Breakdown display issues with dates</summary>
+<summary>Tyk Dashboard UI: fixed issues with the Error Breakdown display, specifically related to date handling</summary>
 
 Fixed Error Breakdown issue showing errors that happened on different dates than selected date
 </details>
