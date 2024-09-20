@@ -14,6 +14,14 @@ weight: 2
 
 ### Release Date 18th September 2024
 
+### Upgrade Instructions
+
+This release is not tightly coupled with [Tyk Gateway v5.0.14]({{< ref "product-stack/tyk-gateway/release-notes/version-5.0">}}) so you do not have to upgrade both together.
+
+
+Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk) section for detailed upgrade instructions.
+
+
 ### Release Highlights
 
 This release fixes some display issues in Tyk Dashboard and Tyk Classic Portal when using PostgreSQL.
