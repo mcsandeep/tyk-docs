@@ -16,6 +16,18 @@ aliases:
 
 ### Release Date 18th September 2024
 
+### Breaking Changes
+**Attention:** Please read this section carefully.
+
+There are no breaking changes in this release.
+
+### Upgrade Instructions
+
+This release is not tightly coupled with [Tyk Dashboard v5.0.14]({{<ref "/product-stack/tyk-dashboard/release-notes/version-5.0">}}) so you do not have to upgrade both together.
+
+
+Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk) section for detailed upgrade instructions.
+
 ### Release Highlights
 
 This release fixes some issues related to the way that Tyk performs URL path matching, introducing two new Gateway configuration options to control path matching strictness.
