@@ -15,6 +15,7 @@ Follow this guide to install and configure Tyk Operator using [Helm](https://hel
 - Kubernetes Cluster Admin rights for installing [CustomResourceDefinitions](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
 - [cert-manager v1.8+](https://cert-manager.io/docs/installation/kubectl/). Check [cert-manager installation guide](#installing-cert-manager) if you do not have it.
 - Tyk Gateway or Tyk Dashboard v3+. Check [Required Tyk configurations](#configuring-tyk) for necessary configurations.
+- Tyk License 
 
 {{< note success >}}
 **Note**  
@@ -109,8 +110,6 @@ $ kubectl create secret -n tyk-operator-system generic tyk-operator-conf \
 
 {{< note success >}}
 **Note**  
-
-For open source users, user API key corresponds to Gateway's [secret]({{<ref "tyk-oss-gateway/configuration#secret">}}).
 
 For licensed users, user API key and Organization ID can be found under "Add / Edit User" page within Tyk Dashboard. `TYK_AUTH` corresponds to <b>Tyk Dashboard API Access Credentials</b>. `TYK_ORG` corresponds to <b>Organization ID</b>.
 {{< /note >}}
