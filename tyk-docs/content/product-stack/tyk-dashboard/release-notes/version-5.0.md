@@ -10,13 +10,13 @@ weight: 2
 
 ---
 
-## 5.0.14 Release Notes
+## 5.0.14 Release Notes {#rn-v5.0.14}
 
 ### Release Date 18th September 2024
 
 ### Upgrade Instructions
 
-This release is not tightly coupled with [Tyk Gateway v5.0.14]({{< ref "product-stack/tyk-gateway/release-notes/version-5.0">}}) so you do not have to upgrade both together.
+This release is not tightly coupled with Tyk Gateway v5.0.14, so you do not have to upgrade both together.
 
 
 Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk) section for detailed upgrade instructions.
