@@ -8,7 +8,7 @@ menu:
 ---
 
 ### Tutorial: Create an API with Tyk Operator
-Creating an API takes the same approach whether you are using Tyk Open Source or Self Managed. First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
+First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
 
 #### Step 1: Create an ApiDefinition resource in YAML format
 Create a file called `httpbin.yaml`, then add the following:
@@ -92,7 +92,7 @@ You can visit the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/referen
 
 ### Configure Kubernetes service as an upstream target
 
-Tyk Gateway deployed in your Kubernetes cluster (Open source, Self managed, or Hybrid) can easily access other Kubernetes services as an upstream proxy target.
+Tyk Gateway deployed in your Kubernetes cluster (Self managed or Hybrid) can easily access other Kubernetes services as an upstream proxy target.
 In the ApiDefinition manifest, set the `proxy.target_url` as a Kubernetes Service following [DNS for Services and Pods guideline](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), so that the requests will be proxied to your service.
 In general, Kubernetes Services have a `<service-name>.<namespace-name>`.svc.cluster.local DNS entry once they are created.
 For example, if you have a service called `httpbin` in `default` namespace, you can contact `httpbin` service with `httpbin.default.svc` DNS record in the cluster, instead of IP addresses.
