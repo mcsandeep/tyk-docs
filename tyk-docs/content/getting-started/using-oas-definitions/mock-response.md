@@ -9,7 +9,7 @@ menu:
 weight: 6
 aliases:
 # This alias is being added because, v5.0.14 release note requires it. Refer this PR: https://github.com/TykTechnologies/tyk-docs/pull/5436
-  - product-stack/tyk-gateway/middleware/mock-response-middleware/
+  - /product-stack/tyk-gateway/middleware/mock-response-middleware/
 ---
 
 {{< toc >}}
