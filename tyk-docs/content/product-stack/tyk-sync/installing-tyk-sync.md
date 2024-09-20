@@ -8,6 +8,7 @@ tags: [ "Tyk Sync" ]
 ### Pre-requisites
 - Access to a Git repository or local file system for storing configurations
 - Tyk Gateway or Tyk Dashboard
+- Tyk License 
 
 {{< note success >}}
 **Gateway and Dashboard Version**
@@ -97,22 +98,6 @@ If you prefer not to provide the secret via the command line, you can set the en
 ```bash
 export TYKGIT_DB_SECRET=<SECRET>
 tyk-sync --dashboard <DASHBOARD_URL> [command] [flags]
-```
-
-#### Open Source Gateway
-For open source Gateway users, you can provide the necessary connection details using the `--gateway` and `--secret` options.
-
-```bash
-tyk-sync --gateway <GATEWAY_URL> --secret <SECRET> [command] [flags]
-```
-
-GATEWAY_URL is the fully qualified gateway target URL (e.g. `http://localhost:8080`) and SECRET refers to the API secret (`secret` parameter in your tyk.conf file) used to access your Gateway API.
-
-If you prefer not to provide the secret via the command line, you can set the environment variable `TYKGIT_GW_SECRET` instead. This method keeps your secret secure and avoids exposure in command history.
-
-```bash
-export TYKGIT_GW_SECRET=<SECRET>
-tyk-sync --gateway <GATEWAY_URL> [command] [flags]
 ```
 
 ### Specifying source API configurations
