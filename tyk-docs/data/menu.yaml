@@ -4014,6 +4014,10 @@ menu:
             path: /product-stack/tyk-operator/release-notes/overview
             category: Page
             show: True
+          - title: "Tyk Operator v1.0"
+            path: /product-stack/tyk-operator/release-notes/operator-1.0
+            category: Page
+            show: True
           - title: "Tyk Operator v0.18"
             path: /product-stack/tyk-operator/release-notes/operator-0.18
             category: Page
