@@ -17,5 +17,6 @@ Here are the supported features:
 | Path and Method based permissions | ✅     | v0.1           | [Path based permission]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#path-based-permissions">}})        |
 | Partitions                     | ✅        | v0.1           | [Partitioned policies]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#partitioned-policies">}})       |
 | Per API limit                  | ✅        | v1.0           | [Per API Limit]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-api-limit">}})        |
+| Per-Endpoint limit             | ✅        | v1.0           | [Per Endpoint Limit]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-api-limit">}})        |
 
 Consult [Protect an API with a Security Policy]({{<ref "tyk-stack/tyk-operator/secure-an-api">}}) and [Security Policy example]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example">}}) to see examples of setting these features.

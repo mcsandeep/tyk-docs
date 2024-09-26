@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Kubernetes", "Security Policy"]
 description: "Various security policy settings examples"
 ---
 
-## Per API Rate Limits and Quota{#per-api-limit}
+## Key-Level Per-API Rate Limits and Quota{#per-api-limit}
 
 By configuring per-API limits, you can set specific rate limits, quotas, and throttling rules for each API in the access rights array. When these per-API settings are enabled, the API inherits the global limit settings unless specific limits and quotas are set in the `limit` field for that API.
 
@@ -51,8 +51,6 @@ spec:
   throttle_retry_limit: -1              # Disable global retry limit
   quota_max: -1                         # Disable global quota
   quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
-  partitions:
-    per_api: true                       # Enable per API limits and quotas
 ```
 
 With this security policy applied:
@@ -71,6 +69,70 @@ Global Rate Limits and Quota:
 - All global limits (rate, quota, and throttling) are disabled (-1), so they do not apply.
 
 By setting per-API rate limits and quotas, you gain granular control over how each API is accessed and used, allowing you to apply different limits for different APIs as needed. This configuration is particularly useful when you want to ensure that critical APIs have stricter controls while allowing more flexibility for others. Use this example as a guideline to tailor your security policies to your specific requirements.
+
+## Key-Level Per-Endpoint Rate Limits{#per-endpoint-rate-limit}
+
+By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
+
+The following manifest defines a security policy with per-endpoint rate limits for two APIs: `httpbin` and `petstore`.
+
+```yaml {hl_lines=["15-29", "35-49"],linenos=true}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: policy-per-api-limits
+spec:
+  name: Policy with Per API Limits
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+      endpoints:                        # Per-endpoint rate limits
+        - path: /anything
+          methods:
+            - name: POST
+              limit:
+                rate: 5
+                per: 60
+            - name: PUT
+              limit:
+                rate: 5
+                per: 60
+            - name: GET
+              limit:
+                rate: 10
+                per: 60
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+      endpoints:                        # Per-endpoint rate limits
+        - path: /pet
+          methods:
+            - name: POST
+              limit:
+                rate: 5
+                per: 60
+            - name: PUT
+              limit:
+                rate: 5
+                per: 60
+            - name: GET
+              limit:
+                rate: 10
+                per: 60
+  rate: -1                              # Disable global rate limit
+  per: -1                               # Disable global rate limit period
+  throttle_interval: -1                 # Disable global throttling
+  throttle_retry_limit: -1              # Disable global retry limit
+  quota_max: -1                         # Disable global quota
+  quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
+```
 
 ## Path based permissions{#path-based-permissions}
 
