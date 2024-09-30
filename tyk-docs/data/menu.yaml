@@ -1035,70 +1035,64 @@ menu:
         category: Page
         path: /api-management/ai-management/overview
         show: True
-        menu:
-        - title: "Publish Ops"
-          category: Directory
-          show: False
-          menu:
-          - title: "Import APIs to the developer portal"
-            category: Page
-            show: False
-          - title: "Create API products"
-            category: Page
-            show: False
-          - title: "Create API product plans"
-            category: Page
-            show: False
-          - title: "Document API products"
-            category: Page
-            show: False
-        - title: "Portal customization"
-          category: Directory
-          show: False
-          menu:
-          - title: "Portal themes"
-            category: Page
-            show: False
-          - title: "Portal navigation"
-            category: Page
-            show: False
-          - title: "Portal content"
-            category: Page
-            show: False
-          - title: "SSO"
-            category: Page
-            show: False
-        - title: "API Product access"
-          category: Directory
-          show: False
-          menu:
-          - title: "Give access to API products"
-            category: Page
-            show: False
-          - title: "Manage developers and developer audiences"
-            category: Page
-            show: False
-          - title: "Self service consumer debugging"
-            category: Page
-            show: False
-        - title: "API Product management"
-          category: Directory
-          show: False
-          menu:
-          - title: "Business value reporting"
-            category: Page
-            show: False
-          - title: "API monetization"
-            category: Page
-            show: False
-          - title: "Troubleshooting API products"
-            category: Page
-            show: False
-      - title: "Featured Guides"
+      - title: "Publish Ops"
         category: Directory
         show: False
         menu:
-
+        - title: "Import APIs to the developer portal"
+          category: Page
+          show: False
+        - title: "Create API products"
+          category: Page
+          show: False
+        - title: "Create API product plans"
+          category: Page
+          show: False
+        - title: "Document API products"
+          category: Page
+          show: False
+      - title: "Portal customization"
+        category: Directory
+        show: False
+        menu:
+        - title: "Portal themes"
+          category: Page
+          show: False
+        - title: "Portal navigation"
+          category: Page
+          show: False
+        - title: "Portal content"
+          category: Page
+          show: False
+        - title: "SSO"
+          category: Page
+          show: False
+      - title: "API Product access"
+        category: Directory
+        show: False
+        menu:
+        - title: "Give access to API products"
+          category: Page
+          show: False
+        - title: "Manage developers and developer audiences"
+          category: Page
+          show: False
+        - title: "Self service consumer debugging"
+          category: Page
+          show: False
+      - title: "API Product management"
+        category: Directory
+        show: False
+        menu:
+        - title: "Business value reporting"
+          category: Page
+          show: False
+        - title: "API monetization"
+          category: Page
+          show: False
+        - title: "Troubleshooting API products"
+          category: Page
+          show: False
     - title: "Product Stack"
       path: /tyk-stack
       category: Directory
