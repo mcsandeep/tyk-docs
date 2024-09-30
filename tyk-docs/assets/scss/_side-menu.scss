@@ -9,7 +9,7 @@ Tree View
 
   @include breakpoint(large) {
     .section-page:not(.hasSidebar) & {
-      display: none;
+      //display: none;
     }
   }
 
@@ -27,7 +27,7 @@ Tree View
     min-height: 275px !important;
 
     @include breakpoint(large) {
-      display: none;
+      //display: none;
     }
 
     a {
@@ -411,7 +411,7 @@ Tree View
     right: 0;
     overflow: auto;
     background-color: $brandpurple-1;
-    transform: translateX(200%);
+    transform: translateX(0);
     width: 100vw;
     max-width: 100%;
     /* padding-block: 60px 0; */
