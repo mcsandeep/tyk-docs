@@ -1026,6 +1026,14 @@ menu:
         category: Page
         path: /api-management/async-apis/advanced-use-cases
         show: True
+    - title: "AI Management"
+      category: Directory
+      show: True
+      menu:
+      - title: "Overview"
+        category: Page
+        path: /api-management/ai-management/overview
+        show: True
       - title: "Publish Ops"
         category: Directory
         show: False
@@ -1251,6 +1259,10 @@ menu:
           show: True
         - title: "Request Middleware Chain"
           path: /concepts/middleware-execution-order
+          category: Page
+          show: True
+        - title: "What is URL path matching?"
+          path: /getting-started/key-concepts/url-matching
           category: Page
           show: True
         - title: "What is Rate Limiting?"
@@ -3491,6 +3503,10 @@ menu:
               path: /product-stack/tyk-enterprise-developer-portal/upgrading/theme-upgrades
               category: Page
               show: True
+            - title: "Templates"
+              path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/full-customisation/templates
+              category: Page
+              show: True
         - title: "Customize data models"
           path: /product-stack/tyk-enterprise-developer-portal/portal-customisation/customise-user-model
           category: Page
@@ -3511,6 +3527,10 @@ menu:
         category: Directory
         show: True
         menu:
+          - title: "Version 1.11.0"
+            path: /product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.11.0
+            category: Page
+            show: True
           - title: "Version 1.10.0"
             path: /product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.10.0
             category: Page
@@ -3842,7 +3862,7 @@ menu:
             path: /release-notes/pump-1.8
             category: Page
             show: True
-    - title: "Tyk Operator (Open Source)"
+    - title: "Tyk Operator"
       category: Directory
       show: True
       menu:
@@ -4558,7 +4578,7 @@ menu:
         path: /product-stack/tyk-streaming/troubleshooting
         category: Page
         show: True
-    - title: "Tyk Sync (Open Source)"
+    - title: "Tyk Sync"
       category: Directory
       show: True
       menu:
@@ -4686,6 +4706,10 @@ menu:
         category: Directory
         show: True
         menu:
+        - title: "Tyk Charts 2.0"
+          path: /product-stack/tyk-charts/release-notes/version-2.0
+          category: Page
+          show: True
         - title: "Tyk Charts 1.6"
           path: /product-stack/tyk-charts/release-notes/version-1.6
           category: Page
