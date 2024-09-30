@@ -3527,6 +3527,10 @@ menu:
         category: Directory
         show: True
         menu:
+          - title: "Version 1.11.0"
+            path: /product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.11.0
+            category: Page
+            show: True
           - title: "Version 1.10.0"
             path: /product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.10.0
             category: Page
@@ -3902,42 +3906,86 @@ menu:
           category: Directory
           show: True
           menu:
-            - title: "Create an API with Tyk Operator"
-              path: /tyk-stack/tyk-operator/create-an-api
+            - title: "Overview"
+              path: /product-stack/tyk-operator/getting-started/create-an-api-overview
               category: Page
               show: True
-            - title: "HTTP Proxy example"
-              path: /product-stack/tyk-operator/getting-started/quick-start-http
-              category: Page
+            - title: "Create Tyk OAS API"
+              category: Directory
               show: True
-            - title: "TCP Proxy example"
-              path: /product-stack/tyk-operator/getting-started/quick-start-tcp
-              category: Page
+              menu:
+              - title: "Create Tyk OAS API with Tyk Operator"
+                path: /product-stack/tyk-operator/getting-started/create-an-oas-api
+                category: Page
+                show: True
+              - title: "Tyk OAS API example"
+                path: /product-stack/tyk-operator/getting-started/example-tyk-oas-api
+                category: Page
+                show: True
+            - title: "Create Tyk Classic API"
+              category: Directory
               show: True
-            - title: "GraphQL Proxy example"
-              path: /product-stack/tyk-operator/getting-started/quick-start-graphql
-              category: Page
-              show: True
-            - title: "UDG example"
-              path: /product-stack/tyk-operator/getting-started/quick-start-udg
-              category: Page
-              show: True
+              menu:
+              - title: "Create Tyk Classic API with Tyk Operator"
+                path: /tyk-stack/tyk-operator/create-an-api
+                category: Page
+                show: True
+              - title: "HTTP Proxy example"
+                path: /product-stack/tyk-operator/getting-started/quick-start-http
+                category: Page
+                show: True
+              - title: "TCP Proxy example"
+                path: /product-stack/tyk-operator/getting-started/quick-start-tcp
+                category: Page
+                show: True
+              - title: "GraphQL Proxy example"
+                path: /product-stack/tyk-operator/getting-started/quick-start-graphql
+                category: Page
+                show: True
+              - title: "UDG example"
+                path: /product-stack/tyk-operator/getting-started/quick-start-udg
+                category: Page
+                show: True
         - title: "Secure an API"
           category: Directory
           show: True
           menu:
-          - title: "Secure an API with Auth token"
-            path: /tyk-stack/tyk-operator/access-an-api
-            category: Page
-            show: True
-          - title: "Authentication types"
-            path: /product-stack/tyk-operator/advanced-configurations/client-authentication
-            category: Page
-            show: True
+            - title: "Overview"
+              path: /product-stack/tyk-operator/getting-started/secure-an-api-overview
+              category: Page
+              show: True
+            - title: "Secure Tyk OAS API"
+              category: Directory
+              show: True
+              menu:
+              - title: "Secure Tyk OAS API with Tyk Operator"
+                path: /product-stack/tyk-operator/getting-started/secure-an-oas-api
+                category: Page
+                show: True
+            - title: "Secure Tyk Classic API"
+              category: Directory
+              show: True
+              menu:
+                - title: "Secure an API with Auth token"
+                  path: /tyk-stack/tyk-operator/access-an-api
+                  category: Page
+                  show: True
+                - title: "Authentication types"
+                  path: /product-stack/tyk-operator/advanced-configurations/client-authentication
+                  category: Page
+                  show: True
         - title: "Protect an API with Policy"
-          category: Page
+          category: Directory
           show: True
-          path: /tyk-stack/tyk-operator/secure-an-api
+          menu:
+            - title: "Create Security Policy with Tyk Operator"
+              category: Page
+              show: True
+              path: /tyk-stack/tyk-operator/secure-an-api
+            - title: "Security Policy example"
+              category: Page
+              show: True
+              path: /product-stack/tyk-operator/getting-started/security-policy-example
         - title: "Publish an API to Dev Portal"
           path: /tyk-stack/tyk-operator/publish-an-api
           category: Page
@@ -3946,7 +3994,7 @@ menu:
         category: Directory
         show: True
         menu:
-        - title: "Management of APIs"
+        - title: "Manage API metadata"
           path: /product-stack/tyk-operator/advanced-configurations/management-of-api
           category: Page
           show: True
@@ -3962,8 +4010,20 @@ menu:
           path: /product-stack/tyk-operator/getting-started/tyk-operator-multiple-organisations
           category: Page
           show: True
-        - title: "Manage API Ownership"
+        - title: "Manage API ownership"
           path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
+          category: Page
+          show: True
+        - title: "Manage API categories"
+          path: /product-stack/tyk-operator/advanced-configurations/api-categories
+          category: Page
+          show: True
+        - title: "Manage API versioning"
+          path: /product-stack/tyk-operator/advanced-configurations/api-versioning
+          category: Page
+          show: True
+        - title: "Manage TLS certificate"
+          path: /product-stack/tyk-operator/advanced-configurations/tls-certificate
           category: Page
           show: True
         - title: "GraphQL Federation"
@@ -3994,11 +4054,15 @@ menu:
         category: Directory
         show: True
         menu:
-        - title: "API Definition features"
+        - title: "TykOasApiDefinition CRD"
+          path: /product-stack/tyk-operator/reference/tyk-oas-api-definition
+          category: Page
+          show: True
+        - title: "ApiDefinition CRD"
           path: /product-stack/tyk-operator/reference/api-definition
           category: Page
           show: True
-        - title: "Security Policy features"
+        - title: "SecurityPolicy CRD"
           path: /product-stack/tyk-operator/reference/security-policy
           category: Page
           show: True
@@ -4650,6 +4714,10 @@ menu:
         category: Directory
         show: True
         menu:
+        - title: "Tyk Charts 2.0"
+          path: /product-stack/tyk-charts/release-notes/version-2.0
+          category: Page
+          show: True
         - title: "Tyk Charts 1.6"
           path: /product-stack/tyk-charts/release-notes/version-1.6
           category: Page
