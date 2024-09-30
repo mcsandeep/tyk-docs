@@ -81,7 +81,7 @@ Here's how it works:
 
   ```yaml
     labels:
-      tyk.io/template: "true"
+      tyk.io/ingress-template: "true"
   ```
 
 - **Automated Resource Handling**: Tyk Operator handles the automatic discovery and management of existing Ingress resources, eliminating the need for manual migration of all Ingress rules into API definitions. You can simply define an API configuration template as a `TykOasApiDefinition` resource or `ApiDefinition` resource and then let Tyk Operator creates all the APIs from your existing Ingress rules using the referenced resource as template, streamlining the transition process.
@@ -321,7 +321,7 @@ kind: TykOasApiDefinition
 metadata:
   name: oasapitemplate
   labels:
-    tyk.io/template: "true"
+    tyk.io/ingress-template: "true"
 spec:
   tykOAS:
     configmapRef:
@@ -330,7 +330,7 @@ spec:
       keyName: test_oas.json
 ```
 
-Here provides a minimum template as `TykOasApiDefinition`. The `TykOasApiDefinition` must have a label `tyk.io/template: "true"` so that Tyk Operator will not reconcile it with Tyk.
+Here provides a minimum template as `TykOasApiDefinition`. The `TykOasApiDefinition` must have a label `tyk.io/ingress-template: "true"` so that Tyk Operator will not reconcile it with Tyk.
 
 ```yaml{hl_lines=["7-8"],linenos=true}
 apiVersion: networking.k8s.io/v1
