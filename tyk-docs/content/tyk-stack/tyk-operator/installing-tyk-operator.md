@@ -66,10 +66,31 @@ Tyk Operator configurations are set via a Kubernetes secret. The default K8s sec
 
 The secret should contain the following keys: 
 
+{{< tabs_start >}}
+
+{{< tab_start "Open Source" >}}
+
+| Key                          | Mandatory | Example Value                                      | Description                                                                                                                  |
+|:-----------------------------|:----------|:---------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| TYK_OPERATOR_LICENSEKEY      | Yes       | <JWT_ENCODED_LICENSE_KEY>                          | Tyk Operator license key                                                                                                     |
+| TYK_MODE                     | Yes       | ce                                                 | “ce” for Tyk Open Source mode, “pro” for Tyk licensed mode.                                                                  |
+| TYK_URL                      | Yes       | http://gateway-svc-tyk-ce-tyk-gateway.tyk.svc:8080 | Management URL of Tyk Gateway (Open Source) or Tyk Dashboard                                                                 |
+| TYK_AUTH                     | Yes       | myapisecret                                        | Operator user API key.                                                                                                       |
+| TYK_ORG                      | Yes       | myorgid                                            | Operator user ORG ID.                                                                                                        |
+| TYK_TLS_INSECURE_SKIP_VERIFY | No        | true                                               | Set to `“true”` if the Tyk URL is HTTPS and has a self-signed certificate. If it isn't set, the default value is `false`.    |
+| WATCH_NAMESPACE              | No        | foo,bar                                            | Comma separated list of namespaces for Operator to operate on. The default is to operate on all namespaces if not specified. |
+| WATCH_INGRESS_CLASS          | No        | customclass                                        | Define the ingress class Tyk Operator should watch. Default is `tyk`                                                         |
+| TYK_HTTPS_INGRESS_PORT       | No        | 8443                                               | Define the ListenPort for HTTPS ingress. Default is `8443`.                                                                  |
+| TYK_HTTP_INGRESS_PORT        | No        | 8080                                               | Define the ListenPort for HTTP ingress. Default is `8080`.                                                                   |
+
+{{< tab_end >}}
+
+{{< tab_start "Licensed mode (Self-managed or Tyk Cloud)" >}}
 
 | Key                          | Mandatory | Example Value                                       | Description                                                                                                                  |
 |:-----------------------------|:----------|:----------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
-| TYK_OPERATOR_LICENSEKEY      | Yes       | <JWT_ENCODED_LICENSE_KEY>                           | Tyk Operator license key, obtained from Tyk                                                                                  |
+| TYK_OPERATOR_LICENSEKEY      | Yes       | <JWT_ENCODED_LICENSE_KEY>                           | Tyk Operator license key                                                                                                     |
+| TYK_MODE                     | Yes       | pro                                                 | “ce” for Tyk Open Source mode, “pro” for Tyk licensed mode.                                                                  |
 | TYK_URL                      | Yes       | http://dashboard-svc-tyk-tyk-dashboard.tyk.svc:3000 | Management URL of Tyk Gateway (Open Source) or Tyk Dashboard                                                                 |
 | TYK_AUTH                     | Yes       | 2d095c2155774fe36d77e5cbe3ac963b                    | Operator user API key.                                                                                                       |
 | TYK_ORG                      | Yes       | 5e9d9544a1dcd60001d0ed20                            | Operator user ORG ID.                                                                                                        |
@@ -78,6 +99,9 @@ The secret should contain the following keys:
 | WATCH_INGRESS_CLASS          | No        | customclass                                         | Define the ingress class Tyk Operator should watch. Default is `tyk`                                                         |
 | TYK_HTTPS_INGRESS_PORT       | No        | 8443                                                | Define the ListenPort for HTTPS ingress. Default is `8443`.                                                                  |
 | TYK_HTTP_INGRESS_PORT        | No        | 8080                                                | Define the ListenPort for HTTP ingress. Default is `8080`.                                                                   |
+
+{{< tab_end >}}
+{{< tabs_end >}}
 
 ##### Connection to Tyk Gateway or Dashboard
 If you install Tyk using Helm Chart, `tyk-operator-conf` will have been created with the following keys: `TYK_AUTH, TYK_MODE, TYK_ORG`, and `TYK_URL` by default. 
@@ -90,6 +114,7 @@ $ kubectl create secret -n tyk-operator-system generic tyk-operator-conf \
   --from-literal "TYK_OPERATOR_LICENSEKEY=${TYK_OPERATOR_LICENSEKEY}" \
   --from-literal "TYK_AUTH=${TYK_AUTH}" \
   --from-literal "TYK_ORG=${TYK_ORG}" \
+  --from-literal "TYK_MODE=${TYK_MODE}" \
   --from-literal "TYK_URL=${TYK_URL}"
 ```
 
