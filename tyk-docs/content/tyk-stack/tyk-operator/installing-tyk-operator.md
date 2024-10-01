@@ -201,7 +201,9 @@ provided during upgrade process. This section describes how to set Tyk Operator 
 continues functioning.
 
 {{< note >}}
-If Tyk Operator is upgraded for licensed versions, the usual steps described below would work.
+When upgrading Tyk Operator between licensed versions, follow the standard upgrade procedure described under 
+[Upgrading Tyk Operator]({{<ref "tyk-stack/tyk-operator/installing-tyk-operator#upgrading-tyk-operator-and-crds">}}) section.
+It is important to note that this process differs if transitioning from an unlicensed to a licensed version.
 {{< /note >}}
 
 To provide the license key for Tyk Operator, Kubernetes secret used to configure Tyk Operator (typically named tyk-operator-conf as described above) 
@@ -216,12 +218,12 @@ To configure the license key:
 
 After updating the Kubernetes secret with this field, proceed with the standard upgrade process outlined below.
 
-### Upgrading Tyk Operator
+### Upgrading Tyk Operator and CRDs
 
 You can upgrade Tyk Operator through Helm Chart by running the following command:
 
 ```console
-$ helm upgrade -n tyk-operator-system tyk-operator tyk-helm/tyk-operator  --wait
+$ helm upgrade -n tyk-operator-system tyk-operator tyk-helm/tyk-operator --wait
 ```
 
 [Helm does not upgrade or delete CRDs](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/#some-caveats-and-explanations) when performing an upgrade. Because of this restriction, an additional step is required when upgrading Tyk Operator with Helm.
