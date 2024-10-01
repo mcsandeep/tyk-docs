@@ -9,6 +9,7 @@ menu:
         parent: API Management
 aliases:
   - /apim/open-source/getting-started/
+  - /tyk-oss/ce-kubernetes-ingress/
 ---
 
 
