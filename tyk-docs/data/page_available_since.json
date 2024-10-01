@@ -11216,9 +11216,6 @@
         "/tyk-oss/ce-helm-chart/": {
             "all_versions_are_similar_to_path": true
         },
-        "/tyk-oss/ce-kubernetes-ingress/": {
-            "all_versions_are_similar_to_path": true
-        },
         "/tyk-oss/ce-kubernetes/": {
             "all_versions_are_similar_to_path": true
         },
