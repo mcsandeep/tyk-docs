@@ -11,7 +11,7 @@ aliases:
 ---
 
 ### What is Tyk Operator?
-Tyk Operator is a Kubernetes Operator designed to simplify the management of Tyk API configurations both inside and outside of Kubernetes environments. With our [custom resources]({{<ref "product-stack/tyk-operator/key-concepts/custom-resources">}}), Tyk Operator simplifies the processes of deploying and configuring API resources, allowing you to focus more on application development and less on infrastructure management. It is ideal for those who like to manage configurations declaratively or with GitOps workflows via tools such as Argo CD and Flux CD.
+Tyk Operator is a licensed Kubernetes Operator designed to simplify the management of Tyk API configurations both inside and outside of Kubernetes environments. With our [custom resources]({{<ref "product-stack/tyk-operator/key-concepts/custom-resources">}}), Tyk Operator simplifies the processes of deploying and configuring API resources, allowing you to focus more on application development and less on infrastructure management. It is ideal for those who like to manage configurations declaratively or with GitOps workflows via tools such as Argo CD and Flux CD.
 
 {{< img src="/img/operator/tyk-operator.svg" alt="Tyk Operator" width="600" >}}
 
