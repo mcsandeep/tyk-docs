@@ -4902,10 +4902,6 @@ menu:
         path: /frequently-asked-questions/enable-websockets-cloud
         category: Page
         show: True
-      - title: "Troubleshooting"
-        path: /troubleshooting
-        category: Page
-        show: True
       - title: "“301 Moved permanently“ error in the Dashboard API"
         path: /troubleshooting/tyk-cloud-classic/301-moved-permanently
         category: Page
@@ -4956,10 +4952,6 @@ menu:
         show: True
       - title: "Tyk Pump Troubleshooting"
         path: /troubleshooting/tyk-pump
-        category: Page
-        show: True
-      - title: "Configuration Options"
-        path: /tyk-cloud/configuration-options
         category: Page
         show: True
       - title: "Overview"
