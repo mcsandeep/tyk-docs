@@ -7,3 +7,4 @@ IgnoreEmptyHref: true
 CheckExternal: true
 IgnoreURLs:
   - "apps"
+  - "^https://github.com/TykTechnologies/tyk-docs"
