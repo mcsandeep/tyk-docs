@@ -1258,30 +1258,30 @@ menu:
             path: /concepts/middleware-execution-order
             category: Page
             show: True
-        - title: "What is URL path matching?"
-          path: /getting-started/key-concepts/url-matching
-          category: Page
-          show: True
-        - title: "What is Rate Limiting?"
-          path: /getting-started/key-concepts/rate-limiting
-          category: Page
-          show: True
-        - title: "What is a Security Policy?"
-          path: /getting-started/key-concepts/what-is-a-security-policy
-          category: Page
-          show: True
-        - title: "What is a Session Object?"
-          path: /getting-started/key-concepts/what-is-a-session-object
-          category: Page
-          show: True
-        - title: "What is Session Metadata?"
-          path: /getting-started/key-concepts/session-meta-data
-          category: Page
-          show: True
-        - title: "What is Internal Looping?"
-          path: /advanced-configuration/transform-traffic/looping
-          category: Page
-          show: True
+          - title: "What is URL path matching?"
+            path: /getting-started/key-concepts/url-matching
+            category: Page
+            show: True
+          - title: "What is Rate Limiting?"
+            path: /getting-started/key-concepts/rate-limiting
+            category: Page
+            show: True
+          - title: "What is a Security Policy?"
+            path: /getting-started/key-concepts/what-is-a-security-policy
+            category: Page
+            show: True
+          - title: "What is a Session Object?"
+            path: /getting-started/key-concepts/what-is-a-session-object
+            category: Page
+            show: True
+          - title: "What is Session Metadata?"
+            path: /getting-started/key-concepts/session-meta-data
+            category: Page
+            show: True
+          - title: "What is Internal Looping?"
+            path: /advanced-configuration/transform-traffic/looping
+            category: Page
+            show: True
         - title: "Basic config and security"
           category: Directory
           show: True
@@ -2010,327 +2010,327 @@ menu:
                 path: /product-stack/tyk-gateway/advanced-configurations/distributed-tracing/open-tracing/zipkin
                 category: Page
                 show: True
-        - title: "Custom plugins"
-          category: Directory
-          show: True
-          menu:
-          - title: "Overview"
-            path: /plugins
-            category: Page
+          - title: "Custom plugins"
+            category: Directory
             show: True
-          - title: "Quickstarts"
+            menu:
+            - title: "Overview"
+              path: /plugins
+              category: Page
+              show: True
+            - title: "Quickstarts"
+              category: Directory
+              show: true
+              menu:
+              - title: "Go"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /plugins/tutorials/quick-starts/go/quickstart
+                  category: Page
+                  show: True
+                - title: "Dashboard"
+                  path: /plugins/tutorials/quick-starts/go/dashboard
+                  category: Page
+                  show: True
+                - title: "Open source"
+                  path: /plugins/tutorials/quick-starts/go/open-source
+                  category: Page
+                  show: True
+            - title: "Plugins Hub"
+              path: /plugins/plugin-hub
+              catgory: Page
+              show: True
+          - title: "API Configuration"
             category: Directory
             show: true
             menu:
-            - title: "Go"
-              category: Directory
-              show: True
-              menu:
-              - title: "Overview"
-                path: /plugins/tutorials/quick-starts/go/quickstart
-                category: Page
-                show: True
-              - title: "Dashboard"
-                path: /plugins/tutorials/quick-starts/go/dashboard
-                category: Page
-                show: True
-              - title: "Open source"
-                path: /plugins/tutorials/quick-starts/go/open-source
-                category: Page
-                show: True
-          - title: "Plugins Hub"
-            path: /plugins/plugin-hub
-            catgory: Page
-            show: True
-        - title: "API Configuration"
-          category: Directory
-          show: true
-          menu:
-          - title: "Overview"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/overview
-            category: Page
-            show: True
-          - title: "Tyk OAS configuration"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/oas
-            category: Page
-            show: True
-          - title: "Tyk Classic configuration"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/classic
-            category: Page
-            show: True
-          - title: "Plugin Types"
-            path: /plugins/plugin-types/plugintypes
-            category: Directory
-            show: True
-            menu:
             - title: "Overview"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/overview
+              category: Page
+              show: True
+            - title: "Tyk OAS configuration"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/oas
+              category: Page
+              show: True
+            - title: "Tyk Classic configuration"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/api-config/classic
+              category: Page
+              show: True
+            - title: "Plugin Types"
               path: /plugins/plugin-types/plugintypes
-              category: Page
-              show: True
-            - title: "Request Plugins"
-              path: /plugins/plugin-types/request-plugins
-              category: Page
-              show: True
-            - title: "Authentication Plugins"
-              path: /plugins/plugin-types/auth-plugins/auth-plugins
-              category: Page
-              show: True
-            - title: "Authentication Plugin Caching"
-              path: /plugins/plugin-types/auth-plugins/id-extractor
-              category: Page
-              show: True
-            - title: "Response Plugins"
-              path: /plugins/plugin-types/response-plugins
-              category: Page
-              show: True
-            - title: "Analytics Plugins"
-              path: /plugins/plugin-types/analytics-plugins/
-              category: Page
-              show: True
-            - title: "Per-endpoint Plugins"
               category: Directory
               show: True
               menu:
               - title: "Overview"
-                path: /product-stack/tyk-gateway/middleware/endpoint-plugin
+                path: /plugins/plugin-types/plugintypes
                 category: Page
                 show: True
-              - title: "Tyk OAS configuration"
-                path: /product-stack/tyk-gateway/middleware/endpoint-plugin-tyk-oas
+              - title: "Request Plugins"
+                path: /plugins/plugin-types/request-plugins
                 category: Page
                 show: True
-              - title: "Tyk Classic configuration"
-                path: /product-stack/tyk-gateway/middleware/endpoint-plugin-tyk-classic
+              - title: "Authentication Plugins"
+                path: /plugins/plugin-types/auth-plugins/auth-plugins
+                category: Page
+                show: True
+              - title: "Authentication Plugin Caching"
+                path: /plugins/plugin-types/auth-plugins/id-extractor
+                category: Page
+                show: True
+              - title: "Response Plugins"
+                path: /plugins/plugin-types/response-plugins
+                category: Page
+                show: True
+              - title: "Analytics Plugins"
+                path: /plugins/plugin-types/analytics-plugins/
+                category: Page
+                show: True
+              - title: "Per-endpoint Plugins"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /product-stack/tyk-gateway/middleware/endpoint-plugin
+                  category: Page
+                  show: True
+                - title: "Tyk OAS configuration"
+                  path: /product-stack/tyk-gateway/middleware/endpoint-plugin-tyk-oas
+                  category: Page
+                  show: True
+                - title: "Tyk Classic configuration"
+                  path: /product-stack/tyk-gateway/middleware/endpoint-plugin-tyk-classic
+                category: Page
+                show: True
+          - title: "Plugin bundles"
+            category: Directory
+            show: True
+            menu:
+            - title: "Serving Plugins to Tyk Gateway"
+              path: /plugins/how-to-serve-plugins
+              category: Page
+              show: False
+            - title: "Overview"
+              path: /plugins/how-to-serve-plugins/plugin-bundles
               category: Page
               show: True
-        - title: "Plugin bundles"
-          category: Directory
-          show: True
-          menu:
-          - title: "Serving Plugins to Tyk Gateway"
-            path: /plugins/how-to-serve-plugins
-            category: Page
-            show: False
-          - title: "Overview"
-            path: /plugins/how-to-serve-plugins/plugin-bundles
+            - title: "Tyk OAS configuration"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/oas
+              category: Page
+              show: True
+            - title: "Tyk Classic configuration"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/classic
+              category: Page
+              show: True
+            - title: "Bundle CLI tool"
+              path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/bundle-cli
+              category: Page
+              show: True
+            - title: "Supported Languages"
+              category: Directory
+              show: True
+              menu:
+              - title: "Overview"
+                path: /plugins/supported-languages
+                category: Page
+                show: True
+              - title: "Golang"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /plugins/supported-languages/golang
+                  category: Page
+                  show: True
+                - title: "Writing Go Plugins"
+                  path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins
+                  category: Page
+                  show: True
+                - title: "Go Plugin Development Flow"
+                  path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-development-flow
+                  category: Page
+                  show: True
+                - title: "Go Plugin Compiler"
+                  path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-compiler
+                  category: Page
+                  show: True
+                - title: "Loading Go Plugins"
+                  path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/loading-go-plugins
+                  category: Page
+                  show: True
+                - title: "Go Plugin Examples"
+                  path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-examples
+                  category: Page
+                  show: True
+              - title: "Javascript"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /plugins/supported-languages/javascript-middleware
+                  category: Page
+                  show: True
+                - title: "JS Scripting Guide"
+                  path: /plugins/supported-languages/javascript-middleware/middleware-scripting-guide
+                  category: Page
+                  show: True
+                - title: "JavaScript API"
+                  path: /plugins/supported-languages/javascript-middleware/javascript-api
+                  category: Page
+                  show: True
+                - title: "Using JS plugins with Tyk Self-Managed"
+                  path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-pro
+                  category: Page
+                  show: True
+                - title: "Using JS plugins with Tyk Hybrid"
+                  path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-hybrid
+                  category: Page
+                  show: True
+                - title: "Using JS plugins with Tyk OSS"
+                  path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-ce
+                  category: Page
+                  show: True
+                - title: "WAF (OSS) ModSecurity Plugin example"
+                  path: /plugins/supported-languages/javascript-middleware/waf-js-plugin
+                  category: Page
+                  show: True
+              - title: "Rich Plugins"
+                path: /plugins/supported-languages/rich-plugins
+                category: Page
+                show: True
+              - title: "Rich Plugins - How do They work?"
+                path: /plugins/supported-languages/rich-plugins/rich-plugins-work
+                category: Page
+                show: True
+              - title: "Rich Plugins - Data Structures"
+                path: /plugins/supported-languages/rich-plugins/rich-plugins-data-structures
+                category: Page
+                show: True
+              - title: "Rich Plugin - Python"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /plugins/supported-languages/rich-plugins/python/python
+                  category: Page
+                  show: True
+                - title: "Tutorial- Custom Authentication Plugin"
+                  path: /plugins/supported-languages/rich-plugins/python/custom-auth-python-tutorial
+                  category: Page
+                  show: True
+                - title: "Tutorial - Add Python Plugin To Your Gateway"
+                  path: /plugins/supported-languages/rich-plugins/python/tutorial-add-demo-plugin-api
+                  category: Page
+                  show: True
+                - title: "Tyk Python API methods"
+                  path: /plugins/supported-languages/rich-plugins/python/tyk-python-api-methods
+                  category: Page
+                  show: True
+                - title: "Performance"
+                  path: /plugins/supported-languages/rich-plugins/python/performance
+                  category: Page
+                  show: True
+              - title: "Rich Plugin - gRPC"
+                category: Directory
+                show: True
+                menu:
+                - title: "Overview"
+                  path: /plugins/supported-languages/rich-plugins/grpc
+                  category: Page
+                  show: True
+                - title: "Key Concepts"
+                  path: /plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin
+                  category: Page
+                  show: True
+                - title: "Getting Started"
+                  path: /plugins/supported-languages/rich-plugins/grpc/getting-started-python
+                  category: Page
+                  show: True
+                - title: "Tutorials"
+                  category: Directory
+                  show: true
+                  menu:
+                  - title: "Create Java Request Transformation Plugin"
+                    path: /plugins/supported-languages/rich-plugins/grpc/request-transformation-java
+                    category: Page
+                    show: True
+                  - title: "Create .NET Custom Authentication Plugin"
+                    path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-dot-net
+                    category: Page
+                    show: True
+                  - title: "Create NodeJS Custom Authentication Plugin"
+                    path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-nodejs
+                    category: Page
+                    show: True
+                  - title: "Create Python Custom Authentication Plugin"
+                    path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-python
+                    category: Page
+                    show: True
+                - title: "Performance"
+                  path: /plugins/supported-languages/rich-plugins/grpc/performance
+                  category: Page
+                  show: True
+              - title: "Rich Plugin - Lua"
+                category: Directory
+                show: True
+                menu:
+                - title: "LuaJIT"
+                  path: /plugins/supported-languages/rich-plugins/luajit
+                  category: Page
+                  show: True
+                - title: "Requirements"
+                  path: /plugins/supported-languages/rich-plugins/luajit/requirements
+                  category: Page
+                  show: True
+                - title: "Lua Plugin Tutorial"
+                  path: /plugins/supported-languages/rich-plugins/luajit/tutorial-add-demo-plugin-api
+                  category: Page
+                  show: True
+          - title: "OpenTelemetry Instrumentation"
+            path: /product-stack/tyk-gateway/advanced-configurations/plugins/otel-plugins
             category: Page
             show: True
-          - title: "Tyk OAS configuration"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/oas
+          - title: "CICD Plugin Build"
+            path: /plugins/get-started-selfmanaged/deploy-plugins
             category: Page
             show: True
-          - title: "Tyk Classic configuration"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/classic
+          - title: "Error Templates"
+            path: /advanced-configuration/error-templates
             category: Page
             show: True
-          - title: "Bundle CLI tool"
-            path: /product-stack/tyk-gateway/advanced-configurations/plugins/bundles/bundle-cli
-            category: Page
-            show: True
-          - title: "Supported Languages"
+          - title: "Non-HTTP Protocols"
             category: Directory
             show: True
             menu:
             - title: "Overview"
-              path: /plugins/supported-languages
+              path: /advanced-configuration/other-protocols
               category: Page
               show: True
-            - title: "Golang"
-              category: Directory
-              show: True
-              menu:
-              - title: "Overview"
-                path: /plugins/supported-languages/golang
-                category: Page
-                show: True
-              - title: "Writing Go Plugins"
-                path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/writing-go-plugins
-                category: Page
-                show: True
-              - title: "Go Plugin Development Flow"
-                path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-development-flow
-                category: Page
-                show: True
-              - title: "Go Plugin Compiler"
-                path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-compiler
-                category: Page
-                show: True
-              - title: "Loading Go Plugins"
-                path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/loading-go-plugins
-                category: Page
-                show: True
-              - title: "Go Plugin Examples"
-                path: /product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-examples
-                category: Page
-                show: True
-            - title: "Javascript"
-              category: Directory
-              show: True
-              menu:
-              - title: "Overview"
-                path: /plugins/supported-languages/javascript-middleware
-                category: Page
-                show: True
-              - title: "JS Scripting Guide"
-                path: /plugins/supported-languages/javascript-middleware/middleware-scripting-guide
-                category: Page
-                show: True
-              - title: "JavaScript API"
-                path: /plugins/supported-languages/javascript-middleware/javascript-api
-                category: Page
-                show: True
-              - title: "Using JS plugins with Tyk Self-Managed"
-                path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-pro
-                category: Page
-                show: True
-              - title: "Using JS plugins with Tyk Hybrid"
-                path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-hybrid
-                category: Page
-                show: True
-              - title: "Using JS plugins with Tyk OSS"
-                path: /plugins/supported-languages/javascript-middleware/install-middleware/tyk-ce
-                category: Page
-                show: True
-              - title: "WAF (OSS) ModSecurity Plugin example"
-                path: /plugins/supported-languages/javascript-middleware/waf-js-plugin
-                category: Page
-                show: True
-            - title: "Rich Plugins"
-              path: /plugins/supported-languages/rich-plugins
+            - title: "gRPC Proxy"
+              path: /key-concepts/grpc-proxy
               category: Page
               show: True
-            - title: "Rich Plugins - How do They work?"
-              path: /plugins/supported-languages/rich-plugins/rich-plugins-work
+            - title: "TCP Proxy"
+              path: /key-concepts/tcp-proxy
               category: Page
               show: True
-            - title: "Rich Plugins - Data Structures"
-              path: /plugins/supported-languages/rich-plugins/rich-plugins-data-structures
+            - title: "SSE Proxy"
+              path: /advanced-configuration/sse-proxy
               category: Page
               show: True
-            - title: "Rich Plugin - Python"
-              category: Directory
+            - title: "WebSocket Proxy"
+              path: /advanced-configuration/websockets
+              category: Page
               show: True
-              menu:
-              - title: "Overview"
-                path: /plugins/supported-languages/rich-plugins/python/python
-                category: Page
-                show: True
-              - title: "Tutorial- Custom Authentication Plugin"
-                path: /plugins/supported-languages/rich-plugins/python/custom-auth-python-tutorial
-                category: Page
-                show: True
-              - title: "Tutorial - Add Python Plugin To Your Gateway"
-                path: /plugins/supported-languages/rich-plugins/python/tutorial-add-demo-plugin-api
-                category: Page
-                show: True
-              - title: "Tyk Python API methods"
-                path: /plugins/supported-languages/rich-plugins/python/tyk-python-api-methods
-                category: Page
-                show: True
-              - title: "Performance"
-                path: /plugins/supported-languages/rich-plugins/python/performance
-                category: Page
-                show: True
-            - title: "Rich Plugin - gRPC"
-              category: Directory
-              show: True
-              menu:
-              - title: "Overview"
-                path: /plugins/supported-languages/rich-plugins/grpc
-                category: Page
-                show: True
-              - title: "Key Concepts"
-                path: /plugins/supported-languages/rich-plugins/grpc/write-grpc-plugin
-                category: Page
-                show: True
-              - title: "Getting Started"
-                path: /plugins/supported-languages/rich-plugins/grpc/getting-started-python
-                category: Page
-                show: True
-              - title: "Tutorials"
-                category: Directory
-                show: true
-                menu:
-                - title: "Create Java Request Transformation Plugin"
-                  path: /plugins/supported-languages/rich-plugins/grpc/request-transformation-java
-                  category: Page
-                  show: True
-                - title: "Create .NET Custom Authentication Plugin"
-                  path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-dot-net
-                  category: Page
-                  show: True
-                - title: "Create NodeJS Custom Authentication Plugin"
-                  path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-nodejs
-                  category: Page
-                  show: True
-                - title: "Create Python Custom Authentication Plugin"
-                  path: /plugins/supported-languages/rich-plugins/grpc/custom-auth-python
-                  category: Page
-                  show: True
-              - title: "Performance"
-                path: /plugins/supported-languages/rich-plugins/grpc/performance
-                category: Page
-                show: True
-            - title: "Rich Plugin - Lua"
-              category: Directory
-              show: True
-              menu:
-              - title: "LuaJIT"
-                path: /plugins/supported-languages/rich-plugins/luajit
-                category: Page
-                show: True
-              - title: "Requirements"
-                path: /plugins/supported-languages/rich-plugins/luajit/requirements
-                category: Page
-                show: True
-              - title: "Lua Plugin Tutorial"
-                path: /plugins/supported-languages/rich-plugins/luajit/tutorial-add-demo-plugin-api
-                category: Page
-                show: True
-        - title: "OpenTelemetry Instrumentation"
-          path: /product-stack/tyk-gateway/advanced-configurations/plugins/otel-plugins
-          category: Page
-          show: True
-        - title: "CICD Plugin Build"
-          path: /plugins/get-started-selfmanaged/deploy-plugins
-          category: Page
-          show: True
-        - title: "Error Templates"
-          path: /advanced-configuration/error-templates
-          category: Page
-          show: True
-        - title: "Non-HTTP Protocols"
-          category: Directory
-          show: True
-          menu:
-          - title: "Overview"
-            path: /advanced-configuration/other-protocols
+          - title: "Request Context Variables"
+            path: /context-variables
             category: Page
             show: True
-          - title: "gRPC Proxy"
-            path: /key-concepts/grpc-proxy
+          - title: "Securing System Payloads"
+            path: /tyk-configuration-reference/securing-system-payloads
             category: Page
             show: True
-          - title: "TCP Proxy"
-            path: /key-concepts/tcp-proxy
-            category: Page
-            show: True
-          - title: "SSE Proxy"
-            path: /advanced-configuration/sse-proxy
-            category: Page
-            show: True
-          - title: "WebSocket Proxy"
-            path: /advanced-configuration/websockets
-            category: Page
-            show: True
-        - title: "Request Context Variables"
-          path: /context-variables
-          category: Page
-          show: True
-        - title: "Securing System Payloads"
-          path: /tyk-configuration-reference/securing-system-payloads
-          category: Page
-          show: True
         - title: "API documentation"
           category: Directory
           show: True
@@ -4643,26 +4643,26 @@ menu:
           category: Directory
           show: True
           menu:
-        - title: "Tyk Charts 2.0"
-          path: /product-stack/tyk-charts/release-notes/version-2.0
-          category: Page
-          show: True
-        - title: "Tyk Charts 1.6"
-          path: /product-stack/tyk-charts/release-notes/version-1.6
-          category: Page
-          show: True
-        - title: "Tyk Charts 1.5"
-          path: /product-stack/tyk-charts/release-notes/version-1.5
-          category: Page
-          show: True
-        - title: "Tyk Charts 1.4"
-          path: /product-stack/tyk-charts/release-notes/version-1.4
-          category: Page
-          show: True
-        - title: "Tyk Charts 1.3"
-          path: /product-stack/tyk-charts/release-notes/version-1.3
-          category: Page
-          show: True
+          - title: "Tyk Charts 2.0"
+            path: /product-stack/tyk-charts/release-notes/version-2.0
+            category: Page
+            show: True
+          - title: "Tyk Charts 1.6"
+            path: /product-stack/tyk-charts/release-notes/version-1.6
+            category: Page
+            show: True
+          - title: "Tyk Charts 1.5"
+            path: /product-stack/tyk-charts/release-notes/version-1.5
+            category: Page
+            show: True
+          - title: "Tyk Charts 1.4"
+            path: /product-stack/tyk-charts/release-notes/version-1.4
+            category: Page
+            show: True
+          - title: "Tyk Charts 1.3"
+            path: /product-stack/tyk-charts/release-notes/version-1.3
+            category: Page
+            show: True
     - title: "Developer Support"
       path: /frequently-asked-questions/faq
       category: Directory
@@ -4762,6 +4762,70 @@ menu:
           show: True
         - title: "All tyk container logs show up under the error status in Datadog logs"
           path: /frequently-asked-questions/datadog-logs-showup-as-errors
+          category: Page
+          show: True
+        - title: "Key information doesn't appear in Dashboard for Tyk Multi-Cloud users"
+          path: /troubleshooting/tyk-multi-cloud/token-information-doesnt-appear-dashboard-tyk-multi-cloud-users/
+          category: Page
+          show: True
+        - title: "Cloud Classic Virtual Endpoints not working"
+          path: /frequently-asked-questions/cloud-classic-virtual-endpoints-not-working
+          category: Page
+          show: True
+        - title: "How to enable websockets in Cloud"
+          path: /frequently-asked-questions/enable-websockets-cloud
+          category: Page
+          show: True
+        - title: "“301 Moved permanently“ error in the Dashboard API"
+          path: /troubleshooting/tyk-cloud-classic/301-moved-permanently
+          category: Page
+          show: True
+        - title: "413 Request Entity Too Large"
+          path: /troubleshooting/tyk-cloud-classic/413-request-entity-large
+          category: Page
+          show: True
+        - title: "“504 GATEWAY_TIMEOUT“ error"
+          path: /troubleshooting/tyk-cloud-classic/504-gateway-timeout-error
+          category: Page
+          show: True
+        - title: "“Organisation quota has been exceeded“ error in the Dashboard API"
+          path: /troubleshooting/tyk-cloud-classic/organisation-quota-exceeded-error-dashboard-api
+          category: Page
+          show: True
+        - title: "Tyk Cloud Classic"
+          path: /troubleshooting/tyk-cloud
+          category: Page
+          show: True
+        - title: "Tyk Dashboard Troubleshooting"
+          path: /troubleshooting/tyk-dashboard
+          category: Page
+          show: True
+        - title: "Tyk Gateway Troubleshooting"
+          path: /troubleshooting/tyk-gateway
+          category: Page
+          show: True
+        - title: "Tyk Installation"
+          path: /troubleshooting/tyk-installation
+          category: Page
+          show: True
+        - title: "404 when trying to access Tyk Gateway Repo"
+          path: /troubleshooting/tyk-installation/404-trying-access-tyk-gateway-repo
+          category: Page
+          show: True
+        - title: "Unable to parse JSON Error from Dashboard bootstrap.sh Script"
+          path: /troubleshooting/tyk-installation/parsing-json-error-from-dashboard-bootstrap
+          category: Page
+          show: True
+        - title: "Tyk Multi-Cloud"
+          path: /troubleshooting/tyk-multi-cloud
+          category: Page
+          show: True
+        - title: "Tyk On-Premises"
+          path: /troubleshooting/tyk-on-premise/tyk-on-premise
+          category: Page
+          show: True
+        - title: "Tyk Pump Troubleshooting"
+          path: /troubleshooting/tyk-pump
           category: Page
           show: True
       - title: "Plugin Hub"
@@ -4882,82 +4946,6 @@ menu:
           path: /advanced-configuration/manage-multiple-environments/with-tyk-cloud-classic
           category: Page
           show: True
-      - title: "Tyk Developer Portal"
-        path: /tyk-developer-portal
-        category: Page
-        show: True
-      - title: "Key information doesn't appear in Dashboard for Tyk Multi-Cloud users"
-        path: /troubleshooting/tyk-multi-cloud/token-information-doesnt-appear-dashboard-tyk-multi-cloud-users/
-        category: Page
-        show: True
-      - title: "Gateway API"
-        path: /api-management/oss/gateway-api
-        category: Page
-        show: True
-      - title: "Cloud Classic Virtual Endpoints not working"
-        path: /frequently-asked-questions/cloud-classic-virtual-endpoints-not-working
-        category: Page
-        show: True
-      - title: "How to enable websockets in Cloud"
-        path: /frequently-asked-questions/enable-websockets-cloud
-        category: Page
-        show: True
-      - title: "“301 Moved permanently“ error in the Dashboard API"
-        path: /troubleshooting/tyk-cloud-classic/301-moved-permanently
-        category: Page
-        show: True
-      - title: "413 Request Entity Too Large"
-        path: /troubleshooting/tyk-cloud-classic/413-request-entity-large
-        category: Page
-        show: True
-      - title: "“504 GATEWAY_TIMEOUT“ error"
-        path: /troubleshooting/tyk-cloud-classic/504-gateway-timeout-error
-        category: Page
-        show: True
-      - title: "“Organisation quota has been exceeded“ error in the Dashboard API"
-        path: /troubleshooting/tyk-cloud-classic/organisation-quota-exceeded-error-dashboard-api
-        category: Page
-        show: True
-      - title: "Tyk Cloud Classic"
-        path: /troubleshooting/tyk-cloud
-        category: Page
-        show: True
-      - title: "Tyk Dashboard Troubleshooting"
-        path: /troubleshooting/tyk-dashboard
-        category: Page
-        show: True
-      - title: "Tyk Gateway Troubleshooting"
-        path: /troubleshooting/tyk-gateway
-        category: Page
-        show: True
-      - title: "Tyk Installation"
-        path: /troubleshooting/tyk-installation
-        category: Page
-        show: True
-      - title: "404 when trying to access Tyk Gateway Repo"
-        path: /troubleshooting/tyk-installation/404-trying-access-tyk-gateway-repo
-        category: Page
-        show: True
-      - title: "Unable to parse JSON Error from Dashboard bootstrap.sh Script"
-        path: /troubleshooting/tyk-installation/parsing-json-error-from-dashboard-bootstrap
-        category: Page
-        show: True
-      - title: "Tyk Multi-Cloud"
-        path: /troubleshooting/tyk-multi-cloud
-        category: Page
-        show: True
-      - title: "Tyk On-Premises"
-        path: /troubleshooting/tyk-on-premise/tyk-on-premise
-        category: Page
-        show: True
-      - title: "Tyk Pump Troubleshooting"
-        path: /troubleshooting/tyk-pump
-        category: Page
-        show: True
-      - title: "Overview"
-        path: /tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/customise-enterprise-portal
-        category: Page
-        show: True
     - title: "APIM Best Practice"
       path: /apim-best-practice/overview
       category: Directory
