@@ -1,0 +1,3 @@
+# Ignore artifacts:
+tyk-docs/public
+tyk-docs/resources
