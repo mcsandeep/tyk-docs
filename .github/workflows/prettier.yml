@@ -18,5 +18,6 @@ jobs:
           npm install prettier@3.3.3 prettier-plugin-go-template
       - name: Lint the docs with prettier
         run: |
-          npx prettier . --check
           ls -a
+          npx prettier . --check
+         
