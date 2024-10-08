@@ -11,3 +11,5 @@ resources
 .vscode/launch.json*
 check-pages-*.txt
 .venv/
+node_modules/
+node_modules

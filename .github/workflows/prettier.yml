@@ -13,8 +13,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Lint The docs with prettier
+      - name: Install dependencies
         run: |
-          npm install --global prettier@3.3.3
-          npm install --global prettier-plugin-go-template
+          npm install prettier@3.3.3 prettier-plugin-go-template
+      - name: Lint the docs with prettier
+        run: |
           npx prettier . --check
