@@ -7,3 +7,4 @@ tyk-docs/themes/tykio/layouts/_default/list.urlcheck.json
 .gitignore
 .prettierignore
 .prettierrc
+changed-files.txt
