@@ -1,76 +1,96 @@
 {{- $s := . -}}
 
-{{- $pattern := `\/docs\/\d+\.\d+` -}}
-{{- $pagePath := replaceRE $pattern "" $s.Page.RelPermalink -}}
-{{- $pagePath := replace $pagePath "/docs" "" -}}
-{{- $pagePath := replace $pagePath "/nightly" "" -}}
-{{- $pagePath := replace $pagePath "/" "" -}}
-{{/*  {{- $pagePath := trim $pagePath "/" -}}  */}}
-
+<!-- Initialize an empty menu variable -->
 {{- $menu := slice -}}
+
+<!-- Initialize an index counter -->
+{{- $index := 0 -}}
+
+<!-- Loop through the top-level menu items -->
 {{- range .Site.Data.menu.menu -}}
+
   {{- $rootMenu := .menu -}}
 
-  {{- $path := replace .path "/" "" -}}
-  {{- if eq $path $pagePath -}}
-    {{- $menu = $rootMenu -}}
+  <!-- If the category is 'Tab', render the section with a separator -->
+  {{- if eq .category "Tab" -}}
+    <!-- Only add <hr> if it's not the first item -->
+    {{- if gt $index 0 -}}
+      <hr>
+    {{- end -}}
+    <h6>{{ .title }}</h6>
+    <!-- Increment the index for each Tab -->
+    {{- $index = add $index 1 -}}
   {{- end -}}
-  {{- if (isset . "menu") -}}
-    {{- range .menu -}}
-      {{- $path := replace .path "/" "" -}}
-      {{- if eq $path $pagePath -}}
-        {{- $menu = $rootMenu -}}
+
+  <!-- Assign the root menu to the $menu variable -->
+  {{- $menu = $rootMenu -}}
+
+  <!-- Recursively render the menu structure -->
+  <ul>
+    {{- range $menu -}}
+      <!-- Check if the "show" field exists and is true, or is undefined (default to true) -->
+      {{- $showPage := true -}}
+      {{- if isset . "show" -}}
+        {{- $showPage = .show -}}
       {{- end -}}
-      {{- if (isset . "menu") -}}
-        {{- range .menu -}}
-          {{- $path := replace .path "/" "" -}}
-          {{- if eq $path $pagePath -}}
-            {{- $menu = $rootMenu -}}
-          {{- end -}}
-          {{- if (isset . "menu") -}}
-            {{- range .menu -}}
-              {{- $path := replace .path "/" "" -}}
-              {{- if eq $path $pagePath -}}
-                {{- $menu = $rootMenu -}}
-              {{- end -}}
-                {{- if (isset . "menu") -}}
-                  {{- range .menu -}}
-                    {{- $path := replace .path "/" "" -}}
-                    {{- if eq $path $pagePath -}}
-                      {{- $menu = $rootMenu -}}
-                    {{- end -}}
-                       {{- if (isset . "menu") -}}
-                          {{- range .menu -}}
-                            {{- $path := replace .path "/" "" -}}
-                              {{- if eq $path $pagePath -}}
-                                {{- $menu = $rootMenu -}}
-                              {{- end -}}
-                                {{- if (isset . "menu") -}}
-                                    {{- range .menu -}}
-                                        {{- $path := replace .path "/" "" -}}
-                                         {{- if eq $path $pagePath -}}
-                                            {{- $menu = $rootMenu -}}
-                                         {{- end -}}
-                                            {{- if (isset . "menu") -}}
-                                              {{- range .menu -}}
-                                                  {{- $path := replace .path "/" "" -}}
-                                                  {{- if eq $path $pagePath -}}
-                                                    {{- $menu = $rootMenu -}}
-                                                  {{- end -}}
-                                              {{- end -}}
-                                            {{- end -}}
-                                     {{- end -}}
-                                {{- end -}}
-                          {{- end -}}
-                       {{- end -}}
+
+      {{- if $showPage -}} <!-- Only show the menu item if "show" is true or undefined -->
+        {{- $is := false -}}
+        {{- $has := false -}}
+
+        {{- if (isset . "menu") -}}
+          <li class="category-{{.category}} {{if $is}} active {{end}} {{if or $is $has (eq .category `Label`)}} st-open {{else}} st-collapsed {{end}}">
+            {{- if .path -}}
+              {{- $prefixPath := strings.TrimLeft "/" .path -}}
+              <a href="{{$prefixPath | relURL}}" class="{{if not .show}} paint-red {{end}}">
+                {{- .title -}}
+              </a>
+            {{- else -}}
+              <a class="{{if not .show}} paint-red {{end}}">{{- .title -}}</a>
+            {{- end -}}
+
+            <!-- Recursively render child menu items if available -->
+            {{- if (isset . "menu") -}}
+              <ul>
+                {{- range .menu -}}
+                  <!-- Check if child menu items should be shown -->
+                  {{- $showChild := true -}}
+                  {{- if isset . "show" -}}
+                    {{- $showChild = .show -}}
+                  {{- end -}}
+
+                  {{- if $showChild -}}
+                    <li>
+                      <a href="/docs/nightly/{{.path}}">{{.title}}</a>
+                    </li>
                   {{- end -}}
                 {{- end -}}
+              </ul>
             {{- end -}}
-          {{- end -}}
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
 
-{{- partial "menu_recursive.html" (dict "menu" $menu "page" . "site" .Site) -}}
+          </li>
+        {{- else -}}
+          <li class="st-file {{if $is}} active {{end}} {{if not .show}} paint-red {{end}}">
+            {{- $prefixPath := strings.TrimLeft "/" .path -}}
+            {{- $prefixPath := strings.TrimRight "/" .path -}}
+            {{- $prefixMD := printf "%s.md" $prefixPath -}}
+
+            {{- if $prefixPath -}}
+              <a href="/docs/nightly/{{.path}}" class="{{if not .show}} paint-red {{end}}">
+                {{- .title -}}
+              </a>
+            {{- else -}}
+              {{- .title -}}
+            {{- end -}}
+
+            {{- if not .path}}
+              {{- warnf "Found page without path %q" .title -}}
+            {{- end -}}
+
+          </li>
+        {{- end -}}
+      {{- end -}} <!-- End of showPage check -->
+    {{- end -}}
+  </ul>
+
+{{- end -}}

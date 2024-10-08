@@ -5019,24 +5019,3 @@ menu:
     - title: "Sector Specific Guides"
       category: Page
       show: False
-    - title: "API Observability"
-      category: Page
-      show: False
-    - title: "API Products"
-      category: Page
-      show: False
-    - title: "APIs as integration"
-      category: Page
-      show: False
-    - title: "Creating a PoC"
-      category: Page
-      show: False
-  - title: "Orphan"
-    path: /orphan
-    category: Tab
-    show: False
-    menu:
-    - title: "Orphan pages"
-      path: /orphan/
-      category: Page
-      show: True
