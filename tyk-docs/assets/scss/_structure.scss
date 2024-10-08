@@ -17,7 +17,7 @@ body {
     display: flex;
 
     @include breakpoint(large) {
-      padding-inline-start: var(--main-inline-padding);
+      padding-inline-start: 16px;
     }
   }
 
@@ -41,12 +41,12 @@ body {
   overflow-x: hidden;
 
   .hasSidebar & {
-    width: 80%;
+    width: 90%;
     padding-left: 30px;
     border-left: 1px solid $brandpurple-light;
 
     @include breakpoint(large) {
-      padding-inline-end: var(--main-inline-padding);
+      // padding-inline-end: 16px;
     }
   }
 
