@@ -6,6 +6,9 @@
 <!-- Initialize an index counter -->
 {{- $index := 0 -}}
 
+<!-- Initial padding for the first label  -->
+<div style="padding: 8px;"></div>
+
 <!-- Loop through the top-level menu items -->
 {{- range .Site.Data.menu.menu -}}
 
@@ -17,7 +20,7 @@
     {{- if gt $index 0 -}}
       <hr>
     {{- end -}}
-    <h6>{{ .title }}</h6>
+    <h6 style="font-size: 15px;" >{{ .title }}</h6>
     <!-- Increment the index for each Tab -->
     {{- $index = add $index 1 -}}
   {{- end -}}
