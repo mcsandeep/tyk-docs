@@ -31,7 +31,7 @@ jobs:
       - name: Lint changed files with prettier
         run: |
           if [ -s changed-files.txt ]; then
-            cat changed-files.txt | xargs npx prettier --check
+            cat changed-files.txt | xargs npx prettier --write
           else
             echo "No files to lint."
           fi
