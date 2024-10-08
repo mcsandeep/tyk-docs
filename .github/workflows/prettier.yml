@@ -19,3 +19,4 @@ jobs:
       - name: Lint the docs with prettier
         run: |
           npx prettier . --check
+          ls -a
