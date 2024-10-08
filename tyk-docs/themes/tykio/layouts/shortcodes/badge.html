@@ -17,26 +17,25 @@
 {{ $href = strings.TrimPrefix "/docs" $href }}
 {{ $href = strings.TrimPrefix "/" $href }}
 
-<a class="badge {{.Get 'type'}} {{if .Get 'image'}}with_image{{end}}" href="{{ $href | relURL }}">
+<a class="badge {{.Get "type"}} {{if .Get "image"}}with_image{{end}}" href="{{ $href | relURL }}">
 	{{if .Get "read"}}
 		<div class="nav read">{{.Get "read"}}</div>
 	{{end}}
 	{{if .Get "title"}}
-        <div class="nav title" style="{{.Get 'titleStyle'}}">{{.Get "title"}}</div>
+        <div class="nav title" style="{{.Get "titleStyle"}}">{{.Get "title"}}</div>
 	{{end}}
-
+	<p>
 		{{if .Get "image"}}
-		<img src="{{ $src }}" style="{{.Get 'imageStyle'}}" alt="{{.Get 'alt'}}"/>
+		<img src="{{ $src }}" style="{{.Get "imageStyle"}}" alt="{{.Get "alt"}}"/>
 		{{end}}
-	  {{ if .Get "title" }}
-	    <div style="text-align: center;">
-		    {{ .Inner | markdownify }}
-	    </div>
-    {{ else }}
-	    {{ .Inner | markdownify }}
-    {{ end }}
-
-
+		{{ if .Get "title" }}
+	<div style="text-align: center;">
+		{{ .Inner | markdownify }}
+	</div>
+	{{ else }}
+			{{ .Inner | markdownify }}
+	{{ end }}
+	</p>
 
 	<div class="bottom">
 		<div class="read">{{.Get "read"}}</div>
