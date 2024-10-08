@@ -6,7 +6,7 @@ description: "Using Go plugins for authentication for your APIs"
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 6 
+weight: 6
 ---
 
 From version 2.9, you can now use Go plugins for authentication. See [Authentication with Go Plugins]({{< ref "plugins/supported-languages/golang#authentication-with-a-golang-plugin" >}}) for a detailed example of using a custom Go plugin to authenticate your traffic.

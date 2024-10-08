@@ -2,41 +2,45 @@
 date: 2023-01-10
 title: Setup MDCB Control Plane
 menu:
-    main:
-        parent: "Tyk Multi Data Center Bridge"
+  main:
+    parent: "Tyk Multi Data Center Bridge"
 weight: 4
-tags: ["MDCB", "Control Plane","setup"]
+tags: ["MDCB", "Control Plane", "setup"]
 description: "How to setup the MDCB Control Plane."
 aliases:
-   - /tyk-multi-data-centre/setup-master-data-centre/
+  - /tyk-multi-data-centre/setup-master-data-centre/
 ---
 
 ## Introduction
+
 The [Tyk control plane]({{< ref "tyk-multi-data-centre/mdcb-components.md#control-plane" >}}) contains all the
 standard components of a standard Tyk Self-Managed installation with the addition of the Multi Data Center Bridge (MDCB).
 
 ## Installing MDCB Component On Linux
+
 The MDCB component must be able to connect to Redis and MongoDB/PostgreSQL directly from within the Control Plane deployment. It does not require access to the Tyk Gateway(s) or Dashboard application.
 
 The MDCB component will however, by default, expose an RPC service on port 9091, to which the [Tyk Data Plane]({{< ref "tyk-multi-data-centre/mdcb-components.md#data-plane" >}}) data centers, i.e. the worker gateway(s) that serves API traffic, will need connectivity.
 
 ### Prerequisites
+
 We will assume that your account manager has provided you with a valid MDCB and Dashboard License and the command to enable you to download the MDCB package.
 We will assume that the following components are up and running in your Controller DC:
 
-* MongoDB or SQL (check [supported versions]({{< ref "planning-for-production/database-settings" >}}))
-* Redis (check [supported versions]({{< ref "planning-for-production/redis" >}}))
-* Tyk Dashboard
-* Tyk Gateway / Gateways Cluster
-* Working Tyk-Pro [Self-Managed installation]({{< ref "tyk-self-managed/install" >}})
+- MongoDB or SQL (check [supported versions]({{< ref "planning-for-production/database-settings" >}}))
+- Redis (check [supported versions]({{< ref "planning-for-production/redis" >}}))
+- Tyk Dashboard
+- Tyk Gateway / Gateways Cluster
+- Working Tyk-Pro [Self-Managed installation]({{< ref "tyk-self-managed/install" >}})
 
 {{< note success >}}
-**Note**  
+**Note**
 
 When using SQL rather than MongoDB in a production environment, we only support PostgreSQL.
 {{< /note >}}
 
 ### Installing using RPM and Debian packages
+
 To download the relevant MDCB package from PackageCloud:
 
 ```curl
@@ -72,6 +76,7 @@ Below is a concise instruction on how to set up an MDCB Control Plane with Redis
 To access the comprehensive installation instructions and configuration options, please see [Tyk Control Plane Helm Chart]({{<ref "product-stack/tyk-charts/tyk-control-plane-chart">}}).
 
 ### Prerequisites
+
 - [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
 - [Helm 3+](https://helm.sh/docs/intro/install/)
 - MDCB and Dashboard license
@@ -116,7 +121,8 @@ If you do not already have Redis installed, you may use these charts provided by
 ```bash
 helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESPACE --install --version 19.0.2
 ```
-Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk-cp.svc:6379` (Tyk needs the name including the port) 
+
+Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk-cp.svc:6379` (Tyk needs the name including the port)
 
 The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this secret in installation later.
 
@@ -144,7 +150,6 @@ POSTGRESQLURL=host=tyk-postgres-postgresql.$NAMESPACE.svc\ port=5432\ user=postg
 kubectl create secret generic postgres-secrets  -n $NAMESPACE --from-literal=postgresUrl="$POSTGRESQLURL"
 ```
 
-
 {{< note >}}
 **Note**
 
@@ -152,6 +157,7 @@ Ensure that you are installing PostgreSQL versions that are supported by Tyk. Pl
 {{< /note >}}
 
 #### Step 4 - Install Tyk Control Plane
+
 ```bash
 helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
 
@@ -176,9 +182,11 @@ Now Tyk Dashboard and Tyk MDCB should be accessible through service `dashboard-s
 You can use the MDCB connection details included in the installation output, to install the [MDCB Data Plane]({{<ref "tyk-multi-data-centre/setup-worker-data-centres">}}).
 
 ## Configuration
+
 If you install MDCB component with package, modify your `/opt/tyk-sink/tyk_sink.conf` file as follows:
 
 ### Configuration Example
+
 ```json
 {
   "listen_port": 9091,
@@ -206,9 +214,7 @@ If you install MDCB component with package, modify your `/opt/tyk-sink/tyk_sink.
   },
   "hash_keys": true,
   "forward_analytics_to_pump": true,
-  "ignore_tag_prefix_list": [
-    
-  ],
+  "ignore_tag_prefix_list": [],
   "analytics": {
     "mongo_url": "mongodb://localhost/tyk_analytics",
     "mongo_use_ssl": false,
@@ -219,7 +225,7 @@ If you install MDCB component with package, modify your `/opt/tyk-sink/tyk_sink.
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 From MDCB 2.0+, you can choose between Mongo or SQL databases to setup your `analytics` storage. In order to setup your PostgreSQL storage, you can use the same configuration from your [Tyk Dashboard main storage]({{< ref "/content/planning-for-production/database-settings/postgresql.md" >}}).
 
@@ -234,8 +240,9 @@ For example, to set up a `postgres` storage the `analytics` configurations would
       "connection_string": "user=postgres_user password=postgres_password database=dbname host=potgres_host port=postgres_port",
       "table_sharding": false
   },
-} 
+}
 ```
+
 This storage will work for fetching your organization data (APIs, Policies, etc) and for analytics.
 {{< /note >}}
 
@@ -244,7 +251,6 @@ You should now be able to start the MDCB service, check that it is up and runnin
 ```console
 sudo systemctl start tyk-sink
 ```
-
 
 ```console
 sudo systemctl enable tyk-sink
@@ -257,6 +263,7 @@ It is possible to perform a health check on the MDCB service. This allows you to
 Health checks are available via the HTTP port. This is defined by `http_port` configuration setting and defaults to `8181`. Do **not** use the standard MDCB listen port (`listen_port`) for MDCB health checks.
 
 From MDCB v2.7.0, there are 2 health check services available:
+
 1. `/liveness` endpoint returns a `HTTP 200 OK` response when the service is operational.
 2. `/readiness` endpoint returns a `HTTP 200 OK` response when MDCB is ready to accept requests. It ensures that dependent components such as Redis and data store are connected, and the gRPC server is ready for connection.
 
@@ -270,7 +277,7 @@ Please note that an HTTP 200 OK response from the `/health` endpoint merely indi
 
 ## Troubleshooting
 
-#### Check that the MDCB service is running 
+#### Check that the MDCB service is running
 
 ```console
 sudo systemctl status tyk-sink
@@ -309,7 +316,7 @@ tcp6       0      0 :::9091                 :::*                    LISTEN      
 #### Check the logs for MDCB
 
 ```{.copyWrapper}
-> sudo journalctl -u tyk-sink 
+> sudo journalctl -u tyk-sink
 ```
 
 Add the `-f` flag to follow the log. The command should return output similar to this:
@@ -382,8 +389,9 @@ You can find your organization id in the Dashboard, under your user account deta
 ```curl
 curl $DASH_URL/admin/organisations/$ORG_ID -H "Admin-Auth: $DASH_ADMIN_SECRET" | python -mjson.tool > myorg.json
 ```
+
 5. Open `myorg.json` in your favorite text editor and add the following fields as follows.
-New fields are between the `...` .
+   New fields are between the `...` .
 
 ```json {linenos=table,hl_lines=["5-12"],linenostart=1}
 {
@@ -415,7 +423,7 @@ In the example above it can be seen that the `hybrid_enabled` and `event_options
 
   - event notification mechanism for all Redis key (hashed and unhashed) events. Events can be notified via webhook by setting the `webhook` property to the value of the webhook URL. Similarly, events can be notified via email by setting the `email` property to the value of the target email address.
   - enable propagation of events for when an OAuth token is revoked from Dashboard by setting the `redis` property to `true`.
-  
+
   The `event_options` in the example above enables the following functionality:
 
   - events are propagated when OAuth tokens are revoked from Dashboard since `redis` is `true`
@@ -430,7 +438,5 @@ curl -X PUT $DASH_URL/admin/organisations/$ORG_ID -H "Admin-Auth: $DASH_ADMIN_SE
 This should return:
 
 ```json
-{"Status":"OK","Message":"Org updated","Meta":null}
+{ "Status": "OK", "Message": "Org updated", "Meta": null }
 ```
- 
- 

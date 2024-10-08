@@ -1,7 +1,7 @@
 ---
 title: Sync Response
 description: Explains an overview of configuring sync_response output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "sync_response", "Sync Response" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "sync_response", "Sync Response"]
 ---
 
 Returns the final message payload back to the input origin of the message, where it is dealt with according to that specific input type.
@@ -26,13 +26,13 @@ output:
     pattern: fan_out
     outputs:
       - kafka:
-          addresses: [ TODO:9092 ]
+          addresses: [TODO:9092]
           topic: foo_topic
       - sync_response: {}
         processors:
-          - mapping: 'root = content().uppercase()'
+          - mapping: "root = content().uppercase()"
 ```
 
-Using the above example and POSTING the message *hello world* to the endpoint `/post` Tyk Streams would send it unchanged to the topic `foo_topic` and also respond with *HELLO WORLD*.
+Using the above example and POSTING the message _hello world_ to the endpoint `/post` Tyk Streams would send it unchanged to the topic `foo_topic` and also respond with _HELLO WORLD_.
 
 For more information please read the [Synchronous Responses]({{< ref "/product-stack/tyk-streaming/guides/sync-responses" >}}) guide.

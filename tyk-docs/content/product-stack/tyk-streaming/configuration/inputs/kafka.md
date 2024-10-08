@@ -1,7 +1,7 @@
 ---
 title: Kafka
 description: Explains an overview of Kafka input
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs", "Kafka" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs", "Kafka"]
 ---
 
 Connects to Kafka brokers and consumes one or more topics.
@@ -80,7 +80,7 @@ Batching messages before processing can be enabled using the [batching](#batchin
 
 This input adds the following metadata fields to each message:
 
-``` text
+```text
 - kafka_key
 - kafka_topic
 - kafka_partition
@@ -113,8 +113,7 @@ Unfortunately this error message will appear for a wide range of connection prob
 
 A list of broker addresses to connect to. If an item of the list contains commas it will be expanded into multiple addresses.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -134,9 +133,8 @@ addresses:
 
 A list of topics to consume from. Multiple comma separated topics can be listed in a single element. Partitions are automatically distributed across consumers of a topic. Alternatively, it's possible to specify explicit partitions to consume from with a colon after the topic name, e.g. `foo:0` would consume the partition 0 of the topic foo. This syntax supports ranges, e.g. `foo:0-10` would consume partitions 0 through to 10 inclusive.
 
-
 Type: `array`  
-Requires version 3.33.0 or newer  
+Requires version 3.33.0 or newer
 
 ```yml
 # Examples
@@ -164,8 +162,7 @@ topics:
 
 The version of the Kafka protocol to use. This limits the capabilities used by the client and should ideally match the version of your brokers. Defaults to the oldest supported stable version.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -179,33 +176,29 @@ target_version: 3.1.0
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
 Default: `false`  
-Requires version 3.45.0 or newer  
+Requires version 3.45.0 or newer
 
 ### tls.root_cas
 
@@ -215,9 +208,8 @@ An optional root certificate authority to use. This is a string, representing a 
 This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
 ::: -->
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -232,9 +224,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -246,9 +237,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -266,9 +256,8 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
@@ -278,33 +267,29 @@ A plain text certificate key to use.
 This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
 ::: -->
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -318,33 +303,29 @@ password: foo
 
 Enables SASL authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### sasl.mechanism
 
 The SASL authentication mechanism, if left empty SASL authentication is not used.
 
-
 Type: `string`  
-Default: `"none"`  
+Default: `"none"`
 
-| Option | Summary |
-|---|---|
-| `OAUTHBEARER` | OAuth Bearer based authentication. |
-| `PLAIN` | Plain text authentication. NOTE: When using plain text auth it is extremely likely that you'll also need to [enable TLS](#tlsenabled). |
-| `SCRAM-SHA-256` | Authentication using the SCRAM-SHA-256 mechanism. |
-| `SCRAM-SHA-512` | Authentication using the SCRAM-SHA-512 mechanism. |
-| `none` | Default, no SASL authentication. |
-
+| Option          | Summary                                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `OAUTHBEARER`   | OAuth Bearer based authentication.                                                                                                     |
+| `PLAIN`         | Plain text authentication. NOTE: When using plain text auth it is extremely likely that you'll also need to [enable TLS](#tlsenabled). |
+| `SCRAM-SHA-256` | Authentication using the SCRAM-SHA-256 mechanism.                                                                                      |
+| `SCRAM-SHA-512` | Authentication using the SCRAM-SHA-512 mechanism.                                                                                      |
+| `none`          | Default, no SASL authentication.                                                                                                       |
 
 ### sasl.user
 
 A PLAIN username. It is recommended that you use environment variables to populate this field.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -355,13 +336,13 @@ user: ${USER}
 ### sasl.password
 
 A PLAIN password. It is recommended that you use environment variables to populate this field.
+
 <!-- TODO add secret link :::warning Secret
 This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
 ::: -->
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -373,98 +354,86 @@ password: ${PASSWORD}
 
 A static OAUTHBEARER access token
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 <!-- TODO add ### sasl.token_cache
 
 Instead of using a static `access_token` allows you to query a [`cache`](/docs/components/caches/about) resource to fetch OAUTHBEARER tokens from -->
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### sasl.token_key
 
 Required when using a `token_cache`, the key to query the cache with for tokens.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### consumer_group
 
 An identifier for the consumer group of the connection. This field can be explicitly made empty in order to disable stored offsets for the consumed topic partitions.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### client_id
 
 An identifier for the client connection.
 
-
 Type: `string`  
-Default: `"tyk"`  
+Default: `"tyk"`
 
 ### rack_id
 
 A rack identifier for this client.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### start_from_oldest
 
 Determines whether to consume from the oldest available offset, otherwise messages are consumed from the latest offset. The setting is applied when creating a new consumer group or the saved offset no longer exists.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### checkpoint_limit
 
 The maximum number of messages of the same topic and partition that can be processed at a given time. Increasing this limit enables parallel processing and batching at the output level to work on individual partitions. Any given offset will not be committed unless all messages under that offset are delivered in order to preserve at least once delivery guarantees.
 
-
 Type: `int`  
 Default: `1024`  
-Requires version 3.33.0 or newer  
+Requires version 3.33.0 or newer
 
 ### auto_replay_nacks
 
 Whether messages that are rejected (nacked) at the output level should be automatically replayed indefinitely, eventually resulting in back pressure if the cause of the rejections is persistent. If set to `false` these messages will instead be deleted. Disabling auto replays can greatly improve memory efficiency of high throughput streams as the original shape of the data can be discarded immediately upon consumption and mutation.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### commit_period
 
 The period of time between each commit of the current partition offsets. Offsets are always committed during shutdown.
 
-
 Type: `string`  
-Default: `"1s"`  
+Default: `"1s"`
 
 ### max_processing_period
 
 A maximum estimate for the time taken to process a message, this is used for tuning consumer group synchronization.
 
-
 Type: `string`  
-Default: `"100ms"`  
+Default: `"100ms"`
 
 ### extract_tracing_map
 
 A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping that attempts to extract an object containing tracing propagation information, which will then be used as the root tracing span for the message. The specification of the extracted fields must match the format used by the service wide tracer.
 
-
 Type: `string`  
-Requires version 3.45.0 or newer  
+Requires version 3.45.0 or newer
 
 ```yml
 # Examples
@@ -478,54 +447,48 @@ extract_tracing_map: root = this.meta.span
 
 Tuning parameters for consumer group synchronization.
 
-
-Type: `object`  
+Type: `object`
 
 ### group.session_timeout
 
 A period after which a consumer of the group is kicked after no heartbeats.
 
-
 Type: `string`  
-Default: `"10s"`  
+Default: `"10s"`
 
 ### group.heartbeat_interval
 
 A period in which heartbeats should be sent out.
 
-
 Type: `string`  
-Default: `"3s"`  
+Default: `"3s"`
 
 ### group.rebalance_timeout
 
 A period after which rebalancing is abandoned if unresolved.
 
-
 Type: `string`  
-Default: `"60s"`  
+Default: `"60s"`
 
 ### fetch_buffer_cap
 
 The maximum number of unprocessed messages to fetch at a given time.
 
-
 Type: `int`  
-Default: `256`  
+Default: `256`
 
 ### multi_header
 
 Decode headers into lists to allow handling of multiple values with the same key
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### batching
 
 Allows you to configure a [batching policy]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching#batch-policy" >}}).
 
-Type: `object`  
+Type: `object`
 
 ```yml
 # Examples
@@ -549,25 +512,22 @@ batching:
 
 A number of messages at which the batch should be flushed. If `0` disables count based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.byte_size
 
 An amount of bytes at which the batch should be flushed. If `0` disables size based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.period
 
 A period in which an incomplete batch should be flushed regardless of its size.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -584,7 +544,7 @@ period: 500ms
 A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) query that should return a boolean value indicating whether a message should end a batch.
 
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -596,8 +556,7 @@ check: this.type == "end_of_transaction"
 
 A list of processors to apply to a batch as it is flushed. This allows you to aggregate and archive the batch however you see fit. Please note that all resulting messages are flushed as a single batch, therefore splitting the batch into smaller batches using these processors is a no-op.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -614,4 +573,3 @@ processors:
   - archive:
       format: json_array
 ```
-

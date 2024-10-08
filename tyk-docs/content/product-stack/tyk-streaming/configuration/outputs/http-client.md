@@ -1,11 +1,10 @@
 ---
 title: Http Client
 description: Explains an overview of configuring Http client output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "Http Client", "http_client" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "Http Client", "http_client"]
 ---
 
 Sends messages to an HTTP server.
-
 
 ## Common
 
@@ -119,15 +118,14 @@ This output benefits from sending messages as a [batch]({{< ref "/product-stack/
 The URL to connect to.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-Type: `string`  
+Type: `string`
 
 ### verb
 
 A verb to connect with
 
-
 Type: `string`  
-Default: `"POST"`  
+Default: `"POST"`
 
 ```yml
 # Examples
@@ -144,9 +142,8 @@ verb: DELETE
 A map of headers to add to the request.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ```yml
 # Examples
@@ -160,16 +157,14 @@ headers:
 
 Specify optional matching rules to determine which metadata keys should be added to the HTTP request as headers.
 
-
-Type: `object`  
+Type: `object`
 
 ### metadata.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -189,9 +184,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -207,7 +201,6 @@ include_patterns:
 
 Optionally set a level at which the request and response payload of each request made will be logged.
 
-
 Type: `string`  
 Default: `""`  
 Options: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`, ``.
@@ -216,103 +209,90 @@ Options: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`, ``.
 
 Allows you to specify open authentication via OAuth version 1.
 
-
-Type: `object`  
+Type: `object`
 
 ### oauth.enabled
 
 Whether to use OAuth version 1 in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth.consumer_key
 
 A value used to identify the client to the service provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.consumer_secret
 
 A secret used to establish ownership of the consumer key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.access_token
 
 A value used to gain access to the protected resources on behalf of the user.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.access_token_secret
 
 A secret provided in order to establish ownership of a given access token.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2
 
 Allows you to specify open authentication via OAuth version 2 using the client credentials token flow.
 
-
-Type: `object`  
+Type: `object`
 
 ### oauth2.enabled
 
 Whether to use OAuth version 2 in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth2.client_key
 
 A value used to identify the client to the token provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2.client_secret
 
 A secret used to establish ownership of the client key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2.token_url
 
 The URL of the token provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2.scopes
 
 A list of optional requested permissions.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### oauth2.endpoint_params
 
 A list of optional endpoint parameters, values should be arrays of strings.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ```yml
 # Examples
@@ -329,118 +309,103 @@ endpoint_params:
 
 Allows you to specify basic authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### basic_auth.enabled
 
 Whether to use basic authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### basic_auth.username
 
 A username to authenticate as.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### basic_auth.password
 
 A password to authenticate with.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt
 
 Allows you to specify JWT authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### jwt.enabled
 
 Whether to use JWT authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### jwt.private_key_file
 
 A file with the PEM encoded via PKCS1 or PKCS8 as private key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.signing_method
 
 A method used to sign the token such as RS256, RS384, RS512 or EdDSA.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.claims
 
 A value used to identify the claims that issued the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### jwt.headers
 
 Add optional key/value headers to the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -455,9 +420,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -469,9 +433,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -489,41 +452,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -535,16 +493,14 @@ password: foo
 
 Specify which response headers should be added to resulting synchronous response messages as metadata. Header keys are lowercased before matching, so ensure that your patterns target lowercased versions of the header keys that you expect. This field is not applicable unless `propagate_response` is set to `true`.
 
-
-Type: `object`  
+Type: `object`
 
 ### extract_headers.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -564,9 +520,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -582,102 +537,89 @@ include_patterns:
 
 An optional [rate limit]({{< ref "/product-stack/tyk-streaming/configuration/rate-limits/overview" >}}) to throttle requests by.
 
-
-Type: `string`  
+Type: `string`
 
 ### timeout
 
 A static timeout to apply to requests.
 
-
 Type: `string`  
-Default: `"5s"`  
+Default: `"5s"`
 
 ### retry_period
 
 The base period to wait between failed requests.
 
-
 Type: `string`  
-Default: `"1s"`  
+Default: `"1s"`
 
 ### max_retry_backoff
 
 The maximum period to wait between failed requests.
 
-
 Type: `string`  
-Default: `"300s"`  
+Default: `"300s"`
 
 ### retries
 
 The maximum number of retry attempts to make.
 
-
 Type: `int`  
-Default: `3`  
+Default: `3`
 
 ### backoff_on
 
 A list of status codes whereby the request should be considered to have failed and retries should be attempted, but the period between them should be increased gradually.
 
-
 Type: `array`  
-Default: `[429]`  
+Default: `[429]`
 
 ### drop_on
 
 A list of status codes whereby the request should be considered to have failed but retries should not be attempted. This is useful for preventing wasted retries for requests that will never succeed. Note that with these status codes the _request_ is dropped, but _message_ that caused the request will not be dropped.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### successful_on
 
 A list of status codes whereby the attempt should be considered successful, this is useful for dropping requests that return non-2XX codes indicating that the message has been dealt with, such as a 303 See Other or a 409 Conflict. All 2XX codes are considered successful unless they are present within `backoff_on` or `drop_on`, regardless of this field.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### proxy_url
 
 An optional HTTP proxy URL.
 
-
-Type: `string`  
+Type: `string`
 
 ### batch_as_multipart
 
 Send message batches as a single request using [RFC1341](https://www.w3.org/Protocols/rfc1341/7_2_Multipart.html). If disabled messages in batches will be sent as individual requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### propagate_response
 
 Whether responses from the server should be [propagated back]({{< ref "/product-stack/tyk-streaming/guides/sync-responses" >}}) to the input.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### max_in_flight
 
 The maximum number of parallel message batches to have in flight at any given time.
 
-
 Type: `int`  
-Default: `64`  
+Default: `64`
 
 ### batching
 
 Allows you to configure a [batching policy]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching" >}}).
 
-
-Type: `object`  
+Type: `object`
 
 ```yml
 # Examples
@@ -701,25 +643,22 @@ batching:
 
 A number of messages at which the batch should be flushed. If `0` disables count based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.byte_size
 
 An amount of bytes at which the batch should be flushed. If `0` disables size based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.period
 
 A period in which an incomplete batch should be flushed regardless of its size.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -735,9 +674,8 @@ period: 500ms
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message should end a batch.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -749,8 +687,7 @@ check: this.type == "end_of_transaction"
 
 A list of processors to apply to a batch as it is flushed. This allows you to aggregate and archive the batch however you see fit. Please note that all resulting messages are flushed as a single batch, therefore splitting the batch into smaller batches using these processors is a no-op.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -772,18 +709,16 @@ processors:
 
 Create explicit multipart HTTP requests by specifying an array of parts to add to the request, each part specified consists of content headers and a data field that can be populated dynamically. If this field is populated it will override the default request creation behavior.
 
-
 Type: `array`  
-Default: `[]`   
+Default: `[]`
 
 ### multipart[].content_type
 
 The content type of the individual message part.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}})
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -796,9 +731,8 @@ content_type: application/bin
 The content disposition of the individual message part.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}})
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -811,9 +745,8 @@ content_disposition: form-data; name="bin"; filename='${! @AttachmentName }
 The body of the individual message part.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples

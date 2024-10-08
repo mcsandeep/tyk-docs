@@ -11,48 +11,47 @@ aliases:
 
 [Tyk Cloud](https://tyk.io/cloud/) hosts and manages the control planes for you. You can deploy the data planes across multiple locations:
 
-- as [Cloud Gateways]({{< ref "tyk-cloud/environments-&-deployments/managing-gateways" >}}): Deployed and managed in *Tyk Cloud*, in any of our available regions. These are SaaS gateways, so there are no deployment or operational concerns.
+- as [Cloud Gateways]({{< ref "tyk-cloud/environments-&-deployments/managing-gateways" >}}): Deployed and managed in _Tyk Cloud_, in any of our available regions. These are SaaS gateways, so there are no deployment or operational concerns.
 - as Hybrid Gateways: This is a self-managed data plane, deployed in your infrastructure and managed by yourself. Your infrastructure can be a public or private cloud, or even your own data center.
 
 This page describes the deployment of hybrid data planes and how to connect them to Tyk Cloud, in both Kubernetes and Docker environments.
 
 ## Pre-requisites
 
-* Tyk Cloud Account, register here if you don't have one yet: {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="free trial" >}}
-* A Redis instance for each data plane, used as ephemeral storage for distributed rate limiting, token storage and analytics. You will find instructions for a simple Redis installation in the steps below.
-* No incoming firewall rules are needed, as the connection between Tyk Hybrid Gateways and Tyk Cloud is always initiated from the Gateways, not from Tyk Cloud.
+- Tyk Cloud Account, register here if you don't have one yet: {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="free trial" >}}
+- A Redis instance for each data plane, used as ephemeral storage for distributed rate limiting, token storage and analytics. You will find instructions for a simple Redis installation in the steps below.
+- No incoming firewall rules are needed, as the connection between Tyk Hybrid Gateways and Tyk Cloud is always initiated from the Gateways, not from Tyk Cloud.
 
 ## Tyk Hybrid Gateway configuration
 
-The hybrid gateways in the data plane connect to the control plane in Tyk Cloud using the *Tyk Dashboard* API Access Credentials. Follow the guides below to create the configuration that we will be used in later sections to create a deployment:
+The hybrid gateways in the data plane connect to the control plane in Tyk Cloud using the _Tyk Dashboard_ API Access Credentials. Follow the guides below to create the configuration that we will be used in later sections to create a deployment:
 
 Login to your Tyk Cloud account deployments section and click on `ADD HYBRID DATA PLANE`
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-configuration-home.png" alt="Tyk Cloud hybrid configuration home" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-configuration-home.png" alt="Tyk Cloud hybrid configuration home" >}}
 
 Fill in the details and then click _SAVE DATA PLANE CONFIG_
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-save-hybrid-configuration.png" alt="Save Tyk Cloud hybrid configuration home" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-save-hybrid-configuration.png" alt="Save Tyk Cloud hybrid configuration home" >}}
 
 This will open up a page with the data plane configuration details that we need.
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-masked-details.png" alt="Save Tyk Cloud hybrid configuration masked details" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-masked-details.png" alt="Save Tyk Cloud hybrid configuration masked details" >}}
 
 Those details are:
-|                                      | Docker            | Helm                   |
+| | Docker | Helm |
 |--------------------------------------|-------------------|------------------------|
-| key                                  | api_key           | gateway.rpc.apiKey     |
-| org_id                               | rpc_key           | gateway.rpc.rpcKey     |
+| key | api_key | gateway.rpc.apiKey |
+| org_id | rpc_key | gateway.rpc.rpcKey |
 | data_planes_connection_string (mdcb) | connection_string | gateway.rpc.connString |
 
 You can also click on _OPEN DETAILS_
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-open-details.png" alt="Tyk Cloud hybrid open for details" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-open-details.png" alt="Tyk Cloud hybrid open for details" >}}
 
 This will reveal instructions that you can use to connect your hybrid data plane to Tyk Cloud.
 
 {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-revealed-instructions.png" alt="Tyk Cloud hybrid detailed instructions" >}}
-
 
 ## Deploy with Docker
 
@@ -62,27 +61,25 @@ This will reveal instructions that you can use to connect your hybrid data plane
 git clone https://github.com/TykTechnologies/tyk-gateway-docker.git
 ```
 
-
 ### 2. Configure Tyk Gateway and its connection to Tyk Cloud
 
 You need to modify the following values in [tyk.hybrid.conf](https://github.com/TykTechnologies/tyk-gateway-docker#hybrid) configuration file:
 
-* `rpc_key` - Organization ID
-* `api_key` - Tyk Dashboard API Access Credentials of the user created earlier
-* `connection_string`: MDCB connection string
-* `group_id`*(optional)* - if you have multiple data planes (e.g. in different regions), specify the data plane group (string) to which the gateway you are deploying belongs. The data planes in the same group share one Redis.
-
+- `rpc_key` - Organization ID
+- `api_key` - Tyk Dashboard API Access Credentials of the user created earlier
+- `connection_string`: MDCB connection string
+- `group_id`_(optional)_ - if you have multiple data planes (e.g. in different regions), specify the data plane group (string) to which the gateway you are deploying belongs. The data planes in the same group share one Redis.
 
 ```json
 {
-"rpc_key": "<ORG_ID>",
-"api_key": "<API-KEY>",
-"connection_string": "<MDCB-INGRESS>:443",
-"group_id": "dataplane-europe",
+  "rpc_key": "<ORG_ID>",
+  "api_key": "<API-KEY>",
+  "connection_string": "<MDCB-INGRESS>:443",
+  "group_id": "dataplane-europe"
 }
 ```
 
-* *(optional)* you can enable sharding to selectively load APIs to specific gateways, using the following:
+- _(optional)_ you can enable sharding to selectively load APIs to specific gateways, using the following:
 
 ```json
 {
@@ -100,15 +97,15 @@ This example comes with a Redis instance pre-configured and deployed with Docker
 ```json
 {
   "storage": {
-        "type": "redis",
-        "host": "tyk-redis",
-        "port": 6379,
-        "username": "",
-        "password": "",
-        "database": 0,
-        "optimisation_max_idle": 2000,
-        "optimisation_max_active": 4000
-    }
+    "type": "redis",
+    "host": "tyk-redis",
+    "port": 6379,
+    "username": "",
+    "password": "",
+    "database": 0,
+    "optimisation_max_idle": 2000,
+    "optimisation_max_active": 4000
+  }
 }
 ```
 
@@ -121,6 +118,7 @@ From:
 ```yml
 - ./tyk.standalone.conf:/opt/tyk-gateway/tyk.conf
 ```
+
 To:
 
 ```yml
@@ -143,7 +141,7 @@ Call the /hello endpoint using curl from your terminal (or any other HTTP client
 
 ```bash
 curl http://localhost:8080/hello -i
-````
+```
 
 Expected result:
 
@@ -157,13 +155,15 @@ Content-Length: 59
 ```
 
 ## Deploy in Kubernetes with Helm Chart
+
 ### Prerequisites
 
-* [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
-* [Helm 3+](https://helm.sh/docs/intro/install/)
-* Connection details to remote control plane from the above [section](#create-hybrid-data-plane-configuration).
+- [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
+- [Helm 3+](https://helm.sh/docs/intro/install/)
+- Connection details to remote control plane from the above [section](#create-hybrid-data-plane-configuration).
 
 The following quick start guide explains how to use the [Tyk Data Plane Helm chart]({{<ref "/product-stack/tyk-charts/tyk-data-plane-chart">}}) to configure Tyk Gateway that includes:
+
 - Redis for key storage
 - Tyk Pump to send analytics to Tyk Cloud and Prometheus
 
@@ -210,8 +210,8 @@ Now Tyk Gateway should be accessible through service `gateway-svc-hybrid-dp-tyk-
 
 For the complete installation guide and configuration options, please see [Tyk Data Plane Chart]({{<ref "product-stack/tyk-charts/tyk-data-plane-chart">}}).
 
-
 ## Remove hybrid data plane configuration
+
 {{< warning success >}}
 **Warning**
 
@@ -221,14 +221,12 @@ To remove the hybrid data plane configuration, navigate to the page of the hybri
 
 {{< /warning >}}
 
-
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-open-details.png" alt="Tyk Cloud hybrid open for details" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-open-details.png" alt="Tyk Cloud hybrid open for details" >}}
 
 Then click on _REMOVE DATA PLANE CONFIGS_
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-remove-configs.png" alt="Tyk Cloud hybrid remove configs" >}}
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-remove-configs.png" alt="Tyk Cloud hybrid remove configs" >}}
 
 Confirm the removal by clicking _DELETE HYBRID DATA PLANE_
 
-  {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-confirm-config-removal.png" alt="Tyk Cloud hybrid confirm removal of configs" >}}
-
+{{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-confirm-config-removal.png" alt="Tyk Cloud hybrid confirm removal of configs" >}}

@@ -2,7 +2,7 @@
 date: 2017-03-24T12:34:19Z
 title: Event metadata
 tags: ["API events", "metadata", "event handling", "event metadata"]
-description: "Understanding the metadata associated with API events" 
+description: "Understanding the metadata associated with API events"
 ---
 
 When Tyk generates an [event]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types" >}}) it will compile the following metadata that is passed to the event handler:
@@ -14,7 +14,7 @@ When Tyk generates an [event]({{< ref "basic-config-and-security/report-monitor-
 - `OriginatingRequest` (string): Based64-encoded [raw inbound request](#raw-request-data)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Circuit breaker events provide different metadata, see [Circuit Breakers]({{< ref "planning-for-production/ensure-high-availability/circuit-breakers" >}}) to see what is provided when the `BreakerTripped`, `BreakerReset` or `BreakerTriggered` events are generated.
 {{< /note >}}

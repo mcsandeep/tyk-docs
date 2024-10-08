@@ -9,7 +9,7 @@ menu:
 weight: 3
 ---
 
-By instrumenting your custom plugins with Tyk's *OpenTelemetry* library, you can gain additional insights into custom plugin behavior like time spent and exit status. Read on to see some examples of creating span and setting attributes for your custom plugins.
+By instrumenting your custom plugins with Tyk's _OpenTelemetry_ library, you can gain additional insights into custom plugin behavior like time spent and exit status. Read on to see some examples of creating span and setting attributes for your custom plugins.
 
 {{< note success >}}
 **Note:**

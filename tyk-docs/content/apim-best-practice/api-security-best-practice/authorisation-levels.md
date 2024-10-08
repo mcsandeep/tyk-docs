@@ -5,7 +5,6 @@ tags: ["API Security", "Authorization"]
 description: "Authorization levels"
 ---
 
-
 This section provides basic examples of where different authorization levels occur in the API management stack. The accompanying diagrams use color-coding to show links between request element and the associated authorization locations and methods.
 
 This is how OWASP describe the attack vectors for the three authorization levels:
@@ -15,7 +14,6 @@ This is how OWASP describe the attack vectors for the three authorization levels
 **Object Property Level Authorization**: “APIs tend to expose endpoints that return all object’s properties. This is particularly valid for REST APIs. For other protocols such as GraphQL, it may require crafted requests to specify which properties should be returned. Identifying these additional properties that can be manipulated requires more effort, but there are a few automated tools available to assist in this task.” (source: [OWASP Github](https://github.com/OWASP/API-Security/blob/9c9a808215fcbebda9f657c12f3e572371697eb2/editions/2023/en/0xa3-broken-object-property-level-authorization.md))
 
 **Function Level Authorization**: “Exploitation requires the attacker to send legitimate API calls to an API endpoint that they should not have access to as anonymous users or regular, non-privileged users. Exposed endpoints will be easily exploited.” (source: [OWASP Github](https://github.com/OWASP/API-Security/blob/9c9a808215fcbebda9f657c12f3e572371697eb2/editions/2023/en/0xa3-broken-object-property-level-authorization.md))
-
 
 ### REST API - Reading Data
 
@@ -50,7 +48,6 @@ The gateway can also perform object property level authorization, by validating 
 Lastly, the API handles object level authorization by using custom logic. This typically involves using the value of the `authorization` header in combination with the ownership and authorization model specific to the API to determine if the client is authorized to write the requested data.
 
 ### GraphQL API - Querying Data
-
 
 {{< img src="/img/api-management/security/graphql-query-data.jpeg" alt="Rest API - Write Data" width="150px" >}}
 

@@ -19,11 +19,10 @@ Your Organization is your "container" for all your Environments, Control Planes 
 
 If you are an Organization Admin, when you log in you will see the Overview screen for the Organization you are connected to. If you are a team admin or team member you will see the Team Overview Screen. The Organization Overview screen displays the following info:
 
-* Quick Stats
-* All Teams
-* All Deployments
-* All Environments
-
+- Quick Stats
+- All Teams
+- All Deployments
+- All Environments
 
 ### Quick Stats
 

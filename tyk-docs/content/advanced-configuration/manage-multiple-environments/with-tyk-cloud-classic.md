@@ -5,7 +5,7 @@ menu:
   main:
     parent: "Manage Multiple Environments"
     identifier: multiple-environments-cloud
-weight: 1 
+weight: 1
 ---
 
 With a SAAS Tyk Cloud Classic setup, multiple environment management is not possible because all traffic will run via our proxy and our infrastructure.

@@ -52,39 +52,34 @@ A layout behaves like a component that can be reused to inject templates in orde
 3. Copy the code below, paste it to your new layout file and save it.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
- <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-   <title>{{ if .page}} {{.page.Title}} {{else}} Developer Portal {{end}}</title>
+    <title>{{ if .page}} {{.page.Title}} {{else}} Developer Portal {{end}}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/system/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/stylesheets/fonts.css" rel="stylesheet">
-    <link href="/assets/stylesheets/main.css" rel="stylesheet">
+    <link href="/system/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/stylesheets/fonts.css" rel="stylesheet" />
+    <link href="/assets/stylesheets/main.css" rel="stylesheet" />
+  </head>
 
- </head>
-
- <body>
+  <body>
     {{ render "top_nav" . }}
     <div class="page-wrapper">
       <!-- Page Content -->
       {{ yield }}
-   </div>
+    </div>
 
-
-   {{ render "footer" . }}
-
- </body>
-
+    {{ render "footer" . }}
+  </body>
 </html>
 ```
+
 {{< note success >}}
 **Note**
 
@@ -113,7 +108,9 @@ Only follow this step after creating a new template file in Section 1 above, unl
   <p> {{ .blocks.Description.Content }}</p>
 </div>
 ```
+
 In this example, we use the code references in the template:
+
 - Inside the template’s `<h1>` we use `{{ .page.Title }}` to display the page name.
 - Inside the template’s `<p>` we use `{{ .blocks.Description.Content }}` to display the page content.
 
@@ -127,6 +124,7 @@ In this example, we use the code references in the template:
   "layout": "my_layout"
 }
 ```
+
 Alternatively, you can give it your preferred name but reference the template and layout names we created earlier in the manifest file.
 
 6. Now restart your developer portal service and go through the tutorial on how to add a new page. The template dropdown within the add new page form should have a new entry called `My new Template`, so create a page that will look like this:

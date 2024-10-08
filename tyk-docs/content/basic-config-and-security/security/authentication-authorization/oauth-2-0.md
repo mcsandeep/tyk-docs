@@ -29,12 +29,10 @@ Tyk can act as a full blown OAuth 2.0 provider for Authorization and access toke
 
 Tyk supports the following grant types:
 
-
 - [Authorization Code]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant" >}})
 - [Refresh Token]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/refresh-token-grant" >}})
 - [Username and Password]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/username-password-grant" >}})
 - [Client Credentials]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/client-credentials-grant" >}})
-
 
 The Tyk OAuth flow is described in the following sections.
 
@@ -47,7 +45,7 @@ The Tyk OAuth flow is described in the following sections.
 5.  If the user accepts the Client access and has authenticated successfully, your app calls the Tyk Dashboard OAuth API Authorization endpoint (`/authorize-client/`) with the POST parameters that the requesting client sent.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The Tyk Gateway also exposes an equivalent Gateway API authorization endpoint (`/tyk/oauth/authorize-client/`). In some scenarios, for example where access to the Dashboard API from the authentication server may be restricted, the Gateway API can be used instead.
 {{< /note >}}
@@ -57,8 +55,6 @@ The Tyk Gateway also exposes an equivalent Gateway API authorization endpoint (`
 8.  The API Client uses the auth code to request an access token from Tyk (`/oauth/token`)
 9.  If the access token is valid, Tyk will generate an access token an notify your webapp via webhook that a new access token has been granted and also any other keys that are related (e.g. the auth-code mentioned earlier)
 10. Your app should store these details in order to tie the access token to your users identity
-
-
 
 This seems like a complicated process and very verbose - however in actuality, the integration piece is very small. As an API owner, the only steps that require active integration are:
 
@@ -92,7 +88,7 @@ From the API Core Settings tab, select OAuth 2.0 as the Authentication mode:
 
 ### 2. Set Allowed Access Types and Allowed Authorize Types
 
-Allowed Access Types and Allowed Authorize Types depends on the particular grant type you are supporting.  For example, to support the [Authorization Code grant type]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant" >}}) you should select Authorization Code for both Allowed Access Types and and Allowed Authorize Types.  For other grant types select the appropriate option, e.g. for both [Client Credentials]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/client-credentials-grant" >}}) and [Username and Password]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/username-password-grant" >}}) grant types you should select Token for Allowed Authorize Types.
+Allowed Access Types and Allowed Authorize Types depends on the particular grant type you are supporting. For example, to support the [Authorization Code grant type]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant" >}}) you should select Authorization Code for both Allowed Access Types and and Allowed Authorize Types. For other grant types select the appropriate option, e.g. for both [Client Credentials]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/client-credentials-grant" >}}) and [Username and Password]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/username-password-grant" >}}) grant types you should select Token for Allowed Authorize Types.
 
 ### 3. Set Redirect Fields
 
@@ -110,7 +106,7 @@ Next, [create a policy]({{< ref "getting-started/create-security-policy" >}}) wh
 
 ### 5. Create an OAuth Client
 
-In order for any of these requests to work, you will need a valid OAuth client.  To create an OAuth client, browse back to your API list and for the API you have created, select **OAuth Clients** under the **Actions** Dropdown list.
+In order for any of these requests to work, you will need a valid OAuth client. To create an OAuth client, browse back to your API list and for the API you have created, select **OAuth Clients** under the **Actions** Dropdown list.
 
 {{< img src="/img/dashboard/system-management/oauth-api-oauth-clients.png" alt="OAuth Clients" >}}
 
@@ -118,7 +114,7 @@ In order for any of these requests to work, you will need a valid OAuth client. 
 
 {{< img src="/img/dashboard/system-management/oauth-add-new-client.png" alt="Add new OAuth Client" >}}
 
-You need to set a redirect URI, which can be any URI for Client Credentials and Password grant types. For the [Authorization Code grant type]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant" >}}) this is the pre-registered redirect URL that the authorization server will redirect the client to.  During the OAuth flow, the value set in the inbound request must match what is set here.
+You need to set a redirect URI, which can be any URI for Client Credentials and Password grant types. For the [Authorization Code grant type]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant" >}}) this is the pre-registered redirect URL that the authorization server will redirect the client to. During the OAuth flow, the value set in the inbound request must match what is set here.
 
 Select the policy you created earlier. This policy will be applied to each token that gets generated by this client ID.
 
@@ -127,6 +123,7 @@ Select the policy you created earlier. This policy will be applied to each token
 Once the client is created, you can view it’s ID and secret in the detail view.
 
 {{< img src="/img/dashboard/system-management/oauth-client-secret-details.png" alt="View Client ID and Secret" >}}
+
 ## Enabling OAuth via an API
 
 To get OAuth set up in your API configuration, you will need to set up your API Definition like so:

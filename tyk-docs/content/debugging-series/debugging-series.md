@@ -5,7 +5,7 @@ tags: ["Debugging Series", "Debugging in Tyk", "Debugging a tyk instance"]
 description: "A list of debugging pages for a Tyk instance"
 menu:
   main:
-      parent: "FAQ"
+    parent: "FAQ"
 aliases:
   - /debugging-series/
 ---

@@ -23,14 +23,14 @@ To configure the URL rewriter you must add a new `url_rewrites` object to the `e
 
 ```json
 {
-    "url_rewrites": [
-        {
-            "path": "books/author",
-            "method": "GET",
-            "match_pattern": "(\w+)/(\w+)",
-            "rewrite_to": "library/service?value1=$1&value2=$2"
-        }
-    ]
+  "url_rewrites": [
+    {
+      "path": "books/author",
+      "method": "GET",
+      "match_pattern": "(w+)/(w+)",
+      "rewrite_to": "library/service?value1=$1&value2=$2"
+    }
+  ]
 }
 ```
 
@@ -39,12 +39,14 @@ In this example the basic trigger has been configured to match the path for a re
 You can add advanced triggers to your URL rewriter configuration by adding the `triggers` element within the `url_rewrites` object.
 
 The `triggers` element is an array, with one entry per advanced trigger. For each of those triggers you configure:
+
 - `on` to set the logical condition to be applied to the rules (`any` or `all`)
 - `options` a list of rules for the trigger
 - `rewrite_to` the address to which the (target) URL should be rewritten if the trigger fires
 
 The rules are defined using this format:
-```yaml
+
+````yaml
 {
     key_location: {
         key_name: {
@@ -107,11 +109,12 @@ For example:
         }
     ]
 }
-```
+````
 
 In this example, the basic trigger is configured as before, but two advanced triggers have been added.
 
 The first advanced trigger has this configuration:
+
 - key location is query parameter
 - key name is genre
 - pattern is fiction
@@ -119,15 +122,16 @@ The first advanced trigger has this configuration:
 So if a `GET` request is made to `/books/author?genre=fiction` the advanced trigger will fire and the URL will be rewritten to `library/service/author?genre=fiction`.
 
 The second advanced trigger has this configuration:
+
 - rule condition: ALL
 - rule 1
-    - key location is header parameter
-    - key name is `X-Enable-Beta`
-    - pattern is `true``
+  - key location is header parameter
+  - key name is `X-Enable-Beta`
+  - pattern is `true``
 - rule 2
-    - key location is session metadata
-    - key name is `beta_enabled`
-    - pattern is `true`
+  - key location is session metadata
+  - key name is `beta_enabled`
+  - pattern is `true`
 
 So if a request is made to `GET /books/author` with a header `"X-Enable-Beta":"true"` and, within the session metadata, `"beta_enabled":"true"` the second advanced trigger will fire and the URL will be written to `https://beta.library.com/books/author` taking the request to a different upstream host entirely.
 
@@ -161,7 +165,7 @@ When triggers are added, you can edit or remove them inside the **Advanced URL r
 
 #### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the URL rewriter in Tyk Operator {#tyk-operator}
 
@@ -236,24 +240,24 @@ spec:
               match_pattern: /anything/(\w+)/(\w+)
               method: GET
               rewrite_to: /anything/library/service?value1=$1&value2=$2
-              triggers: 
+              triggers:
                 - "on": "any"
                   "rewrite_to": "library/service/author?genre=$tyk_context.trigger-0-genre-0"
                   "options":
-                    "query_val_matches": 
-                      "genre": 
-                          "match_rx": "fiction"
-                          "reverse": false
+                    "query_val_matches":
+                      "genre":
+                        "match_rx": "fiction"
+                        "reverse": false
                 - "on": "all"
-                  "options": 
-                    "header_matches": 
-                        "X-Enable-Beta": 
-                            "match_rx": "true"
-                            "reverse": false
-                    "session_meta_matches": 
-                        "beta_enabled": 
-                            "match_rx": "true"
-                            "reverse": false
+                  "options":
+                    "header_matches":
+                      "X-Enable-Beta":
+                        "match_rx": "true"
+                        "reverse": false
+                    "session_meta_matches":
+                      "beta_enabled":
+                        "match_rx": "true"
+                        "reverse": false
                   "rewrite_to": "https://beta.library.com/books/author"
 ```
 

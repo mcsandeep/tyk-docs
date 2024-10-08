@@ -33,13 +33,15 @@ Tyk Gateway, by default, creates aggregations points for all the tags it records
 ### How to avoid the creation of aggregation analytics?
 
 If you don't want or need aggregated analytics for the headers you record with `tag_headers`, it is possible to set Tyk to ignore them, by creating a list of tags to ignore.
-This is done while writing the recorded *aggregated analytics* to the data stores. Configure a list of tags that are ignored when writing *aggregated analytics* to MongoDB. This can be configured for Tyk Pump and MDCB.
+This is done while writing the recorded _aggregated analytics_ to the data stores. Configure a list of tags that are ignored when writing _aggregated analytics_ to MongoDB. This can be configured for Tyk Pump and MDCB.
 
 #### Ignore list in Tyk pump
+
 In Tyk Pump config field (`tyk_sink.conf` or whatever name you chose to use), add the tags you want to ignore, or their prefixes to the `ignore_tag_prefix_list` field, (root level).
 
 #### Ignore list in Tyk MDCB
-In MDCB deployment, if you use the MDCB component to write the *aggregated analytics* to the data stores, you need to define the ignore list of headers or their prefixes, in MDCB config field (`tyk_sink.conf` or whatever name you chose to use), under `ignore_tag_prefix_list` field, (root level).
+
+In MDCB deployment, if you use the MDCB component to write the _aggregated analytics_ to the data stores, you need to define the ignore list of headers or their prefixes, in MDCB config field (`tyk_sink.conf` or whatever name you chose to use), under `ignore_tag_prefix_list` field, (root level).
 
 Note: the field above is replacing `aggregates_ignore_tags` which is still working but will eventually be deprecated.
 
@@ -73,7 +75,6 @@ curl http://tyk-gateway.localhost:8080/basic-open-api/get -H "X-Team-Name: devop
 
 ### We can now have Tyk track API requests which contain our business logic!!!
 
-
 ## How to setup tag headers with Tyk Operator {#tyk-operator}
 
 To setup tag headers with Tyk Operator add the list of headers to tag to the `tag_headers` object within the `spec` field of the API definition resource. An example is given below:
@@ -89,8 +90,8 @@ spec:
   protocol: http
   active: true
   tag_headers:
-  - Host
-  - User-Agent
+    - Host
+    - User-Agent
   proxy:
     target_url: http://httpbin.org
     listen_path: /httpbin-tag-headers

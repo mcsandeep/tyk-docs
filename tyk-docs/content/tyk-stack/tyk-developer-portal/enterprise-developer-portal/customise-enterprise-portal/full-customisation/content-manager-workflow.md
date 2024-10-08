@@ -8,6 +8,7 @@ menu:
     parent: "Full Customization"
 weight: 2
 ---
+
 {{< note success >}}
 **Tyk Enterprise Developer Portal**
 
@@ -16,6 +17,7 @@ If you are interested in getting access contact us at [support@tyk.io](<mailto:s
 {{< /note >}}
 
 ## Introduction
+
 For organizations with content manager(s) managing the developer portal content, we are recommending the following workflow.
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/portal-content-manager-flow.png" alt="Content manager workflow" >}}

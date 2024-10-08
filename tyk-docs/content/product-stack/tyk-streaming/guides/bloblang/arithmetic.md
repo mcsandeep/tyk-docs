@@ -1,7 +1,7 @@
 ---
 title: Bloblang Arithmetic
 description: Explains Bloblang Arithmetic
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Arithmetic", "Arithmetic" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Arithmetic", "Arithmetic"]
 ---
 
 [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) supports a range of comparison operators `!`, `>`, `>=`, `==`, `<`, `<=`, `&&`, `||` and mathematical operators `+`, `-`, `*`, `/`, `%`. How these operators behave is dependent on the type of the values they're used with, and therefore it's worth fully understanding these behaviors if you intend to use them heavily in your mappings.
@@ -37,4 +37,3 @@ Numerical comparisons (`>`, `>=`, `<`, `<=`) are valid to use against number val
 ### Boolean
 
 Boolean comparison operators (`||`, `&&`) are valid to use against boolean values only (`true` or `false`). If a non-boolean value is used as an argument then a [recoverable mapping error will be thrown]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview#error-handling" >}}).
-

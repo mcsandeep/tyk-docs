@@ -1,6 +1,20 @@
 ---
 title: The Complete Kubernetes Tyk Demo
-tags: ["Tyk Tutorials", "Getting Started", "POC", "Proof of Concept", "Tyk PoC", "k8s", "Self Managed", "Open Source", "demo", "Tyk demo", "Tyk quick start", "Kubernetes"]
+tags:
+  [
+    "Tyk Tutorials",
+    "Getting Started",
+    "POC",
+    "Proof of Concept",
+    "Tyk PoC",
+    "k8s",
+    "Self Managed",
+    "Open Source",
+    "demo",
+    "Tyk demo",
+    "Tyk quick start",
+    "Kubernetes",
+  ]
 description: "Learn to deploy and run a Tyk deployment in minutes on Kubernetes"
 ---
 
@@ -10,6 +24,7 @@ The repository will spin up everything in Kubernetes using `helm` and bash magic
 to get you started.
 
 ## Purpose
+
 Minimize the amount of effort needed to start up the Tyk infrastructure and
 show examples of how Tyk can be set up in k8s using different deployment
 architectures as well as different integrations.
@@ -19,20 +34,21 @@ architectures as well as different integrations.
 ### Required Packages
 
 You will need the following tools to be able to run this project.
+
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/) - CLI tool for controlling Kubernetes clusters
 - [Helm](https://helm.sh/docs/intro/install/) - Helps manage Kubernetes applications through Helm charts
-- [jq](https://stedolan.github.io/jq/download/) - CLI for working with JSON output and manipulating it 
+- [jq](https://stedolan.github.io/jq/download/) - CLI for working with JSON output and manipulating it
 - [git](https://git-scm.com/downloads) - CLI used to obtain the project from GitHub
 - [Terraform](https://www.terraform.io/) (only when using `--cloud` flag)
 
 Tested on Linux/Unix based systems on AMD64 and ARM architectures
 
 ### License Requirements
+
 - **Tyk OSS**: No license required as it is open-source.
 
-- **Licensed Products**: Sign up [here](https://tyk.io/sign-up) using the button below, and choose "Get in touch" to receive a guided evaluation of the Tyk Dashboard and your temporary license. 
-{{< button_left href="https://tyk.io/sign-up#self" color="green" content="Get started" >}}
-
+- **Licensed Products**: Sign up [here](https://tyk.io/sign-up) using the button below, and choose "Get in touch" to receive a guided evaluation of the Tyk Dashboard and your temporary license.
+  {{< button_left href="https://tyk.io/sign-up#self" color="green" content="Get started" >}}
 
 #### How to use the license key
 
@@ -48,8 +64,9 @@ Depending on the deployments you would like to install set values of the `LICENS
 inside the `.env` file.
 
 ### Minikube
-If you are deploying this demo on [Minikube](https://minikube.sigs.k8s.io/docs/start), 
-you will need to enable the [ingress addon](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#enable-the-ingress-controller). 
+
+If you are deploying this demo on [Minikube](https://minikube.sigs.k8s.io/docs/start),
+you will need to enable the [ingress addon](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#enable-the-ingress-controller).
 You can do so by running the following commands:
 
 ```bash
@@ -58,37 +75,44 @@ minikube addons enable ingress
 ```
 
 ## Quick Start
+
 ```bash
 ./up.sh --deployments portal,operator-httpbin tyk-stack
 ```
+
 This quick start command will start up the entire Tyk stack along with the
 Tyk Enterprise Portal, Tyk Operator, and httpbin CRD example.
 
 ## Possible deployments
+
 - `tyk-stack`: A comprehensive Tyk Self Managed setup for a single region
 - `tyk-cp`: Tyk control plane in a multi-region Tyk deployment
 - `tyk-dp`: Data plane of hybrid gateways that connect to either Tyk Cloud or a Tyk Control Plane, facilitating scalable deployments
 - `tyk-gateway`: Open Source Software (OSS) version of Tyk, self-managed and suitable for single-region deployments
 
- 
 ## Dependencies Options
+
 ### Redis Options
+
 - `redis`: Bitnami Redis deployment
 - `redis-cluster`: Bitnami Redis Cluster deployment
 - `redis-sentinel`: Bitnami Redis Sentinel deployment
 
 ### Storage Options
+
 - `mongo`: [Bitnami Mongo](https://artifacthub.io/packages/helm/bitnami/mongodb) database deployment as a Tyk backend
 - `postgres`: [Bitnami Postgres](https://artifacthub.io/packages/helm/bitnami/postgresql) database deployment as a Tyk backend
 
 ### Supplementary Deployments
+
 Please see this [page](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/docs/FEATURES_MATRIX.md) for Tyk deployments compatibility charts.
+
 - [cert-manager](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/cert-manager): deploys cert-manager.
-- [datadog](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/datadog): deploys Datadog agent 
-and starts up Tyk Pump to push analytics data from the Tyk platform to Datadog. It will also create a Datadog dashboard
-for you to view the analytics.
-- [elasticsearch](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/elasticsearch): deploys 
-Elasticsearch and starts up Tyk pump to push analytics data from the Tyk platform to Elasticsearch.
+- [datadog](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/datadog): deploys Datadog agent
+  and starts up Tyk Pump to push analytics data from the Tyk platform to Datadog. It will also create a Datadog dashboard
+  for you to view the analytics.
+- [elasticsearch](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/elasticsearch): deploys
+  Elasticsearch and starts up Tyk pump to push analytics data from the Tyk platform to Elasticsearch.
   - [elasticsearch-kibana](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/elasticsearch-kibana): deploys the Elasticsearch deployment as well as a Kibana deployment and creates a Kibana dashboard for you to view the analytics.
 - [Jaeger](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/jaeger): deploys the Jaeger operator, a Jaeger instance, and the OpenTelemetry collector and configures the Tyk deployment to send telemetry data to Jaeger through the OpenTelemetry collector.
 - [k6](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/deployments/k6): deploys a Grafana K6 Operator.
@@ -115,6 +139,7 @@ If you are running a POC and would like an example of how to integrate a
 specific tool, you are welcome to submit a [feature request](https://github.com/TykTechnologies/tyk-k8s-demo/issues/new/choose)
 
 ### Example
+
 ```bash
 ./up.sh \
   --storage postgres \
@@ -122,15 +147,16 @@ specific tool, you are welcome to submit a [feature request](https://github.com/
   tyk-stack
 ```
 
-The deployment process takes approximately 10 minutes, as the installation is sequential and some dependencies take 
-time to initialize. Once the installation is complete, the script will output a list of all the services that were 
-started, along with instructions on how to access them. Afterward, the k6 job will begin running in the background, 
-generating traffic for 15 minutes. To monitor live traffic, you can use the credentials provided by the script to 
+The deployment process takes approximately 10 minutes, as the installation is sequential and some dependencies take
+time to initialize. Once the installation is complete, the script will output a list of all the services that were
+started, along with instructions on how to access them. Afterward, the k6 job will begin running in the background,
+generating traffic for 15 minutes. To monitor live traffic, you can use the credentials provided by the script to
 access Grafana or the Tyk Dashboard
 
 ## Usage
 
 ### Start Tyk deployment
+
 Create and start up the deployments
 
 ```bash
@@ -157,6 +183,7 @@ Flags:
 ```
 
 ### Stop Tyk deployment
+
 Shutdown deployment
 
 ```bash
@@ -171,16 +198,19 @@ Flags:
 ```
 
 ### Clusters
+
 You can get the repository to create demo clusters for you on AWS, GCP, or Azure. That can be set using the `--cloud` flag
 and requires the respective cloud CLI to be installed and authorized on your system. You will also need to specify the
 `CLUSTER_LOCATION`, `CLUSTER_MACHINE_TYPE`, `CLUSTER_NODE_COUNT`, and `GCP_PROJECT` (for GCP only) parameters in the .env file.
 
 You can find examples of .env files here:
+
 - [AWS](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/clouds/aws/.env.example)
 - [GCP](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/clouds/gcp/.env.example)
 - [Azure](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/src/clouds/azure/.env.example)
 
 For more information about cloud CLIs:
+
 - AWS:
   - [aws](https://aws.amazon.com/cli/)
 - GCP:
@@ -190,6 +220,7 @@ For more information about cloud CLIs:
   - [az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 ## Customization
+
 This repository can also act as a guide to help you get set up with Tyk. If you just want to know how to set up a specific
 tool with Tyk, you can run the repository with the `--dry-run` and `--verbose` flags. This will output all the commands that
 the repository will run to stand up any installation. This can help debug as well as figure out what
@@ -199,6 +230,7 @@ Furthermore, you can also add any Tyk environment variables to your `.env` file 
 their respective Tyk deployments.
 
 Example:
+
 ```env
 ...
 TYK_MDCB_SYNCWORKER_ENABLED=true
@@ -207,13 +239,14 @@ TYK_GW_SLAVEOPTIONS_SYNCHRONISERENABLED=true
 ```
 
 ## Variables
+
 The script has defaults for minimal settings in [this env file](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/.env.example),
 and it will give errors if something is missing.
 You can also add or change any Tyk environment variables in the `.env` file,
 and they will be mapped to the respective `extraEnvs` section in the helm charts.
 
 | Variable                             |        Default        | Comments                                                                                                        |
-|--------------------------------------|:---------------------:|-----------------------------------------------------------------------------------------------------------------|
+| ------------------------------------ | :-------------------: | --------------------------------------------------------------------------------------------------------------- |
 | DASHBOARD_VERSION                    |        `v5.5`         | Dashboard version                                                                                               |
 | GATEWAY_VERSION                      |        `v5.5`         | Gateway version                                                                                                 |
 | MDCB_VERSION                         |        `v2.7`         | MDCB version                                                                                                    |

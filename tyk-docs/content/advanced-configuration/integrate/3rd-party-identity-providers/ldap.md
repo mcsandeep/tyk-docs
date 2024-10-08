@@ -35,7 +35,7 @@ Below is a sample TIB profile that can be used to log a user into the Dashboard 
   },
   "ProviderName": "ADProvider",
   "ReturnURL": "http://{DASH-DOMAIN}:{DASH-PORT}/tap",
-  "Type": "passthrough" 
+  "Type": "passthrough"
 }
 
 ```
@@ -54,11 +54,10 @@ The request should be a `POST`.
 If you make this request with a valid user that can bind to the LDAP server, Tyk will redirect the user to the dashboard with a valid session. There's no more to it, this mechanism is pass-through and is transparent to the user, with TIB acting as a direct client to the LDAP provider.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The `LDAPUserDN` field MUST contain the special `*USERNAME*` marker in order to construct the users DN properly.
 {{< /note >}}
-
 
 ## Generate an OAuth token using LDAP
 
@@ -129,17 +128,19 @@ LDAP requires little configuration, we can use the same provider configuration t
 Once again, a simple `POST` request is all that is needed to validate a user via an LDAP provider.
 
 ## Using advanced LDAP search
+
 In some cases validation of a user CN is not enough, and it requires verifying if a user match some specific rules, like internal team ID. In this case TIB provides support for doing additional LDAP search check, and if result of this search returns only 1 record, it will pass the user.
 
 To make it work you need to specify 3 additional attributes in profile configuration file:
 
-* `LDAPBaseDN` - base DN used for doing LDAP search, for example `cn=dashboard,ou=Group`
-* `LDAPFilter` - filter applied to the search, should include the `*USERNAME*`variable. For example: `((objectCategory=person)(objectClass=user)(cn=*USERNAME*))`
-* `LDAPSearchScope` - This specifies the portion of the target subtree that should be considered. Supported search scope values include: 0 - baseObject (often referred to as "base"), 1 - singleLevel (often referred to as "one"), 2 - wholeSubtree (often referred to as "sub")
+- `LDAPBaseDN` - base DN used for doing LDAP search, for example `cn=dashboard,ou=Group`
+- `LDAPFilter` - filter applied to the search, should include the `*USERNAME*`variable. For example: `((objectCategory=person)(objectClass=user)(cn=*USERNAME*))`
+- `LDAPSearchScope` - This specifies the portion of the target subtree that should be considered. Supported search scope values include: 0 - baseObject (often referred to as "base"), 1 - singleLevel (often referred to as "one"), 2 - wholeSubtree (often referred to as "sub")
 
 For additional information about [LDAP search protocol](https://www.ldap.com/the-ldap-search-operation)
 
 Example profile using LDAP search filters:
+
 ```{.copyWrapper}
 {
 	"ActionType": "GenerateOAuthTokenForClient",

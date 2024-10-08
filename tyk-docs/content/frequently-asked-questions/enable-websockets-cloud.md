@@ -7,5 +7,4 @@ menu:
 weight: 0
 ---
 
-
 Websockets are enabled by default in our Cloud environment.

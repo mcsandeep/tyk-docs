@@ -7,7 +7,6 @@ menu:
 weight: 0
 ---
 
-
 ## Log into an APP with Google (OAuth)
 
 A common use case for Tyk Gateway users is to enable users to log into a web app or mobile app using a social provider such as Google, but have that user use a token in the app that is time-delimited and issued by their own API (or in this case, Tyk).
@@ -72,12 +71,12 @@ One quirk with the Tyk API is that requests for tokens go via the base APIs list
 
 There's a few new things here we need to take into account:
 
-*   `APIListenPath`: This is the listen path of your API, TIB uses this to generate the OAuth token.
-*   `BaseAPIID`: The base API ID for the listen path mentioned earlier, this forms the basic access grant for the token (this will be superseded by the `MatchedPolicyID`, but is required for token generation).
-*   `ClientId`: The client ID for this profile within Tyk Gateway.
-*   `Secret`: The client secret for this profile in Tyk Gateway.
-*   `RedirectURI`: The Redirect URL set for this profile in the Tyk Gateway.
-*   `ResponseType`: This can be `token` or `authorization_code`, the first will generate a token directly, the second will generate an auth code for follow up access. For SPWA and Mobile Apps it is recommended to just use `token`.
+- `APIListenPath`: This is the listen path of your API, TIB uses this to generate the OAuth token.
+- `BaseAPIID`: The base API ID for the listen path mentioned earlier, this forms the basic access grant for the token (this will be superseded by the `MatchedPolicyID`, but is required for token generation).
+- `ClientId`: The client ID for this profile within Tyk Gateway.
+- `Secret`: The client secret for this profile in Tyk Gateway.
+- `RedirectURI`: The Redirect URL set for this profile in the Tyk Gateway.
+- `ResponseType`: This can be `token` or `authorization_code`, the first will generate a token directly, the second will generate an auth code for follow up access. For SPWA and Mobile Apps it is recommended to just use `token`.
 
 When TIB successfully authorizes the user, and generates the token using the relevant OAuth credentials, it will redirect the user to the relevant redirect with their token or auth code as a fragment in the URL for the app to decode and use as needed.
 

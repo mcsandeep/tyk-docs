@@ -6,7 +6,7 @@ description: "How to configure load balancing for your Tyk installation"
 menu:
   main:
     parent: "Ensure High Availability"
-weight: 2 
+weight: 2
 aliases:
   - /ensure-high-availability/load-balancing/
 ---
@@ -15,9 +15,9 @@ Tyk supports native round-robin load-balancing in its proxy. This means that Tyk
 
 Setting up load balancing is done on a per API basis, and is defined in the API Definition file/object:
 
-*   `proxy.enable_load_balancing`: Set this value to `true` to have a Tyk node distribute traffic across a list of servers.
+- `proxy.enable_load_balancing`: Set this value to `true` to have a Tyk node distribute traffic across a list of servers.
 
-*   `proxy.target_list`: A list of upstream targets (can be one or many hosts):
+- `proxy.target_list`: A list of upstream targets (can be one or many hosts):
 
 ```{.copyWrapper}
 "target_list": [
@@ -27,12 +27,12 @@ Setting up load balancing is done on a per API basis, and is defined in the API 
   "http://10.0.0.4"
 ]
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 You must fill in the `target_list` section.
 {{< /note >}}
-
 
 See [Service Discovery]({{< ref "planning-for-production/ensure-high-availability/service-discovery" >}}) to see how you can integrate a service discovery system such as Consul or etcd with Tyk and enable dynamic load balancing support.
 
@@ -45,7 +45,7 @@ To set up load balancing via the Dashboard, from the **Core Settings** tab in th
 You can now add your Load Balancing **Upstream targets** and apply weighting to it. For example, for testing purposes, you can send 10% (set weighting to `1`) of traffic to a beta environment, and 90% (set weighting to `9`)to the production environment.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Weighting is new from v1.10 of the Dashboard
 {{< /note >}}
@@ -74,9 +74,9 @@ spec:
     listen_path: /httpbin
     strip_listen_path: true
     enable_load_balancing: true
-    target_list: 
-        - "httpbin.org"
-        - "httpbingo.org"
+    target_list:
+      - "httpbin.org"
+      - "httpbingo.org"
 ```
 
 ## gRPC load balancing

@@ -1,11 +1,11 @@
 ---
 title: "List of endpoints exposed by Tyk Enterprise Developer Portal v1.9.0"
 date: 2024-02-29
-tags: ["Tyk Developer Portal","Enterprise Portal","Endpoints","Firewall","Integration","Portal 1.9.0"]
+tags: ["Tyk Developer Portal", "Enterprise Portal", "Endpoints", "Firewall", "Integration", "Portal 1.9.0"]
 description: "Configure webhooks to react on events happening in the portal"
 menu:
-    main:
-        parent: "Configuring firewall"
+  main:
+    parent: "Configuring firewall"
 weight: 3
 ---
 
@@ -23,14 +23,14 @@ For this purpose, we have prepared a list of all endpoints exposed by the Tyk En
 
 {{< note success >}}
 
-Please note that this list only refers to v1.9.0 of the portal. The list of endpoints for other version might be different.  
+Please note that this list only refers to v1.9.0 of the portal. The list of endpoints for other version might be different.
 
 {{< /note >}}
-
 
 ## List of the portal endpoints
 
 ### Admin APIs
+
 | **Resource**       | **Endpoint**                                                                           |
 | ------------------ | -------------------------------------------------------------------------------------- |
 | Providers          | /providers                                                                             |
@@ -95,6 +95,7 @@ Please note that this list only refers to v1.9.0 of the portal. The list of endp
 | Client Types       | /products/{product_id}/client_types/{client_type_id}                                   |
 
 ### Admin dashboard endpoints
+
 | **Resource**       | **Endpoint**                                                   |
 | ------------------ | -------------------------------------------------------------- |
 | Login              | /auth/password/login                                           |
@@ -183,6 +184,7 @@ Please note that this list only refers to v1.9.0 of the portal. The list of endp
 | Webhooks           | /admin/webhooks/ping                                           |
 
 ### Live portal endpoints
+
 | **Resource**      | **Endpoint**                                                  |
 | ----------------- | ------------------------------------------------------------- |
 | Auth              | /auth/password/login                                          |
@@ -226,8 +228,9 @@ Please note that this list only refers to v1.9.0 of the portal. The list of endp
 | Analytics         | /portal/private/analytics/api/chart/latency                   |
 
 ### Assets endpoints
+
 | **Resource** | **Endpoint**                |
-|--------------| --------------------------- |
+| ------------ | --------------------------- |
 | Images       | /assets/images/\*           |
 | Javascripts  | /assets/javascripts/\*      |
 | Stylesheets  | /assets/stylesheets/\*      |

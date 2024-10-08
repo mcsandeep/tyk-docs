@@ -9,13 +9,12 @@ menu:
 weight: 5
 ---
 
-
 {{< warning success >}}
 **Warning**
 
-`tyk-hybrid` chart is deprecated. Please use our [Tyk Data Plane helm chart]({{<ref "tyk-cloud/environments-deployments/hybrid-gateways#deploy-in-kubernetes-with-helm-chart">}}) instead. 
+`tyk-hybrid` chart is deprecated. Please use our [Tyk Data Plane helm chart]({{<ref "tyk-cloud/environments-deployments/hybrid-gateways#deploy-in-kubernetes-with-helm-chart">}}) instead.
 
-We recommend that all users to migrate to the `tyk-data-plane` Chart. Please review the [Configuration]({{<ref "/product-stack/tyk-charts/tyk-data-plane-chart#configuration">}}) section of the new helm chart and cross-check with your existing configurations while planning for migration. 
+We recommend that all users to migrate to the `tyk-data-plane` Chart. Please review the [Configuration]({{<ref "/product-stack/tyk-charts/tyk-data-plane-chart#configuration">}}) section of the new helm chart and cross-check with your existing configurations while planning for migration.
 {{< /warning >}}
 
 ### 1. Add the Tyk official Helm repo `tyk-helm` to your local Helm repository
@@ -45,11 +44,11 @@ helm show values tyk-helm/tyk-hybrid > values.yaml
 
 You need to modify the following values in your custom `values.yaml` file:
 
-* `gateway.rpc.apiKey` - Tyk Dashboard API Access Credentials of the user created earlier
-* `gateway.rpc.rpcKey` - Organization ID
-* `gateway.rpc.connString` - MDCB connection string
-* `gateway.rpc.group_id`*(optional)*  - if you have multiple data plane (e.g. in different regions), specify the data plane group (string) to which the gateway you are deploying belong. The data planes in the same group share one Redis instance.
-* `gateway.sharding.enabled` and `gateway.sharding.tags`*(optional)*  - you can enable sharding to selectively load APIs to specific gateways, using tags. By default, sharding is disabled and the gateway will load all APIs.
+- `gateway.rpc.apiKey` - Tyk Dashboard API Access Credentials of the user created earlier
+- `gateway.rpc.rpcKey` - Organization ID
+- `gateway.rpc.connString` - MDCB connection string
+- `gateway.rpc.group_id`_(optional)_ - if you have multiple data plane (e.g. in different regions), specify the data plane group (string) to which the gateway you are deploying belong. The data planes in the same group share one Redis instance.
+- `gateway.sharding.enabled` and `gateway.sharding.tags`_(optional)_ - you can enable sharding to selectively load APIs to specific gateways, using tags. By default, sharding is disabled and the gateway will load all APIs.
 
 ### 5. Configure the connection to Redis
 
@@ -80,9 +79,8 @@ Follow the notes from the installation output to get connection details and pass
 
 You need to modify the following values in your custom `values.yaml` file:
 
-* `redis.addrs`: the name of the Redis instance including the port as set by Bitnami `tyk-redis-master.tyk.svc.cluster.local:6379`
-* `redis.pass`: password set in redis (`$REDIS_PASSWORD`). Alternatively, you can use --set flag to set it during helm installation. For example `--set redis.pass=$REDIS_PASSWORD`.
-
+- `redis.addrs`: the name of the Redis instance including the port as set by Bitnami `tyk-redis-master.tyk.svc.cluster.local:6379`
+- `redis.pass`: password set in redis (`$REDIS_PASSWORD`). Alternatively, you can use --set flag to set it during helm installation. For example `--set redis.pass=$REDIS_PASSWORD`.
 
 ### 6. Install Hybrid data plane
 
@@ -98,7 +96,6 @@ You should see the prompt:
 At this point, Tyk Hybrid is fully installed and should be accessible.
 ```
 
-
 ### 7. Check that the installation was successful
 
 The hybrid data planes are not yet visible in Tyk Cloud (coming soon!). Here is how you can check that the deployment was successful.
@@ -107,7 +104,7 @@ Run this command in your terminal to check that all pods in the `tyk` namespace 
 
 ```bash
 kubectl get pods -n tyk
-````
+```
 
 **Expected result:**
 
@@ -126,7 +123,7 @@ Run this command in your terminal to check that the services were correctly crea
 
 ```bash
 kubectl get service -n tyk
-````
+```
 
 **Expected result:**
 
@@ -139,7 +136,6 @@ tyk-redis-replicas       ClusterIP   10.98.206.202    <none>        6379/TCP    
 ```
 
 Note: IP adresses might differ on your system.
-
 
 Finally, from your terminal, send an HTTP call to the /hello endpoint of the gateway `gateway-svc-tyk-hybrid`:
 
@@ -166,7 +162,6 @@ Content-Length: 234
     "rpc": {"status":"pass","componentType":"system","time":"2023-03-15T11:39:10Z"}}
 }
 ```
-
 
 ## Next steps
 

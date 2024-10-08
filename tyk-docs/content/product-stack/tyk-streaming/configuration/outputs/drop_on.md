@@ -1,7 +1,7 @@
 ---
 title: Drop on
 description: Explains drop on
-tags: [ "Tyk Streams", "Batching", "Drop On", "drop_on" ]
+tags: ["Tyk Streams", "Batching", "Drop On", "drop_on"]
 ---
 
 Attempts to write messages to a child output and if the write fails for one of a list of configurable reasons the message is dropped (acked) instead of being reattempted (or nacked).
@@ -25,16 +25,14 @@ Regular Tyk Streams outputs will apply back pressure when downstream services ar
 
 Whether messages should be dropped when the child output returns an error of any type. For example, this could be when an `http_client` output gets a 4XX response code. In order to instead drop only on specific error patterns use the `error_matches` field instead.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### error_patterns
 
 A list of regular expressions (re2) where if the child output returns an error that matches any part of any of these patterns the message will be dropped.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -50,8 +48,7 @@ error_patterns:
 
 An optional duration string that determines the maximum length of time to wait for a given message to be accepted by the child output before the message should be dropped instead. The most common reason for an output to block is when waiting for a lost connection to be re-established. Once a message has been dropped due to back pressure all subsequent messages are dropped immediately until the output is ready to process them again. Note that if `error` is set to `false` and this field is specified then messages dropped due to back pressure will return an error response (are nacked or reattempted).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -65,8 +62,7 @@ back_pressure: 1m
 
 A child output to wrap with this drop mechanism.
 
-
-Type: `output`  
+Type: `output`
 
 ## Examples
 
@@ -80,7 +76,7 @@ output:
     pattern: fan_out
     outputs:
       - kafka:
-          addresses: [ foobar:6379 ]
+          addresses: [foobar:6379]
           topic: foo
       - drop_on:
           error: true

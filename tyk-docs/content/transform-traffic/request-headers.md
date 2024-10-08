@@ -10,6 +10,7 @@ description: "How to transform the headers for an API Request"
 Tyk allows you to modify the headers of incoming requests to your API endpoints before they are passed to your upstream service.
 
 There are two options for this:
+
 - API-level modification that is applied to all requests to the API
 - endpoint-level modification that is applied only to requests to a specific endpoint
 
@@ -52,6 +53,7 @@ In the request middleware chain, the API-level transform is applied before the e
 #### Injecting dynamic data into headers
 
 You can enrich the request headers by injecting data from context variables or session objects into the headers.
+
 - [context variables]({{< ref "context-variables" >}}) are extracted from the request at the start of the middleware chain and can be injected into added headers using the `$tyk_context.` namespace
 - [session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}}), from the Tyk Session Object linked to the request, can be injected into added headers using the `$tyk_meta.` namespace
 - values from [key-value (KV) storage]({{< ref "tyk-configuration-reference/kv-store#transformation-middleware" >}}) can be injected into added headers using the notation appropriate to the location of the KV store
@@ -65,5 +67,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Request Header Transform middleware summary
   - The Request Header Transform is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Request Header Transform can be configured at the per-endpoint or per-API level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Request Header Transform can be configured at the per-endpoint or per-API level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

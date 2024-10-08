@@ -1,7 +1,7 @@
 ---
 title: Inputs
 description: Explains an overview of inputs
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs"]
 ---
 
 An input is a source of data piped through an array of optional [processors]({{< ref "/product-stack/tyk-streaming/configuration/processors/overview" >}}):
@@ -19,9 +19,9 @@ input:
 
   # Optional list of processing steps
   processors:
-   - mapping: |
-       root.document = this.without("links")
-       root.link_count = this.links.length()
+    - mapping: |
+        root.document = this.without("links")
+        root.link_count = this.links.length()
 ```
 
 Some inputs have a logical end ends once the last row is consumed, when this happens the input gracefully terminates and Tyk Streams will shut itself down once all messages have been processed fully.
@@ -35,8 +35,8 @@ input:
   broker:
     inputs:
       - kafka:
-          addresses: [ TODO ]
-          topics: [ foo, bar ]
+          addresses: [TODO]
+          topics: [foo, bar]
           consumer_group: foogroup
 
       - redis_streams:

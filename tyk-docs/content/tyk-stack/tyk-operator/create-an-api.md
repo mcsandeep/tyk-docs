@@ -3,36 +3,39 @@ date: 2017-03-24T16:39:31Z
 title: Create an API with Tyk Operator
 weight: 2
 menu:
-    main:
-        parent: "Getting started with Tyk Operator"
+  main:
+    parent: "Getting started with Tyk Operator"
 ---
 
 ### Tutorial: Create an API with Tyk Operator
+
 Creating an API takes the same approach whether you are using Tyk Open Source or Self Managed. First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
 
 #### Step 1: Create an ApiDefinition resource in YAML format
+
 Create a file called `httpbin.yaml`, then add the following:
 
 ```yaml
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
- name: httpbin
+  name: httpbin
 spec:
- name: httpbin
- use_keyless: true
- protocol: http
- active: true
- proxy:
-   target_url: http://httpbin.org
-   listen_path: /httpbin
-   strip_listen_path: true
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
 ```
 
 You can also use other sample files from `our repository`.
 
 #### Step 2: Deploy the ApiDefinition resource
-We are going to create an ApiDefinition from the httpbin.yaml file, by running the  following command:
+
+We are going to create an ApiDefinition from the httpbin.yaml file, by running the following command:
 
 ```console
 $ kubectl apply -f httpbin.yaml
@@ -182,14 +185,12 @@ Now, if you send your request to the `/httpbin` endpoint of the Tyk Gateway, the
 curl -sS http://localhost:8080/httpbin/headers
 {
   "headers": {
-    "Accept": "*/*", 
-    "Accept-Encoding": "gzip", 
-    "Host": "httpbin.default.svc:8000", 
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Host": "httpbin.default.svc:8000",
     "User-Agent": "curl/7.68.0"
   }
 }
 ```
 
 As you can see from the response, the host that your request should be proxied to is `httpbin.default.svc:8000`.
-
-

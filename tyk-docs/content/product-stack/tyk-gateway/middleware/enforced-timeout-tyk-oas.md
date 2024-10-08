@@ -18,59 +18,61 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The enforced timeout middleware (`enforceTimeout`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `enforceTimeout` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `value`: the duration of the upstream request timer
 
 For example:
+
 ```json {hl_lines=["39-41"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-timeout",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/status/200": {
-            "get": {
-                "operationId": "status/200get",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-timeout",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/status/200": {
+      "get": {
+        "operationId": "status/200get",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-timeout",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-timeout/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "status/200get": {
-                    "enforceTimeout": {
-                        "enabled": true,
-                        "value": 3
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-timeout",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-timeout/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "status/200get": {
+          "enforceTimeout": {
+            "enabled": true,
+            "value": 3
+          }
+        }
+      }
+    }
+  }
 }
- ```
+```
 
 In this example Tyk OAS API definition, the enforced timeout has been configured to monitor requests to the `GET /status/200` endpoint. It will configure a timer that will expire (`timeout`) 3 seconds after the request is proxied to the upstream service. If the upstream response is not received before the expiry of the timer, that request will be terminated and Tyk will return `504 Gateway Timeout` to the client.
 
@@ -92,7 +94,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Enforce Timeout middleware
 
-Select **ADD MIDDLEWARE** and choose the **Enforce Timeout** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Enforce Timeout** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-enforce-timeout.png" alt="Adding the Enforce Timeout middleware" >}}
 

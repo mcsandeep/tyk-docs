@@ -2,7 +2,17 @@
 title: Using the Ignore Authentication middleware with Tyk Classic APIs
 date: 2024-01-24
 description: "Using the Ignore Authentication middleware with Tyk Classic APIs"
-tags: ["ignore authentication", "ignore", "ignore auth", "authentication", "middleware", "per-endpoint", "Tyk Classic", "Tyk Classic APIs"]
+tags:
+  [
+    "ignore authentication",
+    "ignore",
+    "ignore auth",
+    "authentication",
+    "middleware",
+    "per-endpoint",
+    "Tyk Classic",
+    "Tyk Classic APIs",
+  ]
 ---
 
 The [Ignore Authentication]({{< ref "product-stack/tyk-gateway/middleware/ignore-middleware" >}}) middleware instructs Tyk Gateway to skip the authentication step for calls to an endpoint, even if authentication is enabled for the API.
@@ -18,40 +28,44 @@ If you're using Tyk Operator then check out the [configuring the middleware in T
 To enable the middleware you must add a new `ignored` object to the `extended_paths` section of your API definition.
 
 The `ignored` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: this should be blank
 - `ignore_case`: if set to `true` then the path matching will be case insensitive
 - `method_actions`: a shared object used to configure the [mock response]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#mock-response" >}}) middleware
 
 The `method_actions` object should be configured as follows, with an entry created for each allowed method on the path:
+
 - `action`: this should be set to `no_action`
 - `code`: this should be set to `200`
 - `headers` : this should be blank
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "ignored": [
-            {
-                "disabled": false,
-                "path": "/status/200",
-                "method": "",
-                "ignore_case": false,
-                "method_actions": {
-                    "GET": {
-                        "action": "no_action",
-                        "code": 200,
-                        "headers": {}
-                    }          
-                }
-            }
-        ]
-    }
+  "extended_paths": {
+    "ignored": [
+      {
+        "disabled": false,
+        "path": "/status/200",
+        "method": "",
+        "ignore_case": false,
+        "method_actions": {
+          "GET": {
+            "action": "no_action",
+            "code": 200,
+            "headers": {}
+          }
+        }
+      }
+    ]
+  }
 }
 ```
 
 In this example the ignore authentication middleware has been configured for requests to the `GET /status/200` endpoint. Any such calls will skip the authentication step in the Tyk Gateway's processing chain.
+
 - the middleware has been configured to be case sensitive, so calls to `GET /Status/200` will not skip authentication
 
 ## Configuring the middleware in the API Designer
@@ -72,13 +86,14 @@ Once you have selected the Ignore middleware for the endpoint, the only addition
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the middleware in Tyk Operator {#tyk-operator}
 
 The process for configuring the middleware in Tyk Operator is similar to that explained in [configuring the middleware in the Tyk Classic API Definition](#tyk-classic). It is possible to configure an enforced timeout using the `ignored` object within the `extended_paths` section of the API Definition.
 
 In the example below the ignore authentication middleware has been configured for requests to the `GET /get` endpoint. Any such calls will skip the authentication step in the Tyk Gateway's processing chain.
+
 - the middleware has been configured to be case insensitive, so calls to `GET /Get` will also skip authentication
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["27-35"]}

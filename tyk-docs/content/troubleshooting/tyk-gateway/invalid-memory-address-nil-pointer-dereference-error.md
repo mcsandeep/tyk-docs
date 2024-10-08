@@ -4,7 +4,7 @@ title: “Invalid memory address or nil pointer dereference“ error
 menu:
   main:
     parent: "Tyk Gateway Troubleshooting"
-weight: 5 
+weight: 5
 ---
 
 ### Description
@@ -19,5 +19,5 @@ There are a number of reasons, most commonly, an API may have been configured in
 
 Make sure that API definitions are set up correctly. Information on how to do this with the Tyk Gateway API can be found in the following links:
 
-*   [API Definition Object Details]({{< ref "tyk-gateway-api/api-definition-objects" >}})
-*   [API Management]({{< ref "tyk-gateway-api" >}})
+- [API Definition Object Details]({{< ref "tyk-gateway-api/api-definition-objects" >}})
+- [API Management]({{< ref "tyk-gateway-api" >}})

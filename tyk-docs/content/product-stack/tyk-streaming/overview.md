@@ -1,11 +1,12 @@
 ---
 title: Tyk Streams
 description: Explains the purpose of Tyk Streaming and use cases
-tags: [ "streaming", "events", "event-driven architecture", "event-driven architectures", "kafka" ]
+tags: ["streaming", "events", "event-driven architecture", "event-driven architectures", "kafka"]
 publishdate: 2024-07-15
 ---
-We are excited to introduce our new product, *Tyk Streams*! 
-*Tyk Streams* is a powerful new feature in the Tyk API management platform that enables organizations to securely expose,
+
+We are excited to introduce our new product, _Tyk Streams_!
+_Tyk Streams_ is a powerful new feature in the Tyk API management platform that enables organizations to securely expose,
 manage and monetize real-time event streams and asynchronous APIs.
 
 ## Getting started
@@ -14,8 +15,10 @@ Our first release of Tyk Streams is now available, and we'd love for you to try 
 {{< button_left href="https://survey.hsforms.com/1ItPCBg-_Tre8WFJZL4pp6Q3ifmg" color="green" content="Get started with Tyk Streams" >}}
 
 ---
+
 ## Overview
-With *Tyk Streams*, you can easily connect to various event brokers and streaming platforms, such as
+
+With _Tyk Streams_, you can easily connect to various event brokers and streaming platforms, such as
 [Apache Kafka](https://github.com/TykTechnologies/tyk-pro-docker-demo/tree/kafka), MQTT, AMQP etc. and expose them as
 managed API endpoints to internal and external consumers.
 
@@ -41,10 +44,9 @@ alongside your existing synchronous APIs. It provides a range of capabilities to
 - **Analytics**: Monitor the usage and performance of your async APIs with detailed analytics and reporting. Gain insights into consumer behavior and system health.
 - **Developer Portal**: Publish your async APIs to the Tyk Developer Portal, providing a centralised catalog for discovery, documentation and subscription management.
 
-
 #### Configuration as Code
 
-Tyk Streams configuration natively integrates with Tyk OAS (our OpenAPI format for APIs), enabling *configuration-as-code*
+Tyk Streams configuration natively integrates with Tyk OAS (our OpenAPI format for APIs), enabling _configuration-as-code_
 approach. This allows async API definitions to be version-controlled, collaborated on and deployed using GitOps workflows.
 
 ```yaml
@@ -102,4 +104,3 @@ stands out by providing a comprehensive and flexible solution:
 
 By leveraging Tyk Streams, organizations can unlock the full potential of their event-driven architectures while
 benefiting from the robust API management capabilities of the Tyk platform.
-

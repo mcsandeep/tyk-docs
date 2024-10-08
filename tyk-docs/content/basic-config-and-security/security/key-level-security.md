@@ -6,7 +6,7 @@ description: "How to configure access control at key level in Tyk"
 menu:
   main:
     parent: "Security"
-weight: 7 
+weight: 7
 ---
 
 Tyk supports the concept of access control at the key level. Access control is managed via three important settings in a session object. In order to be fully clear on how Tyk handles access control, it's worth looking at the key settings that go into a user session object. A full description of each of the options can be found in the [Tyk Gateway API documentation]({{< ref "tyk-gateway-api" >}}).
@@ -40,12 +40,12 @@ Tyk will store each access key as a record in your Redis database, and this key 
 
 The important elements that manage access control are the following fields:
 
-*   `allowance` & `rate`: these should be set to the same value, these are the users allowance during a period as set by `per`.
-*   `per`: The time in seconds where a rate limit is applied.
-*   `expires`: The date when the key expires. **Note:** `expires` can only be a positive number, or -1 (unlimited).
-*   `quota_max`: The usage quota for the user. **Note:** `quota_max` can only be a positive number, or -1 (unlimited).
-*   `quota_renews`: the Unix timestamp when the quota is renewed.
-*   `quota_renewal_rate`: The time, in seconds, of when the quota gets renewed (e.g. 86400 would represent 1 day).
+- `allowance` & `rate`: these should be set to the same value, these are the users allowance during a period as set by `per`.
+- `per`: The time in seconds where a rate limit is applied.
+- `expires`: The date when the key expires. **Note:** `expires` can only be a positive number, or -1 (unlimited).
+- `quota_max`: The usage quota for the user. **Note:** `quota_max` can only be a positive number, or -1 (unlimited).
+- `quota_renews`: the Unix timestamp when the quota is renewed.
+- `quota_renewal_rate`: The time, in seconds, of when the quota gets renewed (e.g. 86400 would represent 1 day).
 
 These settings can be used exclusively or in conjunction with one another to create usage patterns and tiers of access for your users. Each time a request is processed by Tyk, the session will be updated with an updated quota (if used), and updated throttling rate depending on the time-frame specified.
 
@@ -77,7 +77,7 @@ In order to set a quota for a user:
 To set an unlimited quota, set `quota_max` to `-1`.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 `quota_max` can only be a positive number, or -1 (unlimited).
 {{< /note >}}

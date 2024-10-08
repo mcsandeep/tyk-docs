@@ -2,7 +2,7 @@
 date: 2017-03-24T15:45:13Z
 description: Explains purpose and prerequisites for running quickstart Go plugin
 title: Go Plugins Quickstart
-tags: ["custom", "plugin", "plugins", "go", "goplugins",  "go plugin", "tyk go plugin", "golang plugin"]
+tags: ["custom", "plugin", "plugins", "go", "goplugins", "go plugin", "tyk go plugin", "golang plugin"]
 aliases:
   - /plugins/get-started-selfmanaged/deploy
   - /plugins/get-started-selfmanaged/get-started
@@ -15,7 +15,7 @@ This section takes you through the process of running and building a quickstart 
 
 ## Expected outcome
 
-At the end of this process you should have a Tyk Gateway or Tyk Self-Managed environment running locally, with a simple Go plugin executing on each API request. For each reponse to an API request the example plugin will inject a *Foo* header, with a value of *Bar*.
+At the end of this process you should have a Tyk Gateway or Tyk Self-Managed environment running locally, with a simple Go plugin executing on each API request. For each reponse to an API request the example plugin will inject a _Foo_ header, with a value of _Bar_.
 
 ## Prerequisites
 

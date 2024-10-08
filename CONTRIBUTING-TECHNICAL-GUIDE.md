@@ -7,35 +7,44 @@ Contains the [Tyk Documentation](https://tyk.io/docs/) source.
 Using Github GUI in the browser or local dev env, this is the question!
 
 ### 1. GitHub GUI Browser
-Contributing to the docs via the browser is fast and easy. 
+
+Contributing to the docs via the browser is fast and easy.
 GH provides great DX for making updates, committing and creating PRs via the browser. The DX for reviewing PRs is also pretty powerful.
 
 #### When To Use it?
+
 Use GitHub GUI browser when you:
-- Have simple and only a few edits of the markdown files. 
-- Already know the syntax for adding internal links and adding images. 
+
+- Have simple and only a few edits of the markdown files.
+- Already know the syntax for adding internal links and adding images.
 - Already know what you are going to write and you **don't** need many iterative commits to see if the result looks okay. In this case, using a local environment will be much faster (explain in the next section)
 
 #### How To Use It?
+
 Will briefly explain it as it is quite trivial:
-1. Via the GUI you can simply click the pencil icon to start editing, then check the differences, click commit to commit the changes to a new branch, and eventually create a PR. 
-2. Check that the CI jobs started running. These jobs run tests on the website including your changes. Running CI jobs are displayed in yellow. 
+
+1. Via the GUI you can simply click the pencil icon to start editing, then check the differences, click commit to commit the changes to a new branch, and eventually create a PR.
+2. Check that the CI jobs started running. These jobs run tests on the website including your changes. Running CI jobs are displayed in yellow.
 3. Once the CI job finishes it will turn green. Upon completion, you will see a preview link that you should use to check your changes on a real deployment of the Tyk docs website.
 
-
 ### 2. Local Development Environment
+
 Local environment means, checking out the tyk-docs repo and updating the files using an editor or an IDE. This allows you to test the changes by running Hugo locally and check for errors in Hugo or in the website Hugo generated.
 
 #### When To Use It?
+
 Using the browser is not always enough and you sometimes need to check out the repo and work locally.
 You normally favor using a local environment when you need to:
+
 - Test things yourself before you push them
 - Repeatedly push changes and test the website
 
-Doing so by **running Hugo locally will save you a lot of time** since it takes the CI a few minutes to update the deployment with the latest changes and finish its test before it becomes green. 
+Doing so by **running Hugo locally will save you a lot of time** since it takes the CI a few minutes to update the deployment with the latest changes and finish its test before it becomes green.
 
 #### Use Cases For Local Development Environment
+
 When you need to:
+
 - Test things yourself before you push them
 - Check that the image you added work
 - See how images are rendered on the page
@@ -58,13 +67,15 @@ For external contributions, we recommend contributing to Tyk in the following wa
 ## Installing Hugo
 
 ### Run Hugo With Docker
+
 1. Install [Docker](https://docs.docker.com/get-docker/)
 2. Run `docker-compose up` from the project directory
 
 ### Run Hugo Locally
+
 1. Install [Hugo v0.110.0+extended or greater](https://gohugo.io/installation/)
 2. Run `hugo server --theme=tykio --buildDrafts --enableGitInfo` from the `tyk-docs/tyk-docs` directory
-3. Go to  [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
+3. Go to [http://localhost:1313/docs/nightly/](http://localhost:1313/docs/nightly/) to view the docs locally
 4. The content itself is just markdown that follows the front matter block. After making a change, Hugo should auto-reload and you will be able to see the changes live in your browser. If not, refresh. Sometimes Hugo gets confused and you may need to re-run it
 
 ## Getting Started
@@ -72,7 +83,8 @@ For external contributions, we recommend contributing to Tyk in the following wa
 This section briefly explains how to work with [Hugo](http://gohugo.io/) to create content in the Tyk Docs repository.
 
 To get started:
-1. Clone this repository 
+
+1. Clone this repository
 2. Navigate to the project directory
 
 The docs content lives in `tyk-docs/content`.
@@ -409,6 +421,7 @@ Tyk is released under the MPL v2.0 please see the [license file](LICENSE.md) for
 When you create a PR in this repository:
 
 ### 1. The CI pipeline will run tests (Hugo and Netlify).
+
    <img width="864" alt="image" src="https://user-images.githubusercontent.com/3155222/221001455-a196c09f-55d9-4c50-acc2-4ae7c5fd6343.png">
 
 ### 2. Netlify will create a version of the website from your PR and provide you with a link:
@@ -418,10 +431,7 @@ When you create a PR in this repository:
 
 ### 3. Verifying your changes in the Netlify build:
 
-**For Contributors Outside Tyk:** A Tyk team member will need to approve the Netlify CI build for your pull request (PR). You will need to wait 
+**For Contributors Outside Tyk:** A Tyk team member will need to approve the Netlify CI build for your pull request (PR). You will need to wait
 until the CI status is green.
 
-**Locating Your Changes:** Since there’s no search feature in this Netlify build, you can find your changes by following these steps:
-	1.	Copy the file path: From the file path in GitHub, copy the portion after `/content` up to the end, excluding the `.md` file extension.
-	2.	Construct the URL: Append this copied path to the Netlify URL after `/docs/nightly`.
-	3.	Example: To see the document at tyk-docs GitHub repository, copy `/tyk-self-managed/install` (omit `.md`) and add it after /docs/nightly/ in the Netlify URL, resulting in [https://deploy-preview-2330--tyk-docs.netlify.app/docs/nightly/tyk-self-managed/install/](https://deploy-preview-2330--tyk-docs.netlify.app/docs/nightly/tyk-self-managed/install/).
+**Locating Your Changes:** Since there’s no search feature in this Netlify build, you can find your changes by following these steps: 1. Copy the file path: From the file path in GitHub, copy the portion after `/content` up to the end, excluding the `.md` file extension. 2. Construct the URL: Append this copied path to the Netlify URL after `/docs/nightly`. 3. Example: To see the document at tyk-docs GitHub repository, copy `/tyk-self-managed/install` (omit `.md`) and add it after /docs/nightly/ in the Netlify URL, resulting in [https://deploy-preview-2330--tyk-docs.netlify.app/docs/nightly/tyk-self-managed/install/](https://deploy-preview-2330--tyk-docs.netlify.app/docs/nightly/tyk-self-managed/install/).

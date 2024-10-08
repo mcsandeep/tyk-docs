@@ -6,10 +6,12 @@ menu:
     parent: "GraphQL"
 weight: 1
 ---
+
 GraphQL API can be created in Tyk using:
-* Tyk Dashboard UI
-* Tyk Dashboard API
-* Tyk Gateway API - for OSS users
+
+- Tyk Dashboard UI
+- Tyk Dashboard API
+- Tyk Gateway API - for OSS users
 
 The process is very similar to [HTTP API creation]({{< ref "/getting-started/create-api" >}}) with a few additional steps to cover GraphQL specific functionalities.
 
@@ -34,7 +36,7 @@ In order to complete the next steps, you need to have [Tyk Self Managed installe
 
 {{< img src="/img/dashboard/graphql/choose-gql-api.png" alt="Create GQL API" >}}
 
-- From the **Overview** section, add your **API Name** and your API **Type** (In this case it's GraphQL). 
+- From the **Overview** section, add your **API Name** and your API **Type** (In this case it's GraphQL).
 - From the **Details** section, add your **Target URL**. This will set the upstream origin that hosts the service you want to proxy to. As an example, you can use [https://countries.trevorblades.com/](https://countries.trevorblades.com/).
 - In case your upstream GQL service is protected, tick the box next to **Upstream Protected** and provide authorization details, so that Tyk can introspect the GraphQL service. You can provide authorization details as a set of headers or a certificate. [Introspection]({{< ref "graphql/introspection" >}}) of your upstream service is important for Tyk to correctly work with your GraphQL.
 - If you would like to persist authorization information for future use you can tick the **Persist headers for future use** box. That way, if the upstream GQL schema changes in the future, you will be able to update it easily in Tyk.
@@ -52,7 +54,7 @@ You have the following options:
 - **Strip Authorization Data**: Select this option to strip any authorization data from your API requests.
 - **Auth Key Header Name**: The header name that will hold the token on inbound requests. The default for this is `Authorization`.
 - **Allow Query Parameter As Well As Header**: Set this option to enable checking the query parameter as well as the header for an auth token. **This is a setting that might be important if your GQL includes subscription operations**.
-- **Use Cookie Value**: It is possible to use a cookie value as well as the other two token locations. 
+- **Use Cookie Value**: It is possible to use a cookie value as well as the other two token locations.
 - **Enable client certificate**: Select this to use Mutual TLS. See [Mutual TLS]({{< ref "basic-config-and-security/security/mutual-tls" >}}) for details on implementing mutual TLS.
 
 ### Step 5: Save the API
@@ -77,6 +79,7 @@ Your GQL API is now secured and ready to use.
 It is possible to create GQL APIs using [Tyk Dashboard APIs]({{< ref "/tyk-apis/tyk-dashboard-api/api-definitions">}}). To make things easier you can use our [Postman collection](https://www.postman.com/tyk-technologies/workspace/tyk-public-workspace/overview).
 
 You will need an API key for your organization and one command to create a GQL API and make it live.
+
 ### Obtain your Tyk Dashboard API Access Credentials key & Dashboard URL
 
 From the Tyk Dashboard, select "Users" from the "System Management" section.
@@ -153,7 +156,7 @@ We can now edit the `api.trevorblades.json` file we just created, and modify a c
 
 Change `use_keyless` from `true` to `false`.
 
-Change `auth_configs.authToken.auth_header_name` to `apikey`. 
+Change `auth_configs.authToken.auth_header_name` to `apikey`.
 
 Then send a `PUT` request back to Tyk Dashboard to update its configurations.
 
@@ -161,6 +164,7 @@ Then send a `PUT` request back to Tyk Dashboard to update its configurations.
 curl -H "Authorization: ${DASH_KEY}" -H "Content-Type: application/json" ${DASH_URL}/apis/${API_ID} -X PUT -d "@api.trevorblades.json"
 {"Status":"OK","Message":"Api updated","Meta":null}
 ```
+
 ### Test protected API
 
 Send request without any credentials
@@ -202,10 +206,10 @@ Congratulations - You have just created your first keyless GQL API, and then pro
 In order to complete the next steps, you need to have the [Tyk OSS]({{< ref "tyk-oss-gateway" >}}) installed.
 
 {{< button_left href="https://tyk.io/sign-up/" color="green" content="Try it out" >}}
+
 ## Creation Methods
 
 With Tyk OSS, it is possible to create GQL APIs using Tyk's Gateway API or to generate a file with the same object and store it in the `/apps` folder of the Tyk Gateway installation folder. This is demonstrated [here](#with-file-based-mode).
-
 
 ## Tutorial: Create a GQL API with the Tyk Gateway API
 
@@ -229,7 +233,6 @@ Your Tyk Gateway API secret is stored in your `tyk.conf` file, the property is c
 
 ### Step 2: Create a GQL API
 
-
 To create a GQL API, let's send a definition to the `apis` endpoint, which will return the status and version of your Gateway. Change the `x-tyk-authorization` value and `curl` domain name and port to be the correct values for your environment.
 
 This example API definition configures the Tyk Gateway to reverse proxy to the [https://countries.trevorblades.com/](https://countries.trevorblades.com/) public GraphQL service.
@@ -245,6 +248,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis' \
 ```
 
 If the command succeeds, you will see:
+
 ```json
 {
   "key": "trevorblades",
@@ -260,7 +264,7 @@ We just sent an API definition to the Tyk `/apis` endpoint. API definitions are 
 {{< note success >}}
 **Note**
 
-Notice that  when creating a GQL API you need to include your GQL service schema in the API definition. Tyk Gateway doesn't have the capacity to introspect your GQL service on its own.
+Notice that when creating a GQL API you need to include your GQL service schema in the API definition. Tyk Gateway doesn't have the capacity to introspect your GQL service on its own.
 
 Including the correct schema allows Tyk Gateway to validate incoming requests against it. More on validation can be found [here]({{< ref "/graphql/validation">}})
 
@@ -269,6 +273,7 @@ Including the correct schema allows Tyk Gateway to validate incoming requests ag
 ## Restart or hot reload
 
 After generating the file, you must either restart the Gateway or initiate a hot reload through an API call to the gateway, as outlined below:
+
 ```curl
 curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/tyk/reload/group
 ```
@@ -280,7 +285,7 @@ Your GQL API is now ready to use. We recommend that you secure any GQL API that 
 {{< tabs_end >}}
 
 Check the following docs for more on GraphQL-specific security options:
-* [Field based permissions]({{< ref "/graphql/field-based-permissions">}})
-* [Complexity limiting]({{< ref "/graphql/complexity-limiting">}})
-* [Introspection]({{< ref "/graphql/introspection">}})
 
+- [Field based permissions]({{< ref "/graphql/field-based-permissions">}})
+- [Complexity limiting]({{< ref "/graphql/complexity-limiting">}})
+- [Introspection]({{< ref "/graphql/introspection">}})

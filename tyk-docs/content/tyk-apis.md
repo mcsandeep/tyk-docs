@@ -1,7 +1,7 @@
 ---
 title: Tyk APIs Hub
 description: The Tyk API Hub. In this section you will find OpenAPI docs for the APIs for Tyk Gateway, Tyk Dashboard and other Tyk products
-tags: ["swagger", "REST", "Tyk APIs", "Tyk OpenAPI Specs APIs", "OPenAPI", "OAS" ]
+tags: ["swagger", "REST", "Tyk APIs", "Tyk OpenAPI Specs APIs", "OPenAPI", "OAS"]
 aliases:
   - /tyk-oas/
 ---
@@ -14,16 +14,16 @@ Explore our official Tyk Postman collections for a hands-on, practical approach 
 These provide an interactive way to explore and test Tyk components' APIs. They are designed to help you quickly get
 started and understand the capabilities of our products.
 
-
 {{< grid >}}
 
 {{< badge
-    href="https://www.postman.com/tyk-technologies/workspace/379673ec-4cc5-4b8e-bef5-8a6a988071cb/overview"
-    title="Postman" titleStyle="justify-content: center"
-    image="img/logos/Postman-logo-vertical-orange-2021.svg" imageStyle="object-fit:contain" alt="Postman Logo"
->}}
-Tyk Public Workspace
-{{< /badge >}}
+href="https://www.postman.com/tyk-technologies/workspace/379673ec-4cc5-4b8e-bef5-8a6a988071cb/overview"
+title="Postman" titleStyle="justify-content: center"
+image="img/logos/Postman-logo-vertical-orange-2021.svg" imageStyle="object-fit:contain" alt="Postman Logo"
+
+> }}
+> Tyk Public Workspace
+> {{< /badge >}}
 
 {{< /grid >}}
 
@@ -47,24 +47,23 @@ Manage the Tyk platform
 {{< badge href="dashboard-admin-api" title="OpenAPI" titleStyle="justify-content: center">}}
 Dashboard Admin API
 </br></br>
-*Provision & administrate Tyk Dashboard*
+_Provision & administrate Tyk Dashboard_
 {{< /badge >}}
 
 {{< badge href="tyk-mdcb-api" title="OpenAPI" titleStyle="justify-content: center">}}
 MDCB API
 </br></br>
-*Monitor & diagnose Tyk data planes*
+_Monitor & diagnose Tyk data planes_
 {{< /badge >}}
 
 {{< badge href="tyk-portal-api" title="OpenAPI" titleStyle="justify-content: center">}}
 Enterprise Portal API
 </br>
 </br>
-*Configure & control Tyk Enterprise Developer Portal*
+_Configure & control Tyk Enterprise Developer Portal_
 {{< /badge >}}
 
 {{< /grid >}}
-
 
 ## Tyk Open Source
 

@@ -1,11 +1,10 @@
 ---
 title: Bounds Check
 description: Explains an overview of Bounds Check processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Bounds Check" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Bounds Check"]
 ---
 
 Removes messages (and batches) that do not fit within certain size boundaries.
-
 
 ## Common
 
@@ -35,30 +34,26 @@ bounds_check:
 
 The maximum size of a message to allow (in bytes)
 
-
 Type: `int`  
-Default: `1073741824`  
+Default: `1073741824`
 
 ### min_part_size
 
 The minimum size of a message to allow (in bytes)
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### max_parts
 
 The maximum size of message batches to allow (in message count)
 
-
 Type: `int`  
-Default: `100`  
+Default: `100`
 
 ### min_parts
 
 The minimum size of message batches to allow (in message count)
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`

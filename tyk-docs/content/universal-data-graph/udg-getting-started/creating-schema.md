@@ -6,15 +6,14 @@ menu:
     parent: "UDG Getting Started"
 weight: 0
 aliases:
-    - /universal-data-graph/udg-getting-started/creating-schema/
+  - /universal-data-graph/udg-getting-started/creating-schema/
 ---
 
-{{< youtube ocdY0IKwX_I >}} 
+{{< youtube ocdY0IKwX_I >}}
 
 1. Create API
 
 To start with a Universal Data Graph from scratch head over to the dashboard and click on “APIs” in the left menu. Then click the `“Add New API”` and `UDG`. You might want to give your Universal Data Graph an individual name (i.e. `User-Reviews-Demo`)
-
 
 2. Set Authentication
 
@@ -51,10 +50,9 @@ type User {
   username: String
   reviews: [Review]
 }
-
 ```
 
-You can also import an existing schema using the import feature, file types supported :  `gql` , `graphql` and `graphqls`.
+You can also import an existing schema using the import feature, file types supported : `gql` , `graphql` and `graphqls`.
 
 4. Save
 
@@ -63,4 +61,3 @@ Click on save button and that should create our first UDG API
 <hr/>
 
 Now if we try to query our UDG API it should error at this moment as we do not have any data-source attached to it, let's see how we can do that in next section.
-

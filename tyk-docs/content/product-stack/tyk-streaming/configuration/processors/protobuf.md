@@ -1,11 +1,10 @@
 ---
 title: Protobuf
 description: Explains protobuf processior
-tags: [ "Processors","Protobuf" ]
+tags: ["Processors", "Protobuf"]
 ---
 
 Performs conversions to or from a protobuf message. This processor uses reflection, meaning conversions can be made directly from the target .proto files.
-
 
 ```yml
 # Config fields, showing default values
@@ -31,7 +30,6 @@ Converts protobuf messages into a generic JSON structure. This makes it easier t
 ### from_json
 
 Attempts to create a target protobuf message from a generic JSON structure.
-
 
 ## Examples
 
@@ -61,9 +59,9 @@ And a stream of JSON documents of the form:
 
 ```json
 {
-	"firstName": "caleb",
-	"lastName": "quaye",
-	"email": "caleb@myspace.com"
+  "firstName": "caleb",
+  "lastName": "quaye",
+  "email": "caleb@myspace.com"
 }
 ```
 
@@ -75,7 +73,7 @@ pipeline:
     - protobuf:
         operator: from_json
         message: testing.Person
-        import_paths: [ testing/schema ]
+        import_paths: [testing/schema]
 ```
 
 ### Protobuf to JSON
@@ -104,9 +102,9 @@ And a stream of protobuf messages of the type `Person`, we could convert them in
 
 ```json
 {
-	"firstName": "caleb",
-	"lastName": "quaye",
-	"email": "caleb@myspace.com"
+  "firstName": "caleb",
+  "lastName": "quaye",
+  "email": "caleb@myspace.com"
 }
 ```
 
@@ -118,7 +116,7 @@ pipeline:
     - protobuf:
         operator: to_json
         message: testing.Person
-        import_paths: [ testing/schema ]
+        import_paths: [testing/schema]
 ```
 
 ## Fields
@@ -127,7 +125,6 @@ pipeline:
 
 The [operator](#operators) to execute
 
-
 Type: `string`  
 Options: `to_json`, `from_json`.
 
@@ -135,29 +132,25 @@ Options: `to_json`, `from_json`.
 
 The fully qualified name of the protobuf message to convert to/from.
 
-
-Type: `string`  
+Type: `string`
 
 ### discard_unknown
 
 If `true`, the `from_json` operator discards fields that are unknown to the schema.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### use_proto_names
 
 If `true`, the `to_json` operator deserializes fields exactly as named in schema file.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### import_paths
 
 A list of directories containing .proto files, including all definitions required for parsing the target message. If left empty the current directory is used. Each directory listed will be walked with all found .proto files imported.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`

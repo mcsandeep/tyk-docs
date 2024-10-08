@@ -4,7 +4,7 @@ title: How to disable an API
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 You will need to GET the API from the Dashboard, then set `active` property to `false`, then PUT it back.

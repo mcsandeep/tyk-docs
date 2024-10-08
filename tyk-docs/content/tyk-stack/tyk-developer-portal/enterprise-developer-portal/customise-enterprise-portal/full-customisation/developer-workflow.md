@@ -8,6 +8,7 @@ menu:
     parent: "Full Customization"
 weight: 1
 ---
+
 {{< note success >}}
 **Tyk Enterprise Developer Portal**
 
@@ -20,6 +21,7 @@ The Tyk Enterprise Developer Portal uses themes for customizing the live portal.
 This section provides a complete guide to full customization from the developer's point of view.
 
 ## Introduction
+
 For organizations with developers customizing pages layout and other technical aspects of the portal pages, we are recommending the following workflow.
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/portal-fe-develop-flow.png" alt="Developer workflow" >}}

@@ -5,26 +5,26 @@
   "releaseNotesPath": "product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.11.0",
   "1.11.0": {
     "date": "25/09/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.11.0"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.11.0"
   },
   "1.10.0": {
     "date": "30/06/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.10.0"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.10.0"
   },
   "1.9.0": {
     "date": "30/04/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.9.0"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.9.0"
   },
   "1.8.5": {
     "date": "05/04/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.5"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.5"
   },
   "1.8.4": {
     "date": "07/03/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.4"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.4"
   },
   "1.8.3": {
     "date": "23/1/2024",
-    "docker":"https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.3"
+    "docker": "https://hub.docker.com/r/tykio/portal/tags?page=1&name=1.8.3"
   }
 }

@@ -4,12 +4,12 @@ title: Step by step guide using Gluu
 menu:
   main:
     parent: "Dynamic Client Registration"
-weight: 3 
+weight: 3
 aliases:
   - /tyk-developer-portal/gluu-dcr
 ---
 
-We are going walk you through a basic integration of Tyk with [Gluu](https://gluu.org/) using the [OpenID Connect Dynamic Client Registration protocol](https://tools.ietf.org/html/rfc7591). Our current implementation provides support for the client credentials flow with support for {{< tooltip >}}JWT{{< definition >}} JSON Web Tokens{{< /definition >}}{{< /tooltip >}}. 
+We are going walk you through a basic integration of Tyk with [Gluu](https://gluu.org/) using the [OpenID Connect Dynamic Client Registration protocol](https://tools.ietf.org/html/rfc7591). Our current implementation provides support for the client credentials flow with support for {{< tooltip >}}JWT{{< definition >}} JSON Web Tokens{{< /definition >}}{{< /tooltip >}}.
 
 The user journey is as follow:
 
@@ -65,7 +65,7 @@ After the first part of the API creation form was filled, click on "Configure AP
 {{< img src="/img/dcr/gluu/step_5.png" alt="Step 5" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Where do I get the proper JWKS URI for my Gluu environment?
 
@@ -87,7 +87,7 @@ Now you’re ready to add this API to the developer portal. Switch to the "Catal
 Hit "Save" and click on the recently created item again, switch to the "Settings" tab that’s next to "API Details". In "API Details" toggle the "Override global settings" option.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk lets you set global portal settings that apply to **all portal-listed APIs**, in this guide we assume you’re enabling and setting up DCR for a single API. In case you want to enable DCR for all the APIs, you should go to the **Settings** section under **Portal Management**, and in the **API Access** tab you can enter your DCR settings there.
 {{< /note >}}
@@ -144,4 +144,3 @@ Note that you aren’t using any additional headers for this request, the client
 Once you get a response from the IDP, you can copy the `"access_token"` and use it to access your "Gluu API", this request will be proxied by Tyk:
 
 {{< img src="/img/dcr/gluu/step_14.png" alt="Step 14" >}}
-

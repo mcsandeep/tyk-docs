@@ -7,13 +7,13 @@ description: "How to create your own custom event handlers in JavaScript"
 
 Tyk supports you to script your own custom code in JavaScript (JS) that will be invoked in response to API events. This is executed asynchronously so you don't need to worry about it blocking the Gateway handling requests. Event handlers like this can be very powerful for automating session, user and API-level functions.
 
-It is important to note that unlike custom JavaScript [plugins]({{< ref "plugins/supported-languages/javascript-middleware" >}}), custom event handlers execute in a *global* JavaScript environment. This means that you need to be careful when naming the event handlers: if you use the same event handler name for different event handling code across two APIs, only one of them will execute, as the other will be overridden when loaded.
+It is important to note that unlike custom JavaScript [plugins]({{< ref "plugins/supported-languages/javascript-middleware" >}}), custom event handlers execute in a _global_ JavaScript environment. This means that you need to be careful when naming the event handlers: if you use the same event handler name for different event handling code across two APIs, only one of them will execute, as the other will be overridden when loaded.
 
 Custom event handlers have access to the [JavaScript API]({{< ref "plugins/supported-languages/javascript-middleware/javascript-api" >}}) which gives access to the session object and enables your code to make HTTP calls. This is particularly useful if you want to interface with another API with a complex request/response cycle.
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Custom event handlers are currently only supported by Tyk Classic APIs.
 {{< /note >}}
@@ -28,11 +28,11 @@ Creating an event handler is very similar to [creating custom JS plugins]({{< re
 // ---- Sample custom event handler -----
 var sampleHandler = new TykJS.TykEventHandlers.NewEventHandler({});
 
-sampleHandler.NewHandler(function(event, context) {
+sampleHandler.NewHandler(function (event, context) {
   // You can log to Tyk console output by calling the built-in log() function:
-  log("This handler does nothing, but this will appear in your terminal")
+  log("This handler does nothing, but this will appear in your terminal");
 
-  return
+  return;
 });
 ```
 
@@ -68,8 +68,8 @@ It is populated with the API ID and Org ID of the request that your custom funct
 
 ```js
 // Use the TykGetKeyData function to retrieve a session from the session store, use the context variable to give the APIID for the key.
-var thisSession = JSON.parse(TykGetKeyData(event.EventMetaData.Key, context.APIID))
-log("Expires: " + thisSession.expires)
+var thisSession = JSON.parse(TykGetKeyData(event.EventMetaData.Key, context.APIID));
+log("Expires: " + thisSession.expires);
 ```
 
 ### Registering a custom event handler
@@ -79,6 +79,7 @@ Registering a custom event handler to your Tyk Classic API is the same as adding
 The `handler_name` for a custom event handler should be set to: `eh_dynamic_handler`.
 
 The `handler_meta` for a custom event handler consists of two fields:
+
 - `name` is the unique name of your middleware object
 - `path` is the relative path to the file (it can be absolute)
 
@@ -90,7 +91,7 @@ For example, to register a custom event handler with the name `sessionHandler` t
     "events": {
       "KeyExpired": [
         {
-          "handler_name":"eh_dynamic_handler",
+          "handler_name": "eh_dynamic_handler",
           "handler_meta": {
             "name": "sessionHandler",
             "path": "event_handlers/session_editor.js"

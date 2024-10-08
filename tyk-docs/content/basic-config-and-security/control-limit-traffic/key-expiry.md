@@ -6,7 +6,7 @@ description: "How key expiry is managed in Tyk"
 menu:
   main:
     parent: "Control & Limit Traffic"
-weight: 5 
+weight: 5
 ---
 
 Key Expiry allows you to set the lifetime of tokens, ensuring a regular re-cycling of API tokens. If a key has expired Tyk will no longer let requests through on a token, however this **does not mean** that Tyk will remove the key.
@@ -24,15 +24,13 @@ Tyk manages timestamps in the Unix timestamp format - this means that when a dat
 Key sessions are created and updated using the Tyk Gateway API, in order to set the expiry date for a key, update the `expires` value with a Unix timestamp of when the key should expire.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 `expires` can only be a positive number, or `0` if you don't want the key to expire.
 {{< /note >}}
-
 
 ### How to delete expired tokens
 
 In order to not clutter the database with expired tokens, Tyk provides a way to force a TTL on all keys, this is a maximum time to live and should always be significantly larger than your maximum expiry setting. This setting must be set on a per-API basis.
 
 To enforce a TTL, set the `session_lifetime` value (in seconds) in your API Definition Object, this will need to be managed via the Dashboard REST API.
-

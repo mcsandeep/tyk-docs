@@ -6,7 +6,7 @@ menu:
     parent: "UDG Getting Started"
 weight: 0
 aliases:
-    - /universal-data-graph/udg-getting-started/header-forwarding/
+  - /universal-data-graph/udg-getting-started/header-forwarding/
 ---
 
 **Min Version: Tyk v3.2.0**
@@ -19,16 +19,17 @@ The syntax for this is straight forward:
 {{.request.headers.someheader}}
 ```
 
-  In your data sources, define your new Header name and then declare which request header's value to use:
+In your data sources, define your new Header name and then declare which request header's value to use:
 
-  {{< img src="/img/dashboard/udg/getting-started/request-forward-syntax.png" alt="Forwarding Headers" >}}
+{{< img src="/img/dashboard/udg/getting-started/request-forward-syntax.png" alt="Forwarding Headers" >}}
 
-  That's it!
+That's it!
 
-  {{< note success >}}
+{{< note success >}}
 **Note**
 
 A JSON string has to be escaped before using as a header value. For example:
+
 ```
 {\"hello\":\"world\"}
 ```

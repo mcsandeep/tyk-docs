@@ -19,7 +19,7 @@ We'll show you how to setup Tyk Pump for Prometheus Service Discovery.
 
 ### 1. Setup Prometheus
 
-*Using the prometheus-community/kube-prometheus-stack chart*
+_Using the prometheus-community/kube-prometheus-stack chart_
 
 In this example, we use [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack), which installs a collection of Kubernetes manifests, [Grafana](http://grafana.com/) dashboards, and [Prometheus rules](https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/) combined with documentation and scripts to provide easy to operate end-to-end Kubernetes cluster monitoring with [Prometheus](https://prometheus.io/) using the [Prometheus Operator](https://github.com/prometheus-operator/prometheus-operator).
 
@@ -91,12 +91,11 @@ e.g. The custom metrics tyk_http_requests_total can be retrieved:
 
 {{< img src="/img/diagrams/pump-prometheus-3.png" alt="pump-prometheus" >}}
 
-
 ## Example: Integrate with Prometheus using annotations
 
 ### 1. Setup Prometheus
 
-*Using the prometheus-community/prometheus chart*
+_Using the prometheus-community/prometheus chart_
 
 Alternatively, if you are not using Prometheus Operator, please check how your Prometheus can support service discovery. Let say you’re using the [prometheus-community/prometheus](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus#scraping-pod-metrics-via-annotations) chart, which configures Prometheus to scrape from any Pods with following annotations:
 
@@ -156,7 +155,7 @@ After some time, you can see that Prometheus is successfully scraping from Tyk P
 You can expose Pump as a service so that Prometheus can access the `/metrics` endpoint for scraping. Just enable service in `tyk-pump.pump.service`:
 
 ```yaml
-    service:
-      # Tyk Pump svc is disabled by default. Set it to true to enable it.
-      enabled: true
+service:
+  # Tyk Pump svc is disabled by default. Set it to true to enable it.
+  enabled: true
 ```

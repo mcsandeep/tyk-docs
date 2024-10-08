@@ -8,9 +8,10 @@ menu:
   main:
     parent: "Tyk Cloud"
 ---
+
 ## Introduction
 
-This page explains what Tyk Cloud is and how the Tyk SaaS solution makes it easy for you to optimize your platforms in just a few clicks, so that you can manage your APIs seamlessly.  
+This page explains what Tyk Cloud is and how the Tyk SaaS solution makes it easy for you to optimize your platforms in just a few clicks, so that you can manage your APIs seamlessly.
 
 {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="Cloud free trial" >}}
 
@@ -22,12 +23,12 @@ Tyk Cloud is a full SaaS service that enables you to run and operate Tyk using y
 
 Tyk Cloud is currently available to auto-deploy on AWS.
 Paid plans and Enterprise trials allow users to select one of 5 AWS locations as their home region as well as the locations of their Cloud Data Planes. The 5 AWS regions to choose from are:
+
 - aws-ap-southeast-1, Singapore
 - aws-eu-central-1, Frankfurt, Germany
 - aws-eu-west-2, London, UK
 - aws-us-east-1, N. Virginia, USA
 - aws-us-west-2, Oregon, USA
-
 
 ## Why Tyk Cloud?
 

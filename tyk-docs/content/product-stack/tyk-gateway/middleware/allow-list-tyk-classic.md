@@ -36,7 +36,7 @@ The `method_actions` object should be configured as follows, with an entry creat
 
 For example:
 
-```json  {linenos=true, linenostart=1}
+```json {linenos=true, linenostart=1}
 {
     "extended_paths": {
         "white_list": [
@@ -55,7 +55,7 @@ For example:
                         "action": "no_action",
                         "code": 200,
                         "headers": {}
-                    }            
+                    }
                 }
             }
         ]
@@ -85,7 +85,7 @@ Once you have selected the middleware for the endpoint, the only additional feat
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the allow list middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the allow list middleware.
 
 ## Configuring the Allow List in Tyk Operator {#tyk-operator}
 

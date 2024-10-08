@@ -15,18 +15,18 @@ API is very small, and has no granular permissions system. It is intended to be 
 and integration.
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 Under no circumstances should outside parties be granted access to this API.
-{{< /warning >}} 
+{{< /warning >}}
 
 The Tyk Gateway API is capable of:
 
-* Managing session objects (token generation)
-* Managing and listing policies
-* Managing and listing API Definitions (*only* when not using the Dashboard)
-* Hot reloads / reloading a cluster configuration
-* OAuth client creation (*only* when not using the Dashboard)
+- Managing session objects (token generation)
+- Managing and listing policies
+- Managing and listing API Definitions (_only_ when not using the Dashboard)
+- Hot reloads / reloading a cluster configuration
+- OAuth client creation (_only_ when not using the Dashboard)
 
 In order to use the Gateway API, you'll need to set the `secret` parameter in your `tyk.conf` file.
 
@@ -38,7 +38,7 @@ x-tyk-authorization: 352d20ee67be67f6340b4c0605b044bc4
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The Tyk Gateway API is subsumed by the [Tyk Dashboard API]({{< ref "dashboard-api" >}}) in all
 non-Community Edition installations.

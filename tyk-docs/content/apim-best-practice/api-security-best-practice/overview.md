@@ -11,4 +11,3 @@ Two of the most prevalent topics are [authentication]({{< ref "authentication" >
 - [Governance]({{< ref "governance" >}})
 - [Configuration]({{< ref "configuration" >}})
 - [Resource Consumption]({{< ref "resource-consumption" >}})
-

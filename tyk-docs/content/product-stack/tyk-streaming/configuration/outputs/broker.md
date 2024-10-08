@@ -66,14 +66,12 @@ output:
 
 The number of copies of each configured output to spawn.
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### pattern
 
 The brokering pattern to use.
-
 
 Type: `string`  
 Default: `"fan_out"`  
@@ -83,15 +81,13 @@ Options: `fan_out`, `fan_out_fail_fast`, `fan_out_sequential`, `fan_out_sequenti
 
 A list of child outputs to broker.
 
-
-Type: `array`  
+Type: `array`
 
 ### batching
 
 Allows you to configure a [batching policy]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching#batch-policy" >}}).
 
-
-Type: `object`  
+Type: `object`
 
 ```yml
 # Examples
@@ -115,25 +111,22 @@ batching:
 
 A number of messages at which the batch should be flushed. If `0` disables count based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.byte_size
 
 An amount of bytes at which the batch should be flushed. If `0` disables size based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.period
 
 A period in which an incomplete batch should be flushed regardless of its size.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -149,9 +142,8 @@ period: 500ms
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message should end a batch.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -163,8 +155,7 @@ check: this.type == "end_of_transaction"
 
 A list of processors to apply to a batch as it is flushed. This allows you to aggregate and archive the batch however you see fit. Please note that all resulting messages are flushed as a single batch, therefore splitting the batch into smaller batches using these processors is a no-op.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples

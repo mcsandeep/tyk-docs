@@ -8,9 +8,8 @@ menu:
     parent: "Getting Started with Tyk Cloud"
 weight: 2
 aliases:
-    - /tyk-cloud/setup-org/
+  - /tyk-cloud/setup-org/
 ---
-
 
 ## Introduction
 
@@ -18,18 +17,18 @@ Now that you have created the new Tyk Cloud account with your basic details, it 
 
 ## What is an organization?
 
-* An organization is the main entity for all your data (Environments, APIs, Users, etc)
-* An Organization is connected to a single region and once connected, cannot be changed.
-  
-## Steps to set up your organization  
+- An organization is the main entity for all your data (Environments, APIs, Users, etc)
+- An Organization is connected to a single region and once connected, cannot be changed.
 
-* **Step 1 - Name your Organization:** Give your organization a name. This is up to you, but most users use their company name.
+## Steps to set up your organization
 
-* **Step 2 - Select a Home Region:** Select a region from the drop-down list where your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}) will be deployed and your data stored. The number of regions available will depend on your license. Further regions can be added as an upgrade option.
+- **Step 1 - Name your Organization:** Give your organization a name. This is up to you, but most users use their company name.
+
+- **Step 2 - Select a Home Region:** Select a region from the drop-down list where your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}) will be deployed and your data stored. The number of regions available will depend on your license. Further regions can be added as an upgrade option.
 
 {{< note success >}}
 **Note**
-  
+
 Tyk Cloud can currently be deployed across 2 AWS regions in the USA plus UK, Germany and Singapore. If you have any concerns about Brexit impacting the way you store data you should read [AWS regularly updated Brexit statement](https://aws.amazon.com/compliance/gdpr-center/brexit/).
 {{< /note >}}
 
@@ -45,8 +44,8 @@ Our demo setup will quickly configure your first deployment setup automatically,
 
 This setup option gives you full control on creating the following:
 
-* Teams
-* Environments
-* Configuration and deployment of Control Planes and Cloud Data Planes
+- Teams
+- Environments
+- Configuration and deployment of Control Planes and Cloud Data Planes
 
 For a manual setup you'll get started by [setting up your first team]({{< ref "/tyk-cloud/getting-started-tyk-cloud/setup-team.md" >}}).

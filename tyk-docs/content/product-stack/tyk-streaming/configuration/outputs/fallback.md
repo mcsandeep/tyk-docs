@@ -1,7 +1,7 @@
 ---
 title: Fallback
 description: Explains an overview of the fallback output
-tags: [ "Tyk Streams", "Stream Processors", "Outputs", "Fallback" ]
+tags: ["Tyk Streams", "Stream Processors", "Outputs", "Fallback"]
 ---
 
 Attempts to send each message to a child output, starting from the first output on the list. If an output attempt fails then the next output in the list is attempted, and so on.

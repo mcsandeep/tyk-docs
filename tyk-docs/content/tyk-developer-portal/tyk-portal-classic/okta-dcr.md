@@ -4,14 +4,14 @@ title: Step by step guide using Okta
 menu:
   main:
     parent: "Dynamic Client Registration"
-weight: 2 
+weight: 2
 aliases:
   - /tyk-developer-portal/okta-dcr
 ---
 
 ## Introduction
 
-We are going walk you through a basic integration of Tyk with Okta using the [OpenID Connect Dynamic Client Registration protocol](https://tools.ietf.org/html/rfc7591). Our current implementation provides support for the client credentials flow with support for {{< tooltip >}}JWT{{< definition >}}JSON Web Tokens{{< /definition >}}{{< /tooltip >}}. 
+We are going walk you through a basic integration of Tyk with Okta using the [OpenID Connect Dynamic Client Registration protocol](https://tools.ietf.org/html/rfc7591). Our current implementation provides support for the client credentials flow with support for {{< tooltip >}}JWT{{< definition >}}JSON Web Tokens{{< /definition >}}{{< /tooltip >}}.
 
 The user journey is as follow:
 
@@ -34,7 +34,7 @@ First signup to OKTA, the initial screen looks like:
 
 {{< img src="/img/dcr/okta/step_1.png" alt="Step 1" >}}
 
-The first thing you’ll need for our integration is an API token from OKTA, the OpenID specification also calls this an [Initial Access Token](https://openid.net/specs/openid-connect-registration-1_0.html#Terminology) to differentiate it from other tokens that are used with this protocol. To create this token, click  **API** option from the **Security** menu on the navigation bar:
+The first thing you’ll need for our integration is an API token from OKTA, the OpenID specification also calls this an [Initial Access Token](https://openid.net/specs/openid-connect-registration-1_0.html#Terminology) to differentiate it from other tokens that are used with this protocol. To create this token, click **API** option from the **Security** menu on the navigation bar:
 
 {{< img src="/img/dcr/okta/step_2.png" alt="Step 2" >}}
 
@@ -67,7 +67,7 @@ Complete first part of the API creation form, then click **Configure API** and s
 {{< img src="/img/dcr/okta/step_6.png" alt="Step 6" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Where do I get the proper JWKS URI for my Keycloak environment?
 
@@ -76,7 +76,7 @@ From the OKTA Dashboard, open the **API** section under **Security**, take the b
 
 For the **Identity Source** field use `"sub"` and for **Policy Field Name** use `"pol"`.
 
-1. Click **Save** 
+1. Click **Save**
 2. Select **Policies** under **System Management**
 3. Click **Create a Policy** and call it **OKTA Policy**. Use the default values for this policy.
 4. In the **Access rights** section, select your previously created **OKTA API**. You will also need to enter an expiration setting for your keys.
@@ -85,34 +85,34 @@ After the policy is created, switch back to the API settings and make sure that 
 
 {{< img src="/img/dcr/okta/step_7.png" alt="Step 7" >}}
 
-Now you're ready to add this API to the Developer Portal. 
-1. Click **Catalog** under **Portal Management** on the navigation menu. 
+Now you're ready to add this API to the Developer Portal.
+
+1. Click **Catalog** under **Portal Management** on the navigation menu.
 2. Click **Add New API**, enter a name for it and select the newly created policy. Again, you will use **OKTA API**:
 
 {{< img src="/img/dcr/okta/step_8.png" alt="Step 8" >}}
 
 1. Click **Save** then open the API added again
-2. Open the **Settings** tab. 
+2. Open the **Settings** tab.
 3. In **API Details** select the **Override global settings** option.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk lets you set global portal settings that apply to **all portal-listed APIs**, in this guide we assume you’re enabling and setting up DCR for a single API. In case you want to enable DCR for all the APIs, you should go to the **Settings** section under **Portal Management**, and in the **API Access** tab you can enter your DCR settings there.
 {{< /note >}}
 
 4. Scroll down to the DCR section and enter the following settings:
 
-
 {{< img src="/img/dashboard/portal-management/dcr-okta-grant-types.png" alt="Okta Grant Types" >}}
-
 
 **Providers:** Different providers might implement the standard in slightly different ways, Tyk provides a specific driver for each one. For IDPs that aren’t on the list use the "Other" option. For this guide, pick "OKTA".
 
 **Grant Types:** The grant types that will be used by the client. See the [specification](https://openid.net/specs/openid-connect-registration-1_0.html#rfc.section.2) for more details. You need to enter the following grant types:
- * Client Credentials
- * Implicit
- * Authorization Code
+
+- Client Credentials
+- Implicit
+- Authorization Code
 
 **Token Endpoint Auth Method:** defines the way the client will authenticate against the token endpoint. Use "Client Secret - Post".
 
@@ -127,7 +127,7 @@ This value is found in your well-known discovery document as `registration_endpo
 **Initial Registration Access Token:** the token that’s used to register new clients, this was generated in the early steps of the guide.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 A note on grant types and response types in OKTA
 

@@ -19,18 +19,20 @@ If you're using Tyk Operator then check out the [configuring API versioning in T
 
 ### Controlling access to Tyk Classic API versions
 
-You can explicitly grant access to specific version(s) of an API by specifying only those version(s) in the [key]({{< ref "tyk-apis/tyk-gateway-api/token-session-object-details" >}}) (also known as an *authorization token*, *bearer token*, *access token*, *API token* or *token session object* - see [here]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}})).
+You can explicitly grant access to specific version(s) of an API by specifying only those version(s) in the [key]({{< ref "tyk-apis/tyk-gateway-api/token-session-object-details" >}}) (also known as an _authorization token_, _bearer token_, _access token_, _API token_ or _token session object_ - see [here]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}})).
 
 ## Configuring API versioning in the Tyk Classic API Definition
 
 The configuration for a new version of a Tyk Classic API is contained in the `version_data` section within the API definition.
 
 This has the following configuration:
+
 - `not_versioned`: set to `false` to treat this as a versioned API
 - `default_version`: this must contain the `name` of the version that shall be treated as `default` (for [access control](#controlling-access-to-tyk-classic-api-versions) and [default fallback]({{< ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning#default-api-version" >}}))
 - `versions`: a list of objects that describe the versions of the API; there must be at least one (default) version defined for any API (even non-versioned APIs)
 
 To add an API version, you must add a new entry in the `versions` list:
+
 - `name`: an identifier for this version of the API, for example `default` or `v1`
 - `expires`: an optional expiry date for the API after which Tyk will reject any access request; accepted format is `2006-01-02 15:04`
 - `paths`: location for configuration of endpoint [ignore]({{< ref "product-stack/tyk-gateway/middleware/ignore-middleware" >}}), [allow]({{< ref "product-stack/tyk-gateway/middleware/allow-list-middleware" >}}) and [block]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) lists
@@ -42,6 +44,7 @@ To add an API version, you must add a new entry in the `versions` list:
 There is also some API-level configuration for versioning, which is located in the `definition` section of the Tyk Classic API definition:
 
 The `definition` section has the following fields:
+
 - `location`: used to configure where the versioning identifier should be provided: `header`, `url`, `url-param`
 - `key`: the versioning identifier key used if `location` is set to `header` or `url-param`
 - `strip_versioning_data`: set this to `true` to [remove the versioning identifier]({{< ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning#stripping-version-identifier" >}}) prior to creating the upstream (target) URL)
@@ -49,6 +52,7 @@ The `definition` section has the following fields:
 - `url_versioning_pattern`: if you are using `strip_versioning_data` and `fallback_to_default` with `location=url` [with Tyk 5.5.0 or later]({{< ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning#stripping-url-path-version-and-default-fallback" >}}) you can configure this with a regex that matches the format that you use for the versioning identifier (`versions.name`)
 
 The following fields in `definition` are either deprecated or otherwise not used for Tyk Classic API versioning and should be left with their default values:
+
 - `enabled`: defaults to `false`
 - `default`: defaults to an empty string `""`
 - `name`: defaults to an empty string `""`
@@ -59,7 +63,7 @@ When you first create an API, it will not be "versioned" (i.e. `not_versioned` w
 
 Here's an example of the minimal configuration that would need to be added to the API definition for an API with two versions:
 
-```json  {linenos=true, linenostart=1}
+```json {linenos=true, linenostart=1}
 {
   "version_data": {
     "not_versioned": false,
@@ -160,6 +164,7 @@ Here's an example of the minimal configuration that would need to be added to th
 ```
 
 In this example, there are two versions of the API
+
 - the version identifier is provided in a request header `x-api-version`
 - the versions are named `v1` and `v2`
 - the only difference between `v1` and `v2` is that `v2` will proxy the request to a different upstream via the configured `override_target`
@@ -190,11 +195,10 @@ Choose from the drop-down where the version identifier will be located and, if a
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 The Tyk Classic API Designer does not have support to configure `url_versioning_pattern` from this screen, however it is easy to add in the Raw Definition editor.
 {{< /note >}}
-
 
 ##### Step 3: add a new version
 
@@ -251,16 +255,16 @@ spec:
     listen_path: /version-api
     strip_listen_path: true
   definition:
-  # Tyk should find version data in Header
+    # Tyk should find version data in Header
     location: header
     key: x-api-version
 
   # Tyk should find version data in First URL Element
-    #location: url
+  #location: url
 
   # Tyk should find version data in URL/Form Parameter
-    #location: url-param
-    #key: api-version
+  #location: url-param
+  #key: api-version
   version_data:
     default_version: v1
     not_versioned: false

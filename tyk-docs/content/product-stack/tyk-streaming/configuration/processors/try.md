@@ -1,7 +1,7 @@
 ---
 title: Try
 description: Explains an overview of try processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Try" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Try"]
 ---
 
 Executes a list of child processors on messages only if no prior processors have failed (or the errors have been cleared).
@@ -21,9 +21,9 @@ pipeline:
   processors:
     - resource: foo
     - try:
-      - resource: bar
-      - resource: baz
-      - resource: buz
+        - resource: bar
+        - resource: baz
+        - resource: buz
 ```
 
 If the processor `bar` fails for a particular message, that message will skip the processors `baz` and `buz`. Similarly, if `bar` succeeds but `baz` does not then `buz` will be skipped. If the processor `foo` fails for a message then none of `bar`, `baz` or `buz` are executed on that message.
@@ -34,7 +34,7 @@ More information about error handing can be found [here]({{< ref "/product-stack
 
 ### Nesting within a catch block
 
-In some cases it might be useful to nest a try block within a catch block, since the [catch processor]({{< ref "/product-stack/tyk-streaming/configuration/processors/catch" >}}) only clears errors *after* executing its child processors. This means a nested try processor will not execute unless the errors are explicitly cleared beforehand.
+In some cases it might be useful to nest a try block within a catch block, since the [catch processor]({{< ref "/product-stack/tyk-streaming/configuration/processors/catch" >}}) only clears errors _after_ executing its child processors. This means a nested try processor will not execute unless the errors are explicitly cleared beforehand.
 
 This can be done by inserting an empty catch block before the try block like as follows:
 
@@ -43,11 +43,11 @@ pipeline:
   processors:
     - resource: foo
     - catch:
-      - log:
-          level: ERROR
-          message: "Foo failed due to: ${! error() }"
-      - catch: [] # Clear prior error
-      - try:
-        - resource: bar
-        - resource: baz
+        - log:
+            level: ERROR
+            message: "Foo failed due to: ${! error() }"
+        - catch: [] # Clear prior error
+        - try:
+            - resource: bar
+            - resource: baz
 ```

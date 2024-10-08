@@ -1,7 +1,7 @@
 ---
 title: Scanners
 description: Explains an overview of scanners in Tyk Streams
-tags: [ "Tyk Streams", "Scanners" ]
+tags: ["Tyk Streams", "Scanners"]
 ---
 
 For most Tyk Streams inputs the data consumed comes pre-partitioned into discrete messages which can be comfortably held and processed in memory. However, some inputs such as the socket don't have a concept of consuming the data "entirely".
@@ -15,7 +15,7 @@ The way in which we define this chopping mechanism is through scanners, configur
 ```yaml
 input:
   file:
-    paths: [ "./*.txt" ]
+    paths: ["./*.txt"]
     scanner:
       lines: {}
 ```
@@ -26,7 +26,7 @@ input:
 # Instead of newlines, use a custom delimiter:
 input:
   file:
-    paths: [ "./*.txt" ]
+    paths: ["./*.txt"]
     scanner:
       lines:
         custom_delimiter: "---END---"

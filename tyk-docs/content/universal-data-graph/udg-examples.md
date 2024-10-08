@@ -2,18 +2,19 @@
 title: "UDG Examples"
 date: 2023-03-27
 menu:
-    main:
-        parent: "Universal Data Graph"
+  main:
+    parent: "Universal Data Graph"
 weight: 12
 aliases:
-- /universal-data-graph/examples/
+  - /universal-data-graph/examples/
 ---
 
 It is possible to import various UDG examples from the [official Tyk examples repository](https://github.com/TykTechnologies/tyk-examples).
 
 We offer 3 ways of importing an example into Tyk:
- - Using [tyk-sync]({{< ref "/product-stack/tyk-sync/overview" >}})
- - Manually import via [Dashboard API Import]({{< ref "getting-started/import-apis" >}})
+
+- Using [tyk-sync]({{< ref "/product-stack/tyk-sync/overview" >}})
+- Manually import via [Dashboard API Import]({{< ref "getting-started/import-apis" >}})
 - Using Tyk Dashboard to browse and import the examples directly
 
 ## Import via tyk-sync

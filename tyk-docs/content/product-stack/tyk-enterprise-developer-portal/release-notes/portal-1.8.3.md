@@ -13,33 +13,41 @@ weight: 7
 ##### Release Date 22 Jan 2024
 
 #### Breaking Changes
+
 This release has no breaking changes.
 
 #### Future breaking changes
+
 This release doesn't introduce future breaking changes.
 
 #### Deprecations
+
 There are no deprecations in this release.
 
 #### Upgrade instructions
+
 If you are on 1.8.1 or an older version we advise you to upgrade ASAP directly to this release.
 
 To upgrade the portal's theme please follow the [upgrade instructions]({{< ref "product-stack/tyk-enterprise-developer-portal/upgrading/theme-upgrades" >}}) for the portal's themes.
 
-
 ## Release Highlights
+
 The 1.8.3 release addresses ten high-priority bugs and introduces new admin APIs for managing tags and OAuth2.0 client types attached to API Products.
 
 ## Download
+
 - [Docker image to pull](https://hub.docker.com/layers/tykio/portal/v1.8.3/images/sha256-3693065546348105a693a1ed5402c93bfecd480c900e1efea4a6dea674263df3?context=explore)
 - [The default theme package](https://github.com/TykTechnologies/portal-default-theme/releases/tag/1.8.3)
 
 ## Changelog
+
 #### Added
+
 - Added [new admin API]({{< ref "product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) for managing tags attached to API Products.
 - Added [new admin API]({{< ref "product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) for managing OAuth2.0 client types attached to API Products.
 
 #### Fixed
+
 - Fixed the bug where the search bar in the My Apps section of the Developer dashboard didn't search for an application.
 - Fixed the bug where it was possible to update read-only details of an API Product via an API call.
 - Fixed the bug where deleting an access request credentials also deleted the access request.
@@ -54,7 +62,9 @@ The 1.8.3 release addresses ten high-priority bugs and introduces new admin APIs
 ## Further Information
 
 ### Upgrading Tyk
+
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

@@ -4,7 +4,7 @@ title: Redis persistence using containers
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 Use case: Keep my data persistent at Docker container restart

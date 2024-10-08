@@ -18,4 +18,3 @@ The error overview page limits the analytics down to errors only, and gives you 
 
 From Tyk v5.1 (and LTS patches v4.0.14 and v5.0.3) the Errors by Category data will not be visible to a user if they are assigned the [Owned Analytics]({{< ref "basic-config-and-security/security/dashboard/user-roles#user-owned-analytics" >}}) permission.
 {{< /note >}}
-

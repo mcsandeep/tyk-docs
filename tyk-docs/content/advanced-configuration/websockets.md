@@ -1,10 +1,10 @@
 ---
 date: 2017-03-24T12:52:17Z
 title: WebSockets
-menu: 
+menu:
   main:
     parent: "Advanced Configuration"
-weight: 5  
+weight: 5
 ---
 
 As from Tyk gateway v2.2, Tyk supports transparent WebSocket connection upgrades. To enable this feature, set the `enable_websockets` value to `true` in your `tyk.conf` file.
@@ -31,7 +31,6 @@ Create a new API in Tyk. For this demo we are going to select Open (Keyless) as 
 
 Set the **Target URL** to `wss://ws.postman-echo.com/raw`
 
-
 ### Step 2. Test the Connection
 
 1. From Postman, select **File > New > WebSocket Request** (or from **Workspace > New > WebSocket Request** if using the web based version).
@@ -45,9 +44,9 @@ Set the **Target URL** to `wss://ws.postman-echo.com/raw`
 {{< img src="/img/dashboard/system-management/postman-websocket-test.png" alt="Postman WebSocket Connection Result" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
-If your API uses an Authentication mode other than Open (Keyless), add the details in the Header tab. 
+If your API uses an Authentication mode other than Open (Keyless), add the details in the Header tab.
 {{< /note >}}
 
 An example Header configuration for using an Authentication Token with an API:

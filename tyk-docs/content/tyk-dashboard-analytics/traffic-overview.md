@@ -30,4 +30,3 @@ Below the aggregate graph, you’ll see an error breakdown and endpoint populari
 
 From Tyk v5.1 (and LTS patches v4.0.14 and v5.0.3) the Error Breakdown and Endpoint Popularity charts will not be visible to a user if they are assigned the [Owned Analytics]({{< ref "basic-config-and-security/security/dashboard/user-roles#user-owned-analytics" >}}) permission.
 {{< /note >}}
-

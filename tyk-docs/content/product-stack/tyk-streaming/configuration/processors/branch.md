@@ -1,7 +1,7 @@
 ---
 title: Branch
 description: Branch Processor
-tags: ["Branch","Processors","Composition"]
+tags: ["Branch", "Processors", "Composition"]
 ---
 
 The `branch` processor allows you to create a new request message via a [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping, execute a list of processors on the request messages, and, finally, map the result back into the source message using another mapping.
@@ -18,11 +18,15 @@ branch:
 This is useful for preserving the original message contents when using processors that would otherwise replace the entire contents.
 
 ## Metadata
+
 <!-- TODO: add a link -->
+
 Metadata fields that are added to messages during branch processing will not be automatically copied into the resulting message. In order to do this you should explicitly declare in your `result_map` either a wholesale copy with `meta = metadata()`, or selective copies with `meta foo = metadata("bar")` and so on. It is also possible to reference the metadata of the origin message in the `result_map` using the @ operator.
 
 ## Error Handling
+
 <!-- TODO: add a link -->
+
 If the `request_map` fails the child processors will not be executed. If the child processors themselves result in an (uncaught) error then the `result_map` will not be executed. If the `result_map` fails the message will remain unchanged. Under any of these conditions standard error handling methods can be used in order to filter, DLQ or recover the failed messages.
 
 ## Conditional Branching
@@ -34,7 +38,6 @@ If the root of your request map is set to `deleted()` then the branch processors
 ### request_map
 
 A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping that describes how to create a request payload suitable for the child processors of this branch. If left empty then the branch will begin with an exact copy of the origin message (including metadata).
-
 
 Type: `string`  
 Default: `""`
@@ -60,13 +63,11 @@ request_map: |-
 
 A list of processors to apply to mapped requests. When processing message batches the resulting batch must match the size and ordering of the input batch, therefore filtering, grouping should not be performed within these processors.
 
-
 Type: `array`
 
 ### result_map
 
 A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping that describes how the resulting messages from branched processing should be mapped back into the original payload. If left empty the origin message will remain unchanged (including metadata).
-
 
 Type: `string`  
 Default: `""`
@@ -100,6 +101,7 @@ result_map: |-
 ## Examples
 
 ### HTTP Request
+
 This example strips the request message into an empty body, grabs an HTTP payload, and places the result back into the original message at the path `image.pull_count`:
 
 ```yaml
@@ -114,26 +116,25 @@ pipeline:
               headers:
                 Content-Type: application/json
         result_map: root.image.pull_count = this.pull_count
-
 # Example input:  {"id":"foo","some":"pre-existing data"}
 # Example output: {"id":"foo","some":"pre-existing data","image":{"pull_count":1234}}
 ```
 
 ### Non Structured Results
+
 When the result of your branch processors is unstructured and you wish to simply set a resulting field to the raw output use the content function to obtain the raw bytes of the resulting message and then coerce it into your value type of choice:
 
 ```yaml
 pipeline:
   processors:
     - branch:
-        request_map: 'root = this.document.id'
+        request_map: "root = this.document.id"
         processors:
           - cache:
               resource: descriptions_cache
               key: ${! content() }
               operator: get
         result_map: root.document.description = content().string()
-
 # Example input:  {"document":{"id":"foo","content":"hello world"}}
 # Example output: {"document":{"id":"foo","content":"hello world","description":"this is a cool doc"}}
 ```
@@ -150,12 +151,12 @@ pipeline:
         processors:
           - aws_lambda:
               function: trigger_user_update
-
 # Example input: {"doc":{"id":"foo","body":"hello world"},"user":{"name":"fooey"}}
 # Output matches the input, which is unchanged
 ```
 
 ### Conditional Caching
+
 This example caches a document by a message ID only when the type of the document is a foo:
 
 ```yaml

@@ -3,7 +3,7 @@ title: Tyk Gateway v4.0
 description: "Tyk Gateway 4.0 release notes"
 tags: ["release notes", "Tyk Gateway", "v4.0", "4.0"]
 aliases:
-    - /release-notes/version-4.0/
+  - /release-notes/version-4.0/
 ---
 
 ## Release Highlights
@@ -42,4 +42,3 @@ Tyk Pump 1.5
 Follow the [standard upgrade guide]({{< ref "/content/upgrading-tyk.md" >}}), there are no breaking changes in this release.
 
 If you want switch from MongoDB to SQL, you can [use our migration tool]({{< ref "/content/planning-for-production/database-settings/postgresql.md#migrating-from-an-existing-mongodb-instance" >}}), but keep in mind that it does not yet support the migration of your analytics data.
- 

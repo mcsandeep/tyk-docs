@@ -4,7 +4,7 @@ title: Control & Limit Traffic
 tags: ["Basic Configuration", "Control and limit traffic", "Quotas", "Rate Limiting"]
 description: "The key concepts for implementing rate limits and quotas with Tyk"
 weight: 2
-menu: 
+menu:
   main:
     parent: "Basic Configuration and Security"
 ---

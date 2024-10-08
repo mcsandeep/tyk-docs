@@ -4,7 +4,7 @@ title: “504 GATEWAY_TIMEOUT“ error
 menu:
   main:
     parent: "Tyk Cloud Classic"
-weight: 5 
+weight: 5
 ---
 
 ### Description

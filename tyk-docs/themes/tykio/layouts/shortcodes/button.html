@@ -1,2 +1,6 @@
-{{ $prefixPath := strings.TrimLeft "/" (.Get "href") }} 
-<center><a href="{{strings.TrimPrefix "/docs" $prefixPath | relURL }}" class="button center button-{{.Get "color"}}">{{.Get "content"}}</a></center>
+{{ $prefixPath := strings.TrimLeft "/" (.Get "href") }}
+<center>
+  <a href="{{ strings.TrimPrefix "/docs" $prefixPath | relURL }}" class="button center button-{{ .Get "color" }}"
+    >{{ .Get "content" }}</a
+  >
+</center>

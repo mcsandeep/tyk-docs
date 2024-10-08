@@ -9,8 +9,8 @@ The following guides provide instructions to install Redis, MongoDB, and Tyk sta
 
 ## Prerequisites
 
-* [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
-* [Helm 3+](https://helm.sh/docs/intro/install/)
+- [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
+- [Helm 3+](https://helm.sh/docs/intro/install/)
 
 {{< note success >}}
 **Note**
@@ -21,6 +21,7 @@ If you want to enable Tyk Enterprise Developer Portal, please use [PostgreSQL]({
 ## Quick Start with MongoDB
 
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
+
 - Redis for key storage
 - MongoDB for app config
 - Tyk Pump to send analytics to MongoDB. It also opens a metrics endpoint where Prometheus (if available) can scrape from.
@@ -30,6 +31,7 @@ At the end of this quickstart Tyk Dashboard should be accessible through service
 **1. Setup required credentials**
 
 First, you need to provide Tyk license, admin email and password, and API keys. We recommend to store them in secrets.
+
 ```bash
 NAMESPACE=tyk
 REDIS_BITNAMI_CHART_VERSION=19.0.2
@@ -62,8 +64,9 @@ If you do not already have Redis installed, you may use these charts provided by
 ```bash
 helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESPACE --install --version $REDIS_BITNAMI_CHART_VERSION
 ```
-Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is 
-`tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
+
+Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is
+`tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port)
 
 The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this secret in installation later.
 
@@ -101,7 +104,6 @@ MONGOURL=mongodb://root:$(kubectl get secret --namespace $NAMESPACE tyk-mongo-mo
 kubectl create secret generic mongourl-secrets --from-literal=mongoUrl=$MONGOURL -n $NAMESPACE
 ```
 
-
 {{< note >}}
 **Note**
 
@@ -109,6 +111,7 @@ Ensure that you are installing MongoDB versions that are supported by Tyk. Pleas
 {{< /note >}}
 
 **4. Install Tyk**
+
 ```bash
 helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
 
@@ -125,7 +128,7 @@ helm upgrade tyk tyk-helm/tyk-stack -n $NAMESPACE \
   --set global.mongo.connectionURLSecret.name=mongourl-secrets \
   --set global.mongo.connectionURLSecret.keyName=mongoUrl \
   --set global.storageType=mongo \
-  --set tyk-pump.pump.backend='{prometheus,mongo}' 
+  --set tyk-pump.pump.backend='{prometheus,mongo}'
 ```
 
 **5. Done!**

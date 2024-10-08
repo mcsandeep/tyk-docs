@@ -11,6 +11,7 @@ aliases:
   - /getting-started/installation/with-tyk-on-premises/on-ubuntu/analytics-pump/
   - /getting-started/installation/with-tyk-on-premises/debian-ubuntu/analytics-pump
 ---
+
 {{< tabs_start >}}
 {{< tab_start "Ansible" >}}
 <br />
@@ -21,6 +22,7 @@ aliases:
 {{< /note >}}
 
 ## Getting Started
+
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -28,6 +30,7 @@ $ git clone https://github.com/TykTechnologies/tyk-ansible
 ```
 
 2. `cd` into the directory
+
 ```.bash
 $ cd tyk-ansible
 ```
@@ -47,17 +50,19 @@ $ ansible-playbook playbook.yaml -t tyk-pump
 ```
 
 ## Supported Distributions
+
 | Distribution | Version | Supported |
-| --------- | :---------: | :---------: |
-| Debian | 10 | ✅ |
-| Debian | 9 | ✅ |
-| Ubuntu | 21 | ✅ |
-| Ubuntu | 20 | ✅ |
-| Ubuntu | 18 | ✅ |
-| Ubuntu | 16 | ✅ |
+| ------------ | :-----: | :-------: |
+| Debian       |   10    |    ✅     |
+| Debian       |    9    |    ✅     |
+| Ubuntu       |   21    |    ✅     |
+| Ubuntu       |   20    |    ✅     |
+| Ubuntu       |   18    |    ✅     |
+| Ubuntu       |   16    |    ✅     |
 
 {{< tab_end >}}
 {{< tab_start "Shell" >}}
+
 ## Install Tyk Pump on Ubuntu
 
 ### What is Tyk Pump?
@@ -107,9 +112,7 @@ sudo apt-get update
 
 {{< note success >}}
 
-**Note**  
-
-
+**Note**
 
 `bionic` is the code name for Ubuntu 18.04. Please substitute it with your particular [ubuntu release](https://wiki.ubuntu.com/Releases), e.g. `focal`.
 
@@ -144,6 +147,7 @@ gpg --import tyk.io.deb.signing.key
 ```
 
 Then, you have to either,
+
 - sign the key with your ultimately trusted key
 - trust this key ultimately
 
@@ -172,6 +176,7 @@ You need to replace `<hostname>` for `--redishost=<hostname>`, and `<IP Address>
 ```bash
 sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --mongo=mongodb://<IP Address>/tyk_analytics
 ```
+
 {{< tab_end >}}
 {{< tab_start "SQL" >}}
 <br>
@@ -184,8 +189,10 @@ You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Postgres Ho
 ```bash
 sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --postgres="host=<Postgres Host Name> port=<Port> user=<User> password=<Password> dbname=<DB>"
 ```
+
 {{< tab_end >}}
 {{< tabs_end >}}
+
 #### Step 4: Start Tyk Pump
 
 ```bash
@@ -198,7 +205,6 @@ You can verify if Tyk Pump is running and working by tailing the log file:
 ```bash
 sudo tail -f /var/log/upstart/tyk-pump.log
 ```
-
 
 [1]: https://packagecloud.io
 

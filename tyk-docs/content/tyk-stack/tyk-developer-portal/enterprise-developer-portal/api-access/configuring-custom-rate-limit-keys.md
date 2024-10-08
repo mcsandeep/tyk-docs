@@ -1,7 +1,7 @@
 ---
 title: "Configuring custom rate limit keys"
 date: 2022-02-11
-tags: ["Tyk Developer Portal","Enterprise Portal", "Rate limit", "Quota"]
+tags: ["Tyk Developer Portal", "Enterprise Portal", "Rate limit", "Quota"]
 description: "How to configure custom rate limit keys with the Enterprise Portal"
 menu:
   main:
@@ -24,9 +24,11 @@ For example, if an API Product is sold to a B2B customer, the quota of API calls
 To enable this, Tyk introduced support for custom rate limit keys in [Tyk 5.3.0]({{< ref "product-stack/tyk-dashboard/release-notes/version-5.3.md" >}}). This guide explains how to configure custom rate limit keys.
 
 ## Prerequisites for getting started
+
 This capability works with [Tyk 5.3.0]({{< ref "product-stack/tyk-dashboard/release-notes/version-5.3.md" >}}) or higher.
 
 ## Configuring custom rate limit keys for policies in Tyk Dashboard
+
 Custom rate limit keys are applied at a policy level. When a custom rate limit key is specified, quota, rate limit and throttling will be calculated against the specified value and not against a credential ID.
 
 To specify a custom rate limit key, add to a policy a new metadata field called `rate_limit_pattern`.
@@ -61,6 +63,7 @@ If, after evaluating the `rate_limit_pattern`, its value is equal to an empty st
 The Tyk Enterprise Developer Portal facilitates the configuration of various rate limiting options based on a business model for API Products published in the portal.
 
 To achieve this, the portal, by default, populates the following attributes in the credential metadata, which can be used as part of a custom rate limit key:
+
 - **ApplicationID**: The ID of the application to which the credential belongs.
 - **DeveloperID**: The ID of the developer who created the credential.
 - **OrganizationID**: The ID of the organization to which the developer belongs.

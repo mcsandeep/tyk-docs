@@ -8,7 +8,7 @@ menu:
     parent: "Getting Started with Tyk Cloud"
 weight: 5
 aliases:
-    - /tyk-cloud/first-api/
+  - /tyk-cloud/first-api/
 ---
 
 ## Introduction
@@ -28,9 +28,9 @@ For further details, please refer to the [release notes]({{< ref "product-stack/
 
 ## Steps to add an API in Tyk Cloud
 
-* **Step 1 - Access the Dashboard:** Go to the Control Plane overview and click the dashboard link in the Ingress list. You'll be redirected to the Tyk Dashboard for your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}).
-* **Step 2 - Add a New API:** Click the APIs menu item and then click **Add New API**.
-* **Step 3 - Core Settings:**
+- **Step 1 - Access the Dashboard:** Go to the Control Plane overview and click the dashboard link in the Ingress list. You'll be redirected to the Tyk Dashboard for your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}).
+- **Step 2 - Add a New API:** Click the APIs menu item and then click **Add New API**.
+- **Step 3 - Core Settings:**
 
   1. Give Your API a name - We'll use "my app" for the rest of this Getting Started journey.
   2. Scroll down to the **Target URL** setting and use the URL https://httpbin.org/
@@ -38,11 +38,11 @@ For further details, please refer to the [release notes]({{< ref "product-stack/
 
 {{< warning success >}}
 **Warning**
-  
-Ensure you configure a valid API Listen path.  Root ("/") listen paths are **not** supported on Tyk Cloud deployments prior to version v3.2.0.
+
+Ensure you configure a valid API Listen path. Root ("/") listen paths are **not** supported on Tyk Cloud deployments prior to version v3.2.0.
 {{< /warning >}}
 
-* **Step 4 - Advanced Options:**
+- **Step 4 - Advanced Options:**
 
   1. Click the **Advanced Options** tab of the API Designer.
   2. Scroll to the **Segment Tags (Node Segmentation)** setting and add the cloud data plane tag (edge) you saw when creating the Cloud Data Plane.
@@ -58,15 +58,15 @@ When a Cloud Data Plane is deployed, the tag 'edge' and a location tag are autom
 
 1. Add the **edge** tag to your API to connect it to all Cloud Data Planes within the Control Plane.
 2. Add the location tag to your API to connect it to only Cloud Data Planes with that location within the Control Plane.
-{{< /note >}}
+   {{< /note >}}
 
 {{< warning success >}}
 **Warning**
-  
-All APIs must be connected to a Cloud Data Plane by adding the appropriate tag in the *Segment Tags (Node Segmentation)* in the API Designer.
+
+All APIs must be connected to a Cloud Data Plane by adding the appropriate tag in the _Segment Tags (Node Segmentation)_ in the API Designer.
 {{< /warning >}}
 
-* **Step 5 - Save Your API:** Click **Save** from the API Designer. Your API will now be added to the APIs list and as the next step you'll access your API from the Gateway Ingress.
+- **Step 5 - Save Your API:** Click **Save** from the API Designer. Your API will now be added to the APIs list and as the next step you'll access your API from the Gateway Ingress.
 
 Watch our video on Adding an API to your Tyk Cloud Dashboard.
 

@@ -13,10 +13,10 @@ When you look through your Dashboard and your error breakdown statistics, you'll
 
 The Log Browser will isolate individual log lines in your analytics data set and allow you to filter them by:
 
-* API Name
-* Token ID (hashed)
-* Errors Only
-* By Status Code
+- API Name
+- Token ID (hashed)
+- Errors Only
+- By Status Code
 
 You will be presented with a list of requests, and their metadata:
 
@@ -34,8 +34,7 @@ To enable request and response logging, please take a look at [useful debug mode
 **A warning on detailed logging:** This mode generates a very large amount of data, and that data exponentially increases the size of your log data set, and may cause problems with delivering analytics in bulk to your MongoDB instances. This mode should only be used to debug your APIs for short periods of time.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Detailed logging is not available for Tyk Cloud Classic customers.
 {{< /note >}}
-

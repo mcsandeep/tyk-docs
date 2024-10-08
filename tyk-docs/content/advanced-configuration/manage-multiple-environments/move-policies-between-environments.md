@@ -1,10 +1,12 @@
-  ---
+---
+
 date: 2017-03-24T12:27:47Z
 title: Move Policies Between Environments
 menu:
-  main:
-    parent: "Manage Multiple Environments"
-weight: 6 
+main:
+parent: "Manage Multiple Environments"
+weight: 6
+
 ---
 
 Moving policies between two (Dashboard) environments is not as easy as moving API definitions and requires working with the Dashboard API to first retrieve the policies, and then modifying the document to reinsert them in your new environment:
@@ -113,7 +115,7 @@ That's it, Tyk will now load this policy, and you will be able to manage and edi
 
 #### Policy IDs in the Dashboard
 
-After migrating a Policy from one environment to another, it is important to note that the **displayed** Policy ID is not going to match.  **That is okay**.  It happens because Tyk Dashboard displays the [`Mongo ObjectId`](https://docs.mongodb.com/manual/reference/glossary/#term-id), which is the `_id` field, but the `id` is the important part.
+After migrating a Policy from one environment to another, it is important to note that the **displayed** Policy ID is not going to match. **That is okay**. It happens because Tyk Dashboard displays the [`Mongo ObjectId`](https://docs.mongodb.com/manual/reference/glossary/#term-id), which is the `_id` field, but the `id` is the important part.
 
 **For example:**
 
@@ -123,7 +125,7 @@ Policies in source environment
 Policies in target environment after migration
 {{< img src="/img/2.10/policy_id_after.png" alt="Policy ID After" >}}
 
-Notice that the IDs appear to be different.  These are the BSON IDs and are expected to be different.  But if we look for the underlying GUID `id`, you can see it's been mapped properly in the target environment.
+Notice that the IDs appear to be different. These are the BSON IDs and are expected to be different. But if we look for the underlying GUID `id`, you can see it's been mapped properly in the target environment.
 
 ```
 $ curl dash-host-source/api/portal/policies/
@@ -141,7 +143,7 @@ $ curl dash-host-target/api/portal/policies/
     "name": "credit score",
 ```
 
-As you can see, under the hood, the policy has been migrated correctly with target Tyk Dashboard saving the proper ID inside `id`.   That is the value that will be referred to inside Key Creation, etc.
+As you can see, under the hood, the policy has been migrated correctly with target Tyk Dashboard saving the proper ID inside `id`. That is the value that will be referred to inside Key Creation, etc.
 
 ## Use Tyk-Sync
 

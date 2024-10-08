@@ -1,7 +1,7 @@
 ---
 title: Reject
 description: Explains an overview of the reject output
-tags: [ "Tyk Streams", "Stream Processors", "Outputs", "Reject" ]
+tags: ["Tyk Streams", "Stream Processors", "Outputs", "Reject"]
 ---
 
 Rejects all messages, treating them as though the output destination failed to publish them.
@@ -26,10 +26,10 @@ output:
   switch:
     retry_until_success: false
     cases:
-      - check: '!errored()'
+      - check: "!errored()"
         output:
           amqp_1:
-            urls: [ amqps://guest:guest@localhost:5672/ ]
+            urls: [amqps://guest:guest@localhost:5672/]
             target_address: queue:/the_foos
 
       - output:

@@ -50,7 +50,6 @@ Prometheus collects metrics from targets by scraping metrics HTTP endpoints. To 
 }
 ```
 
-
 Replace `<tyk-pump>` with your host name or IP address.
 
 #### Option 2 - with Docker
@@ -105,24 +104,26 @@ Here’s an example configuration scraping Tyk Pump metric endpoints:
 global:
  scrape_interval:     15s
  evaluation_interval: 15s
- 
+
 scrape_configs:
  - job_name: tyk
    static_configs:
      - targets: ['tyk-pump:9090']
 ```
+
 #### Option 2 - with Docker
 
 ```.copyWrapper
 global:
  scrape_interval:     15s
  evaluation_interval: 15s
- 
+
 scrape_configs:
  - job_name: tyk
    static_configs:
      - targets: ['host.docker.internal:9090']
 ```
+
 1. Then restart your Prometheus instance after any configuration change
 2. In Prometheus under “Status” / “Targets”, we can see that Prometheus is able to scrape the metrics successfully: state is UP.
 
@@ -147,6 +148,7 @@ Tyk collects latency data of how long your upstream services take to respond to 
 ```
 histogram_quantile(0.95, sum(rate(tyk_http_latency_bucket[1m])) by (le))
 ```
+
 {{< img src="/img/pump/prometheus/tyk_prometheus_upstream_time.png" alt="Upstream Time Query output" >}}
 
 #### Upstream time per API
@@ -156,6 +158,7 @@ This query calculated the 95th percentile of the request latency of upstream ser
 ```
 histogram_quantile(0.90, sum(rate(tyk_http_latency_bucket{api_name="<api name>"}[1m])) by (le,api_name))
 ```
+
 Replace `<api name>` with the name of your API for this query.
 
 #### Request rate
@@ -173,6 +176,7 @@ Track the request rate of your services for the selected API:
 ```
 sum (rate(tyk_http_requests_total{api_name="<api name>"}[1m]))
 ```
+
 Replace `<api name>` with the name of your API for this query.
 
 #### Error Rates
@@ -190,7 +194,5 @@ Track the error rate your services are serving for the selected API:
 ```
 sum (rate(tyk_http_requests_total{response_code =~"5..", api_name="httpbin - HTTP Request & Response Service"}[1m]))
 ```
+
 Replace `<api name>` with the name of your API for this query.
-
-
-

@@ -1,11 +1,11 @@
 ---
 title: Using the Virtual Endpoint middleware with Tyk Classic APIs
 tags:
-    - virtual endpoint
-    - middleware
-    - per-endpoint
-    - Tyk Classic
-    - Tyk Classic API
+  - virtual endpoint
+  - middleware
+  - per-endpoint
+  - Tyk Classic
+  - Tyk Classic API
 description: Using the Virtual Endpoint middleware with Tyk Classic APIs
 date: "2024-02-29"
 ---
@@ -38,19 +38,19 @@ For example:
 
 ```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "virtual": [
-            {
-                "response_function_name": "myUniqueFunctionName",
-                "function_source_type": "blob",
-                "function_source_uri": "ZnVuY3Rpb24gbXlVbmlxdWVGdW5jdGlvbk5hbWUocmVxdWVzdCwgc2Vzc2lvbiwgY29uZmlnKSB7CiB2YXIgcmVzcG9uc2VPYmplY3QgPSB7IAogIEJvZHk6ICJUSElTIElTIEEgVklSVFVBTCBSRVNQT05TRSIsIAogIENvZGU6IDIwMCAKIH0KIHJldHVybiBUeWtKc1Jlc3BvbnNlKHJlc3BvbnNlT2JqZWN0LCBzZXNzaW9uLm1ldGFfZGF0YSkKfQ==",
-                "path": "/anything",
-                "method": "GET",
-                "use_session": false,
-                "proxy_on_error": false
-            }
-        ]
-    }
+  "extended_paths": {
+    "virtual": [
+      {
+        "response_function_name": "myUniqueFunctionName",
+        "function_source_type": "blob",
+        "function_source_uri": "ZnVuY3Rpb24gbXlVbmlxdWVGdW5jdGlvbk5hbWUocmVxdWVzdCwgc2Vzc2lvbiwgY29uZmlnKSB7CiB2YXIgcmVzcG9uc2VPYmplY3QgPSB7IAogIEJvZHk6ICJUSElTIElTIEEgVklSVFVBTCBSRVNQT05TRSIsIAogIENvZGU6IDIwMCAKIH0KIHJldHVybiBUeWtKc1Jlc3BvbnNlKHJlc3BvbnNlT2JqZWN0LCBzZXNzaW9uLm1ldGFfZGF0YSkKfQ==",
+        "path": "/anything",
+        "method": "GET",
+        "use_session": false,
+        "proxy_on_error": false
+      }
+    ]
+  }
 }
 ```
 
@@ -60,11 +60,11 @@ Decoding the value in `function_source_uri` we can see that the JavaScript code 
 
 ```js {linenos=true, linenostart=1}
 function myUniqueFunctionName(request, session, config) {
- var responseObject = { 
-  Body: "THIS IS A VIRTUAL RESPONSE", 
-  Code: 200 
- }
- return TykJsResponse(responseObject, session.meta_data)
+  var responseObject = {
+    Body: "THIS IS A VIRTUAL RESPONSE",
+    Code: 200,
+  };
+  return TykJsResponse(responseObject, session.meta_data);
 }
 ```
 
@@ -76,7 +76,7 @@ Date: Wed, 28 Feb 2024 20:52:30 GMT
 Server: tyk
 Content-Type: text/plain; charset=utf-8
 Content-Length: 26
- 
+
 THIS IS A VIRTUAL RESPONSE
 ```
 
@@ -88,7 +88,7 @@ Date: Wed, 28 Feb 2024 20:55:27 GMT
 Server: tyk
 Content-Type: application/json
 Content-Length: 99
- 
+
 {
 "error": "Error during virtual endpoint execution. Contact Administrator for more details."
 }
@@ -121,7 +121,7 @@ If you select `inline` you can enter the JavaScript code in the Code Editor wind
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the Virtual Endpoint middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the Virtual Endpoint middleware.
 
 {{< note success >}}
 **Note**
@@ -176,18 +176,18 @@ spec:
 Decoding the value in `function_source_uri` we can see that the JavaScript code is:
 
 ```javascript
-function myVirtualHandler (request, session, config) {      
+function myVirtualHandler(request, session, config) {
   var responseObject = {
     Body: "THIS IS A  VIRTUAL RESPONSE",
     Headers: {
       "foo-header": "bar",
       "map-header": JSON.stringify(config.config_data.map),
       "string-header": config.config_data.string,
-      "num-header": JSON.stringify(config.config_data.num)
+      "num-header": JSON.stringify(config.config_data.num),
     },
-    Code: 200
-  }
-  return TykJsResponse(responseObject, session.meta_data)
+    Code: 200,
+  };
+  return TykJsResponse(responseObject, session.meta_data);
 }
 ```
 
@@ -203,7 +203,7 @@ Server: tyk
 String-Header: string
 Content-Length: 27
 Content-Type: text/plain; charset=utf-8
- 
+
 THIS IS A VIRTUAL RESPONSE
 ```
 
@@ -215,7 +215,7 @@ Date: Wed, 14 Aug 2024 15:37:46 GMT
 Server: tyk
 Content-Type: application/json
 Content-Length: 99
- 
+
 {
 "error": "Error during virtual endpoint execution. Contact Administrator for more details."
 }

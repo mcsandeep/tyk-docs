@@ -11,6 +11,7 @@ aliases:
   - /getting-started/installation/with-tyk-on-premises/on-ubuntu/dashboard/
   - /getting-started/installation/with-tyk-on-premises/debian-ubuntu/dashboard/
 ---
+
 {{< tabs_start >}}
 {{< tab_start "Ansible" >}}
 <br />
@@ -21,6 +22,7 @@ aliases:
 {{< /note >}}
 
 ## Getting Started
+
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -28,6 +30,7 @@ $ git clone https://github.com/TykTechnologies/tyk-ansible
 ```
 
 2. `cd` into the directory
+
 ```.bash
 $ cd tyk-ansible
 ```
@@ -47,30 +50,33 @@ $ ansible-playbook playbook.yaml -t tyk-dashboard
 ```
 
 ## Supported Distributions
+
 | Distribution | Version | Supported |
-| --------- | :---------: | :---------: |
-| Debian | 10 | ✅ |
-| Debian | 9 | ✅ |
-| Ubuntu | 21 | ✅ |
-| Ubuntu | 20 | ✅ |
-| Ubuntu | 18 | ✅ |
-| Ubuntu | 16 | ✅ |
+| ------------ | :-----: | :-------: |
+| Debian       |   10    |    ✅     |
+| Debian       |    9    |    ✅     |
+| Ubuntu       |   21    |    ✅     |
+| Ubuntu       |   20    |    ✅     |
+| Ubuntu       |   18    |    ✅     |
+| Ubuntu       |   16    |    ✅     |
 
 ## Variables
+
 - `vars/tyk.yaml`
 
-| Variable | Default | Comments |
-| --------- | :---------: | --------- |
-| secrets.APISecret | `352d20ee67be67f6340b4c0605b044b7` | API secret |
-| secrets.AdminSecret | `12345` | Admin secret |
-| dash.license | | Dashboard license|
-| dash.service.host | | Dashboard server host if different than the hosts url |
-| dash.service.port | `3000` | Dashboard server listening port |
-| dash.service.proto | `http` | Dashboard server protocol |
-| dash.service.tls | `false` | Set to `true` to enable SSL connections |
+| Variable            |              Default               | Comments                                              |
+| ------------------- | :--------------------------------: | ----------------------------------------------------- |
+| secrets.APISecret   | `352d20ee67be67f6340b4c0605b044b7` | API secret                                            |
+| secrets.AdminSecret |              `12345`               | Admin secret                                          |
+| dash.license        |                                    | Dashboard license                                     |
+| dash.service.host   |                                    | Dashboard server host if different than the hosts url |
+| dash.service.port   |               `3000`               | Dashboard server listening port                       |
+| dash.service.proto  |               `http`               | Dashboard server protocol                             |
+| dash.service.tls    |              `false`               | Set to `true` to enable SSL connections               |
 
 {{< tab_end >}}
 {{< tab_start "Shell" >}}
+
 ## <a name="install-tyk-dashboard-ubuntu"></a>Install Tyk Dashboard on Ubuntu
 
 Tyk has its own APT repositories hosted by the kind folks at [packagecloud.io][1], which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
@@ -114,9 +120,7 @@ sudo apt-get update
 
 {{< note success >}}
 
-**Note**  
-
-
+**Note**
 
 `bionic` is the code name for Ubuntu 18.04. Please substitute it with your particular [ubuntu release](https://wiki.ubuntu.com/Releases), e.g. `focal`.
 
@@ -151,6 +155,7 @@ gpg --import tyk.io.deb.signing.key
 ```
 
 Then, you have to either,
+
 - sign the key with your ultimately trusted key
 - trust this key ultimately
 
@@ -164,18 +169,19 @@ gpg: Good signature from "Team Tyk (package signing) <team@tyk.io>" [ultimate]
 ```
 
 ## Configure Tyk Dashboard
+
 {{< tabs_start >}}
 {{< tab_start "MongoDB" >}}
+
 ### Prerequisites
 
 You need to ensure the MongoDB and Redis services are running before proceeding.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You need to replace `<hostname>` for `--redishost=<hostname>`, and `<IP Address>` for `--mongo=mongodb://<IP Address>/` with your own values to run this script.
 {{< /note >}}
-
 
 You can set your Tyk Dashboard up with a helper setup command script. This will get the Dashboard set up for the local instance:
 
@@ -184,11 +190,10 @@ sudo /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=<hostname
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Make sure to use the actual DNS hostname or the public IP of your instance as the last parameter.
 {{< /note >}}
-
 
 What we have done here is:
 
@@ -201,18 +206,18 @@ What we have done here is:
 - `--tyk_node_hostname=http://localhost`: The Tyk Dashboard needs to see a Tyk node in order to create new tokens, so we need to tell it where we can find one, in this case, use the one installed locally.
 - `--tyk_node_port=8080`: Tell the Tyk Dashboard that the Tyk node it should communicate with is on port 8080.
 - `--portal_root=/portal`: We want the portal to be shown on `/portal` of whichever domain we set for the portal.
-{{< tab_end >}}
-{{< tab_start "SQL" >}}
+  {{< tab_end >}}
+  {{< tab_start "SQL" >}}
+
 ### Prerequisites
 
 You need to ensure the PostgreSQL and Redis services are running before proceeding.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Postgres Host Name>`, `<Port>`, `<User>`, `<Password>`, `<DB>` for `--connection_string="host=<Postgres Host Name> port=<Port> user=<User> password=<Password> dbname=<DB>"` with your own values to run this script.
 {{< /note >}}
-
 
 You can set the Tyk Dashboard up with a helper setup command script. This will get the Dashboard set up for the local instance:
 
@@ -221,11 +226,10 @@ sudo /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=<hostname
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Make sure to use the actual DNS hostname or the public IP of your instance as the last parameter.
 {{< /note >}}
-
 
 What we have done here is:
 
@@ -239,9 +243,8 @@ What we have done here is:
 - `--tyk_node_hostname=http://localhost`: The Tyk Dashboard needs to see a Tyk node in order to create new tokens, so we need to tell it where we can find one, in this case, use the one installed locally.
 - `--tyk_node_port=8080`: Tell the dashboard that the Tyk node it should communicate with is on port 8080.
 - `--portal_root=/portal`: We want the portal to be shown on `/portal` of whichever domain we set for the portal.
-{{< tab_end >}}
-{{< tabs_end >}}
-
+  {{< tab_end >}}
+  {{< tabs_end >}}
 
 ### Step 1: Enter your Tyk Dashboard License
 
@@ -284,7 +287,7 @@ You need to enter the following:
 - **Re-enter** your user **Password**
 
 {{< note success >}}
-**Note**  
+**Note**
 
 For a password, we recommend a combination of alphanumeric characters, with both upper and lower case
 letters.
@@ -302,7 +305,6 @@ To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}
 
 [1]: https://packagecloud.io/tyk
 [2]: /getting-started/installation/with-tyk-on-premises/on-ubuntu/#prerequisites
-
 
 {{< tab_end >}}
 {{< tabs_end >}}

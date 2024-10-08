@@ -1,7 +1,7 @@
 ---
 title: Switch
 description: Explains an overview of switch processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Switch" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Switch"]
 ---
 
 Conditionally processes messages based on their contents.
@@ -20,9 +20,8 @@ For each switch case a [Bloblang query]({{< ref "/product-stack/tyk-streaming/gu
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message should have the processors of this case executed on it. If left empty the case always passes. If the check mapping throws an error the message will be flagged [as having failed]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/error-handling" >}}) and will not be tested against any other cases.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -36,24 +35,22 @@ check: this.contents.urls.contains("https://tyk.io/")
 
 A list of processors to execute on a message.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### [].fallthrough
 
 Indicates whether, if this case passes for a message, the next case should also be executed.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ## Examples
 
 ### User Group Filter
 
-We have a system where we're counting a metric for all messages that pass through our system. 
-The example below increments a counter named *AdminMessages* for users that are in the admin group. For all other message we increment a counter named *OtherMessages*.
+We have a system where we're counting a metric for all messages that pass through our system.
+The example below increments a counter named _AdminMessages_ for users that are in the admin group. For all other message we increment a counter named _OtherMessages_.
 
 ```yaml
 pipeline:

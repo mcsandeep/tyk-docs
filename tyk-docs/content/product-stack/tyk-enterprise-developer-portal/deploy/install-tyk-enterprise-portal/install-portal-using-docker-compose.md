@@ -8,9 +8,9 @@ main:
 parent: "Installation options"
 weight: 3
 aliases:
-- tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-mysql
-- tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-postgresql
-- tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-sqlite
+  - tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-mysql
+  - tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-postgresql
+  - tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-with-sqlite
 ---
 
 This guide provides a clear and concise, step-by-step recipe for launching the Tyk Enterprise Developer Portal in a container using Docker Compose.
@@ -25,19 +25,24 @@ Additionally, all settings for the Portal are configured using an env-file.
 This document is just an example. Customize all fields, including the username, password, root password, database name and more.
 {{< /warning >}}
 
-
 ### Prerequisites
+
 To successfully install the Tyk Enterprise Developer Portal with Docker Compose, you should have installed the following software:
+
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 {{< tabs_start >}}
 
 {{< tab_start "PostgreSQL" >}}
+
 ### Create an init script for PostgreSQL and an environment variables file
+
 #### Create an init script for PostgreSQL
+
 To initialize a PostgreSQL database, you need to create an init script that will later be used to launch the PostgreSQL instance.
 Copy the content below to a file named `init.sql`, which you will need in the next step.
+
 ```sql
 -- init.sql
 -- Creating user
@@ -47,9 +52,11 @@ GRANT ALL PRIVILEGES ON DATABASE portal TO admin;
 ```
 
 #### Create an environment variables file for configuring the portal and the database
+
 Creating an environment file to specify settings for the portal is the next step.
 
 Here is an example of a sample environment file. For a comprehensive reference of environment variables, please refer to the [configuration section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration" >}}) in the Tyk Enterprise Developer Portal documentation.
+
 ```ini
 PORTAL_HOSTPORT=3001
 PORTAL_DATABASE_DIALECT=postgres
@@ -62,14 +69,16 @@ PORTAL_STORAGE=db
 
 Once you have completed this step, you are ready to launch the portal application with PostgreSQL via Docker Compose.
 
-### Create a docker-compose file and launch the stack 
+### Create a docker-compose file and launch the stack
+
 #### Create a docker-compose file
+
 Before launching the portal using docker-compose, you will need to create a `docker-compose.yaml` file. An example of the portal's docker-compose file is provided below, which you can use as a starting point and further customize to meet your specific requirements.
 
 Ensure that you replace `<tag>` with the specific version of the portal you intend to launch before executing the command, e.g. `tykio/portal:v1.7` for the portal v1.7. You can browse all available versions on [Docker Hub](https://hub.docker.com/r/tykio/portal/tags) and in the [release notes section]({{< ref "product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.7.0.md" >}}).
 
 ```yaml
-version: '3.6'
+version: "3.6"
 services:
   tyk-portal:
     depends_on:
@@ -106,7 +115,9 @@ networks:
 ```
 
 #### Pull and launch the portal container using docker-compose
+
 To launch the portal using docker-compose, execute the command provided below.
+
 ```console
 docker-compose --env-file .env up -d
 docker-compose --env-file .env up -d
@@ -115,10 +126,13 @@ docker-compose --env-file .env up -d
 This command will launch the portal on localhost at port 3001. Now, you can bootstrap the portal and start managing your API products.
 
 #### Bootstrap the portal
-Now the portal is running on port 3001, but it needs to be bootstrapped by providing credentials for the super admin user since it's the first time you are launching it. Follow the [bootstrapping section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/bootstrapping-portal" >}}) of the documentation to bootstrap the portal via the UI or the admin API. 
+
+Now the portal is running on port 3001, but it needs to be bootstrapped by providing credentials for the super admin user since it's the first time you are launching it. Follow the [bootstrapping section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/bootstrapping-portal" >}}) of the documentation to bootstrap the portal via the UI or the admin API.
 
 #### Clean up
+
 If you want to clean up your environment or start the installation process from scratch, execute the following commands to stop and remove the portal container:
+
 ```console
 docker-compose down
 docker-compose down
@@ -126,10 +140,13 @@ docker-compose down
 
 {{< tab_end >}}
 {{< tab_start "MySQL or MariaDB" >}}
+
 ### Create an environment variables file for configuring the portal and the database
+
 The first step is to create an environment file to specify settings for the portal.
 
 Here is an example of a sample environment file. For a comprehensive reference of environment variables, please refer the [configuration section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration" >}}) in the Tyk Enterprise Developer Portal documentation.
+
 ```ini
 MYSQL_ROOT_PASSWORD=sup3rsecr3t
 MYSQL_DATABASE=portal
@@ -147,7 +164,9 @@ PORTAL_LICENSEKEY=<your-license-here>
 Once you have completed this step, you are ready to launch the portal application with MySQL via Docker Compose.
 
 ### Create a docker-compose file and launch the stack
+
 #### Create a docker-compose file
+
 Before launching the portal using docker-compose, you will need to create a `docker-compose.yaml` file.
 An example of the portal's docker-compose file is provided below, which you can use as a starting point and further customize to meet your specific requirements.
 
@@ -155,7 +174,7 @@ Ensure that you replace `<tag>` with the specific version of the portal you inte
 You can browse all available versions on [Docker Hub](https://hub.docker.com/r/tykio/portal/tags) and in the [release notes section]({{< ref "product-stack/tyk-enterprise-developer-portal/release-notes/portal-1.7.0.md" >}}).
 
 ```yaml
-version: '3.6'
+version: "3.6"
 services:
   tyk-portal:
     depends_on:
@@ -179,7 +198,7 @@ services:
     volumes:
       - tyk-portal-mysql-data:/var/lib/mysql
     networks:
-      - tyk-portal   
+      - tyk-portal
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -194,7 +213,9 @@ networks:
 ```
 
 #### Pull and launch the portal container using docker-compose
+
 To launch the portal using docker-compose, execute the command provided below.
+
 ```console
 docker-compose --env-file .env up -d
 docker-compose --env-file .env up -d
@@ -203,22 +224,29 @@ docker-compose --env-file .env up -d
 This command will launch the portal on localhost at port 3001. Now, you can bootstrap the portal and start managing your API products.
 
 #### Bootstrap the portal
+
 Now the portal is running on port 3001, but it needs to be bootstrapped by providing credentials for the super admin user since it's the first you are launching it. Follow the [bootstrapping section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/bootstrapping-portal" >}}) of the documentation to bootstrap the portal via the UI or the admin API.
 
 #### Clean up
+
 If you want to clean up your environment or start the installation process from scratch, execute the following commands to stop and remove the portal container:
+
 ```console
 docker-compose down
 docker-compose down
 ```
+
 {{< tab_end >}}
 
 {{< tab_start "SQLite" >}}
+
 ### Create an environment variables file for configuring the portal and the database
+
 Creating an environment file to specify settings for the portal is the next step.
 This is optional, as you can alternatively specify all the variables using the -e option when starting your deployment.
 
 Here is an example of a sample environment file. For a comprehensive reference of environment variables, please refer to the [configuration section({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration" >}})] in the Tyk Enterprise Developer Portal documentation.
+
 ```ini
 PORTAL_HOSTPORT=3001
 PORTAL_DATABASE_DIALECT=sqlite3
@@ -235,10 +263,12 @@ Once you have completed this step, you are ready to launch the portal applicatio
 ### Create a docker-compose file and launch the stack
 
 #### Create a docker-compose file
+
 Before launching the portal using docker-compose, you will need to create a `docker-compose.yaml` file.
 An example of the portal's docker-compose file is provided below, which you can use as a starting point and further customize to meet your specific requirements.
+
 ```yaml
-version: '3.6'
+version: "3.6"
 services:
   tyk-portal:
     image: tykio/portal:<tag>
@@ -256,7 +286,9 @@ services:
 ```
 
 #### Pull and launch the portal container using docker-compose
+
 To launch the portal using docker-compose, execute the command provided below.
+
 ```console
 docker-compose --env-file .env up -d
 docker-compose --env-file .env up -d
@@ -265,16 +297,20 @@ docker-compose --env-file .env up -d
 This command will launch the portal on localhost at port 3001. Now, you can bootstrap the portal and start managing your API products.
 
 #### Bootstrap the portal
+
 Now the portal is running on port 3001, but it needs to be bootstrapped by providing credentials for the super admin user since it's the first time you are launching it. Follow the [bootstrapping section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/bootstrapping-portal" >}}) of the documentation to bootstrap the portal via the UI or the admin API.
 
 #### Clean up
+
 If you want to clean up your environment or start the installation process from scratch, execute the following commands to stop and stop and remove the portal container:
+
 ```console
 docker-compose down
 docker-compose down
 ```
 
 Since the SQLite data is persisted in the mounted volume (`/tmp/portal/db` in the above example), to completely erase the deployment, you will also need to delete it for a complete clean-up:
+
 ```console
 rm -rf /tmp/portal/db
 rm -rf /tmp/portal/db

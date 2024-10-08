@@ -18,72 +18,75 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The response body transformation middleware (`transformResponseBody`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `transformResponseBody` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `format`: the format of input data the parser should expect (either `xml` or `json`)
 - `body`: [see note] this is a `base64` encoded representation of your template
 - `path`: [see note] this is the path to the text file containing the template
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You should configure only one of `body` or `path` to indicate whether you are embedding the template within the middleware or storing it in a text file. The middleware will automatically select the correct source based on which of these fields you complete. If both are provided, then `body` will take precedence and `path` will be ignored.
 {{< /note >}}
 
 For example:
+
 ```json {hl_lines=["39-43"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-response-body-transform",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "put": {
-                "operationId": "anythingput",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-response-body-transform",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "put": {
+        "operationId": "anythingput",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-response-body-transform",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-response-body-transform/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingput": {
-                    "transformResponseBody": {
-                        "enabled": true,
-                        "format": "json",
-                        "body": "ewogICJ2YWx1ZTEiOiAie3sudmFsdWUyfX0iLAogICJ2YWx1ZTIiOiAie3sudmFsdWUxfX0iLAogICJyZXEtaGVhZGVyIjogInt7Ll90eWtfY29udGV4dC5oZWFkZXJzX1hfSGVhZGVyfX0iLAogICJyZXEtcGFyYW0iOiAie3suX3R5a19jb250ZXh0LnJlcXVlc3RfZGF0YS5wYXJhbX19Igp9"
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-response-body-transform",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-response-body-transform/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingput": {
+          "transformResponseBody": {
+            "enabled": true,
+            "format": "json",
+            "body": "ewogICJ2YWx1ZTEiOiAie3sudmFsdWUyfX0iLAogICJ2YWx1ZTIiOiAie3sudmFsdWUxfX0iLAogICJyZXEtaGVhZGVyIjogInt7Ll90eWtfY29udGV4dC5oZWFkZXJzX1hfSGVhZGVyfX0iLAogICJyZXEtcGFyYW0iOiAie3suX3R5a19jb250ZXh0LnJlcXVlc3RfZGF0YS5wYXJhbX19Igp9"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
 In this example the response body transform middleware has been configured for requests to the `PUT /anything` endpoint. The `body` contains a base64 encoded Go template (which you can check by pasting the value into a service such as [base64decode.org](https://www.base64decode.org)).
 
 Decoded, this template is:
+
 ```go
 {
     "value1": "{{.value2}}",
@@ -94,28 +97,31 @@ Decoded, this template is:
 ```
 
 So if you make a request to `PUT /anything?param=foo`, configuring a header `X-Header`:`bar` and providing this payload:
+
 ```json
 {
-    "value1": "world",
-    "value2": "hello"
+  "value1": "world",
+  "value2": "hello"
 }
 ```
 
 httpbin.org will respond with the original payload in the response and, if you do not have the response body transform middleware enabled, the response from Tyk will include:
+
 ```json
 {
-    "value1": "world",
-    "value2": "hello"
+  "value1": "world",
+  "value2": "hello"
 }
 ```
 
 If, however, you enable the response body transform middleware, Tyk will modify the response to include this content:
+
 ```json
 {
-    "req-header": "bar",
-    "req-param": "[foo]",
-    "value1": "hello",
-    "value2": "world"
+  "req-header": "bar",
+  "req-param": "[foo]",
+  "value1": "hello",
+  "value2": "world"
 }
 ```
 
@@ -125,7 +131,7 @@ The configuration above is a complete and valid Tyk OAS API Definition that you 
 
 {{< note success >}}
 
-**Note**  
+**Note**
 
 If using a template in a file (i.e. you configure `path` in the `transformResponseBody` object), remember that Tyk will load and evaluate the template when the Gateway starts up. If you modify the template, you will need to restart Tyk in order for the changes to take effect.
 
@@ -147,7 +153,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Response Body Transform middleware
 
-Select **ADD MIDDLEWARE** and choose the **Response Body Transform** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Response Body Transform** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-response-body.png" alt="Adding the Response Body Transform middleware" >}}
 
@@ -164,6 +170,3 @@ The **Test with data** control will allow you to test your body transformation f
 #### Step 4: Save the API
 
 Select **SAVE API** to apply the changes to your API.
-
-
-

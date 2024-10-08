@@ -2,7 +2,8 @@
 title: Example Of Configuring Open Policy Agent Rules With Additional Permissions
 date: 2023-09-04
 description: "Explains how to configure Open Policy Agent (OPA) rules with additional permissions"
-tags: [ "Open Policy Agent", "OPA", "additional permissions", "Open Policy Agent permissons", "example", "worked example" ]
+tags:
+  ["Open Policy Agent", "OPA", "additional permissions", "Open Policy Agent permissons", "example", "worked example"]
 ---
 
 This is an end-to-end worked example showing how to configure Open Policy Agent rules with some [additional permissions]({{< ref "tyk-dashboard-api/org/permissions" >}}).
@@ -19,7 +20,6 @@ The high level steps to realize this use case are as follows:
 2. Create user
 3. Add Open Policy Agent Rule
 4. Test new rule
-
 
 ## Create additional permissions
 
@@ -53,16 +53,17 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 </br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Remember to set the `authorization` header to your Tyk Dashboard API Access Credentials secret, obtained from your user profile on the Dashboard UI.
 
-This assumes no other additional permissions already exist.  If you're adding to existing permissions you'll want to send a GET to `/api/org/permissions` first, and then add the new permission to the existing list.
+This assumes no other additional permissions already exist. If you're adding to existing permissions you'll want to send a GET to `/api/org/permissions` first, and then add the new permission to the existing list.
 
 {{< /note >}}
 
 ## Create user
-In the Dashboard UI, navigate to System Management -> Users, and hit the `Add User` button.  Create a user that has API `Write` access and the newly created `API Editor` permission, e.g.  
+
+In the Dashboard UI, navigate to System Management -> Users, and hit the `Add User` button. Create a user that has API `Write` access and the newly created `API Editor` permission, e.g.
 
 {{< img src="/img/dashboard/system-management/userAdditionalPermission.png" alt="User with Additional Permission" >}}
 
@@ -122,7 +123,7 @@ is_admin {
     input.user.user_permissions["IsAdmin"] == "admin"
 }
 # Check if the request path matches any of the known permissions.
-# input.permissions is an object passed from the Tyk Dashboard containing mapping between user permissions (“read”, “write” and “deny”) and the endpoint associated with the permission. 
+# input.permissions is an object passed from the Tyk Dashboard containing mapping between user permissions (“read”, “write” and “deny”) and the endpoint associated with the permission.
 # (eg. If “deny” is the permission for Analytics, it means the user would be denied the ability to make a request to ‘/api/usage’.)
 #
 # Example object:
@@ -138,7 +139,7 @@ is_admin {
 #        ....
 #  ]
 #
-# The input.permissions object can be extended with additional permissions (eg. you could create a permission called ‘Monitoring’ which gives “read” access to the analytics API ‘/analytics’). 
+# The input.permissions object can be extended with additional permissions (eg. you could create a permission called ‘Monitoring’ which gives “read” access to the analytics API ‘/analytics’).
 # This is can be achieved inside this script using the array.concat function.
 request_permission[role] {
 	perm := input.permissions[_]
@@ -230,10 +231,10 @@ deny["You do not have permission to change the API status."] {
 	not is_null(diff.api_definition.active)
 }
 # Using the patch_request helper you can modify the content of the request
-# You should respond with JSON merge patch. 
+# You should respond with JSON merge patch.
 # See https://tools.ietf.org/html/rfc7396 for more details
 #
-# Example: Modify data under a certain condition by enforcing http proxy configuration for all APIs with the #external category. 
+# Example: Modify data under a certain condition by enforcing http proxy configuration for all APIs with the #external category.
 patch_request[x] {
     # Enforce only for users with ["test_patch_request"] permissions.
     # Remove the ["test_patch_request"] permission to enforce the proxy configuration for all users instead of those with the permission.
@@ -258,4 +259,5 @@ deny["Only '%v' group has permission to access this API"] {
 ```
 
 ## Test
-Login to the Dashboard UI as the new `API Editor` user and try to create a new API.  You should see an `Access Denied` error message.  Now try to update an existing API.  This should be successful!!
+
+Login to the Dashboard UI as the new `API Editor` user and try to create a new API. You should see an `Access Denied` error message. Now try to update an existing API. This should be successful!!

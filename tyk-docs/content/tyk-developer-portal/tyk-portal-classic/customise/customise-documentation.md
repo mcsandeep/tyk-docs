@@ -10,9 +10,9 @@ aliases:
   - /tyk-developer-portal/customise/customise-documentation/
 ---
 
-This short guide will show you how easy it is to swap out out the default https://swagger.io/tools/swagger-ui/ library for Portal Catalog API documentation for another tool like [ReDoc](http://rebilly.github.io/ReDoc/) 
+This short guide will show you how easy it is to swap out out the default https://swagger.io/tools/swagger-ui/ library for Portal Catalog API documentation for another tool like [ReDoc](http://rebilly.github.io/ReDoc/)
 
-* Open up the default `/opt/tyk-dashboard/portal/templates/swagger.html`
+- Open up the default `/opt/tyk-dashboard/portal/templates/swagger.html`
 
 ```
   {{ define "swaggerPage" }}
@@ -41,7 +41,7 @@ This short guide will show you how easy it is to swap out out the default https:
 {{ end }}
 ```
 
-* Replace the content of `swagger.html` with the following:
+- Replace the content of `swagger.html` with the following:
 
 ```
   {{ define "swaggerPage" }}
@@ -60,8 +60,8 @@ This short guide will show you how easy it is to swap out out the default https:
 {{ end }}
 ```
 
-* Restart your dashboard service
+- Restart your dashboard service
 
-* Browse your portal documentation
+- Browse your portal documentation
 
 {{< img src="/img/dashboard/portal-management/redoc-petstore-tyk.png" alt="Tyk Portal Catalogue API Documentation with ReDoc" >}}

@@ -1,12 +1,10 @@
 ---
 title: Async API Management Capabilities
-tags: [ "API Management", "Async APIs" ]
+tags: ["API Management", "Async APIs"]
 ---
 
 Tyk Streams brings full lifecycle API management to asynchronous APIs and event-driven architectures. It provides a
 comprehensive set of capabilities to secure, transform, monitor and monetize your async APIs.
-
-
 
 ## Security
 
@@ -15,11 +13,11 @@ ensures that your async APIs are protected with the same level of security as yo
 
 - **Authentication**: Tyk supports multiple authentication methods for async APIs, including:
 
-    - Token-based authentication (e.g., JWT, OAuth 2.0)
-    - Basic authentication
-    - Custom authentication plugins
+  - Token-based authentication (e.g., JWT, OAuth 2.0)
+  - Basic authentication
+  - Custom authentication plugins
 
-- **Authorization**: Tyk enables fine-grained access control for async APIs based on policies and user roles. You can define granular permissions for specific topics, events or message types. 
+- **Authorization**: Tyk enables fine-grained access control for async APIs based on policies and user roles. You can define granular permissions for specific topics, events or message types.
 
 ## Transformations and Enrichment
 
@@ -41,4 +39,3 @@ Tyk Streams enables you to monetize your async APIs by exposing them through the
 - **Webhooks**: Tyk supports exposing async APIs as webhooks, enabling developers to receive event notifications via HTTP callbacks. Developers can configure their webhook endpoints and subscribe to specific events or topics.
 
 With Tyk Streams, you can easily monetize your async APIs, provide a seamless developer experience, and manage the entire lifecycle of your event-driven architecture.
-

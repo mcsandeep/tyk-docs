@@ -37,52 +37,52 @@ For example:
 
 ```json {hl_lines=["39-43"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-rate-limit",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/status/200": {
-            "get": {
-                "operationId": "status/200get",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-rate-limit",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/status/200": {
+      "get": {
+        "operationId": "status/200get",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-rate-limit",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-rate-limit/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "status/200get": {
-                    "rateLimit": {
-                        "enabled": true,
-                        "rate": 60,
-                        "per": "1s"
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-rate-limit",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-rate-limit/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "status/200get": {
+          "rateLimit": {
+            "enabled": true,
+            "rate": 60,
+            "per": "1s"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -100,73 +100,73 @@ paths. The order of evaluation matches the order that endpoints are
 defined in the `paths` section of the OpenAPI description. For example,
 if you wanted to limit the rate of `POST` requests to your API allowing a
 higher rate to one specific endpoint you could configure the API
-definition as follows: 
+definition as follows:
 
 ```json {hl_lines=["49-53", "56-60"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "advanced-rate-limit",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/user/login": {
-            "post": {
-                "operationId": "user/loginpost",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/{any}": {
-            "post": {
-                "operationId": "anypost",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "advanced-rate-limit",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/user/login": {
+      "post": {
+        "operationId": "user/loginpost",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "advanced-rate-limit",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/advanced-rate-limit/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "user/loginpost": {
-                    "rateLimit": {
-                        "enabled": true,
-                        "rate": 100,
-                        "per": "1s"
-                    }
-                },
-                "anypost": {
-                    "rateLimit": {
-                        "enabled": true,
-                        "rate": 60,
-                        "per": "1s"
-                    }
-                }
-            }
+    "/{any}": {
+      "post": {
+        "operationId": "anypost",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "advanced-rate-limit",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/advanced-rate-limit/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "user/loginpost": {
+          "rateLimit": {
+            "enabled": true,
+            "rate": 100,
+            "per": "1s"
+          }
+        },
+        "anypost": {
+          "rateLimit": {
+            "enabled": true,
+            "rate": 60,
+            "per": "1s"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -196,7 +196,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Rate Limit middleware
 
-Select **ADD MIDDLEWARE** and choose **Rate Limit** from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose **Rate Limit** from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-rate-limit.png" alt="Adding the Rate Limit middleware" >}}
 

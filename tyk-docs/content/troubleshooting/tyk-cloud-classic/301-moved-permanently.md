@@ -4,12 +4,12 @@ title: “301 Moved permanently“ error in the Dashboard API
 menu:
   main:
     parent: "Tyk Cloud Classic"
-weight: 5 
+weight: 5
 ---
 
 ### Description
 
-Users receive the following error when sending API requests to the Tyk Cloud Dashboard API. 
+Users receive the following error when sending API requests to the Tyk Cloud Dashboard API.
 
 ### Cause
 

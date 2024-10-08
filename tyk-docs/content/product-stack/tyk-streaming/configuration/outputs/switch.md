@@ -1,7 +1,7 @@
 ---
 title: Switch
 description: Explains an overview of configuring switch output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "switch" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "switch"]
 ---
 
 The switch output type allows you to route messages to different outputs based on their contents.
@@ -35,7 +35,6 @@ Messages that do not pass the check of a single output case are effectively drop
 
 ### Basic Multiplexing
 
-
 The most common use for a switch output is to multiplex messages across a range of output destinations. The following config checks the contents of the field `type` of messages and sends `foo` type messages to an `amqp_1` output, `bar` type messages to a `gcp_pubsub` output, and everything else to a `redis_streams` output.
 
 Outputs can have their own processors associated with them, and in this example the `redis_streams` output has a processor that enforces the presence of a type field before sending it.
@@ -47,7 +46,7 @@ output:
       - check: this.type == "foo"
         output:
           amqp_1:
-            urls: [ amqps://guest:guest@localhost:5672/ ]
+            urls: [amqps://guest:guest@localhost:5672/]
             target_address: queue:/the_foos
 
       - check: this.type == "bar"
@@ -79,7 +78,7 @@ output:
       - check: 'this.user.interests.contains("walks").catch(false)'
         output:
           amqp_1:
-            urls: [ amqps://guest:guest@localhost:5672/ ]
+            urls: [amqps://guest:guest@localhost:5672/]
             target_address: queue:/people_what_think_good
         continue: true
 
@@ -98,24 +97,21 @@ If a selected output fails to send a message this field determines whether it is
 
 If a message can be routed to >1 outputs it is usually best to set this to true in order to avoid duplicate messages being routed to an output.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### strict_mode
 
 This field determines whether an error should be reported if no condition is met. If set to true, an error is propagated back to the input level. The default behavior is false, which will drop the message.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### cases
 
 A list of switch cases, outlining outputs that can be routed to.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -137,9 +133,8 @@ cases:
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message should be routed to the case output. If left empty the case always passes.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -153,13 +148,11 @@ check: this.contents.urls.contains("https://tyk.dev/")
 
 An [output]({{< ref "/product-stack/tyk-streaming/configuration/outputs/overview" >}}) for messages that pass the check to be routed to.
 
-
-Type: `output`  
+Type: `output`
 
 ### cases[].continue
 
 Indicates whether, if this case passes for a message, the next case should also be tested.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`

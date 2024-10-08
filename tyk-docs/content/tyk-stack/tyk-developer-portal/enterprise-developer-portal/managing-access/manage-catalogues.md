@@ -43,9 +43,10 @@ In this section, you will learn about how catalogs work and how to create a new 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/portal-managing-access-add-name.png" alt="Name the new catalogue" >}}
 
 4. Set the access required for the catalog e.g. Public, Private or Custom
-  - Public: External developers can access the catalog
-  - Private: The catalog is only visible to developers that are logged in
-  - Custom: Only selected teams can access this catalog
+
+- Public: External developers can access the catalog
+- Private: The catalog is only visible to developers that are logged in
+- Custom: Only selected teams can access this catalog
 
 5.  [If creating a custom catalog] Under Audience, select one or multiple teams that you want to have access to this catalog.
 

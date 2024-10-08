@@ -5,17 +5,19 @@ tags: ["JWT", "JSON Web Token", "Security", "Keycloak"]
 description: "How to secure your APIs with JWT and Keycloak"
 menu:
   main:
-   parent: "JSON Web Tokens"
+    parent: "JSON Web Tokens"
 weight: 2
 ---
 
 ## Overview
+
 This guide will walk you through securing your APIs with JWTs via Keycloak.
 
 ## Prerequisites
 
 A [Keycloak](https://www.keycloak.org/) installation
-* A Tyk Self-Managed or Cloud installation
+
+- A Tyk Self-Managed or Cloud installation
 
 ## Create an application in Keycloak
 
@@ -33,22 +35,22 @@ A [Keycloak](https://www.keycloak.org/) installation
 {{< img src="/img/keycloak-jwt/create-client.png" alt="Create Client" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-client-zoomed.png" alt="Create Client" width="800px" height="400" >}}
 
-   - Enter the necessary client details.
+- Enter the necessary client details.
 
 {{< img src="/img/keycloak-jwt/create-client-step-1.png" alt="Add client details" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-client-step-1-zoomed.png" alt="Add client details" width="800px" height="400" >}}
 
-   - Enable client authentication and Service account roles under Authentication flow
+- Enable client authentication and Service account roles under Authentication flow
 
 {{< img src="/img/keycloak-jwt/create-client-step-2.png" alt="Update client permissions" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-client-step-2-zoomed.png" alt="Update client permissions" width="800px" height="400" >}}
 
-   - Set the redirection URL rules.
+- Set the redirection URL rules.
 
 {{< img src="/img/keycloak-jwt/create-client-step-3.png" alt="Add redirection URL rules" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-client-step-3-zoomed.png" alt="Add redirection URL rules" width="800px" height="400" >}}
 
-   - Save.
+- Save.
 
 {{< img src="/img/keycloak-jwt/client.png" alt="Example client" width="800px" height="400" >}}
 
@@ -60,6 +62,7 @@ A [Keycloak](https://www.keycloak.org/) installation
 6. Generate your JWT using curl. This is the token will use to access your services through the Tyk Gateway. You can choose to generate your JWT by using either of the following methods. Make sure to replace the `KEYCLOAK` prefixed parameters with the appropriate values.
 
    - Password Grant Type
+
    ```.curl
    curl -L --insecure -s -X POST 'https://KEYCLOAK_URL/realms/KEYCLOAK_REALM/protocol/openid-connect/token' \
       -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -116,7 +119,7 @@ A [Keycloak](https://www.keycloak.org/) installation
 
 {{< img src="/img/keycloak-jwt/create-policy-step-1.png" alt="Select API for Security Policy" width="800px" height="400" >}}
 
-   - Click on the Configurations tab and choose a policy name and TLL.
+- Click on the Configurations tab and choose a policy name and TLL.
 
 {{< img src="/img/keycloak-jwt/create-policy-step-2.png" alt="Create API Security Policy" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-policy-step-3.png" alt="API Security Policy Result" width="800px" height="400" >}}
@@ -133,12 +136,13 @@ A [Keycloak](https://www.keycloak.org/) installation
 {{< img src="/img/keycloak-jwt/create-api-step-4.png" alt="Add default Policy to API" width="800px" height="400" >}}
 {{< img src="/img/keycloak-jwt/create-api-step-4-zoomed.png" alt="Add default Policy to API" width="800px" height="400" >}}
 
-   - Test with curl. Make sure to replace TOKEN with the JWT you recieved from the curl earlier. 
+- Test with curl. Make sure to replace TOKEN with the JWT you recieved from the curl earlier.
 
-   ```.curl
-   curl 'http://tyk.gateway.local/keycloak-jwt/get' \
+```.curl
+curl 'http://tyk.gateway.local/keycloak-jwt/get' \
 		-H "Authorization: Bearer TOKEN"
-   ```
+```
 
 ### Running in k8s
+
 If you are looking to POC this functionality in k8s you can run a fully worked-out example using our tyk-k8s-demo library. You can read more [here]({{< ref "getting-started/quick-start/tyk-k8s-demo" >}}).

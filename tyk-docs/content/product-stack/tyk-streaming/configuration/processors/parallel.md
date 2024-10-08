@@ -1,7 +1,7 @@
 ---
 title: Parallel
 description: Explains an overview of parallel processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "parallel" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "parallel"]
 ---
 
 A processor that applies a list of child processors to messages of a batch as though they were each a batch of one message (similar to the [for_each]({{< ref "/product-stack/tyk-streaming/configuration/processors/for-each" >}}) processor), but where each message is processed in parallel.
@@ -24,13 +24,11 @@ The functionality of this processor depends on being applied across messages tha
 
 The maximum number of messages to have processing at a given time.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### processors
 
 A list of child processors to apply.
 
-
-Type: `array`  
+Type: `array`

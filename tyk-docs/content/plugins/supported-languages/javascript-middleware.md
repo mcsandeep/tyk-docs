@@ -1,31 +1,31 @@
 ---
 title: JavaScript Middleware
 tags:
-    - JavaScript
-    - JS
-    - middleware
-    - scripting
-    - JSVM
-    - plugins
-    - virtual endpoint
-    - JSVM
-    - JavaScript Virtual Machine
-    - dynamic event handler
+  - JavaScript
+  - JS
+  - middleware
+  - scripting
+  - JSVM
+  - plugins
+  - virtual endpoint
+  - JSVM
+  - JavaScript Virtual Machine
+  - dynamic event handler
 description: Using JavaScript with Tyk
 date: "2017-03-24T14:45:20Z"
 aliases:
-    - /customise-tyk/plugins/javascript-middleware/
-    - /customise-tyk/plugins/javascript-middleware/middleware-execution-order/
-    - /plugins/javascript-middleware
-    - /plugins/supported-languages/javascript-middleware/
-    - /plugins/supported-languages/javascript-middleware/
-    - /plugins/supported-languages/javascript-middleware/install-middleware/install-middleware
-    - /plugins/javascript-middleware/install-middleware
+  - /customise-tyk/plugins/javascript-middleware/
+  - /customise-tyk/plugins/javascript-middleware/middleware-execution-order/
+  - /plugins/javascript-middleware
+  - /plugins/supported-languages/javascript-middleware/
+  - /plugins/supported-languages/javascript-middleware/
+  - /plugins/supported-languages/javascript-middleware/install-middleware/install-middleware
+  - /plugins/javascript-middleware/install-middleware
 ---
 
 There are three middleware components that can be scripted with Tyk:
 
-1. **Custom JavaScript plugins**: These execute either *pre* or *post* validation. A *pre* middleware component will execute before any session validation or token validation has taken place, while a *post* middleware component will execute after the request has been passed through all checks and is ready to be proxied upstream.
+1. **Custom JavaScript plugins**: These execute either _pre_ or _post_ validation. A _pre_ middleware component will execute before any session validation or token validation has taken place, while a _post_ middleware component will execute after the request has been passed through all checks and is ready to be proxied upstream.
 
 2. **Dynamic event handlers**: These components fire on certain API events (see the event handlers section), these are fired Async and do not have a cooldown timer. These are documented [here]({{< ref "basic-config-and-security/report-monitor-trigger-events/webhooks#setup-with-api" >}}).
 

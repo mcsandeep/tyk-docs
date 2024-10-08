@@ -12,17 +12,19 @@ aliases:
 ---
 
 1. Spin up an [EC2 instance](https://aws.amazon.com/ec2/instance-types/), AWS Linux2 preferably, T2.Medium is fine
+
    - add a public IP
-   - open up SG access to: 
+   - open up SG access to:
      - 3000 for the Tyk Dashboard
      - 8080 for the Tyk Gateway
      - 22 TCP for SSH
 
 2. SSH into the instance
-`ssh -i mykey.pem ec2-user@public-ec2-ip`
+   `ssh -i mykey.pem ec2-user@public-ec2-ip`
 
 3. Install Git, Docker, & Docker Compose
-Feel free to copy paste these
+   Feel free to copy paste these
+
 ```.sh
 sudo yum update -y
 sudo yum install git -y
@@ -47,13 +49,11 @@ cd tyk-pro-docker-demo/
 
 **This is the most common place to have problems.**
 
-**Look for extra spaces between quotes ("") and the license key.  It will not work if there are any.**
+**Look for extra spaces between quotes ("") and the license key. It will not work if there are any.**
 
 Inside `tyk_analytics.conf`, `license_key` should look something like this, with a real license however:
 
-`
-"license_key": "eyJhbGciOiJSUzI1NiIsInR5cCI...WQ",
-`
+`"license_key": "eyJhbGciOiJSUzI1NiIsInR5cCI...WQ",`
 
 6. Run the containers via `docker-compose`
 
@@ -66,6 +66,7 @@ docker-compose up -d
 ```
 http://<public-ec2-ip>:3000
 ```
+
 and fill out the Bootstrap form!
 **If you see any page besides the Bootstrap page, you have pasted the license key incorrectly**
 
@@ -116,12 +117,12 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 ```.yaml
 tyk-dashboard:
     ...
-    volumes: 
+    volumes:
     - ./cert.pem:/opt/tyk-dashboard/new.cert.cert
     - ./key.pem:/opt/tyk-dashboard/new.cert.key
 tyk-gateway:
     ...
-    volumes: 
+    volumes:
     - ./cert.pem:/opt/tyk-gateway/new.cert.cert
     - ./key.pem:/opt/tyk-gateway/new.cert.key
 ```
@@ -140,10 +141,10 @@ wget https://raw.githubusercontent.com/sedkis/tyk/master/scripts/bootstrap-ssl.s
 
 7. Apply execute permissions to file:
 
-```chmod +x bootstrap.sh```
+`chmod +x bootstrap.sh`
 
 8. Run the bootstrap script
 
-```./bootstrap.sh localhost```
+`./bootstrap.sh localhost`
 
 9. Done! use the generated user and password to log into The Tyk Dashboard

@@ -11,9 +11,9 @@ aliases:
 
 This page describes the data structures used by Tyk rich plugins, for the following plugin drivers:
 
--   Python (built-in)
--   Lua (built-in)
--   gRPC (external, compatible with any supported [gRPC language](https://grpc.io/docs/))
+- Python (built-in)
+- Lua (built-in)
+- gRPC (external, compatible with any supported [gRPC language](https://grpc.io/docs/))
 
 The Tyk [Protocol Buffer definitions](https://github.com/TykTechnologies/tyk/tree/master/coprocess/proto) are intended for users to generate their own bindings using the appropriate gRPC tools for the required target language.
 The remainder of this document illustrates a class diagram and explins the attributes of the protobuf messages.
@@ -176,7 +176,7 @@ A map that contains the headers sent by the upstream.
 `multivalue_headers`
 A list of headers, each header in this list is a structure that consists of two parts: a key and its corresponding values.
 The key is a string that denotes the name of the header, the values are a list of strings that hold the content of the header, this is useful when the header has multiple associated values.
-This field is available for Go, Python and Ruby since tyk v5.0.4 and  5.1.1+.
+This field is available for Go, Python and Ruby since tyk v5.0.4 and 5.1.1+.
 
 ---
 
@@ -232,7 +232,7 @@ No longer used.
 `allowance`
 No longer in use, should be the same as `rate`.
 
-`rate` 
+`rate`
 The number of requests that are allowed in the specified rate limiting window.
 
 `per`
@@ -270,7 +270,7 @@ For further details see [BasicAuthData](#basicauthdata-coprocess_session_statepr
 Added to sessions where a Tyk key (embedding a shared secret) is used as the public key for signing the JWT. The JWT token's KID header value references the ID of a Tyk key. See [JWTData](#jwtdata-session_stateproto) for an example.
 
 `hmac_enabled`
-When set to `true` this indicates generation of a [HMAC signature]({{< ref "basic-config-and-security/security/authentication-authorization/hmac-signatures#a-sample-signature-generation-snippet" >}}) using the secret provided in `hmac_secret`. If the generated signature matches the signature provided in the *Authorization* header then authentication of the request has passed.
+When set to `true` this indicates generation of a [HMAC signature]({{< ref "basic-config-and-security/security/authentication-authorization/hmac-signatures#a-sample-signature-generation-snippet" >}}) using the secret provided in `hmac_secret`. If the generated signature matches the signature provided in the _Authorization_ header then authentication of the request has passed.
 
 `hmac_secret`
 The value of the HMAC shared secret.
@@ -282,9 +282,9 @@ Set this value to true to deny access.
 The policy ID that is bound to this token.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-Although `apply_policy_id` is still supported, it is now deprecated. `apply_policies` is now used to list your policy IDs as an array. This supports the **[Multiple Policy]({{< ref "basic-config-and-security/security/security-policies/partitioned-policies#a-name-multiple-a-multiple-policies" >}})** feature introduced in the  **v2.4 - 1.4** release.
+Although `apply_policy_id` is still supported, it is now deprecated. `apply_policies` is now used to list your policy IDs as an array. This supports the **[Multiple Policy]({{< ref "basic-config-and-security/security/security-policies/partitioned-policies#a-name-multiple-a-multiple-policies" >}})** feature introduced in the **v2.4 - 1.4** release.
 {{< /note >}}
 
 `data_expires`
@@ -306,7 +306,7 @@ Tags are embedded into analytics data when the request completes. If a policy ha
 As of v2.1, an Alias offers a way to identify a token in a more human-readable manner, add an Alias to a token in order to have the data transferred into Analytics later on so you can track both hashed and un-hashed tokens to a meaningful identifier that doesn't expose the security of the underlying token.
 
 `last_updated`
-A UNIX timestamp that represents the time the session was last updated. Applicable to *Post*, *PostAuth* and *Response* plugins. When developing *CustomAuth* plugins developers should add this to the SessionState instance.
+A UNIX timestamp that represents the time the session was last updated. Applicable to _Post_, _PostAuth_ and _Response_ plugins. When developing _CustomAuth_ plugins developers should add this to the SessionState instance.
 
 `id_extractor_deadline`
 This is a UNIX timestamp that signifies when a cached key or ID will expire. This relates to custom authentication, where authenticated keys can be cached to save repeated requests to the gRPC server. See [id_extractor]({{< ref "plugins/plugin-types/auth-plugins/id-extractor" >}}) and [Auth Plugins]({{< ref "plugins/plugin-types/auth-plugins/auth-plugins" >}}) for additional information.
@@ -338,7 +338,7 @@ The name of the API that the session request relates to.
 The ID of the API that the session request relates to.
 
 `versions`
-List of allowed API versions, e.g.  `"versions": [ "Default" ]`.
+List of allowed API versions, e.g. `"versions": [ "Default" ]`.
 
 `allowed_urls` List of [AccessSpec](#access-spec) instances. Each instance defines a URL (endpoint) with an associated allowed list of methods. If all URLs (endpoints) are allowed then the attribute is not set.
 
@@ -355,7 +355,7 @@ message AccessSpec {
 }
 ```
 
-#### Field Descriptions 
+#### Field Descriptions
 
 `url`
 A URL (endpoint) belonging to the API associated with the request session.
@@ -370,10 +370,8 @@ List of allowed methods for the URL (endpoint), e.g. `"methods": [ "GET". "POST"
 The `BasicAuthData` contains a hashed password and the name of the hashing algorithm used. This is represented by the `basic_auth_data` attribute in [SessionState](#session-state) message.
 
 ```yaml
-"basicAuthData": {
-    "password": <a_hashed_password_presentation>,
-    "hash": <the_hashing_algorithm_used_to_hash_the_password>
-}
+"basicAuthData":
+  { "password": <a_hashed_password_presentation>, "hash": <the_hashing_algorithm_used_to_hash_the_password> }
 ```
 
 #### Field Descriptions
@@ -391,9 +389,7 @@ Name of the [hashing algorithm]({{< ref "basic-config-and-security/security/key-
 Added to [sessions](#sessionstate-session_stateproto) where a Tyk key (embedding a shared secret) is used as the public key for signing the JWT. This message contains the shared secret.
 
 ```yaml
-"jwtData": {
-  "secret": "the_secret"
-}
+"jwtData": { "secret": "the_secret" }
 ```
 
 #### Field Descriptions
@@ -404,11 +400,12 @@ The shared secret.
 ---
 
 ## Monitor {#monitor}
+
 Added to a [session](#session-state) when [monitor quota thresholds]({{< ref "basic-config-and-security/report-monitor-trigger-events/monitors" >}}) are defined within the Tyk key. This message contains the quota percentage threshold limits, defined in descending order, that trigger webhook notification.
 
 ```yaml
 message Monitor {
-  repeated double trigger_limits = 1;
+repeated double trigger_limits = 1;
 }
 ```
 
@@ -418,9 +415,7 @@ message Monitor {
 List of trigger limits defined in descending order. Each limit represents the percentage of the quota that must be reached in order for the webhook notification to be triggered.
 
 ```yaml
-"monitor": {
-  "trigger_limits": [80.0, 60.0, 50.0]
-}
+"monitor": { "trigger_limits": [80.0, 60.0, 50.0] }
 ```
 
 ---

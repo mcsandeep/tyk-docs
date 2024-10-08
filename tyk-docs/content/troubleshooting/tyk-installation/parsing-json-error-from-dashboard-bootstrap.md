@@ -4,7 +4,7 @@ title: Unable to parse JSON Error from Dashboard bootstrap.sh Script
 menu:
   main:
     parent: "Tyk Installation"
-weight: 5 
+weight: 5
 ---
 
 ### Description
@@ -32,12 +32,11 @@ Traceback (most recent call last):
   File "/usr/lib64/python2.7/ast.py", line 37, in parse
     return compile(source, filename, mode, PyCF_ONLY_AST)
   File "unknown", line 0
-    
+
     ^
 SyntaxError: unexpected EOF while parsing
 ERROR: Unable to parse JSON
 ```
-
 
 ### Cause
 

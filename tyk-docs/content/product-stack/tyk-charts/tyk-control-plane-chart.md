@@ -9,6 +9,7 @@ The `tyk-control-plane` provides the default deployment of Tyk control plane on 
 ## What components are deployed with Tyk Control Plane Chart?
 
 It includes:
+
 - Tyk Gateway, an Open Source Enterprise API Gateway (supporting REST, GraphQL, TCP and gRPC protocols).
 - Tyk Dashboard, a license based component that provides a graphical management interface and analytics platform for Tyk.
 - Tyk MDCB, a license based component that performs management and synchronisation of distributed clusters of Tyk API Gateways.
@@ -20,12 +21,12 @@ Learn more about Tyk control plane at [MDCB components]({{<ref "tyk-multi-data-c
 By default, this chart installs the following components as sub-charts on a [Kubernetes](https://kubernetes.io/) cluster using the [Helm](https://helm.sh/) package manager.
 
 | Component                       | Enabled by Default | Flag                        |
-|---------------------------------|--------------------|-----------------------------|
+| ------------------------------- | ------------------ | --------------------------- |
 | Tyk Gateway                     | true               | n/a                         |
 | Tyk Dashboard                   | true               | n/a                         |
 | Tyk MDCB                        | true               | n/a                         |
 | Tyk Pump                        | false              | global.components.pump      |
-| Tyk Enterprise Developer Portal | false              | global.components.devPortal | 
+| Tyk Enterprise Developer Portal | false              | global.components.devPortal |
 | Tyk Operator                    | false              | global.components.operator  |
 
 To enable or disable each component, change the corresponding enabled flag.
@@ -46,18 +47,21 @@ If you want to enable Tyk Developer Portal, please use PostgreSQL. MongoDB is no
 {{< /note >}}
 
 ## Tyk Control Plane Installations
+
 ### Installing The Chart
 
 To install the chart from Helm repository in namespace `tyk` with the release name `tyk-control-plane`, issue the following commands:
+
 ```bash
 helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
 helm repo update
 helm show values tyk-helm/tyk-control-plane > values.yaml
 ```
 
-For further documentation relating to *helm* command usage, please refer to the [helm docs](https://helm.sh/docs/helm/).
+For further documentation relating to _helm_ command usage, please refer to the [helm docs](https://helm.sh/docs/helm/).
 
 At a minimum, modify `values.yaml` for the following settings:
+
 1. [Set Redis connection details](#set-redis-connection-details-required)
 2. [Set Mongo or PostgreSQL connection details](#set-mongo-or-postgressql-connection-details-required)
 3. [Tyk Dashboard License](#tyk-dashboard-license-required)
@@ -67,6 +71,7 @@ At a minimum, modify `values.yaml` for the following settings:
 By default, the chart would expose MDCB service as ClusterIP. If you would like to access the control plane from outside the cluster, please change the service type `tyk-mdcb.mdcb.service.type` to NodePort or LoadBalancer.
 
 Then just run:
+
 ```bash
 helm install tyk-control-plane tyk-helm/tyk-control-plane -n tyk --create-namespace -f values.yaml
 ```
@@ -78,6 +83,7 @@ Follow the installation output to obtain connection details to Tyk MDCB, and use
 ```bash
 helm uninstall tyk-control-plane -n tyk
 ```
+
 This removes all the Kubernetes components associated with the chart and deletes the release.
 
 ### Upgrading Chart
@@ -94,45 +100,49 @@ To get all configurable options with detailed comments, issue the following comm
 helm show values tyk-helm/tyk-control-plane > values.yaml
 ```
 
-You can update any value in your local `values.yaml` file and use `-f [filename]` flag to override default values during installation. 
+You can update any value in your local `values.yaml` file and use `-f [filename]` flag to override default values during installation.
 Alternatively, you can use `--set` flag to set it in Tyk installation. See [Using Helm](https://helm.sh/docs/intro/using_helm/) for examples.
 
-To configure Tyk components, users can utilize both config files and [environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). Notably, environment variables take precedence over config files. To maintain simplicity and consistency, the Tyk Helm Charts deploy components with an empty config file while setting container environment variables based on user-defined [values](https://helm.sh/docs/chart_best_practices/values/). This approach ensures seamless integration with Kubernetes practices, allowing for efficient management of configurations. For a comprehensive overview of available configurations, please refer to the [configuration documentation]({{<ref "tyk-environment-variables">}}). 
+To configure Tyk components, users can utilize both config files and [environment variables](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/). Notably, environment variables take precedence over config files. To maintain simplicity and consistency, the Tyk Helm Charts deploy components with an empty config file while setting container environment variables based on user-defined [values](https://helm.sh/docs/chart_best_practices/values/). This approach ensures seamless integration with Kubernetes practices, allowing for efficient management of configurations. For a comprehensive overview of available configurations, please refer to the [configuration documentation]({{<ref "tyk-environment-variables">}}).
 
 ### Setting Environment Variables
+
 Should any environment variables not be set by the Helm Chart, users can easily add them under the `extraEnvs` section within the charts for further customization. Values set under `extraEnvs` would take precedence over all configurations.
 
 Example of setting extra environment variable to gateway:
+
 ```yaml
 tyk-gateway:
   gateway:
     extraEnvs:
-    - name: TYK_GW_LOGLEVEL
-      value: debug
+      - name: TYK_GW_LOGLEVEL
+        value: debug
 ```
 
 An example is listed below for setting extra [environment variable using ConfigMap data](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-container-environment-variables-using-configmap-data), using gateway:
+
 ```yaml
 tyk-gateway:
   gateway:
     extraEnvs:
-    - name: CONFIG_USERNAME
-      valueFrom:
-        configMapKeyRef: 
-          name: backend-user
-          key: backend-username
+      - name: CONFIG_USERNAME
+        valueFrom:
+          configMapKeyRef:
+            name: backend-user
+            key: backend-username
 ```
 
 An example is listed below for setting extra [environment variable using secret data](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#define-container-environment-variables-using-secret-data), using gateway:
+
 ```yaml
 tyk-gateway:
   gateway:
     extraEnvs:
-    - name: SECRET_USERNAME
-      valueFrom:
-        secretKeyRef: 
-          name: backend-user
-          key: backend-username
+      - name: SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: backend-user
+            key: backend-username
 ```
 
 In the above example, an extra environment variable `SECRET_USERNAME` will be added to the Gateway container, with a value of `backend-username` associated with the secret `backend-user`. It is useful if you want to access secret data from [Tyk Gateway configuration file (tyk.conf) or API definitions]({{<ref "tyk-configuration-reference/kv-store#how-to-access-the-externally-stored-data">}}).
@@ -143,12 +153,12 @@ Tyk uses Redis for distributed rate-limiting and token storage. You may use the 
 
 Set the following values after installing Redis:
 
-| Name | Description | 
-|------|-------------|
-| `global.redis.addrs` | Redis addresses |
-| `global.redis.pass` | Redis password in plain text |
-| `global.redis.passSecret.name` | If global.redis.pass is not provided, you can store it in a secret and provide the secret name here |
-| `global.redis.passSecret.keyName` | key name to retrieve redis password from the secret |
+| Name                              | Description                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `global.redis.addrs`              | Redis addresses                                                                                     |
+| `global.redis.pass`               | Redis password in plain text                                                                        |
+| `global.redis.passSecret.name`    | If global.redis.pass is not provided, you can store it in a secret and provide the secret name here |
+| `global.redis.passSecret.keyName` | key name to retrieve redis password from the secret                                                 |
 
 ***Recommended: via *Bitnami* chart***
 
@@ -178,7 +188,7 @@ Follow the notes from the installation output to get connection details and pass
 
 The Redis address as set by Bitnami is `tyk-redis-master.tyk.svc.cluster.local:6379`
 
-You can reference the password secret generated by Bitnami chart by  `--set global.redis.passSecret.name=tyk-redis` and `--set global.redis.passSecret.keyName=redis-password`, or just set `global.redis.pass=$REDIS_PASSWORD`
+You can reference the password secret generated by Bitnami chart by `--set global.redis.passSecret.name=tyk-redis` and `--set global.redis.passSecret.keyName=redis-password`, or just set `global.redis.pass=$REDIS_PASSWORD`
 
 ***Evaluation only: via *simple-redis* chart***
 
@@ -189,7 +199,7 @@ Another option for Redis, to get started quickly, is to use our [simple-redis](h
 
 Please note that these provided charts must never be used in production or for anything
 but a quick start evaluation only. Use [Bitnami Redis](https://github.com/bitnami/charts/tree/main/bitnami/redis) or [Redis Enterprise operator](https://docs.redis.com/latest/kubernetes/deployment/) in any other case.
-We provide this chart, so you can quickly deploy *Tyk gateway*, but it is not meant for long term storage of data.
+We provide this chart, so you can quickly deploy _Tyk gateway_, but it is not meant for long term storage of data.
 
 {{< /warning >}}
 
@@ -200,6 +210,7 @@ helm install redis tyk-helm/simple-redis -n tyk
 The Tyk Helm Chart can connect to `simple-redis` in the same namespace by default. You do not need to set Redis address and password in `values.yaml`.
 
 ### Set Mongo or PostgreSQL Connection Details (Required)
+
 If you have already installed MongoDB or PostgreSQL, you can set the connection details in `global.mongo` and `global.postgres` section of values file respectively.
 
 If not, you can use these rather excellent charts provided by Bitnami to install MongoDB or PostgreSQL:
@@ -215,7 +226,7 @@ Then follow notes from the installation output to get connection details and upd
 {{< note success >}}
 **Note**
 
-Bitnami MongoDB image is not supported on darwin/arm64 architecture. 
+Bitnami MongoDB image is not supported on darwin/arm64 architecture.
 {{< /note >}}
 
 {{< note success >}}
@@ -267,6 +278,7 @@ global:
 ```
 
 **PostgreSQL Installation**
+
 ```bash
 helm install tyk-postgres bitnami/postgresql --set "auth.database=tyk_analytics" -n tyk --version 12.12.10
 ```
@@ -305,12 +317,12 @@ global:
 
 In the `values.yaml` file, some fields are considered confidential, such as `APISecret`, connection strings, etc.
 
-Declaring values for such fields as plain text might not be desired. Instead, for certain fields, Kubernetes secrets can be referenced, and the chart will 
+Declaring values for such fields as plain text might not be desired. Instead, for certain fields, Kubernetes secrets can be referenced, and the chart will
 [define container environment variables using secret data](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/#define-container-environment-variables-using-secret-data).
 
 This section describes how to use Kubernetes secrets to declare confidential fields.
 
-***Tyk Dashboard and Developer Portal Admin***
+**_Tyk Dashboard and Developer Portal Admin_**
 
 If Tyk Dashboard bootstrapping is enabled, the admin user will be created according to the `global.adminUser` field.
 
@@ -319,30 +331,29 @@ All admin credentials can also be set through Kubernetes secret.
 {{< note success >}}
 **Note**
 
-Once `global.adminUser.useSecretName` is declared, it takes precedence over `global.adminUser.firstName`, 
+Once `global.adminUser.useSecretName` is declared, it takes precedence over `global.adminUser.firstName`,
 `global.adminUser.lastName`, `global.adminUser.email` and `global.adminUser.password`.
 
 If `global.adminUser.useSecretName` is in use, please add all keys mentioned below to the secret.
 {{< /note >}}
 
-***Tyk Dashboard Admin First Name***
+**_Tyk Dashboard Admin First Name_**
 
 It can be configured via `global.adminUser.firstName` as a plain text or Kubernetes secret which includes `adminUserFirstName` key in it. Then, this secret must be referenced via `global.adminUser.useSecretName`.
 
-
-***Tyk Dashboard Admin Last Name***
+**_Tyk Dashboard Admin Last Name_**
 
 It can be configured via `global.adminUser.lastName` as a plain text or Kubernetes secret which includes `adminUserLastName` key in it. Then, this secret must be referenced via `global.adminUser.useSecretName`.
 
-***Tyk Dashboard and Developer Portal Admin Email***
+**_Tyk Dashboard and Developer Portal Admin Email_**
 
 It can be configured via `global.adminUser.email` as a plain text or Kubernetes secret which includes `adminUserEmail` key in it. Then, this secret must be referenced via `global.adminUser.useSecretName`.
 
-***Tyk Dashboard and Developer Portal Admin Password***
+**_Tyk Dashboard and Developer Portal Admin Password_**
 
 It can be configured via `global.adminUser.password` as a plain text or Kubernetes secret which includes `adminUserPassword` key in it. Then, this secret must be referenced via `global.adminUser.useSecretName`.
 
-***APISecret***
+**_APISecret_**
 
 The `global.secrets.APISecret` field configures a [header value]({{< ref "tyk-oss-gateway/configuration#secret" >}}) used in every interaction with Tyk Gateway API.
 
@@ -350,12 +361,12 @@ It can be configured via `global.secrets.APISecret` as a plain text or Kubernete
 
 ```yaml
 global:
-    secrets:
-        APISecret: CHANGEME
-        useSecretName: "mysecret" # where mysecret includes `APISecret` key with the desired value.
+  secrets:
+    APISecret: CHANGEME
+    useSecretName: "mysecret" # where mysecret includes `APISecret` key with the desired value.
 ```
 
-***AdminSecret***
+**_AdminSecret_**
 
 The `global.secrets.AdminSecret` field sets a [secret]({{< ref "tyk-dashboard/configuration#admin_secret" >}}) for Admin API.
 
@@ -363,8 +374,8 @@ It can be configured via `global.secrets.AdminSecret` as a plain text or Kuberne
 
 ```yaml
 global:
-    secrets:
-        useSecretName: "mysecret" # where mysecret includes `AdminSecret` key with the desired value.
+  secrets:
+    useSecretName: "mysecret" # where mysecret includes `AdminSecret` key with the desired value.
 ```
 
 {{< note success >}}
@@ -373,38 +384,38 @@ global:
 Once `global.secrets.useSecretName` is declared, it takes precedence over `global.secrets.APISecret` and `global.secrets.AdminSecret`.
 {{< /note >}}
 
-***Dashboard License***
+**_Dashboard License_**
 
 In order to refer to a Tyk Dashboard license through a Kubernetes secret, please use `global.secrets.useSecretName`, where the secret should contain a key called `DashLicense`.
 
-***MDCB License***
+**_MDCB License_**
 
 In order to refer to a Tyk MDCB license through a Kubernetes secret, please use `tyk-mdcb.mdcb.useSecretName`, where the secret should contain a key called `MDCBLicense`.
 
-***MDCB Secret***
+**_MDCB Secret_**
 
 In order to set the secret for accessing MDCB secure HTTP endpoints through a Kubernetes secret, please use tyk-`mdcb.mdcb.useSecretName`, where the secret should contain a key called `securitySecret`.
 
-***Tyk Developer Portal License***
+**_Tyk Developer Portal License_**
 
 In order to refer to a Tyk Developer Portal license through a Kubernetes secret, please use `tyk-dev-portal.useSecretName`, where the secret should contain a key called `DevPortalLicense`.
 
-***Tyk Developer Portal Admin Password***
+**_Tyk Developer Portal Admin Password_**
 
-In order to refer to a Tyk Developer Portal's admin password through a Kubernetes secret, 
+In order to refer to a Tyk Developer Portal's admin password through a Kubernetes secret,
 please use `global.adminUser.useSecretName`, where the secret should contain a key called `adminUserPassword`.
 
-***Tyk Developer Portal Storage Connection String***
+**_Tyk Developer Portal Storage Connection String_**
 
 In order to refer to a Tyk Developer Portal connection string to the selected database through a Kubernetes secret, please use `tyk-dev-portal.useSecretName`, where the secret should contain a key called `DevPortalStorageConnectionString`.
 
 {{< note success >}}
 **Note**
 
-If `tyk-dev-portal.useSecretName` is in use, please add all keys mentioned to the secret. 
+If `tyk-dev-portal.useSecretName` is in use, please add all keys mentioned to the secret.
 {{< /note >}}
 
-***Tyk Developer Portal AWS S3 Access Key ID***
+**_Tyk Developer Portal AWS S3 Access Key ID_**
 
 In order to refer to a Tyk Developer Portal AWS S3 Access Key ID through a Kubernetes secret, please use `tyk-dev-portal.useSecretName`, where the secret should contain a key called `DevPortalAwsAccessKeyId`.
 
@@ -414,10 +425,10 @@ In order to refer to a Tyk Developer Portal AWS S3 Access Key ID through a Kuber
 If `tyk-dev-portal.useSecretName` is in use, please add all keys mentioned to the secret.
 {{< /note >}}
 
-***Tyk Developer Portal AWS S3 Secret Access Key***
+**_Tyk Developer Portal AWS S3 Secret Access Key_**
 
 In order to refer Tyk Developer Portal connection string to the selected database through Kubernetes secret,
-please use `tyk-dev-portal.useSecretName`, where the secret should contain a key called 
+please use `tyk-dev-portal.useSecretName`, where the secret should contain a key called
 `DevPortalAwsSecretAccessKey`.
 
 {{< note success >}}
@@ -426,42 +437,44 @@ please use `tyk-dev-portal.useSecretName`, where the secret should contain a key
 If `tyk-dev-portal.useSecretName` is in use, please add all keys mentioned to the secret.
 {{< /note >}}
 
-***Redis Password***
+**_Redis Password_**
 
 The Redis password can also be provided via a secret. Store the Redis password in Kubernetes secret and refer to this secret via `global.redis.passSecret.name` and `global.redis.passSecret.keyName` field, as follows:
 
 ```yaml
-global:  
+global:
   redis:
-     passSecret:
-       name: "yourSecret"
-       keyName: "redisPassKey"
+    passSecret:
+      name: "yourSecret"
+      keyName: "redisPassKey"
 ```
 
-***MongoDB or Postgres connection strings***
+**_MongoDB or Postgres connection strings_**
 
-Storage connection strings can also be provided via a secret. 
+Storage connection strings can also be provided via a secret.
 
 For MongoDB, suppose you have a secret named `yourSecret` and you have the mongo connection URL stored in key `mongoConnectionURLkey`. Store the connection string in Kubernetes secret and refer to this secret via `global.mongo.connectionURLSecret.name` and `global.mongo.connectionURLSecret.keyName` field, as follows:
 
 - MongoDB:
+
 ```yaml
-global:  
+global:
   mongo:
     connectionURLSecret:
-       name: "yourSecret"
-       keyName: "mongoConnectionURLkey"
+      name: "yourSecret"
+      keyName: "mongoConnectionURLkey"
 ```
 
 For Postgres, suppose you have a secret named `yourSecret` and you have the postgres connection string stored in key `postgreConnectionURLkey`. Store the connection string in Kubernetes secret and refer to this secret via `global.postgres.connectionStringSecret.name` and `global.postgres.connectionStringSecret.keyName` field, as follows:
 
 - Postgres:
+
 ```yaml
 global:
   postgres:
     connectionStringSecret:
-       name: "yourSecret"
-       keyName: "postgreConnectionURLkey"
+      name: "yourSecret"
+      keyName: "postgreConnectionURLkey"
 ```
 
 ### Gateway Configurations
@@ -475,38 +488,41 @@ In Tyk control plane, Tyk Gateway acts as a management gateway that is used for 
 Configure the following details below, inside the `tyk-gateway` section.
 
 #### Update Tyk Gateway Version
+
 Set version of gateway at `tyk-gateway.gateway.image.tag`. You can find the list of version tags available from [Docker hub](https://hub.docker.com/r/tykio/tyk-gateway/tags). Please check [Tyk Release notes]({{<ref "product-stack/tyk-gateway/release-notes/overview">}}) carefully while upgrading or downgrading.
 
 #### Enabling TLS
 
-*Enable TLS*
+_Enable TLS_
 
 We have provided an easy way to enable TLS via the `global.tls.gateway` flag. Setting this value to true will automatically enable TLS using the certificate provided under tyk-gateway/certs/.
 
-*Configure TLS secret*
+_Configure TLS secret_
 
 If you want to use your own key/cert pair, please perform the following steps:
+
 1. Create a TLS secret using your cert and key pair.
 2. Set `global.tls.gateway` to true.
 3. Set `tyk-gateway.gateway.tls.useDefaultTykCertificate` to false.
 4. Set `tyk-gateway.gateway.tls.secretName` to the name of the newly created secret.
 
-*Add Custom Certificates*
+_Add Custom Certificates_
 
 To add your custom Certificate Authority(CA) to your containers, you can mount your CA certificate directly into /etc/ssl/certs folder.
 
 ```yaml
-   extraVolumes: 
-     - name: self-signed-ca
-       secret:
-         secretName: self-signed-ca-secret
-   extraVolumeMounts: 
-     - name: self-signed-ca
-       mountPath: "/etc/ssl/certs/myCA.pem"
-       subPath: myCA.pem
+extraVolumes:
+  - name: self-signed-ca
+    secret:
+      secretName: self-signed-ca-secret
+extraVolumeMounts:
+  - name: self-signed-ca
+    mountPath: "/etc/ssl/certs/myCA.pem"
+    subPath: myCA.pem
 ```
 
 #### Enabling gateway autoscaling
+
 You can enable autoscaling of the gateway by `--set tyk-gateway.gateway.autoscaling.enabled=true`. By default, it will enable the `Horizontal Pod Autoscaler` resource with target average CPU utilization at 60%, scaling between 1 and 3 instances. To customize those values you can modify the `tyk-gateway` section of `values.yaml` as shown below:
 
 ```yaml
@@ -540,95 +556,97 @@ To enable Pump, set `global.components.pump` to true and configure the following
 
 <!-- BEGIN import from pump doc -->
 
-| Pump                      | Configuration                                                                                              |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------| 
+| Pump                      | Configuration                                                                                                                                   |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | Prometheus Pump (Default) | Add the value `prometheus` to the `tyk-pump.pump.backend` entry and add connection details for Prometheus under `tyk-pump.pump.prometheusPump`. |
 | Mongo Pump                | Add `mongo` to `tyk-pump.pump.backend` and add connection details for mongo under `global.mongo`.                                               |
 | Mongo Selective Pump      | Add `mongo-selective` to `tyk-pump.pump.backend` and add connection details for mongo under `global.mongo`.                                     |
 | Mongo Aggregate Pump      | Add `mongo-aggregate` to `tyk-pump.pump.backend` and add connection details for mongo under `global.mongo`.                                     |
 | Postgres Pump             | Add `postgres` to `tyk-pump.pump.backend` and add connection details for postgres under `global.postgres`.                                      |
 | Postgres Aggregate Pump   | Add `postgres-aggregate` to `tyk-pump.pump.backend` and add connection details for postgres under `global.postgres`.                            |
-| Uptime Pump               | Set `tyk-pump.pump.uptimePumpBackend` to `mongo` or `postgres` or `""`                                                                           |
-| Other Pumps               | Add the required environment variables in `tyk-pump.pump.extraEnvs`                                                                              |
-
+| Uptime Pump               | Set `tyk-pump.pump.uptimePumpBackend` to `mongo` or `postgres` or `""`                                                                          |
+| Other Pumps               | Add the required environment variables in `tyk-pump.pump.extraEnvs`                                                                             |
 
 {{< note success >}}
 **Note**
 
-For additional information on Tyk Pump configurations, refer to the 
+For additional information on Tyk Pump configurations, refer to the
 [Setup Dashboard Analytics]({{<ref "tyk-pump/tyk-pump-configuration/tyk-pump-dashboard-config">}}) documentation.
 
 To explore the list of supported backends for Tyk Pump, please visit [Pump Backends]({{<ref "tyk-stack/tyk-pump/other-data-stores">}}).
 {{< /note >}}
 
 #### Prometheus Pump
-Add `prometheus` to `tyk-pump.pump.backend` and add connection details for Prometheus under `tyk-pump.pump.prometheusPump`. 
+
+Add `prometheus` to `tyk-pump.pump.backend` and add connection details for Prometheus under `tyk-pump.pump.prometheusPump`.
 
 We also support monitoring using Prometheus Operator. All you have to do is set `tyk-pump.pump.prometheusPump.prometheusOperator.enabled` to true.
 
 This will create a _PodMonitor_ resource for your Pump instance.
 
 ```yaml
-    # prometheusPump configures Tyk Pump to expose Prometheus metrics.
-    # Please add "prometheus" to .Values.pump.backend in order to enable Prometheus Pump.
-    prometheusPump:
-      # host represents the host without port, where Tyk Pump serve the metrics for Prometheus.
-      host: ""
-      # port represents the port where Tyk Pump serve the metrics for Prometheus.
-      port: 9090
-      # path represents the path to the Prometheus collection. For example /metrics.
-      path: /metrics
-      # customMetrics allows defining custom Prometheus metrics for Tyk Pump.
-      # It accepts a string that represents a JSON object. For instance,
-      #
-      # customMetrics: '[{"name":"tyk_http_requests_total","description":"Total of API requests","metric_type":"counter","labels":["response_code","api_name","method","api_key","alias","path"]},          {              "name":"tyk_http_latency",              "description":"Latency of API requests",              "metric_type":"histogram",              "labels":["type","response_code","api_name","method","api_key","alias","path"]          }]'
-      customMetrics: ""
-      # If you are using prometheus Operator, set the fields in the section below.
-      prometheusOperator:
-        # enabled determines whether the Prometheus Operator is in use or not. By default,
-        # it is disabled.
-        # Tyk Pump can be monitored with PodMonitor Custom Resource of Prometheus Operator.
-        # If enabled, PodMonitor resource is created based on .Values.pump.prometheusPump.prometheusOperator.podMonitorSelector
-        # for Tyk Pump.
-        enabled: false
-        # podMonitorSelector represents a podMonitorSelector of your Prometheus resource. So that
-        # your Prometheus resource can select PodMonitor objects based on selector defined here.
-        # Please set this field to the podMonitorSelector field of your monitoring.coreos.com/v1
-        # Prometheus resource's spec.
-        #
-        # You can check the podMonitorSelector via:
-        #   kubectl describe prometheuses.monitoring.coreos.com <PROMETHEUS_POD>
-        podMonitorSelector:
-          release: prometheus-stack
+# prometheusPump configures Tyk Pump to expose Prometheus metrics.
+# Please add "prometheus" to .Values.pump.backend in order to enable Prometheus Pump.
+prometheusPump:
+  # host represents the host without port, where Tyk Pump serve the metrics for Prometheus.
+  host: ""
+  # port represents the port where Tyk Pump serve the metrics for Prometheus.
+  port: 9090
+  # path represents the path to the Prometheus collection. For example /metrics.
+  path: /metrics
+  # customMetrics allows defining custom Prometheus metrics for Tyk Pump.
+  # It accepts a string that represents a JSON object. For instance,
+  #
+  # customMetrics: '[{"name":"tyk_http_requests_total","description":"Total of API requests","metric_type":"counter","labels":["response_code","api_name","method","api_key","alias","path"]},          {              "name":"tyk_http_latency",              "description":"Latency of API requests",              "metric_type":"histogram",              "labels":["type","response_code","api_name","method","api_key","alias","path"]          }]'
+  customMetrics: ""
+  # If you are using prometheus Operator, set the fields in the section below.
+  prometheusOperator:
+    # enabled determines whether the Prometheus Operator is in use or not. By default,
+    # it is disabled.
+    # Tyk Pump can be monitored with PodMonitor Custom Resource of Prometheus Operator.
+    # If enabled, PodMonitor resource is created based on .Values.pump.prometheusPump.prometheusOperator.podMonitorSelector
+    # for Tyk Pump.
+    enabled: false
+    # podMonitorSelector represents a podMonitorSelector of your Prometheus resource. So that
+    # your Prometheus resource can select PodMonitor objects based on selector defined here.
+    # Please set this field to the podMonitorSelector field of your monitoring.coreos.com/v1
+    # Prometheus resource's spec.
+    #
+    # You can check the podMonitorSelector via:
+    #   kubectl describe prometheuses.monitoring.coreos.com <PROMETHEUS_POD>
+    podMonitorSelector:
+      release: prometheus-stack
 ```
 
 #### Mongo pump
+
 To enable Mongo pump, add `mongo` to `tyk-pump.pump.backend` and add connection details for mongo under `global.mongo`. See [Mongo Installation](#set-mongo-or-postgressql-connection-details-required) section above.
 
 By default, it will enable Mongo Aggregate, Mongo Graph Pump and Mongo Selective Pump.
 
-
 #### SQL Pump
+
 To enable SQL pump, add `postgres` to `tyk-pump.pump.backend` and add connection details for postgres under `global.postgres`. See [PostgresSQL Installation](#set-mongo-or-postgressql-connection-details-required) section above.
 
 By default, it will enable Postgres Aggregate, Postgres Graph Aggregate, SQL Pump and SQL graph pump.
 
-
 #### Uptime Pump
+
 Uptime Pump can be configured by setting `pump.uptimePumpBackend` in values.yaml file. It supports the following values:
+
 1. mongo: Used to set mongo pump for uptime analytics. Mongo Pump should be enabled.
 2. postgres: Used to set postgres pump for uptime analytics. Postgres Pump should be enabled.
 3. empty: Used to disable uptime analytics.
 
 ```yaml
-    # uptimePumpBackend configures uptime Tyk Pump. ["", "mongo", "postgres"].
-    # Set it to "" for disabling uptime Tyk Pump. By default, uptime pump is disabled.
-    uptimePumpBackend: ""
+# uptimePumpBackend configures uptime Tyk Pump. ["", "mongo", "postgres"].
+# Set it to "" for disabling uptime Tyk Pump. By default, uptime pump is disabled.
+uptimePumpBackend: ""
 ```
 
 #### Other Pumps
-To setup other backends for pump, refer to this [document](https://github.com/TykTechnologies/tyk-pump/blob/master/README.md#pumps--back-ends-supported) and add the required environment variables in `pump.extraEnvs`
 
+To setup other backends for pump, refer to this [document](https://github.com/TykTechnologies/tyk-pump/blob/master/README.md#pumps--back-ends-supported) and add the required environment variables in `pump.extraEnvs`
 
 ### Tyk Dashboard Configurations
 
@@ -655,6 +673,7 @@ Assuming that TLS certificates for the Tyk Dashboard are available in the Kubern
 3. Define certificate configurations in `tyk-dashboard.dashboard.tls.certificates`, which generates `TYK_DB_HTTPSERVEROPTIONS_CERTIFICATES` for the Tyk Dashboard.
 
 Optional Steps, if needed:
+
 - Modify the secret mount path on the Tyk Dashboard Pod via `tyk-dashboard.dashboard.tls.certificatesMountPath`.
 - If necessary, either enable `insecureSkipVerify` via `tyk-dashboard.dashboard.tls.certificates`, or mount CA information through `tyk-dashboard.dashboard.extraVolumes` and `tyk-dashboard.dashboard.extraVolumeMounts`.
 - If the `tyk-bootstrap` chart is used to bootstrap the Tyk Dashboard, ensure that bootstrap app can validate certificate of Tyk Dashboard or enable `insecureSkipVerify` in the `tyk-bootstrap` chart.
@@ -691,6 +710,7 @@ The [MDCB OAS API]({{< ref "/tyk-mdcb-api" >}}) has secured HTTP endpoints, like
 #### Enabling MDCB TLS
 
 Assuming that TLS certificates for the Tyk MDCB are available in the Kubernetes Secret `mdcb-tls-secret`, follow these steps to enable TLS for RPC connection:
+
 1. Set `tyk-mdcb.mdcb.tls.useSSL` to true.
 2. Set `tyk-mdcb.mdcb.tls.secretName` to the name of the Kubernetes secret containing TLS certificates for the Tyk MDCB, in this case, `mdcb-tls-secret`.
 
@@ -728,7 +748,7 @@ tyk-mdcb:
       useSSL: true
       certificateKeyFile: /path-to-cert-keyfile
       certificateCertFile: /path-to-certfile
-      
+
       # For TLS 1.0 use 769, for TLS 1.1 use 770, for TLS 1.2 use 771, for TLS 1.3 use 772
       minVersion: 771
 ```
@@ -783,7 +803,7 @@ tyk-dev-portal:
 
 #### Storage Settings
 
-Tyk Developer Portal supports different storage options for storing the portal's CMS assets such as images, theme files and Open API Specification files. Please see the [Developer Portal Storage settings]({{<ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration#portal-settings">}}) page for all the available options. 
+Tyk Developer Portal supports different storage options for storing the portal's CMS assets such as images, theme files and Open API Specification files. Please see the [Developer Portal Storage settings]({{<ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration#portal-settings">}}) page for all the available options.
 
 If you use the file system as storage, please set `tyk-dev-portal.storage.type` to `fs`, and configure `tyk-dev-portal.storage.persistence` to mount an existing persistent volume to Tyk Developer Portal.
 
@@ -848,8 +868,8 @@ Other [Developer Portal configurations]({{<ref "product-stack/tyk-enterprise-dev
 ```yaml
 tyk-dev-portal:
   extraEnvs:
-  - name: PORTAL_LOG_LEVEL
-    value: debug
+    - name: PORTAL_LOG_LEVEL
+      value: debug
 ```
 
 ### Tyk Operator Configurations

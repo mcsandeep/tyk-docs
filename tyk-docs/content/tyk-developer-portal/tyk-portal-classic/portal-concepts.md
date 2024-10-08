@@ -42,14 +42,12 @@ To enable this functionality, select **Enable subscribing to multiple APIs with 
 
 New for v1.9.4, if you have **Enable subscribing to multiple APIs with a single key** selected you can edit the APIs associated with the Key. You can perform the following:
 
-* Remove access to existing APIs
-* Subscribe to new APIs (of the same authentication type as the existing ones).
+- Remove access to existing APIs
+- Subscribe to new APIs (of the same authentication type as the existing ones).
 
- {{< img src="/img/dashboard/system-management/modify_key_approval.png" alt="Edit APIs" >}} 
-
+{{< img src="/img/dashboard/system-management/modify_key_approval.png" alt="Edit APIs" >}}
 
 If a new API requires key approval, the new key request will be generated, and access to this API will be granted after your admin approves it.
-
 
 ## Policies
 
@@ -75,7 +73,7 @@ The developer portal supports two types of documentation, and will render them d
 2.  Swagger/OpenAPI (OpenAPI 2.0 and 3.0 are supported) - either by pasting your Swagger JSON or YAML content into the code editor, or by linking to any public facing Swagger URL. The URL version can be rendered using [Swagger UI](https://swagger.io/tools/swagger-ui/) which offers a sandbox environment where developers can interact with your API from the browser.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Support for API Blueprint is being deprecated. See [Importing APIs]({{< ref "getting-started/import-apis#api-blueprint-is-being-deprecated" >}}) for more details.
 {{< /note >}}
@@ -89,5 +87,3 @@ Within the developer portal, a developer is an end-user that has access to the d
 A developer record consists of some basic sign-up information and a set of admin-definable fields that get attached to the developer as metadata.
 
 Within the developer view of the Tyk Dashboard, it is possible to manage all access of a developer, including the access levels of their tokens.
-
-

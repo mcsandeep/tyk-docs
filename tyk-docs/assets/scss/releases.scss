@@ -1,5 +1,5 @@
 .section-banner {
-  background-image: url('../img/leaf_background.svg');
+  background-image: url("../img/leaf_background.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
@@ -17,7 +17,7 @@
 
 .release-description {
   font-size: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   margin-bottom: 0.25px !important;
   margin-top: 0.25px !important;
@@ -31,17 +31,17 @@
 
 .release-text {
   font-size: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
-  line-height: 20px; 
+  line-height: 20px;
 }
 
 .release-title {
   font-size: 1rem;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   color: #007bff;
-  margin-bottom: 0.25px !important;      
+  margin-bottom: 0.25px !important;
 }
 
 .release-btn {
@@ -50,13 +50,15 @@
   background: var(--surface-surface-100, $white);
   padding: 8px;
   color: $brand-black;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
 
   &:hover {
-    background: #E5E5E8;
+    background: #e5e5e8;
   }
 }

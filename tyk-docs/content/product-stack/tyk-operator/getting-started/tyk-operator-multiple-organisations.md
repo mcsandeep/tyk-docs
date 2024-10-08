@@ -67,22 +67,22 @@ spec:
       httpPort: 8000
       httpsPort: 8443
     user_owners:
-    - a1b2c3d4f5e6f7
+      - a1b2c3d4f5e6f7
     user_group_owners:
-    - 1a2b3c4d5f6e7f
+      - 1a2b3c4d5f6e7f
 ```
 
 You can provide the following fields through secret as referenced by `secretRef`. The table shows mappings between `.spec.env` properties and secret `.spec.data` keys. If a value is configured in both the secret and OperatorContext `spec.env` field, the value from secret will take precedence.
 
-| Secret key | .spec.env |
-|------------|-----------|
-| TYK_MODE	 | mode |
-| TYK_URL    | url |
-| TYK_AUTH	 | auth |
-| TYK_ORG	   | org |
-| TYK_TLS_INSECURE_SKIP_VERIFY | insecureSkipVerify |
-| TYK_USER_OWNERS (comma separated list) | user_owners |
-| TYK_USER_GROUP_OWNERS (comma separated list) | user_group_owners |
+| Secret key                                   | .spec.env          |
+| -------------------------------------------- | ------------------ |
+| TYK_MODE                                     | mode               |
+| TYK_URL                                      | url                |
+| TYK_AUTH                                     | auth               |
+| TYK_ORG                                      | org                |
+| TYK_TLS_INSECURE_SKIP_VERIFY                 | insecureSkipVerify |
+| TYK_USER_OWNERS (comma separated list)       | user_owners        |
+| TYK_USER_GROUP_OWNERS (comma separated list) | user_group_owners  |
 
 ## Using contextRef in API Definitions
 

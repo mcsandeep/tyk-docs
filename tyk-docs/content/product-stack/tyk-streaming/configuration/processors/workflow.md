@@ -1,7 +1,7 @@
 ---
 title: Workflow
 description: Explains an overview of workflow processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Workflow" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Workflow"]
 ---
 
 The workflow processor in Tyk Streams efficiently manages and executes a topology of [branch processors]({{< ref "/product-stack/tyk-streaming/configuration/processors/branch" >}}), enabling parallel execution where possible. This guide provides a comprehensive overview of both common and advanced configuration fields, demonstrating how to set up and optimize your workflows for performance and simplicity. By leveraging directed acyclic graphs (DAGs) and parallel processing, the workflow processor can significantly reduce message processing latency, especially when dealing with high-latency, low-CPU-activity processors. Detailed examples and explanations are provided to help you configure workflows that can automatically resolve dependencies or manually specify execution order, ensuring optimal performance and flexibility for your processing needs.
@@ -80,14 +80,14 @@ pipeline:
             processors:
               - http:
                   url: TODO
-            result_map: 'root.foo = this'
+            result_map: "root.foo = this"
 
           bar:
-            request_map: 'root = this.body'
+            request_map: "root = this.body"
             processors:
               - aws_lambda:
                   function: TODO
-            result_map: 'root.bar = this'
+            result_map: "root.bar = this"
 
           baz:
             request_map: |
@@ -118,7 +118,7 @@ pipeline:
             processors:
               - http:
                   url: TODO
-            result_map: 'root.tmp.result = this'
+            result_map: "root.tmp.result = this"
 
           B:
             request_map: |
@@ -128,7 +128,7 @@ pipeline:
             processors:
               - aws_lambda:
                   function: TODO
-            result_map: 'root.tmp.result = this'
+            result_map: "root.tmp.result = this"
 
           C:
             request_map: |
@@ -138,7 +138,7 @@ pipeline:
             processors:
               - http:
                   url: TODO_SOMEWHERE_ELSE
-            result_map: 'root.tmp.result = this'
+            result_map: "root.tmp.result = this"
 ```
 
 ### Resources
@@ -149,14 +149,14 @@ The `order` field can be used in order to refer to [branch processor resources](
 pipeline:
   processors:
     - workflow:
-        order: [ [ foo, bar ], [ baz ] ]
+        order: [[foo, bar], [baz]]
         branches:
           bar:
-            request_map: 'root = this.body'
+            request_map: "root = this.body"
             processors:
               - aws_lambda:
                   function: TODO
-            result_map: 'root.bar = this'
+            result_map: "root.bar = this"
 
 processor_resources:
   - label: foo
@@ -165,7 +165,7 @@ processor_resources:
       processors:
         - http:
             url: TODO
-      result_map: 'root.foo = this'
+      result_map: "root.foo = this"
 
   - label: baz
     branch:
@@ -186,17 +186,15 @@ processor_resources:
 
 A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) indicating where to store and reference [structured metadata](#structured-metadata) about the workflow execution.
 
-
 Type: `string`  
-Default: `"meta.workflow"`  
+Default: `"meta.workflow"`
 
 ### order
 
 An explicit declaration of branch ordered tiers, which describes the order in which parallel tiers of branches should be executed. Branches should be identified by the name as they are configured in the field `branches`. It's also possible to specify branch processors configured [as a resource](#resources-config).
 
-
 Type: `two-dimensional array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -216,25 +214,22 @@ order:
 
 An optional list of [branch processor]({{< ref "/product-stack/tyk-streaming/configuration/processors/branch" >}}) names that are configured as [resources](#resources-config). These resources will be included in the workflow with any branches configured inline within the [branches](#branches) field. The order and parallelism in which branches are executed is automatically resolved based on the mappings of each branch. When using resources with an explicit order it is not necessary to list resources in this field.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### branches
 
 An object of named [branch processors]({{< ref "/product-stack/tyk-streaming/configuration/processors/branch" >}}) that make up the workflow. The order and parallelism in which branches are executed can either be made explicit with the field `order`, or if omitted an attempt is made to automatically resolve an ordering based on the mappings of each branch.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### branches.name.request_map
 
 A [Bloblang mapping]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that describes how to create a request payload suitable for the child processors of this branch. If left empty then the branch will begin with an exact copy of the origin message (including metadata).
 
-
 Type: `string`
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -257,16 +252,14 @@ request_map: |-
 
 A list of processors to apply to mapped requests. When processing message batches the resulting batch must match the size and ordering of the input batch, therefore filtering, grouping should not be performed within these processors.
 
-
-Type: `array`  
+Type: `array`
 
 ### branches.name.result_map
 
 A [Bloblang mapping]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that describes how the resulting messages from branched processing should be mapped back into the original payload. If left empty the origin message will remain unchanged (including metadata).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -302,11 +295,11 @@ The object is of the following form:
 
 ```json
 {
-	"succeeded": [ "foo" ],
-	"skipped": [ "bar" ],
-	"failed": {
-		"baz": "the error message from the branch"
-	}
+  "succeeded": ["foo"],
+  "skipped": ["bar"],
+  "failed": {
+    "baz": "the error message from the branch"
+  }
 }
 ```
 

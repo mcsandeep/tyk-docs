@@ -14,7 +14,7 @@ aliases:
 Tyk makes a clear distinction between an API authorization key expiring and being deleted from the Redis storage.
 
 - When a key expires, it remains in the Redis storage but is no longer valid. Consequently, it is no longer authorized to access any APIs. If a key in Redis has expired and is passed in an API request, Tyk will return `HTTP 401 Key has expired, please renew`.
- - When a key is deleted from Redis, Tyk no longer knows about it, so if it is passed in an API request, Tyk will return `HTTP 400 Access to this API has been disallowed`.
+- When a key is deleted from Redis, Tyk no longer knows about it, so if it is passed in an API request, Tyk will return `HTTP 400 Access to this API has been disallowed`.
 
 Tyk provides separate control for the expiration and deletion of keys.
 
@@ -45,7 +45,7 @@ For example, to have keys live in Redis for only 24 hours (and be deleted 24 hou
 "session_lifetime": 86400
 ```
 
-{{< note success >}} 
+{{< note success >}}
 **Note**
 
 There is a risk, when configuring API-level lifetime, that a key will be deleted before it has expired, as `session_lifetime` is applied regardless of whether the key is active or expired. To protect against this, you can configure the [session_lifetime_respects_key_expiration]({{< ref "tyk-oss-gateway/configuration#session_lifetime_respects_key_expiration" >}}) parameter in your `tyk.conf`, so that keys that have exceeded their lifetime will not be deleted from Redis until they have expired.
@@ -61,15 +61,15 @@ To enable this global lifetime, you must also set the [force_global_session_life
 
 ### Summary of key lifetime precedence
 
-The table below shows the key lifetime assigned for the different permutations of `force_global_session_lifetime` and  `session_lifetime_respects_key_expiration` configuration parameters.
+The table below shows the key lifetime assigned for the different permutations of `force_global_session_lifetime` and `session_lifetime_respects_key_expiration` configuration parameters.
 | `force_global_session_lifetime` | `session_lifetime_respects_key_expiration` | Assigned lifetime |
 |---------------------------------|--------------------------------------------|-------------------------------------------|
-| `true`                          | `true`                                     | `global_session_lifetime`                 |
-| `true`                          | `false`                                    | `global_session_lifetime`                 |
-| `false`                         | `true`                                     | larger of `session_lifetime` or `expires` |
-| `false`                         | `false`                                    | `session_lifetime`                        |
+| `true` | `true` | `global_session_lifetime` |
+| `true` | `false` | `global_session_lifetime` |
+| `false` | `true` | larger of `session_lifetime` or `expires` |
+| `false` | `false` | `session_lifetime` |
 
-{{< note success >}} 
+{{< note success >}}
 **Note**
 
 It is important to remember that a value of `0` in `session_lifetime` or `global_session_lifetime` is interpreted as infinity (i.e. key will not be deleted if that control is in use) - and if a field is not set, this is treated as `0`.

@@ -42,10 +42,12 @@ With OperatorContext, you can define different sets of credentials and configura
 Here are some example scenarios that explain what happens:
 
 1. No OperatorContext defined
-    - Tyk Operator uses default credentials from the `tyk-operator-conf` secret or environment variables. All API operations are performed under the default system user's credentials.
+
+   - Tyk Operator uses default credentials from the `tyk-operator-conf` secret or environment variables. All API operations are performed under the default system user's credentials.
 
 2. OperatorContext defined but not referenced
-    - Tyk Operator still uses default credentials from `tyk-operator-conf` for API operations. The defined OperatorContext is ignored, and operations are conducted using default credentials.
+
+   - Tyk Operator still uses default credentials from `tyk-operator-conf` for API operations. The defined OperatorContext is ignored, and operations are conducted using default credentials.
 
 3. OperatorContext defined and referenced
-    - Tyk Operator uses the credentials and parameters from the specified OperatorContext for each API. Each API is managed according to its referenced OperatorContext, allowing isolated management.
+   - Tyk Operator uses the credentials and parameters from the specified OperatorContext for each API. Each API is managed according to its referenced OperatorContext, allowing isolated management.

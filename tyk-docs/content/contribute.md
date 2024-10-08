@@ -5,14 +5,14 @@ tags: ["docs", "contribute"]
 description: "How to contribute to Tyk docs"
 weight: 252
 menu:
-    main:
-        parent: "FAQ"
+  main:
+    parent: "FAQ"
 ---
-
 
 ## How to contribute to our docs
 
 We appriciate any form of engagement and contribution to our documentation. You can do it in a few ways:
+
 - [Report an error](https://github.com/TykTechnologies/tyk-docs/issues) in our Github repo.
 - [Suggest/request an improvement](https://github.com/TykTechnologies/tyk-docs/issues) in our Github repo.
 - Update the code yourself:
@@ -23,4 +23,3 @@ We appriciate any form of engagement and contribution to our documentation. You 
 Our docs are compiled using the [Hugo static site generator](https://gohugo.io/).
 
 The [Readme](https://github.com/TykTechnologies/tyk-docs#readme) has details of how to construct docs pages.
-

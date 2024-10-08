@@ -47,7 +47,7 @@ You can add multiple products to the cart. You can receive one set of access cre
 
 {{< /note >}}
 
-6. Add the details needed and select a subscription plan for your  API Product(s) chosen.
+6. Add the details needed and select a subscription plan for your API Product(s) chosen.
 7. Create a new app or add to an existing one. If you already have an existing app created you can access it via the drop down or select **Create a new app** to add the credentials to an existing app.
 8. Click **Request access**.
 9. Navigate to My apps and view the app you created. Depending if the plan requires manual approval by an admin or not, you will either see that the request is pending or you can see the approved access credentials immediately you can start using them.

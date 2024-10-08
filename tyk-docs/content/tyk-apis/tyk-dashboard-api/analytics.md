@@ -13,17 +13,19 @@ Below APIs returns data only if you have Pump 1.7.0
 {{< /note >}}
 
 ### Analytics of API Key
-| **Property** | **Description** |
-| ------------ | --------------- |
-| Resource URL | `/api/activity/keys/endpoint/{keyHash}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}`    |
-| Method       | GET             |
-| Type         | None            |
-| Body         | None            |
-| Param        | None            |
+
+| **Property** | **Description**                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------- |
+| Resource URL | `/api/activity/keys/endpoint/{keyHash}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}` |
+| Method       | GET                                                                                                       |
+| Type         | None                                                                                                      |
+| Body         | None                                                                                                      |
+| Param        | None                                                                                                      |
 
 It returns analytics of the endpoints of all APIs called using KEY between start and end date.
 
 #### Sample Request
+
 To get analytics of all endpoints called using the key `7f3c3ca87376cabe` between October 13th 2020 and October 14th 2020, make the following call:
 
 ```{.copyWrapper}
@@ -33,6 +35,7 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 ```
 
 #### Sample Response
+
 ```
 {
     "data": [
@@ -96,17 +99,19 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 ```
 
 ### Analytics of OAuth Client
-| **Property** | **Description** |
-| ------------ | --------------- |
-| Resource URL | `/api/activity/oauthid/endpoint/{OAuthClientID}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}`    |
-| Method       | GET             |
-| Type         | None            |
-| Body         | None            |
-| Param        | None            |
+
+| **Property** | **Description**                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Resource URL | `/api/activity/oauthid/endpoint/{OAuthClientID}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}` |
+| Method       | GET                                                                                                                |
+| Type         | None                                                                                                               |
+| Body         | None                                                                                                               |
+| Param        | None                                                                                                               |
 
 It returns analytics of the all endpoints called using the given OAuth Client ID.
 
 #### Sample Request
+
 To get activity of all endpoints which used OAuth client `27b35a9ed46e429eb2361e440cc4005c` between October 13th 2020 and October 14th 2020, make the following call:
 
 ```{.copyWrapper}
@@ -116,6 +121,7 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 ```
 
 #### Sample Response
+
 ```
 {
     "data": [
@@ -177,4 +183,3 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
     "pages": 1
 }
 ```
-

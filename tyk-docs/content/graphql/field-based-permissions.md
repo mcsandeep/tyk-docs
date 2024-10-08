@@ -6,7 +6,7 @@ menu:
     parent: "GraphQL"
 weight: 9
 aliases:
-    - /graphql/field-based-permissions/
+  - /graphql/field-based-permissions/
 ---
 
 You may want to allow different consumers access to your GraphQL API without exposing all data to them. So for example this could be a schema for a GraphQL API:
@@ -25,9 +25,9 @@ type Account {
 
 For one type of consumer, it will be fine to query all data the schema exposes, while for another type of consumer it should not be allowed to retrieve the `balance` for example.
 
-Field access can be restricted by setting up *field based permissions* in a policy or directly on a key.
+Field access can be restricted by setting up _field based permissions_ in a policy or directly on a key.
 
-When a field is restricted and used in a GraphQL operation, the consumer will receive an error response (*400 Bad Request*):
+When a field is restricted and used in a GraphQL operation, the consumer will receive an error response (_400 Bad Request_):
 
 ```
 {
@@ -38,7 +38,9 @@ When a field is restricted and used in a GraphQL operation, the consumer will re
     ]
 }
 ```
+
 ## Field based permissions with the list of allowed types
+
 Field access can be restricted by setting up an allowed types list in a policy or directly on a key. If new fields are added to the GraphQL schema, you don't need to update the field-based permissions. This is because the fields that are not in the list of allowed types are automatically access-restricted.
 
 First, you need to learn [how to create a security policy with the API]({{< ref "getting-started/create-security-policy" >}}) or [how to create an API Key with the API]({{< ref "getting-started/create-security-policy" >}}).
@@ -65,7 +67,8 @@ Once you learn how to utilize the API to create a security policy or key, you ca
     }
 }
 ```
-With this configuration, a consumer can only access the field called the `owner`. When any other fields are used in a GraphQL operation, the consumer will receive an error response *(400 Bad Request)*: 
+
+With this configuration, a consumer can only access the field called the `owner`. When any other fields are used in a GraphQL operation, the consumer will receive an error response _(400 Bad Request)_:
 
 ```
 {
@@ -76,11 +79,12 @@ With this configuration, a consumer can only access the field called the `owner`
     ]
 }
 ```
+
 It's important to note that once you set a list of allowed types, Tyk will use this list to control access rights and disable the list of restricted types. The same behavior will occur if an asterisk operator is used to control access.
 
 ## Allow or restrict all fields with the asterisk operator
 
-You can allow or restrict all fields of a type by using an asterisk (*) operator. Any new fields of that type will be allowed or blocked by default. For example: 
+You can allow or restrict all fields of a type by using an asterisk (\*) operator. Any new fields of that type will be allowed or blocked by default. For example:
 
 ```
 {
@@ -102,6 +106,7 @@ You can allow or restrict all fields of a type by using an asterisk (*) operator
     }
 }
 ```
+
 With this configuration, the consumers are allowed to access all current and future fields of the `Query` and `Account` types. Please note that the asterisk operator does not work recursively. For example, in the example below, the asterisk operator only allows access to fields of the `Query` type. Fields of the `Account` type remain restricted.
 
 ```
@@ -120,7 +125,8 @@ With this configuration, the consumers are allowed to access all current and fut
     }
 }
 ```
-The asterisk operator also works for the list of restricted types:  
+
+The asterisk operator also works for the list of restricted types:
 
 ```
 {
@@ -143,26 +149,25 @@ The asterisk operator also works for the list of restricted types:
 }
 ```
 
-The configuration above restricts access to all fields of the `Account` type. 
+The configuration above restricts access to all fields of the `Account` type.
 
 Please note that the list of allowed types overrides the list of restricted types.
-
-
 
 ## Setup field based permissions in Dashboard
 
 Restricted and allowed types and fields can also be set up via Tyk Dashboard.
 
-1. *Optional:* Configure a Policy from **System Management > Policies > Add Policy**.
+1. _Optional:_ Configure a Policy from **System Management > Policies > Add Policy**.
 2. From **System Management > Keys > Add Key** select a policy or configure directly for the key.
-3. Select your GraphQL API (marked as *GraphQL*).
+3. Select your GraphQL API (marked as _GraphQL_).
 4. Enable either **Block list** or **Allow list**. By default, both are disabled. It's not possible to have both enabled at the same time - enabling one switch automatically disables the other.
 
 ### Block list
 
-By default all *Types* and *Fields* will be unchecked. By checking a *Type* or *Field* you will disallow to use it for any GraphQL operation associated with the key.
+By default all _Types_ and _Fields_ will be unchecked. By checking a _Type_ or _Field_ you will disallow to use it for any GraphQL operation associated with the key.
 
 For example, the settings illustrated below would block the following:
+
 - `code` and `countries` fields in `Continent` type.
 - `latt` and `longt` fields in `Coordinates` type.
 
@@ -170,9 +175,10 @@ For example, the settings illustrated below would block the following:
 
 ### Allow list
 
-By default all *Types* and *Fields* will be unchecked. By checking a *Type* or *Field* you will allow it to be used for any GraphQL operation associated with the key.
+By default all _Types_ and _Fields_ will be unchecked. By checking a _Type_ or _Field_ you will allow it to be used for any GraphQL operation associated with the key.
 
 For example, the settings illustrated below would only allow the following:
+
 - `code` field in `Continent` type.
 - `code` and `name` fields in `Language` type.
 

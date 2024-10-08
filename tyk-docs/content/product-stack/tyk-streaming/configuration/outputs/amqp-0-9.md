@@ -1,7 +1,7 @@
 ---
 title: amqp_0_9
 description: Explains an overview of amqp_0_9 output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "amqp_0_9" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "amqp_0_9"]
 ---
 
 Sends messages to an AMQP (0.91) exchange. AMQP is a messaging protocol used by various message brokers, including RabbitMQ.Connects to an AMQP (0.91) queue. AMQP is a messaging protocol used by various message brokers, including RabbitMQ.
@@ -76,9 +76,8 @@ The fields 'key', 'exchange' and 'type' can be dynamically set using function in
 
 A list of URLs to connect to. The first URL to successfully establish a connection will be used until the connection is closed. If an item of the list contains commas it will be expanded into multiple URLs.
 
-
 Type: `array`  
-Requires version 3.58.0 or newer  
+Requires version 3.58.0 or newer
 
 ```yml
 # Examples
@@ -99,28 +98,24 @@ urls:
 An AMQP exchange to publish to.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ### exchange_declare
 
 Optionally declare the target exchange (passive).
 
-
-Type: `object`  
+Type: `object`
 
 ### exchange_declare.enabled
 
 Whether to declare the exchange.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### exchange_declare.type
 
 The type of the exchange.
-
 
 Type: `string`  
 Default: `"direct"`  
@@ -130,123 +125,109 @@ Options: `direct`, `fanout`, `topic`, `x-custom`.
 
 Whether the exchange should be durable.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### key
 
 The binding key to set for each message.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### type
 
 The type property to set for each message.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### content_type
 
 The content type attribute to set for each message.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `"application/octet-stream"`  
+Default: `"application/octet-stream"`
 
 ### content_encoding
 
 The content encoding attribute to set for each message.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### correlation_id
 
 Set the correlation ID of each message with a dynamic interpolated expression.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### reply_to
 
 Carries response queue name - set with a dynamic interpolated expression.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### expiration
 
 Set the per-message TTL
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### message_id
 
 Set the message ID of each message with a dynamic interpolated expression.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### user_id
 
-Set the user ID to the name of the publisher.  If this property is set by a publisher, its value must be equal to the name of the user used to open the connection.
+Set the user ID to the name of the publisher. If this property is set by a publisher, its value must be equal to the name of the user used to open the connection.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### app_id
 
 Set the application ID of each message with a dynamic interpolated expression.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### metadata
 
 Specify criteria for which metadata values are attached to messages as headers.
 
-
-Type: `object`  
+Type: `object`
 
 ### metadata.exclude_prefixes
 
 Provide a list of explicit metadata key prefixes to be excluded when adding metadata to sent messages.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### priority
 
 Set the priority of each message with a dynamic interpolated expression.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -262,81 +243,70 @@ priority: ${! json("doc.priority") }
 
 The maximum number of messages to have in flight at a given time. Increase this to improve throughput.
 
-
 Type: `int`  
-Default: `64`  
+Default: `64`
 
 ### persistent
 
 Whether message delivery should be persistent (transient by default).
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### mandatory
 
 Whether to set the mandatory flag on published messages. When set if a published message is routed to zero queues it is returned.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### immediate
 
 Whether to set the immediate flag on published messages. When set if there are no ready consumers of a queue then the message is dropped instead of waiting.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### timeout
 
 The maximum period to wait before abandoning it and reattempting. If not set, wait indefinitely.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -351,9 +321,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -365,9 +334,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -385,42 +353,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -429,4 +391,3 @@ password: foo
 ```
 
 <!-- When Tyk streams with secrets released include this in above example => password: ${KEY_PASSWORD} -->
-

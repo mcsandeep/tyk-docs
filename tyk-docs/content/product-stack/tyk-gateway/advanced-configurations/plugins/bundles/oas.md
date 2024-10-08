@@ -2,7 +2,7 @@
 date: 2024-08-20T12:59:42Z
 title: Tyk OAS API Plugin Bundle Configuration
 description: "This section explains how to configure Tyk OAS APIs to use plugin bundles"
-tags: [ "Tyk plugins", "API Gateway middleware", "Custom middleware", "Custom API request", "Tyk OAS API" ]
+tags: ["Tyk plugins", "API Gateway middleware", "Custom middleware", "Custom API request", "Tyk OAS API"]
 ---
 
 For API plugins that are deployed as [plugin bundles]({{< ref "/plugins/how-to-serve-plugins/plugin-bundles" >}}), the API should be configured with the name of the plugin bundle file to download from your remote web server. Furthermore, the Gateway should be [configured]({{< ref "/plugins/how-to-serve-plugins/plugin-bundles#gateway-configuration" >}}) to enable downloading plugin bundles.
@@ -69,7 +69,7 @@ An illustrative example is listed below:
                 },
                 "driver": "goplugin"
               }
-            } 
+            }
         }
     }
 }
@@ -81,21 +81,21 @@ The configuration above is a complete and valid Tyk OAS API Definition that you 
 
 ## Configuring Plugin Bundles in the API Designer
 
-To configure plugin bundles for Tyk OAS APIs click on the APIs menu item in the *API Management* menu of Dashboard and select your API to display the editor screen. Subsequently, follow the steps below:
+To configure plugin bundles for Tyk OAS APIs click on the APIs menu item in the _API Management_ menu of Dashboard and select your API to display the editor screen. Subsequently, follow the steps below:
 
 ##### Step 1: Access plugin options
 
-Scroll down until the *Enable Plugin* section is displayed.
+Scroll down until the _Enable Plugin_ section is displayed.
 
 {{< img src="/img/plugins/plugins_oas_api_bundles_config.png" alt="Tyk OAS API Bundle section" >}}
 
 ##### Step 2: Enable plugin bundle for you API
 
-Enable a plugin bundle for your API by activating the toggle switch. 
+Enable a plugin bundle for your API by activating the toggle switch.
 
 ##### Step 3: Enter relative path to plugin bundle file
 
-Enter the relative path of the plugin bundle file in the *Plugin Bundle ID* field that Tyk Gateway should download from the web server that hosts your plugin bundles.
+Enter the relative path of the plugin bundle file in the _Plugin Bundle ID_ field that Tyk Gateway should download from the web server that hosts your plugin bundles.
 
 ##### Step 4: Save the API
 

@@ -1,12 +1,12 @@
 ---
 title: Resources
 description: Explains resources
-tags: [ "Tyk Streams", "Resources" ]
+tags: ["Tyk Streams", "Resources"]
 ---
 
 Resources are components within Tyk Streams that are declared with a unique label and can be referenced any number of times within a configuration. Only one instance of each named resource is created, but it is safe to use it in multiple places as they can be shared without consequence.
 
-Some components such as caches and rate limits can *only* be created as a resource. However, for components where it's optional there are a few reasons why it might be advantageous to do so.
+Some components such as caches and rate limits can _only_ be created as a resource. However, for components where it's optional there are a few reasons why it might be advantageous to do so.
 
 ```yaml
 input:
@@ -27,11 +27,11 @@ output:
 input_resources:
   - label: foo
     file:
-      paths: [ ./in.txt ]
+      paths: [./in.txt]
 
 processor_resources:
   - label: bar
-    mapping: 'root = content.lowercase()'
+    mapping: "root = content.lowercase()"
 
 cache_resources:
   - label: baz
@@ -55,10 +55,10 @@ pipeline:
   processors:
     - resource: get_foo
     - catch:
-      - mapping: |
-          root = this
-          root.content = this.content.strip_html()
-      - resource: get_foo
+        - mapping: |
+            root = this
+            root.content = this.content.strip_html()
+        - resource: get_foo
 
 processor_resources:
   - label: get_foo

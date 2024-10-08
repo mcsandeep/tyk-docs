@@ -4,7 +4,7 @@ title: “API catalog not found“ error in the Developer Portal
 menu:
   main:
     parent: "Tyk Dashboard Troubleshooting"
-weight: 5 
+weight: 5
 ---
 
 ### Description

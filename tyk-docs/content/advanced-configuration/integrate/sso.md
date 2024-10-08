@@ -1,12 +1,11 @@
 ---
 date: 2017-03-24T16:40:31Z
 title: Single Sign On
-menu: 
-    main:
-        parent: "Tyk Dashboard"
+menu:
+  main:
+    parent: "Tyk Dashboard"
 weight: 0
 ---
-
 
 ## Introduction to Single Sign On (SSO)
 
@@ -24,7 +23,7 @@ Using our Tyk-Identity-Broker (TIB), you can do both - use your existing users d
 1. Login with 3rd party social providers
 2. Login with any IdP that supports OIDC
 3. Login with any IdP that supports SAML
-3. Login with LDAP (not using OIDC)
+4. Login with LDAP (not using OIDC)
 
 #### Tyk Identity Broker (TIB)
 
@@ -52,7 +51,7 @@ See [using a Social Identity Provider]({{< ref "advanced-configuration/integrate
 
 - Instruction on setting [SSO with Okta]({{< ref "tyk-stack/tyk-manager/sso/dashboard-login-okta-tib" >}})
 - Instructions on setting [SSO with Auth0]({{< ref "tyk-stack/tyk-manager/sso/sso-auth0-tib" >}})
-- Instructions on setting SSO with PingID   - will be added soon
+- Instructions on setting SSO with PingID - will be added soon
 - Instructions on setting [SSO with Keycloak]({{< ref "product-stack/tyk-dashboard/advanced-configurations/sso/dashboard-login-keycloak-sso" >}})
 
 ### SSO with SAML
@@ -69,7 +68,7 @@ The provider config for SAML has the following values that can be configured in 
 
 `IDPMetaDataURL` - The metadata URL of your IDP which will provide Tyk Identity Broker with information about the IDP such as EntityID, Endpoints (Single Sign On Service Endpoint, Single Logout Service Endpoint), its public X.509 cert, NameId Format, Organization info and Contact info.
 
-This metadata XML can be signed providing a public X.509 cert and the private key.     
+This metadata XML can be signed providing a public X.509 cert and the private key.
 
 `CertLocation`: An X.509 certificate and the private key for signing your requests to the IDP, this should be one single file with the cert and key concatenated. When using internal identity broker, this value should be the id of the certificate uploaded via certificate manager in dashboard, otherwise it should be a path where the certificate is placed.
 
@@ -107,6 +106,7 @@ Example profile configuration:
     "Type": "redirect"
 }
 ```
+
 ## Example Video
 
 We have a video that walks you through getting Tyk Dashboard SSO Access via SAML using Microsoft Azure as IDP and our internal Dashboard TIB.
@@ -123,15 +123,15 @@ Our Tyk Identity Broker (TIB) internally also uses these APIs.
 The Dashboard exposes two APIs:
 
 - `/admin/sso` - See [Dashboard Admin API SSO]({{< ref "tyk-apis/tyk-dashboard-admin-api/sso" >}}) for more details.
-- `/api/sso` -  See [Dashboard API SSO]({{< ref "tyk-apis/tyk-dashboard-api/sso" >}}) for more details.
+- `/api/sso` - See [Dashboard API SSO]({{< ref "tyk-apis/tyk-dashboard-api/sso" >}}) for more details.
 
 which allow you to generate a temporary authentication token, valid for 60 seconds. They make same thing you can select one of them and use it.
-However, the admin API requires `admin-auth` header which should be same with `admin-secret` parameter in `tyk_analytics.conf`, the regular API requires `authorization` header which should be same with the user authentication token.  
+However, the admin API requires `admin-auth` header which should be same with `admin-secret` parameter in `tyk_analytics.conf`, the regular API requires `authorization` header which should be same with the user authentication token.
 
 ### Using the Token
 
 Once you have issued a token you can login to the dashboard using the `/tap` url, or to the portal using the `<portal-url>/sso` URL, and provide an authentication token via the `nonce` query param.
-If `nonce` is valid, Tyk will create a temporary user and log them in. 
+If `nonce` is valid, Tyk will create a temporary user and log them in.
 
 If you want to re-use existing dashboard users, instead of creating temporary ones, you can set `"sso_enable_user_lookup": true` variable in the Dashboard config file (`tyk_analytics.conf`). This way you can set individual permissions for users logged via SSO.
 
@@ -156,17 +156,17 @@ If you use the token with `dashboard` scope, and would like to avoid login in as
 
 As alternative, you can set `sso_default_group_id` to specify User Group ID assigned to SSO users.
 
-In order to set individual user permissions, you should first create this users in the dashboard first, set needed permissions, enable `sso_enable_user_lookup` to `true` inside dashboard config. If SSO user with the same email will be found in Dashboard users, it will re-use his permissions. 
+In order to set individual user permissions, you should first create this users in the dashboard first, set needed permissions, enable `sso_enable_user_lookup` to `true` inside dashboard config. If SSO user with the same email will be found in Dashboard users, it will re-use his permissions.
 
 #### Sample Login Request
 
 ```{.copyWrapper}
 GET /tap?nonce=YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw HTTP/1.1
-Host: localhost:3000    
+Host: localhost:3000
 ```
 
-
 ## SSO with LDAP Integration
+
 Detailed instruction on setting [SSO with LDAP]({{< ref "advanced-configuration/integrate/3rd-party-identity-providers/dashboard-login-ldap-tib" >}}).
 
 See [apply search filters]({{< ref "advanced-configuration/integrate/3rd-party-identity-providers/ldap#a-name-ldap-search-a-using-advanced-ldap-search" >}}) to add advanced search to your LDAP authentication.

@@ -1,7 +1,7 @@
 ---
 title: Object and Array Methods
 description: Explains Object and Array Methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Objects", "Arrays" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Objects", "Arrays"]
 ---
 
 Bloblang, the query and transformation language used within Tyk Streams, offers methods for manipulating objects and arrays. These methods provide efficient ways to filter, transform, and manipulate structured data, enabling streamlined data processing pipelines. Whether you're working with JSON objects or arrays of varying complexity, Bloblang's Object and Array Methods offer a range of use cases for data validation and transformations.
@@ -12,10 +12,9 @@ Checks each element of an array against a query and returns true if all elements
 
 #### Parameters
 
-**test** &lt;query expression&gt; A test query to apply to each element.  
+**test** &lt;query expression&gt; A test query to apply to each element.
 
 #### Examples
-
 
 ```coffee
 root.all_over_21 = this.patrons.all(patron -> patron.age >= 21)
@@ -33,10 +32,9 @@ Checks the elements of an array against a query and returns true if any element 
 
 #### Parameters
 
-**test** &lt;query expression&gt; A test query to apply to each element.  
+**test** &lt;query expression&gt; A test query to apply to each element.
 
 #### Examples
-
 
 ```coffee
 root.any_over_21 = this.patrons.any(patron -> patron.age >= 21)
@@ -54,7 +52,6 @@ Returns an array with new elements appended to the end.
 
 #### Examples
 
-
 ```coffee
 root.foo = this.foo.append("and", "this")
 
@@ -68,10 +65,9 @@ Merge a source object into an existing destination object. When a collision is f
 
 #### Parameters
 
-**with** &lt;unknown&gt; A value to merge the target value with.  
+**with** &lt;unknown&gt; A value to merge the target value with.
 
 #### Examples
-
 
 ```coffee
 root = this.foo.assign(this.bar)
@@ -86,10 +82,9 @@ Collapse an array or object into an object of key/value pairs for each field, wh
 
 #### Parameters
 
-**include_empty** &lt;bool, default `false`&gt; Whether to include empty objects and arrays in the resulting object.  
+**include_empty** &lt;bool, default `false`&gt; Whether to include empty objects and arrays in the resulting object.
 
 #### Examples
-
 
 ```coffee
 root.result = this.collapse()
@@ -113,7 +108,6 @@ Concatenates an array value with one or more argument arrays.
 
 #### Examples
 
-
 ```coffee
 root.foo = this.foo.concat(this.bar, this.baz)
 
@@ -127,10 +121,9 @@ Checks whether an array contains an element matching the argument, or an object 
 
 #### Parameters
 
-**value** &lt;unknown&gt; A value to test against elements of the target.  
+**value** &lt;unknown&gt; A value to test against elements of the target.
 
 #### Examples
-
 
 ```coffee
 root.has_foo = this.thing.contains("foo")
@@ -158,14 +151,13 @@ Create a diff by comparing the current value with the given one. Wraps the githu
 
 #### Parameters
 
-**other** &lt;unknown&gt; The value to compare against.  
+**other** &lt;unknown&gt; The value to compare against.
 
 ## enumerated
 
 Converts an array into a new array of objects, where each object has a field index containing the `index` of the element and a field `value` containing the original value of the element.
 
 #### Examples
-
 
 ```coffee
 root.foo = this.foo.enumerated()
@@ -180,10 +172,9 @@ Explodes an array or object at a [field path]({{< ref "/product-stack/tyk-stream
 
 #### Parameters
 
-**path** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) to a field to explode.  
+**path** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) to a field to explode.
 
 #### Examples
-
 
 ##### On arrays
 
@@ -213,10 +204,9 @@ Executes a mapping query argument for each element of an array or key/value pair
 
 #### Parameters
 
-**test** &lt;query expression&gt; A query to apply to each element, if this query resolves to any value other than a boolean `true` the element will be removed from the result.  
+**test** &lt;query expression&gt; A query to apply to each element, if this query resolves to any value other than a boolean `true` the element will be removed from the result.
 
 #### Examples
-
 
 ```coffee
 root.new_nums = this.nums.filter(num -> num > 10)
@@ -242,10 +232,9 @@ Returns the index of the first occurrence of a value in an array. `-1` is return
 
 #### Parameters
 
-**value** &lt;unknown&gt; A value to find.  
+**value** &lt;unknown&gt; A value to find.
 
 #### Examples
-
 
 ```coffee
 root.index = this.find("bar")
@@ -267,7 +256,7 @@ Returns an array containing the indexes of all occurrences of a value in an arra
 
 #### Parameters
 
-**value** &lt;unknown&gt; A value to find.  
+**value** &lt;unknown&gt; A value to find.
 
 #### Examples
 
@@ -291,10 +280,9 @@ Returns an array containing the indexes of all occurrences of an array where the
 
 #### Parameters
 
-**query** &lt;query expression&gt; A query to execute for each element.  
+**query** &lt;query expression&gt; A query to execute for each element.
 
 #### Examples
-
 
 ```coffee
 root.index = this.find_all_by(v -> v != "bar")
@@ -309,10 +297,9 @@ Returns the index of the first occurrence of an array where the provided query r
 
 #### Parameters
 
-**query** &lt;query expression&gt; A query to execute for each element.  
+**query** &lt;query expression&gt; A query to execute for each element.
 
 #### Examples
-
 
 ```coffee
 root.index = this.find_by(v -> v != "bar")
@@ -326,7 +313,6 @@ root.index = this.find_by(v -> v != "bar")
 Iterates an array and any element that is itself an array is removed and has its elements inserted directly in the resulting array.
 
 #### Examples
-
 
 ```coffee
 root.result = this.flatten()
@@ -344,10 +330,9 @@ The first argument is the value that `tally` will have on the first call.
 #### Parameters
 
 **initial** &lt;unknown&gt; The initial value to start the fold with. For example, an empty object `{}`, a zero count `0`, or an empty string `""`.  
-**query** &lt;query expression&gt; A query to apply for each element. The query is provided an object with two fields; `tally` containing the current tally, and `value` containing the value of the current element. The query should result in a new tally to be passed to the next element query.  
+**query** &lt;query expression&gt; A query to apply for each element. The query is provided an object with two fields; `tally` containing the current tally, and `value` containing the value of the current element. The query should result in a new tally to be passed to the next element query.
 
 #### Examples
-
 
 ```coffee
 root.sum = this.foo.fold(0, item -> item.tally + item.value)
@@ -378,10 +363,9 @@ Extract a field value, identified via a [dot path]({{< ref "/product-stack/tyk-s
 
 #### Parameters
 
-**`path`** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) identifying a field to obtain.  
+**`path`** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) identifying a field to obtain.
 
 #### Examples
-
 
 ```coffee
 root.result = this.foo.get(this.target)
@@ -399,7 +383,7 @@ Extract an element from an array by an index. The index can be negative, and if 
 
 #### Parameters
 
-**index** &lt;integer&gt; The index to obtain from an array.  
+**index** &lt;integer&gt; The index to obtain from an array.
 
 #### Examples
 
@@ -425,10 +409,9 @@ Join an array of strings with an optional delimiter into a single string.
 
 #### Parameters
 
-**delimiter** &lt;(optional) string&gt; An optional delimiter to add between each string.  
+**delimiter** &lt;(optional) string&gt; An optional delimiter to add between each string.
 
 #### Examples
-
 
 ```coffee
 root.joined_words = this.words.join()
@@ -444,10 +427,9 @@ Executes the given [JSONPath expression](https://goessner.net/articles/JsonPath)
 
 #### Parameters
 
-**expression** &lt;string&gt; The JSONPath expression to execute.  
+**expression** &lt;string&gt; The JSONPath expression to execute.
 
 #### Examples
-
 
 ```coffee
 root.all_names = this.json_path("$..name")
@@ -472,10 +454,9 @@ Checks a [JSON schema](https://json-schema.org/) against a value and returns the
 
 #### Parameters
 
-**schema** &lt;string&gt; The schema to check values against.  
+**schema** &lt;string&gt; The schema to check values against.
 
 #### Examples
-
 
 ```coffee
 root = this.json_schema("""{
@@ -506,7 +487,6 @@ Returns the key/value pairs of an object as an array, where each element is an o
 
 #### Examples
 
-
 ```coffee
 root.foo_key_values = this.foo.key_values().sort_by(pair -> pair.key)
 
@@ -533,7 +513,6 @@ Returns the length of an array or object (number of keys).
 
 #### Examples
 
-
 ```coffee
 root.foo_len = this.foo.length()
 
@@ -548,7 +527,7 @@ root.foo_len = this.foo.length()
 
 #### Parameters
 
-**query** &lt;query expression&gt; A query that will be used to map each element.  
+**query** &lt;query expression&gt; A query that will be used to map each element.
 
 #### Examples
 
@@ -584,10 +563,9 @@ Apply a mapping to each key of an object, and replace the key with the result, w
 
 #### Parameters
 
-**query** &lt;query expression&gt; A query that will be used to map each key.  
+**query** &lt;query expression&gt; A query that will be used to map each key.
 
 #### Examples
-
 
 ```coffee
 root.new_dict = this.dict.map_each_key(key -> key.uppercase())
@@ -609,10 +587,9 @@ Merge a source object into an existing destination object. When a collision is f
 
 #### Parameters
 
-**with** &lt;unknown&gt; A value to merge the target value with.  
+**with** &lt;unknown&gt; A value to merge the target value with.
 
 #### Examples
-
 
 ```coffee
 root = this.foo.merge(this.bar)
@@ -623,11 +600,11 @@ root = this.foo.merge(this.bar)
 
 ## patch
 
-Create a diff by comparing the current value with the given one. Wraps the *github.com/r3labs/diff/v3* package. See its [docs](https://pkg.go.dev/github.com/r3labs/diff/v3) for more information.
+Create a diff by comparing the current value with the given one. Wraps the _github.com/r3labs/diff/v3_ package. See its [docs](https://pkg.go.dev/github.com/r3labs/diff/v3) for more information.
 
 #### Parameters
 
-**changelog** &lt;unknown&gt; The changelog to apply.  
+**changelog** &lt;unknown&gt; The changelog to apply.
 
 ## slice
 
@@ -636,10 +613,9 @@ Extract a slice from an array by specifying two indices, a low and high bound, w
 #### Parameters
 
 **low** &lt;integer&gt; The low bound, which is the first element of the selection, or if negative selects from the end.  
-**high** &lt;(optional) integer&gt; An optional high bound.  
+**high** &lt;(optional) integer&gt; An optional high bound.
 
 #### Examples
-
 
 ```coffee
 root.beginning = this.value.slice(0, 2)
@@ -665,10 +641,9 @@ Attempts to sort the values of an array in increasing order. The type of all val
 
 #### Parameters
 
-**compare** &lt;(optional) query expression&gt; An optional query that should explicitly compare elements `left` and `right` and provide a boolean result.  
+**compare** &lt;(optional) query expression&gt; An optional query that should explicitly compare elements `left` and `right` and provide a boolean result.
 
 #### Examples
-
 
 ```coffee
 root.sorted = this.foo.sort()
@@ -692,10 +667,9 @@ Attempts to sort the elements of an array, in increasing order, by a value emitt
 
 #### Parameters
 
-**query** &lt;query expression&gt; A query to apply to each element that yields a value used for sorting.  
+**query** &lt;query expression&gt; A query to apply to each element that yields a value used for sorting.
 
 #### Examples
-
 
 ```coffee
 root.sorted = this.foo.sort_by(ele -> ele.id)
@@ -710,7 +684,6 @@ Squashes an array of objects into a single object, where key collisions result i
 
 #### Examples
 
-
 ```coffee
 root.locations = this.locations.map_each(loc -> {loc.state: [loc.name]}).squash()
 
@@ -723,7 +696,6 @@ root.locations = this.locations.map_each(loc -> {loc.state: [loc.name]}).squash(
 Sum the numerical values of an array.
 
 #### Examples
-
 
 ```coffee
 root.sum = this.foo.sum()
@@ -738,10 +710,9 @@ Attempts to remove duplicate values from an array. The array may contain a combi
 
 #### Parameters
 
-**emit** &lt;(optional) query expression&gt; An optional query that can be used in order to yield a value for each element to determine uniqueness.  
+**emit** &lt;(optional) query expression&gt; An optional query that can be used in order to yield a value for each element to determine uniqueness.
 
 #### Examples
-
 
 ```coffee
 root.uniques = this.foo.unique()
@@ -755,7 +726,6 @@ root.uniques = this.foo.unique()
 Returns the values of an object as an array. The order of the resulting array will be random.
 
 #### Examples
-
 
 ```coffee
 root.foo_vals = this.foo.values().sort()
@@ -772,7 +742,6 @@ If a key within a nested path does not exist then it is ignored.
 
 #### Examples
 
-
 ```coffee
 root = this.with("inner.a","inner.c","d")
 
@@ -788,7 +757,6 @@ If a key within a nested path does not exist or is not an object then it is not 
 
 #### Examples
 
-
 ```coffee
 root = this.without("inner.a","inner.c","d")
 
@@ -801,7 +769,6 @@ root = this.without("inner.a","inner.c","d")
 Zip an array value with one or more argument arrays. Each array must match in length.
 
 #### Examples
-
 
 ```coffee
 root.foo = this.foo.zip(this.bar, this.baz)

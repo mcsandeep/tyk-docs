@@ -2,17 +2,18 @@
 title: Using the Request Header Transform with Tyk Classic APIs
 date: 2024-01-20
 description: "Using the Request Header Transform middleware with Tyk Classic APIs"
-tags: ["Request Header Transform", "middleware", "per-endpoint","per-API", "Tyk Classic"]
+tags: ["Request Header Transform", "middleware", "per-endpoint", "per-API", "Tyk Classic"]
 ---
 
 Tyk's [request header transform]({{< ref "transform-traffic/request-headers" >}}) middleware enables you to append or delete headers on requests to your API endpoints before they are passed to your upstream service.
 
 There are two options for this:
+
 - API-level modification that is applied to all requests to the API
 - endpoint-level modification that is applied only to requests to a specific endpoint
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If both API-level and endpoint-level middleware are configured, the API-level transformation will be applied first.
 {{< /note >}}
@@ -36,31 +37,32 @@ To **append** headers to all requests to your API (i.e. for all endpoints) you m
 To **delete** headers from all requests to your API, you must add a new `global_headers_remove` object to the `versions` section of the API definition. This contains a list of the names of existing headers to be removed from requests.
 
 For example:
-```json  {hl_lines=["39-45"],linenos=true, linenostart=1}
+
+```json {hl_lines=["39-45"],linenos=true, linenostart=1}
 {
-    "version_data": {
-        "versions": {
-            "Default": {
-                "global_headers": {
-                    "X-Static": "foobar",
-                    "X-Request-ID":"$tyk_context.request_id",
-                    "X-User-ID": "$tyk_meta.uid"
-                },
-                "global_headers_remove": [
-                    "Auth_Id"
-                ]
-            }
-        }
-    },
+  "version_data": {
+    "versions": {
+      "Default": {
+        "global_headers": {
+          "X-Static": "foobar",
+          "X-Request-ID": "$tyk_context.request_id",
+          "X-User-ID": "$tyk_meta.uid"
+        },
+        "global_headers_remove": ["Auth_Id"]
+      }
+    }
+  }
 }
 ```
 
 This configuration will add three new headers to each request:
+
 - `X-Static` with the value `foobar`
 - `X-Request-ID` with a dynamic value taken from the `request_id` [context variables]({{< ref "context-variables" >}})
 - `X-User-ID` with a dynamic value taken from the `uid` field in the [session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}})
 
 It will also delete one header (if present) from each request:
+
 - `Auth_Id`
 
 #### Endpoint-level transform {#tyk-classic-endpoint}
@@ -68,6 +70,7 @@ It will also delete one header (if present) from each request:
 To configure a transformation of the request header for a specific endpoint you must add a new `transform_headers` object to the `extended_paths` section of your API definition.
 
 It has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `delete_headers`: A list of the headers that should be deleted from the request
@@ -76,16 +79,17 @@ It has the following configuration:
 The `path` can contain wildcards in the form of any string bracketed by curly braces, for example `{user_id}`. These wildcards are so they are human readable and do not translate to variable names. Under the hood, a wildcard translates to the “match everything” regex of: `(.*)`.
 
 For example:
+
 ```json
 {
-    "transform_headers": [
-        {
-            "path": "status/200",
-            "method": "GET",
-            "delete_headers": ["X-Static"],
-            "add_headers": {"X-Secret": "the-secret-key-is-secret"}
-        }
-    ]
+  "transform_headers": [
+    {
+      "path": "status/200",
+      "method": "GET",
+      "delete_headers": ["X-Static"],
+      "add_headers": { "X-Secret": "the-secret-key-is-secret" }
+    }
+  ]
 }
 ```
 
@@ -94,12 +98,14 @@ In this example the Request Header Transform middleware has been configured for 
 #### Combining API-level and Endpoint-level transforms
 
 If the API-level transform in the previous [example]({{< ref "product-stack/tyk-gateway/middleware/request-header-tyk-classic#api-level-transform" >}}) is applied to the same API, then because the API-level transformation is performed first, the `X-Static` header will be added (by the API-level transform) and then removed (by the endpoint-level transform) such that the overall effect of the two transforms for a call to `GET /status/200` would be to add three headers:
+
 - `X-Request-ID`
 - `X-User-ID`
 - `X-Secret`
 
 and to remove one:
-- `Auth_Id` 
+
+- `Auth_Id`
 
 ## Configuring the Request Header Transform in the API Designer
 
@@ -137,7 +143,7 @@ Select the headers to delete and insert using the provided fields. You need to c
 
 ##### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the Request Header Transform in Tyk Operator {#tyk-operator}
 
@@ -150,7 +156,7 @@ Request headers can be removed and inserted using the following fields within an
 - `global_headers`: Mapping of key values corresponding to headers to add to API requests.
 - `global_headers_remove`: List containing the name of headers to remove from API requests.
 
-The example below shows an `ApiDefinition` custom resource that adds *foo-req* and *bar-req* headers to the request before it is sent upstream. The *foo-req* header has a value of *foo-val* and the *bar-req* header has a value of *bar-val*. Furthermore, the *hello* header is removed from the request before it is sent upstream.
+The example below shows an `ApiDefinition` custom resource that adds _foo-req_ and _bar-req_ headers to the request before it is sent upstream. The _foo-req_ header has a value of _foo-val_ and the _bar-req_ header has a value of _bar-val_. Furthermore, the _hello_ header is removed from the request before it is sent upstream.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["25-29"]}
 apiVersion: tyk.tyk.io/v1alpha1

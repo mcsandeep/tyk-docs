@@ -35,28 +35,28 @@ The `method_actions` object should be configured as follows, with an entry creat
 
 For example:
 
-```json  {linenos=true, linenostart=1}
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "white_list": [
-            {
-                "disabled": false,
-                "path": "/anything",
-                "method": "",
-                "ignore_case": false,
-                "method_actions": {
-                    "GET": {
-                        "action": "reply",
-                        "code": 200,
-                        "data": "This is the mock response body",
-                        "headers": {
-                            "X-Example-Header": "foobar"
-                        }
-                    }          
-                }
+  "extended_paths": {
+    "white_list": [
+      {
+        "disabled": false,
+        "path": "/anything",
+        "method": "",
+        "ignore_case": false,
+        "method_actions": {
+          "GET": {
+            "action": "reply",
+            "code": 200,
+            "data": "This is the mock response body",
+            "headers": {
+              "X-Example-Header": "foobar"
             }
-        ]
-    }
+          }
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -96,7 +96,7 @@ Once you have selected the Mock response middleware for the endpoint, you can co
 
 #### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 {{< note success >}}
 **Note**
@@ -126,7 +126,7 @@ spec:
   protocol: http
   active: true
   use_keyless: true
-  proxy: 
+  proxy:
     target_url: http://httpbin.org
     listen_path: /httpbin
     strip_listen_path: true
@@ -142,13 +142,13 @@ spec:
           ignored: []
           white_list: []
         extended_paths:
-            ignored:
-              - ignore_case: false
-                method_actions:
-                  GET:
-                    action: "reply"
-                    code: 200
-                    data: "{\"foo\": \"bar\"}"
-                    headers: {}
-                path: /foo
+          ignored:
+            - ignore_case: false
+              method_actions:
+                GET:
+                  action: "reply"
+                  code: 200
+                  data: '{"foo": "bar"}'
+                  headers: {}
+              path: /foo
 ```

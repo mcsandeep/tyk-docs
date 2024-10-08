@@ -2,7 +2,7 @@
 title: API Deployment Methods
 date: 2023-09-04
 description: "Explains deployment methods for Tyk APIs"
-tags: [ "API Deployment", "API", "Deployment", "Deployment Methods", "Deploy APIs", "Tyk Sync", "Tyk Operator" ]
+tags: ["API Deployment", "API", "Deployment", "Deployment Methods", "Deploy APIs", "Tyk Sync", "Tyk Operator"]
 ---
 
 At Tyk, we provide various deployment methods to suit different stages of your API development lifecycle. Each option offers unique features and capabilities tailored to your specific needs.
@@ -14,7 +14,8 @@ For Open Source users, the File-based Configurations option offers a quick way t
 Usage: Recommended for testing gateway and API configurations in an Open Source environment.
 
 Learn more:
-* [Tutorial: Create an API in File-based Mode]({{<ref "getting-started/create-api#tutorial-create-an-api-in-file-based-mode">}})
+
+- [Tutorial: Create an API in File-based Mode]({{<ref "getting-started/create-api#tutorial-create-an-api-in-file-based-mode">}})
 
 ## Dashboard UI
 
@@ -23,7 +24,8 @@ The Dashboard UI is ideal for Trial / POC users and anyone looking to experiment
 Usage: Recommended for PoC, learning, or manual testing; not intended for automation.
 
 Learn more:
-* [Tutorial: Create an API with the Dashboard]({{<ref "getting-started/create-api#tutorial-create-an-api-with-the-dashboard">}})
+
+- [Tutorial: Create an API with the Dashboard]({{<ref "getting-started/create-api#tutorial-create-an-api-with-the-dashboard">}})
 
 ## Dashboard or Gateway API
 
@@ -32,6 +34,7 @@ For programmatic control, both Tyk Pro users and Open Source users can leverage 
 Usage: Suitable for those who require programmatic control over API management, APIs, Policies, and other aspects of Tyk.
 
 Learn more:
+
 - [Dashboard API]({{<ref "getting-started/key-concepts/dashboard-api">}})
 - [Gateway API]({{<ref "api-management/oss/gateway-api">}})
 
@@ -42,6 +45,7 @@ Tyk Sync enables declarative API management and GitOps. With Tyk Sync, you can m
 Usage: Recommended for organizations looking to implement GitOps in API management and have portable API and Policy configurations.
 
 Learn more:
+
 - [Tyk Sync]({{<ref "/product-stack/tyk-sync/overview">}})
 
 ## Tyk Operator
@@ -51,6 +55,7 @@ Building on the capabilities of Tyk Sync and GitOps, Tyk Operator provides a pow
 Usage: Recommended for organizations already running Kubernetes and seeking a Kubernetes-native, automated approach to API deployment and management.
 
 Learn more:
+
 - [Tyk Operator]({{<ref "tyk-operator">}})
 - [Using Tyk Operator to enable GitOps with Tyk]({{<ref "getting-started/key-concepts/gitops-with-tyk">}})
 

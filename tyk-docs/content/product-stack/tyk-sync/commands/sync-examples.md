@@ -2,12 +2,13 @@
 date: 2017-03-23T13:19:38Z
 title: Examples Command
 description: "Learn about the usage and flags for tyk-sync examples command"
-tags: [ "Tyk Sync", "GitOps" ]
+tags: ["Tyk Sync", "GitOps"]
 ---
 
 ## Examples Command
 
 The examples command lists all examples from our official [Tyk examples](https://github.com/TykTechnologies/tyk-examples) repository. [See output in example usage]({{< relref "#import-tyk-example-into-dashboard" >}})
+
 ```bash
 Usage:
   tyk-sync examples [flags]
@@ -22,7 +23,9 @@ Flags:
 ```
 
 ## Show Command
+
 Shows more details about a specific example by using its location. [See output in example usage]({{< relref "#import-tyk-example-into-dashboard" >}})
+
 ```bash
 Usage:
   tyk-sync examples show [flags]
@@ -33,7 +36,9 @@ Flags:
 ```
 
 ## Publish Command
+
 Publishs an example by using its location.
+
 ```bash
 Usage:
   tyk-sync examples publish [flags]
@@ -52,9 +57,11 @@ Flags:
 API secret refers to secret use to access your Gateway API or Dashboard API. For dashboard users, you can get it from "User" page under “Tyk Dashboard API Access key”.
 
 ## Examples
+
 ### Import Tyk example into Dashboard
 
 To list all available examples you need to run this command:
+
 ```bash
 tyk-sync examples
 LOCATION           NAME                               DESCRIPTION
@@ -63,6 +70,7 @@ udg/geo-info       Geo information about the World    Countries GQL API extended
 ```
 
 It's also possible to show more details about an example by using its location. For example, based on the output from `tyk-sync examples` above, we can use the location of the example "VAT number checker UDG" to get more information:
+
 ```bash
 tyk-sync examples show --location="udg/vat-checker"
 LOCATION
@@ -82,6 +90,7 @@ MIN TYK VERSION
 ```
 
 To publish it into the Dashboard you will need to use this command:
+
 ```bash
 tyk-sync examples publish -d="http://localhost:3000" -s="b2d420ca5302442b6f20100f76de7d83" -l="udg/vat-checker"
 Fetched 1 definitions

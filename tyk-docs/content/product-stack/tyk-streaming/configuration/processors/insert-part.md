@@ -1,7 +1,7 @@
 ---
 title: Insert Part
 description: Explains an overview of insert part
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Insert Part" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Insert Part"]
 ---
 
 Insert a new message into a batch at an index. If the specified index is greater than the length of the existing batch it will be appended to the end.
@@ -26,15 +26,13 @@ This processor will interpolate functions within the 'content' field, you can fi
 
 The index within the batch to insert the message at.
 
-
 Type: `int`  
-Default: `-1`  
+Default: `-1`
 
 ### content
 
 The content of the message being inserted.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`

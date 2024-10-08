@@ -22,19 +22,19 @@ In this tutorial we show you how to create a minimal Tyk OAS API using the Tyk G
 
 When making calls to the Tyk Gateway API you'll need to set the domain name and port for your environment and, in the API request header, must provide credentials in the `x-tyk-authorization` field for Tyk to authorize your request, as follows:
 
-| Interface             | Port     |  Authorization Header  | Authorization credentials        |
-|-----------------------|----------|------------------------|----------------------------------|
-| Tyk Gateway API       | 8080     |  `x-tyk-authorization` | `secret` value set in `tyk.conf` |
+| Interface       | Port | Authorization Header  | Authorization credentials        |
+| --------------- | ---- | --------------------- | -------------------------------- |
+| Tyk Gateway API | 8080 | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
 
-To create the API in Tyk, you simply send your Tyk OAS API Definition to the `apis/oas` endpoint of your Tyk Gateway API. 
+To create the API in Tyk, you simply send your Tyk OAS API Definition to the `apis/oas` endpoint of your Tyk Gateway API.
 
-| Property     | Description              |
-|--------------|--------------------------|
-| Resource URL | `/tyk/apis/oas`          |
-| Method       | `POST`                   |
-| Type         | None                     |
-| Body         | Tyk OAS API Definition   |
-| Parameters   | None                     |
+| Property     | Description            |
+| ------------ | ---------------------- |
+| Resource URL | `/tyk/apis/oas`        |
+| Method       | `POST`                 |
+| Type         | None                   |
+| Body         | Tyk OAS API Definition |
+| Parameters   | None                   |
 
 Using [this](https://bit.ly/39tnXgO) minimal API definition it is possible to create a Tyk OAS API on your Tyk Gateway using only 30 lines:
 
@@ -42,7 +42,7 @@ Using [this](https://bit.ly/39tnXgO) minimal API definition it is possible to cr
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
   "info": {
     "title": "Petstore",
@@ -94,6 +94,7 @@ curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/ty
 ```
 
 You can go to the `/apps` folder of your Tyk Gateway installation (by default in `/var/tyk-gateway`) to see where Tyk has stored your Tyk OAS API Definition.
+
 </details>
 
 ### Tutorial 2: Create a Tyk OAS API using the Tyk Dashboard API
@@ -109,9 +110,9 @@ In this tutorial we will also show you how to test and protect your new API by e
   
 When making calls to the Tyk Dashboard API you'll need to set the domain name and port for your environment and, in the API request header, must provide credentials in the `Authorization` field for Tyk to authorize your request, as follows:
 
-| Interface             | Port     | Authorization Header  | Authorization credentials        |
-|-----------------------|----------|-----------------------|----------------------------------|
-| Tyk Dashboard API     | 3000     | `Authorization` | From Dashboard User Profile      |
+| Interface         | Port | Authorization Header | Authorization credentials   |
+| ----------------- | ---- | -------------------- | --------------------------- |
+| Tyk Dashboard API | 3000 | `Authorization`      | From Dashboard User Profile |
 
 From the Tyk Dashboard, select **Users** from the **System Management** section. Click **Edit** for your user, then scroll to the bottom of the page. Your Dashboard API Key is the first entry:
 
@@ -139,35 +140,36 @@ export GATEWAY_URL=https://YOUR_SUBDOMAIN.cloud.tyk.io
 
 You can query the `/api/apis` endpoint to see what APIs are already loaded on your Tyk deployment.
 
-| Property     | Description   |
-|--------------|---------------|
-| Resource URL | `/apis`       |
-| Method       | `GET`         |
-| Type         | None          |
-| Body         | None          |
-| Parameters   | None          |
+| Property     | Description |
+| ------------ | ----------- |
+| Resource URL | `/apis`     |
+| Method       | `GET`       |
+| Type         | None        |
+| Body         | None        |
+| Parameters   | None        |
 
 ```.terminal
 curl -H "Authorization: ${DASH_KEY}" ${DASH_URL}/apis
 {"apis":[],"pages":1}
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 For a fresh install, you will see that no APIs currently exist
 {{< /note >}}
 
 #### Create your first Tyk OAS API
 
-To create the API in Tyk, you simply send your Tyk OAS API Definition to the `apis/oas` endpoint of your Tyk Gateway API. 
+To create the API in Tyk, you simply send your Tyk OAS API Definition to the `apis/oas` endpoint of your Tyk Gateway API.
 
-| Property     | Description              |
-|--------------|--------------------------|
-| Resource URL | `/tyk/apis/oas`          |
-| Method       | `POST`                   |
-| Type         | None                     |
-| Body         | Tyk OAS API Definition   |
-| Parameters   | None                     |
+| Property     | Description            |
+| ------------ | ---------------------- |
+| Resource URL | `/tyk/apis/oas`        |
+| Method       | `POST`                 |
+| Type         | None                   |
+| Body         | Tyk OAS API Definition |
+| Parameters   | None                   |
 
 Using [this](https://bit.ly/39jUnuq) API definition it is possible to create a Tyk OAS API on your Tyk Gateway that forwards requests to the [Swagger Petstore]({{< ref "https://petstore3.swagger.io" >}}) request/response service.
 
@@ -211,6 +213,7 @@ curl --location --request POST '${GATEWAY_URL}/petstore-test/pet' \
   "status": "available"
 }'
 ```
+
 Retrieve the pet that has just been created using this `curl` command:
 
 ```
@@ -270,7 +273,7 @@ Click **Save Changes**.
 Once saved, you will be redirected to the newly created API screen.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 To see the URL given to your API, check the Info section displayed at the top of the page:
 {{< /note >}}
@@ -297,6 +300,7 @@ From the Settings tab of your API, copy the API URL and request the API without 
 curl --location --request GET 'http://localhost:8181/petstore/' \
 --header 'Authorization: wrongkey'
 ```
+
 Note that the Gateway will respond with the following error message:
 
 ```.json
@@ -324,7 +328,6 @@ Note that the Gateway will respond with the following error message:
 
 {{< img src="/img/dashboard/4.1-updates/endpoint-view.png" alt="OAS API Endpoints" >}}
 
-5. You can now add middleware to your endpoint. 
+5. You can now add middleware to your endpoint.
 
 </details>
-

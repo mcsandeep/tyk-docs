@@ -119,13 +119,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Add a Developer Record
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**          |
+| ------------ | ------------------------ |
 | Resource URL | `/api/portal/developers` |
-| Method       | POST                           |
-| Type         | None                          |
-| Body         | Developer Object              |
-| Param        | None                          |
+| Method       | POST                     |
+| Type         | None                     |
+| Body         | Developer Object         |
+| Param        | None                     |
 
 #### Sample Request
 
@@ -133,7 +133,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 POST /api/portal/developers HTTP/1.1
 Host: localhost
 Authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
-    
+
 {
   "email": "blip@blop.com",
   "password": "$2a$10$hlG1ujAHWUpnM37k.l1RhO6RrxkCpXki2yrGhufnDs1IBiUo4Kzqy",
@@ -161,8 +161,6 @@ Authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 }
 ```
 
-
-
 ### Update a Developer Record
 
 | **Property** | **Description**               |
@@ -179,7 +177,7 @@ Authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 PUT /api/portal/developers/5555eceda8b6b60001000004 HTTP/1.1
 Host: localhost
 Authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
-    
+
 {
   "id": "5555eceda8b6b60001000004",
   "email": "blip@blop.com",
@@ -265,13 +263,13 @@ If the user credentials are verified, the HTTP response code will be 200 (OK), o
 
 > **NOTE**: This functionality is available from v2.3.8 onwards
 
-| **Property** | **Description**                             |
-| ------------ | ------------------------------------------- |
-| Resource URL | `/api/portal/developers/password/:Id`      |
-| Method       | POST                                        |
-| Type         | None                                        |
-| Body         | None                                        |
-| Param        | None                                        |
+| **Property** | **Description**                       |
+| ------------ | ------------------------------------- |
+| Resource URL | `/api/portal/developers/password/:Id` |
+| Method       | POST                                  |
+| Type         | None                                  |
+| Body         | None                                  |
+| Param        | None                                  |
 
 #### Sample Request
 
@@ -305,14 +303,13 @@ curl https://admin.cloud.tyk.io/api/portal/developers/password/:Id \
 
 ### Add Key To Developer
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                        |
+| ------------ | -------------------------------------- |
 | Resource URL | `/portal/developers/:Id/subscriptions` |
-| Method       | POST                           |
-| Type         | None                          |
-| Body         | Subscription Object           |
-| Param        | None                          |
-
+| Method       | POST                                   |
+| Type         | None                                   |
+| Body         | Subscription Object                    |
+| Param        | None                                   |
 
 #### Sample Request
 
@@ -334,14 +331,13 @@ curl https://admin.cloud.tyk.io/api/portal/developers/:Id/keys \
 
 ### Change Developer Key Policy
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                               |
+| ------------ | --------------------------------------------- |
 | Resource URL | `/portal/developers/:developerId/keys/:keyId` |
-| Method       | PUT                           |
-| Type         | None                          |
-| Body         | Policy change Object          |
-| Param        | None                          |
-
+| Method       | PUT                                           |
+| Type         | None                                          |
+| Body         | Policy change Object                          |
+| Param        | None                                          |
 
 #### Sample Request
 
@@ -357,44 +353,43 @@ curl https://admin.cloud.tyk.io/api/portal/developers/:developerId/keys/:keyId \
 
 ### Revoke Developer Key
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                               |
+| ------------ | --------------------------------------------- |
 | Resource URL | `/portal/developers/:developerId/keys/:keyID` |
-| Method       | DELETE                        |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | DELETE                                        |
+| Type         | None                                          |
+| Body         | None                                          |
+| Param        | None                                          |
 
 ### Reset Developer Key Quota
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                                           |
+| ------------ | --------------------------------------------------------- |
 | Resource URL | `/portal/developers/:developerId/keys/:keyID/reset_quota` |
-| Method       | POST                          |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | POST                                                      |
+| Type         | None                                                      |
+| Body         | None                                                      |
+| Param        | None                                                      |
 
 ### Delete OAuth app
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                   |
+| ------------ | --------------------------------- |
 | Resource URL | `/portal/developers/oauth/:appId` |
-| Method       | DELETE                        |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
-
+| Method       | DELETE                            |
+| Type         | None                              |
+| Body         | None                              |
+| Param        | None                              |
 
 ### Revoke a Single OAuth Client Token
 
-| **Property** | **Description**                                |
-| ------------ | ---------------------------------------------- |
-| Resource URL | `/oauth-clients/{oauthClientId}/revoke`       |
-| Method       | POST                                           |
-| Type         | JSON                                           |
-| Body         | Client Object                                  |
-| Param        | None                                           |
+| **Property** | **Description**                         |
+| ------------ | --------------------------------------- |
+| Resource URL | `/oauth-clients/{oauthClientId}/revoke` |
+| Method       | POST                                    |
+| Type         | JSON                                    |
+| Body         | Client Object                           |
+| Param        | None                                    |
 
 #### Sample Request
 
@@ -407,6 +402,7 @@ Body: {
   "token_type_hint":"access_token"
 }
 ```
+
 #### Sample Response
 
 ```{.json}
@@ -419,13 +415,13 @@ Body: {
 
 ### Revoke all OAuth Client Tokens
 
-| **Property** | **Description**                                |
-| ------------ | ---------------------------------------------- |
-| Resource URL | `/oauth-clients/{oauthClientId}/revoke_all`    |
-| Method       | POST                                           |
-| Type         | JSON                                           |
-| Body         | Client Object                                  |
-| Param        | None                                           |
+| **Property** | **Description**                             |
+| ------------ | ------------------------------------------- |
+| Resource URL | `/oauth-clients/{oauthClientId}/revoke_all` |
+| Method       | POST                                        |
+| Type         | JSON                                        |
+| Body         | Client Object                               |
+| Param        | None                                        |
 
 #### Sample Request
 
@@ -437,6 +433,7 @@ Body: {
   "client_secret":"MzUyNDliNzItMDhlNy00MzM3LTk1NWUtMWQyODMyMjkwZTc0"
   }
 ```
+
 #### Sample Response
 
 ```{.json}
@@ -451,14 +448,13 @@ Body: {
 
 ### Add Subscription To Developer
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                        |
+| ------------ | -------------------------------------- |
 | Resource URL | `/portal/developers/:Id/subscriptions` |
-| Method       | POST                           |
-| Type         | None                          |
-| Body         | Subscription Object           |
-| Param        | None                          |
-
+| Method       | POST                                   |
+| Type         | None                                   |
+| Body         | Subscription Object                    |
+| Param        | None                                   |
 
 #### Sample Request
 
@@ -480,40 +476,40 @@ curl https://admin.cloud.tyk.io/api//portal/developers/:Id/subscriptions \
 
 ### Change Developer Key Policy
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                                    |
+| ------------ | -------------------------------------------------- |
 | Resource URL | `/portal/developers/:developerId/:keyId/:policyId` |
-| Method       | GET                           |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | GET                                                |
+| Type         | None                                               |
+| Body         | None                                               |
+| Param        | None                                               |
 
 ### Revoke Developer Key
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                            |
+| ------------ | ------------------------------------------ |
 | Resource URL | `/portal/developers/key/:apiID/:keyID/:Id` |
-| Method       | DELETE                        |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | DELETE                                     |
+| Type         | None                                       |
+| Body         | None                                       |
+| Param        | None                                       |
 
 ### Reset Developer Key Quota
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                                        |
+| ------------ | ------------------------------------------------------ |
 | Resource URL | `/portal/developers/key/:apiID/:keyID/:Id/reset_quota` |
-| Method       | POST                          |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | POST                                                   |
+| Type         | None                                                   |
+| Body         | None                                                   |
+| Param        | None                                                   |
 
 ### Delete OAuth app
 
-| **Property** | **Description**               |
-| ------------ | ----------------------------- |
+| **Property** | **Description**                          |
+| ------------ | ---------------------------------------- |
 | Resource URL | `/portal/developers/oauth/:apiId/:appId` |
-| Method       | DELETE                        |
-| Type         | None                          |
-| Body         | None                          |
-| Param        | None                          |
+| Method       | DELETE                                   |
+| Type         | None                                     |
+| Body         | None                                     |
+| Param        | None                                     |

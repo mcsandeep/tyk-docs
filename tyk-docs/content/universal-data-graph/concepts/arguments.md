@@ -6,7 +6,7 @@ menu:
     parent: "UDG Concepts"
 weight: 0
 aliases:
-    - /universal-data-graph/data-sources/graphql
+  - /universal-data-graph/data-sources/graphql
 ---
 
 Looking back at the example from the "Field Mappings", you might wonder how to use the "id" argument from the GraphQL query to make the correct REST API call to the user service.
@@ -15,12 +15,12 @@ Here's the schema again:
 
 ```graphql
 type Query {
-    user(id: Int!): User
+  user(id: Int!): User
 }
 
 type User {
-    id: Int!
-    name: String
+  id: Int!
+  name: String
 }
 ```
 
@@ -32,6 +32,6 @@ Typing an opening curly brace ( { ) will produce a dropdown that contains all av
 
 ```html
 https://example.com/user/{{ .arguments.id }}
-``` 
+```
 
 {{< img src="/img/dashboard/udg/concepts/parameter_dropdown.png" alt="Create New API" >}}

@@ -6,12 +6,12 @@ description: "Using HMAC signatures"
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 5 
+weight: 5
 ---
+
 {{< note success >}} Note
 
 Tyk can interact with HMAC Signing in two ways. Firstly, as a client, we can validate the signature of incoming requests and map this to API access. You can also use Tyk to generate a header containing the signature of the request for use in upstream message integrity checks. For the upstream HMAC case please see [here]({{< ref "#upstream-hmac-request-signing" >}}) {{< /note >}}
-
 
 HMAC Signing is an access token method that adds another level of security by forcing the requesting client to also send along a signature that identifies the request temporally to ensure that the request is from the requesting user, using a secret key that is never broadcast over the wire.
 
@@ -46,11 +46,10 @@ When an HMAC-signed request comes into Tyk, the key is extracted from the `Autho
 Tyk API Gateway supports full header signing through the use of the `headers` HMAC signature field. This includes the request method and path using the`(request-target)` value. For body signature verification, HTTP Digest headers should be included in the request and in the header field value.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 All headers should be in lowercase.
 {{< /note >}}
-
 
 ### A sample signature generation snippet
 
@@ -82,7 +81,7 @@ sigString := base64.StdEncoding.EncodeToString(h.Sum(nil))
 encodedString := url.QueryEscape(sigString)
 
 // Add the header
-req.Header.Add("Authorization", 
+req.Header.Add("Authorization",
   fmt.Sprintf("Signature keyId="9876",algorithm="hmac-sha1",headers="(request-target) date x-test-1 x-test-2",signature="%s"", encodedString))
 
 ...
@@ -115,9 +114,7 @@ To enable the use of HMAC Signing in your API from the Dashboard:
 7. You can select whether to use a URL query string parameter as well as a header, and what parameter to use. If this is left blank, it will use the **Auth Key Header** name value.
 8. You can select whether to use a **cookie value**. If this is left blank, it will use the Header name value.
 
-
 {{< img src="/img/2.10/hmac_auth_settings.png" alt="Target Details: HMAC" >}}
-
 
 #### Setting up HMAC using an API Definition
 
@@ -154,7 +151,6 @@ When creating a user session object, the settings should be modified to reflect 
 ```
 
 Creating HMAC keys is the same as creating regular access tokens - by using the [Tyk Gateway API]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/authentication" >}}). Setting the `hmac_enabled` flag to `true`, Tyk will generate a secret key for the key owner (which should not be modified), but will be returned by the API so you can store and report it to your end-user.
-
 
 ### Upstream HMAC request signing
 

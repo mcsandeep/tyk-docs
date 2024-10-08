@@ -4,7 +4,7 @@ title: Step by step guide using Curity
 menu:
   main:
     parent: "Dynamic Client Registration"
-weight: 4 
+weight: 4
 aliases:
   - /tyk-developer-portal/curity-dcr
 ---
@@ -79,7 +79,7 @@ Click **Configure API** and scroll down to the **Authentication** section. Two o
 
 1. **Split Token Approach** - This would be the preferred option and is fully detailed in the [split-token-tyk](https://github.com/sedkis/split-token-tyk) GitHub repository with examples. The basics of this approach is that Tyk proxies the IDP's token endpoint and splits the token to only return the signature of the JWT instead of the complete JWT. The client calling the API will use the signature as an opaque token in the Authorize header. Tyk will then look up the complete JWT using the signature as the key and then add the complete JWT to the Authorization header in the request to the upstream API.
 
-2. **JWT Approach** - This approach means that the IDP issues a JWT to the client (using the dynamically registered client) and the complete JWT is sent in the Authorization header in the API request to Tyk. Although this is absolutely a viable approach there are some potential risks with issuing JWTs to public clients since they could contain Personal Identifiable Information (PII). 
+2. **JWT Approach** - This approach means that the IDP issues a JWT to the client (using the dynamically registered client) and the complete JWT is sent in the Authorization header in the API request to Tyk. Although this is absolutely a viable approach there are some potential risks with issuing JWTs to public clients since they could contain Personal Identifiable Information (PII).
 
 {{< tabs_start >}}
 {{< tab_start "Split Token Approach" >}}
@@ -107,13 +107,14 @@ In the **Authentication** section, set **Authentication Mode** to `JSON Web Toke
 {{< img src="/img/dcr/curity/5-split-facade-curity-configure-api.png.png" alt="Configure Facade API" >}}
 
 {{< note success >}}
-**Obtaining the JWKS URI**  
+**Obtaining the JWKS URI**
 
-The JWKS URI can be obtained via the `.well-known/openid-configuration` endpoint as it's a required value. The below cURL command can get the `"jwks_uri"` value directly. 
+The JWKS URI can be obtained via the `.well-known/openid-configuration` endpoint as it's a required value. The below cURL command can get the `"jwks_uri"` value directly.
 
 ```shell
 curl -sS https://idsvr.example.com/oauth/v2/oauth-anonymous/.well-known/openid-configuration | grep -o '"jwks_uri":"[^"]*' | cut -d'"' -f4
 ```
+
 {{< /note >}}
 
 #### Create and assign a policy
@@ -138,7 +139,7 @@ Take note of the `Key Hash` and `Key ID` as they will be needed later.
 
 #### Publish the API to the Developer Portal
 
-The API and the Facade API are now configured and can used to publish the API to the Tyk Developer Portal. Navigate to **Portal Management** &rarr; **Catalog**, then click **Add New API**. Give it a public name, ex. `OAuth Facade API` and select the `facade-policy`. 
+The API and the Facade API are now configured and can used to publish the API to the Tyk Developer Portal. Navigate to **Portal Management** &rarr; **Catalog**, then click **Add New API**. Give it a public name, ex. `OAuth Facade API` and select the `facade-policy`.
 
 {{< img src="/img/dcr/curity/7-split-curity-publish-api.png" alt="Publish API" >}}
 
@@ -146,21 +147,22 @@ Navigate to the **Settings** tab and check the box `Override global settings`. T
 
 {{< img src="/img/dcr/curity/8-split-curity-configure-dcr.png" alt="Configure DCR" >}}
 
-Config parameter                  | Description                         | Value
-----------------------------------|-------------------------------------|-----
-Providers                         | The IDP vendor                      | `Other`                           
-Grant Types                       | What grant types the DCR client will support | `Client Credentials` and/or `Authorization Code`
-Token Endpoint Auth Method        | How the client authenticates against the IDPs token endpoint | `Client Secret - Post`
-Response Types                    | OAuth 2.0 response types that will be used by the client. | `Token` and/or `Authorization Code`
-Identity Provider Host            | The Base URL of the IDP            | Ex. `https://idsvr.example.com`
-Client Registration Endpoint      | The proxy DCR endpoint created previously | Ex. `https://tyk-gateway/dcr/`
-Initial Registration Access Token | Token to authenticate the DCR endpoint | Add the DCR `Key ID` created in previous step
+| Config parameter                  | Description                                                  | Value                                            |
+| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
+| Providers                         | The IDP vendor                                               | `Other`                                          |
+| Grant Types                       | What grant types the DCR client will support                 | `Client Credentials` and/or `Authorization Code` |
+| Token Endpoint Auth Method        | How the client authenticates against the IDPs token endpoint | `Client Secret - Post`                           |
+| Response Types                    | OAuth 2.0 response types that will be used by the client.    | `Token` and/or `Authorization Code`              |
+| Identity Provider Host            | The Base URL of the IDP                                      | Ex. `https://idsvr.example.com`                  |
+| Client Registration Endpoint      | The proxy DCR endpoint created previously                    | Ex. `https://tyk-gateway/dcr/`                   |
+| Initial Registration Access Token | Token to authenticate the DCR endpoint                       | Add the DCR `Key ID` created in previous step    |
 
 ### Testing the flow
 
 Tyk and The Curity Identity Server should now be configured and the flow to register an OAuth client using the Tyk Developer Portal can be tested.
 
 #### Create an OAuth Client
+
 Start by registering a developer by navigating to **Portal Management** &rarr; **Developers** and add a developer. Then open the Tyk Developer Portal (ex. http://<host>:3000/portal) and open the **OAuth clients** page. Start the wizard by clicking **Create first Oauth Client**.
 
 {{< img src="/img/dcr/curity/9-split-curity-create-oauth-client-wizard.png" alt="Create OAuth client wizard" >}}
@@ -203,6 +205,7 @@ Note that the token returned is the signature of a JWT as this is executing the 
 {{< /note >}}
 
 #### Use token in request to API
+
 The token can now be used in an **External API** flow in [OAuth.tools](https://oauth.tools/) to call the API that Tyk is proxying. Tyk will use the signature passed in the Authorization header and lookup the complete JWT in its cache. The complete JWT is then added to the upstream Authorization header as shown in the echo response from Httpbin.org in the below example.
 
 {{< img src="/img/dcr/curity/13-split-curity-external-api-flow.png" alt="Call API" >}}
@@ -214,9 +217,9 @@ For the JWT Approach, configure the Authentication as outlined in the below scre
 {{< img src="/img/dcr/curity/4-jwt-curity-configure-api.png" alt="Configure API" >}}
 
 {{< note success >}}
-**Obtaining the JWKS URI**  
+**Obtaining the JWKS URI**
 
-The JWKS URI can be obtained via the `.well-known/openid-configuration` endpoint as it's a required value. The below cURL command can get the `"jwks_uri"` value directly. 
+The JWKS URI can be obtained via the `.well-known/openid-configuration` endpoint as it's a required value. The below cURL command can get the `"jwks_uri"` value directly.
 
 ```shell
 curl -sS https://idsvr.example.com/oauth/v2/oauth-anonymous/.well-known/openid-configuration | grep -o '"jwks_uri":"[^"]*' | cut -d'"' -f4
@@ -235,6 +238,7 @@ Navigate to **System Management** &rarr; **APIs**, click `curity-api`, scroll do
 {{< img src="/img/dcr/curity/5-jwt-curity-configure-policy.png" alt="Configure policy" >}}
 
 #### Create a Key for the DCR proxy
+
 Navigate to **System Management** &rarr; **Keys**, click `Add Key`. Switch to the `Choose API` tab. Select the previously created `DCR` API. Under `2. Configurations` give the key an alias and set an expiry. Then click `Create Key`.
 
 {{< img src="/img/dcr/curity/6-jwt-dcr-key-curity.png" alt="DCR API Key" >}}
@@ -247,7 +251,7 @@ Take note of the `Key Hash` and `Key ID` as they will be needed later.
 
 #### Publish the API to the Developer Portal
 
-The API is now configured and can be published to the Tyk Developer Portal. Navigate to **Portal Management** &rarr; **Catalog**, then click **Add New API**. Give it a public name, ex. `Curity Demo API` and select the `Curity Policy`. 
+The API is now configured and can be published to the Tyk Developer Portal. Navigate to **Portal Management** &rarr; **Catalog**, then click **Add New API**. Give it a public name, ex. `Curity Demo API` and select the `Curity Policy`.
 
 {{< img src="/img/dcr/curity/7-jwt-curity-publish-api.png" alt="Publish API" >}}
 
@@ -255,21 +259,22 @@ Navigate to the **Settings** tab and check the box `Override global settings`. T
 
 {{< img src="/img/dcr/curity/8-jwt-curity-configure-dcr.png" alt="Configure DCR" >}}
 
-Config parameter                  | Description                         | Value
-----------------------------------|-------------------------------------|-----
-Providers                         | The IDP vendor                      | `Other`                           
-Grant Types                       | What grant types the DCR client will support | `Client Credentials` and/or `Authorization Code`
-Token Endpoint Auth Method        | How the client authenticates against the IDPs token endpoint | `Client Secret - Post`
-Response Types                    | OAuth 2.0 response types that will be used by the client. | `Token` and/or `Authorization Code`
-Identity Provider Host            | The Base URL of the IDP            | Ex. `https://idsvr.example.com`
-Client Registration Endpoint      | The DCR endpoint created previously | Ex. `https://tyk-gateway/dcr/`
-Initial Registration Access Token | Token to authenticate the DCR endpoint | Add the key created in previous step
+| Config parameter                  | Description                                                  | Value                                            |
+| --------------------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
+| Providers                         | The IDP vendor                                               | `Other`                                          |
+| Grant Types                       | What grant types the DCR client will support                 | `Client Credentials` and/or `Authorization Code` |
+| Token Endpoint Auth Method        | How the client authenticates against the IDPs token endpoint | `Client Secret - Post`                           |
+| Response Types                    | OAuth 2.0 response types that will be used by the client.    | `Token` and/or `Authorization Code`              |
+| Identity Provider Host            | The Base URL of the IDP                                      | Ex. `https://idsvr.example.com`                  |
+| Client Registration Endpoint      | The DCR endpoint created previously                          | Ex. `https://tyk-gateway/dcr/`                   |
+| Initial Registration Access Token | Token to authenticate the DCR endpoint                       | Add the key created in previous step             |
 
 ### Testing the flow
 
 Tyk and The Curity Identity Server should now be configured and the flow to register an OAuth client using the Tyk Developer Portal can be tested.
 
 #### Create an OAuth Client
+
 Start by registering a developer by navigating to **Portal Management** &rarr; **Developers** and add a developer. Then open the Tyk Developer Portal (ex. http://<host>:3000/portal) and open the **OAuth clients** page. Start the wizard by clicking **Create first Oauth Client**.
 
 {{< img src="/img/dcr/curity/9-jwt-curity-create-oauth-client-wizard.png" alt="Create OAuth client wizard" >}}
@@ -299,13 +304,14 @@ Tyk will make a call to The Curity Identity Server and the DCR endpoint to regis
 
 #### Obtain a token using DCR client
 
-[OAuth.tools](https://oauth.tools/) can be used to obtain an access token from The Curity Identity Server using the DCR information. 
+[OAuth.tools](https://oauth.tools/) can be used to obtain an access token from The Curity Identity Server using the DCR information.
 
 Start a Code or Client Credentials Flow. Copy the **Client ID** and the **Client Secret** to the appropriate fields in [OAuth.tools](https://oauth.tools/). Run the flow to obtain a token (JWT).
 
 {{< img src="/img/dcr/curity/12-jwt-curity-oauth-tools.png" alt="OAuth.tools" >}}
 
 #### Use access token in request to API
+
 The token can now be used in an **External API** flow in [OAuth.tools](https://oauth.tools/) to call the API that Tyk is proxying. Tyk will validate the JWT and allow the call to the upstream API (httpbin.org in this example). The response from the API is displayed in the right panel in [OAuth.tools](https://oauth.tools/). Httpbin.org echoes back what it receives in the request from Tyk. Note that the complete JWT is forwarded.
 
 {{< img src="/img/dcr/curity/13-jwt-curity-external-api-flow.png" alt="Call API" >}}

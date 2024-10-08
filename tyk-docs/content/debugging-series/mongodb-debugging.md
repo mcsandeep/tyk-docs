@@ -14,8 +14,8 @@ Tyk uses Mongo as a database to store much of its analytical data. This means if
 
 Here, we'll outline the following:
 
- - How to isolate Mongo as the root of the error
- - The steps to take to help stop your system from going down.
+- How to isolate Mongo as the root of the error
+- The steps to take to help stop your system from going down.
 
 ## Isolating Mongo as the fault
 
@@ -29,8 +29,8 @@ Here are a few ways to identify Mongo as the source of the problem:
 
 Similarly to Tyk, Mongo has a health check that we can run to get the status of our Mongo instance. This should be a starting point for debugging Mongo (depending on which system):
 
- - `Sudo systemctl status mongod` or `sudo service mongodb status`
- - Logs under `/var/log/mongo/mongo.log` should also outline any outage
+- `Sudo systemctl status mongod` or `sudo service mongodb status`
+- Logs under `/var/log/mongo/mongo.log` should also outline any outage
 
 ## Mongo version
 
@@ -83,7 +83,6 @@ There are three ways to do this:
   db.<collection_name>.deleteMany()
 ```
 
-
 ## Secure Mongo connection
 
 You will use a secured connection to your Mongo instance in most production cases. Here are a few things to consider:
@@ -98,6 +97,7 @@ You will use a secured connection to your Mongo instance in most production case
   # Replace the above files with the correct parameters (proper file paths and host).
   mongo --ssl --sslCAFile /opt/mongodb/ssl/ca.pem --sslPEMKeyFile /opt/mongodb/ssl/mongodb.pem --host 127.0.0.1
 ```
+
 - Verify Pump has the correct parameters to include your certificates
 
 - Verify your dashboard has the correct parameters relative to your environment:

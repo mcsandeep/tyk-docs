@@ -4,7 +4,7 @@ title: Create Custom Authentication Plugin with .NET
 menu:
   main:
     parent: "gRPC"
-weight: 2 
+weight: 2
 aliases:
   - /customise-tyk/plugins/rich-plugins/grpc/custom-auth-dot-net/
   - "/plugins/rich-plugins/grpc/custom-auth-dot-net"
@@ -204,7 +204,7 @@ class DispatcherImpl : Dispatcher.DispatcherBase
 
 Create a file called `Program.cs` to instantiate our dispatcher implementation and start a gRPC server.
 
-Add the following code to `Program.cs`. 
+Add the following code to `Program.cs`.
 
 ```bash
 using System;
@@ -268,9 +268,8 @@ We need to create a manifest file within the `tyk-plugin` directory. This file c
 - The `custom_middleware` block contains the middleware settings like the plugin driver we want to use (`driver`) and the hooks that our plugin will expose. We use the `auth_check` hook for this tutorial. For other hooks see [here]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#coprocess-dispatcher-hooks" >}}).
 - The `name` field references the name of the function that we implement in our plugin code - `MyAuthMiddleware`. This will be handled by our dispatcher gRPC method (implemented in `Server.cs`).
 - The `path` field is the path to the middleware component.
-- The `raw_body_only` field 
+- The `raw_body_only` field
 - The `require_session` field, if set to `true` gives you access to the session object. It will be supplied as a session variable to your middleware processor function
-
 
 To bundle our plugin run the following command in the `tyk-plugin` directory. Check your tyk-cli install path first:
 
@@ -279,11 +278,12 @@ To bundle our plugin run the following command in the `tyk-plugin` directory. Ch
 ```
 
 From Tyk v2.8 upwards you can use:
+
 ```bash
 /opt/tyk-gateway/bin/tyk bundle build -y
 ```
 
-A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial. 
+A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial.
 
 For more information on the Tyk CLI tool, see [here]({{< ref "plugins/how-to-serve-plugins/plugin-bundles#using-the-bundler-tool" >}}).
 
@@ -300,17 +300,7 @@ To publish the plugin, copy or upload `bundle.zip` to a local web server like Ng
 In this tutorial we learned how Tyk gRPC plugins work. For a production-level setup we suggest the following:
 
 - Configure an appropriate web server and path to serve your plugin bundles.
-- See the following [GitHub repo](https://github.com/TykTechnologies/tyk-plugin-demo-dotnet) for a gRPC based .NET plugin that incorporates authentication based on Microsoft SQL Server. 
-
-
-
-
-
-
-
-
-
-
+- See the following [GitHub repo](https://github.com/TykTechnologies/tyk-plugin-demo-dotnet) for a gRPC based .NET plugin that incorporates authentication based on Microsoft SQL Server.
 
 [1]: https://tyk.io/docs/get-started/with-tyk-on-premise/installation/
 [2]: https://github.com/TykTechnologies/tyk-cli

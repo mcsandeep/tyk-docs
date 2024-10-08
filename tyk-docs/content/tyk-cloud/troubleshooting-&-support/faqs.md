@@ -58,13 +58,13 @@ A: This will be exposed in later phases per deployment.
 
 A: When a Cloud Data Plane is deployed, the tag 'edge' and a location tag are automatically generated for the Cloud Data Plane. You use these tags to connect your API to the appropriate Cloud Data Plane. It works as follows:
 
-* Add the **edge** tag to your API to connect it to all Cloud Data Planes within the Control Plane.
-* Add the location tag to your API to connect it to only Cloud Data Planes with that location within the Control Plane.
+- Add the **edge** tag to your API to connect it to all Cloud Data Planes within the Control Plane.
+- Add the location tag to your API to connect it to only Cloud Data Planes with that location within the Control Plane.
 
 To add either of the tags, see [Adding an API]({{< ref "tyk-cloud/getting-started-tyk-cloud/first-api#step-three---add-a-new-api" >}}) in the Getting Started section.
 
 {{< warning success >}}
 **Warning**
-  
+
 You must add one of the above tags to any API you add to your Control Plane Dashboard.
 {{< /warning >}}

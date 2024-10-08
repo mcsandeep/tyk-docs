@@ -27,7 +27,7 @@ Example Configuration:
 }
 ```
 
-By default, OpenTelemetry spans are exported using the `gRPC` protocol to `localhost:4317`. For more configuration options and default values, refer to the [OpenTelemetry configuration details]({{< ref "tyk-oss-gateway/configuration#opentelemetry" >}}). 
+By default, OpenTelemetry spans are exported using the `gRPC` protocol to `localhost:4317`. For more configuration options and default values, refer to the [OpenTelemetry configuration details]({{< ref "tyk-oss-gateway/configuration#opentelemetry" >}}).
 
 ### Step 2: Enable Detailed Tracing at API Level (Optional)
 
@@ -36,7 +36,7 @@ After enabling OpenTelemetry at the gateway level, you have the option to activa
 {{< note info >}}
 **Note**
 
-From version 5.3, you can enable or disable this Detailed Tracing option in Tyk OAS APIs through the Dashboard's UI. Navigate to your API's settings and toggle the *"Enable Detailed Tracing"* option.
+From version 5.3, you can enable or disable this Detailed Tracing option in Tyk OAS APIs through the Dashboard's UI. Navigate to your API's settings and toggle the _"Enable Detailed Tracing"_ option.
 
 {{< img src="/img/distributed-tracing/opentelemetry/detailed-tracing-oas.png" alt="Detailed Tracing Disabled" width="800px" >}}
 {{< /note >}}
@@ -57,7 +57,7 @@ By choosing the appropriate setting, you can customize the level of tracing deta
 
 ## Understanding Your Traces
 
-Tyk Gateway exposes a helpful set of *span attributes* and *resource attributes* with the generated spans. These attributes provide useful insights for analyzing your API requests. A clear analysis can be obtained by observing the specific actions and associated context within each request/response. This is where span and resource attributes play a significant role.
+Tyk Gateway exposes a helpful set of _span attributes_ and _resource attributes_ with the generated spans. These attributes provide useful insights for analyzing your API requests. A clear analysis can be obtained by observing the specific actions and associated context within each request/response. This is where span and resource attributes play a significant role.
 
 ### Span Attributes
 
@@ -79,14 +79,14 @@ Resource attributes provide contextual information about the entity that produce
 
 The service attributes supported by Tyk are:
 
-| Attribute             | Type   | Description | 
-| --------------------- | -------- | - | 
-| `service.name`        | String | Service name for Tyk API Gateway:  `tyk-gateway`                                                                          |
-| `service.instance.id` and `tyk.gw.id` | String | The Node ID assigned to the gateway. Example `solo-6b71c2de-5a3c-4ad3-4b54-d34d78c1f7a3` | 
-| `service.version`     | String | Represents the service version. Example `v5.2.0`                                    |
-| `tyk.gw.dataplane` | Bool     | Whether the Tyk Gateway is hybrid (`slave_options.use_rpc=true`)                                 | 
-| `tyk.gw.group.id`  | String   | Represents the `slave_options.group_id` of the gateway. Populated only if the gateway is hybrid. | 
-| `tyk.gw.tags`      | []String | Represents the gateway `segment_tags`. Populated only if the gateway is segmented.               | 
+| Attribute                             | Type     | Description                                                                                      |
+| ------------------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `service.name`                        | String   | Service name for Tyk API Gateway: `tyk-gateway`                                                  |
+| `service.instance.id` and `tyk.gw.id` | String   | The Node ID assigned to the gateway. Example `solo-6b71c2de-5a3c-4ad3-4b54-d34d78c1f7a3`         |
+| `service.version`                     | String   | Represents the service version. Example `v5.2.0`                                                 |
+| `tyk.gw.dataplane`                    | Bool     | Whether the Tyk Gateway is hybrid (`slave_options.use_rpc=true`)                                 |
+| `tyk.gw.group.id`                     | String   | Represents the `slave_options.group_id` of the gateway. Populated only if the gateway is hybrid. |
+| `tyk.gw.tags`                         | []String | Represents the gateway `segment_tags`. Populated only if the gateway is segmented.               |
 
 By understanding and using these resource attributes, you can gain better insights into the performance of your API Gateways.
 

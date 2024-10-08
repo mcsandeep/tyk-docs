@@ -1,11 +1,10 @@
 ---
 title: Redis PubSub
 description: Explains an overview of configuring Redis PubSub output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "Redis PubSub" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "Redis PubSub"]
 ---
 
 Publishes messages through the Redis PubSub model. It is not possible to guarantee that messages have been received.
-
 
 ## Common
 
@@ -65,8 +64,7 @@ This output benefits from sending messages as a batch for improved performance. 
 
 The URL of the target Redis server. Database is optional and is supplied as the URL path.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -88,7 +86,6 @@ url: redis://localhost:6379/1,redis://localhost:6380/1
 
 Specifies a simple, cluster-aware, or failover-aware redis client.
 
-
 Type: `string`  
 Default: `"simple"`  
 Options: `simple`, `cluster`, `failover`.
@@ -97,9 +94,8 @@ Options: `simple`, `cluster`, `failover`.
 
 Name of the redis master when `kind` is `failover`
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -115,40 +111,35 @@ Custom TLS settings can be used to override system defaults.
 
 Some cloud hosted instances of Redis (such as Azure Cache) might need some hand holding in order to establish stable connections. Unfortunately, it is often the case that TLS issues will manifest as generic error messages such as "i/o timeout". If you're using TLS and are seeing connectivity problems consider setting `enable_renegotiation` to `true`, and ensuring that the server supports at least TLS version 1.2.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -163,9 +154,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -177,9 +167,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -197,41 +186,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -246,23 +230,20 @@ password: foo
 The channel to publish messages to.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ### max_in_flight
 
 The maximum number of messages to have in flight at a given time. Increase this to improve throughput.
 
-
 Type: `int`  
-Default: `64`  
+Default: `64`
 
 ### batching
 
 Allows you to configure a [batching policy]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching#batch-policy" >}}).
 
-
-Type: `object`  
+Type: `object`
 
 ```yml
 # Examples
@@ -286,25 +267,22 @@ batching:
 
 A number of messages at which the batch should be flushed. If `0` disables count based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.byte_size
 
 An amount of bytes at which the batch should be flushed. If `0` disables size based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.period
 
 A period in which an incomplete batch should be flushed regardless of its size.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -321,7 +299,7 @@ period: 500ms
 A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) query that should return a boolean value indicating whether a message should end a batch.
 
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -333,8 +311,7 @@ check: this.type == "end_of_transaction"
 
 A list of processors to apply to a batch as it is flushed. This allows you to aggregate and archive the batch however you see fit. Please note that all resulting messages are flushed as a single batch, therefore splitting the batch into smaller batches using these processors is a no-op.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples

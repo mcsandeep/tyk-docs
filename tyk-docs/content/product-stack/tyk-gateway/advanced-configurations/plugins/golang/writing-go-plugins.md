@@ -33,7 +33,7 @@ It is possible to create structures or open connections to 3d party services/sto
 
 For example, here is an example of a Tyk Golang plugin with a simple hit counter:
 
-```go  {linenos=true, linenostart=1}
+```go {linenos=true, linenostart=1}
 package main
 
 import (
@@ -113,7 +113,7 @@ Here we see how the internal state of the Golang plugin is used by the exported 
 When Tyk passes a request to your plugin, the API definition is made available as part of the request context.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The API definition is accessed differently for Tyk OAS APIs and Tyk Classic APIs, as indicated in the following sections. If you use the wrong call for your API type, it will return `nil`.
 {{< /note >}}
@@ -208,7 +208,7 @@ Your plugin can write log entries to Tyk's logging system.
 
 To do so you just need to import the package `"github.com/TykTechnologies/tyk/log"` and use the exported public method `Get()`:
 
-```go  {linenos=true, linenostart=1}
+```go {linenos=true, linenostart=1}
 package main
 
 import (
@@ -232,7 +232,7 @@ func main() {}
 
 All custom middleware implemented as Golang plugins support Tyk's current built in instrumentation.
 
-The format for an event name with metadata is: `"GoPluginMiddleware:" + Path + ":" + SymbolName`,  e.g., for our example, the event name will be:
+The format for an event name with metadata is: `"GoPluginMiddleware:" + Path + ":" + SymbolName`, e.g., for our example, the event name will be:
 
 ```text
 "GoPluginMiddleware:/tmp/AddFooBarHeader.so:AddFooBarHeader"

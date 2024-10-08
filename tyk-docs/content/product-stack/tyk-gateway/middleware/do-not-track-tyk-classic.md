@@ -2,7 +2,17 @@
 title: Using the Do-Not-Track middleware with Tyk Classic APIs
 date: 2024-01-24
 description: "Using the Do-Not-Track middleware with Tyk Classic APIs"
-tags: ["do-not-track", "endpoint tracking", "analytics", "transaction logging", "middleware", "per-endpoint", "per-API", "Tyk Classic"]
+tags:
+  [
+    "do-not-track",
+    "endpoint tracking",
+    "analytics",
+    "transaction logging",
+    "middleware",
+    "per-endpoint",
+    "per-API",
+    "Tyk Classic",
+  ]
 ---
 
 The [Do-Not-Track]({{< ref "product-stack/tyk-gateway/middleware/do-not-track-middleware" >}}) middleware provides the facility to disable generation of transaction records (which are used to track requests) at the API or endpoint level.
@@ -16,29 +26,32 @@ If you're using Tyk Operator then check out the [configuring the middleware in T
 ## Configuring the middleware in the Tyk Classic API Definition {#tyk-classic}
 
 You can prevent tracking for all endpoints of an API by configuring the `do_not_track` field in the root of your API definition.
+
 - `true`: no transaction logs will be generated for requests to the API
 - `false`: transaction logs will be generated for requests to the API
- 
+
 If you want to be more granular and disable tracking only for selected endpoints, then you must add a new `do_not_track_endpoints` object to the `extended_paths` section of your API definition.
 
 The `do_not_track_endpoints` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 
 The `path` can contain wildcards in the form of any string bracketed by curly braces, for example `{user_id}`. These wildcards are so they are human readable and do not translate to variable names. Under the hood, a wildcard translates to the “match everything” regex of: `(.*)`.
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "do_not_track_endpoints": [
-            {
-                "disabled": false,
-                "path": "/anything",
-                "method": "GET"
-            }
-        ]
-    }
+  "extended_paths": {
+    "do_not_track_endpoints": [
+      {
+        "disabled": false,
+        "path": "/anything",
+        "method": "GET"
+      }
+    ]
+  }
 }
 ```
 
@@ -56,7 +69,7 @@ From the **Endpoint Designer** add an endpoint that matches the path for which y
 
 #### Step 2: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the middleware in Tyk Operator {#tyk-operator}
 
@@ -73,7 +86,7 @@ kind: ApiDefinition
 metadata:
   name: httpbin-do-not-track
 spec:
-  name: httpbin-do-not-track 
+  name: httpbin-do-not-track
   use_keyless: true
   protocol: http
   active: true

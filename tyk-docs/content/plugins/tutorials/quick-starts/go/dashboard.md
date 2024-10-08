@@ -1,9 +1,8 @@
 ---
 title: Dashboard Plugins Quickstart
 description: Explains how to build and run the getting started example within Tyk Dashboard
-tags: ["custom", "plugin", "plugins", "go", "goplugins",  "go plugin", "tyk go plugin", "golang plugin"]
+tags: ["custom", "plugin", "plugins", "go", "goplugins", "go plugin", "tyk go plugin", "golang plugin"]
 ---
-
 
 This quick start explains how to run the [getting started](https://github.com/TykTechnologies/custom-go-plugin) Go plugin within Tyk Dashboard.
 
@@ -24,7 +23,7 @@ In this tutorial you will learn how to:
 Create and edit the file `.env` with your Tyk Dashboard license key
 
 ```console
-# Make a copy of the example .env file for the Tyk-Dashboard 
+# Make a copy of the example .env file for the Tyk-Dashboard
 cp .env.example .env
 ```
 
@@ -41,10 +40,13 @@ This will take a few minutes to run as it compiles the plugin for the first time
 ## 3. Log in to Tyk Dashboard
 
 Log on to the Tyk Dashboard on `http://localhost:3000` using the following Bootstrapped credentials:
+
 ```
 demo@tyk.io
 ```
+
 and password:
+
 ```
 topsecretpassword
 ```
@@ -53,11 +55,11 @@ Note: these are editable in `.env.example`
 
 ## 4. View the pre-configured API
 
-Once you're logged on to the Tyk Dashboard, navigate to the *APIs* screen.
+Once you're logged on to the Tyk Dashboard, navigate to the _APIs_ screen.
 
-You'll see a sample *Httpbin* API.  Let's click into it for more details.
+You'll see a sample _Httpbin_ API. Let's click into it for more details.
 
-Click on *VIEW RAW DEFINITION*.  Note the *custom_middleware* block is filled out, injecting the compiled example Go plugin into the API.
+Click on _VIEW RAW DEFINITION_. Note the _custom_middleware_ block is filled out, injecting the compiled example Go plugin into the API.
 
 ## 5. Test the plugin
 
@@ -68,6 +70,7 @@ curl localhost:8080/httpbin/get
 ```
 
 Yields the response:
+
 ```
 {
   "args": {},
@@ -84,11 +87,11 @@ Yields the response:
 }
 ```
 
-Note, we see a *Foo:Bar* HTTP Header was injected by our Go plugin and echoed back to us by the Httpbin mock server.
+Note, we see a _Foo:Bar_ HTTP Header was injected by our Go plugin and echoed back to us by the Httpbin mock server.
 
 ## 6. View the analytics
 
-Navigate to the Dashboard's various *API Usage Data* to view analytics on the API request!
+Navigate to the Dashboard's various _API Usage Data_ to view analytics on the API request!
 
 ## 7. Next steps
 
@@ -99,6 +102,7 @@ When finished, please run `make down` to bring down the stack.
 ## Summary
 
 This tutorial has explained how to:
+
 1. Add your Tyk license.
 2. Bootstrap the Tyk Dashboard environment.
 3. Login to Tyk Dashboard.

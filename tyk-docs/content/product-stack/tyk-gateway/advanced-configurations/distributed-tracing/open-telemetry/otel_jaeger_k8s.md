@@ -9,7 +9,6 @@ This quick start guide offers a detailed, step-by-step walkthrough for configuri
 
 For Docker instructions, please refer to [How to integrate with Jaeger on Docker]({{< ref "otel_jaeger" >}}).
 
-
 ## Prerequisites
 
 Ensure the following prerequisites are in place before proceeding:
@@ -20,7 +19,6 @@ Ensure the following prerequisites are in place before proceeding:
 ## Step 1: Install Jaeger Operator
 
 For the purpose of this tutorial, we will use jaeger-all-in-one, which includes the Jaeger agent, collector, query, and UI in a single pod with in-memory storage. This deployment is intended for development, testing, and demo purposes. Other deployment patterns can be found in the [Jaeger Operator documentation](https://www.jaegertracing.io/docs/1.51/operator/#deployment-strategies).
-
 
 1. Install the cert-manager release manifest (required by Jaeger)
 
@@ -46,7 +44,6 @@ metadata:
   name: jaeger-all-in-one
 EOF
 ```
-
 
 ## Step 2: Deploy Tyk Gateway with OpenTelemetry Enabled using Helm
 
@@ -76,7 +73,6 @@ helm upgrade tyk-otel tyk-helm/tyk-oss -n $NAMESPACE --create-namespace \
 Please make sure you are installing Redis versions that are supported by Tyk. Please refer to Tyk docs to get list of [supported versions]({{< ref "planning-for-production/redis" >}}).
 {{< /note >}}
 
-
 Tyk Gateway is now accessible through service gateway-svc-tyk-oss-tyk-gateway at port 8080 and exports the OpenTelemetry traces to the `jaeger-all-in-one-collector` service.
 
 ## Step 3: Deploy Tyk Operator
@@ -103,22 +99,22 @@ Save the following API definition as `apidef-hello-world.yaml`:
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
- name: hello-world
+  name: hello-world
 spec:
- name: hello-world
- use_keyless: true
- protocol: http
- active: true
- proxy:
-   target_url: http://echo.tyk-demo.com:8080/
-   listen_path: /hello-world
-   strip_listen_path: true
+  name: hello-world
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://echo.tyk-demo.com:8080/
+    listen_path: /hello-world
+    strip_listen_path: true
 ```
 
 To apply this API definition, run the following command:
 
 ```bash
-kubectl apply -f apidef-hello-world.yaml 
+kubectl apply -f apidef-hello-world.yaml
 ```
 
 This step deploys an API definition named hello-world using the provided configuration. It enables a keyless HTTP API proxying requests to http://echo.tyk-demo.com:8080/ and accessible via the path /hello-world.
@@ -139,7 +135,7 @@ For Jaeger:
 kubectl port-forward service/jaeger-all-in-one-query 16686 -n observability
 ```
 
-Begin by sending a few requests to the API endpoint configured in step 2: 
+Begin by sending a few requests to the API endpoint configured in step 2:
 
 ```bash
 curl http://localhost:8080/hello-world/ -i
@@ -152,4 +148,3 @@ Next, navigate to Jaeger on `http://localhost:16686`, select the ´service´ cal
 Click on a trace to view all its internal spans:
 
 {{< img src="/img/distributed-tracing/opentelemetry/api-gateway-trace-tyk-jaeger-spans.png" alt="Tyk API Gateway spans in Jaeger" >}}
-

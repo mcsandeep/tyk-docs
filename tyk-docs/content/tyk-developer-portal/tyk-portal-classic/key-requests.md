@@ -23,9 +23,10 @@ Tyk enables you to manage this flow in a few ways:
 
 - Auto-approve the key request.
 - Have an admin approve the key-request.
-- Hand off to a third-party system to manage the key-request (e.g. for billing or additional user validation).  This is done via WebHooks or via the "Redirect Key Request" Portal Setting.
+- Hand off to a third-party system to manage the key-request (e.g. for billing or additional user validation). This is done via WebHooks or via the "Redirect Key Request" Portal Setting.
 
 ## Key Approval
+
 Once a key request is created, one of two things can be done to it:
 
 - It can be approved: Covered below
@@ -35,12 +36,12 @@ A key request can be created using the Dashboard API too, in fact, the Key Reque
 
 ### Secure Key Approval
 
-By default, the Key Approval flow is straight forward.  Once a Key Request is approved, the Developer will be notified via an email which contains the API Key.
+By default, the Key Approval flow is straight forward. Once a Key Request is approved, the Developer will be notified via an email which contains the API Key.
 
-As of Dashboard version `3.1.0`, it is now possible to turn on a more secure key approval flow.  Once the "Request Key Approval" setting is enabled, we see an additional setting:
+As of Dashboard version `3.1.0`, it is now possible to turn on a more secure key approval flow. Once the "Request Key Approval" setting is enabled, we see an additional setting:
 {{< img src="/img/dashboard/portal-management/secure_key_approval_setting.png" alt="secure_key_approval_setting" >}}
 
-With this feature turn on, we prevent the API key from being sent in plain text via email.  Instead, the once a key request is approved, the Developer will be sent a confirmation link in an email that directs them to the Portal:
+With this feature turn on, we prevent the API key from being sent in plain text via email. Instead, the once a key request is approved, the Developer will be sent a confirmation link in an email that directs them to the Portal:
 {{< img src="/img/dashboard/portal-management/secure_key_approval_email.png" alt="secure_key_approval_email" >}}
 
 After clicking the `Generate Key` link and logging into the Portal, the key becomes available to the user:

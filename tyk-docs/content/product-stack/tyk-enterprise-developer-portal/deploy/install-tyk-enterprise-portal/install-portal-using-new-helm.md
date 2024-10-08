@@ -19,11 +19,10 @@ To install the portal using helm charts, you need to take the following steps:
 - Specify config settings for the portal in `values.yaml`
 - Launch the portal using the helm chart
 
-
 ### Create the `tyk-dev-portal-conf` secret
 
-Make sure the `tyk-dev-portal-conf` secret exists in your namespace. 
-This secret will automatically be generated if Tyk Dashboard instance was bootstrapped with [tyk-boostrap](https://artifacthub.io/packages/helm/tyk-helm/tyk-bootstrap) component chart 
+Make sure the `tyk-dev-portal-conf` secret exists in your namespace.
+This secret will automatically be generated if Tyk Dashboard instance was bootstrapped with [tyk-boostrap](https://artifacthub.io/packages/helm/tyk-helm/tyk-bootstrap) component chart
 and `bootstrap.devPortal` was set to `true` in the `values.yaml`.
 
 If the secret does not exist, you can create it by running the following command.
@@ -40,15 +39,15 @@ The fields `TYK_ORG` and `TYK_AUTH` are the Tyk Dashboard _Organization ID_ and 
 
 You must set the following values in the `values.yaml` or with `--set {field-name}={field-value}` using the helm upgrade command:
 
-| Field Name | Description |
-| ---------- | ----------- |
-| `global.adminUser.email` and `global.adminUser.password` | Set portal admin username and email for bootstrapping |
-| `global.secrets.devPortal` | Enable portal bootstrapping by providing secret name |
-| `license` | Tyk license key for your portal installation |
-| `storage.type` | Portal storage type, e.g. *fs*, *s3* and *db* |
-| `image.tag` | Enterprise Portal version. You can get the latest version image tag from [Docker Hub](https://hub.docker.com/r/tykio/portal/tags) |
-| `database.dialect` | Portal database dialect, e.g. *mysql*, *postgres* and *sqlite3* |
-| `database.connectionString`| Connection string to the Portal's database, e.g. for the *mysql* dialect: `admin:secr3t@tcp(tyk-portal-mysql:3306)/portal?charset=utf8mb4&parseTime=true` |
+| Field Name                                               | Description                                                                                                                                               |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `global.adminUser.email` and `global.adminUser.password` | Set portal admin username and email for bootstrapping                                                                                                     |
+| `global.secrets.devPortal`                               | Enable portal bootstrapping by providing secret name                                                                                                      |
+| `license`                                                | Tyk license key for your portal installation                                                                                                              |
+| `storage.type`                                           | Portal storage type, e.g. _fs_, _s3_ and _db_                                                                                                             |
+| `image.tag`                                              | Enterprise Portal version. You can get the latest version image tag from [Docker Hub](https://hub.docker.com/r/tykio/portal/tags)                         |
+| `database.dialect`                                       | Portal database dialect, e.g. _mysql_, _postgres_ and _sqlite3_                                                                                           |
+| `database.connectionString`                              | Connection string to the Portal's database, e.g. for the _mysql_ dialect: `admin:secr3t@tcp(tyk-portal-mysql:3306)/portal?charset=utf8mb4&parseTime=true` |
 
 In addition to `values.yaml`, you can also define the environment variables described in the [configuration section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration.md" >}}) to further customize your portal deployment. These environment variables can also be listed as a name value list under the `extraEnvs` section of the helm chart.
 
@@ -61,6 +60,7 @@ helm install tyk-dev-portal tyk-helm/tyk-dev-portal -f values.yaml -n tyk
 ```
 
 ### Configuration
+
 Please refer to this [guide]({{<ref "product-stack/tyk-charts/tyk-stack-chart">}}) for an explanation of all configuration options.
 
 > **Note**: Helm chart supports Enterprise Portal v1.2.0+.

@@ -1,4 +1,4 @@
---- 
+---
 date: 2021-18-01T15:00:00+13:00
 title: Tyk Identity Broker
 menu:
@@ -18,10 +18,10 @@ Tyk Identity Broker (TIB) is a component providing a bridge between various Iden
 
 TIB can act as a bridge between the API Gateway, Tyk Portal or even the Tyk Dashboard, and makes it easy to integrate custom IDMs to your system.
 
-Starting from Tyk v3.0 TIB has been added as a built-in feature of the Tyk Dashboard. You no longer have to setup a separated instance of the service to make it work with the Dashboard. You now have two options: 
-1. Internal TIB: Embedded in dashboard. Easy configuration and set up. Share the same port as the dashboard
-2. External TIB: Installation of TIB as a different component for advanced use cases. Requires changes to the config files and separate port.  
+Starting from Tyk v3.0 TIB has been added as a built-in feature of the Tyk Dashboard. You no longer have to setup a separated instance of the service to make it work with the Dashboard. You now have two options:
 
+1. Internal TIB: Embedded in dashboard. Easy configuration and set up. Share the same port as the dashboard
+2. External TIB: Installation of TIB as a different component for advanced use cases. Requires changes to the config files and separate port.
 
 ## What can you do with the Tyk Identity Broker (TIB)?
 

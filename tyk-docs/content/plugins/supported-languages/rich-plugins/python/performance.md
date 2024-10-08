@@ -4,10 +4,10 @@ title: Python Performance
 menu:
   main:
     parent: "Python"
-weight: 2 
-aliases: 
-  -  "plugins/supported-languages/rich-plugins/python/performance"
-  -  plugins/rich-plugins/python/performance
+weight: 2
+aliases:
+  - "plugins/supported-languages/rich-plugins/python/performance"
+  - plugins/rich-plugins/python/performance
 ---
 
 These are some benchmarks performed on Python plugins. Python plugins run in a standard Python interpreter, embedded inside Tyk.

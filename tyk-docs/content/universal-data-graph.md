@@ -2,9 +2,9 @@
 title: "Universal Data Graph"
 date: 2020-06-03
 weight: 10
-menu: 
-    main:
-        parent: "Tyk Stack"
+menu:
+  main:
+    parent: "Tyk Stack"
 aliases:
   - /universal-data-graph
 ---
@@ -22,6 +22,7 @@ That is, your Data Graph will be secure from the start and there's a large array
 {{< img src="/img/diagrams/universal_datagraph_overview.png" alt="Universal Datagraph Overview" >}}
 
 Currently supported DataSources:
+
 - REST
 - GraphQL
 - SOAP (through the REST datasource)
@@ -33,6 +34,7 @@ To start creating your first Universal Data Graph in Tyk Dashboard, go to "Data 
 {{< /note >}}
 
 Make sure to check some of the resources to help you start:
+
 - [How to create UDG schema]({{< ref "universal-data-graph/udg-getting-started/creating-schema.md" >}})
 - [How to connect data sources]({{< ref "universal-data-graph/udg-getting-started/connect-datasource.md" >}})
 - [How to secure the data graph]({{< ref "universal-data-graph/udg-getting-started/security.md" >}})

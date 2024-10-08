@@ -106,4 +106,4 @@ Buttons have four different concepts and each one of them has two or more variab
 
 - `--tdp-warning-btn-color` background color
 - `--tdp-warning-btn-border` border color
-- `--tdp-warning-outline-btn-border`  border color of the outline variation
+- `--tdp-warning-outline-btn-border` border color of the outline variation

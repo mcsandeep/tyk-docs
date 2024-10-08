@@ -4,9 +4,9 @@ date: 2021-10-20
 tags: ["Pump", "Datadog", "DogstatsD"]
 description: "How configure the Tyk Pump with Datadog"
 menu:
-    main:
-        parent: "Tyk Pump Configuration"
-weight: 5 
+  main:
+    parent: "Tyk Pump Configuration"
+weight: 5
 ---
 
 ## Introduction
@@ -18,7 +18,6 @@ The Tyk Pump can be configured to send your API traffic analytics to [Datadog](h
 We ceated a defaulkt Tyk dashboard canvat to give our users an easier starting point. You can find it in Datadog portal, under the `Dashboards --> lists` section, (https://app.datadoghq.com/dashboard/lists)[https://app.datadoghq.com/dashboard/lists], and it is called `Tyk Analytics Canvas`. To use this dashboard you will need to make sure that your datadog agent deployment has the following tag `env:tyk-demo-env` and that your Tyk Pump configuration has `dogstatsd.meta.namespace` set to `pump`. You can also import it from [Datadog official GH repo](https://github.com/DataDog/integrations-extras/blob/master/tyk/assets/dashboards/tyk_analytics_canvas.json) and change those values in the dashboard itself to visualize your analytics data as it flows into Datadog.
 
 {{< img src="/img/pump/datadog-tyk-analytics-dashboard.jpeg" alt="Sample Datadog dashboard" >}}
-
 
 ## Prerequisites
 
@@ -71,6 +70,7 @@ Below is a sample DogstatD section from a Tyk `pump.conf` file
 - `tags`: List of tags to be added to the metric. The possible options are listed in the below example
 
 If no tag is specified the fallback behavior is to use the below tags:
+
 - `path`
 - `method`
 - `response_code`
@@ -83,8 +83,8 @@ If no tag is specified the fallback behavior is to use the below tags:
 
 Note that this configuration can generate significant data due to the unbound nature of the `path` tag.
 
-
 On startup, you should see the loaded configs when initialising the DogstatsD pump
+
 ```console
 [May 10 15:23:44]  INFO dogstatsd: initializing pump
 [May 10 15:23:44]  INFO dogstatsd: namespace: pump.

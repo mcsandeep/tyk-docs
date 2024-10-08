@@ -2,7 +2,17 @@
 title: Using the Ignore Authentication middleware with Tyk OAS APIs
 date: 2024-01-24
 description: "Using the Ignore Authentication middleware with Tyk OAS APIs"
-tags: ["ignore authentication", "ignore", "ignore auth", "authentication", "middleware", "per-endpoint", "Tyk OAS", "Tyk OAS APIs"]
+tags:
+  [
+    "ignore authentication",
+    "ignore",
+    "ignore auth",
+    "authentication",
+    "middleware",
+    "per-endpoint",
+    "Tyk OAS",
+    "Tyk OAS APIs",
+  ]
 ---
 
 The [Ignore Authentication]({{< ref "product-stack/tyk-gateway/middleware/ignore-middleware" >}}) middleware instructs Tyk Gateway to skip the authentication step for calls to an endpoint, even if authentication is enabled for the API.
@@ -18,87 +28,90 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The ignore authentication middleware (`ignoreAuthentication`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `ignoreAuthentication` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `ignoreCase`: if set to `true` then the path matching will be case insensitive
 
 For example:
+
 ```json {hl_lines=["65-69"],linenos=true, linenostart=1}
 {
-    "info": {
-        "title": "example-ignore-authentication",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "servers": [
-        {
-            "url": "http://localhost:8181/example-ignore-authentication/"
-        }
-    ], 
-    "security": [
-        {
-            "authToken": []
-        }
-    ],     
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "securitySchemes": {
-            "authToken": {
-                "type": "apiKey",
-                "in": "header",
-                "name": "Authorization"
-            }
-        }        
-    },    
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-ignore-authentication",
-            "state": {
-                "active": true,
-                "internal": false
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "authentication": {
-                "enabled": true,
-                "securitySchemes": {
-                    "authToken": {
-                        "enabled": true
-                    }
-                }
-            },
-            "listenPath": {
-                "strip": true,
-                "value": "/example-ignore-authentication/"
-            }        
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "ignoreAuthentication": {
-                        "enabled": true
-                    }
-                }
-            }
-        }
+  "info": {
+    "title": "example-ignore-authentication",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "servers": [
+    {
+      "url": "http://localhost:8181/example-ignore-authentication/"
     }
+  ],
+  "security": [
+    {
+      "authToken": []
+    }
+  ],
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "authToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization"
+      }
+    }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-ignore-authentication",
+      "state": {
+        "active": true,
+        "internal": false
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "authentication": {
+        "enabled": true,
+        "securitySchemes": {
+          "authToken": {
+            "enabled": true
+          }
+        }
+      },
+      "listenPath": {
+        "strip": true,
+        "value": "/example-ignore-authentication/"
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "ignoreAuthentication": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
 In this example the ignore authentication middleware has been configured for requests to the `GET /anything` endpoint. Any such calls will skip the authentication step in the Tyk Gateway's processing chain.
+
 - the middleware has been configured to be case sensitive, so calls to `GET /Anything` will not skip authentication
 
 The configuration above is a complete and valid Tyk OAS API Definition that you can import into Tyk to try out the Ignore Authentication middleware.
@@ -119,7 +132,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Ignore Authentication middleware
 
-Select **ADD MIDDLEWARE** and choose the **Ignore Authentication** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Ignore Authentication** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-ignore.png" alt="Adding the Ignore Authentication middleware" >}}
 

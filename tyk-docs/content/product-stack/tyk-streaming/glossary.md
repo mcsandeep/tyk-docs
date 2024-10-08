@@ -1,7 +1,7 @@
 ---
 title: Glossary
 description: Explains key concepts of streaming
-tags: [ "streaming", "events", "event driven architecture", "event driven architectures", "kafka" ]
+tags: ["streaming", "events", "event driven architecture", "event driven architectures", "kafka"]
 ---
 
 To effectively use Tyk Streams for managing async APIs, it's important to first understand the terminology and [key concepts]({{< ref "product-stack/tyk-streaming/key-concepts" >}})

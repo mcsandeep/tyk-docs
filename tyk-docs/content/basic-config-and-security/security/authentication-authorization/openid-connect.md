@@ -6,7 +6,7 @@ description: "Using OpenID Identity Tokens with Tyk"
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 5 
+weight: 5
 aliases:
   - /security/your-apis/openid-connect/
   - /advanced-configuration/integrate/api-auth-mode/oidc-auth0-example/

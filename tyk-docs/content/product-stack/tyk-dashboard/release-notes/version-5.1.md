@@ -8,6 +8,7 @@ main: menu
 **Licensed Protected Product**
 
 ### Support Lifetime
+
 Minor releases are supported until our next minor comes out in Q3.
 
 ## 5.1 Release Notes
@@ -15,18 +16,23 @@ Minor releases are supported until our next minor comes out in Q3.
 ##### Release Date 23 June 2023
 
 #### Breaking Changes
-**Attention warning*: Please read carefully this section. We have two topics to report:
- 
+
+\*_Attention warning_: Please read carefully this section. We have two topics to report:
+
 ##### Golang Version upgrade
+
 Our Dashboard is using [Golang 1.19](https://tip.golang.org/doc/go1.19) programming language starting with the 5.1 release. This brings improvements to the code base and allows us to benefit from the latest features and security enhancements in Go. Don’t forget that, if you’re using GoPlugins, you'll need to [recompile]({{< ref "plugins/supported-languages/golang#initialise-plugin-for-gateway-51" >}}) these to maintain compatibility with the latest Gateway.
 
 ##### Tyk OAS APIs
+
 To provide a superior experience with OAS APIs, we have made some changes which include various security fixes, improved validation etc. Upgrading to v5.1 from v4.x.x may be irreversible, rollback to v4.x.x could break your OAS API definitions. For this reason, we recommend making a database backup so you can always restore from the backup (of v4.X.X) in case you encounter a problem during the upgrade. Please refer to our guides for detailed information on [upgrading Tyk]({{<ref "upgrading-tyk#important-to-know">}}) and [how to back up tyk]({{<ref "frequently-asked-questions/how-to-backup-tyk">}})
 
 #### Deprecation
+
 There are no deprecations in this release.
 
 #### Upgrade Instructions
+
 Go to the [Upgrading Tyk](#upgrading-tyk) section for detailed upgrade instructions.
 
 #### Release Highlights
@@ -85,7 +91,6 @@ size using [slave_options.rpc_pool_size]({{< ref "tyk-oss-gateway/configuration#
 
 [docker image to pull](https://hub.docker.com/layers/tykio/tyk-dashboard/v5.1/images/sha256-8cde3c6408b9a34daa508a570539ca6cd9fcb8ee5c4790abe907eaecddc1bd9b?context=explore)
 
-
 #### Changelog
 
 ##### Added
@@ -127,12 +132,13 @@ size using [slave_options.rpc_pool_size]({{< ref "tyk-oss-gateway/configuration#
 
 - Fixed an issue so that the Log Browser now respects API Ownership. A user will now only be able to see logs for the APIs that they are authorized to view
 - Fixed filters for the Log Browser, Errors - Average Errors Over Time and API Activity Dashboard - Requests so that a user can only select from versions of APIs for which they have visibility
-- Fixed UI bug so that data graphs created with multiple words are [sluggified](https://www.w3schools.com/django/ref_filters_slugify.php#:~:text=Definition%20and%20Usage,ASCII%20characters%20and%20hyphens%20(%2D).), i.e. spaces are replaced with a hyphen `-`
+- Fixed UI bug so that data graphs created with multiple words are [sluggified](<https://www.w3schools.com/django/ref_filters_slugify.php#:~:text=Definition%20and%20Usage,ASCII%20characters%20and%20hyphens%20(%2D).>), i.e. spaces are replaced with a hyphen `-`
 - Fixed an issue with routing, which was sending the user to a blank screen while creating a new Data Graph or importing an example API
 
 ## Further Information
 
 ### Upgrading Tyk
+
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### API Documentation
@@ -141,4 +147,5 @@ Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for furthe
 - [Postman Collection](https://www.postman.com/tyk-technologies/workspace/tyk-public-workspace/collection/27225007-374cc3d0-f16d-4620-a435-68c53553ca40)
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

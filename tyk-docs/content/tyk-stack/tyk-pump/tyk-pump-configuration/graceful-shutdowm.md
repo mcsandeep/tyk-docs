@@ -4,8 +4,8 @@ title: Tyk Pump Graceful Shutdown
 tags: ["Tyk Pump", "Shutdown", "Configuration"]
 description: "Using Environment Variables to configure your Tyk Pump"
 menu:
-    main:
-        parent: "Tyk Pump Configuration"
+  main:
+    parent: "Tyk Pump Configuration"
 weight: 7
 ---
 
@@ -31,6 +31,7 @@ When the signal is `SIGKILL`, it will not gracefully stop its execution.
 **What pumps are affected?**
 
 The main affected pumps are:
+
 - `ElasticSearch`
 - `dogstatd`
 - `Influx2`

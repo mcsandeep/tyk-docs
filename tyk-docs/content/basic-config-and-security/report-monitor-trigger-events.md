@@ -14,6 +14,7 @@ Tyk has a flexible model for handling these API events.
 ## Event categories
 
 There are four different categories of events that can be fired by Tyk:
+
 - [API events](#api-events)
 - [Token lifecycle events](#token-lifecycle-events)
 - [Advanced quota usage events](#quota-usage-monitoring)
@@ -21,7 +22,7 @@ There are four different categories of events that can be fired by Tyk:
 
 ### API events
 
-Tyk can generate (or *fire*) a variety of built-in API events due to activity triggered by an API request, such as exceeded rate limits, depleted quotas or attempts to access using expired keys. The full list of standard API events is available [here]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types#api-events" >}}).
+Tyk can generate (or _fire_) a variety of built-in API events due to activity triggered by an API request, such as exceeded rate limits, depleted quotas or attempts to access using expired keys. The full list of standard API events is available [here]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types#api-events" >}}).
 
 ### Token lifecycle events
 
@@ -39,19 +40,20 @@ The event subsystem has been designed to be easily extensible, so the community 
 
 ## Handling events with Tyk
 
-Tyk has a simple event handling system where *event handlers* are assigned (or registered) to the different [events]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types" >}}) that Tyk can generate. These handlers are assigned per-API so when an event is generated for an API and there is an *event handler* registered for that *event*, the handler will be triggered.
+Tyk has a simple event handling system where _event handlers_ are assigned (or registered) to the different [events]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types" >}}) that Tyk can generate. These handlers are assigned per-API so when an event is generated for an API and there is an _event handler_ registered for that _event_, the handler will be triggered.
 
-Three different categories of *event handler* can be registered for each event:
+Three different categories of _event handler_ can be registered for each event:
+
 - a [webhook]({{< ref "basic-config-and-security/report-monitor-trigger-events/webhooks" >}}) that will call out to an external endpoint
 - an [event log]({{< ref "product-stack/tyk-gateway/basic-config-and-security/report-monitor-and-trigger-events/log-handlers" >}}) that will write to the configured [log output]({{< ref "log-data" >}})
 - your own [custom event handler]({{< ref "basic-config-and-security/report-monitor-trigger-events/custom-handlers-javascript" >}}) that will run in a JavaScript virtual machine on the Tyk server
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Remember that <b>quota usage monitoring</b> has a [dedicated mechanism]({{< ref "basic-config-and-security/report-monitor-trigger-events/monitors" >}}) for handling these special events.
 {{< /note >}}
 
 ### Event metadata
 
-When an API event is fired, if there is an *event handler* registered for that combination of API and event then the handler will be provided with a rich set of [metadata]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-data" >}}) that can be used by the external system (webhook) or custom (JavaScript) code to determine the action to be taken.
+When an API event is fired, if there is an _event handler_ registered for that combination of API and event then the handler will be provided with a rich set of [metadata]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-data" >}}) that can be used by the external system (webhook) or custom (JavaScript) code to determine the action to be taken.

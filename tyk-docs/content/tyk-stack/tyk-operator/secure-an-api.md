@@ -40,6 +40,7 @@ spec:
 You can link this Security Policy to any APIs you have defined in `access_rights_array`. In this example, the security policy is applied to `httpbin` API in `default` namespace.
 
 #### Step 2: Deploy the SecurityPolicy resource
+
 You can do so by applying the above manifest:
 
 ```console
@@ -97,7 +98,7 @@ NAME      AGE
 httpbin   10s
 ```
 
-You have successfully created the  `httpbin` security policy for your `httpbin` API. 
+You have successfully created the `httpbin` security policy for your `httpbin` API.
 
 ### SecurityPolicy CRD
 
@@ -105,19 +106,19 @@ You can use SecurityPolicy CRD to set access lists for API and versions, global 
 
 ```yaml
 apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy            # SecurityPolicy CRD
+kind: SecurityPolicy # SecurityPolicy CRD
 metadata:
-  name: httpbin                 # Unique k8s name
+  name: httpbin # Unique k8s name
 spec:
   name: Httpbin Security Policy # Generic Name
-  state: active                 # View securitypolicy_types for more info
-  active: true                  # View securitypolicy_types for more info
-  access_rights_array:          # Adding APIs to the Policy. More info just below
-    - name: httpbin             # Metadata name of API
+  state: active # View securitypolicy_types for more info
+  active: true # View securitypolicy_types for more info
+  access_rights_array: # Adding APIs to the Policy. More info just below
+    - name: httpbin # Metadata name of API
       namespace: default
       versions:
-        - Default               # Mandatory, Default is created automatically
-      allowed_urls:             # Path-based permissions
+        - Default # Mandatory, Default is created automatically
+      allowed_urls: # Path-based permissions
         - url: /get
           methods:
             - GET
@@ -134,7 +135,6 @@ spec:
     key: value
     hello: world
 ```
-
 
 Required fields in the policy:
 

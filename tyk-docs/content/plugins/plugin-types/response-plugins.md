@@ -5,7 +5,7 @@ menu:
   main:
     parent: "Plugin Types"
 weight: 20
-aliases: 
+aliases:
   - plugins/response-plugins
 ---
 
@@ -48,12 +48,12 @@ If working with a Tyk Classic API, you would add this configuration to the API d
 }
 ```
 
- - `driver`: set this to the appropriate value for the plugin type (e.g. `python`, `goplugin`)
- - `response`: this is the hook name. You use middleware with the `response` hook type because you want this custom middleware to process the request on its return leg of a round trip.
- - `response.name`: is your function name from the plugin file.
- - `response.path`: is the full or relative (to the Tyk binary) path to the plugin source file. Ensure Tyk has read access to this file.
+- `driver`: set this to the appropriate value for the plugin type (e.g. `python`, `goplugin`)
+- `response`: this is the hook name. You use middleware with the `response` hook type because you want this custom middleware to process the request on its return leg of a round trip.
+- `response.name`: is your function name from the plugin file.
+- `response.path`: is the full or relative (to the Tyk binary) path to the plugin source file. Ensure Tyk has read access to this file.
 
-Starting from versions 5.0.4 and 5.1.1+ for our Go, Python and Ruby users we have introduced the `multivalue_headers` field to facilitate more flexible and efficient management of headers, particularly for scenarios involving a single header key associated with multiple values.  The `multivalue_headers` field, similar to its predecessor, the `headers` field, is a key-value store. However, it can accommodate an array or list of string values for each key, instead of a single string value. This feature empowers you to represent multiple values for a single header key. Here's an example of how you might use `multivalue_headers`, using the Set-Cookie header which often has multiple values:
+Starting from versions 5.0.4 and 5.1.1+ for our Go, Python and Ruby users we have introduced the `multivalue_headers` field to facilitate more flexible and efficient management of headers, particularly for scenarios involving a single header key associated with multiple values. The `multivalue_headers` field, similar to its predecessor, the `headers` field, is a key-value store. However, it can accommodate an array or list of string values for each key, instead of a single string value. This feature empowers you to represent multiple values for a single header key. Here's an example of how you might use `multivalue_headers`, using the Set-Cookie header which often has multiple values:
 
 ```
 multivalue_headers = {
@@ -61,7 +61,7 @@ multivalue_headers = {
 }
 ```
 
-In this example, Set-Cookie header has two associated values: `"sessionToken=abc123; HttpOnly; Secure"` and `"language=en-US; Secure"`.  To help you understand this further, let's see how `multivalue_headers` can be used in a Tyk response plugin written in Python:
+In this example, Set-Cookie header has two associated values: `"sessionToken=abc123; HttpOnly; Secure"` and `"language=en-US; Secure"`. To help you understand this further, let's see how `multivalue_headers` can be used in a Tyk response plugin written in Python:
 
 ```python
 from tyk.decorators import *
@@ -74,10 +74,10 @@ def Del_ResponseHeader_Middleware(request, response, session, metadata, spec):
     new_header.key = "Set-Cookie"
     new_header.values.extend("sessionToken=abc123; HttpOnly; Secure")
     new_header.values.extend("language=en-US; Secure")
-    
+
     tyk.log(f"Headers content :\n {response.headers}\n----------", "info")
     tyk.log(f"Multivalue Headers updated :\n {response.multivalue_headers}\n----------", "info")
-    
+
     return response
 ```
 

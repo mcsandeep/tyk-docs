@@ -6,31 +6,31 @@ tags: ["Tyk Pump", "Configuration", "Elasticsearch"]
 
 [Elasticsearch](https://www.elastic.co/) is a highly scalable and distributed search engine that is designed to handle large amounts of data.
 
-
-## JSON / Conf 
+## JSON / Conf
 
 Add the following configuration fields to the pumps section within your `pump.conf` file:
 
 ```json
 {
   "pumps": {
-      "elasticsearch": {
-        "type": "elasticsearch",
-        "meta": {
-          "index_name": "tyk_analytics",
-          "elasticsearch_url": "http://localhost:9200",
-          "enable_sniffing": false,
-          "document_type": "tyk_analytics",
-          "rolling_index": false,
-          "extended_stats": false,
-          "version": "6"
-        }
+    "elasticsearch": {
+      "type": "elasticsearch",
+      "meta": {
+        "index_name": "tyk_analytics",
+        "elasticsearch_url": "http://localhost:9200",
+        "enable_sniffing": false,
+        "document_type": "tyk_analytics",
+        "rolling_index": false,
+        "extended_stats": false,
+        "version": "6"
       }
     }
+  }
 }
 ```
 
 ## Configuration fields
+
 - `index_name`: The name of the index that all the analytics data will be placed in. Defaults to `tyk_analytics`
 - `elasticsearch_url`: If sniffing is disabled, the URL that all data will be sent to. Defaults to `http://localhost:9200`
 - `enable_sniffing`: If sniffing is enabled, the `elasticsearch_url` will be used to make a request to get a list of all the nodes in the cluster, the returned addresses will then be used. Defaults to `false`
@@ -45,8 +45,8 @@ Add the following configuration fields to the pumps section within your `pump.co
   - `bulk_actions`: Specifies the number of requests needed to flush the data and send it to ES. Defaults to 1000 requests. If it is needed, can be disabled with `-1`.
   - `bulk_size`: Specifies the size (in bytes) needed to flush the data and send it to ES. Defaults to 5MB. Can be disabled with `-1`.
 
+## Environment variables
 
-## Environment variables 
 ```bash
 TYK_PMP_PUMPS_ELASTICSEARCH_TYPE=elasticsearch
 TYK_PMP_PUMPS_ELASTICSEARCH_META_INDEXNAME=tyk_analytics

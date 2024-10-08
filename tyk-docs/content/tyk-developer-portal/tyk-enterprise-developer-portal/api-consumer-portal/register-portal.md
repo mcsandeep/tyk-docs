@@ -19,12 +19,14 @@ If you are interested in getting access contact us at [support@tyk.io](<mailto:s
 ## Introduction
 
 There are two ways for registering a new account
+
 1. Self signup via the form.
 2. Receive an invitation from the portal admin.
 
 ## Self signup
 
 To use the self sign up flow, you’ll need to:
+
 1. Access the Portal and click **REGISTER**.
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/portal-login.png" alt="Portal login and Register menu" >}}

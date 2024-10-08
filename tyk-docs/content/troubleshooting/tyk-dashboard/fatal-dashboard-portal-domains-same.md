@@ -4,7 +4,7 @@ title: Fatal - Dashboard and portal domains cannot be the same
 menu:
   main:
     parent: "Tyk Dashboard Troubleshooting"
-weight: 5 
+weight: 5
 aliases:
   - /troubleshooting/tyk-dashboard/fatal-dashboard-port...
 ---
@@ -14,7 +14,7 @@ aliases:
 The Tyk Dashboard service will not start and displays a fatal error as follows:
 
 ```
-FATAL Dashboard and portal domains cannot be the same. 
+FATAL Dashboard and portal domains cannot be the same.
   Dashboard domain: tyk-dashboard.com, Portal domain: tyk-dashboard.com
 ```
 
@@ -34,6 +34,7 @@ Firstly, we will need to disable hostnames from within the Dashboard configurati
 service started again.
 
 Change `host_config.enable_host_names` from `true` to `false`
+
 ```
 "host_config": {
   "enable_host_names": true,    <------ CHANGE TO false

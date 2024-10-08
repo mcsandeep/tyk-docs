@@ -4,7 +4,7 @@ title: Dashboard bootstrap error
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 Make sure you:

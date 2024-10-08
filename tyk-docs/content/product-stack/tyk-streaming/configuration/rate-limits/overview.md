@@ -1,7 +1,7 @@
 ---
 title: Rate Limits Overview
 description: Explains an overview of rate limits
-tags: [ "Tyk Streams", "Rate Limits" ]
+tags: ["Tyk Streams", "Rate Limits"]
 ---
 
 A rate limit is a strategy for limiting the usage of a shared resource across parallel components in a Tyk Streams instance, or potentially across multiple instances. They are configured as a resource:

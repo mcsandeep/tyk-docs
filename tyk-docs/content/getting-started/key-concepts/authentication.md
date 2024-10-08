@@ -2,7 +2,7 @@
 title: "Authentication with Tyk OAS"
 date: 2022-07-06
 tags: ["API", "OAS", "OpenAPI Specification", "Servers", "Tyk OAS authentication"]
-description:  "Explain low-level concepts around authentication in Tyk OAS"
+description: "Explain low-level concepts around authentication in Tyk OAS"
 menu:
   main:
     parent: "OpenAPI Low Level Concepts"
@@ -11,25 +11,26 @@ weight: 2
 
 ### Introduction
 
-OAS has the concept of `securitySchemes` which describes one way in which an API may be accessed, e.g. with a token. You can have multiple `securitySchemes` defined for an API. You decide which is actually active by declaring that in the security section. When hosting an API with Tyk, the only remaining question is which part of the flow does this security validation? If you do nothing more, then Tyk will pass the authentication to the upstream. However, if you do want Tyk to handle the authentication, then it is as simple as setting an authentication field in the `x-tyk-api-gateway` section of the Tyk OAS API Definition. 
+OAS has the concept of `securitySchemes` which describes one way in which an API may be accessed, e.g. with a token. You can have multiple `securitySchemes` defined for an API. You decide which is actually active by declaring that in the security section. When hosting an API with Tyk, the only remaining question is which part of the flow does this security validation? If you do nothing more, then Tyk will pass the authentication to the upstream. However, if you do want Tyk to handle the authentication, then it is as simple as setting an authentication field in the `x-tyk-api-gateway` section of the Tyk OAS API Definition.
 
-The OAS SecurityScheme Object accepts by default just 4 types: 
+The OAS SecurityScheme Object accepts by default just 4 types:
+
 - apiKey
 - http
 - oauth2
 - openIdConnect
 
 {{< note success >}}
-**Note**  
+**Note**
 
-The security section in the OAS API Definition can define a list of authentication mechanisms that the backend should use to authorize requests. For now, your Tyk Gateway will only take into consideration the first security item defined in the list. 
+The security section in the OAS API Definition can define a list of authentication mechanisms that the backend should use to authorize requests. For now, your Tyk Gateway will only take into consideration the first security item defined in the list.
 {{< /note >}}
 
 Let’s go through the authentication mechanisms that Tyk supports and see how these can work together with OAS API Definition security schemes.
 
 ### Authentication Token
 
-When the `apiKey` securityScheme is configured in an OAS API Definition, this means that the authentication mechanism that can be configured in `x-tyk-api-gateway`, is an Authentication Token. 
+When the `apiKey` securityScheme is configured in an OAS API Definition, this means that the authentication mechanism that can be configured in `x-tyk-api-gateway`, is an Authentication Token.
 
 Since the location and token key name are documented in the OAS API Definition `securityScheme`, you only need to turn this authentication on at the Tyk level to tell Tyk to handle the authentication by setting `enabled` to `true`.
 
@@ -65,8 +66,9 @@ Example:
   }
 }
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 OAS does not allow for an API to have both cookie and query parameter based token authentication at the same time. Since Tyk does allow this, we have allowed for this combination through the vendor specific fields. You can see how to do this next.
 {{< /note >}}
@@ -113,6 +115,7 @@ Example:
   }
 }
 ```
+
 In the above example, we can observe that, in `securitySchemes` the `header` location for the token is configured. In order to add another possible location for the token we can extend the Tyk configuration section.
 
 #### Dynamic Client mTLS
@@ -122,27 +125,19 @@ Tyk can be configured to guess a user authentication key based on the provided c
 The basic idea here is that you can create a key based on a provided certificate. You can then use this key or the cert for one or more users. For that user, you can enable the `enableClientCertificate` option.
 
 ```yaml
-{
-  ...
-  "x-tyk-api-gateway": {
-  ...
-  "server": {
-      "authentication": {
-        "securitySchemes": {
-          "petstore_auth": {
-            "enabled": true,
-            "enableClientCertificate": true
-          }
-        }
-      }
-    }
-  }
-}
+{ ? ...
+    "x-tyk-api-gateway"
+  : { ? ...
+        "server"
+      : {
+          "authentication":
+            { "securitySchemes": { "petstore_auth": { "enabled": true, "enableClientCertificate": true } } },
+        } } }
 ```
 
 ### Basic Authentication
 
-Having the `http` type as the `securityScheme` defined in OAS API Definition, with the schema field set to basic, means that the *Tyk Gateway* uses basic authentication as the protection mechanism. It expects an access key in the same way as any other access method. For more information see the [Basic Authentication documentation]({{< ref "basic-config-and-security/security/authentication-authorization/basic-auth" >}}).
+Having the `http` type as the `securityScheme` defined in OAS API Definition, with the schema field set to basic, means that the _Tyk Gateway_ uses basic authentication as the protection mechanism. It expects an access key in the same way as any other access method. For more information see the [Basic Authentication documentation]({{< ref "basic-config-and-security/security/authentication-authorization/basic-auth" >}}).
 
 Example:
 
@@ -283,67 +278,48 @@ Tyk only takes into consideration the first security object in the security list
 Example:
 
 ```yaml
-{
-  ...
-  securitySchemes: {
-    "auth-A": {...},
-    "auth-B": {...},
-    "auth-C": {...},
-    "auth-D": {...},
-  },
-  security: [
-    {
-      "auth-A": [],
-      "auth-C": []
-    },
-    {
-      "auth-B": []
-    },
-    {
-      "auth-D": []
-    }
-  ]
-}
+{ ? ...
+    securitySchemes
+  : {
+      "auth-A": { ... },
+      "auth-B": { ... },
+      "auth-C": { ... },
+      "auth-D": { ... },
+    }, security: [{ "auth-A": [], "auth-C": [] }, { "auth-B": [] }, { "auth-D": [] }] }
 ```
+
 For the above OAS configuration, Tyk looks at only the first `security` object:
 
 ```yaml
-{      
-  "auth-A": [],       
-  "auth-C": []   
+{
+  "auth-A": [],
+  "auth-C": []
  },
- ```
- These authentication mechanisms are then enabled for Tyk as follows:
-
- ```yaml
- {
-  ...
-  "x-tyk-api-gateway": {
-    ...
-    "server": {
-      "authentication": {
-        "enabled": true,
-        "baseIdentityProvider": "auth_token",
-        "securitySchemes": {
-          "auth-A": {
-            "enabled": true,
-            ...
-          },
-          "auth-C": {
-            "enabled": true,
-            ...
-          }
-        }
-      }
-    }
-  }
-}
 ```
+
+These authentication mechanisms are then enabled for Tyk as follows:
+
+```yaml
+{ ? ...
+    "x-tyk-api-gateway"
+  : { ? ...
+        "server"
+      : {
+          "authentication":
+            {
+              "enabled": true,
+              "baseIdentityProvider": "auth_token",
+              "securitySchemes": { "auth-A": { "enabled": true, ... }, "auth-C": { "enabled": true, ... } },
+            },
+        } } }
+```
+
 Please observe the presence of the `baseIdentityProvider` field, as this is required when enabling multiple authentication mechanisms at the same time. See [Multiple Auth documentation]({{< ref "/content/basic-config-and-security/security/authentication-authorization/multiple-auth.md" >}}) for more details.
 
 ### Other Authentication mechanisms
 
-For now, the only authentication mechanisms enabled with OAS API Definition configuration are: 
+For now, the only authentication mechanisms enabled with OAS API Definition configuration are:
+
 - Authentication Token
 - Basic Authentication
 - JSON Web Token (JWT)

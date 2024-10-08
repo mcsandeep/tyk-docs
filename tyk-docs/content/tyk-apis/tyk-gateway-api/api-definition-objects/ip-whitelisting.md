@@ -9,9 +9,9 @@ weight: 5
 
 ## IP Allowlist (Middleware)
 
-* `enable_ip_whitelisting`: Enables IPs {{<fn>}}allowlist{{</fn>}}. When set to `true`, only requests coming from the explicit list of IP addresses defined in (`allowed_ips`) are allowed through.
+- `enable_ip_whitelisting`: Enables IPs {{<fn>}}allowlist{{</fn>}}. When set to `true`, only requests coming from the explicit list of IP addresses defined in (`allowed_ips`) are allowed through.
 
-* `allowed_ips`: A list of strings that defines the IP addresses (in CIDR notation) that are allowed access via Tyk. This list is explicit and wildcards are currently not supported. e.g.:
+- `allowed_ips`: A list of strings that defines the IP addresses (in CIDR notation) that are allowed access via Tyk. This list is explicit and wildcards are currently not supported. e.g.:
 
 ```json
 {

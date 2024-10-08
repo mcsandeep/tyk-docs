@@ -22,6 +22,7 @@ The Enterprise Developer portal enables admin users to customize the navigation 
 {{< img src="img/dashboard/portal-management/enterprise-portal/top-nav-menu.png" alt="The navigation menu" >}}
 
 Each menu item may:
+
 - lead to a specific page or URL:
   {{< img src="img/dashboard/portal-management/enterprise-portal/regular-menu-item.png" alt="Regular menu item" >}}
 - show a dropdown list with possible navigational options:
@@ -40,16 +41,18 @@ The management of the menu items is done from the **Menus** section of the Devel
    {{< img src="img/dashboard/portal-management/enterprise-portal/select-a-menu.png" alt="Select a menu" >}}
 
 3. Click on a **menu item** to modify it. You can change the following items:
-    1. **Title** that will be exposed to developers.
-    2. **Path** where developers will be redirected by clicking on that menu item.
-    3. **Children** items that will be exposed in the dropdown list that will appear when hovering mouse over the menu item.
-    4. To make the changes effectively, you need to save the changes by clicking on the **Save changes** button.
-       {{< img src="img/dashboard/portal-management/enterprise-portal/menu-item.png" alt="Modify a menu item" >}}
+
+   1. **Title** that will be exposed to developers.
+   2. **Path** where developers will be redirected by clicking on that menu item.
+   3. **Children** items that will be exposed in the dropdown list that will appear when hovering mouse over the menu item.
+   4. To make the changes effectively, you need to save the changes by clicking on the **Save changes** button.
+      {{< img src="img/dashboard/portal-management/enterprise-portal/menu-item.png" alt="Modify a menu item" >}}
 
 4. To remove a menu item from the menu click on the **bin** icon and click on the **Save changes** button.
    {{< img src="img/dashboard/portal-management/enterprise-portal/delete-a-menu-item.png" alt="Delete a menu item" >}}
 
 ## Create new menu items
+
 To create a new menu item, you need to:
 
 1. Click on the **Add Menu Item** button.

@@ -8,7 +8,7 @@ menu:
     parent: "GraphQL"
 weight: 10
 aliases:
-    - /graphql/websockets/
+  - /graphql/websockets/
 ---
 
 Tyk supports GraphQL via WebSockets using the protocols _graphql-transport-ws_ or _graphql-ws_ between client and Tyk Gateway.
@@ -51,10 +51,11 @@ For Subscriptions, the Tyk Gateway will respond with a stream of `next` messages
 **Note**
 
 Be aware of those behaviors:
-  - If no `connection_init` message is sent after 15 seconds after opening, then the connection will be closed.
-  - If a duplicated ID is used, the connection will be closed.
-  - If an invalid message type is sent, the connection will be closed.
-{{< /note >}}
+
+- If no `connection_init` message is sent after 15 seconds after opening, then the connection will be closed.
+- If a duplicated ID is used, the connection will be closed.
+- If an invalid message type is sent, the connection will be closed.
+  {{< /note >}}
 
 ### Examples
 
@@ -75,9 +76,11 @@ Be aware of those behaviors:
 ```
 {"id":"3","type":"subscribe","payload":{"query":"subscription { countdown(from:10) }" }}
 ```
+
 ```
 {"id":"3","type":"complete"}
 ```
+
 {{< tab_end >}}
 {{< tab_start "graphql-ws" >}}
 In order to upgrade the HTTP connection for a GraphQL API to WebSockets by using the _graphql-ws_ protocol, the request should contain following headers:
@@ -123,9 +126,11 @@ For Subscriptions, the Tyk Gateway will respond with a stream of `data` messages
 ```
 {"id":"3","type":"start","payload":{"query":"subscription { countdown(from:10) }" }}
 ```
+
 ```
 {"id":"3","type":"stop"}
 ```
+
 {{< tab_end >}}
 {{< tabs_end >}}
 

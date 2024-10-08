@@ -1,7 +1,7 @@
 ---
 title: Msgpack
 description: Explains an overview of msgpack processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "msgpack", "MessagePack" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "msgpack", "MessagePack"]
 ---
 
 Converts messages to or from the [MessagePack](https://msgpack.org/) format.
@@ -19,10 +19,9 @@ msgpack:
 
 The operation to perform on messages.
 
+Type: `string`
 
-Type: `string`  
-
-| Option | Summary |
-|---|---|
+| Option    | Summary                                     |
+| --------- | ------------------------------------------- |
 | from_json | Convert JSON messages to MessagePack format |
-| to_json | Convert MessagePack messages to JSON format |
+| to_json   | Convert MessagePack messages to JSON format |

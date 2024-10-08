@@ -12,6 +12,7 @@ This page provides some sample manifests for creating different types of HTTP pr
 This example creates a basic API definition that routes requests to listen path `/httpbin` to target URL `http://httpbin.org`.
 
 Traffic routing can be configured under `spec.proxy`:
+
 - `target_url` defines the upstream address (or target URL) to which requests should be proxied.
 - `listen_path` is the base path on Tyk to which requests for this API should be sent. Tyk listens out for any requests coming into the host at this path, on the port that Tyk is configured to run on and processes these accordingly. For example, `/api/` or `/` or `/httpbin/`.
 - `strip_listen_path` removes the inbound listen path (as accessed by the client) when generating the outbound request for the upstream service. For example, consider the scenario where the Tyk base address is `http://acme.com/`, the listen path is `example/` and the upstream URL is `http://httpbin.org/`: If the client application sends a request to `http://acme.com/example/get` then the request will be proxied to `http://httpbin.org/example/get`
@@ -65,7 +66,7 @@ kind: Issuer
 metadata:
   name: selfsigned-issuer
 spec:
-  selfSigned: { }
+  selfSigned: {}
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate

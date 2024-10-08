@@ -2,7 +2,17 @@
 title: Using the Request Size Limit middleware with Tyk Classic APIs
 date: 2024-03-04
 description: "Using the Request Size Limit middleware with Tyk Classic APIs"
-tags: ["request size limit", "size limit", "security", "middleware", "per-endpoint", "per-API", "Tyk Classic", "Tyk Classic API"]
+tags:
+  [
+    "request size limit",
+    "size limit",
+    "security",
+    "middleware",
+    "per-endpoint",
+    "per-API",
+    "Tyk Classic",
+    "Tyk Classic API",
+  ]
 ---
 
 The [request size limit]({{< ref "basic-config-and-security/control-limit-traffic/request-size-limits" >}}) middleware enables you to apply limits to the size of requests made to your HTTP APIs. You might use this feature to protect your Tyk Gateway or upstream services from excessive memory usage or brute force attacks.
@@ -16,6 +26,7 @@ If you're using Tyk Operator then check out the [configuring the middleware in T
 ## Configuring the middleware in the Tyk Classic API Definition {#tyk-classic}
 
 There are three different levels of granularity that can be used when configuring a request size limit.
+
 - [system-wide]({{< ref "basic-config-and-security/control-limit-traffic/request-size-limits#applying-a-system-wide-size-limit" >}}): affecting all APIs deployed on the gateway
 - [API-level]({{< ref "product-stack/tyk-gateway/middleware/request-size-limit-tyk-classic#applying-a-size-limit-for-a-specific-api" >}}): affecting all endpoints for an API
 - [endpoint-level]({{< ref "product-stack/tyk-gateway/middleware/request-size-limit-tyk-classic#applying-a-size-limit-for-a-specific-endpoint" >}}): affecting a single API endpoint
@@ -23,8 +34,9 @@ There are three different levels of granularity that can be used when configurin
 ### Applying a size limit for a specific API {#tyk-classic-api}
 
 You can configure a request size limit (in bytes) to an API by configuring the `global_size_limit` within the `version` element of the API Definition, for example:
+
 ```
-"global_size_limit": 2500 
+"global_size_limit": 2500
 ```
 
 A value of zero (default) means that no maximum is set and the API-level size limit check will not be performed.
@@ -38,12 +50,14 @@ The most granular control over request sizes is provided by the endpoint-level c
 To enable the middleware you must add a new `size_limits` object to the `extended_paths` section of your API definition.
 
 The `size_limits` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `size_limit`: the maximum size permitted for a request to the endpoint (in bytes)
 
 For example:
-```.json  {linenos=true, linenostart=1}
+
+```.json {linenos=true, linenostart=1}
 {
     "extended_paths": {
         "size_limits": [
@@ -73,15 +87,15 @@ From the **Endpoint Designer** add an endpoint that matches the path for which y
 #### Step 2: Configure the middleware
 
 Set the request size limit, in bytes.
-    
+
 {{< img src="/img/2.10/request_size_settings.png" alt="Configure limit" >}}
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The Tyk Classic API Designer does not provide an option to configure `global_size_limit`, but you can do this from the Raw Definition editor.
 {{< /note >}}
@@ -93,6 +107,7 @@ The process for configuring a request size limit is similar to that defined in s
 ### Applying a size limit for a specific API {#tyk-operator-api}
 
 <!-- Need an example -->
+
 The process for configuring the request size_limits middleware for a specific API is similar to that explained in [applying a size limit for a specific API](#tyk-classic-api).
 
 You can configure a request size limit (in bytes) for all endpoints within an API by configuring the `global_size_limit` within the `version` element of the API Definition, for example:

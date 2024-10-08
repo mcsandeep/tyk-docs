@@ -4,8 +4,8 @@ title: Create Custom Authentication Plugin with NodeJS
 menu:
   main:
     parent: "gRPC"
-weight: 3 
-aliases: 
+weight: 3
+aliases:
   - "/plugins/rich-plugins/grpc/custom-auth-nodejs"
 ---
 
@@ -20,7 +20,7 @@ The sample code that we'll use implements a very simple authentication layer usi
 - Tyk Gateway: This can be installed using standard package management tools like Yum or APT, or from source code. See [here](https://tyk.io/docs/get-started/with-tyk-on-premise/installation/) for more installation options.
 - The Tyk CLI utility, which is bundled with our RPM and DEB packages, and can be installed separately from [https://github.com/TykTechnologies/tyk-cli](https://github.com/TykTechnologies/tyk-cli)
 - In Tyk 2.8 and upwards the Tyk CLI is part of the gateway binary, you can find more information by running "tyk help bundle".
-- NodeJS v6.x.x [https://nodejs.org/en/download/](https://nodejs.org/en/download/) 
+- NodeJS v6.x.x [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
 ## Create the Plugin
 
@@ -136,7 +136,6 @@ main = function() {
 main()
 ```
 
-
 To run the gRPC server run:
 
 ```bash
@@ -144,7 +143,6 @@ node main.js
 ```
 
 The gRPC server will listen on port `5555` (see the `listenAddr` constant). In the next steps we'll setup the plugin bundle and modify Tyk to connect to our gRPC server.
-
 
 ## Bundle the Plugin
 
@@ -167,7 +165,7 @@ We need to create a manifest file within the `tyk-plugin` directory. This file c
 - The `custom_middleware` block contains the middleware settings like the plugin driver we want to use (`driver`) and the hooks that our plugin will expose. We use the `auth_check` hook for this tutorial. For other hooks see [here]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#coprocess-dispatcher---hooks" >}}).
 - The `name` field references the name of the function that we implement in our plugin code - `MyAuthMiddleware`. The implemented dispatcher uses a switch statement to handle this hook, and calls the `authMiddleware` function in `main.js`.
 - The `path` field is the path to the middleware component.
-- The `raw_body_only` field 
+- The `raw_body_only` field
 - The `require_session` field, if set to `true` gives you access to the session object. It will be supplied as a session variable to your middleware processor function
 
 To bundle our plugin run the following command in the `tyk-plugin` directory. Check your tyk-cli install path first:
@@ -177,11 +175,12 @@ To bundle our plugin run the following command in the `tyk-plugin` directory. Ch
 ```
 
 For Tyk 2.8 use:
+
 ```bash
 /opt/tyk-gateway/bin/tyk bundle build -y
 ```
 
-A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial. 
+A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial.
 
 For more information on the Tyk CLI tool, see [here]({{< ref "plugins/how-to-serve-plugins/plugin-bundles#using-the-bundler-tool" >}}).
 
@@ -193,29 +192,13 @@ To publish the plugin, copy or upload `bundle.zip` to a local web server like Ng
 
 {{< include "grpc-include" >}}
 
-
 ## What's Next?
 
 In this tutorial we learned how Tyk gRPC plugins work. For a production-level setup we suggest the following:
 
 - Configure an appropriate web server and path to serve your plugin bundles.
 
-
-
-
-
-
-
-
-
-
-
 [1]: https://tyk.io/docs/get-started/with-tyk-on-premise/installation/
 [2]: https://github.com/TykTechnologies/tyk-cli
 [3]: /img/dashboard/system-management/plugin_options.png
 [4]: /img/dashboard/system-management/plugin_auth_mode.png
-
-
-
-
-

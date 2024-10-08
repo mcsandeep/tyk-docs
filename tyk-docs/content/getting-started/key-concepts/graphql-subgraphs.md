@@ -8,6 +8,7 @@ menu:
     parent: "GraphQL Federation Overview"
 weight: 2
 ---
+
 #### What is an extension orphan?
 
 An extension orphan is an unresolved extension of a type after federation has completed. This will cause federation to fail and produce an error.

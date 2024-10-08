@@ -14,18 +14,18 @@ Please note that upgrade order is as explained in the upgrade [overview]({{< ref
 </br>
 
 {{< note success >}}
-**Upgrade instructions for *Tyk Dashboard*, *Tyk Pump* and *MDCB***
+**Upgrade instructions for _Tyk Dashboard_, _Tyk Pump_ and _MDCB_**
 
-The instruction below refer to upgrading *Tyk Gateway*. You can follow the same steps for *Tyk Dashboard*, *Tyk Pump*
-and *MDCB*.
+The instruction below refer to upgrading _Tyk Gateway_. You can follow the same steps for _Tyk Dashboard_, _Tyk Pump_
+and _MDCB_.
 
 {{< /note >}}
 
-
 ## Upgrade Tyk Gateway
+
 1. Backup your gateway config file (`tyk.conf` or the name you chose for it), `.env` and `values.yaml`. Even if
-you’re using the environment variables from the `values.yaml` to define your configuration, there still might be a config
-file used and loaded with field values you relay on.
+   you’re using the environment variables from the `values.yaml` to define your configuration, there still might be a config
+   file used and loaded with field values you relay on.
 2. Backup your `.env` and `values.yaml`
 3. Update the image version in your values.yaml
    <br>

@@ -6,7 +6,7 @@ description: "How to configure key hashing in Tyk"
 menu:
   main:
     parent: "Security"
-weight: 8 
+weight: 8
 ---
 
 ## Introduction
@@ -25,10 +25,10 @@ See the [Gateway Configuration Options]({{< ref "tyk-oss-gateway/configuration" 
 
 To set a custom algorithm, you need to set `hash_key_function` in your `tyk.conf` to one of the following options:
 
-* `murmur32`
-* `murmur64`
-* `murmur128`
-* `sha256`
+- `murmur32`
+- `murmur64`
+- `murmur128`
+- `sha256`
 
 MurMur non-cryptographic hash functions are considered as the industry fastest and conflict-prone algorithms up to date, which gives a nice balance between security and performance. With this change you now you can choose the different hash length, depending on your organization security policies. We have also introduced a new `sha256` cryptographic key hashing algorithm, for cases when you are willing to sacrifice some performance for additional security.
 
@@ -40,22 +40,21 @@ Changing hashing algorithm is entirely backward compatible. All your existing ke
 
 A hashed installation imposes some constraints on how Tyk is used:
 
-*   Listing tokens requires setting `enable_hashed_keys_listing` to `true` in your `tyk.conf` file
-*   Tokens appear in Analytics in their hashed form
+- Listing tokens requires setting `enable_hashed_keys_listing` to `true` in your `tyk.conf` file
+- Tokens appear in Analytics in their hashed form
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 Switching from a hashed installation to non-hashed means all existing tokens cannot be used (they will not be correctly validated).
 {{< /warning >}}
-
 
 ### Using Hashed Keys Endpoints
 
 - endpoints `POST /keys/create`, `POST /keys` and `POST /keys/{keyName}` also return the field `"key_hash"` for future use
 - endpoint `GET /keys` get all (or per API) key hashes. You can disable this endpoint by using the new `tyk.conf` setting `enable_hashed_keys_listing` (set to `false` by default)
-- endpoint `GET /keys/{keyName}` was modified to be able to get a key by hash. You just need provide the key hash as a `keyName` 
-and call it with the new optional query parameter `hashed=true`. So the new format is `GET /keys/{keyName}?hashed=true"`
+- endpoint `GET /keys/{keyName}` was modified to be able to get a key by hash. You just need provide the key hash as a `keyName`
+  and call it with the new optional query parameter `hashed=true`. So the new format is `GET /keys/{keyName}?hashed=true"`
 - we also have the same optional parameter for endpoint `DELETE /keys/{keyName}?hashed=true` and call it with the optional query parameter `hashed=true`. So the format is `GET /keys/{keyName}?hashed=true"`
 - The same optional parameter is available for the `DELETE /keys/{keyName}?hashed=true` endpoint
 

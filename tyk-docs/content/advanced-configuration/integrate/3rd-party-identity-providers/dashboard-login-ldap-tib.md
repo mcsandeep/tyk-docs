@@ -27,9 +27,9 @@ The Tyk Identity Broker (TIB) is an open-source project which can be used to int
 2. TIB makes request against IDP using the credentials provided
 3. TIB interprets the IDP response:
 
-   * If successful then TIB creates a user session in the Dashboard and redirects the user to the Dashboard
+   - If successful then TIB creates a user session in the Dashboard and redirects the user to the Dashboard
 
-   * If unsuccessful, TIB redirects the user to a failure URL
+   - If unsuccessful, TIB redirects the user to a failure URL
 
 ## Step-by-step implementation guide
 
@@ -73,13 +73,13 @@ There are two configuration files for TIB:
 
 Out of the box you don't need to change much, but there are several attributes you should check to make sure they are correct for your environment:
 
-* `Secret`: The REST API secret used when configuring TIB remotely
-* `TykAPISettings.GatewayConfig.Endpoint`: The URL through which TIB can communicate with your Tyk Gateway
-* `TykAPISettings.GatewayConfig.Port`: The port through which TIB can communicate with your Tyk Gateway
-* `TykAPISettings.GatewayConfig.AdminSecret`: The secret required for TIB to communicate with your Tyk Gateway REST API - must match the `secret` property in your Gateway's `tyk.conf`
-* `TykAPISettings.DashboardConfig.Endpoint`: The URL through which TIB can communicate with your Tyk Dashboard
-* `TykAPISettings.DashboardConfig.Port`: The port through which TIB can communicate with your Tyk Dashboard
-* `TykAPISettings.DashboardConfig.AdminSecret`: The secret required for TIB to communicate with your Tyk Dashboard Admin REST API - must match the `admin_secret` property in your Dashboard's `tyk_analytics.conf`
+- `Secret`: The REST API secret used when configuring TIB remotely
+- `TykAPISettings.GatewayConfig.Endpoint`: The URL through which TIB can communicate with your Tyk Gateway
+- `TykAPISettings.GatewayConfig.Port`: The port through which TIB can communicate with your Tyk Gateway
+- `TykAPISettings.GatewayConfig.AdminSecret`: The secret required for TIB to communicate with your Tyk Gateway REST API - must match the `secret` property in your Gateway's `tyk.conf`
+- `TykAPISettings.DashboardConfig.Endpoint`: The URL through which TIB can communicate with your Tyk Dashboard
+- `TykAPISettings.DashboardConfig.Port`: The port through which TIB can communicate with your Tyk Dashboard
+- `TykAPISettings.DashboardConfig.AdminSecret`: The secret required for TIB to communicate with your Tyk Dashboard Admin REST API - must match the `admin_secret` property in your Dashboard's `tyk_analytics.conf`
 
 The `tib.conf` for this example is as follows (yours might require different values):
 
@@ -126,14 +126,14 @@ TIB ships with a default `profiles.json` file which contains many example config
 
 The key attributes for LDAP profile are:
 
-* `ID`: The ID by which we will activate the profile by calling the appropriate TIB endpoint
-* `OrgId`: The organization id which the profile is connected to - make sure this is the correct id for your organization (see the [Dashboard Admin API documentation]({{< ref "dashboard-admin-api/organisations" >}}) for details on how to retrieve this)
-* `IdentityHandlerConfig.DashboardCredential`: The Dashboard API Access credential which is used as authorization header
-* `ProviderConfig.FailureRedirect`: The URL which TIB will redirect to if the authentication fails
-* `ProviderConfig.LDAPPort`: The port through which TIB can communicate with your LDAP server
-* `ProviderConfig.LDAPServer`: The URL through which TIB can communicate with your LDAP server
-* `ProviderConfig.LDAPUserDN`: The distinguished name which TIB will use to identify the user - this should be updated to match your LDAP installation and must retain the `*USERNAME*` token as this is replaced by the actual username at runtime
-* `ReturnURL`: The URL which TIB will redirect to if the authentication succeeds - this should be the `/tap` endpoint of your Tyk Dashboard
+- `ID`: The ID by which we will activate the profile by calling the appropriate TIB endpoint
+- `OrgId`: The organization id which the profile is connected to - make sure this is the correct id for your organization (see the [Dashboard Admin API documentation]({{< ref "dashboard-admin-api/organisations" >}}) for details on how to retrieve this)
+- `IdentityHandlerConfig.DashboardCredential`: The Dashboard API Access credential which is used as authorization header
+- `ProviderConfig.FailureRedirect`: The URL which TIB will redirect to if the authentication fails
+- `ProviderConfig.LDAPPort`: The port through which TIB can communicate with your LDAP server
+- `ProviderConfig.LDAPServer`: The URL through which TIB can communicate with your LDAP server
+- `ProviderConfig.LDAPUserDN`: The distinguished name which TIB will use to identify the user - this should be updated to match your LDAP installation and must retain the `*USERNAME*` token as this is replaced by the actual username at runtime
+- `ReturnURL`: The URL which TIB will redirect to if the authentication succeeds - this should be the `/tap` endpoint of your Tyk Dashboard
 
 The `profiles.json` for this example is as follows (again, update values for your environment):
 
@@ -225,11 +225,11 @@ Please make sure you are using `POST` method in the form, to avoid browser cachi
 
 The form action `http://my-tyk-instance.com:3010/auth/1/ldap` is the TIB endpoint which will start the authentication process. The URL can be broken down as follows:
 
-* `http://my-tyk-instance.com`: The method and hostname used to connect to TIB - you should use HTTPS to prevent confidential data from being exposed
-* `3010`: The default port for TIB
-* `auth`: The special TIB endpoint which accepts authentication requests
-* `1`: The number of the profile which we are using - matches against the `ID` property of the profile in `profiles.json`
-* `ldap`: We need to add a string to the end of the request, so we have used `ldap` here
+- `http://my-tyk-instance.com`: The method and hostname used to connect to TIB - you should use HTTPS to prevent confidential data from being exposed
+- `3010`: The default port for TIB
+- `auth`: The special TIB endpoint which accepts authentication requests
+- `1`: The number of the profile which we are using - matches against the `ID` property of the profile in `profiles.json`
+- `ldap`: We need to add a string to the end of the request, so we have used `ldap` here
 
 ### 7. Update the Dashboard config
 

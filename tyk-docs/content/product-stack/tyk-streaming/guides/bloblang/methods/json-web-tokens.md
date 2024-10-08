@@ -1,7 +1,7 @@
 ---
 title: JSON Web Tokens Methods
 description: Explains Bloblang Json Web Token methods
-tags: [ "Tyk Streams", "Bloblang", "JSON Web Tokens", "JWT", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "JSON Web Tokens", "JWT", "Methods"]
 ---
 
 JSON Web Tokens (JWT) are a popular method for securely transmitting information between parties as a JSON object. They are compact, self-contained, and typically used for authentication and information exchange. This document delves into the methods available for parsing and signing JWTs using various algorithms through Bloblang, a powerful and flexible language for working with structured data.
@@ -12,10 +12,9 @@ Parses a claims object from a JWT string encoded with ES256. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The ES256 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The ES256 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_es256("""-----BEGIN PUBLIC KEY-----
@@ -33,10 +32,9 @@ Parses a claims object from a JWT string encoded with ES384. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The ES384 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The ES384 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_es384("""-----BEGIN PUBLIC KEY-----
@@ -55,10 +53,9 @@ Parses a claims object from a JWT string encoded with ES512. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The ES512 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The ES512 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_es512("""-----BEGIN PUBLIC KEY-----
@@ -78,10 +75,9 @@ Parses a claims object from a JWT string encoded with HS256. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The HS256 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The HS256 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_hs256("""dont-tell-anyone""")
@@ -96,10 +92,9 @@ Parses a claims object from a JWT string encoded with HS384. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The HS384 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The HS384 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_hs384("""dont-tell-anyone""")
@@ -114,10 +109,9 @@ Parses a claims object from a JWT string encoded with HS512. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The HS512 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The HS512 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_hs512("""dont-tell-anyone""")
@@ -132,13 +126,11 @@ Parses a claims object from a JWT string encoded with RS256. This method does no
 
 Introduced in version v4.20.0.
 
-
 #### Parameters
 
-**signing_secret** &lt;string&gt; The RS256 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The RS256 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_rs256("""-----BEGIN PUBLIC KEY-----
@@ -161,10 +153,9 @@ Parses a claims object from a JWT string encoded with RS384. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The RS384 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The RS384 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_rs384("""-----BEGIN PUBLIC KEY-----
@@ -187,10 +178,9 @@ Parses a claims object from a JWT string encoded with RS512. This method does no
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The RS512 secret that was used for signing the token.  
+**signing_secret** &lt;string&gt; The RS512 secret that was used for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.claims = this.signed.parse_jwt_rs512("""-----BEGIN PUBLIC KEY-----
@@ -213,7 +203,7 @@ Hash and sign an object representing JSON Web Token (JWT) claims using ES256.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
 
@@ -232,7 +222,7 @@ Hash and sign an object representing JSON Web Token (JWT) claims using ES384.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
 
@@ -251,10 +241,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using ES512.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_es512("""-----BEGIN EC PRIVATE KEY-----
@@ -269,13 +258,11 @@ root.signed = this.claims.sign_jwt_es512("""-----BEGIN EC PRIVATE KEY-----
 
 Hash and sign an object representing JSON Web Token (JWT) claims using HS256.
 
-
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_hs256("""dont-tell-anyone""")
@@ -290,10 +277,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using HS384.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_hs384("""dont-tell-anyone""")
@@ -308,10 +294,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using HS512.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_hs512("""dont-tell-anyone""")
@@ -326,10 +311,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using RS256.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_rs256("""-----BEGIN RSA PRIVATE KEY-----
@@ -346,10 +330,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using RS384.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_rs384("""-----BEGIN RSA PRIVATE KEY-----
@@ -366,10 +349,9 @@ Hash and sign an object representing JSON Web Token (JWT) claims using RS512.
 
 #### Parameters
 
-**signing_secret** &lt;string&gt; The secret to use for signing the token.  
+**signing_secret** &lt;string&gt; The secret to use for signing the token.
 
 #### Examples
-
 
 ```coffee
 root.signed = this.claims.sign_jwt_rs512("""-----BEGIN RSA PRIVATE KEY-----

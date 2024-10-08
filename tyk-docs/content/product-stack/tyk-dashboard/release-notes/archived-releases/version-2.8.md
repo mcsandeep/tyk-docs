@@ -21,8 +21,8 @@ See [Debugging Tab]({{< ref "advanced-configuration/transform-traffic/endpoint-d
 
 The Developer portal now fully supports exposing oAuth2 APIs:
 
-*  Developers can register their oAuth clients and see analytics
-*  Administrators can see list of oAuth clients from a developer screen
+- Developers can register their oAuth clients and see analytics
+- Administrators can see list of oAuth clients from a developer screen
 
 ---
 
@@ -30,24 +30,23 @@ The Developer portal now fully supports exposing oAuth2 APIs:
 
 NOTE: Currently only available with >2 node Dashboard license.
 
-You can now create users with the same email address in different organizations. Users will then be able to select an organization 
-when logging in, and can easily switch between organizations via the navigation menu. To enable set 
+You can now create users with the same email address in different organizations. Users will then be able to select an organization
+when logging in, and can easily switch between organizations via the navigation menu. To enable set
 `"enable_multi_org_users": true`.
 
 ---
 
 ## Developer management improvements
 
-* You can now manually create developer subscriptions from the developer screen.
-* We've added a quick way to change a subscription policy and reset a quota
-* All actions on the developer screen now only require developer permissions 
+- You can now manually create developer subscriptions from the developer screen.
+- We've added a quick way to change a subscription policy and reset a quota
+- All actions on the developer screen now only require developer permissions
 
 ## Dashboard Audit Log improvements
 
 There is a [new section]({{< ref "product-stack/tyk-dashboard/advanced-configurations/analytics/audit-log" >}}) in the Tyk Dashboard config file where you can specify parameters for the audit log (containing audit records for all requests made to all endpoints under the `/api` route).
 
 ---
-
 
 ## Detailed changelog
 

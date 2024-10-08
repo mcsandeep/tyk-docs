@@ -16,12 +16,15 @@ Observability is a key concept in modern software systems that enables teams to 
 This section will explore how Tyk supports and enhances observability capabilities, enabling you to gain valuable insights into your systems and applications.
 
 ## Metrics
+
 Tyk components have been instrumented to send metrics to StatsD and NewRelic servers. Instructions on their use are provided [here]({{< ref "basic-config-and-security/report-monitor-trigger-events/instrumentation" >}}).
 
 ## Logs
+
 Tyk components generate system logs that record significant activity, including warnings and errors. Tyk can send these logs to 3rd party tools including Graylog and Logstash. For details on how to configure system logs see [here]({{< ref "log-data" >}}).
 
 ## Distributed Tracing
+
 Distributed tracing is a monitoring and diagnostic technique used in software systems to track and visualize the path of requests as they traverse multiple microservices or components. In the context of an API gateway, distributed tracing helps capture and analyze the journey of API requests across various services, providing valuable insights into performance bottlenecks, latency issues and the overall health of the system.
 
 Historically Tyk has supported [OpenTracing]({{< ref "product-stack/tyk-gateway/advanced-configurations/distributed-tracing/open-tracing/open-tracing-overview" >}}) but now recommends the use of [OpenTelemetry]({{< ref "product-stack/tyk-gateway/advanced-configurations/distributed-tracing/open-telemetry/open-telemetry-overview" >}}) for distributed tracing.
@@ -30,7 +33,7 @@ Support for OpenTelemetry has been available since Tyk 5.2. If you have any comm
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Support for OpenTracing is now deprecated and we recommend that users migrate to OpenTelemetry.
 {{< /note >}}

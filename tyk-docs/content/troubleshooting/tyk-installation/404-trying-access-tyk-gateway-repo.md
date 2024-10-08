@@ -4,7 +4,7 @@ title: 404 when trying to access Tyk Gateway Repo
 menu:
   main:
     parent: "Tyk Installation"
-weight: 5 
+weight: 5
 ---
 
 ### Description
@@ -19,5 +19,4 @@ There may be a number of reasons as to why this might happen. The Github site, w
 
 Users can browse through Tyk Gateway packages on [packagecloud.io][1] instead.
 
- [1]: https://packagecloud.io/tyk/tyk-gateway
-
+[1]: https://packagecloud.io/tyk/tyk-gateway

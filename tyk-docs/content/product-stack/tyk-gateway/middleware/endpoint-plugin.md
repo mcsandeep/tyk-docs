@@ -27,7 +27,7 @@ With a custom plugin you can implement complex dynamic routing of requests made 
 
 ## How the per-endpoint custom plugin works
 
-Tyk Gateway is written using Golang. This has a flexible plugin architecture which allows for custom code to be compiled separately from the gateway and then invoked natively by the gateway. When registering a custom Go plugin in the API definition, you must provide the location of the compiled plugin and also the name of the function to be invoked within that package. 
+Tyk Gateway is written using Golang. This has a flexible plugin architecture which allows for custom code to be compiled separately from the gateway and then invoked natively by the gateway. When registering a custom Go plugin in the API definition, you must provide the location of the compiled plugin and also the name of the function to be invoked within that package.
 
 Go plugins must therefore be [compiled]({{< ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-compiler" >}}) and [loaded]({{< ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/loading-go-plugins" >}}) into the Gateway in order that the function named in the plugin configuration in the API definition can be located and executed at the appropriate stage in the request middleware processing chain.
 
@@ -42,5 +42,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Ignore Authentication middleware summary
   - The Per-Endpoint Custom Plugin is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Per-Endpoint Custom Plugin can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Per-Endpoint Custom Plugin can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

@@ -1,10 +1,11 @@
 ---
 title: Cache
 description: Cache Processor
-tags: ["Cache","Processors","Integration" ]
+tags: ["Cache", "Processors", "Integration"]
 ---
 
 <!-- TODO: add a link -->
+
 Performs operations against a cache resource for each message, allowing you to store or retrieve data within message payloads.
 
 ## Common
@@ -20,6 +21,7 @@ cache:
 ```
 
 ## Advanced
+
 ```yml
 # All config fields, showing default values
 label: ""
@@ -96,7 +98,7 @@ pipeline:
               resource: foocache
               operator: get
               key: '${! json("message.document_id") }'
-        result_map: 'root.message.document = this'
+        result_map: "root.message.document = this"
 
         # NOTE: If the data stored in the cache is not valid JSON then use
         # something like this instead:
@@ -105,22 +107,22 @@ pipeline:
 cache_resources:
   - label: foocache
     memcached:
-      addresses: [ "TODO:11211" ]
+      addresses: ["TODO:11211"]
 ```
 
 ## Fields
 
 ### resource
-<!-- TODO: add a link -->
-The cache resource to target with this processor.
 
+<!-- TODO: add a link -->
+
+The cache resource to target with this processor.
 
 Type: `string`
 
 ### operator
 
 The [operation](#operators) to perform with the cache.
-
 
 Type: `string`  
 Options: `set`, `add`, `get`, `delete`.
@@ -130,7 +132,6 @@ Options: `set`, `add`, `get`, `delete`.
 A key to use with the cache.
 This field supports interpolation functions.
 
-
 Type: `string`
 
 ### value
@@ -138,7 +139,6 @@ Type: `string`
 A value to use with the cache (when applicable).
 
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
-
 
 Type: `string`
 
@@ -148,8 +148,7 @@ The TTL of each individual item as a duration string. After this period an item 
 
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -181,5 +180,5 @@ can be detected with processor error handling.
 
 ### delete
 
-Delete a key and its contents from the cache.  If the key does not exist the
+Delete a key and its contents from the cache. If the key does not exist the
 action is a no-op and will not fail with an error.

@@ -14,17 +14,16 @@ aliases:
 The Tyk Pro Docker demo is our full [Self-Managed]({{< ref "/content/tyk-on-premises.md" >}}) solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed on your machine, which contains 5 containers: Tyk Gateway, Tyk Dashboard, Tyk Pump, Redis and MongoDB. This demo is great for proof of concept and demo purposes, but if you want to test performance, you will need to move each component to a separate machine.
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
-This demo is NOT designed for production use or performance testing. 
+This demo is NOT designed for production use or performance testing.
 {{< /warning >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You use this at your own risk. Tyk is not supported on the Windows platform. However you can test it as a proof of concept using our Pro Demo Docker installation.
 {{< /note >}}
-
 
 ## Prerequisites
 
@@ -51,10 +50,10 @@ You need to add the following to your Windows hosts file:
 ```
 
 ### Step Three - Configure file permissions
-In order to mount the files, you need to allow Docker engine has access to your Drive. 
-You can do that by going to the Docker settings, Shared Drives view, and manage the access. 
-If after all you will get issue regarding path permissions, you will need to create a separate user specifically for the docker according to this instructions https://github.com/docker/for-win/issues/3385#issuecomment-571267988
 
+In order to mount the files, you need to allow Docker engine has access to your Drive.
+You can do that by going to the Docker settings, Shared Drives view, and manage the access.
+If after all you will get issue regarding path permissions, you will need to create a separate user specifically for the docker according to this instructions https://github.com/docker/for-win/issues/3385#issuecomment-571267988
 
 ### Step Four - Add your Developer License
 
@@ -75,8 +74,9 @@ docker-compose up
 This will will download and setup the five Docker containers. This may take some time and will display all output.
 
 **NOTE**
-If you are getting issues related to errors when mounting files, you may need to modify 
+If you are getting issues related to errors when mounting files, you may need to modify
 `docker-compose.yml` file, and change configs paths from related to absolute, and from linux format to windows format, like this:
+
 ```
 volumes:
   - C:\Tyk\confs\tyk_analytics.conf:/opt/tyk-dashboard/tyk_analytics.conf
@@ -106,7 +106,7 @@ You need to enter the following:
 - **Re-enter** your user **Password**
 
 {{< note success >}}
-**Note**  
+**Note**
 
 For a password, we recommend a combination of alphanumeric characters, with both upper and lower case
 letters.

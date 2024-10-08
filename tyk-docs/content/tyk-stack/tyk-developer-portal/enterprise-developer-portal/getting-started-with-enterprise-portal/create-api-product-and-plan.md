@@ -48,7 +48,6 @@ To create one, assuming you have one or more APIs already created.
 7. To import the API Products into the Developer portal, from the Tyk Portal admin app, click **Synchronise**.
    {{< img src="img/dashboard/portal-management/enterprise-portal/portal-sync-with-dashboard.png" alt="Sync with the Tyk Pro" >}}
 
-
 ## Create and import plans from Tyk
 
 {{< youtube XYlaqy3UuNg >}}
@@ -60,8 +59,8 @@ To create a Plan for the developer portal, follow the same steps as for creating
    {{< img src="img/dashboard/portal-management/enterprise-portal/portal-add-policy.png" alt="Create a policy" >}}
 
 2. Select an API, it doesn’t matter which API you select since the purpose of this policy is simply just to control the allowance. However, selecting an API is a required field which means you need to select an API anyway.
-3.  Under **Global limits and Quota**, select **Enforce usage quota** and **Enforce rate limit**. Ensure **Disable rate-limiting** and **Unlimited requests** are **not** selected so you can set these limits.
-    {{< img src="img/dashboard/portal-management/enterprise-portal/portal-enforce-quota.png" alt="Enforce quota and rate limit" >}}
+3. Under **Global limits and Quota**, select **Enforce usage quota** and **Enforce rate limit**. Ensure **Disable rate-limiting** and **Unlimited requests** are **not** selected so you can set these limits.
+   {{< img src="img/dashboard/portal-management/enterprise-portal/portal-enforce-quota.png" alt="Enforce quota and rate limit" >}}
 
-4.  To import the plans into the Developer portal, from the Tyk Portal admin app, click **Synchronise**.
-    {{< img src="img/dashboard/portal-management/enterprise-portal/portal-sync-with-dashboard.png" alt="Sync with the Tyk Pro" >}}
+4. To import the plans into the Developer portal, from the Tyk Portal admin app, click **Synchronise**.
+   {{< img src="img/dashboard/portal-management/enterprise-portal/portal-sync-with-dashboard.png" alt="Sync with the Tyk Pro" >}}

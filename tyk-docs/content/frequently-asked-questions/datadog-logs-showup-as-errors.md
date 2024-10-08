@@ -4,7 +4,7 @@ title: All tyk container logs show up under the error status in Datadog logs
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 With Datadog you can view logs of all your Tyk components.

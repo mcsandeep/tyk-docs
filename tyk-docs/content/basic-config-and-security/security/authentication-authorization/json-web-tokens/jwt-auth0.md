@@ -10,14 +10,15 @@ weight: 2
 ---
 
 ## Overview
+
 This will walk you through securing your APIs with JWTs via Auth0. We also have the following video that will walk you through the process.
 
 {{< youtube jm4V7XzbrZw >}}
 
 ## Prerequisites
 
-* A free account with [Auth0](https://auth0.com/)
-* A Tyk Self-Managed or Cloud installation
+- A free account with [Auth0](https://auth0.com/)
+- A Tyk Self-Managed or Cloud installation
 
 ## Create an application in Auth0
 
@@ -34,9 +35,7 @@ This will walk you through securing your APIs with JWTs via Auth0. We also have 
 
 {{< img src="/img/auth0/auth0-test-curl.png" alt="Auth0 Test with cURL" width="800px" height="400" >}}
 
-
-
-   - From the cURL tab copy the token request command.
+- From the cURL tab copy the token request command.
 
 ```.curl
 curl --request POST \
@@ -53,6 +52,7 @@ curl --request POST \
   "token_type": "Bearer"
 }
 ```
+
 7. After creating your API, a new Auth0 Application will be created. Go to the Applications section to view it.
 
 {{< img src="/img/auth0/new-application.png" alt="New Auth0 Application" width="800px" height="400" >}}
@@ -71,20 +71,20 @@ curl --request POST \
 1. From the Authentication section, select **JSON Web Token (JWT)** as your authentication mode.
 2. Select RSA public Key as the JWT signing method.
 3. Enter your Auth0 Application Domain from Step 8 above to complete the `jwks_uri` end point `https://<<your-auth0-domain>>/.well-known/jwks.json`
-4. Copy your `jwks_uri` in to the **Public Key** field. 
+4. Copy your `jwks_uri` in to the **Public Key** field.
 
 {{< img src="/img/auth0/tyk-api-auth.png" alt="Tyk API Authentication" width="800px" height="400" >}}
 
 1. Add an **Identity Source** and **Policy Field Name**. The defaults of `sub` and `pol` are fine.
 2. Save your API.
 3. From the System Management section, select Policies
-4.  Click Add Policy
-5.  Select your Auth0 API
+4. Click Add Policy
+5. Select your Auth0 API
 
 {{< img src="/img/auth0/policy-access-rights.png" alt="Tyk Policy access rights" width="800px" height="400" >}}
 
-1.   You can keep the rest of the access rights at the defaults.
-2.   Click the **Configurations** tab and enter a **Policy Name** and a **Keys Expiry after** period.
+1.  You can keep the rest of the access rights at the defaults.
+2.  Click the **Configurations** tab and enter a **Policy Name** and a **Keys Expiry after** period.
 
 {{< img src="/img/auth0/policy-configuration.png" alt="Tyk Policy Configuration" width="400px" height="400" >}}
 
@@ -99,6 +99,7 @@ curl --request POST \
 ```.curl
 curl -X GET {API URL}  -H "Accept: application/json" -H "Authorization: Bearer {token}"
 ```
+
 18. If using the [httpbin upstream URL](https://httpbin.org/) as in the example Tyk API, you should see the HTML returned for the httpbin service in your terminal.
 19. If there is an error with the request, you will see the following error message.
 

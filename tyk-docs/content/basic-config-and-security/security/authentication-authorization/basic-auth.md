@@ -7,13 +7,12 @@ menu:
   main:
     parent: "Authentication & Authorization"
     identifier: security-basic-authentication
-weight: 5 
+weight: 5
 ---
 
 ## What is Basic Authentication?
 
 Basic Authentication is a standard authentication mechanism implemented by HTTP servers, clients and web browsers. This makes it an excellent access control method for smaller APIs.
-
 
 ### How does Basic Authentication work?
 
@@ -56,9 +55,9 @@ Authentication type is configured within your API Definition; this can be done v
 
 {{< img src="/img/2.10/basic_auth_settings.png" alt="Target Details: Basic Auth" >}}
 
-### Enable Basic Authentication in your file-based API Definition 
+### Enable Basic Authentication in your file-based API Definition
 
-To enable Basic Authentication, the API Definition file needs to be set up to allow basic authentication rather than expecting a standard access token; this is achieved  by setting `use_basic_auth` to true:
+To enable Basic Authentication, the API Definition file needs to be set up to allow basic authentication rather than expecting a standard access token; this is achieved by setting `use_basic_auth` to true:
 
 ```{.copyWrapper}
 {
@@ -81,7 +80,7 @@ When using Basic Authentication, the API key used to access the API is not gener
 
 ### Using Tyk Dashboard
 
-You can use the Tyk Dashboard to register a Basic Authentication key that can then be used to access your API. 
+You can use the Tyk Dashboard to register a Basic Authentication key that can then be used to access your API.
 
 When you select the API, you can see that Basic Authentication settings are automatically displayed in the Authentication tab:
 
@@ -99,7 +98,8 @@ $ curl http://localhost:8080/basicauth/get \
 $ curl http://myusername:mypassword@localhost:8080/basicauth/get
 <200 response from upstream>
 ```
-We have full tutorials to guide you to [create an API Key]({{< ref "getting-started/create-api-key" >}}) via the Dashboard. 
+
+We have full tutorials to guide you to [create an API Key]({{< ref "getting-started/create-api-key" >}}) via the Dashboard.
 
 ### Using the Tyk Gateway API
 
@@ -135,7 +135,7 @@ curl -X POST -H "x-tyk-authorization: 352d20fe67be67f6340b4c0605b044c3" \
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You use `POST` to create a new user and `PUT` to update an existing entry.
 
@@ -163,8 +163,8 @@ curl -X POST -H "Authorization: 907aed9f88514f175f1dccf8a921f741"
     "quota_renewal_rate": 60,
     "access_rights": {
       "{API-ID}": {
-        "api_id": "{API-ID}", 
-        "api_name": "{API-NAME}", 
+        "api_id": "{API-ID}",
+        "api_name": "{API-NAME}",
         "versions": [
             "Default"
         ]
@@ -180,7 +180,7 @@ curl -X POST -H "Authorization: 907aed9f88514f175f1dccf8a921f741"
 [See Basic Authentication via the Dashboard API]({{< ref "tyk-apis/tyk-dashboard-api/basic-authentication" >}})
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You use `POST` to create a new user and `PUT` to update an existing entry.
 

@@ -1,11 +1,11 @@
 ---
 title: "Customize the User model"
 date: 2024-02-29
-tags: ["Tyk Developer Portal","Enterprise Portal","Sign-up","User attributes","Metadata"]
+tags: ["Tyk Developer Portal", "Enterprise Portal", "Sign-up", "User attributes", "Metadata"]
 description: "Customize the User model and extend the data stored in the User profile"
 menu:
-    main:
-        parent: "Customize the portal"
+  main:
+    parent: "Customize the portal"
 weight: 3
 ---
 
@@ -33,7 +33,9 @@ To customize the User model by adding new data attributes to it, navigate to the
 {{< img src="img/dashboard/portal-management/enterprise-portal/navigate-to-user-attributes.png" alt="Navigate to the User's attributes" >}}
 
 ## Add attributes to the user model
+
 To add a new attribute to the user model, click on the **Add Custom attribute** button and then fill in properties of the new attribute:
+
 - **Attribute ID**: A string that consists of letters (a-zA-Z), numbers (0-9), dashes, and underscores. This is used to reference the attribute in the [Admin APIs]({{< ref "/product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) screen.
 - **Attribute Label**: The attribute's name that is displayed in the UI.
 - **Description**: Explains the intended usage of this attribute. It is also displayed in the UI.
@@ -61,24 +63,24 @@ For the purpose of this guide, make sure to tick the **Required** and **Show on 
 The new attribute will be added to the user sign-up form, once you have created a new custom attribute and saved changes to the user model by clicking on the **Save** button.
 {{< img src="img/dashboard/portal-management/enterprise-portal/custom-attribute-in-the-sign-up-form.png" alt="Customized user sign-up form" >}}
 
-
 ## Default attributes
+
 By default, the portal assigns the following attributes to credentials metadata in the gateway when provisioning API credentials:
-| Attribute       | Name of the credential metadata field | Description                                                                       |
+| Attribute | Name of the credential metadata field | Description |
 |-----------------|---------------------------------------|-----------------------------------------------------------------------------------|
-| Developer ID    | DeveloperID                           | ID of the developer who created the credential                                    |
-| Application ID  | ApplicationID                         | ID of the application to which it belongs                                         |
-| Organization ID | OrganizationID                        | ID of the organization to which the developer who created the application belongs |
-| Team IDs        | TeamIDs                               | Array of team IDs to which the developer, who created the application, belongs    |
+| Developer ID | DeveloperID | ID of the developer who created the credential |
+| Application ID | ApplicationID | ID of the application to which it belongs |
+| Organization ID | OrganizationID | ID of the organization to which the developer who created the application belongs |
+| Team IDs | TeamIDs | Array of team IDs to which the developer, who created the application, belongs |
 
 Additionally, it is possible to include other default attributes of the User model in the credential metadata fields.
 However, it is important to remember that metadata at the credential level will be accessible both in the gateway runtime and in the gateway database.
 Exercise caution when dealing with personally identifiable information (PII). Additional default attributes include:
-| Attribute         | Name of the credential metadata field | Description                                                                         |
+| Attribute | Name of the credential metadata field | Description |
 |-------------------|---------------------------------------|-------------------------------------------------------------------------------------|
-| First name        | First                                 | First name of the developer who created the credential                              |
-| Last name         | Last                                  | Last name of the developer who created the credential                               |
-| Email             | Email                                 | Email name of the developer who created the credential                              |
-| Role              | Role                                  | Array of team IDs to which the developer, who created the application, belongs      |
-| Organization name | Organization                          | Name of the organization to which the developer who created the application belongs |
-| Teams name        | TeamNames                             | Array of team names to which the developer, who created the application, belongs     |
+| First name | First | First name of the developer who created the credential |
+| Last name | Last | Last name of the developer who created the credential |
+| Email | Email | Email name of the developer who created the credential |
+| Role | Role | Array of team IDs to which the developer, who created the application, belongs |
+| Organization name | Organization | Name of the organization to which the developer who created the application belongs |
+| Teams name | TeamNames | Array of team names to which the developer, who created the application, belongs |

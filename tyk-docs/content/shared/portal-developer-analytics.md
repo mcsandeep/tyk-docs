@@ -7,10 +7,10 @@ You can get aggregate statistics for 1 key or all developer keys (need to specif
 
 API Endpoint: `/api/activity/keys/aggregate/#{keys}/#{from}/#{to}?p=-1&res=day`
 
-*  `keys` should be specified separated by ',' delimiter.
-*  `from` and `to` values must be in // format.
-*  resolution specified `res` attribute: 'day', 'hour' or 'month'
-*  `api_id` - policy id associated with developer portal API. If ommited return stats for all APIs.
+- `keys` should be specified separated by ',' delimiter.
+- `from` and `to` values must be in // format.
+- resolution specified `res` attribute: 'day', 'hour' or 'month'
+- `api_id` - policy id associated with developer portal API. If ommited return stats for all APIs.
 
 #### Request
 

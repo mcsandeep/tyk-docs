@@ -1,7 +1,7 @@
 ---
 title: Deployment Considerations
 description: Explains deployment considerations for APIs
-tags: [ "Deployment", "Async APIs" ]
+tags: ["Deployment", "Async APIs"]
 ---
 
 When deploying Tyk Streams, understanding its scaling and performance capabilities, as well as its high availability features, is crucial for ensuring a robust and efficient API infrastructure.
@@ -29,4 +29,3 @@ Under the hood, Tyk Streams utilizes [Redis Streams](https://redis.io/docs/lates
 By leveraging the high availability features of Tyk Gateway and Redis Streams, Tyk Streams delivers a robust and resilient solution for managing and distributing async API messages in production environments.
 
 With Tyk Streams, you can confidently deploy and scale your async APIs, knowing that messages will be reliably delivered to consumers across your Tyk Gateway cluster.
-

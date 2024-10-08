@@ -1,7 +1,7 @@
 ---
 title: Regular Expression Methods
 description: Explains Bloblang Regular Expression Methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Regular Expressions", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Regular Expressions", "Methods"]
 ---
 
 Regular expression (regex) methods in Bloblang enable advanced string matching and manipulation methods. These methods enable precise pattern matching within strings, facilitating tasks such as extraction, substitution and validation based on defined patterns. This document explores various regex methods, each allowing retrieval of all matches and submatches to validate string patterns and perform global replacements.
@@ -12,10 +12,9 @@ Returns an array containing all successive matches of a regular expression in a 
 
 #### Parameters
 
-**pattern** &lt;string&gt; The pattern to match against.  
+**pattern** &lt;string&gt; The pattern to match against.
 
 #### Examples
-
 
 ```coffee
 root.matches = this.value.re_find_all("a.")
@@ -30,10 +29,9 @@ Returns an array of objects containing all matches of the regular expression and
 
 #### Parameters
 
-**`pattern`** &lt;string&gt; The pattern to match against.  
+**`pattern`** &lt;string&gt; The pattern to match against.
 
 #### Examples
-
 
 ```coffee
 root.matches = this.value.re_find_all_object("a(?P<foo>x*)b")
@@ -55,10 +53,9 @@ Returns an array of arrays containing all successive matches of the regular expr
 
 #### Parameters
 
-**pattern** &lt;string&gt; The pattern to match against.  
+**pattern** &lt;string&gt; The pattern to match against.
 
 #### Examples
-
 
 ```coffee
 root.matches = this.value.re_find_all_submatch("a(x*)b")
@@ -73,10 +70,9 @@ Returns an object containing the first match of the regular expression and the m
 
 #### Parameters
 
-**pattern** &lt;string&gt; The pattern to match against.  
+**pattern** &lt;string&gt; The pattern to match against.
 
 #### Examples
-
 
 ```coffee
 root.matches = this.value.re_find_object("a(?P<foo>x*)b")
@@ -98,10 +94,9 @@ Checks whether a regular expression matches against any part of a string and ret
 
 #### Parameters
 
-**pattern** &lt;string&gt; The pattern to match against.  
+**pattern** &lt;string&gt; The pattern to match against.
 
 #### Examples
-
 
 ```coffee
 root.matches = this.value.re_match("[0-9]")
@@ -120,10 +115,9 @@ Replaces all occurrences of the argument regular expression in a string with a v
 #### Parameters
 
 **pattern** &lt;string&gt; The pattern to match against.  
-**value** &lt;string&gt; The value to replace with.  
+**value** &lt;string&gt; The value to replace with.
 
 #### Examples
-
 
 ```coffee
 root.new_value = this.value.re_replace_all("ADD ([0-9]+)","+($1)")

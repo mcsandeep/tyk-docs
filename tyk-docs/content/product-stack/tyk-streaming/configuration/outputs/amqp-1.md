@@ -1,12 +1,13 @@
 ---
 title: Amqp_1
 description: Explains an overview of configuring amqp_1 output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "amqp_1","Services" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "amqp_1", "Services"]
 ---
 
 Sends messages to an AMQP (1.0) server.
 
 ### Common
+
 ```yml
 # Common config fields, showing default values
 output:
@@ -19,8 +20,8 @@ output:
       exclude_prefixes: []
 ```
 
-
 ### Advanced
+
 ```yml
 # All config fields, showing default values
 output:
@@ -45,7 +46,6 @@ output:
       exclude_prefixes: []
 ```
 
-
 ### Metadata
 
 Message metadata is added to each AMQP message as string annotations. In order to control which metadata keys are added use the `metadata` config field.
@@ -60,9 +60,7 @@ This output benefits from sending multiple messages in flight in parallel for im
 
 A list of URLs to connect to. The first URL to successfully establish a connection will be used until the connection is closed. If an item of the list contains commas it will be expanded into multiple URLs.
 
-
-Type: `array`  
-
+Type: `array`
 
 ```yml
 # Examples
@@ -82,7 +80,6 @@ urls:
 
 The target address to write to.
 
-
 Type: `string`
 
 ```yml
@@ -99,7 +96,6 @@ target_address: topic:/baz
 
 The maximum number of messages to have in flight at a given time. Increase this to improve throughput.
 
-
 Type: `int`  
 Default: `64`
 
@@ -107,13 +103,11 @@ Default: `64`
 
 Custom TLS settings can be used to override system defaults.
 
-
 Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
-
 
 Type: `bool`  
 Default: `false`
@@ -122,7 +116,6 @@ Default: `false`
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
 Default: `false`
 
@@ -130,15 +123,12 @@ Default: `false`
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
-
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
-
 
 Type: `string`  
 Default: `""`
@@ -156,7 +146,6 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
 Default: `""`
 
@@ -169,7 +158,6 @@ root_cas_file: ./root_cas.pem
 ### tls.client_certs
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
-
 
 Type: `array`  
 Default: `[]`
@@ -190,14 +178,12 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
 Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
-
 
 Type: `string`  
 Default: `""`
@@ -206,7 +192,6 @@ Default: `""`
 
 The path of a certificate to use.
 
-
 Type: `string`  
 Default: `""`
 
@@ -214,14 +199,12 @@ Default: `""`
 
 The path of a certificate key to use.
 
-
 Type: `string`  
 Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
-
 
 Type: `string`  
 Default: `""`
@@ -238,13 +221,11 @@ password: foo
 
 An optional Bloblang mapping that can be defined in order to set the `application-properties` on output messages.
 
-
 Type: string
 
 ### sasl
 
 Enables SASL authentication.
-
 
 Type: `object`
 
@@ -252,21 +233,18 @@ Type: `object`
 
 The SASL authentication mechanism to use.
 
-
 Type: `string`  
 Default: `"none"`
 
-| Option | Summary |
-|---|---|
-| `anonymous` | Anonymous SASL authentication. |
-| `none` | No SASL based authentication. |
-| `plain` | Plain text SASL authentication. |
-
+| Option      | Summary                         |
+| ----------- | ------------------------------- |
+| `anonymous` | Anonymous SASL authentication.  |
+| `none`      | No SASL based authentication.   |
+| `plain`     | Plain text SASL authentication. |
 
 ### sasl.user
 
 A SASL plain text username. It is recommended that you use environment variables to populate this field.
-
 
 Type: `string`  
 Default: `""`
@@ -281,7 +259,6 @@ user: ${USER}
 
 A SASL plain text password. It is recommended that you use environment variables to populate this field.
 
-
 Type: `string`  
 Default: `""`
 
@@ -295,14 +272,11 @@ password: ${PASSWORD}
 
 Specify criteria for which metadata values are attached to messages as headers.
 
-
 Type: `object`
 
 ### metadata.exclude_prefixes
 
 Provide a list of explicit metadata key prefixes to be excluded when adding metadata to sent messages.
 
-
 Type: `array`  
-Default: `[]`  
-
+Default: `[]`

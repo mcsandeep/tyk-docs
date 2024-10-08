@@ -1,11 +1,10 @@
 ---
 title: Retry
 description: Explains an overview of the retry output
-tags: [ "Tyk Streams", "Stream Processors", "Outputs", "Retry" ]
+tags: ["Tyk Streams", "Stream Processors", "Outputs", "Retry"]
 ---
 
 Attempts to write messages to a child output and if the write fails for any reason the message is retried either until success or, if the retries or max elapsed time fields are non-zero, either is reached.
-
 
 ## Common
 
@@ -44,45 +43,38 @@ Rather than retrying the same output you may wish to retry the send using a diff
 
 The maximum number of retries before giving up on the request. If set to zero there is no discrete limit.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### backoff
 
 Control time intervals between retry attempts.
 
-
-Type: `object`  
+Type: `object`
 
 ### backoff.initial_interval
 
 The initial period to wait between retry attempts.
 
-
 Type: `string`  
-Default: `"500ms"`  
+Default: `"500ms"`
 
 ### backoff.max_interval
 
 The maximum period to wait between retry attempts.
 
-
 Type: `string`  
-Default: `"3s"`  
+Default: `"3s"`
 
 ### backoff.max_elapsed_time
 
 The maximum period to wait before retry attempts are abandoned. If zero then no limit is used.
 
-
 Type: `string`  
-Default: `"0s"`  
+Default: `"0s"`
 
 ### output
 
 A child output.
 
-
-Type: `output`  
-
+Type: `output`

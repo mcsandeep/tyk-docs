@@ -22,76 +22,77 @@ Configuring the endpoint cache is performed in two parts:
 The caching function is enabled by adding the `cache` object to the `global` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API.
 
 This object has the following configuration:
- - `enabled`: enable the cache for the API
- - `timeout`: set as the default cache refresh period for any endpoints for which you don't want to configure individual timeouts (in seconds) 
+
+- `enabled`: enable the cache for the API
+- `timeout`: set as the default cache refresh period for any endpoints for which you don't want to configure individual timeouts (in seconds)
 
 #### 2. Enable and configure the middleware for the specific endpoint
 
 The endpoint caching middleware (`cache`) should then be added to the `operations` section of `x-tyk-api-gateway` for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `cache` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `timeout`: set to the refresh period for the cache (in seconds)
 - `cacheResponseCodes`: HTTP responses codes to be cached (for example `200`)
 - `cacheByRegex`: Pattern match for [selective caching by body value]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#selective-caching-by-body-value" >}})
 
 For example:
+
 ```json {hl_lines=["37-40", "45-51"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-endpoint-cache",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/delay/5": {
-            "post": {
-                "operationId": "delay/5post",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-endpoint-cache",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/delay/5": {
+      "post": {
+        "operationId": "delay/5post",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-endpoint-cache",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-endpoint-cache/",
-                "strip": true
-            }
-        },
-        "global": {
-            "cache": {
-                "enabled": true,
-                "timeout": 60
-            }
-        },
-        "middleware": {
-            "operations": {
-                "delay/5post": {
-                    "cache": {
-                        "enabled": true,
-                        "cacheResponseCodes": [
-                            200
-                        ],
-                        "timeout": 5
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-endpoint-cache",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-endpoint-cache/",
+        "strip": true
+      }
+    },
+    "global": {
+      "cache": {
+        "enabled": true,
+        "timeout": 60
+      }
+    },
+    "middleware": {
+      "operations": {
+        "delay/5post": {
+          "cache": {
+            "enabled": true,
+            "cacheResponseCodes": [200],
+            "timeout": 5
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -115,7 +116,7 @@ From the **API Designer** add an endpoint to which you want to apply the middlew
 
 ##### Step 2: Select the Endpoint Cache middleware
 
-Select **ADD MIDDLEWARE** and choose the **Cache** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Cache** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-cache.png" alt="Adding the Endpoint Cache middleware" >}}
 
@@ -126,9 +127,9 @@ Set the timeout and HTTP response codes for the endpoint. You can remove a respo
 {{< img src="/img/dashboard/api-designer/tyk-oas-cache-config.png" alt="Configuring the endpoint cache middleware for a Tyk OAS API" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
-Body value match or [request selective]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#request-selective-cache-control" >}}) caching is not currently exposed in the Dashboard UI, so it must be enabled though either the raw API editor or the Dashboard API. 
+Body value match or [request selective]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#request-selective-cache-control" >}}) caching is not currently exposed in the Dashboard UI, so it must be enabled though either the raw API editor or the Dashboard API.
 {{< /note >}}
 
 Select **UPDATE MIDDLEWARE** to apply the change to the middleware configuration.
@@ -136,4 +137,3 @@ Select **UPDATE MIDDLEWARE** to apply the change to the middleware configuration
 ##### Step 4: Save the API
 
 Select **SAVE API** to apply the changes to your API.
-

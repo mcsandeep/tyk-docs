@@ -4,7 +4,7 @@ title: “Pump overloaded“
 menu:
   main:
     parent: "Tyk Pump Troubleshooting"
-weight: 5 
+weight: 5
 ---
 
 ### Description
@@ -35,4 +35,4 @@ Set `purge_delay` to a low value e.g. `1` in the Pump configuration file `pump.c
 
 **Reduce analytics record expiry time**
 
-Set `analytics_config.storage_expiration_time` to a low value e.g. `5` in the Gateway configuration file `tyk.conf`. This value  is the number of seconds beyond which analytics records will be deleted from the database. The value must be higher than the `purge_delay` set for the Pump. This will allow for analytics records to be discarded in the scenario that the system is becoming overwhelmed. Note that this results in analytics record loss, but will help prevent degraded system performance.
+Set `analytics_config.storage_expiration_time` to a low value e.g. `5` in the Gateway configuration file `tyk.conf`. This value is the number of seconds beyond which analytics records will be deleted from the database. The value must be higher than the `purge_delay` set for the Pump. This will allow for analytics records to be discarded in the scenario that the system is becoming overwhelmed. Note that this results in analytics record loss, but will help prevent degraded system performance.

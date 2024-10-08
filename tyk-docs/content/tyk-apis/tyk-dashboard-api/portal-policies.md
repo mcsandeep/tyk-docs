@@ -77,13 +77,13 @@ Notice that the `apiid` field is different than the rest of the policy definitio
 
 ### Search list of Policies
 
-| **Property** | **Description**         |
-| ------------ | ----------------------- |
+| **Property** | **Description**               |
+| ------------ | ----------------------------- |
 | Resource URL | `/api/portal/policies/search` |
-| Method       | GET                     |
-| Type         | None                    |
-| Body         | None                    |
-| Param        | None                    |
+| Method       | GET                           |
+| Type         | None                          |
+| Body         | None                          |
+| Param        | None                          |
 
 #### Sample Request
 
@@ -197,7 +197,7 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
   },
   "name": "My Policy",
   "active": true
-}    
+}
 ```
 
 #### Sample Response
@@ -304,10 +304,9 @@ authorization: 7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 Presently, the Tyk Dashboard uses the GraphQL API for policies.
 
-| **Method** | **URL**  | **Description**             |
-| ---------- | ------------- | --------------------------- |
-| POST       | `/graphql`    | GraphQL query endpoint      |
+| **Method** | **URL**       | **Description**                                                         |
+| ---------- | ------------- | ----------------------------------------------------------------------- |
+| POST       | `/graphql`    | GraphQL query endpoint                                                  |
 | GET        | `/playground` | Dashboard Graphql Playground - where you could see docs and run queries |
 
-
- [1]: https://github.com/TykTechnologies/tyk/issues/192
+[1]: https://github.com/TykTechnologies/tyk/issues/192

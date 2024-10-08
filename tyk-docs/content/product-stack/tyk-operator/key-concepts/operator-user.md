@@ -11,12 +11,12 @@ For the Tyk Dashboard, Tyk Operator functions as a system user, bound by Organiz
 
 During start up, Tyk Operator looks for these keys from `tyk-operator-conf` secret or from the environment variables (listed in the table below).
 
-| Key or Environment Variable | Description  |
-|:-----|:-------------|
-| `TYK_MODE` | "ce" for OSS or "pro" for licensed users |
-| `TYK_URL` | URL of Tyk Gateway or Dashboard API |
-| `TYK_ORG` | Organization ID of Operator user |
-| `TYK_AUTH` | API key of Operator user |
+| Key or Environment Variable | Description                              |
+| :-------------------------- | :--------------------------------------- |
+| `TYK_MODE`                  | "ce" for OSS or "pro" for licensed users |
+| `TYK_URL`                   | URL of Tyk Gateway or Dashboard API      |
+| `TYK_ORG`                   | Organization ID of Operator user         |
+| `TYK_AUTH`                  | API key of Operator user                 |
 
 These would be the default credentials Tyk Operator uses to connect to Tyk.
 

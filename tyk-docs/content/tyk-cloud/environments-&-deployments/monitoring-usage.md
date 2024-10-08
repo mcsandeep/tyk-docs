@@ -13,17 +13,19 @@ aliases:
 ---
 
 ### What is monitored?
-Tyk Cloud keeps track of two metrics:    
 
-- **Throughput** - This is the total amount of data that has been transferred(ingress/egress) through a deployment. 
-- **Storage** - This is the total amount of data stored as [analytics by Tyk Dashboard]({{< ref "tyk-dashboard-analytics/" >}}). An example is *per request* statistics containing information about each request, like path or status.
+Tyk Cloud keeps track of two metrics:
+
+- **Throughput** - This is the total amount of data that has been transferred(ingress/egress) through a deployment.
+- **Storage** - This is the total amount of data stored as [analytics by Tyk Dashboard]({{< ref "tyk-dashboard-analytics/" >}}). An example is _per request_ statistics containing information about each request, like path or status.
 
 ### How to check metrics
-Login to Tyk Cloud and click on *Monitoring* within the *Operations* menu. Enable *Throughput* to display throughput metrics.
+
+Login to Tyk Cloud and click on _Monitoring_ within the _Operations_ menu. Enable _Throughput_ to display throughput metrics.
 
 {{< img src="/img/cloud/tyk-cloud-monitoring-throughput.png" alt="Monitoring Throughput" >}}
 
-Enable *Storage* to display storage metrics.
+Enable _Storage_ to display storage metrics.
 
 {{< img src="/img/cloud/tyk-cloud-monitoring-storage.png" alt="Monitoring Storage" >}}
 

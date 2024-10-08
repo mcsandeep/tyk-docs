@@ -22,37 +22,39 @@ If you're using Tyk Operator then check out the [configuring the middleware in T
 To enable the middleware you must add a new `validate_json` object to the `extended_paths` section of your API definition.
 
 The `validate_json` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `schema`: the [JSON schema](https://json-schema.org/understanding-json-schema/basics) against which the request body will be compared
 - `error_response_code`: the HTTP status code that will be returned if validation fails (defaults to `422 Unprocessable Entity`)
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "validate_json": [
-            {
-                "disabled": false,
-                "path": "/register",
-                "method": "POST",
-                "schema": {
-                    "type": "object",
-                    "properties": {
-                        "firstname": {
-                            "type": "string",
-                            "description": "The person's first name"
-                        },
-                        "lastname": {
-                            "type": "string",
-                            "description": "The person's last name"
-                        }
-                    }
-                },
-                "error_response_code": 422
+  "extended_paths": {
+    "validate_json": [
+      {
+        "disabled": false,
+        "path": "/register",
+        "method": "POST",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string",
+              "description": "The person's first name"
+            },
+            "lastname": {
+              "type": "string",
+              "description": "The person's last name"
             }
-        ]
-    }
+          }
+        },
+        "error_response_code": 422
+      }
+    ]
+  }
 }
 ```
 
@@ -60,7 +62,7 @@ In this example the Validate JSON middleware has been configured for requests to
 
 {{< note success >}}
 
-**Note**  
+**Note**
 
 The Validate JSON middleware supports JSON Schema `draft-04`. Using another version will return an `unsupported schema error, unable to validate` error in the Tyk Gateway logs.
 
@@ -84,7 +86,7 @@ Once you have selected the request validation middleware for the endpoint, you c
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the middleware in Tyk Operator {#tyk-operator}
 
@@ -94,7 +96,7 @@ The example API Definition below configures an API to listen on path `/httpbin` 
 
 In this example, the Validate JSON middleware has been configured for requests to the `GET /get` endpoint. For any call made to this endpoint, Tyk will compare the request body with the schema and, if it does not match, the request will be rejected with the error code `HTTP 422 Unprocessable Entity`.
 
-```yaml  {linenos=true, linenostart=1, hl_lines=["26-41"]}
+```yaml {linenos=true, linenostart=1, hl_lines=["26-41"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -137,4 +139,3 @@ spec:
                   - userName
                 type: object
 ```
-

@@ -1,7 +1,7 @@
 ---
 title: Bloblang
 description: Explains an overview of bloblang
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Bloblang" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Bloblang"]
 ---
 
 Executes a [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping on messages.
@@ -28,13 +28,13 @@ Given JSON documents containing an array of fans:
 
 ```json
 {
-  "id":"foo",
-  "description":"a show about foo",
-  "fans":[
-    {"name":"bev","obsession":0.57},
-    {"name":"grace","obsession":0.21},
-    {"name":"ali","obsession":0.89},
-    {"name":"vic","obsession":0.43}
+  "id": "foo",
+  "description": "a show about foo",
+  "fans": [
+    { "name": "bev", "obsession": 0.57 },
+    { "name": "grace", "obsession": 0.21 },
+    { "name": "ali", "obsession": 0.89 },
+    { "name": "vic", "obsession": 0.43 }
   ]
 }
 ```
@@ -43,11 +43,11 @@ We can reduce the fans to only those with an obsession score above 0.5, giving u
 
 ```json
 {
-  "id":"foo",
-  "description":"a show about foo",
-  "fans":[
-    {"name":"bev","obsession":0.57},
-    {"name":"ali","obsession":0.89}
+  "id": "foo",
+  "description": "a show about foo",
+  "fans": [
+    { "name": "bev", "obsession": 0.57 },
+    { "name": "ali", "obsession": 0.89 }
   ]
 }
 ```
@@ -57,9 +57,9 @@ With the following config:
 ```yaml
 pipeline:
   processors:
-  - bloblang: |
-      root = this
-      root.fans = this.fans.filter(fan -> fan.obsession > 0.5)
+    - bloblang: |
+        root = this
+        root.fans = this.fans.filter(fan -> fan.obsession > 0.5)
 ```
 
 ### More Mapping
@@ -69,10 +69,10 @@ When receiving JSON documents of the form:
 ```json
 {
   "locations": [
-    {"name": "Seattle", "state": "WA"},
-    {"name": "New York", "state": "NY"},
-    {"name": "Bellevue", "state": "WA"},
-    {"name": "Olympia", "state": "WA"}
+    { "name": "Seattle", "state": "WA" },
+    { "name": "New York", "state": "NY" },
+    { "name": "Bellevue", "state": "WA" },
+    { "name": "Olympia", "state": "WA" }
   ]
 }
 ```
@@ -80,7 +80,7 @@ When receiving JSON documents of the form:
 We could collapse the location names from the state of Washington into a field `Cities`:
 
 ```json
-{"Cities": "Bellevue, Olympia, Seattle"}
+{ "Cities": "Bellevue, Olympia, Seattle" }
 ```
 
 With the following config:

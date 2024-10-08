@@ -12,8 +12,7 @@ Add the following configuration fields to the pumps section within your `pump.co
 
 ```json
 {
-  "csv": 
-  {
+  "csv": {
     "type": "csv",
     "meta": {
       "csv_dir": "./your_directory_here"
@@ -22,7 +21,8 @@ Add the following configuration fields to the pumps section within your `pump.co
 }
 ```
 
-## Environment variables 
+## Environment variables
+
 ```bash
 TYK_PMP_PUMPS_CSV_TYPE=csv
 TYK_PMP_PUMPS_CSV_META_CSVDIR=./your_directory_here

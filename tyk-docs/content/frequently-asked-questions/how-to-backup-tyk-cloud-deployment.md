@@ -4,7 +4,7 @@ title: How are backups managed in Tyk Cloud.
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 #### How can I track and audit changes made to Tyk Dashboard configurations"?

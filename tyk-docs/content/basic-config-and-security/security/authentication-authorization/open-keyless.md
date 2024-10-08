@@ -6,7 +6,7 @@ description: "When to use keyless (open access) security with your APIs"
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 5 
+weight: 5
 ---
 
 Tyk keyless access represents completely open access for your API and causes Tyk to bypass any session-based middleware (middleware that requires access to token-related metadata). Most middleware will work with keyless access (header transformation, mocks, virtual endpoints, etc.).
@@ -31,10 +31,11 @@ To implement keyless access, simply set the flag in your API Definition:
   ...
 }
 ```
+
 This will stop checking keys that are proxied by Tyk.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Keyless APIs cannot be selected for [Access Rights]({{< ref "getting-started/create-security-policy" >}}) in a security policy.
 {{< /note >}}

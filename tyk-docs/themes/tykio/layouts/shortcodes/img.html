@@ -1,7 +1,7 @@
 {{ $s := . }}
 {{ $src := $s.Get "src" }}
 {{ $image := resources.Get $src }}
-{{ if hasPrefix $src "http"}}
+{{ if hasPrefix $src "http" }}
 {{ else }}
   {{ with $image }}
     {{ $src = .RelPermalink }}
@@ -21,4 +21,5 @@
   {{ end }}
 {{ end }}
 
-<p><img src="{{ $src }}" alt="{{ .Get "alt"}}" width="{{ .Get "width"}}" height="{{ .Get "height"}}" /></p>
+
+<p><img src="{{ $src }}" alt="{{ .Get "alt" }}" width="{{ .Get "width" }}" height="{{ .Get "height" }}" /></p>

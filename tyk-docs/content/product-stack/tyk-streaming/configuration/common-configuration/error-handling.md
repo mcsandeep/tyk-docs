@@ -1,7 +1,7 @@
 ---
 title: Error handling
 description: Explains error handling
-tags: [ "Tyk Streams", "Error Handling" ]
+tags: ["Tyk Streams", "Error Handling"]
 ---
 
 Tyk Streams supports a range of processors such as `aws_lambda` that have the potential to fail if their retry attempts are exhausted. When this happens the data is not dropped but instead continues through the pipeline mostly unchanged, but a metadata flag is added allowing you to handle the errors in a way that suits your needs.
@@ -16,9 +16,9 @@ It's possible to define a list of processors which should be skipped for message
 pipeline:
   processors:
     - try:
-      - resource: foo
-      - resource: bar # Skipped if foo failed
-      - resource: baz # Skipped if foo or bar failed
+        - resource: foo
+        - resource: bar # Skipped if foo failed
+        - resource: baz # Skipped if foo or bar failed
 ```
 
 ## Recover Failed Messages
@@ -30,7 +30,7 @@ pipeline:
   processors:
     - resource: foo # Processor that might fail
     - catch:
-      - resource: bar # Recover here
+        - resource: bar # Recover here
 ```
 
 Once messages finish the catch block they will have their failure flags removed and are treated like regular messages. If this behavior is not desired then it is possible to simulate a catch block with a switch processor:
@@ -40,14 +40,15 @@ pipeline:
   processors:
     - resource: foo # Processor that might fail
     - switch:
-      - check: errored()
-        processors:
-          - resource: bar # Recover here
+        - check: errored()
+          processors:
+            - resource: bar # Recover here
 ```
 
 ## Logging Errors
 
 <!-- TODO Need to add link to error when complete -->
+
 When an error occurs there will occasionally be useful information stored within the error flag that can be exposed with the interpolation function `error`. This allows you to expose the information with processors.
 
 For example, when catching failed processors you can [log]({{< ref "/product-stack/tyk-streaming/configuration/processors/log" >}}) the messages:
@@ -57,8 +58,8 @@ pipeline:
   processors:
     - resource: foo # Processor that might fail
     - catch:
-      - log:
-          message: "Processing failed due to: ${!error()}"
+        - log:
+            message: "Processing failed due to: ${!error()}"
 ```
 
 Or perhaps augment the message payload with the error message:
@@ -68,14 +69,15 @@ pipeline:
   processors:
     - resource: foo # Processor that might fail
     - catch:
-      - mapping: |
-          root = this
-          root.meta.error = error()
+        - mapping: |
+            root = this
+            root.meta.error = error()
 ```
 
 ## Attempt Until Success
 
 <!-- TODO Need to add link to error when complete -->
+
 It's possible to reattempt a processor for a particular message until it is successful with a `retry` processor:
 
 ```yaml
@@ -106,6 +108,7 @@ This will remove any failed messages from a batch. Furthermore, dropping a messa
 ## Reject Messages
 
 <!-- TODO: add reject_errored link when complete -->
+
 Some inputs such as NATS, GCP Pub/Sub and AMQP support nacking (rejecting) messages. We can perform a nack (or rejection) on data that has failed to process rather than delivering it to our output with a `reject_errored` output:
 
 ```yaml
@@ -117,6 +120,7 @@ output:
 ## Route to a Dead-Letter Queue
 
 <!-- TODO: add fallback link when complete -->
+
 And by placing the above within a `fallback` output we can instead route the failed messages to a different output:
 
 ```yaml

@@ -5,6 +5,7 @@ description: "How to configure Tyk data storage layers"
 ---
 
 Tyk stores a variety of data in 4 separate data storage layers. You can configure each layer separately to use one of our supported database platforms. Alternatively a single platform can be used for all layers. The 4 data storage layers are as follows:
+
 1. **Main**: Stores configurations of: APIs, Policies, Users and User Groups.
 2. **Aggregate Analytics**: Data used to display Dashboard charts and [analytics]({{< ref "tyk-dashboard-analytics" >}}).
 3. **Logs**: When [detailed logging]({{< ref "tyk-stack/tyk-pump/useful-debug-modes#what-is-detailed-request-logging" >}}) is enabled, request and response data is logged to storage. These logs can previewed in the Dashboard [log browser]({{< ref "tyk-stack/tyk-manager/analytics/log-browser" >}}).
@@ -12,11 +13,12 @@ Tyk stores a variety of data in 4 separate data storage layers. You can configur
 
 Being extensible, Tyk supports storing this data across different databases (MongoDB, MySQL and PostgreSQL etc.). For example, Tyk can be configured to store analytics in PostgreSQL, logs in MongoDB and uptime data in MySQL.
 
-As illustrated below it can be seen that Tyk Pump writes to one or more external data sources via a Redis store. Conversely, Tyk Dashboard reads this data from the external data sources. 
+As illustrated below it can be seen that Tyk Pump writes to one or more external data sources via a Redis store. Conversely, Tyk Dashboard reads this data from the external data sources.
 
 {{< img src="/img/diagrams/diagram_docs_pump-open-source@2x.png"  alt="Tyk Dashboard Pump Architecture" >}}
 
 The following details are required to manage this configuration:
+
 - Data storage layer type
 - Database engine
 - Database connection string
@@ -32,7 +34,7 @@ TYK_DB_STORAGE_<LAYER>_TYPE
 TYK_DB_STORAGE_<LAYER>_CONNECTIONSTRING
 ```
 
-where *LAYER* can be *ANALYTICS*, *LOGS* or *UPTIME*.
+where _LAYER_ can be _ANALYTICS_, _LOGS_ or _UPTIME_.
 
 For example, to configure Tyk Dashboard to read logs from a mongo database, the following environment variables are required:
 
@@ -54,16 +56,16 @@ TYK_DB_STORAGE_UPTIME_TYPE
 TYK_DB_STORAGE_UPTIME_CONNECTIONSTRING
 ```
 
-It should be noted that Tyk will attempt to use the configuration for the *main* data storage layer when no corresponding configuration is available for logs, uptime or analytics.
+It should be noted that Tyk will attempt to use the configuration for the _main_ data storage layer when no corresponding configuration is available for logs, uptime or analytics.
 
 Please refer to the [storage configuration]({{< ref "tyk-dashboard/configuration#storage" >}}) section to explore the parameters for configuring Tyk Dashboard to read from different storage layers.
-
 
 ## How To Configure Tyk Pump To Write To Data Storage Layers?
 
 Please consult the Pump configuration [guide]({{< ref "tyk-pump/tyk-pump-configuration/tyk-pump-dashboard-config#3-sql-uptime-pump" >}}) for an explanation of how to configure Tyk Pump to write to different storage layers.
 
-The remainder of this section explains the *environment variables* that can be used to configure Tyk Pump to write to the following data storage layers:
+The remainder of this section explains the _environment variables_ that can be used to configure Tyk Pump to write to the following data storage layers:
+
 - Uptime
 - Aggregated Analytics
 - Logs
@@ -76,9 +78,9 @@ Tyk Pump can be configured to write uptime data to SQL (Postgres and SQL Lite) a
 
 Tyk Pump can be configured to write to a PostgreSQL database, using the following environment variables:
 
-- *TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE*: Set to *sql* to configure Pump to store logs in a SQL based database.
-- *TYK_PMP_UPTIMEPUMPCONFIG_TYPE*: Set to *postgres* to configure Pump to use a PostgreSQL database for uptime data.
-- *TYK_PMP_UPTIMEPUMPCONFIG_CONNECTIONSTRING*: Set the connection string for the PostgreSQL database.
+- _TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE_: Set to _sql_ to configure Pump to store logs in a SQL based database.
+- _TYK_PMP_UPTIMEPUMPCONFIG_TYPE_: Set to _postgres_ to configure Pump to use a PostgreSQL database for uptime data.
+- _TYK_PMP_UPTIMEPUMPCONFIG_CONNECTIONSTRING_: Set the connection string for the PostgreSQL database.
 
 An example configuration is shown below:
 
@@ -94,9 +96,9 @@ Further details for configuring an uptime SQL database are available [here]({{< 
 
 Tyk Pump can be configured to write to a Mongo database, using the following environment variables:
 
-- *TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE*: Set to *mongo* to configure Pump to store logs in a Mongo database.
-- *TYK_PMP_UPTIMEPUMPCONFIG_MONGOURL*: Set to Mongo database connection string.
-- *TYK_PMP_UPTIMEPUMPCONFIG_COLLECTIONNAME*: Set to the name of the collection used to store uptime analytics.
+- _TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE_: Set to _mongo_ to configure Pump to store logs in a Mongo database.
+- _TYK_PMP_UPTIMEPUMPCONFIG_MONGOURL_: Set to Mongo database connection string.
+- _TYK_PMP_UPTIMEPUMPCONFIG_COLLECTIONNAME_: Set to the name of the collection used to store uptime analytics.
 
 ```console
 TYK_PMP_UPTIMEPUMPCONFIG_UPTIMETYPE=mongo
@@ -114,9 +116,9 @@ Tyk Pump can be configured to write logs to Mongo or SQL based databases.
 
 Tyk Pump can be configured to write to a Mongo database by setting the following environment variables:
 
-- *TYK_PMP_PUMPS_LOGS_TYPE*: Set to *mongo* to configure Pump to store logs in a Mongo database.
-- *TYK_PMP_PUMPS_LOGS_META_MONGOURL*: Set the connection string for the Mongo database.
-- *TYK_PMP_PUMPS_LOGS_META_COLLECTION_NAME*: Set the name of the collection that will store logs in the Mongo database.
+- _TYK_PMP_PUMPS_LOGS_TYPE_: Set to _mongo_ to configure Pump to store logs in a Mongo database.
+- _TYK_PMP_PUMPS_LOGS_META_MONGOURL_: Set the connection string for the Mongo database.
+- _TYK_PMP_PUMPS_LOGS_META_COLLECTION_NAME_: Set the name of the collection that will store logs in the Mongo database.
 
 An example is listed below:
 
@@ -134,9 +136,9 @@ Tyk Pump can be configured to write logs to SQL based databases. This section pr
 
 Tyk Pump can be configured to write to a PostgreSQL database by setting the following environment variables:
 
-- *TYK_PMP_PUMPS_LOGS_TYPE*: Set to *SQL* to configure Pump to store logs in a SQL based database.
-- *TYK_PMP_PUMPS_LOGS_META_TYPE*: Set to *postgres* to configure Pump to store logs in a PostgreSQL database.
-- *TYK_PMP_PUMPS_LOGS_META_CONNECTIONSTRING*: Set the name of the connection string for the PostgreSQL database.
+- _TYK_PMP_PUMPS_LOGS_TYPE_: Set to _SQL_ to configure Pump to store logs in a SQL based database.
+- _TYK_PMP_PUMPS_LOGS_META_TYPE_: Set to _postgres_ to configure Pump to store logs in a PostgreSQL database.
+- _TYK_PMP_PUMPS_LOGS_META_CONNECTIONSTRING_: Set the name of the connection string for the PostgreSQL database.
 
 ```console
 TYK_PMP_PUMPS_LOGS_TYPE=SQL
@@ -148,9 +150,9 @@ TYK_PMP_PUMPS_LOGS_META_CONNECTIONSTRING=user=postgres password=topsecretpasswor
 
 Tyk Pump can be configured to write to a MySQL database by setting the following environment variables:
 
-- *TYK_PMP_PUMPS_LOGS_TYPE*: Set to *SQL* to configure Pump to store logs in a SQL based database.
-- *TYK_PMP_PUMPS_LOGS_META_TYPE*: Set to *mysql* to configure Pump to store logs in a MySQL database.
-- *TYK_PMP_PUMPS_LOGS_META_CONNECTIONSTRING*: Set the name of the connection string for the MySQL database.
+- _TYK_PMP_PUMPS_LOGS_TYPE_: Set to _SQL_ to configure Pump to store logs in a SQL based database.
+- _TYK_PMP_PUMPS_LOGS_META_TYPE_: Set to _mysql_ to configure Pump to store logs in a MySQL database.
+- _TYK_PMP_PUMPS_LOGS_META_CONNECTIONSTRING_: Set the name of the connection string for the MySQL database.
 
 ```console
 TYK_PMP_PUMPS_LOGS_TYPE=SQL
@@ -166,9 +168,9 @@ Aggregated analytics corresponds to data that is used for the display of charts 
 
 Storage of aggregated analytics data has been tested with PostgreSQL and SqlLite databases. The following environment variables can be used to manage this configuration:
 
-- *TYK_PMP_PUMPS_SQLAGGREGATE_TYPE*: Set to *sql_aggregate* to configure Pump to store aggregated analytics data for charts and graphs in dashboard to a SQL based database.
-- *TYK_PMP_PUMPS_SQLAGGREGATE_META_TYPE*: The database engine used to store aggregate analytics. Tested values are *postgres* or *sqlite*.
-- *TYK_PMP_PUMPS_SQLAGGREGATE_META_CONNECTIONSTRING*: The connection string for the database that will store the aggregated analytics.
+- _TYK_PMP_PUMPS_SQLAGGREGATE_TYPE_: Set to _sql_aggregate_ to configure Pump to store aggregated analytics data for charts and graphs in dashboard to a SQL based database.
+- _TYK_PMP_PUMPS_SQLAGGREGATE_META_TYPE_: The database engine used to store aggregate analytics. Tested values are _postgres_ or _sqlite_.
+- _TYK_PMP_PUMPS_SQLAGGREGATE_META_CONNECTIONSTRING_: The connection string for the database that will store the aggregated analytics.
 
 The example below demonstrates how to configure Tyk Pump to write aggregated to a PostgreSQL database:
 
@@ -180,12 +182,12 @@ TYK_PMP_PUMPS_SQLAGGREGATE_META_CONNECTIONSTRING=user=postgres password=topsecre
 
 #### How To Configure Tyk Pump To Write Aggregated Analytics To A Mongo Database?
 
-Tyk Pump can be configured to write aggregated analytics data to MongoDB. Aggregated analytics are written to a collection named *z_tyk_analyticz_aggregate_{ORG ID}*, where *ORG_ID* corresponds to the ID of your organization assigned by Tyk.
+Tyk Pump can be configured to write aggregated analytics data to MongoDB. Aggregated analytics are written to a collection named _z*tyk_analyticz_aggregate*{ORG ID}_, where _ORG_ID_ corresponds to the ID of your organization assigned by Tyk.
 
 The following environment variables can be used as a minimum to manage this configuration:
 
-- *TYK_PMP_PUMPS_MONGOAGGREGATE_TYPE*: Set to *mongo-pump-aggregate* to configure Pump to store aggregated analytics data in a MongoDB database.
-- *TYK_PMP_PUMPS_MONGOAGGREGATE_META_MONGOURL*: Mongo database connection URL.
+- _TYK_PMP_PUMPS_MONGOAGGREGATE_TYPE_: Set to _mongo-pump-aggregate_ to configure Pump to store aggregated analytics data in a MongoDB database.
+- _TYK_PMP_PUMPS_MONGOAGGREGATE_META_MONGOURL_: Mongo database connection URL.
 
 An example is given below:
 

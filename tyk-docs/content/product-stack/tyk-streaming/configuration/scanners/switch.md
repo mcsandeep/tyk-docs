@@ -1,7 +1,7 @@
 ---
 title: Switch
 description: Explains an overview of switch scanner in Tyk Streams
-tags: [ "Tyk Streams", "Scanners", "switch" ]
+tags: ["Tyk Streams", "Scanners", "switch"]
 ---
 
 Select a child scanner dynamically for source data based on factors such as the filename.
@@ -19,15 +19,13 @@ This scanner outlines a list of potential child scanner candidates to be chosen,
 
 A regular expression to test against the name of each source of data fed into the scanner (filename or equivalent). If this pattern matches the child scanner is selected.
 
-
-Type: `string`  
+Type: `string`
 
 ### [].scanner
 
 The scanner to activate if this candidate passes.
 
-
-Type: `scanner`  
+Type: `scanner`
 
 ## Examples
 
@@ -38,7 +36,7 @@ In this example a file input chooses a scanner based on the extension of each fi
 ```yaml
 input:
   file:
-    paths: [ ./data/* ]
+    paths: [./data/*]
     scanner:
       switch:
         - re_match_name: '\.avro$'

@@ -15,15 +15,13 @@ You will need to modify the Tyk global configuration file `tyk.conf` to use gRPC
 "public_key_path": ""
 ```
 
-
 ### tyk.conf Options
 
-* `enable_coprocess`: This enables the plugin.
-* `coprocess_grpc_server`: This is the URL of our gRPC server.
-* `enable_bundle_downloader`: This enables the bundle downloader.
-* `bundle_base_url`: This is a base URL that will be used to download the bundle. You should replace the bundle_base_url with the appropriate URL of the web server that's serving your plugin bundles. For now HTTP and HTTPS are supported but we plan to add more options in the future (like pulling directly from S3 buckets).
-* `public_key_path`: Modify `public_key_path` in case you want to enforce the cryptographic check of the plugin bundle signatures. If the `public_key_path` isn't set, the verification process will be skipped and unsigned plugin bundles will be loaded normally.
-
+- `enable_coprocess`: This enables the plugin.
+- `coprocess_grpc_server`: This is the URL of our gRPC server.
+- `enable_bundle_downloader`: This enables the bundle downloader.
+- `bundle_base_url`: This is a base URL that will be used to download the bundle. You should replace the bundle_base_url with the appropriate URL of the web server that's serving your plugin bundles. For now HTTP and HTTPS are supported but we plan to add more options in the future (like pulling directly from S3 buckets).
+- `public_key_path`: Modify `public_key_path` in case you want to enforce the cryptographic check of the plugin bundle signatures. If the `public_key_path` isn't set, the verification process will be skipped and unsigned plugin bundles will be loaded normally.
 
 ### Configure an API Definition
 
@@ -45,7 +43,6 @@ The second parameter is specific to this tutorial, and should be used in combina
 "enable_coprocess_auth": true
 ```
 
-
 `enable_coprocess_auth` will instruct the Tyk gateway to authenticate this API using the associated custom authentication function that's implemented by our plugin.
 
 ### Configuration via the Tyk Dashboard
@@ -55,12 +52,11 @@ To attach the plugin to an API, from the **Advanced Options** tab in the **API D
 {{< img src="/img/2.10/plugin_bundle_id.png" alt="Plugin Options" >}}
 
 We also need to modify the authentication mechanism that's used by the API.
-From the **Core Settings** tab in the **API Designer** select **Use Custom Authentication (Python, CoProcess, and JSVM plugins)** from the **Target Details - Authentication Mode** drop-down list. 
+From the **Core Settings** tab in the **API Designer** select **Use Custom Authentication (Python, CoProcess, and JSVM plugins)** from the **Target Details - Authentication Mode** drop-down list.
 
 {{< img src="/img/2.10/custom_auth_python.png" alt="Advanced Options" >}}
 
 ## Testing the Plugin
-
 
 At this point we have our test HTTP server ready to serve the plugin bundle and the configuration with all the required parameters.
 The final step is to start or restart the **Tyk Gateway** (this may vary depending on how you set up Tyk):
@@ -68,7 +64,6 @@ The final step is to start or restart the **Tyk Gateway** (this may vary dependi
 ```{.copyWrapper}
 service tyk-gateway start
 ```
-
 
 A simple CURL request will be enough for testing our custom authentication middleware.
 
@@ -79,7 +74,6 @@ curl http://localhost:8080/my-api/my-path -H 'Authorization: badtoken'
 ```
 
 This will trigger a successful authentication. We're using the token that's specified in our server implementation (see line 57 in `Server.cs`):
-
 
 ```{.copyWrapper}
 curl http://localhost:8080/my-api/my-path -H 'Authorization: abc123'

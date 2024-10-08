@@ -27,20 +27,20 @@ You can set different rate limits for various endpoints by specifying multiple `
 
 For example:
 
-```json  {linenos=true, linenostart=1}
+```json {linenos=true, linenostart=1}
 {
-    "use_extended_paths": true,
-    "extended_paths": {
-        "rate_limit": [
-            {
-                "path": "/anything",
-                "method": "GET",
-                "enabled": true,
-                "rate": 60,
-                "per": 1
-            }
-        ]
-    }
+  "use_extended_paths": true,
+  "extended_paths": {
+    "rate_limit": [
+      {
+        "path": "/anything",
+        "method": "GET",
+        "enabled": true,
+        "rate": 60,
+        "per": 1
+      }
+    ]
+  }
 }
 ```
 
@@ -54,29 +54,29 @@ For more complex scenarios, you can configure rate limits for multiple
 paths. The order of evaluation matches the order defined in the
 `rate_limit` array. For example, if you wanted to limit the rate of
 `POST` requests to your API allowing a higher rate to one specific
-endpoint you could configure the API definition as follows: 
+endpoint you could configure the API definition as follows:
 
-```json  {linenos=true, linenostart=1}
+```json {linenos=true, linenostart=1}
 {
-    "use_extended_paths": true,
-    "extended_paths": {
-        "rate_limit": [
-            {
-                "path": "/user/login",
-                "method": "POST",
-                "enabled": true,
-                "rate": 100,
-                "per": 1
-            },
-            {
-                "path": "/.*",
-                "method": "POST",
-                "enabled": true,
-                "rate": 60,
-                "per": 1
-            }
-        ]
-    }
+  "use_extended_paths": true,
+  "extended_paths": {
+    "rate_limit": [
+      {
+        "path": "/user/login",
+        "method": "POST",
+        "enabled": true,
+        "rate": 100,
+        "per": 1
+      },
+      {
+        "path": "/.*",
+        "method": "POST",
+        "enabled": true,
+        "rate": 60,
+        "per": 1
+      }
+    ]
+  }
 }
 ```
 

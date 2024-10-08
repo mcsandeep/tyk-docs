@@ -20,12 +20,14 @@ Tyk's request validation middleware automatically parses the schema for the requ
 An OpenAPI schema can reference other schemas defined elsewhere, letting you write complex validations very efficiently since you don’t need to re-define the validation for a particular object every time you wish to refer to it. Tyk only supports local references to schemas (within the same OpenAPI document).
 
 As explained in the OpenAPI [documentation](https://learn.openapis.org/specification/parameters.html), the structure of an API request is described by two components:
+
 - parameters (headers, query parameters, path parameters)
 - request body (payload)
 
 ### Request parameters
 
 The `parameters` field in the OpenAPI description is an array of [parameter objects](https://swagger.io/docs/specification/describing-parameters/) that each describe one parameter shared by all operations on that path. Here, an operation is defined as a combination of HTTP method and path, or, as Tyk calls it, an endpoint. Each `parameter` has two mandatory fields:
+
 - `in`: the location of the parameter (`path`, `query`, `header`)
 - `name`: a unique identifier within that location (i.e. no duplicate header names for a given operation/endpoint)
 
@@ -48,6 +50,7 @@ When you create a Tyk OAS API by importing your OpenAPI description, you can ins
 ### Automatically enabling the request validation middleware
 
 The request validation middleware can be enabled for all endpoints that have defined schemas when [importing]({{< ref "getting-started/using-oas-definitions/import-an-oas-api#tutorial-5-create-an-api-that-validates-the-request-payload" >}}) an OpenAPI Document to create a Tyk OAS API.
+
 - if you are using the `POST /apis/oas/import` endpoint in the [Tyk Dashboard API]({{< ref "tyk-dashboard-api" >}}) or [Tyk Gateway API]({{< ref "tyk-gateway-api" >}}) then you can do this by setting the `validateRequest=true` query parameter
 - if you are using the API Designer, select the **Auto-generate middleware to validate requests** option on the **Import API** screen
 
@@ -62,87 +65,89 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The request validation middleware (`validateRequest`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId`. The `operationId` for an endpoint can be found within the `paths` section of your [OpenAPI specification](https://swagger.io/docs/specification/paths-and-operations/?sbsearch=operationIds).
 
 The `validateRequest` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `errorResponseCode`: [optional] the HTTP status code to be returned if validation fails (this defaults to `HTTP 422 Unprocessable Entity` if not set)
 
 For example:
+
 ```json {hl_lines=["69-72"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-validate-request",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "parameters": [
-                    {
-                        "in": "header",
-                        "name": "X-Security",
-                        "required": true,
-                        "schema": {
-                            "type": "boolean"
-                        }
-                    }
-                ],                
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "firstname": {
-                                        "description": "The person's first name",
-                                        "type": "string"
-                                    },
-                                    "lastname": {
-                                        "description": "The person's last name",
-                                        "type": "string"
-                                    }
-                                },
-                            "type": "object"
-                            }
-                        }
-                    }
+  "components": {},
+  "info": {
+    "title": "example-validate-request",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Security",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "firstname": {
+                    "description": "The person's first name",
+                    "type": "string"
+                  },
+                  "lastname": {
+                    "description": "The person's last name",
+                    "type": "string"
+                  }
                 },
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
+                "type": "object"
+              }
             }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-validate-request",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-validate-request/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "validateRequest": {
-                        "enabled": true,
-                        "errorResponseCode": 400
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-validate-request",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-validate-request/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "validateRequest": {
+            "enabled": true,
+            "errorResponseCode": 400
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -166,7 +171,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Validate Request middleware
 
-Select **ADD MIDDLEWARE** and choose **Validate Request** from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose **Validate Request** from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-validate-request.png" alt="Adding the Validate Request middleware" >}}
 

@@ -6,31 +6,32 @@ menu:
     parent: "UDG Getting Started"
 weight: 0
 aliases:
-    - /universal-data-graph/udg-getting-started/connect-datasource/
+  - /universal-data-graph/udg-getting-started/connect-datasource/
 ---
 
-{{< youtube tjzjaykQqkg >}} 
+{{< youtube tjzjaykQqkg >}}
 
 Upon navigating to schema tab on API details page you’ll see a split screen view with schema and user interface for available fields to configure the datasource.
 
 You can attach datasource to each individual field and can also re-use the datasource for multiple fields for performance benefits in case it has similar configuration (it needs to use the same upstream URL and method).
 
-We will start with attaching datasource to user query using following approach. 
+We will start with attaching datasource to user query using following approach.
 
 #### 1. Select field to attach datasource.
+
 Upon selecting the `Users` field on type `Query`, you'll see the options to configure that field for following kinds of datasources.
 
-* REST
-* GraphQL
-* Kafka
+- REST
+- GraphQL
+- Kafka
 
 #### 2. Select datasource type.
 
 Since our upstream services are REST, we'll select REST as datasource type but other kind of datasources can be used as well:
 
-* *Use external data source*: Will allow to configure the field to resolve with the external API (outside Tyk environment)
-* *Using exiting APIs*: Which will allow to configure the field with the API that already exists in Tyk environment.
-* *Re-use already configured data source*: If you already have configured a data source for the same API you can re-use the same data-source. If the data source is reused the endpoint will only be called once by Tyk.
+- _Use external data source_: Will allow to configure the field to resolve with the external API (outside Tyk environment)
+- _Using exiting APIs_: Which will allow to configure the field with the API that already exists in Tyk environment.
+- _Re-use already configured data source_: If you already have configured a data source for the same API you can re-use the same data-source. If the data source is reused the endpoint will only be called once by Tyk.
 
 You can learn more about it [here](../../concepts/datasources/)
 
@@ -40,7 +41,7 @@ Configure the data source with the following fields
 
 **Name**
 
- Enter a unique datasource name configuration to reuse it in the future. We will name this as `getUserById` for the given example.
+Enter a unique datasource name configuration to reuse it in the future. We will name this as `getUserById` for the given example.
 When configuring a datasource name with Tyk Dashboard, a default name is created automatically by concatenating the field name and the GraphQL type name with an underscore symbol in between. For example, _getUserById_Query_. This name is editable and can be changed by the user.
 
 **URL**
@@ -78,7 +79,7 @@ You can learn more about field mapping [here](../../concepts/field_mappings)
 #### 8. Save data source
 
 It is important to save the datasource configuration in order to reflect the changes in your API definition.
-The` “Save & Update API” `button will persist the full API definition.
+The`“Save & Update API”`button will persist the full API definition.
 
 #### 9. Update API and Test
 
@@ -88,7 +89,7 @@ You can now query your UDG API of `user` using the Playground tab in API designe
 
 ```gql
 query getUser {
-  user(id:"1"){
+  user(id: "1") {
     username
     id
     reviews {
@@ -97,13 +98,12 @@ query getUser {
       user {
         id
       }
-      
     }
   }
 }
 ```
 
-The above query should return the response as follows 
+The above query should return the response as follows
 
 ```json
 {
@@ -122,9 +122,9 @@ The above query should return the response as follows
 1. Try to resolve `reviews` field on type `Users`
 2. Try to resolve `users` field on type `Reviews`
 
-As you can see our query resolved for user details but returns `null` for `reviews`. 
+As you can see our query resolved for user details but returns `null` for `reviews`.
 
-This happens because we haven't defined datasource on field level for `reviews` on type `User`. 
+This happens because we haven't defined datasource on field level for `reviews` on type `User`.
 
 ```
 Notes

@@ -1,8 +1,7 @@
-
 ---
 title: Encoding and Encryption Methods
 description: Explains Bloblang encoding and encryption methods
-tags: [ "Tyk Streams", "Bloblang", "Encoding", "Encryption", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "Encoding", "Encryption", "Methods"]
 ---
 
 This page provides a detailed guide to the encoding and encryption methods available in Bloblang, the data transformation language used within Tyk Streams. These methods enable you to securely encode, decode, encrypt and decrypt your data, leveraging a variety of algorithms and schemes. Each method includes specific parameters and examples.
@@ -14,10 +13,9 @@ Compresses a string or byte array value according to a specified algorithm.
 #### Parameters
 
 **algorithm** &lt;string&gt; One of `flate`, `gzip`, `pgzip`, `lz4`, `snappy`, `zlib`, `zstd`.  
-**level** &lt;integer, default `-1`&gt; The level of compression to use. May not be applicable to all algorithms.  
+**level** &lt;integer, default `-1`&gt; The level of compression to use. May not be applicable to all algorithms.
 
 #### Examples
-
 
 ```coffee
 let long_content = range(0, 1000).map_each(content()).join(" ")
@@ -44,10 +42,9 @@ Available schemes are: `base64`, `base64url` [(RFC 4648 with padding characters)
 
 #### Parameters
 
-**scheme** &lt;string&gt; The decoding scheme to use.  
+**scheme** &lt;string&gt; The decoding scheme to use.
 
 #### Examples
-
 
 ```coffee
 root.decoded = this.value.decode("hex").string()
@@ -65,14 +62,13 @@ root = this.encoded.decode("ascii85")
 
 ## decompress
 
-Decompresses a string or byte array value according to a specified algorithm. The result of decompression 
+Decompresses a string or byte array value according to a specified algorithm. The result of decompression
 
 #### Parameters
 
-**algorithm** &lt;string&gt; One of `gzip`, `pgzip`, `zlib`, `bzip2`, `flate`, `snappy`, `lz4`, `zstd`.  
+**algorithm** &lt;string&gt; One of `gzip`, `pgzip`, `zlib`, `bzip2`, `flate`, `snappy`, `lz4`, `zstd`.
 
 #### Examples
-
 
 ```coffee
 root = this.compressed.decode("base64").decompress("lz4")
@@ -98,10 +94,9 @@ Decrypts an encrypted string or byte array target according to a chosen AES encr
 
 **scheme** &lt;string&gt; The scheme to use for decryption, one of `ctr`, `ofb`, `cbc`.  
 **key** &lt;string&gt; A key to decrypt with.  
-**iv** &lt;string&gt; An initialization vector / nonce.  
+**iv** &lt;string&gt; An initialization vector / nonce.
 
 #### Examples
-
 
 ```coffee
 let key = "2b7e151628aed2a6abf7158809cf4f3c".decode("hex")
@@ -118,10 +113,9 @@ Encodes a string or byte array target according to a chosen scheme and returns a
 
 #### Parameters
 
-**scheme** &lt;string&gt; The encoding scheme to use.  
+**scheme** &lt;string&gt; The encoding scheme to use.
 
 #### Examples
-
 
 ```coffee
 root.encoded = this.value.encode("hex")
@@ -145,10 +139,9 @@ Encrypts a string or byte array target according to a chosen AES encryption meth
 
 **scheme** &lt;string&gt; The scheme to use for encryption, one of `ctr`, `ofb`, `cbc`.  
 **key** &lt;string&gt; A key to encrypt with.  
-**iv** &lt;string&gt; An initialization vector / nonce.  
+**iv** &lt;string&gt; An initialization vector / nonce.
 
 #### Examples
-
 
 ```coffee
 let key = "2b7e151628aed2a6abf7158809cf4f3c".decode("hex")
@@ -171,10 +164,9 @@ The following algorithms require a key, which is specified as a second argument:
 
 **algorithm** &lt;string&gt; The hasing algorithm to use.  
 **key** &lt;(optional) string&gt; An optional key to use.  
-**polynomial** &lt;string, default `"IEEE"`&gt; An optional polynomial key to use when selecting the `crc32` algorithm, otherwise ignored. Options are `IEEE` (default), `Castagnoli` and `Koopman`  
+**polynomial** &lt;string, default `"IEEE"`&gt; An optional polynomial key to use when selecting the `crc32` algorithm, otherwise ignored. Options are `IEEE` (default), `Castagnoli` and `Koopman`
 
 #### Examples
-
 
 ```coffee
 root.h1 = this.value.hash("sha1").encode("hex")

@@ -3,7 +3,7 @@ title: Tyk Gateway v4.3
 description: "Tyk Gateway 4.3 release notes"
 tags: ["release notes", "Tyk Gateway", "v4.3"]
 aliases:
-    - /release-notes/version-4.3/
+  - /release-notes/version-4.3/
 ---
 
 ## Release Highlights
@@ -14,7 +14,7 @@ Does your Tyk OAS API Definition define examples or a schema for your path respo
 
 #### External OAuth - 3rd party OAuth IDP integration
 
-If you’re using a 3rd party IDP to generate tokens for your OAuth applications, Tyk can now validate the generated tokens by either performing JWT validation or by communicating with the authorization server and executing token introspection. 
+If you’re using a 3rd party IDP to generate tokens for your OAuth applications, Tyk can now validate the generated tokens by either performing JWT validation or by communicating with the authorization server and executing token introspection.
 
 This can be achieved by configuring the new External OAuth authentication mechanism. Find out more here [External OAuth Integration]({{< ref "basic-config-and-security/security/authentication-authorization/ext-oauth-middleware" >}})
 
@@ -33,12 +33,12 @@ Note that if the CommonName is an invalid host name, it's always ignored, regard
 1. Ability to turn on/off introspection - this feature allows much more control over what consumers are able to do when interacting with a GraphQL API. In cases where introspection is not desirable, API managers can now disallow it. The setting is done on API key level, which means API providers will have very granular control over who can and who cannot introspect the API.
 2. Support for allow list in field-based permissions - so far Tyk was offering field-based permissions as a “block list” only. That meant that any new field/query added to a graph was by default accessible for all consumers until API manager explicitly blocked it on key/policy level. Adding support for “allow list” gives APi managers much more control over changing schemas and reduces the risk of unintentionally exposing part of the graph that are not ready for usage. See [Introspection]({{< ref "graphql/introspection" >}}) for more details.
 
-
 ## Changelog
 
 #### Tyk Gateway
 
 ##### Added
+
 - Minor modifications to the Gateway needed for enabling support for Graph Mongo Pump.
 - Added header `X-Tyk-Sub-Request-Id` to each request dispatched by federated supergraph and Universal Data Graph, so that those requests can be distinguished from requests directly sent by consumers.
 - Added a functionality that allows to block introspection for any GraphQL API, federated supergraph and Universal Data Graph (currently only supported via Gateway, UI support coming in the next release).
@@ -48,7 +48,7 @@ Note that if the CommonName is an invalid host name, it's always ignored, regard
 
 ##### Changed
 
-Updated the Tyk Gateway version of Golang, to 1.16. 
+Updated the Tyk Gateway version of Golang, to 1.16.
 
 **SECURITY: The release deprecates x509 commonName certificates usage. This will be the last release where it's still possible to use commonName, users need to explicitly re-enable it with an environment variable.**
 
@@ -64,7 +64,6 @@ Note that if the CommonName is an invalid host name, it's always ignored, regard
 - A HTTP OAS API version lifetime respects now the date value of the expiration field from Tyk OAS API Definition.
 - Now it is possible to proxy traffic from a HTTP API (using Tyk Classic API Definition) to a HTTP OAS API (using Tyk OAS API Definition) and vice versa.
 
-
 ## Updated Versions
 
 Tyk Gateway 4.3 ([docker images](https://hub.docker.com/r/tykio/tyk-gateway/tags?page=1&name=4.3.0)
@@ -76,7 +75,7 @@ Follow the [standard upgrade guide]({{< ref "upgrading-tyk" >}}), there are no b
 If you want switch from MongoDB to SQL, you can [use our migration tool]({{< ref "planning-for-production/database-settings/postgresql#migrating-from-an-existing-mongodb-instance" >}}), but keep in mind that it does not yet support the migration of your analytics data.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Note: Upgrading the Golang version implies that all the Golang custom plugins that you are using need to be recompiled before migrating to 4.3 version of the Gateway. Check our docs for more details [Golang Plugins]({{< ref "/content/plugins/supported-languages/golang.md" >}}).
 {{< /note >}}

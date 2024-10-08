@@ -1,18 +1,18 @@
 ---
 title: Using JavaScript with Tyk
 tags:
-    - JavaScript
-    - JS
-    - middleware
-    - scripting
-    - JSVM
-    - plugins
-    - virtual endpoint
+  - JavaScript
+  - JS
+  - middleware
+  - scripting
+  - JSVM
+  - plugins
+  - virtual endpoint
 description: Writing custom JS functions for Tyk middleware
 date: "2017-03-24T14:51:42Z"
 aliases:
-    - /tyk-api-gateway-v1-9/javascript-plugins/middleware-scripting/
-    - /plugins/javascript-middleware/middleware-scripting-guide
+  - /tyk-api-gateway-v1-9/javascript-plugins/middleware-scripting/
+  - /plugins/javascript-middleware/middleware-scripting-guide
 ---
 
 Tyk's JavaScript Virtual Machine (JSVM) provides a serverless compute function that allows for the execution of custom logic directly within the gateway itself. This can be accessed from [multiple locations]({{< ref "plugins/supported-languages/javascript-middleware" >}}) in the API processing chain and allows significant customization and optimization of your request handling.
@@ -48,7 +48,7 @@ You create a middleware object by calling the `TykJS.TykMiddleware.NewMiddleware
 
 - For Custom JS plugins and Dynamic Event Handlers, the source code filename must match the function name
 - Virtual Endpoints do not have this limitation
-{{< /note >}}
+  {{< /note >}}
 
 ### Returning from the middleware
 
@@ -156,7 +156,6 @@ struct {
 - `RequestURI`: contains the request URI, including the query string, e.g. `/path?key=value`
 - `Scheme`: contains the URL scheme, e.g. `http`, `https`
 
-
 #### Using `ReturnOverrides`
 
 If you configure values in `request.ReturnOverrides` then Tyk will terminate the request and provide a response to the client when the function completes. The request will not be proxied to the upstream.
@@ -172,15 +171,15 @@ In this example, if the condition is met, Tyk will return `HTTP 403 Access Denie
 ```js
 var testJSVMData = new TykJS.TykMiddleware.NewMiddleware({});
 
-testJSVMData.NewProcessRequest(function(request, session, config) {
+testJSVMData.NewProcessRequest(function (request, session, config) {
   // Logic to determine if the request should be overridden
   if (someCondition) {
-      request.ReturnOverrides.response_code = 403;
-      request.ReturnOverrides.response_body = "Access Denied";
-      request.ReturnOverrides.headers = {"X-Error": "the-condition"};
-      // This stops the request from proceeding to the upstream
+    request.ReturnOverrides.response_code = 403;
+    request.ReturnOverrides.response_body = "Access Denied";
+    request.ReturnOverrides.headers = { "X-Error": "the-condition" };
+    // This stops the request from proceeding to the upstream
   }
-	return testJSVMData.ReturnData(request, session.meta_data);
+  return testJSVMData.ReturnData(request, session.meta_data);
 });
 ```
 
@@ -216,17 +215,18 @@ Repeated parameter assignments are appended to the corresponding array. For exam
 ```javascript
 const httpRequest = {
   Headers: {
-    "Accept": ["*/*"],
-    "User-Agent": ["curl/8.1.2"]
+    Accept: ["*/*"],
+    "User-Agent": ["curl/8.1.2"],
   },
   Body: "",
   URL: "/vendpoint/anything?user_id[]=123\u0026user_id[]=234",
   Params: {
-    "user_id[]": ["123", "234"]
+    "user_id[]": ["123", "234"],
   },
-  Scheme: "http"
+  Scheme: "http",
 };
 ```
+
 {{< /note >}}
 
 ### The `session` object
@@ -245,7 +245,7 @@ For different middleware to be able to transfer data between each other, the ses
 {{< note success >}}
 **Note**
 
-A new JSVM instance is created for *each* API that is managed. Consequently, inter-API communication is not possible via shared methods, since they have different bounds. However, it *is* possible using the session object if a key is shared across APIs.
+A new JSVM instance is created for _each_ API that is managed. Consequently, inter-API communication is not possible via shared methods, since they have different bounds. However, it _is_ possible using the session object if a key is shared across APIs.
 {{< /note >}}
 
 ### The `config` object
@@ -262,7 +262,7 @@ When working with Tyk OAS APIs, you can add custom attributes in the `data` obje
 
 ```json {linenos=true, linenostart=1}
 {
-  "x-tyk-api-gateway": {  
+  "x-tyk-api-gateway": {
     "middleware": {
       "global": {
         "pluginConfig": {
@@ -318,10 +318,10 @@ var sampleMiddleware = new TykJS.TykMiddleware.NewMiddleware({});
 
 // Initialise the object with your functionality by passing a closure that accepts
 // two objects into the NewProcessRequest() function:
-sampleMiddleware.NewProcessRequest(function(request, session, config) {
-    log("This middleware does nothing, but will print this to your terminal.")
+sampleMiddleware.NewProcessRequest(function (request, session, config) {
+  log("This middleware does nothing, but will print this to your terminal.");
 
-    // You MUST return both the request and session metadata
-    return sampleMiddleware.ReturnData(request, session.meta_data);
+  // You MUST return both the request and session metadata
+  return sampleMiddleware.ReturnData(request, session.meta_data);
 });
 ```

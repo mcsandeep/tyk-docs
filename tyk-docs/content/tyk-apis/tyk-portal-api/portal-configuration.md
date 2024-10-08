@@ -8,22 +8,22 @@ weight: 5
 ---
 
 This section will cover the following endpoints:
-* [Configuration](#configuration)
-* [Menus](#menus)
-* [Pages](#pages)
 
+- [Configuration](#configuration)
+- [Menus](#menus)
+- [Pages](#pages)
 
 ## Configuration
 
 ### List Portal Configuration
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
+| **Property** | **Description**             |
+| ------------ | --------------------------- |
 | Resource URL | `/api/portal/configuration` |
-| Method       | GET                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| Method       | GET                         |
+| Type         | None                        |
+| Body         | None                        |
+| Param        | None                        |
 
 #### Sample Request
 
@@ -89,13 +89,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Create Portal Configuration
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
+| **Property** | **Description**             |
+| ------------ | --------------------------- |
 | Resource URL | `/api/portal/configuration` |
-| Method       | POST                     |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| Method       | POST                        |
+| Type         | None                        |
+| Body         | None                        |
+| Param        | None                        |
 
 #### Sample Request
 
@@ -115,13 +115,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Update Portal Configuration
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
+| **Property** | **Description**             |
+| ------------ | --------------------------- |
 | Resource URL | `/api/portal/configuration` |
-| Method       | PUT                     |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| Method       | PUT                         |
+| Type         | None                        |
+| Body         | None                        |
+| Param        | None                        |
 
 #### Sample Request
 
@@ -143,13 +143,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### List Portal Menus
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/menus`      |
-| Method       | GET                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**     |
+| ------------ | ------------------- |
+| Resource URL | `/api/portal/menus` |
+| Method       | GET                 |
+| Type         | None                |
+| Body         | None                |
+| Param        | None                |
 
 #### Sample Request
 
@@ -172,13 +172,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Create Portal Menus
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/menus`      |
-| Method       | POST                     |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**     |
+| ------------ | ------------------- |
+| Resource URL | `/api/portal/menus` |
+| Method       | POST                |
+| Type         | None                |
+| Body         | None                |
+| Param        | None                |
 
 #### Sample Request
 
@@ -198,13 +198,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Update Portal Menus
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/menus`      |
-| Method       | PUT                     |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**     |
+| ------------ | ------------------- |
+| Resource URL | `/api/portal/menus` |
+| Method       | PUT                 |
+| Type         | None                |
+| Body         | None                |
+| Param        | None                |
 
 #### Sample Request
 
@@ -222,19 +222,17 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 }
 ```
 
-
-
 ## Pages
 
 ### List Portal Pages
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/pages`      |
-| Method       | GET                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**     |
+| ------------ | ------------------- |
+| Resource URL | `/api/portal/pages` |
+| Method       | GET                 |
+| Type         | None                |
+| Body         | None                |
+| Param        | None                |
 
 #### Sample Request
 
@@ -286,13 +284,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Create Portal Pages
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/pages`      |
-| Method       | POST                     |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**     |
+| ------------ | ------------------- |
+| Resource URL | `/api/portal/pages` |
+| Method       | POST                |
+| Type         | None                |
+| Body         | None                |
+| Param        | None                |
 
 #### Sample Request
 
@@ -314,7 +312,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 | **Property** | **Description**          |
 | ------------ | ------------------------ |
-| Resource URL | `/api/portal/pages/{id}`      |
+| Resource URL | `/api/portal/pages/{id}` |
 | Method       | GET                      |
 | Type         | None                     |
 | Body         | None                     |
@@ -414,17 +412,18 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
   Response here
 }
 ```
+
 ## CSS
 
 ### List Portal CSS
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/css`        |
-| Method       | GET                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**   |
+| ------------ | ----------------- |
+| Resource URL | `/api/portal/css` |
+| Method       | GET               |
+| Type         | None              |
+| Body         | None              |
+| Param        | None              |
 
 #### Sample Request
 
@@ -447,13 +446,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Create Portal CSS
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/css`      |
-| Method       | POST                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**   |
+| ------------ | ----------------- |
+| Resource URL | `/api/portal/css` |
+| Method       | POST              |
+| Type         | None              |
+| Body         | None              |
+| Param        | None              |
 
 #### Sample Request
 
@@ -473,13 +472,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Update Portal CSS
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/css`      |
-| Method       | PUT                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**   |
+| ------------ | ----------------- |
+| Resource URL | `/api/portal/css` |
+| Method       | PUT               |
+| Type         | None              |
+| Body         | None              |
+| Param        | None              |
 
 #### Sample Request
 
@@ -501,13 +500,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### List Portal JavaScript
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/js`        |
-| Method       | GET                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**  |
+| ------------ | ---------------- |
+| Resource URL | `/api/portal/js` |
+| Method       | GET              |
+| Type         | None             |
+| Body         | None             |
+| Param        | None             |
 
 #### Sample Request
 
@@ -529,13 +528,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Create Portal JavaScript
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/js`      |
-| Method       | POST                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**  |
+| ------------ | ---------------- |
+| Resource URL | `/api/portal/js` |
+| Method       | POST             |
+| Type         | None             |
+| Body         | None             |
+| Param        | None             |
 
 #### Sample Request
 
@@ -561,13 +560,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Update Portal CSS
 
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/portal/js`      |
-| Method       | PUT                      |
-| Type         | None                     |
-| Body         | None                     |
-| Param        | None                     |
+| **Property** | **Description**  |
+| ------------ | ---------------- |
+| Resource URL | `/api/portal/js` |
+| Method       | PUT              |
+| Type         | None             |
+| Body         | None             |
+| Param        | None             |
 
 #### Sample Request
 
@@ -591,4 +590,3 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
     "Meta": null
 }
 ```
-

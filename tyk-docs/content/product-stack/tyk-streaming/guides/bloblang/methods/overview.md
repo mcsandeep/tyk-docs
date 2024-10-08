@@ -1,7 +1,7 @@
 ---
 title: Bloblang Methods
 description: Explains Bloblang Methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Methods"]
 aliases:
   - /product-stack/tyk-streaming/guides/bloblang/methods
 ---

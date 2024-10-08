@@ -4,8 +4,8 @@ title: Planning for Production
 tags: ["Production", "Performance", "Security", "Tyk Self-Managed", "Tyk Open Source"]
 description: "How to deploy Tyk in a production environment"
 menu:
-    main:
-        parent: "Getting Started"
+  main:
+    parent: "Getting Started"
 weight: 13
 aliases:
   - /deploy-tyk-premise-production/
@@ -47,27 +47,26 @@ Ensure that these are changed before deploying to production. The main secrets t
 
 #### `tyk.conf`:
 
-*   `secret`
-*   `node_secret`
+- `secret`
+- `node_secret`
 
 #### `tyk_analytics.conf`:
 
-*   `admin_secret`
-*   `shared_node_secret`
-*   `typ_api_config.secret`
+- `admin_secret`
+- `shared_node_secret`
+- `typ_api_config.secret`
 
 GW `secret` and DB `tyk_api_config.secret` must match
 
 GW `node_secret` and DB `shared_node_secret` must match
 
-
 #### Use the public/private key message security!
 
 Tyk makes use of public-key message verification for messages that are sent from the Dashboard to the Gateways, these messages can include:
 
-*   Zeroconfig Dashboard auto-discovery details
-*   Cluster reload messages
-*   Cluster configuration getters/setters for individual Gateways in a cluster
+- Zeroconfig Dashboard auto-discovery details
+- Cluster reload messages
+- Cluster configuration getters/setters for individual Gateways in a cluster
 
 These keys are also used for plugin security, so it is important to use them if you are deploying code to your Gateway. The public key that ships with your Gateways is used to verify the manifest and files that come with any plugin bundle that gets downloaded by the bundle downloader.
 
@@ -79,8 +78,7 @@ To secure your Tyk installation, you can configure the following settings in you
 
 `control_api_port` - This allows you to run the Gateway Control API on a separate port, and protect it behind a firewall if needed.
 
-If you change these values, you need to update the equivalent fields in the dashboard conf file `tyk_analytics.conf`: `tyk_api_config.Host`  and `tyk_api_config.Port`
-
+If you change these values, you need to update the equivalent fields in the dashboard conf file `tyk_analytics.conf`: `tyk_api_config.Host` and `tyk_api_config.Port`
 
 ### Connecting multiple gateways to a single dashboard
 
@@ -96,7 +94,7 @@ In addition to changing the default secrets (see [Change all the shared secrets]
 
 We recommend that you configure Tyk Gateway to use [exact URL path matching]({{< ref "getting-started/key-concepts/url-matching#exact-match" >}}) and to enforce [strict route matching]({{< ref "tyk-oss-gateway/configuration#http_server_optionsenable_strict_routes" >}}) to avoid accidentally invoking your unsecured `/health` endpoint when a request is made to `/customer/{customer_id}/account/health`...
 
-Unless you want to make use of Tyk's flexible *listen path* and *endpoint path* matching modes and understand the need to configure patterns carefully, you should enable `TYK_GW_HTTPSERVEROPTIONS_ENABLESTRICTROUTES`, `TYK_GW_HTTPSERVEROPTIONS_ENABLEPATHPREFIXMATCHING` and `TYK_GW_HTTPSERVEROPTIONS_ENABLEPATHSUFFIXMATCHING`.
+Unless you want to make use of Tyk's flexible _listen path_ and _endpoint path_ matching modes and understand the need to configure patterns carefully, you should enable `TYK_GW_HTTPSERVEROPTIONS_ENABLESTRICTROUTES`, `TYK_GW_HTTPSERVEROPTIONS_ENABLEPATHPREFIXMATCHING` and `TYK_GW_HTTPSERVEROPTIONS_ENABLEPATHSUFFIXMATCHING`.
 
 ### Health checks are expensive
 
@@ -139,7 +137,7 @@ If the latency between Tyk and your Upstream is around 50ms, then a single conne
 
 ### Protect Redis from overgrowing
 
-Please read carefully through this [doc]({{< ref "basic-config-and-security/security/authentication-authorization/physical-key-expiry" >}}) to make an *aware decision* about the expiration of your keys in Redis, after which they will be removed from Redis. If you don't set the lifetime, a zero default means that keys will stay in Redis until you manually delete them, which is no issue if you have a process outside Tyk Gateway to handle it. If you don't - and especially in scenarios that your flow creates many keys or access tokens for every user or even per call - your Redis can quickly get cluttered with obsolete tokens and eventually affect the performance of the Tyk Gateway.
+Please read carefully through this [doc]({{< ref "basic-config-and-security/security/authentication-authorization/physical-key-expiry" >}}) to make an _aware decision_ about the expiration of your keys in Redis, after which they will be removed from Redis. If you don't set the lifetime, a zero default means that keys will stay in Redis until you manually delete them, which is no issue if you have a process outside Tyk Gateway to handle it. If you don't - and especially in scenarios that your flow creates many keys or access tokens for every user or even per call - your Redis can quickly get cluttered with obsolete tokens and eventually affect the performance of the Tyk Gateway.
 
 ### Analytics Optimizations
 
@@ -147,12 +145,11 @@ If using a [Redis cluster](https://redis.io/docs/management/scaling/) under high
 
 #### Protobuf Serialisation
 
-In Tyk Gateway, using [protobuf]({{< ref "tyk-oss-gateway/configuration/#analytics_configserializer_type" >}}) serialisation, instead of [msgpack](https://msgpack.org) can increase performance for sending and processing analytics. 
+In Tyk Gateway, using [protobuf]({{< ref "tyk-oss-gateway/configuration/#analytics_configserializer_type" >}}) serialisation, instead of [msgpack](https://msgpack.org) can increase performance for sending and processing analytics.
 <br/>
-**Note:** *protobuf* is not currently supported in *MDCB* deployment.
+**Note:** _protobuf_ is not currently supported in _MDCB_ deployment.
 
 If using Tyk Cloud platform under high load, it is also recommended that analytics are stored within a local region. This means that a local Tyk Pump instance can send the analytics to a localised data sink, such as PostgreSQL or MongoDB (no need for the hybrid pump). This can reduce traffic costs since your analytics would not be sent across regions.
-
 
 ### Use the right hardware
 
@@ -180,10 +177,10 @@ Now we need to configure the file handles available to your Tyk services.
 
 Override your `systemd` unit files for each of the Tyk services using `systemctl edit {service_name}`.
 
-* Gateway `systemctl edit tyk-gateway.service`
-* Dashboard `systemctl edit tyk-dashboard.service`
-* Pump `systemctl edit tyk-pump.service`
-* Multi Data-Center Bridge `systemctl edit tyk-sink.service`
+- Gateway `systemctl edit tyk-gateway.service`
+- Dashboard `systemctl edit tyk-dashboard.service`
+- Pump `systemctl edit tyk-pump.service`
+- Multi Data-Center Bridge `systemctl edit tyk-sink.service`
 
 You may then add `LimitNOFILE=80000` to the `[Service]` directive as follows:
 
@@ -200,7 +197,7 @@ systemctl restart tyk-gateway.service
 
 #### Docker
 
-You may set *ulimits* in a container using the `--ulimit` option. See *Docker* documentation for detail on [setting *ulimits*]( https://docs.docker.com/engine/reference/commandline/run/#set-ulimits-in-container---ulimit)
+You may set _ulimits_ in a container using the `--ulimit` option. See _Docker_ documentation for detail on [setting _ulimits_](https://docs.docker.com/engine/reference/commandline/run/#set-ulimits-in-container---ulimit)
 
 ```
 docker run --ulimit nofile=80000:80000 \
@@ -216,12 +213,12 @@ If you are not using systemd or Docker, please consult your Operating System doc
 
 Understanding what files are created or modified by the Dashboard and Gateway during runtime can be important if you are running infrastructure orchestration systems such as Puppet, which may erroneously see such changes as problems which need correcting.
 
-*   Both the Gateway and Dashboard will create a default configuration file if one is not found.
-*   Dashboard will write the license into the configuration file if you add it via the UI.
-*   From Tyk v2.3 onwards it has been possible for a Dashboard to remotely change the config of a Gateway. This will cause the Gateway's configuration file to update.
+- Both the Gateway and Dashboard will create a default configuration file if one is not found.
+- Dashboard will write the license into the configuration file if you add it via the UI.
+- From Tyk v2.3 onwards it has been possible for a Dashboard to remotely change the config of a Gateway. This will cause the Gateway's configuration file to update.
 
- [1]: /img/diagrams/deployGraph.png
- [2]: /img/diagrams/deployGraphNoRateLimitQuota.png
- [3]: /img/diagrams/deployGraphVanilla.png
- [5]: https://docs.mongodb.com/manual/core/capped-collections/
- [6]: https://docs.mongodb.com/manual/reference/command/convertToCapped/
+[1]: /img/diagrams/deployGraph.png
+[2]: /img/diagrams/deployGraphNoRateLimitQuota.png
+[3]: /img/diagrams/deployGraphVanilla.png
+[5]: https://docs.mongodb.com/manual/core/capped-collections/
+[6]: https://docs.mongodb.com/manual/reference/command/convertToCapped/

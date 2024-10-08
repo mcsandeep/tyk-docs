@@ -5,7 +5,7 @@ menu:
   main:
     parent: "Plugin Types"
 weight: 90
-aliases: 
+aliases:
   - /plugins/analytics-plugins
 ---
 
@@ -36,11 +36,11 @@ To enable the analytics rewriting functionality, adjust the following in API def
 
 ```json
 {
-    "analytics_plugin": {
-        "enable": true,
-        "func_name": "<function name>",
-        "plugin_path": "<path>/analytics_plugin.so"
-    }
+  "analytics_plugin": {
+    "enable": true,
+    "func_name": "<function name>",
+    "plugin_path": "<path>/analytics_plugin.so"
+  }
 }
 ```
 
@@ -48,7 +48,7 @@ To enable the analytics rewriting functionality, adjust the following in API def
 
 {{< tab_start "Tyk Operator" >}}
 
-The example API Definition resource listed below listens on path */httpbin* and forwards requests upstream to *http://httpbin.org*. A Go Analytics Plugin is enabled for function *MaskAnalyticsData*, located within the */opt/tyk-gateway/plugins/example-plugin.so* shared object file.
+The example API Definition resource listed below listens on path _/httpbin_ and forwards requests upstream to *http://httpbin.org*. A Go Analytics Plugin is enabled for function _MaskAnalyticsData_, located within the _/opt/tyk-gateway/plugins/example-plugin.so_ shared object file.
 
 ```yaml {linenos=table,hl_lines=["15-18"],linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -68,7 +68,7 @@ spec:
   analytics_plugin:
     enable: true
     func_name: MaskAnalyticsData # Replace it with function name of your plugin
-    plugin_path: /opt/tyk-gateway/plugins/example-plugin.so  # Replace it with path of your plugin file
+    plugin_path: /opt/tyk-gateway/plugins/example-plugin.so # Replace it with path of your plugin file
 ```
 
 {{< tab_end >}}

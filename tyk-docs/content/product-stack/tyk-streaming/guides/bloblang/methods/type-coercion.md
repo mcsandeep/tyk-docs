@@ -1,7 +1,7 @@
 ---
 title: Type Coercion Methods
 description: Explains Type Coercion Methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Type Coercion" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Type Coercion"]
 ---
 
 Bloblang provides a robust set of type coercion methods designed to facilitate seamless transformation and manipulation of data across various types. This includes converting values into booleans, numbers, strings or byte arrays.
@@ -12,7 +12,7 @@ Attempt to parse a value into a boolean. An optional argument can be provided, i
 
 #### Parameters
 
-**default** &lt;(optional) bool&gt; An optional value to yield if the target cannot be parsed as a boolean.  
+**default** &lt;(optional) bool&gt; An optional value to yield if the target cannot be parsed as a boolean.
 
 #### Examples
 
@@ -27,7 +27,6 @@ Marshal a value into a byte array. If the value is already a byte array it is un
 
 #### Examples
 
-
 ```coffee
 root.first_byte = this.name.bytes().index(0)
 
@@ -40,7 +39,6 @@ root.first_byte = this.name.bytes().index(0)
 Ensures that the given string, array or object value is not empty, and if so returns it, otherwise an error is returned.
 
 #### Examples
-
 
 ```coffee
 root.a = this.a.not_empty()
@@ -70,7 +68,6 @@ Ensures that the given value is not `null`, and if so returns it, otherwise an e
 
 #### Examples
 
-
 ```coffee
 root.a = this.a.not_null()
 
@@ -87,10 +84,9 @@ Attempt to parse a value into a number. An optional argument can be provided, in
 
 #### Parameters
 
-**default** &lt;(optional) float&gt; An optional value to yield if the target cannot be parsed as a number.  
+**default** &lt;(optional) float&gt; An optional value to yield if the target cannot be parsed as a number.
 
 #### Examples
-
 
 ```coffee
 root.foo = this.thing.number() + 10
@@ -102,7 +98,6 @@ root.bar = this.thing.number(5) * 10
 Marshal a value into a string. If the value is already a string it is unchanged.
 
 #### Examples
-
 
 ```coffee
 root.nested_json = this.string()
@@ -123,7 +118,6 @@ root.id = this.id.string()
 Returns the type of a value as a string, providing one of the following values: `string`, `bytes`, `number`, `bool`, `timestamp`, `array`, `object` or `null`.
 
 #### Examples
-
 
 ```coffee
 root.bar_type = this.bar.type()

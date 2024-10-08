@@ -48,6 +48,7 @@ extend type MyEntity @key(fields: "id") {
 ```
 
 ### Entity stubs
+
 If one subgraph references a base entity (an entity defined in another subgraph) without adding new fields, that reference must be declared as a stub. In **federation v1**, stubs appear similar to extensions but do not add any new fields.
 
 An entity stub contains the minimal amount of information necessary to identify the entity (referencing exactly one of the primary keys from the base entity regardless of whether there are multiple primary keys on the base entity).
@@ -65,9 +66,11 @@ extend type MyEntity @key(fields: "id") {
 ```
 
 #### What is a shared type?
+
 Types that are identical by name and structure and feature in more than one subgraph are shared types.
 
 #### Can I extend a shared type?
+
 Subgraphs are normalized before federation. This means you can extend a type if the resolution of the extension after normalization is exactly identical to the resolution of the type after normalization in other subgraphs.
 
 Unless the resolution of the extension in a single subgraph is exactly identical to all other subgraphs, extension is not possible.
@@ -78,12 +81,12 @@ Here is a valid example where both subgraphs resolve to identical enums after no
 
 ```graphql
 enum Example {
-  A,
+  A
   B
 }
 
 extend enum Example {
-  C  
+  C
 }
 ```
 
@@ -91,8 +94,8 @@ extend enum Example {
 
 ```graphql
 enum Example {
-  A,
-  B,
+  A
+  B
   C
 }
 ```
@@ -105,8 +108,7 @@ However, if we were to include **Subgraph 3**, which does not feature the â€œCâ€
 
 ```graphql
 enum Example {
-  A,
+  A
   B
 }
 ```
-

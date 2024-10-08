@@ -53,13 +53,12 @@ Response provides the token as `access_token` in the returned JSON which can the
   "token_type": "bearer"
 }
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 It does not provide a refresh token.
 {{< /note >}}
-
-
 
 ### Sequence Diagram
 

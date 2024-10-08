@@ -6,7 +6,7 @@ menu:
     parent: "GraphQL"
 weight: 5
 aliases:
-    - /graphql/headers/
+  - /graphql/headers/
 ---
 
 Users can set up two kinds of headers when configuring GraphQL APIs:

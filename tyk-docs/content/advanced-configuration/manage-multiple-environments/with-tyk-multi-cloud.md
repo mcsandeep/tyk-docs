@@ -5,12 +5,12 @@ menu:
   main:
     parent: "Manage Multiple Environments"
     identifier: multiple-environments-multi-cloud
-weight: 2 
+weight: 2
 ---
 
 ## Gateway Sharding Introduction
 
-With Tyk, it is easy to enable a sharded configuration, you can deploy Gateways which selectively load APIs.  This unlocks abilities to run Gateways in multiple zones, all connected to the same Control Plane.  This allows for GDPR deployments, development/test Gateways, or even DMZ/NON-DMZ Gateways.
+With Tyk, it is easy to enable a sharded configuration, you can deploy Gateways which selectively load APIs. This unlocks abilities to run Gateways in multiple zones, all connected to the same Control Plane. This allows for GDPR deployments, development/test Gateways, or even DMZ/NON-DMZ Gateways.
 
 Couple this functionality with the Tyk [Multi Data Center Bridge]({{< ref "tyk-multi-data-centre" >}}) to achieve a global, multi-cloud deployment.
 

@@ -9,20 +9,21 @@ aliases:
 
 Tyk Dashboard's Endpoint Designer provides a graphical environment for the creation and update of your Tyk Classic APIs.
 
-The Endpoint Designer allows to configure all elements of your Tyk Classic API and consists of several tabs, plus a **Raw Definition** view which allows you to directly edit the Tyk Classic API Definition (in JSON format). Note that 
+The Endpoint Designer allows to configure all elements of your Tyk Classic API and consists of several tabs, plus a **Raw Definition** view which allows you to directly edit the Tyk Classic API Definition (in JSON format). Note that
 
 ## Core Settings
 
 {{< img src="/img/dashboard/endpoint-designer/classic-endpoint-designer-core.png" alt="The Tyk Classic Endpoint Designer - Core Settings tab" >}}
 
 The **Core Settings** tab provides access to configure basic settings for the API:
+
 - [Detailed logging]({{< ref "product-stack/tyk-gateway/basic-config-and-security/logging-api-traffic/detailed-recording#detailed-recording-with-tyk-classic-apis" >}})
 - API Settings including
-   - Listen path
-   - [API Categories]({{< ref "product-stack/tyk-dashboard/advanced-configurations/api-categories" >}})
+  - Listen path
+  - [API Categories]({{< ref "product-stack/tyk-dashboard/advanced-configurations/api-categories" >}})
 - Upstream settings including
-   - Upstream service (target) URL
-   - [Service Discovery]({{< ref "planning-for-production/ensure-high-availability/service-discovery" >}})
+  - Upstream service (target) URL
+  - [Service Discovery]({{< ref "planning-for-production/ensure-high-availability/service-discovery" >}})
 - [API Ownership]({{< ref "product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership" >}})
 - [API level rate limiting]({{< ref "basic-config-and-security/control-limit-traffic/rate-limiting#configuring-the-rate-limiter-at-the-api-level" >}})
 - [Authentication]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}})
@@ -48,12 +49,13 @@ In some cases, you will want to set global settings that affect all paths that a
 {{< img src="/img/dashboard/endpoint-designer/classic-endpoint-designer-advanced.png" alt="The Tyk Classic Endpoint Designer - Advanced Options tab" >}}
 
 The **Advanced Options** tab is where you can configure Tyk's other powerful features including:
+
 - Upstream certificate management
 - [API-level caching]({{< ref "basic-config-and-security/reduce-latency/caching/global-cache#configuring-the-cache-via-the-dashboard" >}}) including a button to invalidate (flush) the cache for the API
 - [CORS]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors" >}})
-- Add custom attributes to the API definition as *config data* that can be accessed by middleware
+- Add custom attributes to the API definition as _config data_ that can be accessed by middleware
 - Enable [context variables]({{< ref "context-variables" >}}) so that they are extracted from requests and made available to middleware
-- Manage *segment tags* if you are working with [sharded gateways]({{< ref "advanced-configuration/manage-multiple-environments/with-tyk-multi-cloud" >}})
+- Manage _segment tags_ if you are working with [sharded gateways]({{< ref "advanced-configuration/manage-multiple-environments/with-tyk-multi-cloud" >}})
 - Manage client IP address [allow]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-whitelisting" >}}) and [block]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-blacklisting" >}}) lists
 - Attach [webhooks]({{< ref "basic-config-and-security/report-monitor-trigger-events/webhooks" >}}) that will be triggered for different events
 

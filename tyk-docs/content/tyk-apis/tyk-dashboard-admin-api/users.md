@@ -4,25 +4,24 @@ title: Dashboard Admin API Users
 menu:
   main:
     parent: "Tyk Dashboard Admin API"
-weight: 2 
+weight: 2
 ---
 
-
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 In a production environment, you will need to change the default `admin_Secret` value that is called by the `admin-auth` header in your `tyk_analytics.conf` file. This is located in `/opt/tyk-dashboard`.
 {{< /warning >}}
 
 ### Get User
 
-| **Property** | **Description**           |
-| ------------ | ------------------------- |
+| **Property** | **Description**          |
+| ------------ | ------------------------ |
 | Resource URL | `/admin/users/{USER_ID}` |
-| Method       | GET                       |
-| Type         | None                      |
-| Body         | None                      |
-| Param        | None                      |
+| Method       | GET                      |
+| Type         | None                     |
+| Body         | None                     |
+| Param        | None                     |
 
 #### Sample Request
 
@@ -78,11 +77,10 @@ admin-auth: 12345
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You can also create a user without an `org_id`. This will create a "Super User", who has global access to all APIs, Policies, etc, for all organizations created within Tyk.
 {{< /note >}}
-
 
 #### Sample Response
 
@@ -111,7 +109,6 @@ You can also create a user without an `org_id`. This will create a "Super User",
 }
 ```
 
-
 ### Update User
 
 You need to have the `users` [Permission object]({{< ref "basic-config-and-security/security/dashboard/user-roles#the-permissions-object" >}}) set to write to use **Update User**.
@@ -123,7 +120,6 @@ You need to have the `users` [Permission object]({{< ref "basic-config-and-secur
 | Type         | None                     |
 | Body         | User Object              |
 | Param        | None                     |
-
 
 #### Sample Request
 
@@ -144,7 +140,7 @@ admin-auth: 12345
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are modifying a user password, you will need to include an access_key in the body of your request. This can be obtained from doing a GET to the same Resource URL.
 {{< /note >}}

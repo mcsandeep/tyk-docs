@@ -10,15 +10,14 @@ You can make use of Tyk Operator CRDs to publish the APIs as part of your CI/CD 
 
 {{< note success >}}
 
-**Note**  
-
-
+**Note**
 
 Currently Operator only supports publishing API to the Tyk Classic Portal.
 
 {{< /note >}}
 
 ### Tutorial: Publish an API with Tyk Operator
+
 #### Step 1: Creating a security policy
 
 When you publish an API to the Portal, Tyk actually publishes a way for developers to enroll in a policy, not into the API directly. Therefore, you should first set up a security policy for the developers, before proceeding with the publishing.
@@ -55,17 +54,17 @@ Create a file called `apidesc.yaml`, then add the following;
 apiVersion: tyk.tyk.io/v1alpha1
 kind: APIDescription
 metadata:
- name: standard-desc
+  name: standard-desc
 spec:
- name: HTTPBIN API
- policyRef:
-  name: standard-pol
-  namespace: default
- docs:
-  doc_type: swagger_custom_url
-  documentation: "https://httpbin.org/spec.json"
- show: true
- version: v2
+  name: HTTPBIN API
+  policyRef:
+    name: standard-pol
+    namespace: default
+  docs:
+    doc_type: swagger_custom_url
+    documentation: "https://httpbin.org/spec.json"
+  show: true
+  version: v2
 ```
 
 #### Step 3: Apply the changes
@@ -73,6 +72,7 @@ spec:
 ```console
 kubectl apply -f apidesc.yaml
 ```
+
 Or, if you don’t have the manifest with you, you can run the following command:
 
 ```yml
@@ -104,12 +104,12 @@ Create a file called `api_portal.yaml`, then add the following:
 apiVersion: tyk.tyk.io/v1alpha1
 kind: PortalAPICatalogue
 metadata:
- name: test-httpbin-api
+  name: test-httpbin-api
 spec:
- apis:
- - apiDescriptionRef:
-    name: standard-desc
-    namespace: default
+  apis:
+    - apiDescriptionRef:
+        name: standard-desc
+        namespace: default
 ```
 
 You have added your API Descriptions under `apis`.
@@ -134,7 +134,7 @@ Swagger Documents:
 Swagger Hosted URL:
 
 - `doc_type: swagger_custom_url`
-- `documentation`: The URL to the swagger documentation, for example *"https://httpbin.org/spec.json"*
+- `documentation`: The URL to the swagger documentation, for example _"https://httpbin.org/spec.json"_
 
 GraphQL:
 

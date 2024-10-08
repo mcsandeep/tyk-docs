@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 services:
   tyk-hugo:
     image: klakegg/hugo:latest-ext
@@ -13,4 +13,4 @@ services:
     entrypoint: ["make", "run"]
 
     volumes:
-    - .:/src
+      - .:/src

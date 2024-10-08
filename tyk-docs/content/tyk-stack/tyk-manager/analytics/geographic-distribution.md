@@ -24,4 +24,3 @@ From Tyk v5.1 (and LTS patches v4.0.14 and v5.0.3) the <b>Geographic Distributio
 ### MaxMind Settings
 
 To use a MaxMind database, see [MaxMind Database Settings]({{< ref "tyk-oss-gateway/configuration#a-name-enable-geo-ip-a-enable-geo-ip" >}}) in the Tyk Gateway Configuration Options.
-

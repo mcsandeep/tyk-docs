@@ -6,9 +6,8 @@ menu:
   main:
     parent: "Plugin Types"
 weight: 11
-aliases: 
+aliases:
   - "/plugins/auth-plugins"
-
 ---
 
 If you have unique authentication requirements, you can write a custom authentication plugin.
@@ -19,7 +18,7 @@ A very important thing to understand when using custom authentication plugins is
 
 Tyk will try to be clever about what to cache, but we need to help it. There are two ways to do that, with and without the `ID Extractor`.
 
-### The ID Extractor 
+### The ID Extractor
 
 The ID Extractor is a caching mechanism that's used in combination with Tyk Plugins. It can be used specifically with plugins that implement custom authentication mechanisms. The ID Extractor works for all rich plugins: gRPC-based plugins, Python and Lua.
 
@@ -27,11 +26,11 @@ See [ID Extractor]({{< ref "plugins/plugin-types/auth-plugins/id-extractor" >}})
 
 ### Token Metadata
 
-Tyk creates an in-memory object to track the rate limit, quotas, and more for each session. 
+Tyk creates an in-memory object to track the rate limit, quotas, and more for each session.
 
 This is why we set the `token` metadata when using custom authentication middleware, in order to give Tyk a unique ID with which to track each session.
 
-For backwards compatibility, even when using an ID Extractor, we need to continue to set the `token` metadata.  For example, when building a session object in GoLang custom middleware:
+For backwards compatibility, even when using an ID Extractor, we need to continue to set the `token` metadata. For example, when building a session object in GoLang custom middleware:
 
 ```{.copyWrapper}
 object.Session = &coprocess.SessionState{
@@ -47,13 +46,14 @@ object.Session = &coprocess.SessionState{
         ApplyPolicies: ["5d8929d8f56e1a138f628269"],
     }
 ```
+
 [source](https://github.com/TykTechnologies/tyk-grpc-go-basicauth-jwt/blob/master/main.go#L102)
 
 ### Without ID Extractor
 
 When not using ID Extractor, Tyk will continue to cache authenticated sessions returned by custom auth plugins. We must set a unique `token` field in the Metadata (see above) that Tyk will use to cache.
 
-## Supported Languages 
+## Supported Languages
 
 The following languages are supported for custom authentication plugins:
 
@@ -68,4 +68,3 @@ Please consult the Tyk Operator supporting documentation for examples of how to 
 
 - [Go custom authentication plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#custom-plugin-auth-go" >}})
 - [gRPC custom authentication plugin]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#custom-plugin-auth-grpc" >}})
-

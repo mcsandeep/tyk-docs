@@ -8,9 +8,10 @@ menu:
     parent: "JSON Web Tokens"
 weight: 1
 ---
+
 OAuth2, OIDC, and their foundation, named JWT, have been a standard industry for many years, without slowing down. However, the OAuth RFC continues to be iteratively improved, aligning with FHIR and Open Banking principles. We expect the OAuth flow to continue to reign supreme.
 
-There are two types of access token in the OAuth flow, opaque and JWT (JWS more precisely).  The problem with the JWT is the inherent leakiness. There is a massive debate amongst the community where some consider JWT for auth as insecure as it leaks information (by b64 decoding the body). Others argue that you shouldn't put sensitive information in there at all.
+There are two types of access token in the OAuth flow, opaque and JWT (JWS more precisely). The problem with the JWT is the inherent leakiness. There is a massive debate amongst the community where some consider JWT for auth as insecure as it leaks information (by b64 decoding the body). Others argue that you shouldn't put sensitive information in there at all.
 
 JWT Access Tokens can contain a lot of sensitive information. That means that if they get in the wrong hands, everything contained inside the JWT is visible to the user with the key. There is a solution to fix this problem.
 
@@ -35,6 +36,7 @@ https://keycloak-host/auth/realms/tyk/protocol/openid-connect/token \
   "scope": "email profile"
 }
 ```
+
 So here you get a JWT access token back:
 
 ```
@@ -46,11 +48,13 @@ Header
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
+
 Body
 
 ```
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJlbWFpbCI6ImhlbGxvQHdvcmxkLmNvbSJ9
 ```
+
 Signature
 
 ```
@@ -61,10 +65,9 @@ You can plug the whole thing into jwt.io and see the decoded payload as follows:
 
 {{< img src="/img/2.10/split_token2.png" alt="Split Token" >}}
 
-So back to Tyk, the API Gateway is perfectly positioned to act as a broker between the client and the authorization server.  It can accept requests for new access tokens, given a client id and secret, and exchange that for an access token with the authorization server. Then, it will break apart the JWT and return only the signature portion back to the client.  It then stores the rest of the JWT internally.
+So back to Tyk, the API Gateway is perfectly positioned to act as a broker between the client and the authorization server. It can accept requests for new access tokens, given a client id and secret, and exchange that for an access token with the authorization server. Then, it will break apart the JWT and return only the signature portion back to the client. It then stores the rest of the JWT internally.
 
-This means that the client can then simply use the signature as an access token and Tyk can validate the token as if it was a normal API Key.  Then it will pull the JWT out of cache and inject claims into the request or even rebuild the access token, which is safe.
-
+This means that the client can then simply use the signature as an access token and Tyk can validate the token as if it was a normal API Key. Then it will pull the JWT out of cache and inject claims into the request or even rebuild the access token, which is safe.
 
 **Let’s get started IdP**
 
@@ -186,6 +189,7 @@ $ curl http://tyk-gw:8080/auth/token -X POST \
 
 {"access_token":"MEwIaRgq4go4R2M2z7AADywZ2ToxG4gDMoG4SQ1X3GJ0","expires_in":300,"not-before-policy":0,"scope":"email profile","session_state":"fb8754d1-d518-40e8-a84f-85347a0639c8","token_type":"bearer"}
 ```
+
 Notice that the returned response is considerably smaller than before, as it is just the signature of the `access_token` field. The client can then simply use that access token as a bearer token for subsequent REST API calls via the Tyk Gateway.
 
 If you are on Tyk Self-Managed, you can even look up the key in the Dashboard:
@@ -216,7 +220,7 @@ $ curl localhost:8080/basic-protected-api/get -H "Authorization: MEw….GJ0"
 
 Tyk validates the opaque token and allows access to the API. So how do you pass the original access token to the underlying services? You need to reconstruct the full JWT.
 
-In the previous step, we stored the full JWT in the session token’s metadata inside Tyk.  We can extract the JWT from the request’s session metadata and then inject it into the requests headers.
+In the previous step, we stored the full JWT in the session token’s metadata inside Tyk. We can extract the JWT from the request’s session metadata and then inject it into the requests headers.
 
 Let’s configure the API to inject a global header as follows:
 
@@ -225,6 +229,7 @@ Let’s configure the API to inject a global header as follows:
 This will instruct Tyk to combine the JWT Header and Body from the session metadata, with the opaque token that the client is using to make an API request, and inject the new value as an Authorization header.
 
 Let’s try the API call again:
+
 ```
 $ curl localhost:8080/basic-protected-api/get -H "Authorization: MEw….GJ0"
 {
@@ -240,20 +245,25 @@ $ curl localhost:8080/basic-protected-api/get -H "Authorization: MEw….GJ0"
   "url": "http://httpbin/get"
 }
 ```
+
 As you can see, even though you only sent an opaque token in the request, Tyk injected the rest of the JWT where our upstream can now use it to perform business logic.
 
 The quick instruction to use Split Token Flow by using OSS Gateway is as follows:
 
 1. Launch Tyk Gateway and Redis using Docker:
+
 ```
 docker-compose up
 ```
+
 2. Add your IdP details to modify the `login.js` script that Tyk will execute. Fill in the details with your IdP to recreate the above API call.
 3. Reload the file In order to load the changes we did in step 2, execute the following API call:
+
 ```
 $ curl localhost:8080/tyk/reload -H "x-tyk-authorization:foo"
      {"status":"ok","message":""}
 ```
+
 4. Make the same API call, through Tyk now:
 
 ```
@@ -272,6 +282,7 @@ http://localhost:8080/auth/token \
   "token_type": "bearer"
 }
 ```
+
 You will receive a much smaller response this time, because the `access token` contained just the signature of the JWT access token that the Idp created.
 
 When you call the `auth/token` endpoint, you call the `auth_api.json` reverse proxy configuration. On the `token` endpoint on that `auth` API, you set up a Virtual Endpoint. You see that in `auth_api.json`.
@@ -291,8 +302,8 @@ When you call the `auth/token` endpoint, you call the `auth_api.json` reverse pr
     ]
 }
 ```
-This is a Tyk built-in plugin that enables you to execute Javascript code on an endpoint. This invokes your `login.js` script which you loaded into Tyk.
-5. Make API call using the opaque token returned in step 4
+
+This is a Tyk built-in plugin that enables you to execute Javascript code on an endpoint. This invokes your `login.js` script which you loaded into Tyk. 5. Make API call using the opaque token returned in step 4
 
 ```$ curl localhost:8080/basic-protected-api/get -H "Authorization:EwIaRgq4go4R2M2z7AADywZ2ToxG4gDMoG4SQ1X3GJ0"
 
@@ -310,6 +321,7 @@ This is a Tyk built-in plugin that enables you to execute Javascript code on an 
   "url": "http://httpbin.org/get"
 }
 ```
+
 All this is possible on the OSS version of Tyk.
 
 If you have any questions or want to start a conversation, I encourage you to email community forums with any questions.

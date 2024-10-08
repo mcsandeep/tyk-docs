@@ -1,5 +1,6 @@
 ---
 ---
+
 Tyk is an open source Enterprise API Gateway, supporting REST, GraphQL, TCP and gRPC protocols.
 
 Tyk Gateway is provided ‘Batteries-included’, with no feature lockout. Enabling your organization to control who accesses your APIs, when they access, and how they access it.
@@ -20,11 +21,11 @@ Built from the ground up to be the fastest API gateway on the planet. It does no
 
 **Ultra performant:** Low latency, and thousands of rps with just a single CPU, horizontally and vertically scalable.
 
-**Content mediation**: Transform all the things, from request or response headers to converting between SOAP and GraphQL. 
+**Content mediation**: Transform all the things, from request or response headers to converting between SOAP and GraphQL.
 
 **Extensible Plugin Architecture**: Customize Tyk’s middleware chain by writing plugins in your language of choice - from Javascript to Go, or any language which supports gRPC.
 
-**Rate Limiting & Quotas:** Protect your upstreams from becoming overloaded and/or apply limits for each consumer. 
+**Rate Limiting & Quotas:** Protect your upstreams from becoming overloaded and/or apply limits for each consumer.
 
 **API Versioning** - API Versions can be easily set and deprecated at a specific time and date.
 

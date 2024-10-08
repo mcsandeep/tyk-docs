@@ -14,8 +14,8 @@ info:
     ```
 
 servers:
-  - url: 'http://localhost/'
-  - url: 'https://localhost/'
+  - url: "http://localhost/"
+  - url: "https://localhost/"
 
 tags:
   - name: Export
@@ -39,22 +39,22 @@ paths:
       tags:
         - Dashboard URL Reload
       responses:
-        '200':
+        "200":
           description: URLs reloaded successfully.
           content:
             application/json:
               schema:
                 properties:
-                  status: 
+                  status:
                     type: string
               example:
                 status: ok
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -87,31 +87,31 @@ paths:
               EmailAddress: name@somewhere.com
               GroupID: ""
       responses:
-        '200':
+        "200":
           description: Additional Permissions updated successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: SSO Nonce created
                 Meta: YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw
-        '400':
-          description: Back Request. 
+        "400":
+          description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: "Cannot create an SSO session for an invalid payload: [Error: Org id not found ('588b4f0bb275ff0001cc7471').]"
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -131,7 +131,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Organisation exported successfully.
           content:
             application/json:
@@ -140,7 +140,7 @@ paths:
                   apis:
                     type: array
                     items:
-                      $ref: '#/components/schemas/APIDefinition'
+                      $ref: "#/components/schemas/APIDefinition"
               example:
                 id: 53ac07777cbb8c2d53000002
                 owner_name: Test
@@ -178,30 +178,30 @@ paths:
                   dont_show_admin_sockets: false
                   dont_allow_license_management: false
                   dont_allow_license_management_view: false
-        '400':
-          description: Back Request. 
+        "400":
+          description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Request body malformed
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
-        '404':
+        "404":
           description: Org not found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Could not retrieve org detail
@@ -221,7 +221,7 @@ paths:
                 apis:
                   type: array
                   items:
-                    $ref: '#/components/schemas/APIDefinition'
+                    $ref: "#/components/schemas/APIDefinition"
             example:
               id: 53ac07777cbb8c2d53000002
               owner_name: Test
@@ -260,31 +260,31 @@ paths:
                 dont_allow_license_management: false
                 dont_allow_license_management_view: false
       responses:
-        '200':
+        "200":
           description: Org imported successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: Org imported
                 Meta: 53ac07777cbb8c2d53000002
-        '400':
-          description: Back Request. 
+        "400":
+          description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Failed to save new Org object to DB
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -309,7 +309,7 @@ paths:
                       api_model:
                         type: object
                       api_definition:
-                        $ref: '#/components/schemas/APIDefinition'
+                        $ref: "#/components/schemas/APIDefinition"
                       hook_references:
                         type: array
                         items:
@@ -335,33 +335,33 @@ paths:
                   is_site: false
                   sort_by: 0
       responses:
-        '200':
+        "200":
           description: APIs imported successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: APIs imported
                 Meta:
                   5fa2db834e07444f760b7ceb314209fb: true
                   7a6ddeca9244448a4233866938a0d6e2: true
-        '400':
-          description: Back Request. 
+        "400":
+          description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Request body malformed
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -381,7 +381,7 @@ paths:
                 data:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Policy'
+                    $ref: "#/components/schemas/Policy"
             example:
               data:
                 - access_rights:
@@ -389,7 +389,7 @@ paths:
                       allowed_urls: []
                       api_id: 5fa2db834e07444f760b7ceb314209fb
                       api_name: API 2
-                      versions: 
+                      versions:
                         - Default
                     7a6ddeca9244448a4233866938a0d6e2:
                       allowed_urls: []
@@ -415,49 +415,49 @@ paths:
                   rate: 1000
                   tags: []
       responses:
-        '200':
+        "200":
           description: Policies imported successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: Policies imported
-                Meta: 
+                Meta:
                   61df10078f11dd00097cb55f: true
-        '400':
-          description: Back Request. 
+        "400":
+          description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Failed to save new Org object to DB
-        '401':
-          description: Unauthorized. 
+        "401":
+          description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
   /admin/users/{USER_ID}/actions/allow_reset_passwords:
     parameters:
-        - name: USER_ID
-          in: path
-          description: User ID of the user whose password is being reset
-          required: true
-          schema:
-            type: string
-        - name: admin-auth
-          in: header
-          description: admin_secret value from your tyk_analtyics.conf
-          required: true
-          schema:
-            type: string
+      - name: USER_ID
+        in: path
+        description: User ID of the user whose password is being reset
+        required: true
+        schema:
+          type: string
+      - name: admin-auth
+        in: header
+        description: admin_secret value from your tyk_analtyics.conf
+        required: true
+        schema:
+          type: string
     put:
       summary: Allow password reset for a User
       description: Allow password reset for a User.
@@ -465,7 +465,7 @@ paths:
       tags:
         - Users
       responses:
-        '200':
+        "200":
           description: Password reset for user enabled
           content:
             application/json:
@@ -484,26 +484,26 @@ paths:
                   user_permissions:
                     IsAdmin: admin
                     ResetPassword: admin
-                  group_id: ''
+                  group_id: ""
                   password_max_days: 0
-                  password_updated: '2021-09-15T15:49:01.863Z'
+                  password_updated: "2021-09-15T15:49:01.863Z"
                   PWHistory: []
-                  last_login_date: '2021-09-15T15:49:49.754Z'
-                  created_at: '2021-09-15T15:49:01Z'
+                  last_login_date: "2021-09-15T15:49:49.754Z"
+                  created_at: "2021-09-15T15:49:01Z"
   /admin/users/{USER_ID}/actions/disallow_reset_passwords:
     parameters:
-        - name: USER_ID
-          in: path
-          description: User ID of the user whose password reset capability is being disallowed
-          required: true
-          schema:
-            type: string
-        - name: admin-auth
-          in: header
-          description: admin_secret value from your tyk_analtyics.conf
-          required: true
-          schema:
-            type: string
+      - name: USER_ID
+        in: path
+        description: User ID of the user whose password reset capability is being disallowed
+        required: true
+        schema:
+          type: string
+      - name: admin-auth
+        in: header
+        description: admin_secret value from your tyk_analtyics.conf
+        required: true
+        schema:
+          type: string
     put:
       summary: Disallow password reset for a User
       description: Disallow password reset for a User.
@@ -511,7 +511,7 @@ paths:
       tags:
         - Users
       responses:
-        '200':
+        "200":
           description: Password reset for user disabled
           content:
             application/json:
@@ -529,26 +529,26 @@ paths:
                   access_key: 68b225c4376748207453c235ed8e2a82
                   user_permissions:
                     IsAdmin: admin
-                  group_id: ''
+                  group_id: ""
                   password_max_days: 0
-                  password_updated: '2021-09-15T15:49:01.863Z'
+                  password_updated: "2021-09-15T15:49:01.863Z"
                   PWHistory: []
-                  last_login_date: '2021-09-15T15:49:49.754Z'
-                  created_at: '2021-09-15T15:49:01Z'    
+                  last_login_date: "2021-09-15T15:49:49.754Z"
+                  created_at: "2021-09-15T15:49:01Z"
   /admin/organisations/{org-id}:
     parameters:
-        - name: org-id
-          in: path
-          description: Organisation ID of the org to add, update, or delete.
-          required: true
-          schema:
-            type: string  
-        - name: admin-auth
-          in: header
-          description: admin_secret value from your tyk_analtyics.conf
-          required: true
-          schema:
-            type: string
+      - name: org-id
+        in: path
+        description: Organisation ID of the org to add, update, or delete.
+        required: true
+        schema:
+          type: string
+      - name: admin-auth
+        in: header
+        description: admin_secret value from your tyk_analtyics.conf
+        required: true
+        schema:
+          type: string
     get:
       summary: Retrieve a single organisation
       description: Retrieve a single organisation
@@ -556,7 +556,7 @@ paths:
       tags:
         - Organisations
       responses:
-        '200':
+        "200":
           description: Organisation retrieved
           content:
             application/json:
@@ -567,7 +567,7 @@ paths:
                 cname_enabled: true
                 cname: www.tyk-portal-test.com
                 apis:
-                  - api_human_name: 'First API #Test'
+                  - api_human_name: "First API #Test"
                     api_id: 5508bd9429434d5768c423a04db259ea
                 developer_quota: 0
                 developer_count: 0
@@ -576,7 +576,7 @@ paths:
                 ui:
                   languages: {}
                   hide_help: false
-                  default_lang: ''
+                  default_lang: ""
                   login_page: {}
                   nav: {}
                   uptime: {}
@@ -597,7 +597,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/OrganisationDocument'
+              $ref: "#/components/schemas/OrganisationDocument"
             example:
               id: 5cc03283d07e7f00019404b3
               owner_name: Jively
@@ -605,7 +605,7 @@ paths:
               cname: jive.ly
               cname_enabled: true
               apis:
-                - api_human_name: 'First API #Test'
+                - api_human_name: "First API #Test"
                   api_id: 5508bd9429434d5768c423a04db259ea
               developer_quota: 0
               developer_count: 0
@@ -614,7 +614,7 @@ paths:
               ui:
                 languages: {}
                 hide_help: false
-                default_lang: ''
+                default_lang: ""
                 login_page: {}
                 nav: {}
                 uptime: {}
@@ -626,16 +626,16 @@ paths:
                 cloud: false
               org_options_meta: {}
       responses:
-        '200':
+        "200":
           description: Organisation updated successfully
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
               example:
                 Status: OK
                 Message: Org updated
-                Meta: ''
+                Meta: ""
     delete:
       summary: Delete an organisation
       description: Delete an organisation
@@ -643,7 +643,7 @@ paths:
       tags:
         - Organisations
       responses:
-        '200':
+        "200":
           description: Organisation deleted
           content:
             application/json:
@@ -652,15 +652,15 @@ paths:
               example:
                 Status: OK
                 Message: Org deleted
-                Meta: ''
+                Meta: ""
   /admin/organisations/:
     parameters:
-        - name: admin-auth
-          in: header
-          description: admin_secret value from your tyk_analtyics.conf
-          required: true
-          schema:
-            type: string
+      - name: admin-auth
+        in: header
+        description: admin_secret value from your tyk_analtyics.conf
+        required: true
+        schema:
+          type: string
     get:
       summary: List all organisations
       description: List all organisations
@@ -668,7 +668,7 @@ paths:
       tags:
         - Organisations
       responses:
-        '200':
+        "200":
           description: Organisations retrieved successfully
           content:
             application/json:
@@ -682,7 +682,7 @@ paths:
                     cname_enabled: true
                     cname: www.tyk-portal-test.com
                     apis:
-                      - api_human_name: 'First API #Test'
+                      - api_human_name: "First API #Test"
                         api_id: 5508bd9429434d5768c423a04db259ea
                     developer_quota: 0
                     developer_count: 0
@@ -691,7 +691,7 @@ paths:
                     ui:
                       languages: {}
                       hide_help: false
-                      default_lang: ''
+                      default_lang: ""
                       login_page: {}
                       nav: {}
                       uptime: {}
@@ -704,7 +704,7 @@ paths:
                     org_options_meta: {}
                   - id: 5ccae84aa402ce00018b5435
                     owner_name: Jively
-                    owner_slug: ''
+                    owner_slug: ""
                     cname_enabled: true
                     cname: jive.ly
                     apis: []
@@ -715,7 +715,7 @@ paths:
                     ui:
                       languages: {}
                       hide_help: false
-                      default_lang: ''
+                      default_lang: ""
                       login_page: {}
                       nav: {}
                       uptime: {}
@@ -743,7 +743,7 @@ paths:
               cname: jive.ly
               cname_enabled: true
       responses:
-        '200':
+        "200":
           description: Organisation created
           content:
             application/json:
@@ -831,11 +831,11 @@ components:
           type: string
           x-go-name: APIID
         auth:
-          $ref: '#/components/schemas/Auth'
+          $ref: "#/components/schemas/Auth"
         auth_provider:
-          $ref: '#/components/schemas/AuthProviderMeta'
+          $ref: "#/components/schemas/AuthProviderMeta"
         base_identity_provided_by:
-          $ref: '#/components/schemas/AuthTypeEnum'
+          $ref: "#/components/schemas/AuthTypeEnum"
         basic_auth:
           properties:
             body_password_regexp:
@@ -862,7 +862,7 @@ components:
           type: array
           x-go-name: BlacklistedIPs
         cache_options:
-          $ref: '#/components/schemas/CacheOptions'
+          $ref: "#/components/schemas/CacheOptions"
         certificates:
           items:
             type: string
@@ -879,7 +879,7 @@ components:
           type: object
           x-go-name: ConfigData
         custom_middleware:
-          $ref: '#/components/schemas/MiddlewareSection'
+          $ref: "#/components/schemas/MiddlewareSection"
         custom_middleware_bundle:
           type: string
           x-go-name: CustomMiddlewareBundle
@@ -933,13 +933,13 @@ components:
           type: boolean
           x-go-name: EnableSignatureChecking
         event_handlers:
-          $ref: '#/components/schemas/EventHandlerMetaConfig'
+          $ref: "#/components/schemas/EventHandlerMetaConfig"
         expire_analytics_after:
           format: int64
           type: integer
           x-go-name: ExpireAnalyticsAfter
         global_rate_limit:
-          $ref: '#/components/schemas/GlobalRateLimit'
+          $ref: "#/components/schemas/GlobalRateLimit"
         hmac_allowed_algorithms:
           items:
             type: string
@@ -950,7 +950,7 @@ components:
           type: number
           x-go-name: HmacAllowedClockSkew
         id:
-          $ref: '#/components/schemas/ObjectId'
+          $ref: "#/components/schemas/ObjectId"
         internal:
           type: boolean
           x-go-name: Internal
@@ -996,17 +996,17 @@ components:
           type: string
           x-go-name: Name
         notifications:
-          $ref: '#/components/schemas/NotificationsManager'
+          $ref: "#/components/schemas/NotificationsManager"
         oauth_meta:
           properties:
             allowed_access_types:
               items:
-                $ref: '#/components/schemas/AccessRequestType'
+                $ref: "#/components/schemas/AccessRequestType"
               type: array
               x-go-name: AllowedAccessTypes
             allowed_authorize_types:
               items:
-                $ref: '#/components/schemas/AuthorizeRequestType'
+                $ref: "#/components/schemas/AuthorizeRequestType"
               type: array
               x-go-name: AllowedAuthorizeTypes
             auth_login_redirect:
@@ -1015,7 +1015,7 @@ components:
           type: object
           x-go-name: Oauth2Meta
         openid_options:
-          $ref: '#/components/schemas/OpenIDOptions'
+          $ref: "#/components/schemas/OpenIDOptions"
         org_id:
           type: string
           x-go-name: OrgID
@@ -1042,7 +1042,7 @@ components:
               type: boolean
               x-go-name: PreserveHostHeader
             service_discovery:
-              $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+              $ref: "#/components/schemas/ServiceDiscoveryConfiguration"
             strip_listen_path:
               type: boolean
               x-go-name: StripListenPath
@@ -1077,7 +1077,7 @@ components:
           x-go-name: Proxy
         response_processors:
           items:
-            $ref: '#/components/schemas/ResponseProcessor'
+            $ref: "#/components/schemas/ResponseProcessor"
           type: array
           x-go-name: ResponseProcessors
         session_lifetime:
@@ -1085,7 +1085,7 @@ components:
           type: integer
           x-go-name: SessionLifetime
         session_provider:
-          $ref: '#/components/schemas/SessionProviderMeta'
+          $ref: "#/components/schemas/SessionProviderMeta"
         slug:
           type: string
           x-go-name: Slug
@@ -1106,7 +1106,7 @@ components:
           properties:
             check_list:
               items:
-                $ref: '#/components/schemas/HostCheckObject'
+                $ref: "#/components/schemas/HostCheckObject"
               type: array
               x-go-name: CheckList
             config:
@@ -1120,7 +1120,7 @@ components:
                   type: integer
                   x-go-name: RecheckWait
                 service_discovery:
-                  $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+                  $ref: "#/components/schemas/ServiceDiscoveryConfiguration"
               type: object
               x-go-name: Config
           type: object
@@ -1153,7 +1153,7 @@ components:
               x-go-name: NotVersioned
             versions:
               additionalProperties:
-                $ref: '#/components/schemas/VersionInfo'
+                $ref: "#/components/schemas/VersionInfo"
               type: object
               x-go-name: Versions
           type: object
@@ -1175,7 +1175,7 @@ components:
           type: string
           x-go-name: ParamName
         signature:
-          $ref: '#/components/schemas/SignatureConfig'
+          $ref: "#/components/schemas/SignatureConfig"
         use_certificate:
           type: boolean
           x-go-name: UseCertificate
@@ -1362,9 +1362,9 @@ components:
           type: object
           x-go-name: Meta
         name:
-          $ref: '#/components/schemas/AuthProviderCode'
+          $ref: "#/components/schemas/AuthProviderCode"
         storage_engine:
-          $ref: '#/components/schemas/StorageEngineCode'
+          $ref: "#/components/schemas/StorageEngineCode"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     AuthProviderCode:
@@ -1405,29 +1405,29 @@ components:
     MiddlewareSection:
       properties:
         auth_check:
-          $ref: '#/components/schemas/MiddlewareDefinition'
+          $ref: "#/components/schemas/MiddlewareDefinition"
         driver:
-          $ref: '#/components/schemas/MiddlewareDriver'
+          $ref: "#/components/schemas/MiddlewareDriver"
         id_extractor:
-          $ref: '#/components/schemas/MiddlewareIdExtractor'
+          $ref: "#/components/schemas/MiddlewareIdExtractor"
         post:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Post
         post_key_auth:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: PostKeyAuth
         pre:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Pre
         response:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Response
       type: object
@@ -1451,9 +1451,9 @@ components:
     MiddlewareIdExtractor:
       properties:
         extract_from:
-          $ref: '#/components/schemas/IdExtractorSource'
+          $ref: "#/components/schemas/IdExtractorSource"
         extract_with:
-          $ref: '#/components/schemas/IdExtractorType'
+          $ref: "#/components/schemas/IdExtractorType"
         extractor_config:
           additionalProperties:
             type: object
@@ -1486,7 +1486,7 @@ components:
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     ObjectId:
-      description: 'http://www.mongodb.org/display/DOCS/Object+IDs'
+      description: "http://www.mongodb.org/display/DOCS/Object+IDs"
       title: >-
         ObjectId is a unique ID identifying a BSON value. It must be exactly 12
         bytes
@@ -1495,7 +1495,7 @@ components:
       type: string
       x-go-package: github.com/TykTechnologies/tyk/vendor/gopkg.in/mgo.v2/bson
     NotificationsManager:
-      description: 'TODO: Make this more generic'
+      description: "TODO: Make this more generic"
       properties:
         oauth_on_keychange_url:
           type: string
@@ -1520,7 +1520,7 @@ components:
       properties:
         providers:
           items:
-            $ref: '#/components/schemas/OIDProviderConfig'
+            $ref: "#/components/schemas/OIDProviderConfig"
           type: array
           x-go-name: Providers
         segregate_by_client:
@@ -1593,9 +1593,9 @@ components:
           type: object
           x-go-name: Meta
         name:
-          $ref: '#/components/schemas/SessionProviderCode'
+          $ref: "#/components/schemas/SessionProviderCode"
         storage_engine:
-          $ref: '#/components/schemas/StorageEngineCode'
+          $ref: "#/components/schemas/StorageEngineCode"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     SessionProviderCode:
@@ -1626,7 +1626,7 @@ components:
           type: string
           x-go-name: Expires
         extended_paths:
-          $ref: '#/components/schemas/ExtendedPathsSet'
+          $ref: "#/components/schemas/ExtendedPathsSet"
         global_headers:
           additionalProperties:
             type: string
@@ -1656,12 +1656,12 @@ components:
       properties:
         advance_cache_config:
           items:
-            $ref: '#/components/schemas/CacheMeta'
+            $ref: "#/components/schemas/CacheMeta"
           type: array
           x-go-name: AdvanceCacheConfig
         black_list:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: BlackList
         cache:
@@ -1671,92 +1671,92 @@ components:
           x-go-name: Cached
         circuit_breakers:
           items:
-            $ref: '#/components/schemas/CircuitBreakerMeta'
+            $ref: "#/components/schemas/CircuitBreakerMeta"
           type: array
           x-go-name: CircuitBreaker
         do_not_track_endpoints:
           items:
-            $ref: '#/components/schemas/TrackEndpointMeta'
+            $ref: "#/components/schemas/TrackEndpointMeta"
           type: array
           x-go-name: DoNotTrackEndpoints
         hard_timeouts:
           items:
-            $ref: '#/components/schemas/HardTimeoutMeta'
+            $ref: "#/components/schemas/HardTimeoutMeta"
           type: array
           x-go-name: HardTimeouts
         ignored:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: Ignored
         internal:
           items:
-            $ref: '#/components/schemas/InternalMeta'
+            $ref: "#/components/schemas/InternalMeta"
           type: array
           x-go-name: Internal
         method_transforms:
           items:
-            $ref: '#/components/schemas/MethodTransformMeta'
+            $ref: "#/components/schemas/MethodTransformMeta"
           type: array
           x-go-name: MethodTransforms
         size_limits:
           items:
-            $ref: '#/components/schemas/RequestSizeMeta'
+            $ref: "#/components/schemas/RequestSizeMeta"
           type: array
           x-go-name: SizeLimit
         track_endpoints:
           items:
-            $ref: '#/components/schemas/TrackEndpointMeta'
+            $ref: "#/components/schemas/TrackEndpointMeta"
           type: array
           x-go-name: TrackEndpoints
         transform:
           items:
-            $ref: '#/components/schemas/TemplateMeta'
+            $ref: "#/components/schemas/TemplateMeta"
           type: array
           x-go-name: Transform
         transform_headers:
           items:
-            $ref: '#/components/schemas/HeaderInjectionMeta'
+            $ref: "#/components/schemas/HeaderInjectionMeta"
           type: array
           x-go-name: TransformHeader
         transform_jq:
           items:
-            $ref: '#/components/schemas/TransformJQMeta'
+            $ref: "#/components/schemas/TransformJQMeta"
           type: array
           x-go-name: TransformJQ
         transform_jq_response:
           items:
-            $ref: '#/components/schemas/TransformJQMeta'
+            $ref: "#/components/schemas/TransformJQMeta"
           type: array
           x-go-name: TransformJQResponse
         transform_response:
           items:
-            $ref: '#/components/schemas/TemplateMeta'
+            $ref: "#/components/schemas/TemplateMeta"
           type: array
           x-go-name: TransformResponse
         transform_response_headers:
           items:
-            $ref: '#/components/schemas/HeaderInjectionMeta'
+            $ref: "#/components/schemas/HeaderInjectionMeta"
           type: array
           x-go-name: TransformResponseHeader
         url_rewrites:
           items:
-            $ref: '#/components/schemas/URLRewriteMeta'
+            $ref: "#/components/schemas/URLRewriteMeta"
           type: array
           x-go-name: URLRewrite
         validate_json:
           items:
-            $ref: '#/components/schemas/ValidatePathMeta'
+            $ref: "#/components/schemas/ValidatePathMeta"
           type: array
           x-go-name: ValidateJSON
         virtual:
           items:
-            $ref: '#/components/schemas/VirtualMeta'
+            $ref: "#/components/schemas/VirtualMeta"
           type: array
           x-go-name: Virtual
         white_list:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: WhiteList
       type: object
@@ -1784,7 +1784,7 @@ components:
       properties:
         method_actions:
           additionalProperties:
-            $ref: '#/components/schemas/EndpointMethodMeta'
+            $ref: "#/components/schemas/EndpointMethodMeta"
           type: object
           x-go-name: MethodActions
         path:
@@ -1795,7 +1795,7 @@ components:
     EndpointMethodMeta:
       properties:
         action:
-          $ref: '#/components/schemas/EndpointMethodAction'
+          $ref: "#/components/schemas/EndpointMethodAction"
         code:
           format: int64
           type: integer
@@ -1905,7 +1905,7 @@ components:
           type: string
           x-go-name: Path
         template_data:
-          $ref: '#/components/schemas/TemplateData'
+          $ref: "#/components/schemas/TemplateData"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     TemplateData:
@@ -1914,9 +1914,9 @@ components:
           type: boolean
           x-go-name: EnableSession
         input_type:
-          $ref: '#/components/schemas/RequestInputType'
+          $ref: "#/components/schemas/RequestInputType"
         template_mode:
-          $ref: '#/components/schemas/TemplateMode'
+          $ref: "#/components/schemas/TemplateMode"
         template_source:
           type: string
           x-go-name: TemplateSource
@@ -1967,7 +1967,7 @@ components:
     URLRewriteMeta:
       properties:
         MatchRegexp:
-          $ref: '#/components/schemas/Regexp'
+          $ref: "#/components/schemas/Regexp"
         match_pattern:
           type: string
           x-go-name: MatchPattern
@@ -1982,7 +1982,7 @@ components:
           x-go-name: RewriteTo
         triggers:
           items:
-            $ref: '#/components/schemas/RoutingTrigger'
+            $ref: "#/components/schemas/RoutingTrigger"
           type: array
           x-go-name: Triggers
       type: object
@@ -1996,10 +1996,10 @@ components:
       x-go-package: github.com/TykTechnologies/tyk/regexp
     RoutingTrigger:
       properties:
-        'on':
-          $ref: '#/components/schemas/RoutingTriggerOnType'
+        "on":
+          $ref: "#/components/schemas/RoutingTriggerOnType"
         options:
-          $ref: '#/components/schemas/RoutingTriggerOptions'
+          $ref: "#/components/schemas/RoutingTriggerOptions"
         rewrite_to:
           type: string
           x-go-name: RewriteTo
@@ -2012,29 +2012,29 @@ components:
       properties:
         header_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: HeaderMatches
         path_part_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: PathPartMatches
         payload_matches:
-          $ref: '#/components/schemas/StringRegexMap'
+          $ref: "#/components/schemas/StringRegexMap"
         query_val_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: QueryValMatches
         request_context_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: RequestContextMatches
         session_meta_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: SessionMetaMatches
       type: object
@@ -2120,7 +2120,7 @@ components:
     Policy:
       properties:
         _id:
-          $ref: '#/components/schemas/ObjectId'
+          $ref: "#/components/schemas/ObjectId"
           type: object
           x-go-name: ID
         id:
@@ -2159,7 +2159,7 @@ components:
           type: number
           x-go-name: MaxQueryDepth
         access_rights:
-          $ref: '#/components/schemas/AccessDefinition'
+          $ref: "#/components/schemas/AccessDefinition"
           type: object
           x-go-name: AccessRights
         hmac_enabled:
@@ -2184,7 +2184,7 @@ components:
           type: number
           x-go-name: KeyExpiresIn
         partitions:
-          $ref: '#/components/schemas/PolicyPartitions'
+          $ref: "#/components/schemas/PolicyPartitions"
           type: object
           x-go-name: Partitions
         last_updated:
@@ -2194,7 +2194,7 @@ components:
           type: object
           x-go-name: MetaData
         graphql_access_rights:
-          $ref: '#/components/schemas/GraphAccessDefinition'
+          $ref: "#/components/schemas/GraphAccessDefinition"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/user
     AccessDefinition:
@@ -2202,7 +2202,7 @@ components:
       properties:
         allowed_urls:
           items:
-            $ref: '#/components/schemas/AccessSpec'
+            $ref: "#/components/schemas/AccessSpec"
           type: array
           x-go-name: AllowedURLs
         api_id:
@@ -2212,7 +2212,7 @@ components:
           type: string
           x-go-name: APIName
         limit:
-          $ref: '#/components/schemas/APILimit'
+          $ref: "#/components/schemas/APILimit"
         versions:
           items:
             type: string

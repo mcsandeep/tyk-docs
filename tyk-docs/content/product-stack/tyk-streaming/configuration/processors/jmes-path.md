@@ -1,7 +1,7 @@
 ---
 title: JMESPath
 description: Explains an overview of JMESPath
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "JMESPath" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "JMESPath"]
 ---
 
 Executes a [JMESPath query](http://jmespath.org/) on JSON documents and replaces the message with the resulting document.
@@ -25,8 +25,7 @@ For better performance and improved capabilities try out native Tyk Streams mapp
 
 The JMESPath query to apply to messages.
 
-
-Type: `string`  
+Type: `string`
 
 ## Examples
 
@@ -37,10 +36,10 @@ When receiving JSON documents of the form:
 ```json
 {
   "locations": [
-    {"name": "Seattle", "state": "WA"},
-    {"name": "New York", "state": "NY"},
-    {"name": "Bellevue", "state": "WA"},
-    {"name": "Olympia", "state": "WA"}
+    { "name": "Seattle", "state": "WA" },
+    { "name": "New York", "state": "NY" },
+    { "name": "Bellevue", "state": "WA" },
+    { "name": "Olympia", "state": "WA" }
   ]
 }
 ```
@@ -48,7 +47,7 @@ When receiving JSON documents of the form:
 We could collapse the location names from the state of Washington into a field `Cities`:
 
 ```json
-{"Cities": "Bellevue, Olympia, Seattle"}
+{ "Cities": "Bellevue, Olympia, Seattle" }
 ```
 
 We can achieve this using the following config:
@@ -59,4 +58,3 @@ pipeline:
     - jmespath:
         query: "locations[?state == 'WA'].name | sort(@) | {Cities: join(', ', @)}"
 ```
-

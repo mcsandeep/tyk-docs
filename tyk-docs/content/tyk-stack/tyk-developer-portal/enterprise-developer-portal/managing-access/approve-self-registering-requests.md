@@ -26,11 +26,11 @@ A Tyk Enterprise portal installation
 
 ## Step by step instructions
 
-1. Click *Users* from the **API Consumers** menu
+1. Click _Users_ from the **API Consumers** menu
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/users-menu.png" alt="Portal API Users menu" >}}
 
-2. When a new user has self-registered to access the developer portal,  their user profile will be added to the overview in the **Users** section.
+2. When a new user has self-registered to access the developer portal, their user profile will be added to the overview in the **Users** section.
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/approve-users1.png" alt="List of Users for your portal app" >}}
 

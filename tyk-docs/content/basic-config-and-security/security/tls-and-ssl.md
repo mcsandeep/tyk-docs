@@ -18,7 +18,7 @@ We enable SSL in Tyk Gateway and Dashboard by modifying the `tyk.conf` and `tyk_
 
 If you need to, [generate self-signed certs](#self-signed-certs) first and come back.
 
-{{< note success >}} 
+{{< note success >}}
 **Note**
 
 It is important to consider that TLS 1.3 doesn't support cipher selection. This isn't a Tyk decision, though.
@@ -73,8 +73,8 @@ Use this whole object
 
 If you are using self-signed certs or are in a test environment, [you can tell Tyk to ignore validation on certs Mutual TLS support](#self-signed-certs)
 
+That's it! Restart the servers/containers and they should now be using SSL:
 
-That's it!  Restart the servers/containers and they should now be using SSL:
 ```{.copyWrapper}
 $ docker-compose up tyk-gateway tyk-dashboard
 ...
@@ -84,6 +84,7 @@ tyk-gateway_1     | time="Apr 24 18:30:47" level=warning msg="Starting HTTP serv
 ```
 
 And then we can curl both servers:
+
 ```{.copyWrapper}
 $ curl -k https://localhost:8080/hello
 {"status":"pass","version":"v3.0.0","description":"Tyk GW","details":{"dashboard":{"status":"pass","componentType":"system","time":"2020-08-28T17:19:49+02:00"},"redis":{"status":"pass","componentType":"datastore","time":"2020-08-28T17:19:49+02:00"}}}
@@ -91,7 +92,6 @@ $ curl -k https://localhost:8080/hello
 $ curl -k https://localhost:3000
 <html response>
 ```
-
 
 ## More Configuration
 
@@ -112,44 +112,42 @@ $ curl -k https://localhost:3000
 },
 ```
 
-
 You can enter multiple certificates, that link to multiple domain names, this enables you to have multiple SSL certs for your Gateways or Dashboard domains if they are providing access to different domains via the same IP.
 
 The `min_version` setting is optional, you can set it to have Tyk only accept connections from TLS V1.0, 1.1, 1.2 or 1.3 respectively.
 
-The `max_version` allows you to disable specific TLS versions, for example if set to 771, you can disable TLS 1.3. 
+The `max_version` allows you to disable specific TLS versions, for example if set to 771, you can disable TLS 1.3.
 
 Finally, set the [host_config.generate_secure_paths]({{< ref "tyk-dashboard/configuration#host_configgenerate_secure_paths" >}}) flag to `true` in your `tyk_analytics.conf`
-
 
 #### Values for TLS Versions
 
 You need to use the following values for setting the TLS `min_version` and `max_version`:
 
-| TLS Version   | Value to Use   |
-|---------------|----------------|
-|      1.0      |      769       |
-|      1.1      |      770       |
-|      1.2      |      771       |
-|      1.3      |      772       |
+| TLS Version | Value to Use |
+| ----------- | ------------ |
+| 1.0         | 769          |
+| 1.1         | 770          |
+| 1.2         | 771          |
+| 1.3         | 772          |
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you do not configure minimum and maximum TLS versions, then Tyk Gateway will default to:
- - minimum TLS version: 1.0
- - maximum TLS version: 1.2
-{{< /note >}}
+
+- minimum TLS version: 1.0
+- maximum TLS version: 1.2
+  {{< /note >}}
 
 #### Specify TLS Cipher Suites for Tyk Gateway & Tyk Dashboard
 
 Each protocol (TLS 1.0, 1.1, 1.2, 1.3) provides cipher suites. With strength of encryption determined by the cipher negotiated between client & server.
 
-You can optionally add the additional `http_server_options` config option `ssl_ciphers` in `tyk.conf` and `tyk-analytics.conf` which takes an array of strings as its value. 
-
+You can optionally add the additional `http_server_options` config option `ssl_ciphers` in `tyk.conf` and `tyk-analytics.conf` which takes an array of strings as its value.
 
 {{< note info >}}
-**Note**  
+**Note**
 
 TLS 1.3 protocol does not allow the setting of custom ciphers, and is designed to automatically pick the most secure cipher.
 {{< /note >}}
@@ -161,7 +159,7 @@ For example:
 ```json
 {
   "http_server_options": {
-    "ssl_ciphers": ["TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"],
+    "ssl_ciphers": ["TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256", "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"]
   }
 }
 ```
@@ -218,6 +216,7 @@ If true, the server's preference as expressed in the order of elements in `ssl_c
 ```
 
 ### Using Tyk Certificate Storage
+
 In Tyk Gateway 2.4 and Tyk Dashboard 1.4 we added [Mutual TLS support](https://tyk.io/docs/security/tls-and-ssl/mutual-tls/) including special Certificate storage, which is used to store all kinds of certificates from public to server certificates with private keys.
 
 In order to add new server certificates:
@@ -227,7 +226,7 @@ In order to add new server certificates:
 3. Go to "Certificates" section of the Tyk Dashboard, upload certificate, and you will get a unique ID response
 4. Set it to the Tyk Gateway using one of the approaches below:
 
-* Using your `tyk.conf`:
+- Using your `tyk.conf`:
 
 ```
      "http_server_options": {
@@ -235,39 +234,38 @@ In order to add new server certificates:
      }
 ```
 
-  * Using environment variables (handy for Multi-Cloud installation and Docker in general): `TYK_GW_HTTPSERVEROPTIONS_SSLCERTIFICATES=<cert-id>` (if you want to set multiple certificates just separate them using a comma.)
+- Using environment variables (handy for Multi-Cloud installation and Docker in general): `TYK_GW_HTTPSERVEROPTIONS_SSLCERTIFICATES=<cert-id>` (if you want to set multiple certificates just separate them using a comma.)
 
 The Domain in this case will be extracted from standard certificate fields: `Subject.CommonName` or `DNSNames`.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 `Subject.CommonName` is deprecated and its support will be removed in Tyk V5.
 {{< /note >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This approach only works with the Tyk Gateway at present. Dashboard support has not been implemented yet.
 {{< /note >}}
 
-
 ## Self Signed Certs
 
-Self signed certificates can be managed in multiple ways.  
+Self signed certificates can be managed in multiple ways.
 
-Best practice dictates that you store certificates in the standard certificate store on  the local system, e.g.
+Best practice dictates that you store certificates in the standard certificate store on the local system, e.g.
 `/etc/ssl/certs`
 
 For example, if you are using a self-signed cert on the Dashboard, in order for the Gateway to trust it, add it to the Gateway's certificate store in `/etc/ssl/certs`
 
-Alternatively, you can disable the verification of SSL certs in the component configurations below.  **You shouln't do this in production!**
+Alternatively, you can disable the verification of SSL certs in the component configurations below. **You shouln't do this in production!**
 
 #### Gateway
 
 You can set `http_server_options.ssl_insecure_skip_verify` to `true` in your tyk.conf to allow the use of self-signed certificates when connecting to the Gateway.
 
-####  Dashboard
+#### Dashboard
 
 You can set `http_server_options.ssl_insecure_skip_verify` to `true` in your tyk_analytics.conf to allow the use of self-signed certificates when connecting to the Dashboard.
 

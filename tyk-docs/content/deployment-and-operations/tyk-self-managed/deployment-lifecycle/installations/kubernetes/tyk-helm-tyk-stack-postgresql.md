@@ -9,12 +9,13 @@ The following guides provide instructions to install Redis, PostgreSQL, and Tyk 
 
 ## Prerequisites
 
-* [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
-* [Helm 3+](https://helm.sh/docs/intro/install/)
+- [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
+- [Helm 3+](https://helm.sh/docs/intro/install/)
 
 ## Quick Start with PostgreSQL
 
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
+
 - Redis for key storage
 - PostgreSQL for app config
 - Tyk Pump to send analytics to PostgreSQL. It also opens a metrics endpoint where Prometheus (if available) can scrape from.
@@ -57,7 +58,8 @@ If you do not already have Redis installed, you may use these charts provided by
 ```bash
 helm upgrade tyk-redis oci://registry-1.docker.io/bitnamicharts/redis -n $NAMESPACE --install --version $REDIS_BITNAMI_CHART_VERSION
 ```
-Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port) 
+
+Follow the notes from the installation output to get connection details and password. The DNS name of your Redis as set by Bitnami is `tyk-redis-master.tyk.svc:6379` (Tyk needs the name including the port)
 
 The Bitnami chart also creates a secret `tyk-redis` which stores the connection password in `redis-password`. We will make use of this secret in installation later.
 
@@ -79,7 +81,6 @@ POSTGRESQLURL=host=tyk-postgres-postgresql.$NAMESPACE.svc\ port=5432\ user=postg
 kubectl create secret generic postgres-secrets  -n $NAMESPACE --from-literal=postgresUrl="$POSTGRESQLURL"
 ```
 
-
 {{< note >}}
 **Note**
 
@@ -87,6 +88,7 @@ Ensure that you are installing PostgreSQL versions that are supported by Tyk. Pl
 {{< /note >}}
 
 **4. Install Tyk**
+
 ```bash
 helm repo add tyk-helm https://helm.tyk.io/public/helm/charts/
 

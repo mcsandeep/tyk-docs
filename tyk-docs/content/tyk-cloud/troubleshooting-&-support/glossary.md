@@ -25,7 +25,7 @@ The highest level container for one or more Organizations.
 
 The main entity for all your data (Environments, APIs, Users, etc). An Organization is connected to a single region and once connected, cannot be changed.
 
-### Team 
+### Team
 
 A sub-grouping within an Organization.
 
@@ -51,7 +51,7 @@ A portion of allowances (without add-ons) that feed into the main subscription.
 
 ### Operations
 
-The place to manage all deployments for an Organization or Team. 
+The place to manage all deployments for an Organization or Team.
 
 ### Environment
 

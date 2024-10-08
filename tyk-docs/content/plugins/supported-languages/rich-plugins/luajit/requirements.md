@@ -4,10 +4,10 @@ title: Requirements
 menu:
   main:
     parent: "LuaJIT"
-weight: 0 
-aliases: 
-  -  "plugins/supported-languages/rich-plugins/luajitrequirements"
-  -  plugins/rich-plugins/luajit/requirements
+weight: 0
+aliases:
+  - "plugins/supported-languages/rich-plugins/luajitrequirements"
+  - plugins/rich-plugins/luajit/requirements
 ---
 
 Tyk uses [LuaJIT](http://luajit.org/). The main requirement is the LuaJIT shared library, you may find this as `libluajit-x` in most distros.
@@ -19,5 +19,5 @@ $ apt-get install luarocks`
 
 The LuaJIT required modules are as follows:
 
-*   [lua-cjson](https://github.com/mpx/lua-cjson): in case you have `luarocks`, run: `$ luarocks install lua-cjson`
-*   From v1.3.6 You can also use override response code, headers and body using ReturnOverrides. See the [Extend ReturnOverides](https://github.com/TykTechnologies/tyk/pull/763) sample for details.
+- [lua-cjson](https://github.com/mpx/lua-cjson): in case you have `luarocks`, run: `$ luarocks install lua-cjson`
+- From v1.3.6 You can also use override response code, headers and body using ReturnOverrides. See the [Extend ReturnOverides](https://github.com/TykTechnologies/tyk/pull/763) sample for details.

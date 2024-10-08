@@ -9,9 +9,7 @@ parent: "Installation options"
 weight: 1
 ---
 
-
-
-The Tyk Enterprise Developer Portal supports multiple installation flavors. Check out the guides below to deploy the portal on the platform that suits you best. 
+The Tyk Enterprise Developer Portal supports multiple installation flavors. Check out the guides below to deploy the portal on the platform that suits you best.
 
 {{< grid >}}
 

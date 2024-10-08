@@ -1,7 +1,7 @@
 ---
 title: Broker
 description: Explains input broker
-tags: [ "Tyk Streams", "Inputs", "Broker" ]
+tags: ["Tyk Streams", "Inputs", "Broker"]
 ---
 
 Allows you to combine multiple inputs into a single stream of data, where each input will be read in parallel.
@@ -65,7 +65,7 @@ input:
             - localhost:9092
           client_id: tyk_kafka_input
           consumer_group: tyk_consumer_group
-          topics: [ tyk_stream:0 ]
+          topics: [tyk_stream:0]
 ```
 
 If the number of copies is greater than zero the list will be copied that number of times. For example, if your inputs were of type foo and bar, with 'copies' set to '2', you would end up with two 'foo' inputs and two 'bar' inputs.
@@ -76,7 +76,7 @@ It's possible to configure a [batch policy]({{< ref "/product-stack/tyk-streamin
 
 ### Processors
 
-It is possible to configure processors at the broker level, where they will be applied to *all* child inputs, as well as on the individual child inputs. If you have processors at both the broker level *and* on child inputs then the broker processors will be applied *after* the child nodes processors.
+It is possible to configure processors at the broker level, where they will be applied to _all_ child inputs, as well as on the individual child inputs. If you have processors at both the broker level _and_ on child inputs then the broker processors will be applied _after_ the child nodes processors.
 
 ## Fields
 
@@ -84,23 +84,20 @@ It is possible to configure processors at the broker level, where they will be a
 
 Whatever is specified within `inputs` will be created this many times.
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### inputs
 
 A list of inputs to create.
 
-
-Type: `array`  
+Type: `array`
 
 ### batching
 
 Allows you to configure a [batching policy]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching#batch-policy" >}}).
 
-
-Type: `object`  
+Type: `object`
 
 ```yml
 # Examples
@@ -124,25 +121,22 @@ batching:
 
 A number of messages at which the batch should be flushed. If `0` disables count based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.byte_size
 
 An amount of bytes at which the batch should be flushed. If `0` disables size based batching.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batching.period
 
 A period in which an incomplete batch should be flushed regardless of its size.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -158,9 +152,8 @@ period: 500ms
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message should end a batch.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -172,8 +165,7 @@ check: this.type == "end_of_transaction"
 
 A list of processors to apply to a batch as it is flushed. This allows you to aggregate and archive the batch however you see fit. Please note that all resulting messages are flushed as a single batch, therefore splitting the batch into smaller batches using these processors is a no-op.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples

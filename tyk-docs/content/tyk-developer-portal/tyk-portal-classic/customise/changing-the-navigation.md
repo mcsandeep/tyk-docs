@@ -5,7 +5,7 @@ linktitle: Menus
 menu:
   main:
     parent: "Customize"
-weight: 1 
+weight: 1
 aliases:
   - /tyk-developer-portal/customise/changing-the-navigation/
 ---

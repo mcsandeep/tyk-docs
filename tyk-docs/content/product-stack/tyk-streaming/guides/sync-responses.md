@@ -1,7 +1,7 @@
 ---
 title: Synchronous Responses
 description: Explains synchronous responses
-tags: [ "Tyk Streams", "Synchronous Responses" ]
+tags: ["Tyk Streams", "Synchronous Responses"]
 ---
 
 In a regular Tyk Streams pipeline, messages will flow in one direction and acknowledgements flow in the other:
@@ -43,7 +43,7 @@ output:
   sync_response: {}
 ```
 
-Using the above example, POSTING *foo bar* to the path `/post` returns the response *FOO BAR*.
+Using the above example, POSTING _foo bar_ to the path `/post` returns the response _FOO BAR_.
 
 It's also possible to combine a [sync_response]({{< ref "/product-stack/tyk-streaming/configuration/outputs/sync-response" >}}) output with other outputs using a [broker]({{< ref "/product-stack/tyk-streaming/configuration/outputs/broker" >}}):
 
@@ -56,14 +56,14 @@ output:
     pattern: fan_out
     outputs:
       - kafka:
-          addresses: [ TODO:9092 ]
+          addresses: [TODO:9092]
           topic: foo_topic
       - sync_response: {}
         processors:
           - mapping: root = content().uppercase()
 ```
 
-Using the above example, POSTING *foo bar* to the path `/post` passes the message unchanged to the Kafka topic `foo_topic` and also returns the response *FOO BAR*.
+Using the above example, POSTING _foo bar_ to the path `/post` passes the message unchanged to the Kafka topic `foo_topic` and also returns the response _FOO BAR_.
 
 {{< note >}}
 **Note**
@@ -88,11 +88,11 @@ pipeline:
 
 output:
   kafka:
-    addresses: [ TODO:9092 ]
+    addresses: [TODO:9092]
     topic: foo_topic
 ```
 
-Using the above example, POSTING a request *foo bar* to the path `/post` passes the message *FOO BAR BAZ* to the Kafka topic `foo_topic` and also returns the response *foo bar baz*.
+Using the above example, POSTING a request _foo bar_ to the path `/post` passes the message _FOO BAR BAZ_ to the Kafka topic `foo_topic` and also returns the response _foo bar baz_.
 
 However, it is important to keep in mind that due to Tyk Streams' strict delivery guarantees, the response message will not actually be returned until the message has reached its output destination and an acknowledgement can be made.
 
@@ -124,7 +124,7 @@ output:
     pattern: fan_out
     outputs:
       - kafka:
-          addresses: [ TODO:9092 ]
+          addresses: [TODO:9092]
           topic: foo_topic
       - http_client:
           url: http://localhost:4196/post

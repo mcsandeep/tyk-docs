@@ -1,7 +1,7 @@
 ---
 title: AI Management
 tags: ["AI Management", "Platform Teams"]
-description: "AI Management for Platform Teams with Montag.ai by Tyk" 
+description: "AI Management for Platform Teams with Montag.ai by Tyk"
 ---
 
 ## AI Management for Platform Teams
@@ -9,6 +9,7 @@ description: "AI Management for Platform Teams with Montag.ai by Tyk"
 We are excited to introduce our product for AI management - Montag.ai
 
 Montag.ai enables platform teams to:
+
 - Centralise access credentials to AI vendors, be that commercial offerings or in-house ones
 - Log and measure how AI is being used internally
 - Build and release Chatbots for internal Slack channels

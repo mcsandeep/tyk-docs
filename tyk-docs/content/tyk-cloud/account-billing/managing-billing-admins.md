@@ -8,7 +8,7 @@ menu:
     parent: "Account and Billing"
 weight: 5
 aliases:
-    - /tyk-cloud/account-billing/managing-billing-admins/
+  - /tyk-cloud/account-billing/managing-billing-admins/
 ---
 
 ## Introduction
@@ -17,15 +17,15 @@ This page explains what a Tyk Cloud billing admin can do as part of your API man
 
 As a Billing Admin you can perform the following:
 
-* Add, edit and delete [payment methods]({{< ref "tyk-cloud/account-billing/add-payment-method" >}})
-* Add further users as Billing Admins
-* Upgrade or downgrade plans
+- Add, edit and delete [payment methods]({{< ref "tyk-cloud/account-billing/add-payment-method" >}})
+- Add further users as Billing Admins
+- Upgrade or downgrade plans
 
 ## Adding a new Billing Admin
 
 {{< note success >}}
 **Note**
-  
+
 To be added as a Billing Admin, a user cannot have an existing Tyk Cloud account.
 {{< /note >}}
 
@@ -33,8 +33,8 @@ To be added as a Billing Admin, a user cannot have an existing Tyk Cloud account
 
 To add a new Billing Admin team member requires you to have one of the following roles:
 
-* Be an existing Billing Admin
-* Be the account creator Organization Admin (this user also has the Billing Admin role assigned to them)
+- Be an existing Billing Admin
+- Be the account creator Organization Admin (this user also has the Billing Admin role assigned to them)
 
 1. Select **Account & Billing** from the Admin menu (if you only have Billing Admin permissions you will automatically be logged into the Account and Billing area).
 

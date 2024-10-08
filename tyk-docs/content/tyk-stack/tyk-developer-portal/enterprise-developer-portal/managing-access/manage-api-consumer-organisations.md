@@ -17,18 +17,22 @@ If you are interested in getting access contact us at [support@tyk.io](<mailto:s
 {{< /note >}}
 
 ## Introduction
+
 Quite often, API Providers have to provide API Products to other companies. In fact, 90% of our customers say that their primary audience is other companies. In this case, they are dealing with not just individual developers but with teams of developers.
 Unlike individual developers, companies require more sophisticated machinery to access API credentials:
-* Usually, a company is represented by a team of developers, not just an individual. Communication between API Providers and API Consumers mustn’t rely on a single individual that may leave a company or be fired;
-* API Consumers need to share access credentials securely within their team. Without that capability, they have to share credentials with internal communication tools, which is a horrible practice. Credentials may be stolen, exposed to an incorrect audience, or not appropriately updated;
-* Those teams have an internal hierarchy: some users have admin responsibilities with broader permissions, while other teammates’ permissions are restricted to only accessing API Credentials;
-* API Consumers should be able to maintain their teams by themselves: invite new members or remove ones that left the team.
+
+- Usually, a company is represented by a team of developers, not just an individual. Communication between API Providers and API Consumers mustn’t rely on a single individual that may leave a company or be fired;
+- API Consumers need to share access credentials securely within their team. Without that capability, they have to share credentials with internal communication tools, which is a horrible practice. Credentials may be stolen, exposed to an incorrect audience, or not appropriately updated;
+- Those teams have an internal hierarchy: some users have admin responsibilities with broader permissions, while other teammates’ permissions are restricted to only accessing API Credentials;
+- API Consumers should be able to maintain their teams by themselves: invite new members or remove ones that left the team.
 
 So, simply put, there are two main challenges that the new API Consumer organization management capability solves:
-* How to share securely share access credentials between team members;
-* How to manage user permissions on the API consumer side.
+
+- How to share securely share access credentials between team members;
+- How to manage user permissions on the API consumer side.
 
 ## Prerequisites
+
 Before starting, you need to set up an email server because it’s used to send invitations to API Consumer team members.
 Please refer to the email notifications documentation to set up the email server.
 
@@ -38,8 +42,9 @@ Please refer to the [email notification section]({{< ref "/product-stack/tyk-ent
 
 You can control if API Consumers can register an organization and if such registration requires approval from the portal admins.
 To enable API Consumer organization registration, navigate to the Settings/General menu and scroll to the API Consumer access section. In that section, there are two settings that control API Consumer registration:
-* **Enable API consumers to register organizations**: when this setting is enabled, API Consumers can register organizations, and the respective button appears in the navigation menu;
-* **Auto-approve API consumers registering organization**: When this setting is enabled, no approval is required from the portal admins for an API Consumer to register an organization. If this setting is disabled, API Consumer can register organizations, but they won’t be able to invite team members.
+
+- **Enable API consumers to register organizations**: when this setting is enabled, API Consumers can register organizations, and the respective button appears in the navigation menu;
+- **Auto-approve API consumers registering organization**: When this setting is enabled, no approval is required from the portal admins for an API Consumer to register an organization. If this setting is disabled, API Consumer can register organizations, but they won’t be able to invite team members.
 
 <br/>This is how it looks in the portal's UI:
 {{< img src="/img/dashboard/portal-management/enterprise-portal/api_consumer_org_registration_settings.png" alt="Organization registration settings" >}}
@@ -80,7 +85,6 @@ Notification when organization request is approved:
 
 <br/><br/>Both emails are customizable. Refer to [the email customization documentation]({{< ref "/content/tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/full-customisation/email-customization.md" >}}) for further information on the email customization.
 
-
 ## Step 3: Invite or remove teammates
 
 Once admin users approve the organization registration request, API Consumers can invite teammates.
@@ -94,8 +98,9 @@ As an API Consumer, navigate to the Dashboard to invite new teammates.
 {{< img src="/img/dashboard/portal-management/enterprise-portal/invite_team_member.png" alt="Invite new team member" >}}
 
 <br/><br/>There are two possible roles for API Consumers:
-* Super admin;
-* Team member.
+
+- Super admin;
+- Team member.
 
 The difference between these two roles is that the Super admins can invite or remove users from their organization and manage applications, while the Team members can only manage applications.
 

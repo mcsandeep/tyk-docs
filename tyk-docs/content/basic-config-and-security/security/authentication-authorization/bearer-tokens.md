@@ -6,7 +6,7 @@ description: "Using bearer tokens to lock-down your APIs with Tyk"
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 5 
+weight: 5
 aliases:
   - /security/your-apis/bearer-tokens/
 ---
@@ -40,7 +40,7 @@ To enable the use of a bearer token in your API:
 
 Tyk will by default use the bearer token method to protect your API unless it is told otherwise.
 
-These tokens can be set as a *header, url parameter, or cookie name of a request*. A request for a resource at the API endpoint of `/api/widgets/12345` that uses access tokens will require the addition of a header field, traditionally this is the `Authorization` header.
+These tokens can be set as a _header, url parameter, or cookie name of a request_. A request for a resource at the API endpoint of `/api/widgets/12345` that uses access tokens will require the addition of a header field, traditionally this is the `Authorization` header.
 
 The name of the key can be defined as part of the API definition under the `auth` section of an API Definition file:
 
@@ -54,14 +54,13 @@ The name of the key can be defined as part of the API definition under the `auth
 },
 ```
 
-To use URL query parameters instead of a header, set the `auth.use_param` setting in your API definition to `true`. 
+To use URL query parameters instead of a header, set the `auth.use_param` setting in your API definition to `true`.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-Unlike headers, URL query parameters are *case sensitive*.
+Unlike headers, URL query parameters are _case sensitive_.
 {{< /note >}}
-
 
 To use a cookie name instead of a header or request parameter, set the `use_cookie` parameter to `true`. Cookie names are also case sensitive.
 
@@ -82,17 +81,20 @@ If you are migrating from platforms like Mashery, which use request signing, you
 }
 ...
 ```
+
 `validate_signature`: boolean value to tell Tyk whether to enable signature validation or not
 
 `signature.algorithm`: the algorithm you wish to validate the signature against. Currently supported
- - `MasherySHA256`
- - `MasheryMD5`
- 
- `signature.header`: header key of attempted signature
- 
- `signature.secret`: the shared secret which was used to sign the request
- - Can hold a dynamic value, by referencing `$tyk_meta` or `$tyk_context` variables.
- - Example: `"secret": "$tyk_meta.individual_secret"`. Which effectively means that you have created/imported the api key into Tyk, and have stored the shared secret in the field `individual_secret` of the session token's meta-data.
+
+- `MasherySHA256`
+- `MasheryMD5`
+
+`signature.header`: header key of attempted signature
+
+`signature.secret`: the shared secret which was used to sign the request
+
+- Can hold a dynamic value, by referencing `$tyk_meta` or `$tyk_context` variables.
+- Example: `"secret": "$tyk_meta.individual_secret"`. Which effectively means that you have created/imported the api key into Tyk, and have stored the shared secret in the field `individual_secret` of the session token's meta-data.
 
 `signature.allowed_clock_skew`: allowed deviation in seconds between UNIX timestamp of Tyk & UNIX timestamp used to generate the signed request
 

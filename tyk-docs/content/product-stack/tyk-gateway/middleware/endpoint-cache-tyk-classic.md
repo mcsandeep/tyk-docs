@@ -28,12 +28,14 @@ To enable the simple middleware you must add a new `cache` object to the `extend
 In the API-level `cache_options` you must enable caching and configure the timeout whilst ensuring that the option to cache all safe requests is disabled.
 
 The `cache_options` object has the following configuration:
+
 - `enable_cache`: set to `true` to enable caching for this API
 - `cache_all_safe_requests`: set to `false` to allow selective caching per-endpoint
 - `cache_timeout`: set to the refresh period for the cache (in seconds)
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
     "cache_options": {
         "enable_cache": true,
@@ -57,15 +59,17 @@ In this example, the endpoint caching middleware has been configured to cache al
 #### Advanced endpoint cache {#tyk-classic-advanced-caching}
 
 For ultimate control over what Tyk caches, you should use the advanced configuration options for the per-endpoint cache. You can separately configure, for each HTTP method for an endpoint:
+
 - an individual cache refresh (timeout)
 - a list of HTTP response codes that should be cached
 - a pattern match to cache only requests containing specific data in the [request body]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#selective-caching-by-body-value" >}})
 
 To enable the advanced middleware you must add a new `advance_cache_config` object to the `extended_paths` section of your API definition.
 
-In the API-level `cache_options` you must enable caching and ensure that the option to cache all safe requests is disabled. The timeout that you set here will be used as a default  for any endpoints for which you don't want to configure individual timeouts.
+In the API-level `cache_options` you must enable caching and ensure that the option to cache all safe requests is disabled. The timeout that you set here will be used as a default for any endpoints for which you don't want to configure individual timeouts.
 
 The `advance_cache_config` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint method
 - `timeout`: set to the refresh period for the cache (in seconds)
@@ -73,47 +77,44 @@ The `advance_cache_config` object has the following configuration:
 - `cache_key_regex`: pattern match for selective caching by body value
 
 For example:
-```json  {linenos=true, linenostart=1}
-{
-    "cache_options": {
-        "enable_cache": true,
-        "cache_timeout": 60,
-        "cache_all_safe_requests": false
-    },
 
-    "extended_paths": {
-        "advance_cache_config": [
-            {
-                "disabled": false,
-                "method": "POST",
-                "path": "/widget",
-                "cache_key_regex": "",
-                "cache_response_codes": [
-                    200
-                ],
-                "timeout": 10
-            }, 
-            {
-                "disabled": false,
-                "method": "GET",
-                "path": "/fish",
-                "cache_key_regex": "^shark$",
-                "cache_response_codes": [
-                    200, 300
-                ],
-                "timeout": 0
-            } 
-        ]
-    }
+```json {linenos=true, linenostart=1}
+{
+  "cache_options": {
+    "enable_cache": true,
+    "cache_timeout": 60,
+    "cache_all_safe_requests": false
+  },
+
+  "extended_paths": {
+    "advance_cache_config": [
+      {
+        "disabled": false,
+        "method": "POST",
+        "path": "/widget",
+        "cache_key_regex": "",
+        "cache_response_codes": [200],
+        "timeout": 10
+      },
+      {
+        "disabled": false,
+        "method": "GET",
+        "path": "/fish",
+        "cache_key_regex": "^shark$",
+        "cache_response_codes": [200, 300],
+        "timeout": 0
+      }
+    ]
+  }
 }
 ```
 
 In this example the endpoint caching middleware has been configured to cache requests to two endpoints (`/widget` and `/fish`) as follows:
 
-| endpoint | HTTP response codes to cache | cache refresh timeout | body value regex |
-|----------|------------------------------|-----------------------|------------------|
-| `POST /widget` | 200 | 10 seconds | none |
-| `GET /fish` | 200, 300 | 60 seconds (taken from `cache_options`) | `shark` |
+| endpoint       | HTTP response codes to cache | cache refresh timeout                   | body value regex |
+| -------------- | ---------------------------- | --------------------------------------- | ---------------- |
+| `POST /widget` | 200                          | 10 seconds                              | none             |
+| `GET /fish`    | 200, 300                     | 60 seconds (taken from `cache_options`) | `shark`          |
 
 ## Configuring the middleware in the API Designer
 
@@ -126,9 +127,10 @@ To enable and configure the simple endpoint cache, follow these instructions:
 ##### Step 1: Configure the API level caching options
 
 From the **Advanced Options** tab configure the cache as follows:
+
 - **Enable caching** to enable the cache middleware
 - **Cache timeout** to configure the timeout (in seconds) for cached requests
-- **Cache only these status codes** is a list of HTTP status codes that should be cached, remember to click **Add** after entering each code to add it to the list 
+- **Cache only these status codes** is a list of HTTP status codes that should be cached, remember to click **Add** after entering each code to add it to the list
 - **Cache all safe requests** ensure that this is **not** selected, otherwise the responses from all endpoints for the API will be cached
 
 {{< img src="/img/dashboard/endpoint-designer/cache-options.png" alt="Cache Options" >}}
@@ -141,7 +143,7 @@ From the **Endpoint Designer** add an endpoint that matches the path for which y
 
 ##### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ### Advanced endpoint cache
 
@@ -150,6 +152,7 @@ To enable and configure the advanced endpoint cache, follow these instructions:
 ##### Step 1: Configure the API level caching options
 
 From the **Advanced Options** tab configure the cache as follows:
+
 - **Enable caching** to enable the cache middleware
 - **Cache timeout** to configure the default timeout (in seconds) for any endpoints for which you don't want to configure individual timeouts
 - **Cache only these status codes** leave this blank
@@ -170,14 +173,14 @@ Set the timeout and HTTP response codes for the endpoint. If you don't need to s
 {{< img src="/img/dashboard/endpoint-designer/advanced-cache-config.png" alt="Endpoint cache configuration for Tyk Classic API" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
-Body value match or [request selective]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#request-selective-cache-control" >}}) caching is not currently exposed in the Dashboard UI, so it must be configured through either the raw API editor or the Dashboard API. 
+Body value match or [request selective]({{< ref "basic-config-and-security/reduce-latency/caching/advanced-cache#request-selective-cache-control" >}}) caching is not currently exposed in the Dashboard UI, so it must be configured through either the raw API editor or the Dashboard API.
 {{< /note >}}
 
 ##### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the middleware in the Tyk Operator {#tyk-operator}
 
@@ -220,7 +223,7 @@ spec:
             - /anything
   cache_options:
     cache_all_safe_requests: false
-#    cache_by_headers: []
+    #    cache_by_headers: []
     cache_timeout: 10
     cache_response_codes:
       - 400
@@ -264,10 +267,10 @@ spec:
           white_list: []
         extended_paths:
           advance_cache_config:
-          - path: /anything 
-            method: GET
-            cache_key_regex: ""
-            cache_response_codes: [200]
+            - path: /anything
+              method: GET
+              cache_key_regex: ""
+              cache_response_codes: [200]
   cache_options:
     cache_timeout: 30
     enable_cache: true
@@ -275,6 +278,6 @@ spec:
 
 In this example the endpoint caching middleware has been configured to cache requests for the `/anything` endpoint as follows:
 
-| endpoint | HTTP response codes to cache | cache refresh timeout | body value regex |
-|----------|------------------------------|-----------------------|------------------|
-| `GET /anything` | 200 | 30 seconds (taken from `cache_options`) | none |
+| endpoint        | HTTP response codes to cache | cache refresh timeout                   | body value regex |
+| --------------- | ---------------------------- | --------------------------------------- | ---------------- |
+| `GET /anything` | 200                          | 30 seconds (taken from `cache_options`) | none             |

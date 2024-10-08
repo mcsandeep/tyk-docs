@@ -9,8 +9,7 @@ aliases:
   - /tyk-developer-portal/customise/customize-with-jquery/
 ---
 
-Tyk Portal comes prepackaged with jQuery.  This opens up a whole world of customization, by extending our Portal using JavaScript and HTML to create dynamic content.
-
+Tyk Portal comes prepackaged with jQuery. This opens up a whole world of customization, by extending our Portal using JavaScript and HTML to create dynamic content.
 
 ## Dynamic Content Rendering & Filtering
 
@@ -18,9 +17,7 @@ Let's walk through an example where you use jQuery to fetch data from a REST end
 
 {{< youtube njRgYUpL5vs >}}
 
-
 **First of all, create a custom page in the portal.**
-
 
 {{< img src="/img/dashboard/portal-management/new_custom_page.png" alt="custom_page_setup" >}}
 
@@ -36,15 +33,15 @@ In the MainBody, you can paste the code below (click the text to display):
 <script>
 window.onload = function() {
 
-    $.ajax({  
+    $.ajax({
             type: "GET",
-            url: "https://www.mocky.io/v2/5eb1a7c53200005c8f28f8b5",  
-            beforeSend: function() 
+            url: "https://www.mocky.io/v2/5eb1a7c53200005c8f28f8b5",
+            beforeSend: function()
             {
                 $('html, body').animate({scrollTop: 0
                 }, 'slow');
                 $("#response").html('<img src="loading.gif" align="absmiddle" alt="Loading..."> Loading...<br clear="all" /><br clear="all" />');
-            },  
+            },
             success: function(response)
             {
                 var htmlResponse = '<table id=results>\
@@ -98,13 +95,14 @@ tr:nth-child(even) {
 }
 </style>
 
-<p>Type something in the input field to search the table for first names, last names or emails:</p>  
+<p>Type something in the input field to search the table for first names, last names or emails:</p>
 <input id="myInput" type="text" placeholder="Search..">
 <br><br>
 
 <div id=results>
 </results>
 ```
+
 </details>
 
 And save.

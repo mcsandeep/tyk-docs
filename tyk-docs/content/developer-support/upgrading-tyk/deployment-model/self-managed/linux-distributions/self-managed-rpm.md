@@ -7,7 +7,6 @@ description: "Explains how to upgrade on Self Managed (RPM)"
 
 The following guide explains how to upgrade Tyk Self-Managed running on RHL
 
-
 ## Upgrade guide video
 
 Please refer to our [upgrade guide video](https://tyk-1.wistia.com/medias/p2c7gjzsk6) below for visual guidance of
@@ -20,19 +19,19 @@ upgrading Tyk Self-Managed (RPM).
 ---
 
 ## Preparations
+
 After reviewing guidelines for [preparing for upgrade]({{< ref "developer-support/upgrading-tyk/preparations/upgrade-guidelines" >}}),
 follow the instructions below to upgrade your Tyk components and plugins.
 
 **Upgrade order:**
 Please note that upgrade order is as explained in the upgrade [overview]({{< ref "developer-support/upgrading-tyk/deployment-model/self-managed/overview" >}})
 
-
 ## Distro versions
 
 Tyk supports the following Centos and Rhel distributions:
 
 | Distribution | Version |
-|--------------|---------|
+| ------------ | ------- |
 | Centos       | 7       |
 | Rhel         | 9       |
 | Rhel         | 8       |
@@ -54,7 +53,7 @@ Depending on the Linux distribution that you are using, ensure that you are pull
 
 The package name contains the version number and the distro/version column displays the specific distribution release.
 
-{{< img src="/img/upgrade-guides/rpm_packages.png" 
+{{< img src="/img/upgrade-guides/rpm_packages.png"
     alt="Package names" >}}
 
 ## Backups
@@ -63,7 +62,7 @@ Before upgrading, ensure that the configuration files and databases are backed u
 
 ### Configuration files
 
-Please take a backup of the following configuration files for each Tyk component. This will be useful in case you need to cross reference configuration changes or need to rollback your deployment. 
+Please take a backup of the following configuration files for each Tyk component. This will be useful in case you need to cross reference configuration changes or need to rollback your deployment.
 
 - Dashboard Configuration File: `/opt/tyk-dashboard/tyk_analytics.conf`
 - Gateway Configuration File: `/opt/tyk-gateway/tyk.conf`
@@ -72,11 +71,12 @@ Please take a backup of the following configuration files for each Tyk component
 ### Databases
 
 {{< note >}}
-**Note** 
+**Note**
 Redis and MongoDB are not Tyk products and what we provide here are basic backup and restore instructions. It is advisable to consult the official documentation for Redis and MongoDB on backups.
 {{< /note >}}
 
 #### Redis
+
 For more detailed instructions on managing Redis backups, please refer to the official Redis documentation:
 https://redis.io/docs/management/persistence/
 
@@ -89,7 +89,8 @@ SAVE
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/redis_save.png" 
+
+{{< img src="/img/upgrade-guides/redis_save.png"
     alt="Redis SAVE example" width="600" height="auto">}}
 
 To restore Redis data, follow these steps:
@@ -99,10 +100,11 @@ To restore Redis data, follow these steps:
 
 To locate your Redis directory, you can use the CONFIG command. Specifically, the CONFIG GET command allows you to read the configuration parameters of a running Redis server.
 Example:
-{{< img src="/img/upgrade-guides/redis_config.png" 
+{{< img src="/img/upgrade-guides/redis_config.png"
     alt="Redis CONFIG example" width="600" height="auto">}}
 
 #### MongoDB
+
 For detailed instructions on performing backups in MongoDB, please refer to the official MongoDB documentation:
 https://www.mongodb.com/docs/manual/core/backups/
 
@@ -113,7 +115,8 @@ mongodump --db tyk_analytics --out /path/to/dump/directory
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/mongo_dump.png" 
+
+{{< img src="/img/upgrade-guides/mongo_dump.png"
     alt="Mongo DUMP example" height="600">}}
 
 To restore a database using a previously saved snapshot, simply employ the mongorestore command.
@@ -128,7 +131,7 @@ Before executing the upgrade, ensure that you have consulted and performed all t
 
 ### 1. Update Tyk Repositories
 
-Fetch and update information about the available packages from the specified repositories. 
+Fetch and update information about the available packages from the specified repositories.
 
 ```bash
 sudo yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-dashboard'
@@ -150,7 +153,8 @@ rpm -qa | grep -i tyk
 ```
 
 #### Example
-{{< img src="/img/upgrade-guides/list_rpm.png" 
+
+{{< img src="/img/upgrade-guides/list_rpm.png"
     alt="List RPM packages example" width="600" height="auto">}}
 
 List available versions of upgradable packages of Tyk components and ensure that the version you are planning to upgrade to is listed in the output of the above command.
@@ -160,9 +164,9 @@ yum --showduplicates list tyk*
 ```
 
 Example:
-{{< img src="/img/upgrade-guides/list_package.png" 
+{{< img src="/img/upgrade-guides/list_package.png"
     alt="List version example" width="600" height="auto">}}
-{{< img src="/img/upgrade-guides/list_package_2.png" 
+{{< img src="/img/upgrade-guides/list_package_2.png"
     alt="List version example" width="600" height="auto">}}
 
 ### 3. Upgrade Tyk Components
@@ -176,7 +180,8 @@ yum update tyk-pump-<desired-version>
 ```
 
 #### Example
-{{< img src="/img/upgrade-guides/yum_update.png" 
+
+{{< img src="/img/upgrade-guides/yum_update.png"
     alt="Update example" height="600" width="auto" >}}
 
 ### 4. Restart Tyk Components
@@ -200,16 +205,19 @@ systemctl status tyk-pump
 Perform a health check on all 3 Tyk Components. The host and port number varies on your setup.
 
 #### Tyk Dashboard
+
 ```curl
 curl http://localhost:3000/hello
 ```
 
 #### Tyk Gateway
+
 ```curl
 curl http://localhost:8080/hello
 ```
 
 #### Tyk Pump
+
 ```curl
 curl http://localhost:8083/health
 ```
@@ -235,20 +243,21 @@ yum history info <ID>
 ```
 
 #### Example
-{{< img src="/img/upgrade-guides/yum_history.png" 
+
+{{< img src="/img/upgrade-guides/yum_history.png"
     alt="Update example" height="600" width="auto" >}}
 
 ### 3. Revert
 
 If you encounter difficulties after an upgrade and wish to revert the changes, you can use the following commands as a guide.
 
-If you're experiencing issues specifically related to the upgrade and want to undo those changes only, you can use the *yum history undo* command. This will undo the changes for a specific update transaction only.
+If you're experiencing issues specifically related to the upgrade and want to undo those changes only, you can use the _yum history undo_ command. This will undo the changes for a specific update transaction only.
 
 ```bash
 yum history undo <ID>
 ```
 
-If you encounter issues after the upgrade and wish to revert your system to its previous state entirely, you can use the *yum history rollback* command. This command will rollback the system to a specific point in time, undoing all transactions that occurred after that point. 
+If you encounter issues after the upgrade and wish to revert your system to its previous state entirely, you can use the _yum history rollback_ command. This command will rollback the system to a specific point in time, undoing all transactions that occurred after that point.
 
 ```bash
 yum history rollback <ID>

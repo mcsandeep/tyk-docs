@@ -13,39 +13,39 @@ Configuring Tyk Gateway to read values from Consul is straightforward - you simp
 
 ```json
 {
-    "kv": {
-        "consul": {
-            "address": "localhost:8025",
-            "scheme": "http",
-            "datacenter": "dc-1",
-            "http_auth": {
-                "username": "",
-                "password": ""
-            },
-            "wait_time": 10,
-            "token": "",
-            "tls_config": {
-                "address": "",
-                "ca_path": "",
-                "ca_file": "",
-                "cert_file": "",
-                "key_file": "",
-                "insecure_skip_verify": false
-            }
-        }
+  "kv": {
+    "consul": {
+      "address": "localhost:8025",
+      "scheme": "http",
+      "datacenter": "dc-1",
+      "http_auth": {
+        "username": "",
+        "password": ""
+      },
+      "wait_time": 10,
+      "token": "",
+      "tls_config": {
+        "address": "",
+        "ca_path": "",
+        "ca_file": "",
+        "cert_file": "",
+        "key_file": "",
+        "insecure_skip_verify": false
+      }
     }
+  }
 }
 ```
 
-| Key        | Description                                                                                                 |
-|------------|-------------------------------------------------------------------------------------------------------------|
-| address    | The location of the Consul server                                                                           |
-| scheme     | The URI scheme for the Consul server, e.g. `http`                                                          |
-| datacenter | Consul datacenter (agent) identifier                                                                       |
-| http_auth  | Username and password for Tyk to log into Consul using HTTP Basic Auth (if required by your Consul service) |
+| Key        | Description                                                                                                                                                 |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address    | The location of the Consul server                                                                                                                           |
+| scheme     | The URI scheme for the Consul server, e.g. `http`                                                                                                           |
+| datacenter | Consul datacenter (agent) identifier                                                                                                                        |
+| http_auth  | Username and password for Tyk to log into Consul using HTTP Basic Auth (if required by your Consul service)                                                 |
 | wait_time  | Limits how long a [watch will block](https://developer.hashicorp.com/consul/api-docs/features/blocking) in milliseconds (if enabled in your Consul service) |
-| token      | Used to provide a per-request access token to Consul (if required by your Consul service)                   |
-| tls_config | Configuration for TLS connection to Consul (if enabled in your Consul service)                              |
+| token      | Used to provide a per-request access token to Consul (if required by your Consul service)                                                                   |
+| tls_config | Configuration for TLS connection to Consul (if enabled in your Consul service)                                                                              |
 
 Alternatively, you can configure it using the equivalent [environment variables]({{< ref "tyk-oss-gateway/configuration#kvconsuladdress" >}}).
 
@@ -62,20 +62,19 @@ The notation used to refer to a KV pair stored in Consul depends upon the locati
 #### Tyk Gateway configuration file
 
 As described [here]({{< ref "tyk-configuration-reference/kv-store#from-the-tyk-gateway-configuration-file" >}}), from Tyk Gateway's configuration file (`tyk.conf`) you can retrieve values from Consul using the following notation:
+
 - `consul://path/to/KEY`
 
 #### API definition
 
 The **Target URL** and **Listen Path** key-value pairs can be stored in any directory in the Consul KV store as they are accessed using a different mechanism than other fields in the API definition. If storing these in a sub-directory, you can retrieve the values from Consul by providing the directory path within Consul KV using the following notation:
+
 - `consul://path/to/KEY`
 
 For [certain transformation middleware]({{< ref "tyk-configuration-reference/kv-store#transformation-middleware" >}}) because the secret resolution happens during the request context, a different notation is used to retrieve values from Consul:
+
 - `$secret_consul.KEY`
 
-From Tyk Gateway v5.3.0 onwards, you can store KV pairs to be used in **any `string` field** in the API definition in the Consul KV store. You can retrieve these values from Consul, noting that you do not provide the directory path (`/tyk-apis`) when accessing data for *these* fields, using the following notation:
+From Tyk Gateway v5.3.0 onwards, you can store KV pairs to be used in **any `string` field** in the API definition in the Consul KV store. You can retrieve these values from Consul, noting that you do not provide the directory path (`/tyk-apis`) when accessing data for _these_ fields, using the following notation:
+
 - `consul://KEY`
-
-
-
-
-

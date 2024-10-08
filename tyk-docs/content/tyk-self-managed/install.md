@@ -1,13 +1,21 @@
 ---
 date: 2017-03-15T15:01:42Z
 title: "Installation Options for Tyk Self-Managed"
-tags: ["Tyk Stack", "Self-Managed", "Installation", "Installation options", "Containerized installation", "Open system installation"]
+tags:
+  [
+    "Tyk Stack",
+    "Self-Managed",
+    "Installation",
+    "Installation options",
+    "Containerized installation",
+    "Open system installation",
+  ]
 description: "Landing page for all the installation options we provide for the Self-Managed Tyk Stack"
 identifier: "tyk-self-managed-installation"
 weight: 1
-menu: 
-    main:
-        parent: Tyk Self-Managed
+menu:
+  main:
+    parent: Tyk Self-Managed
 aliases:
   - /tyk-self-managed/istio/
   - /tyk-self-managed/install/
@@ -26,35 +34,35 @@ First, click here to get a trial license
 {{< grid >}}
 
 {{< badge read="10 mins" href="/tyk-on-premises/docker/" image="/img/docker.png" alt="Docker install">}}
-Install with Docker 
+Install with Docker
 {{< /badge >}}
 
 {{< badge read="10 mins" href="tyk-on-premises/kubernetes" image="/img/k8s.png" alt="Kubernetes install">}}
-Install on K8s 
+Install on K8s
 {{< /badge >}}
 
 {{< badge read="10 mins" href="/tyk-on-premises/ansible/" image="/img/ansible.png" alt="Ansible install">}}
-Install with Ansible 
+Install with Ansible
 {{< /badge >}}
 
 {{< badge read="10 mins" href="/tyk-on-premises/redhat-rhel-centos/" image="/img/redhat-logo2.png" alt="Red Hat install">}}
-Install on Red Hat 
+Install on Red Hat
 {{< /badge >}}
 
 {{< badge read="10 mins" href="tyk-on-premises/debian-ubuntu" image="/img/debian-nd-753.png" alt="Ubuntu install">}}
-Install on Ubuntu 
+Install on Ubuntu
 {{< /badge >}}
 
 {{< badge read="10 mins" href="tyk-on-premises/installation/on-aws" image="/img/aws.png" alt="Amazon AWS install">}}
-Install on Amazon AWS 
+Install on Amazon AWS
 {{< /badge >}}
 
 {{< badge read="10 mins" href="tyk-on-premises/installation/on-heroku" image="/img/heroku-logo.png" alt="Heroku install">}}
-Install Tyk on Heroku 
+Install Tyk on Heroku
 {{< /badge >}}
 
 {{< badge read="10 mins" href="/tyk-on-premises/microsoft-azure/" image="/img/azure-2.png" alt="Azure install">}}
-Install on Microsoft Azure 
+Install on Microsoft Azure
 {{< /badge >}}
 
 {{< /grid >}}

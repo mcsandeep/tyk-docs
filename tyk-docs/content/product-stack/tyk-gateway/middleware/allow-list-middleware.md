@@ -17,9 +17,9 @@ If you have a service that exposes endpoints or supports methods that you do not
 
 ## How the allow list works
 
-Tyk Gateway does not actually maintain a list of allowed endpoints but rather works on the model whereby if the *allow list* middleware is added to an endpoint then this will automatically block all other endpoints.
+Tyk Gateway does not actually maintain a list of allowed endpoints but rather works on the model whereby if the _allow list_ middleware is added to an endpoint then this will automatically block all other endpoints.
 
-Tyk Gateway will subsequently return `HTTP 403 Forbidden` to any requested endpoint that doesn't have the *allow list* middleware enabled, even if the endpoint is defined and configured in the API definition.
+Tyk Gateway will subsequently return `HTTP 403 Forbidden` to any requested endpoint that doesn't have the _allow list_ middleware enabled, even if the endpoint is defined and configured in the API definition.
 
 <br>
 {{< note success >}}
@@ -40,7 +40,7 @@ When using the allow list middleware, we recommend that you familiarize yourself
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk recommends that you use [exact]({{< ref "getting-started/key-concepts/url-matching#exact-match" >}}) matching for maximum security, though prefix and wildcard strategies might also apply for your particular deployment or use case.
 {{< /note >}}
@@ -54,5 +54,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Allow List middleware summary
   - The Allow List is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Allow List can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Allow List can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

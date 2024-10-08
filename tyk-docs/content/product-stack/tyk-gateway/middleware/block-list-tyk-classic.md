@@ -5,7 +5,7 @@ description: "Using the Block List middleware with Tyk Classic APIs"
 tags: ["Block list", "middleware", "per-endpoint", "Tyk Classic"]
 ---
 
-The [block list]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) is a feature designed to block access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`. 
+The [block list]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) is a feature designed to block access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`.
 
 When working with Tyk Classic APIs the middleware is configured in the Tyk Classic API Definition. You can do this via the Tyk Dashboard API or in the API Designer.
 
@@ -18,24 +18,27 @@ If you're using Tyk Operator then check out the [configuring the block list in T
 To enable and configure the block list you must add a new `black_list` object to the `extended_paths` section of your API definition.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Historically, Tyk followed the out-dated whitelist/blacklist naming convention. We are working to remove this terminology from the product and documentation, however this configuration object currently retains the old name.
 {{< /note >}}
 
 The `black_list` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: this should be blank
 - `ignore_case`: if set to `true` then the path matching will be case insensitive
 - `method_actions`: a shared object used to configure the [mock response]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#mock-response" >}}) middleware
 
 The `method_actions` object should be configured as follows, with an entry created for each blocked method on the path:
+
 - `action`: this should be set to `no_action`
 - `code`: this should be set to `200`
 - `headers` : this should be blank
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
     "extended_paths": {
         "black_list": [
@@ -54,7 +57,7 @@ For example:
                         "action": "no_action",
                         "code": 200,
                         "headers": {}
-                    }            
+                    }
                 }
             }
         ]
@@ -84,7 +87,7 @@ Once you have selected the middleware for the endpoint, the only additional feat
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the block list in Tyk Operator {#tyk-operator}
 
@@ -136,4 +139,3 @@ spec:
 In this example the block list middleware has been configured for HTTP `GET` requests to the `/get` endpoint. Requests to this endpoint will be rejected with `HTTP 403 Forbidden`.
 Note that the block list has been configured to be case insensitive, so calls to `GET /Get` will not be rejected.
 Note also that the endpoint path has not been terminated with `$`. Requests to, for example, `GET /get/foobar` will be rejected as the [regular expression pattern match]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware#endpoint-parsing" >}}) will recognize this as `GET /get`.
-

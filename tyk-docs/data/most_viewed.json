@@ -62,7 +62,8 @@
           "path": "tyk-dashboard/"
         }
       ]
-    },{
+    },
+    {
       "title": "Developer support",
       "items": [
         {

@@ -1,7 +1,16 @@
 ---
 title: "Import an OAS API"
 date: 2022-07-11
-tags: ["Tyk Tutorials", "Getting Started", "First API", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "Import an OAS API"]
+tags:
+  [
+    "Tyk Tutorials",
+    "Getting Started",
+    "First API",
+    "Tyk Cloud",
+    "Tyk Self-Managed",
+    "Tyk Open Source",
+    "Import an OAS API",
+  ]
 description: "Importing an OAS API"
 menu:
   main:
@@ -19,14 +28,14 @@ Examples in the following tutorials have been written assuming that you are usin
 
 You can also run these steps using the Tyk Dashboard API, noting the differences summarised here:
 
-| Interface             | Port     | Endpoint        | Authorization Header  | Authorization credentials        |
-|-----------------------|----------|-----------------|-----------------------|----------------------------------|
-| Tyk Gateway API       | 8080     | `tyk/apis/oas`  | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
-| Tyk Dashboard API     | 3000     | `api/apis/oas`  | `Authorization`       | From Dashboard User Profile      |
+| Interface         | Port | Endpoint       | Authorization Header  | Authorization credentials        |
+| ----------------- | ---- | -------------- | --------------------- | -------------------------------- |
+| Tyk Gateway API   | 8080 | `tyk/apis/oas` | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
+| Tyk Dashboard API | 3000 | `api/apis/oas` | `Authorization`       | From Dashboard User Profile      |
 
 As explained in the section on [Creating an OAS API]({{< ref "/getting-started/using-oas-definitions/create-an-oas-api" >}}) remember that when using the Tyk Dashboard API you only need to issue one command to create the API and load it onto the Gateway; when using the Tyk Gateway API you must remember to restart or hot reload the Gateway after creating the API.
 
-* When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
+- When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
 
 {{< note success >}}
 **Note**
@@ -36,13 +45,13 @@ You will also need to have ‘admin’ or ‘api’ rights if [RBAC]({{< ref "/t
 
 ### Tutorial 1: Create a Tyk OAS API by importing an OpenAPI Document
 
-| Property     | Description              |
-|--------------|--------------------------|
-| Resource URL | `/tyk/apis/oas/import`   |
-| Method       | `POST`                   |
-| Type         | None                     |
-| Body         | OpenAPI Document         |
-| Parameters   | None                     |
+| Property     | Description            |
+| ------------ | ---------------------- |
+| Resource URL | `/tyk/apis/oas/import` |
+| Method       | `POST`                 |
+| Type         | None                   |
+| Body         | OpenAPI Document       |
+| Parameters   | None                   |
 
 <details>
   <summary>
@@ -87,6 +96,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/impor
   }
 }'
 ```
+
 #### Check request response
 
 If the command succeeds, you will see the following response, where `key` contains the unique identifier (`id`) for the API you have just created:
@@ -147,20 +157,22 @@ One thing to notice is that Tyk took the value from the `servers` section of the
   }
 }
 ```
+
 #### What did you just do?
 
 You created a fully functional Tyk OAS API Definition by importing an OpenAPI Document. Tyk worked out and added all the information it needed so you didn’t have to! Let’s see next how you can enable extra capabilities of the Gateway when importing an OpenAPI Document.
+
 </details>
 
 ### Tutorial 2: Create a Tyk OAS API with a custom upstream URL and listen path
 
-| Property     | Description                              |
-|--------------|------------------------------------------|
-| Resource URL | `/tyk/apis/oas/import`                   |
-| Method       | `POST`                                   |
-| Type         | None                                     |
-| Body         | OpenAPI Document                         |
-| Parameters   | Query: `upstreamURL`  `listenPath`       |
+| Property     | Description                       |
+| ------------ | --------------------------------- |
+| Resource URL | `/tyk/apis/oas/import`            |
+| Method       | `POST`                            |
+| Type         | None                              |
+| Body         | OpenAPI Document                  |
+| Parameters   | Query: `upstreamURL` `listenPath` |
 
 <details>
   <summary>
@@ -172,6 +184,7 @@ You created a fully functional Tyk OAS API Definition by importing an OpenAPI Do
 When calling the import Gateway API, you can provide custom `upstreamURL` and `listenPath` values that will be added to your Tyk OAS API Definition.
 
 Note that
+
 - the listen path will default to `/` if `listenPath` is not provided
 - if `upstreamURL` is not provided, the upstream URL defaults to the first URL in the `servers` section of the OpenAPI Document
 
@@ -235,8 +248,9 @@ curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/ty
 Go to the `/apps` folder of your Tyk Gateway installation (by default in `/var/tyk-gateway`) and check the newly created Tyk OAS API Definition.
 
 You’ll see that Tyk has populated two fields within the `x-tyk-api-gateway` section with the values you passed in as query parameters:
- - `upstream.url` has the value http://tyk.io
- - `server.listenPath` has the value `/oas-api/`
+
+- `upstream.url` has the value http://tyk.io
+- `server.listenPath` has the value `/oas-api/`
 
 Because you provided the custom upstream URL, Tyk has applied this value in the Tyk OAS API Definition, instead of the value in the `servers` section of the OpenAPI Document.
 
@@ -275,17 +289,18 @@ Because you provided the custom upstream URL, Tyk has applied this value in the 
 #### What did you just do?
 
 You created a fully functional Tyk OAS API Definition by providing an OpenAPI Document and passing custom upstream URL and listen path.
+
 </details>
 
 ### Tutorial 3: Create a secured API when importing an OpenAPI Document
 
-| Property     | Description                    |
-|--------------|--------------------------------|
-| Resource URL | `/tyk/apis/oas/import`         |
-| Method       | `POST`                         |
-| Type         | None                           |
-| Body         | OpenAPI Document               |
-| Parameters   | Query: `authentication`        |
+| Property     | Description             |
+| ------------ | ----------------------- |
+| Resource URL | `/tyk/apis/oas/import`  |
+| Method       | `POST`                  |
+| Type         | None                    |
+| Body         | OpenAPI Document        |
+| Parameters   | Query: `authentication` |
 
 <details>
   <summary>
@@ -343,6 +358,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/impor
   ]
 }'
 ```
+
 #### Check request response
 
 If the command succeeds, you will see the following response, where `key` contains the unique identifier (`id`) for the API you have just created:
@@ -397,17 +413,18 @@ For more information on how Tyk extracts data about security defined from the Op
 #### What did you just do?
 
 You created a fully protected Tyk OAS API by importing an OpenAPI Documnent that has security information included within it.
+
 </details>
 
 ### Tutorial 4: Create an API and explicitly allow access to paths
 
-| Property     | Description               |
-|--------------|---------------------------|
-| Resource URL | `/tyk/apis/oas/import`    |
-| Method       | `POST`                    |
-| Type         | None                      |
-| Body         | Tyk OAS API Definition    |
-| Parameters   | Query: `allowList`        |
+| Property     | Description            |
+| ------------ | ---------------------- |
+| Resource URL | `/tyk/apis/oas/import` |
+| Method       | `POST`                 |
+| Type         | None                   |
+| Body         | Tyk OAS API Definition |
+| Parameters   | Query: `allowList`     |
 
 <details>
   <summary>
@@ -496,6 +513,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/impor
   }
 }'
 ```
+
 #### Check request response
 
 If the command succeeds, you will see the following response, where `key` contains the unique identifier (`id`) for the API you have just created:
@@ -515,6 +533,7 @@ Once you have created your API, you will need to either restart the Tyk Gateway,
 ```.curl
 curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/tyk/reload/group
 ```
+
 #### Check your Tyk OAS API definition
 
 Go to the `/apps` folder of your Tyk Gateway installation (by default in `/var/tyk-gateway`) and check the newly created Tyk OAS API Definition.
@@ -538,20 +557,22 @@ You’ll see that Tyk has populated the `middleware` section within the `x-tyk-a
   }
 }
 ```
+
 #### What did you just do?
 
 You created a Tyk OAS API that which tells your Tyk Gateway to allow access just on the paths that are defined in the OpenAPI Document.
+
 </details>
 
 ### Tutorial 5: Create an API that validates the request payload
 
-| Property     | Description                      |
-|--------------|----------------------------------|
-| Resource URL | `/tyk/apis/oas/import`           |
-| Method       | `POST`                           |
-| Type         | None                             |
-| Body         | OpenAPI Document                 |
-| Parameters   | Query: `validateRequest`         |
+| Property     | Description              |
+| ------------ | ------------------------ |
+| Resource URL | `/tyk/apis/oas/import`   |
+| Method       | `POST`                   |
+| Type         | None                     |
+| Body         | OpenAPI Document         |
+| Parameters   | Query: `validateRequest` |
 
 <details>
   <summary>
@@ -687,20 +708,22 @@ For more information on how Tyk builds the `middleware.operations` structure to 
   }
 }
 ```
+
 #### What did you just do?
 
 You created an API which tells your Tyk Gateway to validate any incoming request against the JSON schema defined in the Tyk OAS API Definition.
+
 </details>
 
 ### Tutorial 6: Create an API with a Mock Response
 
-| Property     | Description                  |
-|--------------|------------------------------|
-| Resource URL | `/tyk/apis/oas/import`       |
-| Method       | `POST`                       |
-| Type         | None                         |
-| Body         | Tyk OAS API Definition       |
-| Parameters   | Query: `mockResponse`        |
+| Property     | Description            |
+| ------------ | ---------------------- |
+| Resource URL | `/tyk/apis/oas/import` |
+| Method       | `POST`                 |
+| Type         | None                   |
+| Body         | Tyk OAS API Definition |
+| Parameters   | Query: `mockResponse`  |
 
 <details>
   <summary>
@@ -809,6 +832,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas/impor
   }
 }'
 ```
+
 #### Check request response
 
 If the command succeeds, you will see the following response, where `key` contains the unique identifier (`id`) for the API you have just created:
@@ -861,9 +885,11 @@ For more information on mock responses, see the dedicated [page]({{< ref "produc
   }
 }
 ```
+
 #### What did you just do?
 
 You created an API which tells your Tyk Gateway to provide a mock response based on configured responses in the original OpenAPI Document.
+
 </details>
 
 ### Tutorial 7: Using the Tyk Dashboard UI
@@ -949,7 +975,7 @@ Your API will be added to your list of APIs.
 
 {{< img src="/img/oas/upstream-url.png" alt="Upstream URL" >}}
 
-4. Click **Import API**. 
+4. Click **Import API**.
 
 {{< img src="/img/oas/import-api-button.png" alt="Import API" >}}
 

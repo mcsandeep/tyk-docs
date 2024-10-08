@@ -18,6 +18,7 @@ If you're using Tyk Operator then check out the [configuring a Request Method Tr
 To configure a transformation of the request method you must add a new `method_transforms` object to the `extended_paths` section of your API definition.
 
 It has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `to_method`: The new HTTP method to which the request should be transformed
@@ -25,15 +26,16 @@ It has the following configuration:
 All standard HTTP methods are supported: `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
 
 For example:
+
 ```json
 {
-    "method_transforms": [
-        {
-            "path": "/status/200",
-            "method": "GET",
-            "to_method": "POST"
-        }
-    ]
+  "method_transforms": [
+    {
+      "path": "/status/200",
+      "method": "GET",
+      "to_method": "POST"
+    }
+  ]
 }
 ```
 
@@ -59,7 +61,7 @@ Then select the HTTP method to which you wish to transform the request.
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring a Request Method Transform in Tyk Operator {#tyk-operator}
 

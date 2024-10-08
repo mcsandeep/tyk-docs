@@ -8,8 +8,9 @@ weight: 3
 aliases:
   - /tyk-dashboard-api/api-tokens/
 ---
+
 {{< note success >}}
-**Note**  
+**Note**
 
 `{api-id}` can either be the internal or external API id.
 {{< /note >}}
@@ -18,13 +19,13 @@ aliases:
 
 **Note:** This will not work with a hashed key set.
 
-| **Property** | **Description**            |
-| ------------ | -------------------------- |
+| **Property** | **Description**           |
+| ------------ | ------------------------- |
 | Resource URL | `/api/apis/{api-id}/keys` |
-| Method       | GET                        |
-| Type         | None                       |
-| Body         | None                       |
-| Param        | None                       |
+| Method       | GET                       |
+| Type         | None                      |
+| Body         | None                      |
+| Param        | None                      |
 
 #### Sample Request:
 
@@ -53,13 +54,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Get a specific key
 
-| **Property** | **Description**                     |
-| ------------ | ----------------------------------- |
+| **Property** | **Description**                    |
+| ------------ | ---------------------------------- |
 | Resource URL | `/api/apis/{api-id}/keys/{key-id}` |
-| Method       | GET                                 |
-| Type         | None                                |
-| Body         | None                                |
-| Param        | None                                |
+| Method       | GET                                |
+| Type         | None                               |
+| Body         | None                               |
+| Param        | None                               |
 
 #### Sample Request
 
@@ -105,16 +106,15 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 }
 ```
 
-
 ### Create a custom key
 
-| **Property** | **Description** |
-| ------------ | --------------- |
-| Resource URL | `/api/keys/{custom-key-id}`     |
-| Method       | POST            |
-| Type         | None            |
-| Body         | Session Object  |
-| Param        | None            |
+| **Property** | **Description**             |
+| ------------ | --------------------------- |
+| Resource URL | `/api/keys/{custom-key-id}` |
+| Method       | POST                        |
+| Type         | None                        |
+| Body         | Session Object              |
+| Param        | None                        |
 
 ##### Sample Request
 
@@ -126,7 +126,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 {
     "apply_policies": ["5ecc0b91081ac40001ed261c"],
     "org_id" : "5eb06f441fe4c4000147476e",
-    
+
     // Below gets overwritten by the Policy, required nonetheless
     "expires": 0,
     "allowance": 0,
@@ -145,10 +145,9 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 }
 ```
 
-You might be wondering why `access_rights` is necessary, as we are adding a security policy and inheriting the access rights from there.  That's because of legacy functionality.  We need to add any APIs `api_id` to the key of the access_rights map, as well as the `api_id` value of that key.  This will all get overwritten by the policy, but we need to add it.
+You might be wondering why `access_rights` is necessary, as we are adding a security policy and inheriting the access rights from there. That's because of legacy functionality. We need to add any APIs `api_id` to the key of the access_rights map, as well as the `api_id` value of that key. This will all get overwritten by the policy, but we need to add it.
 
 ##### Sample Response:
-
 
 ```
 {
@@ -161,9 +160,10 @@ You might be wondering why `access_rights` is necessary, as we are adding a secu
 }
 ```
 
-You can now use `my-custom-key` as a key to access the API.  Furthermore, you can use it to lookup the key in the Dashboard as well as the generated `key_hash` in the response.
+You can now use `my-custom-key` as a key to access the API. Furthermore, you can use it to lookup the key in the Dashboard as well as the generated `key_hash` in the response.
 
 Let's try curling it:
+
 ```
 $ curl localhost:8080/my-api/users/1 --header "Authorization: my-custom-key"
 {
@@ -248,13 +248,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Update a key
 
-| **Property** | **Description**                      |
-| ------------ | ------------------------------------ |
+| **Property** | **Description**                   |
+| ------------ | --------------------------------- |
 | Resource URL | `/api/apis/{api-id}/keys/{keyId}` |
-| Method       | PUT                                  |
-| Type         | None                                 |
-| Body         | Session Object                       |
-| Param        | None                                 |
+| Method       | PUT                               |
+| Type         | None                              |
+| Body         | Session Object                    |
+| Param        | None                              |
 
 #### Sample Request
 
@@ -334,7 +334,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 Presently, the Tyk Dashboard uses the GraphQL API for keys.
 
-| **Method** | **URL**  | **Description**             |
-| ---------- | ------------- | --------------------------- |
-| POST       | `/graphql`    | GraphQL query endpoint      |
+| **Method** | **URL**       | **Description**                                                         |
+| ---------- | ------------- | ----------------------------------------------------------------------- |
+| POST       | `/graphql`    | GraphQL query endpoint                                                  |
 | GET        | `/playground` | Dashboard Graphql Playground - where you could see docs and run queries |

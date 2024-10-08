@@ -1,6 +1,6 @@
 ---
 title: Advanced Use Cases
-tags: [ "API Management", "Async APIs" ]
+tags: ["API Management", "Async APIs"]
 ---
 
 Tyk Streams enables powerful advanced use cases beyond basic pub/sub and event streaming. Here are a few examples of how you can leverage Tyk Streams for complex async API scenarios.
@@ -16,7 +16,7 @@ Tyk Streams allows you to perform complex event processing on streams of events 
 - Trigger actions or notifications based on event conditions
 
 Here's an example of a Tyk Streams configuration that performs complex event processing, specifically it creates a new event stream, which filters high-value orders and enriches them with customer email addresses, by making an additional HTTP request.
- 
+
 ```yaml
 input:
   kafka:
@@ -56,12 +56,12 @@ pipeline:
 
 In this example:
 
-- **Tyk Streams Setup**: Consumes events from a Kafka topic called *orders*.
+- **Tyk Streams Setup**: Consumes events from a Kafka topic called _orders_.
 - **Processor Block Configuration**: Utilizes a custom Bloblang script that performs the following operations:
-    - **Filters** orders, only processing those with a value greater than 1000.
-    - **Enriches** the high-value orders by retrieving the customer ID and email from a separate data source.
-    - **Adds** a new high_value_order flag to each qualifying event.
-- **Output Handling**: Processed high-value order events are exposed via a WebSocket stream at the endpoint */high-value-orders*.
+  - **Filters** orders, only processing those with a value greater than 1000.
+  - **Enriches** the high-value orders by retrieving the customer ID and email from a separate data source.
+  - **Adds** a new high_value_order flag to each qualifying event.
+- **Output Handling**: Processed high-value order events are exposed via a WebSocket stream at the endpoint _/high-value-orders_.
 
 {{< note success >}}
 
@@ -74,6 +74,7 @@ For a practical demonstration of Kafka and Tyk Streams integration, please visit
 ## Legacy Modernization
 
 Tyk Streams can help you modernise legacy applications and systems by exposing their functionality as async APIs. This allows you to:
+
 - Decouple legacy systems from modern consumers
 - Enable real-time, event-driven communication with legacy apps
 - Gradually migrate away from legacy infrastructure
@@ -99,13 +100,15 @@ output:
 ```
 
 In this configuration:
-- Tyk Streams periodically polls the legacy */orders* REST endpoint every 60 seconds
-- The *processor* transforms the legacy response format into a simplified event structure
-- The transformed events are published to a Kafka topic called *orders*, which can be consumed by modern applications
+
+- Tyk Streams periodically polls the legacy _/orders_ REST endpoint every 60 seconds
+- The _processor_ transforms the legacy response format into a simplified event structure
+- The transformed events are published to a Kafka topic called _orders_, which can be consumed by modern applications
 
 ## Async API Orchestration
 
 Tyk Streams enables you to orchestrate multiple async APIs and services into composite event-driven flows. You can:
+
 - Combine events from various streams and sources
 - Implement complex routing and mediation logic between async APIs
 - Create reactive flows triggered by event conditions
@@ -139,8 +142,8 @@ pipeline:
                     - http:
                         url: "http://api1.example.com/process"
                         verb: POST
-                        body: '${! json() }'
-                  result_map: 'root.api1_response = this'
+                        body: "${! json() }"
+                  result_map: "root.api1_response = this"
           - check: 'meta("kafka_topic") == "stream2"'
             processors:
               - bloblang: |
@@ -151,8 +154,8 @@ pipeline:
                     - http:
                         url: "http://api2.example.com/analyze"
                         verb: POST
-                        body: '${! json() }'
-                  result_map: 'root.api2_response = this'
+                        body: "${! json() }"
+                  result_map: "root.api2_response = this"
     - bloblang: 'root = if this.type == "event_from_stream1" && this.api1_response.status == "ok" { this } else if this.type == "event_from_stream2" && this.api2_response.status == "ok" { this } else { deleted() }'
 output:
   broker:
@@ -169,18 +172,18 @@ output:
       - http_client:
           url: "https://webhook.site/unique-id"
           verb: POST
-          body: '${! json() }'
+          body: "${! json() }"
 ```
 
 1. **Input Configuration**
-    - Uses a broker to combine events from two different Kafka topics, stream1 and stream2, allowing for the integration of events from various streams.
+   - Uses a broker to combine events from two different Kafka topics, stream1 and stream2, allowing for the integration of events from various streams.
 2. **Complex Routing and Processing**
-    - A switch processor directs messages based on their origin (differentiated by Kafka topic metadata).
-    - Each stream’s messages are processed and conditionally sent to different APIs.
-    - Responses from these APIs are captured and used to further decide on message processing.
+   - A switch processor directs messages based on their origin (differentiated by Kafka topic metadata).
+   - Each stream’s messages are processed and conditionally sent to different APIs.
+   - Responses from these APIs are captured and used to further decide on message processing.
 3. **Reactive Flows**
-    - Conditions based on API responses determine if messages are forwarded or discarded, creating a flow reactive to the content and success of API interactions.
-    - Fanout to Multiple Consumers:
-    - The broker output with a fan_out pattern sends processed messages to multiple destinations: two different Kafka topics and an HTTP endpoint, demonstrating the capability to distribute events to various downstream consumers.
+   - Conditions based on API responses determine if messages are forwarded or discarded, creating a flow reactive to the content and success of API interactions.
+   - Fanout to Multiple Consumers:
+   - The broker output with a fan_out pattern sends processed messages to multiple destinations: two different Kafka topics and an HTTP endpoint, demonstrating the capability to distribute events to various downstream consumers.
 
 These are just a few examples of the advanced async API scenarios made possible with Tyk Streams. The platform provides a flexible and extensible framework to design, deploy and manage sophisticated event-driven architectures.

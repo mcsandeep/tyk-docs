@@ -2,7 +2,8 @@
 title: Using the Request Body Transform middleware with Tyk Classic APIs
 date: 2024-02-07
 description: "Using the Request Body Transform middleware with Tyk Classic APIs"
-tags: ["request transform", "body transform", "transform", "middleware", "per-endpoint", "Tyk Classic", "Tyk Classic API"]
+tags:
+  ["request transform", "body transform", "transform", "middleware", "per-endpoint", "Tyk Classic", "Tyk Classic API"]
 ---
 
 The [request body transform]({{< ref "transform-traffic/request-body" >}}) middleware provides a way to modify the payload of API requests before they are proxied to the upstream.
@@ -20,33 +21,36 @@ If you're using Tyk Operator then check out the [Configuring the middleware in T
 To enable the middleware you must add a new `transform` object to the `extended_paths` section of your API definition.
 
 The `transform` object has the following configuration:
+
 - `path`: the path to match on
 - `method`: this method to match on
 - `template_data`: details of the Go template to be applied for the transformation of the request body
- 
+
 The Go template is described in the `template_data` object by the following fields:
+
 - `input_type`: the format of input data the parser should expect (either `xml` or `json`)
 - `enable_session`: set this to `true` to make session metadata available to the transform template
 - `template_mode`: instructs the middleware to look for the template either in a `file` or in a base64 encoded `blob`; the actual file location (or base64 encoded template) is provided in `template_source`
 - `template_source`: if `template_mode` is set to `file`, this will be the path to the text file containing the template; if `template_mode` is set to `blob`, this will be a `base64` encoded representation of your template
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "transform": [
-            {
-                "path": "/anything",
-                "method": "POST",
-                "template_data": {
-                    "template_mode": "file",
-                    "template_source": "./templates/transform_test.tmpl",
-                    "input_type": "json",
-                    "enable_session": true
-                }
-            }
-        ]
-    }
+  "extended_paths": {
+    "transform": [
+      {
+        "path": "/anything",
+        "method": "POST",
+        "template_data": {
+          "template_mode": "file",
+          "template_source": "./templates/transform_test.tmpl",
+          "input_type": "json",
+          "enable_session": true
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -54,7 +58,7 @@ In this example, the Request Body Transform middleware is directed to use the te
 
 {{< note success >}}
 
-**Note**  
+**Note**
 
 Tyk will load and evaluate the template file when the Gateway starts up. If you modify the template, you will need to restart Tyk in order for the changes to take effect.
 
@@ -84,7 +88,7 @@ If sample input data is available, you can use the Input box to add it, and then
 
 #### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the Request Body Transform middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the Request Body Transform middleware.
 
 ## Configuring the middleware in Tyk Operator {#tyk-operator}
 

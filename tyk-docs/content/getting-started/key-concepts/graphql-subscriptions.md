@@ -9,7 +9,7 @@ menu:
 weight: 11
 ---
 
-Tyk **natively** supports also GraphQL subscriptions, so you can expose your full range of GQL operations using Tyk Gateway. Subscriptions support was added in `v4.0.0` in which *graphql-ws* protocol support was introduced. 
+Tyk **natively** supports also GraphQL subscriptions, so you can expose your full range of GQL operations using Tyk Gateway. Subscriptions support was added in `v4.0.0` in which _graphql-ws_ protocol support was introduced.
 
 With the release of Tyk `v4.3.0` the number of supported subscription protocols has been extended.
 
@@ -18,17 +18,19 @@ In Tyk subscriptions are using the [WebSocket transport](https://developer.mozil
 ### Supported transports and protocols
 
 | Transport  | Protocol                                                                                                                 |
-|------------|--------------------------------------------------------------------------------------------------------------------------|
+| ---------- | ------------------------------------------------------------------------------------------------------------------------ |
 | WebSockets | [graphql-ws](http://github.com/apollographql/subscriptions-transport-ws) (default, no longer maintained)                 |
 | WebSockets | [graphql-transport-ws](http://github.com/enisdenjo/graphql-ws)                                                           |
 | HTTP       | [Server-Sent Events (SSE)](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) |
 
 #### Setting up subscription types via API definition
+
 Subscription types or subscription transports/protocols are set inside the graphql section of the API definition.
 
 Depending on whether you want to configure GraphQL proxy-only, UDG, or GraphQL Federation there are different places for the configuration option.
 
 The values for subscription types are the same on all API types:
+
 - `graphql-ws`
 - `graphql-transport-ws`
 - `sse` (Server-Sent Events)
@@ -91,7 +93,7 @@ The values for subscription types are the same on all API types:
 ```
 
 {{< note >}}
-**Note**  
+**Note**
 
 If the upstream subscription GraphQL API is protected please enable the authentication via query params to pass the header through.
 

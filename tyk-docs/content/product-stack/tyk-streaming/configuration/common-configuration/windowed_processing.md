@@ -1,10 +1,10 @@
 ---
 title: Windowed Processing
 description: Explains windowed processing
-tags: [ "Tyk Streams", "Window", "Windowed Processing" ]
+tags: ["Tyk Streams", "Window", "Windowed Processing"]
 ---
 
-A window is a batch of messages made with respect to time, with which we are able to perform processing that can analyse or aggregate the messages of the window. This is useful in stream processing as the dataset is never "complete", and therefore in order to perform analysis against a collection of messages we must do so by creating a continuous feed of windows (collections), where our analysis is made against each window. 
+A window is a batch of messages made with respect to time, with which we are able to perform processing that can analyse or aggregate the messages of the window. This is useful in stream processing as the dataset is never "complete", and therefore in order to perform analysis against a collection of messages we must do so by creating a continuous feed of windows (collections), where our analysis is made against each window.
 
 For example, given a stream of messages relating to cars passing through various traffic lights:
 
@@ -34,13 +34,13 @@ The first step in processing windows is producing the windows themselves, this c
 
 ### System
 
-A *system_window* buffer creates windows by following the system clock of the running machine. Windows will be created and emitted at predictable times, but this also means windows for historic data will not be emitted and therefore prevents backfills of traffic data:
+A _system_window_ buffer creates windows by following the system clock of the running machine. Windows will be created and emitted at predictable times, but this also means windows for historic data will not be emitted and therefore prevents backfills of traffic data:
 
 ```yaml
 input:
   kafka:
-    addresses: [ TODO ]
-    topics: [ traffic_data ]
+    addresses: [TODO]
+    topics: [traffic_data]
     consumer_group: traffic_consumer
     checkpoint_limit: 1000
 

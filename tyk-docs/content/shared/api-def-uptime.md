@@ -1,9 +1,9 @@
 ---
 ---
 
-* `uptime_tests`: This section defines the uptime tests to run for this API.
+- `uptime_tests`: This section defines the uptime tests to run for this API.
 
-* `uptime_tests.check_list` A list of tests to run, takes the form:
+- `uptime_tests.check_list` A list of tests to run, takes the form:
 
 ```{.copyWrapper}
 uptime_tests: {
@@ -23,7 +23,5 @@ uptime_tests: {
   ]
 },
 ```
-        
-    
-See [Uptime Tests]({{< ref "planning-for-production/ensure-high-availability/uptime-tests" >}}) for details on how uptime tests work and how to configure them.
 
+See [Uptime Tests]({{< ref "planning-for-production/ensure-high-availability/uptime-tests" >}}) for details on how uptime tests work and how to configure them.

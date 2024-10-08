@@ -4,7 +4,7 @@ title: Secure your APIs by Method and Path
 menu:
   main:
     parent: "Security Policies"
-weight: 3 
+weight: 3
 aliases:
   - /basic-config-and-security/security/security-policies/secure-apis-method-path/
 ---
@@ -18,11 +18,10 @@ With this feature it is possible to set up tiered access policies for your users
 Or, alternatively, you could just upgrade a single key to have more access, both methods use the same, or similar areas of the configuration to make this possible.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-Granular permissions are applied *after* version-based (global) allowlist/blocklist rules.
+Granular permissions are applied _after_ version-based (global) allowlist/blocklist rules.
 {{< /note >}}
-
 
 ### Setting granular paths on a per-key basis
 

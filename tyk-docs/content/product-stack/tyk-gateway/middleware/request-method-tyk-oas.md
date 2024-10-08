@@ -20,53 +20,54 @@ You only need to enable the middleware (set `enabled:true`) and then configure `
 All standard HTTP methods are supported: `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
 
 For example:
+
 ```json {hl_lines=["39-41"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-request-method",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/status/200": {
-            "get": {
-                "operationId": "status/200get",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-request-method",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/status/200": {
+      "get": {
+        "operationId": "status/200get",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-request-method",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-request-method/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "status/200get": {
-                    "transformRequestMethod": {
-                        "enabled": true,
-                        "toMethod": "POST"
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-request-method",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-request-method/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "status/200get": {
+          "transformRequestMethod": {
+            "enabled": true,
+            "toMethod": "POST"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -90,7 +91,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Method Transform middleware
 
-Select **ADD MIDDLEWARE** and choose the **Method Transform** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Method Transform** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-method-transform.png" alt="Adding the Request Method Transform middleware" >}}
 

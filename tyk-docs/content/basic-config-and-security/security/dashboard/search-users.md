@@ -6,7 +6,7 @@ description: "How to search for users in the Tyk Dashboard"
 menu:
   main:
     parent: "Dashboard"
-weight: 3 
+weight: 3
 ---
 
 You can search for a user (by email address) by entering the address in the search field. The user list will automatically refresh with that user being displayed.

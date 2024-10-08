@@ -4,7 +4,7 @@ title: Request Context Variables
 menu:
   main:
     parent: "Key Concepts"
-weight: 65 
+weight: 65
 aliases:
   - /concepts/context-variables/
   - /getting-started/key-concepts/context-variables/
@@ -13,44 +13,44 @@ aliases:
 Context variables are extracted from the request at the start of the middleware chain. These values can be very useful for later transformation of request data, for example, in converting a form POST request into a JSON PUT request or to capture an IP address as a header.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 When using Tyk Classic APIs, you must [enable]({{< ref "#enabling-context-variables-for-use-with-tyk-classic-apis" >}}) context variables for the API to be able to access them. When using Tyk OAS APIs, the context variables are always available to the context-aware middleware.
 {{< /note >}}
 
-
 ## Available context variables
-*   `request_data`: If the inbound request contained any query data or form data, it will be available in this object. For the header injector Tyk will format this data as `key:value1,value2,valueN;key:value1,value2` etc.
-*   `path_parts`: The components of the path, split on `/`. These values should be in the format of a comma delimited list.
-*   `token`: The inbound raw token (if bearer tokens are being used) of this user.
-*   `path`: The path that is being requested.
-*   `remote_addr`: The IP address of the connecting client.
-*   `request_id` Allows the injection of request correlation ID (for example X-Request-ID)
-*   `jwt_claims_CLAIMNAME` - If JWT tokens are being used, then each claim in the JWT is available in this format to the context processor. `CLAIMNAME` is case sensitive so use the exact claim.
-*   `cookies_COOKIENAME` - If there are cookies, then each cookie is available in context processor in this format. `COOKIENAME` is case sensitive so use the exact cookie name and replace any `-` in the cookie name with `_`.
-*   `headers_HEADERNAME` - Headers are obviously exposed in context processor. You can access any header in the request using the following format: Convert the **first letter** in each word of an incoming header is to Capital Case. This is due to the way GoLang handles header parsing. You also need to replace any `-` in the `HEADERNAME` name with `_`.<br />
-For example, to get the value stored in `test-header`, the syntax would be `$tyk_context.headers_Test_Header`.
 
+- `request_data`: If the inbound request contained any query data or form data, it will be available in this object. For the header injector Tyk will format this data as `key:value1,value2,valueN;key:value1,value2` etc.
+- `path_parts`: The components of the path, split on `/`. These values should be in the format of a comma delimited list.
+- `token`: The inbound raw token (if bearer tokens are being used) of this user.
+- `path`: The path that is being requested.
+- `remote_addr`: The IP address of the connecting client.
+- `request_id` Allows the injection of request correlation ID (for example X-Request-ID)
+- `jwt_claims_CLAIMNAME` - If JWT tokens are being used, then each claim in the JWT is available in this format to the context processor. `CLAIMNAME` is case sensitive so use the exact claim.
+- `cookies_COOKIENAME` - If there are cookies, then each cookie is available in context processor in this format. `COOKIENAME` is case sensitive so use the exact cookie name and replace any `-` in the cookie name with `_`.
+- `headers_HEADERNAME` - Headers are obviously exposed in context processor. You can access any header in the request using the following format: Convert the **first letter** in each word of an incoming header is to Capital Case. This is due to the way GoLang handles header parsing. You also need to replace any `-` in the `HEADERNAME` name with `_`.<br />
+  For example, to get the value stored in `test-header`, the syntax would be `$tyk_context.headers_Test_Header`.
 
 ## Middleware that can use context variables:
+
 Context variables are exposed in three middleware plugins but are accessed differently depending on the caller as follows:
 
-1.   URL Rewriter - Syntax is `$tyk_context.CONTEXTVARIABLES`. See [URL Rewriting]({{< ref "transform-traffic/url-rewriting" >}}) for more details.
-2.   Modify Headers - Syntax is `$tyk_context.CONTEXTVARIABLES`. See [Request Headers]({{< ref "transform-traffic/request-headers" >}}) for more details.
-3.   Body Transforms - Syntax is `{{ ._tyk_context.CONTEXTVARIABLES }}`. See [Body Transforms]({{< ref "transform-traffic/request-body" >}}) for more details.
+1.  URL Rewriter - Syntax is `$tyk_context.CONTEXTVARIABLES`. See [URL Rewriting]({{< ref "transform-traffic/url-rewriting" >}}) for more details.
+2.  Modify Headers - Syntax is `$tyk_context.CONTEXTVARIABLES`. See [Request Headers]({{< ref "transform-traffic/request-headers" >}}) for more details.
+3.  Body Transforms - Syntax is `{{ ._tyk_context.CONTEXTVARIABLES }}`. See [Body Transforms]({{< ref "transform-traffic/request-body" >}}) for more details.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The Body Transform can fully iterate through list indices within context data so, for example, calling `{{ index ._tyk_context.path_parts 0 }}` in the Go Template in a Body Transform will expose the first entry in the `path_parts` list.
 
 URL Rewriter and Header Transform middleware cannot iterate through list indices.
 {{< /note >}}
 
-
 ## Example use of context variables
 
 #### Examples of the syntax to use with all the available context varibles:
+
 ```
 "x-remote-addr": "$tyk_context.remote_addr",
 "x-token": "$tyk_context.token",
@@ -64,9 +64,11 @@ URL Rewriter and Header Transform middleware cannot iterate through list indices
 "x-request-data": "$tyk_context.request_data",
 "x-req-id": "$tyk_context.request_id"
 ```
+
 {{< img src="/img/dashboard/system-management/context_variables_ui.jpg" alt="Example of the syntax in the UI" >}}
 
 #### The context variable values in the response:
+
 ```
 "My-Header": "this-is-my-header",
 "User-Agent": "PostmanRuntime/7.4.0",
@@ -84,7 +86,8 @@ URL Rewriter and Header Transform middleware cannot iterate through list indices
 ```
 
 ## Enabling Context Variables for use with Tyk Classic APIs
-1. In the your Tyk Dashboard, select `APIs` from the `System Management` menu 
+
+1. In the your Tyk Dashboard, select `APIs` from the `System Management` menu
 2. Open the API you want to add Context Variable to
 3. Click the `Advanced Options` tab and then select the `Enable context variables` option
 

@@ -8,8 +8,8 @@ menu:
     parent: "Account and Billing"
 weight: 10
 aliases:
-    - /tyk-cloud/account-and-billing/retirement/
-    - /tyk-cloud/account--billing/retirement/
+  - /tyk-cloud/account-and-billing/retirement/
+  - /tyk-cloud/account--billing/retirement/
 ---
 
 ## Introduction
@@ -18,9 +18,9 @@ This page explains what it means when your Tyk Cloud account goes into retiremen
 
 Your plan will go into [retirement]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#retirement" >}}) in the following scenarios:
 
-* Your subscription is manually canceled by a Billing Admin.
-* Your periodic subscription payment fails.
-* You are on a Free Trial (5 weeks) and have not signed up to a plan before the expiration of the Free Trial.
+- Your subscription is manually canceled by a Billing Admin.
+- Your periodic subscription payment fails.
+- You are on a Free Trial (5 weeks) and have not signed up to a plan before the expiration of the Free Trial.
 
 ## What does retirement mean?
 
@@ -30,11 +30,10 @@ When a plan goes into retirement, it means your Organization, Teams and any Envi
 
 Your Billing Admin needs to do one of the following:
 
-* Renew a subscription that was manually canceled.
-* Update your payment details and any outstanding payments are cleared.
-* Update a Free Trial to a paid plan, and payment is successful.
+- Renew a subscription that was manually canceled.
+- Update your payment details and any outstanding payments are cleared.
+- Update a Free Trial to a paid plan, and payment is successful.
 
 ## What happens at the end of the 30 day retirement period?
 
 At the end of the 30 day retirement period if you have not restored or created a relevant subscription, all your data will be deleted.
-

@@ -1,7 +1,7 @@
 ---
 title: Nats
 description: Explains an overview of nats Output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "Nats" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "Nats"]
 ---
 
 Publish to an NATS subject.
@@ -51,7 +51,6 @@ output:
     inject_tracing_map: meta = @.merge(this) # No default (optional)
 ```
 
-
 This output will interpolate functions within the subject field, you can find a list of functions [here]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
 ### Connection Name
@@ -62,6 +61,7 @@ setting the connection name option when creating a NATS connection.
 
 Tyk Streams will automatically set the connection name based off the label of the given
 NATS component, so that monitoring tools between NATS and Tyk Streams can stay in sync.
+
 ### Authentication
 
 There are several components within Tyk Streams which utilize NATS services. You will find that each of these components
@@ -98,8 +98,7 @@ More details [here](https://docs.nats.io/developing-with-nats/security/creds).
 
 A list of URLs to connect to. If an item of the list contains commas it will be expanded into multiple URLs.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -116,8 +115,7 @@ urls:
 The subject to publish to.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -130,9 +128,8 @@ subject: foo.bar.baz
 Explicit message headers to add to messages.
 This field supports [function interpolation]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ```yml
 # Examples
@@ -146,16 +143,14 @@ headers:
 
 Determine which (if any) metadata values should be added to messages as headers.
 
-
-Type: `object`  
+Type: `object`
 
 ### metadata.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -175,9 +170,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -193,50 +187,42 @@ include_patterns:
 
 The maximum number of messages to have in flight at a given time. Increase this to improve throughput.
 
-
 Type: `int`  
-Default: `64`  
+Default: `64`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
- 
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -251,9 +237,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -265,9 +250,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -285,42 +269,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -334,15 +312,13 @@ password: foo
 
 Optional configuration of NATS authentication parameters.
 
-
-Type: `object`  
+Type: `object`
 
 ### auth.nkey_file
 
 An optional file containing a NKey seed.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -354,8 +330,7 @@ nkey_file: ./seed.nk
 
 An optional file containing user credentials which consist of an user JWT and corresponding NKey seed.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -367,20 +342,19 @@ user_credentials_file: ./user.creds
 
 An optional plain text user JWT (given along with the corresponding user NKey Seed).
 
-Type: `string`  
+Type: `string`
 
 ### auth.user_nkey_seed
 
 An optional plain text user NKey Seed (given along with the corresponding user JWT).
 
-Type: `string`  
+Type: `string`
 
 ### inject_tracing_map
 
 EXPERIMENTAL: A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping used to inject an object containing tracing propagation information into outbound messages. The specification of the injected fields will match the format used by the service wide tracer.
 
-
-Type: `string`   
+Type: `string`
 
 ```yml
 # Examples
@@ -389,4 +363,3 @@ inject_tracing_map: meta = @.merge(this)
 
 inject_tracing_map: root.meta.span = this
 ```
-

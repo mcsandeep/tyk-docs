@@ -13,11 +13,10 @@ You could manually modify all 10,000 keys, or you could apply a policy to each o
 
 Policies can set:
 
-* Access lists for API and versions
-* Access lists for method and path (granular control)
-* Rate limit for a user
-* Quota for a user
-* Add tags and metadata
+- Access lists for API and versions
+- Access lists for method and path (granular control)
+- Rate limit for a user
+- Quota for a user
+- Add tags and metadata
 
 Each of these can also be overridden in isolation using the partitioning options. When partitioning a policy, only one segment of the policy will be applied to the key. So, for example, if you need to set quotas and rate limits on the user level, but want to manage access control across all of your users, a partitioned policy with only the ACL enabled would achieve this.
-

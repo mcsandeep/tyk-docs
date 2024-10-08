@@ -135,6 +135,7 @@ spec:
 You can verify the API is properly authenticated with following command:
 
 1. JWT with default policy
+
 ```bash
 curl http://localhost:8080/httpbin-jwt1/get -H 'Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNTE2MjM5MDIyfQ.rgPyrCJYs2im7zG6im5XUqsf_oAf_Kqk-F6IlLb3yzZCSZvrQObhBnkLKgfmVTbhQ5El7Q6KskXPal5-eZFuTQ'
 {
@@ -153,6 +154,7 @@ curl http://localhost:8080/httpbin-jwt1/get -H 'Authorization: Bearer eyJhbGciOi
 ```
 
 2. JWT with explicit policy
+
 ```bash
 curl http://localhost:8080/httpbin-jwt1/get -H 'Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNTE2MjM5MDIyLCJwb2wiOiJaR1ZtWVhWc2RDOXFkM1F0Y0c5c2FXTjUifQ.7nY9TvYgsAZqIHLhJdUPqZtzqU_5T-dcNtCt4zt8YPyUj893Z_NopL6Q8PlF8TlMdxUq1Ff8rt4-p8gVboIqlA'
 {
@@ -264,8 +266,8 @@ spec:
       - name: "AddFooBarHeader"
         path: "/mnt/tyk-gateway/example-go-plugin.so"
     auth_check:
-        name: "MyPluginCustomAuthCheck"
-        path: "/mnt/tyk-gateway/example-go-plugin.so"
+      name: "MyPluginCustomAuthCheck"
+      path: "/mnt/tyk-gateway/example-go-plugin.so"
 ```
 
 ## Custom Plugin Auth (gRPC)
@@ -339,8 +341,8 @@ spec:
 
 To enable [IP Allowlist]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-whitelisting">}}), set the following fields:
 
-* `enable_ip_whitelisting`: Enables IPs allowlist. When set to `true`, only requests coming from the explicit list of IP addresses defined in (`allowed_ips`) are allowed through.
-* `allowed_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are allowed access via Tyk.
+- `enable_ip_whitelisting`: Enables IPs allowlist. When set to `true`, only requests coming from the explicit list of IP addresses defined in (`allowed_ips`) are allowed through.
+- `allowed_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are allowed access via Tyk.
 
 In this example, only requests coming from 127.0.0.2 is allowed.
 
@@ -367,8 +369,8 @@ spec:
 
 To enable [IP Blocklist]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-blacklisting">}}), set the following fields:
 
-* `enable_ip_blacklisting`: Enables IPs blocklist. If set to `true`, requests coming from the explicit list of IP addresses (blacklisted_ips) are not allowed through.
-* `blacklisted_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are blocked access via Tyk. This list is explicit and wildcards are currently not supported. 
+- `enable_ip_blacklisting`: Enables IPs blocklist. If set to `true`, requests coming from the explicit list of IP addresses (blacklisted_ips) are not allowed through.
+- `blacklisted_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are blocked access via Tyk. This list is explicit and wildcards are currently not supported.
 
 In this example, requests coming from 127.0.0.2 will be forbidden (`403`).
 

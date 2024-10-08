@@ -1,11 +1,10 @@
 ---
 title: MQTT
 description: Explains an overview of configuring MQTT input
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs", "MQTT" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs", "MQTT"]
 ---
 
 Subscribe to topics on MQTT brokers.
-
 
 ## Common
 
@@ -58,7 +57,7 @@ input:
 
 This input adds the following metadata fields to each message:
 
-``` text
+```text
 - mqtt_duplicate
 - mqtt_qos
 - mqtt_retained
@@ -74,8 +73,7 @@ You can access these metadata fields using [function interpolation]({{< ref "/pr
 
 A list of URLs to connect to. If an item of the list contains commas it will be expanded into multiple URLs.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -88,29 +86,25 @@ urls:
 
 An identifier for the client connection.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### dynamic_client_id_suffix
 
 Append a dynamically generated suffix to the specified `client_id` on each run of the pipeline. This can be useful when clustering Tyk Streams producers.
 
+Type: `string`
 
-Type: `string`  
-
-| Option | Summary |
-|---|---|
+| Option   | Summary                                 |
+| -------- | --------------------------------------- |
 | `nanoid` | append a nanoid of length 21 characters |
-
 
 ### connect_timeout
 
 The maximum amount of time to wait in order to establish a connection before the attempt is abandoned.
 
-
 Type: `string`  
-Default: `"30s"`  
+Default: `"30s"`
 
 ```yml
 # Examples
@@ -124,111 +118,97 @@ connect_timeout: 500ms
 
 Set last will message in case of Tyk Streams failure
 
-
-Type: `object`  
+Type: `object`
 
 ### will.enabled
 
 Whether to enable last will messages.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### will.qos
 
 Set QoS for last will message. Valid values are: 0, 1, 2.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### will.retained
 
 Set retained for last will message.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### will.topic
 
 Set topic for last will message.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### will.payload
 
 Set payload for last will message.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### user
 
 A username to connect with.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### password
 
 A password to connect with.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### keepalive
 
 Max seconds of inactivity before a keepalive message is sent.
 
-
 Type: `int`  
-Default: `30`  
+Default: `30`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -243,9 +223,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -257,9 +236,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -277,41 +255,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -325,29 +298,25 @@ password: foo
 
 A list of topics to consume from.
 
-
-Type: `array`  
+Type: `array`
 
 ### qos
 
 The level of delivery guarantee to enforce. Has options 0, 1, 2.
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### clean_session
 
 Set whether the connection is non-persistent.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### auto_replay_nacks
 
 Whether messages that are rejected (nacked) at the output level should be automatically replayed indefinitely, eventually resulting in back pressure if the cause of the rejections is persistent. If set to `false` these messages will instead be deleted. Disabling auto replays can greatly improve memory efficiency of high throughput streams as the original shape of the data can be discarded immediately upon consumption and mutation.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`

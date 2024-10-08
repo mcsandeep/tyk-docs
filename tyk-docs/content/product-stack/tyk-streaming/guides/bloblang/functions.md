@@ -1,7 +1,7 @@
 ---
 title: Bloblang Functions
 description: Explains Bloblang Functions
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Functions", "Functions" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Functions", "Functions"]
 ---
 
 Functions can be placed anywhere and allow you to extract information from your environment, generate values, or access data from the underlying message being mapped:
@@ -29,10 +29,9 @@ Returns a non-negative integer that increments each time it is resolved, yieldin
 
 **min** &lt;query expression, default `1`&gt; The minimum value of the counter, this is the first value that will be yielded. If this parameter is dynamic it will be resolved only once during the lifetime of the mapping.  
 **max** &lt;query expression, default `9223372036854775807`&gt; The maximum value of the counter, once this value is yielded the counter will reset back to the min. If this parameter is dynamic it will be resolved only once during the lifetime of the mapping.  
-**set** &lt;(optional) query expression&gt; An optional mapping that when specified will be executed each time the counter is resolved. When this mapping resolves to a non-negative integer value it will cause the counter to reset to this value and yield it. If this mapping is omitted or doesn't resolve to anything then the counter will increment and yield the value as normal. If this mapping resolves to `null` then the counter is not incremented and the current value is yielded. If this mapping resolves to a deletion then the counter is reset to the `min` value.  
+**set** &lt;(optional) query expression&gt; An optional mapping that when specified will be executed each time the counter is resolved. When this mapping resolves to a non-negative integer value it will cause the counter to reset to this value and yield it. If this mapping is omitted or doesn't resolve to anything then the counter will increment and yield the value as normal. If this mapping resolves to `null` then the counter is not incremented and the current value is yielded. If this mapping resolves to a deletion then the counter is reset to the `min` value.
 
 #### Examples
-
 
 ```coffee
 root.id = counter()
@@ -105,7 +104,6 @@ A function that returns a result indicating that the mapping target should be de
 
 #### Examples
 
-
 ```coffee
 root = this
 root.bar = deleted()
@@ -129,7 +127,6 @@ Generates a new ksuid each time it is invoked and prints a string representation
 
 #### Examples
 
-
 ```coffee
 root.id = ksuid()
 ```
@@ -141,10 +138,9 @@ Generates a new nanoid each time it is invoked and prints a string representatio
 #### Parameters
 
 **length** &lt;(optional) integer&gt; An optional length.  
-**alphabet** &lt;(optional) string&gt; An optional custom alphabet to use for generating IDs. When specified the field `length` must also be present.  
+**alphabet** &lt;(optional) string&gt; An optional custom alphabet to use for generating IDs. When specified the field `length` must also be present.
 
 #### Examples
-
 
 ```coffee
 root.id = nanoid()
@@ -172,7 +168,7 @@ Optional `min` and `max` arguments can be provided in order to only generate num
 
 **seed** &lt;query expression, default `{"Value":0}`&gt; A seed to use, if a query is provided it will only be resolved once during the lifetime of the mapping.  
 **min** &lt;integer, default `0`&gt; The minimum value the random generated number will have. The default value is 0.  
-**max** &lt;integer, default `9223372036854775806`&gt; The maximum value the random generated number will have. The default value is 9223372036854775806 (math.MaxInt64 - 1).  
+**max** &lt;integer, default `9223372036854775806`&gt; The maximum value the random generated number will have. The default value is 9223372036854775806 (math.MaxInt64 - 1).
 
 #### Examples
 
@@ -199,7 +195,7 @@ The `range` function creates an array of integers following a range between a st
 
 **start** &lt;integer&gt; The start value.  
 **stop** &lt;integer&gt; The stop value.  
-**step** &lt;integer, default `1`&gt; The step value.  
+**step** &lt;integer, default `1`&gt; The step value.
 
 #### Examples
 
@@ -218,10 +214,9 @@ Generate a new snowflake ID each time it is invoked and prints a string represen
 
 #### Parameters
 
-**node_id** &lt;integer, default `1`&gt; It is possible to specify the node_id.  
+**node_id** &lt;integer, default `1`&gt; It is possible to specify the node_id.
 
 #### Examples
-
 
 ```coffee
 root.id = snowflake_id()
@@ -239,10 +234,9 @@ Throws an error similar to a regular mapping error. This is useful for abandonin
 
 #### Parameters
 
-**why** &lt;string&gt; A string explanation for why an error was thrown, this will be added to the resulting error message.  
+**why** &lt;string&gt; A string explanation for why an error was thrown, this will be added to the resulting error message.
 
 #### Examples
-
 
 ```coffee
 root.doc.type = match {
@@ -266,10 +260,9 @@ Generate a random ULID.
 #### Parameters
 
 **encoding** &lt;string, default `"crockford"`&gt; The format to encode a ULID into. Valid options are: crockford, hex  
-**random_source** &lt;string, default `"secure_random"`&gt; The source of randomness to use for generating ULIDs. "secure_random" is recommended for most use cases. "fast_random" can be used if security is not a concern.  
+**random_source** &lt;string, default `"secure_random"`&gt; The source of randomness to use for generating ULIDs. "secure_random" is recommended for most use cases. "fast_random" can be used if security is not a concern.
 
 #### Examples
-
 
 Using the defaults of Crockford Base32 encoding and secure random source
 
@@ -295,7 +288,6 @@ Generates a new RFC-4122 UUID each time it is invoked and prints a string repres
 
 #### Examples
 
-
 ```coffee
 root.id = uuid_v4()
 ```
@@ -308,7 +300,6 @@ Returns the index of the mapped message within a batch. This is useful for apply
 
 #### Examples
 
-
 ```coffee
 root = if batch_index() > 0 { deleted() }
 ```
@@ -318,7 +309,6 @@ root = if batch_index() > 0 { deleted() }
 Returns the size of the message batch.
 
 #### Examples
-
 
 ```coffee
 root.foo = batch_size()
@@ -353,7 +343,6 @@ Returns a boolean value indicating whether an error has occurred during the proc
 
 #### Examples
 
-
 ```coffee
 root.doc.status = if errored() { 400 } else { 200 }
 ```
@@ -364,10 +353,9 @@ Returns the value of a field within a JSON message located by a [dot path]({{< r
 
 #### Parameters
 
-**`path`** &lt;string, default `""`&gt; An optional [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) identifying a field to obtain.  
+**`path`** &lt;string, default `""`&gt; An optional [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) identifying a field to obtain.
 
 #### Examples
-
 
 ```coffee
 root.mapped = json("foo.bar")
@@ -391,7 +379,7 @@ Returns the value of a metadata key from the input message, or `null` if the key
 
 #### Parameters
 
-**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.  
+**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.
 
 #### Examples
 
@@ -418,10 +406,10 @@ meta trace_id = tracing_id()
 ### tracing_span
 
 <!-- TODO Add tracing span component -->
+
 Provides the message tracing span (created via Open Telemetry APIs) as an object serialised via text map formatting. The returned value will be `null` if the message does not have a span.
 
 #### Examples
-
 
 ```coffee
 root.headers.traceparent = tracing_span().traceparent
@@ -439,10 +427,9 @@ Returns the value of an environment variable, or `null` if the environment varia
 #### Parameters
 
 **name** &lt;string&gt; The name of an environment variable.  
-**no_cache** &lt;bool, default `false`&gt; Force the variable lookup to occur for each mapping invocation.  
+**no_cache** &lt;bool, default `false`&gt; Force the variable lookup to occur for each mapping invocation.
 
 #### Examples
-
 
 ```coffee
 root.thing.key = env("key").or("default value")
@@ -465,10 +452,9 @@ Reads a file and returns its contents. Relative paths are resolved from the dire
 #### Parameters
 
 **path** &lt;string&gt; The path of the target file.  
-**no_cache** &lt;bool, default `false`&gt; Force the file to be read for each mapping invocation.  
+**no_cache** &lt;bool, default `false`&gt; Force the file to be read for each mapping invocation.
 
 #### Examples
-
 
 ```coffee
 root.doc = file(env("ENV_TEST_BLOBLANG_FILE")).parse_json()
@@ -493,7 +479,7 @@ Reads a file and returns its contents. Relative paths are resolved from the dire
 #### Parameters
 
 **path** &lt;string&gt; The path of the target file.  
-**no_cache** &lt;bool, default `false`&gt; Force the file to be read for each mapping invocation.  
+**no_cache** &lt;bool, default `false`&gt; Force the file to be read for each mapping invocation.
 
 #### Examples
 
@@ -519,7 +505,6 @@ Returns a string matching the hostname of the machine running Tyk Streams.
 
 #### Examples
 
-
 ```coffee
 root.thing.host = hostname()
 ```
@@ -529,7 +514,6 @@ root.thing.host = hostname()
 Returns the current timestamp as a string in RFC 3339 format with the local timezone. Use the method `ts_format` in order to change the format and timezone.
 
 #### Examples
-
 
 ```coffee
 root.received_at = now()
@@ -545,7 +529,6 @@ Returns the current unix timestamp in seconds.
 
 #### Examples
 
-
 ```coffee
 root.received_at = timestamp_unix()
 ```
@@ -555,7 +538,6 @@ root.received_at = timestamp_unix()
 Returns the current unix timestamp in microseconds.
 
 #### Examples
-
 
 ```coffee
 root.received_at = timestamp_unix_micro()
@@ -567,7 +549,6 @@ Returns the current unix timestamp in milliseconds.
 
 #### Examples
 
-
 ```coffee
 root.received_at = timestamp_unix_milli()
 ```
@@ -577,7 +558,6 @@ root.received_at = timestamp_unix_milli()
 Returns the current unix timestamp in nanoseconds.
 
 #### Examples
-
 
 ```coffee
 root.received_at = timestamp_unix_nano()
@@ -591,10 +571,9 @@ Takes in a string that maps to a [faker](https://github.com/go-faker/faker) func
 
 #### Parameters
 
-**function** &lt;string, default `""`&gt; The name of the function to use to generate the value.  
+**function** &lt;string, default `""`&gt; The name of the function to use to generate the value.
 
 #### Examples
-
 
 Use `time_string` to generate a time in the format `00:00:00`:
 
@@ -628,10 +607,9 @@ The `count` function is a counter starting at 1 which increments after each time
 
 #### Parameters
 
-**name** &lt;string&gt; An identifier for the counter.  
+**name** &lt;string&gt; An identifier for the counter.
 
 #### Examples
-
 
 ```coffee
 root = this
@@ -650,10 +628,9 @@ Returns the value of a metadata key from the input message as a string, or `null
 
 #### Parameters
 
-**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.  
+**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.
 
 #### Examples
-
 
 ```coffee
 root.topic = meta("kafka_topic")
@@ -671,10 +648,9 @@ Returns the value of a metadata key from the new message being created as a stri
 
 #### Parameters
 
-**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.  
+**key** &lt;string, default `""`&gt; An optional key of a metadata value to obtain.
 
 #### Examples
-
 
 ```coffee
 root.topic = root_meta("kafka_topic")

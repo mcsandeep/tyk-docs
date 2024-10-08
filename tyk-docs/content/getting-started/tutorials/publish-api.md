@@ -82,18 +82,17 @@ When you set up your Tyk installation, you will have had to, at some point, defi
 This process will bind your organizations' Portal to the domain name you've specified.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You need to restart your Dashboard service for the changes to take effect.
 {{< /note >}}
-
 
 ### Step 7: Log into your Portal
 
 Select **Open Your Portal** from the **Your Developer Portal** menu drop-down, a new page will open with your new (most likely empty) Portal home page.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are using Docker, do not use the drop-down, instead, use the domain name you defined when you set up the forward proxy for your domains - if you followed the Docker setup guide, your Dashboard will be on: `www.tyk-portal-test.com`.
 {{< /note >}}

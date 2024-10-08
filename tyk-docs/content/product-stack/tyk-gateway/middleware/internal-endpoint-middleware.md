@@ -26,24 +26,27 @@ For example, if `GET /status/200` is configured to be an Internal Endpoint on th
 An internal endpoint can be addressed using three different identifiers in the format `tyk://{identifier}/{endpoint}`.
 
 The options for the `identifier` are:
+
 - `self` (only if the endpoint is in the same API)
 - `api_id` (the unique API Identifier assigned to the API within Tyk)
 - listen path (the listen path defined for the API)
 
 For example, let's say you have two APIs:
 
-| api_id | listen path | Endpoint 1   | Endpoint 2 (with internal endpoint middleware) |
-|--------|-------------|--------------|------------------------------------------------|
-| f1c63fa5177de2719  | `/api1`    | `endpoint1_ext` | `endpoint1_int`     |
-| 2e90b33a879945918  | `/api2`    | `endpoint2_ext` | `endpoint2_int`     |
+| api_id            | listen path | Endpoint 1      | Endpoint 2 (with internal endpoint middleware) |
+| ----------------- | ----------- | --------------- | ---------------------------------------------- |
+| f1c63fa5177de2719 | `/api1`     | `endpoint1_ext` | `endpoint1_int`                                |
+| 2e90b33a879945918 | `/api2`     | `endpoint2_ext` | `endpoint2_int`                                |
 
 An external request directed at `/api1/endpoint1_int` will be rejected with `HTTP 403 Forbidden`, since this is an internal endpoint.
 
 This endpoint could, however, be called from within either endpoint in `/api2` as either:
+
 - `tyk://api1/endpoint1_int`
 - `tyk://f1c63fa5177de2719/endpoint1_int`
 
 Or from within `/api1/endpoint1_ext` as:
+
 - `tyk://api1/endpoint1_int`
 - `tyk://f1c63fa5177de2719/endpoint1_int`
 - `tyk://self/endpoint1_int`
@@ -57,6 +60,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Internal Endpoint middleware summary
   - The Internal Endpoint middleware is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Internal Endpoint middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Internal Endpoint middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->
-

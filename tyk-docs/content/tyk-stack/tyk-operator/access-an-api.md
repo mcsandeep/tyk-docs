@@ -8,7 +8,7 @@ weight: 3
 
 You might already have realized that our `httpbin` API is keyless. If you check the APIDefinition's specification, the `use_keyless` field is set to `true`.
 Tyk keyless access represents completely open access for your API and causes Tyk to bypass any session-based middleware (middleware that requires access to token-related metadata). Keyless access will enable all requests through.
-You can disable keyless access by setting `use_keyless` to false. 
+You can disable keyless access by setting `use_keyless` to false.
 
 #### Step 1: Update your `httpbin.yaml` file as follows:
 
@@ -58,7 +58,6 @@ If you have set `use_keyless` to false, the default authentication mode is Authe
 
 Now, to access `httpbin` API, you need to include a key to the header. Otherwise, you will get a `HTTP 401 Unauthorized` response.
 
-
 ```curl
 curl -i localhost:8080/httpbin/get
 HTTP/1.1 401 Unauthorized
@@ -74,9 +73,7 @@ Content-Length: 46
 
 {{< note success >}}
 
-**Note**  
-
- 
+**Note**
 
 Tyk Operator supported authentication types are listed in the [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
 

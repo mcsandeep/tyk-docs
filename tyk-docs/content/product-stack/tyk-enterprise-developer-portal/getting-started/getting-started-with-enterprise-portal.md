@@ -1,7 +1,7 @@
 ---
 title: "Getting Started With Enterprise Portal"
 date: 2022-02-08
-tags: ["Tyk Developer Portal","Enterprise Portal","Get started","How-to"]
+tags: ["Tyk Developer Portal", "Enterprise Portal", "Get started", "How-to"]
 aliases:
   - /tyk-stack/tyk-developer-portal/enterprise-developer-portal/getting-started-with-enterprise-portal/getting-started-with-enterprise-portal
 description: "This section provides a concise guide for the basic configuration of the portal"
@@ -10,13 +10,13 @@ menu:
     parent: "Tyk Enterprise Developer Portal"
 weight: 2
 ---
+
 {{< note success >}}
 **Tyk Enterprise Developer Portal**
 
 If you are interested in getting access, contact us at [support@tyk.io](<mailto:support@tyk.io?subject=Tyk Enterprise Portal Beta>)
 
 {{< /note >}}
-
 
 To get started with the Enterprise Developer portal, you need to accomplish three steps:
 

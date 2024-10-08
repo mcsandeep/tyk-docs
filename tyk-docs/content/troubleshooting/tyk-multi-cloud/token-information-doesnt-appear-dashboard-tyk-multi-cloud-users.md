@@ -4,7 +4,7 @@ title: Key information doesn't appear in Dashboard for Tyk Multi-Cloud users
 menu:
   main:
     parent: "Tyk Multi-Cloud"
-weight: 5 
+weight: 5
 ---
 
 ### Description

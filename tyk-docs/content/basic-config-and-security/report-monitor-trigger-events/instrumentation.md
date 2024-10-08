@@ -34,7 +34,6 @@ There are plenty of keys (metrics) available when you enable the StatsD instrume
 - Tyk Dashboard API: `counters.<prefix>.SystemAPICall.SystemCallComplete.count` (requests count), `counters.<prefix>.DashSystemAPIError.*` (api error reporting)
 - Tyk Pump records: `counters.<prefix>.record.count` (number of records processed by pump)
 
-
 ## NewRelic Instrumentation
 
 Tyk Gateway has been instrumented for NewRelic metrics since v2.5. Simply add the following config section to `tyk.conf` to enable the instrumentation and generation of data:

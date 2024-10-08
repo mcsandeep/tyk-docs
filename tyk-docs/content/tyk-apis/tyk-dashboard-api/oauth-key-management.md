@@ -7,7 +7,6 @@ menu:
 weight: 11
 ---
 
-
 ### Create a new OAuth2.0 Client
 
 Any OAuth keys must be generated under an API in the Dashboard. Any POST requests made should contain the API's ID in the URL.
@@ -18,7 +17,6 @@ Any OAuth keys must be generated under an API in the Dashboard. Any POST request
 | Method       | POST                         |
 | Type         | JSON                         |
 | Body         | Client Object                |
-
 
 #### Sample Request
 
@@ -47,7 +45,6 @@ Any OAuth keys must be generated under an API in the Dashboard. Any POST request
 | Method       | GET                          |
 | Type         | JSON                         |
 | Body         | NONE                         |
-
 
 #### Sample Request
 
@@ -88,7 +85,6 @@ curl -vX GET -H "Authorization: {{API Access Credentials}}" \
 | Type         | JSON                                       |
 | Body         | NONE                                       |
 
-
 #### Sample Request
 
 ```{.copyWrapper}
@@ -119,7 +115,6 @@ You can delete an OAuth client using a simple DELETE method. Please note that to
 | Type         | JSON                                       |
 | Body         | NONE                                       |
 
-
 #### Sample Request
 
 ```{.copyWrapper}
@@ -147,14 +142,13 @@ curl -vX DELETE -H "Authorization: {{API Access Credentials}}" \
 | Type         | Form-Encoded                                   |
 | Body         | Fields (see below)                             |
 
-* `api_id`: Unlike the other requests on this page, this must be the `api_id` value and **NOT** the API's `id` value. 
-* `response_type`: Should be provided by requesting client as part of authorization request, this should be either `code` or `token` depending on the methods you have specified for the API.
-* `client_id`: Should be provided by requesting client as part of authorization request. The Client ID that is making the request.
-* `redirect_uri`: Should be provided by requesting client as part of authorization request. Must match with the record stored with Tyk.
-* `key_rules`: A string representation of a Session Object (form-encoded). *This should be provided by your application in order to apply any quotas or rules to the key.*
+- `api_id`: Unlike the other requests on this page, this must be the `api_id` value and **NOT** the API's `id` value.
+- `response_type`: Should be provided by requesting client as part of authorization request, this should be either `code` or `token` depending on the methods you have specified for the API.
+- `client_id`: Should be provided by requesting client as part of authorization request. The Client ID that is making the request.
+- `redirect_uri`: Should be provided by requesting client as part of authorization request. Must match with the record stored with Tyk.
+- `key_rules`: A string representation of a Session Object (form-encoded). _This should be provided by your application in order to apply any quotas or rules to the key._
 
 Note that in the following example, the `policy_id` isn't included in the request as these are optional. OAuth2.0 Flow also supports callbacks which can be added to the `key_rules` in the payload in requests that don't include the `policy_id`.
-
 
 #### Sample Request
 
@@ -179,20 +173,20 @@ http://{{dashboard-hostname}}/api/apis/oauth/{{api_id}}/authorize-client
 This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth-client ID in the following format. This endpoint will work only for newly created tokens.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This option is available from v2.6.0 onwards.
 {{< /note >}}
 
-
-| **Property** | **Description**                                      |
-| ------------ | ---------------------------------------------------- |
+| **Property** | **Description**                                  |
+| ------------ | ------------------------------------------------ |
 | Resource URL | `/api/apis/oauth/{apiID}/{oauthClientId}/tokens` |
-| Method       | GET                                                  |
-| Type         |                                                      |
-| Body         | NONE                                                 |
+| Method       | GET                                              |
+| Type         |                                                  |
+| Body         | NONE                                             |
 
 #### Sample Request
+
 ```{.copyWrapper}
 GET /api/apis/oauth/528a67c1ac9940964f9a41ae79235fcc/25348e8cf157409b52e39357fd9578f1/tokens HTTP/1.1
 Host: localhost:3000
@@ -201,6 +195,7 @@ Cache-Control: no-cache
 ```
 
 #### Sample Response
+
 ```
 [
   {
@@ -226,14 +221,13 @@ You can control how long you want to store expired tokens in this list using `oa
 
 ### Revoke a Single OAuth Client Token
 
-| **Property** | **Description**                                |
-| ------------ | ---------------------------------------------- |
-| Resource URL | `/api/apis/oauth/{oauthClientId}/revoke`       |
-| Method       | POST                                           |
-| Type         | JSON                                           |
-| Body         | Client Object                             |
-| Param        | None                                           |
-
+| **Property** | **Description**                          |
+| ------------ | ---------------------------------------- |
+| Resource URL | `/api/apis/oauth/{oauthClientId}/revoke` |
+| Method       | POST                                     |
+| Type         | JSON                                     |
+| Body         | Client Object                            |
+| Param        | None                                     |
 
 #### Sample Request
 
@@ -246,6 +240,7 @@ Body: {
   "token_type_hint":"access_token"
 }
 ```
+
 #### Sample Response
 
 ```{.json}
@@ -255,15 +250,16 @@ Body: {
   "Meta": null
 }
 ```
+
 ### Revoke all OAuth Client Tokens
 
-| **Property** | **Description**                                |
-| ------------ | ---------------------------------------------- |
-| Resource URL | `/api/apis/oauth/{oauthClientId}/revoke_all`   |
-| Method       | POST                                           |
-| Type         | JSON                                           |
-| Body         | Client Object                                  |
-| Param        | None                                           |
+| **Property** | **Description**                              |
+| ------------ | -------------------------------------------- |
+| Resource URL | `/api/apis/oauth/{oauthClientId}/revoke_all` |
+| Method       | POST                                         |
+| Type         | JSON                                         |
+| Body         | Client Object                                |
+| Param        | None                                         |
 
 #### Sample Request
 

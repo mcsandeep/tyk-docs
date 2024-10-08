@@ -1,7 +1,7 @@
 ---
 title: Retry
 description: Explains an overview of retry processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Retry" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Retry"]
 ---
 
 Attempts to execute a series of child processors until success.
@@ -18,11 +18,11 @@ retry:
   parallel: false
 ```
 
-Executes child processors and if a resulting message is errored then, after a specified backoff period, the same original message will be attempted again through those same processors. If the child processors result in more than one message then the retry mechanism will kick in if *any* of the resulting messages are errored.
+Executes child processors and if a resulting message is errored then, after a specified backoff period, the same original message will be attempted again through those same processors. If the child processors result in more than one message then the retry mechanism will kick in if _any_ of the resulting messages are errored.
 
 It is important to note that any mutations performed on the message during these child processors will be discarded for the next retry, and therefore it is safe to assume that each execution of the child processors will always be performed on the data as it was when it first reached the retry processor.
 
-By default the retry backoff has a specified [max_elapsed_time](#backoffmax_elapsed_time), if this time period is reached during retries and an error still occurs these errored messages will proceed through to the next processor after the retry (or your outputs). 
+By default the retry backoff has a specified [max_elapsed_time](#backoffmax_elapsed_time), if this time period is reached during retries and an error still occurs these errored messages will proceed through to the next processor after the retry (or your outputs).
 
 <!-- Normal [error handling patterns](add) can be used on these messages. Dependent on Blpblang query PR -->
 
@@ -51,7 +51,7 @@ pipeline:
           max_elapsed_time: 0s
         processors:
           - http:
-              url: 'http://example.com/try/the/server'
+              url: "http://example.com/try/the/server"
               verb: POST
 
 output:
@@ -67,13 +67,12 @@ Determine time intervals and cut offs for retry attempts.
 
 Type: `object`
 
-
 ### backoff.initial_interval
 
 The initial period to wait between retry attempts.
 
 Type: `string`  
-Default: `"500ms"`  
+Default: `"500ms"`
 
 ```yml
 # Examples
@@ -88,7 +87,7 @@ initial_interval: 1s
 The maximum period to wait between retry attempts
 
 Type: `string`  
-Default: `"10s"`  
+Default: `"10s"`
 
 ```yml
 # Examples
@@ -103,7 +102,7 @@ max_interval: 1m
 The maximum overall period of time to spend on retry attempts before the request is aborted. Setting this value to a zeroed duration (such as `0s`) will result in unbounded retries.
 
 Type: `string`  
-Default: `"1m"`  
+Default: `"1m"`
 
 ```yml
 # Examples
@@ -117,15 +116,14 @@ max_elapsed_time: 1h
 
 A list of processors to execute on each message.
 
-Type: `array`  
+Type: `array`
 
 ### parallel
 
 When processing batches of messages these batches are ignored and the processors apply to each message sequentially. However, when this field is set to `true` each message will be processed in parallel. Caution should be made to ensure that batch sizes do not surpass a point where this would cause resource (CPU, memory, API limits) contention.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ## Batching
 

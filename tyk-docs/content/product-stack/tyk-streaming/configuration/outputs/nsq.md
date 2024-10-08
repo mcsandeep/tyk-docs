@@ -1,44 +1,45 @@
 ---
 title: NSQ
 description: Explains the output type NSQ, a real-time distributed messaging platform
-tags: [ "Tyk Streams NSQ", "Stream Outputs NSQ", "Outputs NSQ", "NSQ" ]
+tags: ["Tyk Streams NSQ", "Stream Outputs NSQ", "Outputs NSQ", "NSQ"]
 ---
 
 Publish to an [NSQ](https://nsq.io/) topic.
 
-
 ## Common config fields
+
 Showing common config fields and default values
 
- ```yaml
-    output:
-    label: ""
-    nsq:
-    nsqd_tcp_address: "" # No default (required)
-    topic: "" # No default (required)
-    user_agent: "" # No default (optional)
-    max_in_flight: 64 # Maximum number of messages processed concurrently
- ```
+```yaml
+output:
+label: ""
+nsq:
+nsqd_tcp_address: "" # No default (required)
+topic: "" # No default (required)
+user_agent: "" # No default (optional)
+max_in_flight: 64 # Maximum number of messages processed concurrently
+```
 
 ## Advanced config fields
+
 Showing all config fields and default values
 
- ```yml
-    output:
-    label: ""
-    nsq:
-    nsqd_tcp_address: "" # No default (required)
-    topic: "" # No default (required)
-    user_agent: "" # No default (optional)
-    tls:
-    enabled: false
-    skip_cert_verify: false
-    enable_renegotiation: false
-    root_cas: ""
-    root_cas_file: ""
-    client_certs: []
-    max_in_flight: 64
- ```
+```yml
+output:
+label: ""
+nsq:
+nsqd_tcp_address: "" # No default (required)
+topic: "" # No default (required)
+user_agent: "" # No default (optional)
+tls:
+enabled: false
+skip_cert_verify: false
+enable_renegotiation: false
+root_cas: ""
+root_cas_file: ""
+client_certs: []
+max_in_flight: 64
+```
 
 The `topic` field can be dynamically set using function interpolations described [here]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}). When sending batched messages these interpolations are performed per message part.
 
@@ -52,7 +53,6 @@ This output benefits from sending multiple messages in flight in parallel for im
 
 The address of the target NSQD server.
 
-
 Type: `string`
 
 ### topic
@@ -60,13 +60,11 @@ Type: `string`
 The topic to publish to.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`
 
 ### user_agent
 
 A user agent to assume when connecting.
-
 
 Type: `string`
 
@@ -74,13 +72,11 @@ Type: `string`
 
 Custom TLS settings can be used to override system defaults.
 
-
 Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
-
 
 Type: `bool`
 Default: `false`
@@ -89,14 +85,12 @@ Default: `false`
 
 Whether to skip server-side certificate verification.
 
-
 Type: `bool`
 Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
-
 
 Type: `bool`
 Default: `false`
@@ -105,6 +99,7 @@ Requires version 3.45.0 or newer
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
+
 <!-- TODO add secrets link:
 :::warning Secret
 This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
@@ -126,20 +121,18 @@ Default: `""`
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`
 Default: `""`
 
 ```yaml
-   # Examples
+# Examples
 
-   root_cas_file: ./root_cas.pem
+root_cas_file: ./root_cas.pem
 ```
 
 ### tls.client_certs
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
-
 
 Type: `array`
 Default: `[]`
@@ -160,7 +153,6 @@ key_file: ./example.key
 
 A plain text certificate to use.
 
-
 Type: `string`
 Default: `""`
 
@@ -173,14 +165,12 @@ A plain text certificate key to use.
 This field contains sensitive information that usually shouldn't be added to a config directly, read our [secrets page for more info](/docs/configuration/secrets).
 ::: -->
 
-
 Type: `string`
 Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
-
 
 Type: `string`
 Default: `""`
@@ -189,7 +179,6 @@ Default: `""`
 
 The path of a certificate key to use.
 
-
 Type: `string`
 Default: `""`
 
@@ -197,14 +186,13 @@ Default: `""`
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`
 Default: `""`
 
 ```yaml
-   # Example
+# Example
 
-   password: foo
+password: foo
 ```
 
 <!-- When Tyk streams with secrets released include this in above example => password: ${KEY_PASSWORD} -->
@@ -212,7 +200,6 @@ Default: `""`
 ### max_in_flight
 
 The maximum number of messages to have in flight at a given time. Increase this to improve throughput.
-
 
 Type: `int`
 Default: `64`

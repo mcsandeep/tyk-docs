@@ -1,7 +1,7 @@
 ---
 title: General Bloblang Methods
 description: Explains general Bloblang methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Methods"]
 ---
 
 This guide provides a comprehensive overview of general Bloblang methods essential for effective data processing. It covers key methods such as apply, which maps values, catch, which provides fallback values for failed queries, and exists, which checks for the presence of fields. Additionally, it introduces methods like from, from_all, and or that enhance data transformation and validation within Tyk Streams. These methods enable robust and flexible data handling to optimize your processing workflows.
@@ -12,10 +12,9 @@ Apply a declared mapping to a target value.
 
 #### Parameters
 
-**mapping** &lt;string&gt; The mapping to apply.  
+**mapping** &lt;string&gt; The mapping to apply.
 
 #### Examples
-
 
 ```coffee
 map thing {
@@ -47,10 +46,9 @@ If the result of a target query fails (due to incorrect types, failed parsing, e
 
 #### Parameters
 
-**fallback** &lt;query expression&gt; A value to yield, or query to execute, if the target query fails.  
+**fallback** &lt;query expression&gt; A value to yield, or query to execute, if the target query fails.
 
 #### Examples
-
 
 ```coffee
 root.doc.id = this.thing.id.string().catch(uuid_v4())
@@ -83,7 +81,7 @@ Checks that a field, identified via a [dot path]({{< ref "/product-stack/tyk-str
 
 #### Parameters
 
-**path** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) to a field.  
+**path** &lt;string&gt; A [dot path]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/field-paths" >}}) to a field.
 
 #### Examples
 
@@ -106,10 +104,9 @@ Modifies a target query such that certain functions are executed from the perspe
 
 #### Parameters
 
-**index** &lt;integer&gt; The message index to use as a perspective.  
+**index** &lt;integer&gt; The message index to use as a perspective.
 
 #### Examples
-
 
 For example, the following map extracts the contents of the JSON field `foo` specifically from message index `1` of a batch, effectively overriding the field `foo` for all messages of a batch to that of message 1:
 
@@ -135,7 +132,7 @@ If the result of the target query fails or resolves to `null`, returns the argum
 
 #### Parameters
 
-**fallback** &lt;query expression&gt; A value to yield, or query to execute, if the target query fails or resolves to `null`.  
+**fallback** &lt;query expression&gt; A value to yield, or query to execute, if the target query fails or resolves to `null`.
 
 #### Examples
 

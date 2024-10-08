@@ -18,79 +18,82 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The internal endpoint middleware (`internal`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `internal` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 
 For example:
+
 ```json {hl_lines=["49-50"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-internal-endpoint",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/redirect": {
-            "get": {
-                "operationId": "redirectget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-internal-endpoint",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-internal-endpoint",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-internal-endpoint/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "internal": {
-                        "enabled": true
-                    }
-                },
-                "redirectget": {
-                    "urlRewrite": {
-                        "enabled": true,
-                        "pattern": ".*",
-                        "rewriteTo": "tyk://self/anything"
-                    }
-                }
-            }
+    "/redirect": {
+      "get": {
+        "operationId": "redirectget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-internal-endpoint",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-internal-endpoint/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "internal": {
+            "enabled": true
+          }
+        },
+        "redirectget": {
+          "urlRewrite": {
+            "enabled": true,
+            "pattern": ".*",
+            "rewriteTo": "tyk://self/anything"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
 In this example, two endpoints have been defined:
+
 - the internal endpoint middleware has been configured for requests to the `GET /anything` endpoint
 - the [URL rewrite]({{< ref "transform-traffic/url-rewriting" >}}) middleware has been configured for requests to the `GET /redirect` endpoint
- 
+
 Any calls made directly to `GET /example-internal-endpoint/anything` will be rejected, with Tyk returning `HTTP 403 Forbidden`, since the `/anything` endpoint is internal.
 
 Any calls made to `GET /example-internal-endpoint/redirect` will be redirected to `GET /example-internal-endpoint/anything`. These will be proxied to the upstream because they originate from within Tyk Gateway (i.e. they are internal requests) - so the response from `GET http://httpbin.org/anything` will be returned.
@@ -113,7 +116,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Internal Endpoint middleware
 
-Select **ADD MIDDLEWARE** and choose the **Internal** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Internal** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-internal.png" alt="Adding the Internal Endpoint middleware" >}}
 

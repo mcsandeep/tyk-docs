@@ -11,7 +11,6 @@ When working with Tyk OAS APIs the middleware is configured in the [Tyk OAS API 
 
 If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "product-stack/tyk-gateway/middleware/allow-list-tyk-classic" >}}) page.
 
-
 ## Configuring the allow list in the Tyk OAS API Definition
 
 The design of the Tyk OAS API Definition takes advantage of the `operationId` defined in the OpenAPI Document that declares both the path and method for which the middleware should be added. Endpoint `paths` entries (and the associated `operationId`) can contain wildcards in the form of any string bracketed by curly braces, for example `/status/{code}`. These wildcards are so they are human readable and do not translate to variable names. Under the hood, a wildcard translates to the “match everything” regex of: `(.*)`.
@@ -27,65 +26,65 @@ For example:
 
 ```json {hl_lines=["47-50", "53-56"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-allow-list",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            },
-            "put": {
-                "operationId": "anythingput",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-allow-list",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-allow-list",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-allow-list/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "allow": {
-                        "enabled": true,
-                        "ignoreCase": true
-                    }                
-                },
-                "anythingput": {
-                    "allow": {
-                        "enabled": true,
-                        "ignoreCase": true
-                    }                
-                }
-            }
+      },
+      "put": {
+        "operationId": "anythingput",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-allow-list",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-allow-list/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "allow": {
+            "enabled": true,
+            "ignoreCase": true
+          }
+        },
+        "anythingput": {
+          "allow": {
+            "enabled": true,
+            "ignoreCase": true
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -111,7 +110,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Allow List middleware
 
-Select **ADD MIDDLEWARE** and choose the **Allow List** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Allow List** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-allow.png" alt="Adding the Allow List middleware" >}}
 

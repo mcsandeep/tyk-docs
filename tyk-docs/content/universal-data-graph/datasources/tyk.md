@@ -6,7 +6,7 @@ menu:
     parent: "UDG DataSources"
 weight: 3
 aliases:
-    - /universal-data-graph/data-sources/tyk
+  - /universal-data-graph/data-sources/tyk
 ---
 
 Tyk DataSources are exactly the same as GraphQL or REST DataSources.
@@ -25,7 +25,7 @@ Then in a second step you'd add these to your data graph.
 Then in a second step you'd add these to your data graph.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 As of `v3.2.0` internal datasorces (`TykRESTDataSource` and `TykGraphQLDataSource`) will be deprecated at the API level. Please use `HTTPJSONDataSource` or `GraphQLDataSource` respectively.
 {{< /note >}}

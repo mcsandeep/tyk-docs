@@ -4,13 +4,13 @@ date: 2022-04-04
 tags: ["distributed tracing", "NewRelic", "zipkin"]
 description: "The Trace API allows you to send tracing data to New Relic: either in the generic format or the Zipkin data format, enabling you to create your own tracing implementation."
 weight: 3
-aliases: 
+aliases:
   - /advanced-configuration/distributed-tracing/newrelic
 ---
 
 ## How to send Tyk Gateway traces to New Relic
 
-Tyk uses [OpenTracing](https://opentracing.io/) to send Tyk Gateway traces to [*New Relic*](https://newrelic.com/) using the *Zipkin* format. <br>
+Tyk uses [OpenTracing](https://opentracing.io/) to send Tyk Gateway traces to [_New Relic_](https://newrelic.com/) using the _Zipkin_ format. <br>
 Support for [OpenTelemetry](https://opentelemetry.io/) is on the near-term roadmap for us. More information can be found on [this community post](https://community.tyk.io/t/faq-opentelemetry-distributed-tracing/5682).
 
 {{< note success >}}
@@ -33,7 +33,7 @@ In `tyk.conf` under the `tracing` section
 }
 ```
 
-In the `options` setting you can set the initialisation of the *Zipkin* client.
+In the `options` setting you can set the initialisation of the _Zipkin_ client.
 
 ## Sample configuration
 
@@ -51,4 +51,4 @@ In the `options` setting you can set the initialisation of the *Zipkin* client.
 }
 ```
 
-`reporter.url` is the URL to the *New Relic* server, where trace data will be sent to.
+`reporter.url` is the URL to the _New Relic_ server, where trace data will be sent to.

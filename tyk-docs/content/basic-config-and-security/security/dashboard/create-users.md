@@ -2,7 +2,7 @@
 date: 2017-03-23T14:59:47Z
 title: Manage Tyk Dashboard Users
 tags: ["Users", "role based access control", "RBAC", "access control", "Tyk Dashboard"]
-description: "How to create users and set their permissions" 
+description: "How to create users and set their permissions"
 menu:
   main:
     parent: "Dashboard"
@@ -31,11 +31,11 @@ To create a dashboard user from the GUI:
 
 In this section:
 
-*   **First Name**: The user's first name.
-*   **Last Name**: The user's last name.
-*   **Email**: The email address of the user, this will also be their login username.
-*   **Password**: The password to assign to the user, this will automatically be hashed and salted before storing in the database. **NOTE** you need to inform the user about the password you have created for them.
-*   **Active**: Must be true for the user to have access to the dashboard or the dashboard API.
+- **First Name**: The user's first name.
+- **Last Name**: The user's last name.
+- **Email**: The email address of the user, this will also be their login username.
+- **Password**: The password to assign to the user, this will automatically be hashed and salted before storing in the database. **NOTE** you need to inform the user about the password you have created for them.
+- **Active**: Must be true for the user to have access to the dashboard or the dashboard API.
 
 ### Step 4: Set the user permissions
 
@@ -43,7 +43,7 @@ In this section:
 
 You can be very specific with regards to which pages and segments of the Dashboard the user has access to. Some Dashboard pages require access to multiple parts of the API, and so you may get errors if certain related elements are disabled (e.g. APIs + Policies)
 
-Permissions are set and enforced when they are set on this page. They can either be **read** or **write**. If  set to **deny** then the record is non-existent in the object (there is no explicit "deny"). This means that if you set **deny** on all options it looks as if they have not been written, but they will still be enforced so long as even one read or write option has been set.
+Permissions are set and enforced when they are set on this page. They can either be **read** or **write**. If set to **deny** then the record is non-existent in the object (there is no explicit "deny"). This means that if you set **deny** on all options it looks as if they have not been written, but they will still be enforced so long as even one read or write option has been set.
 
 ### Step 5: Click "Save"
 
@@ -61,7 +61,7 @@ This is your **Tyk Dashboard API Access Credentials**, which can be found on the
 
 You can [create a user]({{< ref "tyk-dashboard-api/users#add-user" >}}) with a call to the `POST /api/users` endpoint, for example:
 
-``` bash
+```bash
 curl -H "Authorization: {YOUR-TYK-DASHBOARD-API-ACCESS-CREDENTIALS}" \
  -s \
  -H "Content-Type: application/json" \
@@ -93,12 +93,14 @@ You will see the following response to confirm that the user has been created:
 The user is now active.
 
 ## Managing User Passwords
+
 You can change your password in these circumstances:
 
-*  If you have forgotten your password
-*  If you wish to change your password
+- If you have forgotten your password
+- If you wish to change your password
 
 ### Forgotten Your Password?
+
 If you have forgotten your password, you can request a password reset email from the **Dashboard Login** screen:
 
 {{< img src="/img/2.10/dashboard_login.png" alt="password reset email" >}}
@@ -114,6 +116,7 @@ You will need to configure your [outbound email settings]({{< ref "configure/out
 {{< /note >}}
 
 ### Change Your Password
+
 If you wish to change your current password, from the **System Management > Users** screen, select **Edit** for your Username.
 
 {{< note success >}}

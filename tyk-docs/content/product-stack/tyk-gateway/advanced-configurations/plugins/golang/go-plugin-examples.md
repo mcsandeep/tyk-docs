@@ -148,12 +148,12 @@ func MyPluginAuthCheck(rw http.ResponseWriter, r *http.Request) {
     rw.WriteHeader(http.StatusForbidden)
     return
   }
-  
+
   // auth was successful, add the session to the request's context so other middleware can use it
   ctx.SetSession(r, session, true)
-  
+
   // if compiling on a version older than 4.0.1, use this instead
-  // ctx.SetSession(r, session, key, true) 
+  // ctx.SetSession(r, session, key, true)
 }
 
 func main() {}

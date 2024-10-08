@@ -5,7 +5,7 @@ linktitle: Page Templates
 menu:
   main:
     parent: "Customize"
-weight: 2 
+weight: 2
 aliases:
   - /tyk-developer-portal/customise/customise-with-temp...
   - /tyk-stack/tyk-developer-portal/customise/customise-with-templates/
@@ -17,18 +17,17 @@ The Tyk Developer Portal can be fully customized using templates. The templates 
 All templates are based on Twitter Bootstrap and are standard HTML with some Golang Template snippets to handle dynamic content rendering.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The Portal process (`tyk-analytics`) must be restarted for template changes to take effect. This is because the application caches templates on startup.
 {{< /note >}}
-
 
 ### Adding new templates
 
 The Tyk content editor enables you to specify a template name to use when rendering templates. two are provided by default:
 
-*   Default Home Page Template
-*   Default Page Template
+- Default Home Page Template
+- Default Page Template
 
 The third option is "Custom" and this allows you to enter a template name into the field editor that will set the template name to use on render.
 
@@ -70,28 +69,29 @@ Portal templates now have access to the Developer object, its subscriptions and 
 
 The current logged in Developer can be accessed using `.UserData` variable with the following fields:
 
-*   Id - Internal developer ID
-*   Email - Developer email
-*   OrgID - Tyk Organization ID
-*   Subscriptions  - Map containing subscriptions where key is a policy ID and value is an API key
-*   Fields - Map containing custom developer fields
-*   OauthClients - Map containing list of registered oAuth clients, where Key is the policy ID.
+- Id - Internal developer ID
+- Email - Developer email
+- OrgID - Tyk Organization ID
+- Subscriptions - Map containing subscriptions where key is a policy ID and value is an API key
+- Fields - Map containing custom developer fields
+- OauthClients - Map containing list of registered oAuth clients, where Key is the policy ID.
 
 The current logged in Developer detailed subscription object can be accessed using the `.APIS` variable, containing map, where the key is PolicyID and value of the following format:
- 
-*   APIDescription - API definition
-      * ID - Internal API id
-      * Name - API name
-      * More fields: https://github.com/TykTechnologies/tyk/blob/master/apidef/api_definitions.go#L320
-*   APIKey - API key
-*   PolicyData - Policy object
-      * ID - Internal Policy ID
-      * Name - Policy Name
-      * More fields: https://github.com/TykTechnologies/tyk/blob/master/user/policy.go#L5
-*   KeyMetaData - Key metadata of map type
+
+- APIDescription - API definition
+  - ID - Internal API id
+  - Name - API name
+  - More fields: https://github.com/TykTechnologies/tyk/blob/master/apidef/api_definitions.go#L320
+- APIKey - API key
+- PolicyData - Policy object
+  - ID - Internal Policy ID
+  - Name - Policy Name
+  - More fields: https://github.com/TykTechnologies/tyk/blob/master/user/policy.go#L5
+- KeyMetaData - Key metadata of map type
 
 ## Example
-You have different teams of developers, and for each team we want to show them a different list of APIs. In this case, for each developer, we need to set a custom  `team` field, and assert it in a template like this:
+
+You have different teams of developers, and for each team we want to show them a different list of APIs. In this case, for each developer, we need to set a custom `team` field, and assert it in a template like this:
 
 ```
 {{if .UserData.Fields.Team == `internal`}}
@@ -104,6 +104,6 @@ You have different teams of developers, and for each team we want to show them a
 
 ### Add Files for Downloading
 
-If you want to have files available for download from your portal you can add them to your `/tyk-dashboard/portal/portal-assets` directory. 
+If you want to have files available for download from your portal you can add them to your `/tyk-dashboard/portal/portal-assets` directory.
 
 You can then refer to them by using a `/opt/tyk-dashboard/...` link.

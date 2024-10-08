@@ -11,25 +11,24 @@ Any GraphQL API can be introspected with the right introspection query. Here's s
 
 ### Introspecting all types
 
-This query will respond with information about all types and queries defined in the schema. Additional information like *name*, *description* and *kind* will also be provided.
+This query will respond with information about all types and queries defined in the schema. Additional information like _name_, _description_ and _kind_ will also be provided.
 
 ```graphql
 query {
- __schema {
-	    types {
-		  name
-		  description
-		  kind
-		}
-		queryType {
-		  fields {
-			name
-			description
-		  }
-		}
-   }
- }
-
+  __schema {
+    types {
+      name
+      description
+      kind
+    }
+    queryType {
+      fields {
+        name
+        description
+      }
+    }
+  }
+}
 ```
 
 ### Introspecting single type details
@@ -37,90 +36,90 @@ query {
 If you want to know more about a certain type in the schema, you can use the following query:
 
 ```graphql
-  query {
-    __type(name: "{type name}") {
-  	...FullType
-    }
+query {
+  __type(name: "{type name}") {
+    ...FullType
   }
+}
 
-  fragment FullType on __Type {
-    kind
+fragment FullType on __Type {
+  kind
+  name
+  description
+  fields(includeDeprecated: true) {
     name
     description
-    fields(includeDeprecated: true) {
-  	name
-  	description
-  	args {
-  	  ...InputValue
-  	}
-  	type {
-  	  ...TypeRef
-  	}
-  	isDeprecated
-  	deprecationReason
+    args {
+      ...InputValue
     }
-
-    inputFields {
-  	...InputValue
-    }
-
-    interfaces {
-  	...TypeRef
-    }
-
-    enumValues(includeDeprecated: true) {
-  	name
-  	description
-  	isDeprecated
-  	deprecationReason
-    }
-
-    possibleTypes {
-  	...TypeRef
-    }
-  }
-
-  fragment InputValue on __InputValue {
-    name
-    description
     type {
-  	...TypeRef
+      ...TypeRef
     }
-    defaultValue
+    isDeprecated
+    deprecationReason
   }
 
-  fragment TypeRef on __Type {
+  inputFields {
+    ...InputValue
+  }
+
+  interfaces {
+    ...TypeRef
+  }
+
+  enumValues(includeDeprecated: true) {
+    name
+    description
+    isDeprecated
+    deprecationReason
+  }
+
+  possibleTypes {
+    ...TypeRef
+  }
+}
+
+fragment InputValue on __InputValue {
+  name
+  description
+  type {
+    ...TypeRef
+  }
+  defaultValue
+}
+
+fragment TypeRef on __Type {
+  kind
+  name
+  ofType {
     kind
     name
     ofType {
-  	kind
-  	name
-  	ofType {
-  	  kind
-  	  name
-  	  ofType {
-  		kind
-  		name
-  		ofType {
-  		  kind
-  		  name
-  		  ofType {
-  			kind
-  			name
-  			ofType {
-  			  kind
-  			  name
-  			  ofType {
-  				kind
-  				name
-  			  }
-  			}
-  		  }
-  		}
-  	  }
-  	}
+      kind
+      name
+      ofType {
+        kind
+        name
+        ofType {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+              }
+            }
+          }
+        }
+      }
     }
   }
+}
 ```
 
 ### Introspecting types associated with an interface
@@ -129,17 +128,17 @@ The query to introspect a single type can be used for any type, but you might pr
 
 ```graphql
 query {
-__type(name: "{interface name}") {
-  name
-  kind
-  description
-  possibleTypes {
+  __type(name: "{interface name}") {
     name
     kind
     description
+    possibleTypes {
+      name
+      kind
+      description
+    }
   }
 }
-}  
 ```
 
 ### Introspecting ENUM values
@@ -148,15 +147,15 @@ An `enum` type defines a set of discrete values. With this query you can get a c
 
 ```graphql
 query {
-__type(name: "{enum name}") {
-  name
-  kind
-  description
-  enumValues {
+  __type(name: "{enum name}") {
     name
+    kind
     description
+    enumValues {
+      name
+      description
+    }
   }
-}
 }
 ```
 
@@ -165,30 +164,30 @@ __type(name: "{enum name}") {
 GraphQL requires queries to be defined in a special type `Query` in the schema. You can use the below introspection query to find out more about a query operations of the graph.
 
 ```graphql
-  query {
-    __type(name: "Query") {
-  	...QueryType
-    }
+query {
+  __type(name: "Query") {
+    ...QueryType
   }
+}
 
-  fragment QueryType on __Type {
-    fields {
-  	name
-  	description
-  	type {
-  		name
-  		kind
-  	}
-  	args {
-  	  name
-  	  description
-  	  type {
-  		  name
-  		  kind
-  	  }
-  	}
+fragment QueryType on __Type {
+  fields {
+    name
+    description
+    type {
+      name
+      kind
+    }
+    args {
+      name
+      description
+      type {
+        name
+        kind
+      }
     }
   }
+}
 ```
 
 {{< note >}}
@@ -207,72 +206,82 @@ You should use the same introsopection query as you would for `Query` type, just
 If you prefer to introspect GraphQL all at once, you can do that by sending this query:
 
 ```graphql
-
-    query IntrospectionQuery {
-      __schema {
-        
-        queryType { name }
-        mutationType { name }
-        subscriptionType { name }
-        types {
-          ...FullType
-        }
-        directives {
-          name
-          description
-          
-          locations
-          args {
-            ...InputValue
-          }
-        }
-      }
+query IntrospectionQuery {
+  __schema {
+    queryType {
+      name
     }
-
-    fragment FullType on __Type {
-      kind
+    mutationType {
+      name
+    }
+    subscriptionType {
+      name
+    }
+    types {
+      ...FullType
+    }
+    directives {
       name
       description
-      
-      fields(includeDeprecated: true) {
-        name
-        description
-        args {
-          ...InputValue
-        }
-        type {
-          ...TypeRef
-        }
-        isDeprecated
-        deprecationReason
-      }
-      inputFields {
+
+      locations
+      args {
         ...InputValue
       }
-      interfaces {
-        ...TypeRef
-      }
-      enumValues(includeDeprecated: true) {
-        name
-        description
-        isDeprecated
-        deprecationReason
-      }
-      possibleTypes {
-        ...TypeRef
-      }
     }
+  }
+}
 
-    fragment InputValue on __InputValue {
-      name
-      description
-      type { ...TypeRef }
-      defaultValue
-      
-      
+fragment FullType on __Type {
+  kind
+  name
+  description
+
+  fields(includeDeprecated: true) {
+    name
+    description
+    args {
+      ...InputValue
     }
+    type {
+      ...TypeRef
+    }
+    isDeprecated
+    deprecationReason
+  }
+  inputFields {
+    ...InputValue
+  }
+  interfaces {
+    ...TypeRef
+  }
+  enumValues(includeDeprecated: true) {
+    name
+    description
+    isDeprecated
+    deprecationReason
+  }
+  possibleTypes {
+    ...TypeRef
+  }
+}
 
-    fragment TypeRef on __Type {
+fragment InputValue on __InputValue {
+  name
+  description
+  type {
+    ...TypeRef
+  }
+  defaultValue
+}
+
+fragment TypeRef on __Type {
+  kind
+  name
+  ofType {
+    kind
+    name
+    ofType {
       kind
       name
       ofType {
@@ -290,21 +299,14 @@ If you prefer to introspect GraphQL all at once, you can do that by sending this
               ofType {
                 kind
                 name
-                ofType {
-                  kind
-                  name
-                  ofType {
-                    kind
-                    name
-                  }
-                }
               }
             }
           }
         }
       }
     }
-  
+  }
+}
 ```
 
 Tyk also allows you to block introspection queries for security reasons if you wish to do so. More information on how to do that is provided [here]({{< ref "/graphql/introspection#turning-off-introspection">}}).

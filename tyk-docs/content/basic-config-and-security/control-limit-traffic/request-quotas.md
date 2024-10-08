@@ -6,7 +6,7 @@ description: "How to set time period quotas for requests in Tyk"
 menu:
   main:
     parent: "Control & Limit Traffic"
-weight: 3 
+weight: 3
 aliases:
   - /control-limit-traffic/request-quotas/
 ---
@@ -44,7 +44,7 @@ Yes you can - to disable the quota middleware in an API definition, select the *
 4.  Set the **Quota resets every** drop down to the period you would like the quota to be active for. If the pre-sets do not meet your requirements, the quota period can be set using the session object method and the REST API.
 
 5.  The **Remaining requests for period** field displays how many more times the API can be requested for the quota set.
-    
+
 {{< img src="/img/2.10/api_rate_limits_keys.png" alt="Tyk API Gateway Quotas" >}}
 
 1.  Save the token, it will be created instantly.
@@ -58,7 +58,7 @@ In order to set a quota for a token:
 3. Set the `quota_renewal_rate` to the value, in seconds, of when the quota should renew. For example, if you would like it to renew every 30 days, you would have `2592000` seconds `(((60*60) * 24) * 30 = 2592000)`.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 To set an unlimited quota, set `quota_max` to `-1`.
 {{< /note >}}

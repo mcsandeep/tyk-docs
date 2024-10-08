@@ -1,9 +1,30 @@
 ---
 title: Tyk Gateway 5.0 Release Notes
 description: Tyk Gateway v5.0 release notes
-tags: ["release notes", "Tyk Gateway", "v5.0", "5.0", "5.0.0", "5.0.1", "5.0.1", "5.0.2", "5.0.3", "5.0.4", "5.0.5", "5.0.6", "5.0.7", "5.0.8", "5.0.9", "5.0.10", "5.0.11", "5.0.13", "5.0.14"]
+tags:
+  [
+    "release notes",
+    "Tyk Gateway",
+    "v5.0",
+    "5.0",
+    "5.0.0",
+    "5.0.1",
+    "5.0.1",
+    "5.0.2",
+    "5.0.3",
+    "5.0.4",
+    "5.0.5",
+    "5.0.6",
+    "5.0.7",
+    "5.0.8",
+    "5.0.9",
+    "5.0.10",
+    "5.0.11",
+    "5.0.13",
+    "5.0.14",
+  ]
 aliases:
-    - /release-notes/version-5.0/
+  - /release-notes/version-5.0/
 ---
 
 **Open Source** ([Mozilla Public License](https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md))
@@ -17,6 +38,7 @@ aliases:
 ### Release Date 18th September 2024
 
 ### Breaking Changes
+
 **Attention:** Please read this section carefully.
 
 There are no breaking changes in this release.
@@ -24,7 +46,6 @@ There are no breaking changes in this release.
 ### Upgrade Instructions
 
 This release is not tightly coupled with Tyk Dashboard v5.0.14, so you do not have to upgrade both together.
-
 
 Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk) section for detailed upgrade instructions.
 
@@ -47,9 +68,10 @@ We have introduced two new options in the `http_server_options` [Gateway configu
 - `enable_path_suffix_matching` ensures that the end of the request path must match the path defined in the API definition
 - combining `enable_path_prefix_matching` and `enable_path_suffix_matching` will ensure an exact (explicit) match is performed
 
-These configuration options provide control to avoid unintended matching of paths from Tyk's default *wildcard* match. Use of regex special characters when declaring the endpoint path in the API definition will automatically override these settings for that endpoint.
+These configuration options provide control to avoid unintended matching of paths from Tyk's default _wildcard_ match. Use of regex special characters when declaring the endpoint path in the API definition will automatically override these settings for that endpoint.
 
 **Tyk recommends that exact matching is employed, but both options default to `false` to avoid introducing a breaking change for existing users.**
+
 </details>
 </li>
 </ul>
@@ -62,6 +84,7 @@ These configuration options provide control to avoid unintended matching of path
 <summary>Incorrectly configured regex in policy affected Path-Based Permissions authorization</summary>
 
 Fixed an issue when using granular [Path-Based Permissions]({{< ref "security/security-policies/secure-apis-method-path" >}}) in access policies and keys that led to authorization incorrectly being granted to endpoints if an invalid regular expression was configured in the key/policy. Also fixed an issue where path-based parameters were not correctly handled by Path-Based Permissions. Now Tyk's authorization check correctly handles both of these scenarios granting access only to the expected resources.
+
 </details>
 </li>
 <li>
@@ -69,6 +92,7 @@ Fixed an issue when using granular [Path-Based Permissions]({{< ref "security/se
 <summary>Missing path parameter can direct to the wrong endpoint</summary>
 
 Fixed an issue where a parameterized endpoint URL (e.g. `/user/{id}`) would be invoked if a request is made that omits the parameter. For example, a request to `/user/` will now be interpreted as a request to `/user` and not to `/user/{id}`.
+
 </details>
 </li>
 
@@ -77,6 +101,7 @@ Fixed an issue where a parameterized endpoint URL (e.g. `/user/{id}`) would be i
 <summary>Improved Gateway Synchronization with MDCB for Policies and APIs</summary>
 
 We have enhanced the Tyk Gateway's synchronization with MDCB to ensure more reliable loading of policies and APIs. A synchronous initialization process has been implemented to prevent startup failures and reduce the risk of service disruptions caused by asynchronous operations. This update ensures smoother and more consistent syncing of policies and APIs from MDCB.
+
 </details>
 </li>
 </ul>
@@ -90,12 +115,14 @@ We have enhanced the Tyk Gateway's synchronization with MDCB to ensure more reli
 ### Release Highlights
 
 Resolved an issue encountered in MDCB environments where changes to custom keys made via the Dashboard were not properly replicated to dataplanes. The issue impacted both key data and associated quotas, in the following versions:
+
 - 5.0.4 to 5.0.12
 - 5.1.1 and 5.1.2
 - 5.2.0 to 5.2.6
 - 5.3.0 to 5.3.2
 
 ##### Action Required
+
 Customers should clear their edge Redis instances of any potentially affected keys to maintain data consistency and ensure proper synchronization across their environments. Please refer to the item in the [fixed](#fixed) section of the changelog for recommended actions.
 
 ### Changelog {#Changelog-v5.0.13}
@@ -108,6 +135,7 @@ Customers should clear their edge Redis instances of any potentially affected ke
 <summary>Resolved an issue where changes to custom keys were not properly replicated to dataplanes</summary>
 
 Resolved a critical issue affecting MDCB environments, where changes to custom keys made via the dashboard were not properly replicated to dataplanes. This affected both the key data and associated quotas. This issue was present in versions:
+
 - 5.0.4 to 5.0.12
 - 5.1.1 and 5.1.2
 - 5.2.0 to 5.2.6
@@ -142,6 +170,7 @@ redis-cli FLUSHALL ASYNC
 
 **Implications**
 Regardless of the chosen method, be aware that quotas will be reset and will need to resynchronize across the system. This may temporarily affect reporting and rate limiting capabilities.
+
 </details>
 </li>
 </ul>
@@ -149,51 +178,61 @@ Regardless of the chosen method, be aware that quotas will be reset and will nee
 ---
 
 ## 5.0.12 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.12).
 
 ---
 
 ## 5.0.11 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.11).
 
 ---
 
 ## 5.0.10 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.10).
 
 ---
 
 ## 5.0.9 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.9).
 
 ---
 
 ## 5.0.8 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.8).
 
 ---
 
 ## 5.0.7 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.7).
 
 ---
 
 ## 5.0.6 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.6).
 
 ---
 
 ## 5.0.5 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.5).
 
 ---
 
 ## 5.0.4 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.4).
 
 ---
 
 ## 5.0.3 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.3).
 
 ---
@@ -204,17 +243,18 @@ Please refer to our GitHub [release notes](https://github.com/TykTechnologies/ty
 
 #### Release Highlights
 
-This release primarily focuses on bug fixes. 
+This release primarily focuses on bug fixes.
 For a comprehensive list of changes, please refer to the detailed [changelog]({{< ref "#Changelog-v5.0.2">}}) below.
 
 #### Downloads
 
-- [docker image to pull](https://hub.docker.com/layers/tykio/tyk-gateway/v5.0.2/images/sha256-5e126d64571989f9e4b746544cf7a4a53add036a68fe0df4502f1e62f29627a7?context=explore) 
+- [docker image to pull](https://hub.docker.com/layers/tykio/tyk-gateway/v5.0.2/images/sha256-5e126d64571989f9e4b746544cf7a4a53add036a68fe0df4502f1e62f29627a7?context=explore)
 - [source code](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.2)
 
 #### Changelog {#Changelog-v5.0.2}
 
 ##### Updated
+
 - Internal refactoring to make storage related parts more stable and less affected by potential race issues
 
 ---
@@ -224,20 +264,24 @@ For a comprehensive list of changes, please refer to the detailed [changelog]({{
 ##### Release Date 25 Apr 2023
 
 #### Release Highlights
-This release primarily focuses on bug fixes. 
+
+This release primarily focuses on bug fixes.
 For a comprehensive list of changes, please refer to the detailed [changelog]({{< ref "#Changelog-v5.0.1">}}) below.
 
 #### Downloads
+
 - [docker image to pull](https://hub.docker.com/layers/tykio/tyk-gateway/v5.0.1/images/sha256-5fa7aa910d62a7ed2c1cfbc68c69a988b4b0e9420d7a52018f80f9a45cadb083?context=explore
 - [source code](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.1)
 
 #### Changelog {#Changelog-v5.0.1}
 
 ##### Added
+
 - Added a new `enable_distributed_tracing` option to the NewRelic config to enable support for Distributed Tracer
 
 ##### Fixed
-- Fixed  panic when JWK method was used for JWT authentication and the token didn't include kid
+
+- Fixed panic when JWK method was used for JWT authentication and the token didn't include kid
 - Fixed an issue where failure to load GoPlugin middleware didn’t prevent the API from proxying traffic to the upstream: now Gateway logs an error when the plugin fails to load (during API creation/update) and responds with HTTP 500 if the API is called; at the moment this is fixed only for file based plugins
 - Fixed MutualTLS issue causing leak of allowed CAs during TLS handshake when there are multiple mTLS APIs
 - Fixed a bug during hot reload of Tyk Gateway where APIs with JSVM plugins stored in filesystem were not reloaded
@@ -255,6 +299,7 @@ For a comprehensive list of changes, please refer to the detailed [changelog]({{
 ##### Release Date 28 Mar 2023
 
 #### Deprecations
+
 - Tyk Gateway no longer natively supports **LetsEncrypt** integration. You still can use LetsEncrypt CLI tooling to generate certificates and use them with Tyk.
 
 #### Release Highlights
@@ -281,6 +326,7 @@ Thanks to our community contributors [armujahid](https://github.com/armujahid), 
 #### Changelog {#Changelog-v5.0.0}
 
 ##### Added
+
 - Support for request validation (including query params, headers and the rest of OAS rules) with Tyk OAS APIs
 - Transform request/response middleware for Tyk OAS APIs
 - Custom middleware for Tyk OAS APIs
@@ -290,6 +336,7 @@ Thanks to our community contributors [armujahid](https://github.com/armujahid), 
 - Now you can control access to introspection on policy and key level
 
 #### Fixed
+
 - Fixed potential race condition when using distributed rate limiter
 
 ---
@@ -297,6 +344,7 @@ Thanks to our community contributors [armujahid](https://github.com/armujahid), 
 ## Further Information
 
 ### Upgrading Tyk
+
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### API Documentation
@@ -305,4 +353,5 @@ Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for furthe
 - [Postman Collection](https://www.postman.com/tyk-technologies/workspace/tyk-public-workspace/collection/27225007-374cc3d0-f16d-4620-a435-68c53553ca40)
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

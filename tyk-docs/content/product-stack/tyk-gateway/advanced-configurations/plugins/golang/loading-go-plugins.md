@@ -38,7 +38,7 @@ The API needs to be reloaded after that change (this happens automatically when 
 Now your API with its Golang plugin is ready to process traffic:
 
 ```bash
-# curl http://localhost:8181/my_api_name/get   
+# curl http://localhost:8181/my_api_name/get
 {
   "args": {},
   "headers": {
@@ -91,19 +91,10 @@ The contents of `manifest.json`:
 
 ```yaml
 {
-  "file_list": [
-    "AddFooBarHeader.so"
-  ],
-  "custom_middleware": {
-    "post": [
-      {
-        "name": "AddFooBarHeader",
-        "path": "AddFooBarHeader.so"
-      }
-    ]
-  },
+  "file_list": ["AddFooBarHeader.so"],
+  "custom_middleware": { "post": [{ "name": "AddFooBarHeader", "path": "AddFooBarHeader.so" }] },
   "driver": "goplugin",
-  ...
+  ...,
 }
 ```
 

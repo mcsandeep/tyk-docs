@@ -3,11 +3,10 @@ title: Basic Configuration and Security
 tags: ["Gateway", "Security"]
 description: "Methods for securing the Tyk Gateway"
 menu:
-    main:
-        parent: Tyk Gateway
+  main:
+    parent: Tyk Gateway
 weight: 40
 ---
-
 
 This section covers methods for configuring and applying security methods to Tyk. the following subjects are covered:
 

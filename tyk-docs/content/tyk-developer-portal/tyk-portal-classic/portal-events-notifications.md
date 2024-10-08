@@ -4,7 +4,7 @@ title: Portal events and notifications
 menu:
   main:
     parent: "Tyk Portal Classic"
-weight: 9 
+weight: 9
 aliases:
   - /tyk-developer-portal/portal-events-notifications/
 ---
@@ -56,13 +56,14 @@ event_options: {
 
 The following events are supported:
 
-*   `api_event`: When an API is created, updated or deleted.
+- `api_event`: When an API is created, updated or deleted.
 
-*   `key_event`: When a key is created, updated or deleted.
+- `key_event`: When a key is created, updated or deleted.
 
-*   `key_request_event`: When a Portal key request is created or updated.
+- `key_request_event`: When a Portal key request is created or updated.
 
 Sample **Webhook** Payload for a **Key Request** Event:
+
 ```{.json}
 {
     "event": "key_request_event.submitted",
@@ -103,7 +104,7 @@ Sample **Webhook** Payload for a **Key Request** Event:
             "version":"v2",
             "is_keyless":false,
             "config":{
-                
+
             }
         }
     }

@@ -6,7 +6,7 @@ menu:
     parent: "UDG Concepts"
 weight: 2
 aliases:
-    - /universal-data-graph/data-sources/graphql
+  - /universal-data-graph/data-sources/graphql
 ---
 
 In most GraphQL implementations you have the concept of Resolvers.

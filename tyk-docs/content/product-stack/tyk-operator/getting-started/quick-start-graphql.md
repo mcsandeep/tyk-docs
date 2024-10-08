@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "Sample", "Kubernetes"]
 description: "Tyk Operator manifest example"
 ---
 
-This page provides a sample manifest for creating [GraphQL proxy APIs]({{<ref "graphql-proxy-only">}}). 
+This page provides a sample manifest for creating [GraphQL proxy APIs]({{<ref "graphql-proxy-only">}}).
 
 In the example below we can see that the configuration is contained within the `graphql` configuration object. A GraphQL schema is specified within the `schema` field and the execution mode is set to `proxyOnly`. The [GraphQL public playground]({{< ref "graphql/graphql-playground#enabling-public-graphql-playground" >}}) is enabled with the path set to `/playground`.
 

@@ -4,12 +4,12 @@ title: Upgrading to v2.3 from v2.2
 # notoc: true
 # weight: 221
 aliases:
-    - /upgrading-v2-3-v2-2/
+  - /upgrading-v2-3-v2-2/
 ---
 
 Tyk v2.3 is backwards-compatible with v2.2 in terms of the configuration file and the original `tyk.conf` can be used with the new version. If you would like to keep your v2.2 settings, please remember to <u>**backup your `tyk.conf` file before upgrading as it will be overwritten during the upgrade process.**</u>
 
-*However*, there are behavioral differences in a v2.3 cluster when hooked up to a Dashboard that can cause some odd behavior if the upgrade is not conducted in the right order.
+_However_, there are behavioral differences in a v2.3 cluster when hooked up to a Dashboard that can cause some odd behavior if the upgrade is not conducted in the right order.
 
 Tyk v2.3 Gateways continuously talk to each other sharing load data, they also share information with the Dashboard regarding their current configuration. This chatter, if exposed to a v2.2 Gateway, can cause it go into a reload loop, which isn't ideal. Because of this, the recommended upgrade procedure for a Tyk v2.2 system is:
 
@@ -25,7 +25,7 @@ If the reload loop does occur it is not disastrous, Tyk will just keep proxying 
 
 #### Retaining rate limiter functionality
 
-Tyk v2.3 introduces a new in-memory leaky-bucket *distributed* rate limiter, this is much more performant than the older rate limiter which hard-synchronised via Redis, and puts far less strain on a Redis instance or cluster than the old rate limiter. By default, Tyk v2.3 will switch to this rate limiter, however it is possible to retain the old behavior by enabling it explicitly in the `tyk.conf` file:
+Tyk v2.3 introduces a new in-memory leaky-bucket _distributed_ rate limiter, this is much more performant than the older rate limiter which hard-synchronised via Redis, and puts far less strain on a Redis instance or cluster than the old rate limiter. By default, Tyk v2.3 will switch to this rate limiter, however it is possible to retain the old behavior by enabling it explicitly in the `tyk.conf` file:
 
 ```
     "enable_redis_rolling_limiter": true
@@ -37,7 +37,7 @@ This might be useful if you do not wish to switch over immediately and wish to t
 
 Tyk v2.3 introduces public/private key message authentication for messages that are sent from the management interface to the Gateways, and for code that is being deployed as a plugin to a Gateway via the bundle downloader.
 
-By default, Tyk's new config file has this feature *disabled*, however since it is new, an existing `tyk.conf` will assume a secure installation as the feature must be explicitly disabled. This means, prior to starting your new Gateways, either disable the security feature, or add a public/private key pair to your `tyk.conf` and `tyk_analytics.conf` files:
+By default, Tyk's new config file has this feature _disabled_, however since it is new, an existing `tyk.conf` will assume a secure installation as the feature must be explicitly disabled. This means, prior to starting your new Gateways, either disable the security feature, or add a public/private key pair to your `tyk.conf` and `tyk_analytics.conf` files:
 
 ##### Disable secure messages
 
@@ -54,7 +54,7 @@ First, generate the key pair:
 ```
     # private key
     openssl genrsa -out privkey.pem 2048
-    
+
     # public key
     openssl rsa -in privkey.pem -pubout -out pubkey.pem
 ```

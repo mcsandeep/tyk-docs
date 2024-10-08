@@ -8,9 +8,10 @@ aliases:
 
 Licensed Protected Product
 
-*This page contains all release notes for version 2.5 displayed in reverse chronological order*
+_This page contains all release notes for version 2.5 displayed in reverse chronological order_
 
 ## Support Lifetime
+
 Our minor releases are supported until our next minor comes out.
 
 ## 2.5.1 Release Notes
@@ -18,35 +19,42 @@ Our minor releases are supported until our next minor comes out.
 #### Release date 24 Apr 2024
 
 #### Breaking Changes
+
 This release has no breaking changes.
 
 #### 3rd Party Dependencies & Tools
-| Third Party Dependency                                     | Tested Versions        | Compatible Versions    | Comments | 
-| ---------------------------------------------------------- | ---------------------- | ---------------------- | -------- | 
-| [Redis](https://redis.io/download/)  | 6.2.x, 7.x  | 6.2.x, 7.x  | Used by MDCB | 
-| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.0.x, 6.0.x, 7.0.x | 4.4.x, 5.0.x, 6.0.x, 7.0.x | Used by MDCB | 
-| [PostgreSQL](https://www.postgresql.org/download/)         | 11.x - 15.x LTS        | 11.x - 15.x            | Used by MDCB | 
+
+| Third Party Dependency                                    | Tested Versions     | Compatible Versions        | Comments     |
+| --------------------------------------------------------- | ------------------- | -------------------------- | ------------ |
+| [Redis](https://redis.io/download/)                       | 6.2.x, 7.x          | 6.2.x, 7.x                 | Used by MDCB |
+| [MongoDB](https://www.mongodb.com/try/download/community) | 5.0.x, 6.0.x, 7.0.x | 4.4.x, 5.0.x, 6.0.x, 7.0.x | Used by MDCB |
+| [PostgreSQL](https://www.postgresql.org/download/)        | 11.x - 15.x LTS     | 11.x - 15.x                | Used by MDCB |
 
 Given the time difference between your upgrade and the release of this version, we recommend customers verify the ongoing support of third-party dependencies they install, as their status may have changed since the release.
 
 #### Deprecations
+
 There are no deprecations in this release.
 
 #### Upgrade instructions
+
 If you are using a 2.4.x or 2.5.0 version, we advise you to upgrade as soon as possible to this latest release. If you are on an older version, you should skip 2.5.0 and upgrade directly to this release.
 
 #### Release Highlights
+
 This release contains bug fixes as detailed in the [changelog]({{< ref "#Changelog-v2.5.1">}}) below.
 
 #### Downloads
+
 - [Docker image v2.5.1](https://hub.docker.com/r/tykio/tyk-mdcb-docker/tags?page=&page_size=&ordering=&name=v2.5.1)
 - ```bash
   docker pull tykio/tyk-mdcb-docker:v2.5.1
-  ``` 
+  ```
 
 #### Changelog {#Changelog-v2.5.1}
 
 ##### Fixed
+
 <ul>
  <li>
  <details>
@@ -60,7 +68,8 @@ This release contains bug fixes as detailed in the [changelog]({{< ref "#Changel
  <details>
  <summary>Fixed a bug where clearing the API cache from the Tyk Dashboard UI failed to invalidate the cache in distributed data plane gateways</summary>
 
-  When clearing the API cache from the Tyk Dashboard UI, the cache in distributed data plane gateways was not being invalidated. *Please note that this fix requires Tyk Gateway version 5.3.1.*
+When clearing the API cache from the Tyk Dashboard UI, the cache in distributed data plane gateways was not being invalidated. _Please note that this fix requires Tyk Gateway version 5.3.1._
+
  </details>
  </li>
 
@@ -68,7 +77,8 @@ This release contains bug fixes as detailed in the [changelog]({{< ref "#Changel
  <details>
  <summary>Fixed a bug where PostgreSQL could not be used with MDCB 2.4.2/2.4.3 if APIs were created with version 4.0.X of the Dashboard</summary>
 
-  MDCB v2.4.2/2.4.3 was unable to retrieve APIs when they were created using a 4.0.x Dashboard and PostgreSQL
+MDCB v2.4.2/2.4.3 was unable to retrieve APIs when they were created using a 4.0.x Dashboard and PostgreSQL
+
  </details>
  </li>
  
@@ -81,48 +91,58 @@ This release contains bug fixes as detailed in the [changelog]({{< ref "#Changel
 ##### Release date 5 Apr 2024
 
 #### Breaking Changes
+
 This release has no breaking changes.
 
 #### 3rd Party Dependencies & Tools
-| Third Party Dependency                                     | Tested Versions        | Compatible Versions    | Comments | 
-| ---------------------------------------------------------- | ---------------------- | ---------------------- | -------- | 
-| [Redis](https://redis.io/download/)  | 6.2.x, 7.x  | 6.2.x, 7.x  | Used by MDCB | 
-| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.0.x, 6.0.x, 7.0.x | 4.4.x, 5.0.x, 6.0.x, 7.0.x | Used by MDCB | 
-| [PostgreSQL](https://www.postgresql.org/download/)         | 11.x - 15.x LTS        | 11.x - 15.x            | Used by MDCB | 
+
+| Third Party Dependency                                    | Tested Versions     | Compatible Versions        | Comments     |
+| --------------------------------------------------------- | ------------------- | -------------------------- | ------------ |
+| [Redis](https://redis.io/download/)                       | 6.2.x, 7.x          | 6.2.x, 7.x                 | Used by MDCB |
+| [MongoDB](https://www.mongodb.com/try/download/community) | 5.0.x, 6.0.x, 7.0.x | 4.4.x, 5.0.x, 6.0.x, 7.0.x | Used by MDCB |
+| [PostgreSQL](https://www.postgresql.org/download/)        | 11.x - 15.x LTS     | 11.x - 15.x                | Used by MDCB |
 
 Given the time difference between your upgrade and the release of this version, we recommend customers verify the ongoing support of third-party dependencies they install, as their status may have changed since the release.
 
 #### Deprecations
+
 There are no deprecations in this release.
 
 #### Upgrade instructions
+
 If you are using a 2.4.x version, we advise you to upgrade ASAP to this latest release. If you are on an older version, you should skip 2.4.0 and upgrade directly to this release.
 
 #### Release Highlights
 
 ##### Tyk v5.3 Compatibility
+
 MDCB 2.5.0 is an update for compatibility for synchronisation with Tyk v5.3 API Definitions.
 
 ##### Redis v7.x Compatibility
+
 We have upgraded Redis driver [go-redis](https://github.com/redis/go-redis) to v9. Subsequently, Tyk 5.3 is compatible with Redis v7.x.
 
 ##### MongoDB v7.0.x Compatibility
+
 We have upgraded mongo-go driver to [mongo-go v1.13.1](https://github.com/mongodb/mongo-go-driver/releases/tag/v1.13.1). It allows us to benefit from the bug fixes and enhancements released by MongoDB. We have also tested that both Tyk 5.0.x+ and Tyk 5.3 are compatible with MongoDB v7.0.x.
 
 ##### Security Fixes
+
 We have fixed a security issue affecting MDCB v2.2.0 to v2.4.x, where certain per-API access rights from policies are not properly relayed to edge gateways. We strongly recommend upgrading to MDCB version 2.5.0 to ensure the proper enforcement of per-API access rights across all gateways in your deployment.
 
 Please refer to the [changelog]({{< ref "#Changelog-v2.5.0">}}) below.
 
 #### Downloads
+
 - [Docker image v2.5.0](https://hub.docker.com/r/tykio/tyk-mdcb-docker/tags?page=&page_size=&ordering=&name=v2.5.0)
 - ```bash
   docker pull tykio/tyk-mdcb-docker:v2.5.0
-  ``` 
+  ```
 
 #### Changelog {#Changelog-v2.5.0}
 
 ##### Fixed
+
 <ul>
  <li>
  <details>
@@ -131,6 +151,7 @@ Please refer to the [changelog]({{< ref "#Changelog-v2.5.0">}}) below.
 Fixed a security issue affecting MDCB v2.2.0 to v2.4.x, where certain per-API access rights from policies are not properly relayed to edge gateways. This issue exists only when using MongoDB as storage engine.
 
 It affected GraphQL's field-based permissions, query depth, per query depth limits, and disable introspection settings. Also it affected usage quota of both HTTP and GraphQL APIs. However, "Set per API limits and quotas" and global policy settings (e.g. query depth) are not affected by this issue.
+
  </details>
  </li>
 
@@ -138,14 +159,16 @@ It affected GraphQL's field-based permissions, query depth, per query depth limi
  <details>
  <summary>Fixed CVE-2023-3978 (NVD)</summary>
 
-  Update embedded Tyk Pump to v1.9 to address [CVE-2023-3978](https://nvd.nist.gov/vuln/detail/CVE-2023-3978) (NVD)
+Update embedded Tyk Pump to v1.9 to address [CVE-2023-3978](https://nvd.nist.gov/vuln/detail/CVE-2023-3978) (NVD)
+
  </details>
  </li>
   <li>
  <details>
  <summary>Fixed CVE-2023-39325 (NVD)</summary>
 
-  Update embedded Tyk Pump to v1.9 to address [CVE-2023-39325](https://nvd.nist.gov/vuln/detail/CVE-2023-39325) (NVD)
+Update embedded Tyk Pump to v1.9 to address [CVE-2023-39325](https://nvd.nist.gov/vuln/detail/CVE-2023-39325) (NVD)
+
  </details>
  </li>
   <li>
@@ -166,6 +189,7 @@ It affected GraphQL's field-based permissions, query depth, per query depth limi
  </ul>
 
 ##### Added
+
 <ul>
    <li>
  <details>
@@ -178,8 +202,8 @@ It affected GraphQL's field-based permissions, query depth, per query depth limi
  </li>
  </ul>
 
-
 ##### Updated
+
 <ul>
  
  <li>
@@ -187,6 +211,7 @@ It affected GraphQL's field-based permissions, query depth, per query depth limi
  <summary>Update for compatibility with API definitions for Tyk v5.3</summary>
 
 MDCB 2.4.x supports Tyk API definitions up to Tyk Gateway v5.3.0. Please use MDCB 2.5.x with Tyk Gateway v5.3.0+.
+
  </details>
  </li>
  <li>
@@ -210,13 +235,12 @@ It allows us to benefit from the bug fixes and enhancements released by MongoDB.
  </details>
  </li>
 
- 
  <li>
  <details>
  <summary>Updated to Go 1.21</summary>
 
-   MDCB updated to Go 1.21 to benefit from fixed security issues, linkers, compilers etc.
-   
+MDCB updated to Go 1.21 to benefit from fixed security issues, linkers, compilers etc.
+
  </details>
  </li>
  </ul>
@@ -230,4 +254,5 @@ It allows us to benefit from the bug fixes and enhancements released by MongoDB.
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

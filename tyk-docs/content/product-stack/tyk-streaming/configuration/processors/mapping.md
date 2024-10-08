@@ -1,11 +1,10 @@
 ---
 title: Mapping
 description: Explains an overview of mapping
-tags: [ "Mapping", "Parsing","Processors" ]
+tags: ["Mapping", "Parsing", "Processors"]
 ---
 
 Executes a [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping on messages, creating a new document that replaces (or filters) the original message.
-
 
 ```yml
 # Config fields, showing default values
@@ -39,9 +38,7 @@ Mapping documents is advantageous in situations where the result is a document w
 
 However, [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) itself also provides powerful ways of ensuring your mappings do not fail by specifying desired fallback behavior.
 
-
 ## Examples
-
 
 ### Mapping
 
@@ -49,13 +46,13 @@ Given JSON documents containing an array of fans:
 
 ```json
 {
-  "id":"foo",
-  "description":"a show about foo",
-  "fans":[
-    {"name":"bev","obsession":0.57},
-    {"name":"grace","obsession":0.21},
-    {"name":"ali","obsession":0.89},
-    {"name":"vic","obsession":0.43}
+  "id": "foo",
+  "description": "a show about foo",
+  "fans": [
+    { "name": "bev", "obsession": 0.57 },
+    { "name": "grace", "obsession": 0.21 },
+    { "name": "ali", "obsession": 0.89 },
+    { "name": "vic", "obsession": 0.43 }
   ]
 }
 ```
@@ -64,10 +61,10 @@ We can reduce the documents down to just the ID and only those fans with an obse
 
 ```json
 {
-  "id":"foo",
-  "fans":[
-    {"name":"bev","obsession":0.57},
-    {"name":"ali","obsession":0.89}
+  "id": "foo",
+  "fans": [
+    { "name": "bev", "obsession": 0.57 },
+    { "name": "ali", "obsession": 0.89 }
   ]
 }
 ```
@@ -82,7 +79,6 @@ pipeline:
         root.fans = this.fans.filter(fan -> fan.obsession > 0.5)
 ```
 
-
 ### More Mapping
 
 When receiving JSON documents of the form:
@@ -90,10 +86,10 @@ When receiving JSON documents of the form:
 ```json
 {
   "locations": [
-    {"name": "Seattle", "state": "WA"},
-    {"name": "New York", "state": "NY"},
-    {"name": "Bellevue", "state": "WA"},
-    {"name": "Olympia", "state": "WA"}
+    { "name": "Seattle", "state": "WA" },
+    { "name": "New York", "state": "NY" },
+    { "name": "Bellevue", "state": "WA" },
+    { "name": "Olympia", "state": "WA" }
   ]
 }
 ```
@@ -101,7 +97,7 @@ When receiving JSON documents of the form:
 We could collapse the location names from the state of Washington into a field `Cities`:
 
 ```json
-{"Cities": "Bellevue, Olympia, Seattle"}
+{ "Cities": "Bellevue, Olympia, Seattle" }
 ```
 
 With the following config:
@@ -115,6 +111,3 @@ pipeline:
                         map_each(loc -> loc.name).
                         sort().join(", ")
 ```
-
-
-

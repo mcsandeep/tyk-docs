@@ -4,20 +4,20 @@ title: Developing Plugins
 description: "This section explains everything you need to know about developing your own plugins. This page gives an overview of plugins and provides links to the appropriate documentation."
 tags: ["Plugins", "API Gateway middleware", "Custom middleware"]
 aliases:
-    - /customise-tyk/plugins/
+  - /customise-tyk/plugins/
 ---
 
 Plugins can be used to customize and enhance the capabilities of your APIs through integration with external services and databases to perform operations such as data transformation, custom authentication, logging and monitoring etc.
 
-When Tyk receives an API request, it works through a [chain]({{< ref "middleware-execution-order" >}}) of processing *middleware* that is configured using the API definition. There are a large number of built-in middleware in the processing chain that are dedicated to performing [client authentication]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}}), [request transformation]({{< ref "advanced-configuration/transform-traffic" >}}), [caching]({{< ref "basic-config-and-security/reduce-latency/caching" >}}) and many other processes before proxying the request to the upstream.
+When Tyk receives an API request, it works through a [chain]({{< ref "middleware-execution-order" >}}) of processing _middleware_ that is configured using the API definition. There are a large number of built-in middleware in the processing chain that are dedicated to performing [client authentication]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}}), [request transformation]({{< ref "advanced-configuration/transform-traffic" >}}), [caching]({{< ref "basic-config-and-security/reduce-latency/caching" >}}) and many other processes before proxying the request to the upstream.
 
 Tyk's custom plugin facility provides a powerful and flexible way to extend the middleware chain. It allows API developers to write custom middleware, in various programming languages, that can perform additional processing of requests and responses.
 
 For example, a custom authentication scheme can be implemented and executed on API requests, custom plugins can be used to provide integration with external services and databases, or additional processing can be performed on the response returned from the upstream.
 
-There are several different stages of the [API request lifecycle]({{< ref "/concepts/middleware-execution-order" >}}) where custom plugins can be attached (or *hooked*) into the middleware chain allowing significant customization to meet your specific requirements.
+There are several different stages of the [API request lifecycle]({{< ref "/concepts/middleware-execution-order" >}}) where custom plugins can be attached (or _hooked_) into the middleware chain allowing significant customization to meet your specific requirements.
 
-Custom plugins are usually referred to by the location where they can be *hooked* into the middleware processing chain as follows:
+Custom plugins are usually referred to by the location where they can be _hooked_ into the middleware processing chain as follows:
 
 1. [Pre (Request)]({{< ref "/plugins/plugin-types/request-plugins" >}})
 2. [Authentication]({{< ref "/plugins/plugin-types/auth-plugins/auth-plugins" >}})
@@ -26,14 +26,13 @@ Custom plugins are usually referred to by the location where they can be *hooked
 5. [Response]({{< ref "/plugins/plugin-types/response-plugins" >}})
 6. [Analytics (Response)]({{< ref "/plugins/plugin-types/analytics-plugins" >}})
 
-
---- 
+---
 
 ## Supported Languages
 
 A variety of languages are supported for plugin development:
 
-- [Go]({{< ref "/plugins/supported-languages/golang" >}}) plugins are classed as *native* plugins, since they are implemented in the same language as Tyk Gateway.  
+- [Go]({{< ref "/plugins/supported-languages/golang" >}}) plugins are classed as _native_ plugins, since they are implemented in the same language as Tyk Gateway.
 - [gRPC]({{< ref "/plugins/supported-languages/rich-plugins/grpc" >}}) plugins are executed remotely on a gRPC server. Tyk Gateway supports plugin development for any gRPC supported language.
 - [Javascript JVSM]({{< ref "/plugins/supported-languages/javascript-middleware" >}}) plugins are executed within a JavaScript Virtual Machine (JSVM) that is ECMAScript5 compatible.
 - [Python]({{< ref "/plugins/supported-languages/rich-plugins/python/python" >}}) plugins are embedded within the same process as Tyk Gateway.
@@ -66,7 +65,7 @@ The plugin source code and associated configuration are co-located with Tyk Gate
 
 #### Plugin Bundles (Remote)
 
-The plugin source code and associated configuration are bundled into a zip file and uploaded to a remote webserver. Multiple plugins can be stored in a single *plugin bundle*. Tyk Gateway will download the plugin bundle from the remote webserver and then extract, cache and execute plugins for each of the configured phases of the API request / response lifecycle. For further details on plugin bundles and how to configure them, please refer to the [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) page.
+The plugin source code and associated configuration are bundled into a zip file and uploaded to a remote webserver. Multiple plugins can be stored in a single _plugin bundle_. Tyk Gateway will download the plugin bundle from the remote webserver and then extract, cache and execute plugins for each of the configured phases of the API request / response lifecycle. For further details on plugin bundles and how to configure them, please refer to the [plugin bundles]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}}) page.
 
 #### gRPC Plugins (Remote)
 
@@ -76,15 +75,15 @@ Custom plugins can be hosted on a remote server and executed from the Tyk Gatewa
 
 #### Coprocess Plugins
 
-In the context of Tyk, *coprocess* plugins refer to external plugins that run alongside the main Tyk Gateway process. These plugins allow for custom logic to be executed within the API lifecycle without modifying the core gateway. Essentially, *coprocess* plugins act as independent services that communicate with Tyk via APIs, enabling the integration of custom functionality written in various languages such as Python, or any other supported gRPC language.
+In the context of Tyk, _coprocess_ plugins refer to external plugins that run alongside the main Tyk Gateway process. These plugins allow for custom logic to be executed within the API lifecycle without modifying the core gateway. Essentially, _coprocess_ plugins act as independent services that communicate with Tyk via APIs, enabling the integration of custom functionality written in various languages such as Python, or any other supported gRPC language.
 
 To enable these coprocess plugins, Tyk Gateway needs to be configured accordingly. This is done in the `tyk.conf` file under the `coprocess_options` section, where the option `enable_coprocess` must be set to `true`:
 
 ```json
 {
-    "coprocess_options": {
-        "enable_coprocess": true
-    }
+  "coprocess_options": {
+    "enable_coprocess": true
+  }
 }
 ```
 
@@ -111,5 +110,3 @@ Please consult the supporting documentation for further details on configuring T
 - Get started with developing first Go plugin using our [tutorial]({{< ref "/plugins/tutorials/quick-starts/go/quickstart" >}}).
 - Browse our [supported languages]({{< ref "/plugins/supported-languages" >}}) section for language specific tutorials.
 - Browse our [plugins hub]({{< ref "/plugins/plugin-hub" >}}) for resources that showcase how to develop plugins.
-
-  

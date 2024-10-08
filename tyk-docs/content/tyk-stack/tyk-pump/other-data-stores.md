@@ -4,7 +4,7 @@ title: Supported Backends
 menu:
   main:
     parent: Tyk Pump
-weight: 10 
+weight: 10
 aliases:
   - /analyse/other-data-stores/
   - /analytics-and-reporting/other-data-stores/

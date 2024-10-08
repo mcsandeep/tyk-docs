@@ -1,7 +1,7 @@
 ---
 title: "Create Get started guides for your API Products"
 date: 2022-02-08
-tags: ["Tyk Developer Portal","Enterprise Portal"]
+tags: ["Tyk Developer Portal", "Enterprise Portal"]
 description: "How to manage the Get started guides with the Enterprise Developer portal"
 menu:
   main:
@@ -20,16 +20,17 @@ If you are interested in getting access contact us at [support@tyk.io](<mailto:s
 
 As an API Provider, you can package APIs into API Products and supply them with documentation to deliver value to your internal and external API Consumers.<br/>
 API documentation is essential for API Products. Good API documentation goes beyond just Open API Specification. To make your API Products easy to use and engaging, you can add technical and business guides to the documentation of your API Products, for instance:
-* Get started guides explaining how to start with your API Product;
-* Use-cases;
-* Business documentation that explains the business value and helps to convince decision-makers.
+
+- Get started guides explaining how to start with your API Product;
+- Use-cases;
+- Business documentation that explains the business value and helps to convince decision-makers.
 
 Tyk Enterprise Developer portal provides two ways of documenting APIs:
-* Open API Specifications for APIs;
-* The Get started documentation feature enables API Providers to add as many technical and business guides to API Products as needed.
+
+- Open API Specifications for APIs;
+- The Get started documentation feature enables API Providers to add as many technical and business guides to API Products as needed.
 
 This guide explains how to add the Get started documentation to API Products.
-
 
 ## Step 1: Create and publish an API Product
 
@@ -59,7 +60,6 @@ To select which version of the documentation to display, check the ‘Display Ma
 When it’s checked, the portal will display the Markdown version of the page.
 Otherwise, portal will display the HTML version.
 {{< img src="img/dashboard/portal-management/enterprise-portal/api-documentation-page-display-md-version.png" alt="Display the MD version of the page" >}}
-
 
 ## Step 3: Add more documentation pages and set the display order
 

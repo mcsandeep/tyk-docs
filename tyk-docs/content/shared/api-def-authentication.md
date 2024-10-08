@@ -31,11 +31,10 @@ However Tyk supports many more methods, and these can be set by enabling these f
 - `refresh_token` - client can use a refresh token to refresh expired bearer access token.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If using auth codes and refresh tokens, Tyk needs to notify your webapp of newly issued keys - it does this via web hook. See the section on `notifications`.
 {{< /note >}}
-
 
 - `oauth_meta.allowed_authorize_types`: Should be a string array of OAuth authorization types - options that are supported are:
 
@@ -46,11 +45,10 @@ If using auth codes and refresh tokens, Tyk needs to notify your webapp of newly
   This is the URL that the user will be sent to (via POST).
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This interface method is only supported by modern browsers that respect a 307 redirect (retaining method and data), and varies between browsers.
 {{< /note >}}
-
 
 - `notifications`: When Tyk implements an OAuth2 flow, because it will handle access requests on your behalf once authorization codes have been issued, it will need to notify your system that these have occurred.  
   It will POST key data to the URL set in these options to ensure that your system is synchronised with Tyk.
@@ -62,11 +60,10 @@ This interface method is only supported by modern browsers that respect a 307 re
 - `auth`: The auth section handles the standard Tyk authentication method, and if none of the above are set, will be the method used to authenticate requests.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 From v2.9.2 `auth` has been deprecated in favor of `auth_configs`.
 {{< /note >}}
-
 
 - `auth.auth_header_name`: The header carrying the authentication token.
 

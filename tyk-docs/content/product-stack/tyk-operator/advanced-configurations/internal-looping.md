@@ -2,10 +2,10 @@
 title: Internal Looping
 date: 2024-08-07
 description: "Using internal looping with Tyk Operator"
-tags: ["Internal Looping", "Tyk Operator", "internal looping","per-API", "Tyk Classic"]
+tags: ["Internal Looping", "Tyk Operator", "internal looping", "per-API", "Tyk Classic"]
 ---
 
-The concept of [internal looping]({{< ref "advanced-configuration/transform-traffic/looping" >}}) allows you to use URL Rewriting to redirect your URL to *another API endpoint* or to *another API* in the Gateway. In Tyk, looping is generally targeted using the `tyk://<API_ID>/<path>` scheme, which requires prior knowledge of the `API_ID`. Tyk Operator simplifies the management and transformation of API traffic within Kubernetes environments by abstracting APIs as objects, managing them and dynamically assigning `API_ID`s by its Kubernetes metedata name and namespace.
+The concept of [internal looping]({{< ref "advanced-configuration/transform-traffic/looping" >}}) allows you to use URL Rewriting to redirect your URL to _another API endpoint_ or to _another API_ in the Gateway. In Tyk, looping is generally targeted using the `tyk://<API_ID>/<path>` scheme, which requires prior knowledge of the `API_ID`. Tyk Operator simplifies the management and transformation of API traffic within Kubernetes environments by abstracting APIs as objects, managing them and dynamically assigning `API_ID`s by its Kubernetes metedata name and namespace.
 
 ---
 
@@ -47,10 +47,10 @@ In the above example an incoming request of `/basic/456` would be matched by the
 
 ```yaml
 url_rewrites:
-- match_pattern: /basic/(.*)
-  method: GET
-  path: /{id}
-  rewrite_to: tyk://ZGVmYXVsdC9wcm94eS1hcGk/proxy/$1
+  - match_pattern: /basic/(.*)
+    method: GET
+    path: /{id}
+    rewrite_to: tyk://ZGVmYXVsdC9wcm94eS1hcGk/proxy/$1
 ```
 
 Here we can see that the `rewrite_to` field has been generated with the value `tyk://ZGVmYXVsdC9wcm94eS1hcGk/proxy/$1` where `ZGVmYXVsdC9wcm94eS1hcGk` represents the API ID for the `proxy-api` API resource in the `default` namespace. Notice also that path `proxy/$1` is appended to the base URL `tyk://ZGVmYXVsdC9wcm94eS1hcGk` and contains the context variable `$1`. This will be substituted with the value of `{id}` in the `path` configuration parameter.
@@ -66,7 +66,7 @@ Triggers are essential for executing specific actions when particular criteria a
 
 The process for configuring internal looping in triggers to is similar to that explained in section [URL Rewrites](#url-rewrites").
 
-Assume that we wish to instruct Tyk Operator to redirect all *Basic Authentication* requests to the API identified by `basic-auth-internal` within the `default` namespace. Subsequently, we can use a `rewrite_to_internal` object as follows:
+Assume that we wish to instruct Tyk Operator to redirect all _Basic Authentication_ requests to the API identified by `basic-auth-internal` within the `default` namespace. Subsequently, we can use a `rewrite_to_internal` object as follows:
 
 ```yaml
 triggers:
@@ -90,12 +90,12 @@ Tyk Operator will automatically generate a URL Rewrite (`rewrite_to`) to redirec
 
 ```yaml
 triggers:
-- "on": all
-  options:
-    header_matches:
-      Authorization:
-        match_rx: ^Basic
-  rewrite_to: tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs/basic/$2
+  - "on": all
+    options:
+      header_matches:
+        Authorization:
+          match_rx: ^Basic
+    rewrite_to: tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs/basic/$2
 ```
 
 Here we can see that the `rewrite_to` field has been generated with the value `tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs/proxy/$1` where `ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs` represents the API ID for the `proxy-api` API resource in the `default` namespace. Notice also that path `basic/$2` is appended to the base URL `tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs` and contains the context variable `$2`. This will be substituted with the remainder of the request path.
@@ -133,16 +133,16 @@ The proxy object’s `target_internal` field references other API resources. Thi
 Tyk Operator will automatically generate the target URL to redirect the request to the API identified by `users-internal-api` within the `default` namespace as follows:
 
 ```yaml
-  target_url: "tyk://ZGVmYXVsdC91c2Vycy1pbnRlcm5hbC1hcGk"
+target_url: "tyk://ZGVmYXVsdC91c2Vycy1pbnRlcm5hbC1hcGk"
 ```
 
 ---
 
 ## Example
 
-Assume a business has legacy customers who authenticate with a service using *Basic Authentication*. The business also wants to support API Keys, enabling both client types to access the same ingress.
+Assume a business has legacy customers who authenticate with a service using _Basic Authentication_. The business also wants to support API Keys, enabling both client types to access the same ingress.
 
-To facilitate this, Tyk must be configured for dynamic authentication, accommodating both *Basic Authentication* and *Auth Token* methods.
+To facilitate this, Tyk must be configured for dynamic authentication, accommodating both _Basic Authentication_ and _Auth Token_ methods.
 
 This setup requires configuring four API Definitions within Tyk:
 
@@ -151,31 +151,31 @@ This setup requires configuring four API Definitions within Tyk:
 3. AuthToken Internal API
 4. Proxy Internal API
 
-When a request arrives at the ingress route, a URL rewrite can direct it to either the *BasicAuth Internal* or *AuthToken Internal* API, depending on the authentication method used.
+When a request arrives at the ingress route, a URL rewrite can direct it to either the _BasicAuth Internal_ or _AuthToken Internal_ API, depending on the authentication method used.
 
-These internal APIs will authenticate the requests. Assuming successful authentication (the happy path), they will forward the requests to the *Proxy Internal API*, which handles the proxying to the underlying service.
+These internal APIs will authenticate the requests. Assuming successful authentication (the happy path), they will forward the requests to the _Proxy Internal API_, which handles the proxying to the underlying service.
 
 </br>
 
 {{< note success >}}
 **Note**
 
-There are no actual HTTP redirects in this scenario, meaning that there is no performance penalty in performing any of these *Internal Redirects*.
+There are no actual HTTP redirects in this scenario, meaning that there is no performance penalty in performing any of these _Internal Redirects_.
 
 {{< /note >}}
 
 ### Entry Point API
 
-The *Entry Point* API is the first point of entry for a client request. It inspects the header to determine if the incoming client request requires authentication using *Basic Authentication* or *Auth Token*. Consequently, it then redirects the request to the *BasicAuth Internal* or *AuthToken Internal* API depending upon the header included in the client request.
+The _Entry Point_ API is the first point of entry for a client request. It inspects the header to determine if the incoming client request requires authentication using _Basic Authentication_ or _Auth Token_. Consequently, it then redirects the request to the _BasicAuth Internal_ or _AuthToken Internal_ API depending upon the header included in the client request.
 
-The API definition resource for the *Entry Point* API is listed below. It is configured to listen for requests on the `/entry` path and forward requests upstream to `http://example.com`
+The API definition resource for the _Entry Point_ API is listed below. It is configured to listen for requests on the `/entry` path and forward requests upstream to `http://example.com`
 
 We can see that there is a URL Rewrite rule (`url_rewrites`) with two triggers configured to match Basic Authentication and Auth Token requests:
 
-- **Basic Authentication trigger**: Activated for incoming client requests that include an *Authorization* header containing a value starting with *Basic*. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the *BasicAuthInternal* API, identified by name `basic-auth-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/basic/<path>`.
-- **Auth Token trigger**: Activated for incoming client requests that include an *Authorization* header containing a value starting with *Bearer*. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the *AuthTokenInternal* API, identified by name `auth-token-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/token/<path>`.
+- **Basic Authentication trigger**: Activated for incoming client requests that include an _Authorization_ header containing a value starting with _Basic_. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the _BasicAuthInternal_ API, identified by name `basic-auth-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/basic/<path>`.
+- **Auth Token trigger**: Activated for incoming client requests that include an _Authorization_ header containing a value starting with _Bearer_. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the _AuthTokenInternal_ API, identified by name `auth-token-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/token/<path>`.
 
- ```yaml {linenos=true, linenostart=1, hl_lines=["21-45"]}
+```yaml {linenos=true, linenostart=1, hl_lines=["21-45"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -225,7 +225,7 @@ spec:
 
 ### BasicAuth Internal API
 
-The *BasicAuth Internal* API listens to requests on path `/basic` and forwards them upstream to `http://example.com`.
+The _BasicAuth Internal_ API listens to requests on path `/basic` and forwards them upstream to `http://example.com`.
 
 The API is configured with a URL rewrite rule in `url_rewrites` to redirect incoming `GET /basic/` requests to the API in the Gateway represented by name `proxy-api` in the `default` namespace. The `/basic/` prefix will be stripped from the request URL and the URL will be rewritten with the format `/proxy/$1`. The context variable `$1` is substituted with the remainder of the path request. For example `GET /basic/456` will become `GET /proxy/456`.
 
@@ -271,7 +271,7 @@ spec:
 
 ### AuthToken Internal API
 
-The *AuthToken Internal* API listens to requests on path `/token` and forwards them upstream to `http://example.com`.
+The _AuthToken Internal_ API listens to requests on path `/token` and forwards them upstream to `http://example.com`.
 
 The API is configured with a URL rewrite rule in `url_rewrites` to redirect incoming `GET /token/` requests to the API in the Gateway represented by name `proxy-api` in the `default` namespace. The `/token/` prefix will be stripped from the request URL and the URL will be rewritten to the format `/proxy/$1`. The context variable `$1` is substituted with the remainder of the path request. For example `GET /token/456` will become `GET /proxy/456`.
 
@@ -317,9 +317,9 @@ spec:
 
 ### Proxy Internal API
 
-The *Proxy Internal* API is keyless and responsible for listening to requests on path `/proxy` and forwarding upstream to `http://httpbin.org`. The listen path is stripped from the request before it is sent upstream.
+The _Proxy Internal_ API is keyless and responsible for listening to requests on path `/proxy` and forwarding upstream to `http://httpbin.org`. The listen path is stripped from the request before it is sent upstream.
 
-This API receives requests forwarded from the internal *AuthToken Internal* and *BasicAuth Internal APIs*. Requests will contain the header `x-transform-api` with value `token-auth` or `basic-auth`, depending upon which internal API the request originated from.
+This API receives requests forwarded from the internal _AuthToken Internal_ and _BasicAuth Internal APIs_. Requests will contain the header `x-transform-api` with value `token-auth` or `basic-auth`, depending upon which internal API the request originated from.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["10-13"]}
 apiVersion: tyk.tyk.io/v1alpha1

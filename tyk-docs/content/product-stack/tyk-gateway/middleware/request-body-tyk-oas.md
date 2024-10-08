@@ -18,72 +18,75 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The request body transformation middleware (`transformRequestBody`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `transformRequestBody` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `format`: the format of input data the parser should expect (either `xml` or `json`)
 - `body`: [see note] this is a `base64` encoded representation of your template
 - `path`: [see note] this is the path to the text file containing the template
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You should configure only one of `body` or `path` to indicate whether you are embedding the template within the middleware or storing it in a text file. The middleware will automatically select the correct source based on which of these fields you complete. If both are provided, then `body` will take precedence and `path` will be ignored.
 {{< /note >}}
 
 For example:
+
 ```json {hl_lines=["39-43"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-request-body-transform",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "put": {
-                "operationId": "anythingput",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-request-body-transform",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "put": {
+        "operationId": "anythingput",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-request-body-transform",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-request-body-transform/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingput": {
-                    "transformRequestBody": {
-                        "enabled": true,
-                        "format": "json",
-                        "body": "ewogICJ2YWx1ZTEiOiAie3sudmFsdWUyfX0iLAogICJ2YWx1ZTIiOiAie3sudmFsdWUxfX0iLAogICJyZXEtaGVhZGVyIjogInt7Ll90eWtfY29udGV4dC5oZWFkZXJzX1hfSGVhZGVyfX0iLAogICJyZXEtcGFyYW0iOiAie3suX3R5a19jb250ZXh0LnJlcXVlc3RfZGF0YS5wYXJhbX19Igp9"
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-request-body-transform",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-request-body-transform/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingput": {
+          "transformRequestBody": {
+            "enabled": true,
+            "format": "json",
+            "body": "ewogICJ2YWx1ZTEiOiAie3sudmFsdWUyfX0iLAogICJ2YWx1ZTIiOiAie3sudmFsdWUxfX0iLAogICJyZXEtaGVhZGVyIjogInt7Ll90eWtfY29udGV4dC5oZWFkZXJzX1hfSGVhZGVyfX0iLAogICJyZXEtcGFyYW0iOiAie3suX3R5a19jb250ZXh0LnJlcXVlc3RfZGF0YS5wYXJhbX19Igp9"
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
-In this example the request body transform middleware has been configured for  requests to the `PUT /anything` endpoint. The `body` contains a base64 encoded Go template (which you can check by pasting the value into a service such as [base64decode.org](https://www.base64decode.org)).
+In this example the request body transform middleware has been configured for requests to the `PUT /anything` endpoint. The `body` contains a base64 encoded Go template (which you can check by pasting the value into a service such as [base64decode.org](https://www.base64decode.org)).
 
 Decoded, this template is:
+
 ```json
 {
   "value1": "{{.value2}}",
@@ -94,6 +97,7 @@ Decoded, this template is:
 ```
 
 So if you make a request to `PUT /anything?param=foo` as follows:
+
 ```bash
 PUT /anything?param=foo
 HTTP/1.1
@@ -106,13 +110,14 @@ X-Header: bar
 }
 ```
 
-You will receive a response from the upstream with this payload: 
+You will receive a response from the upstream with this payload:
+
 ```json
 {
-    "req-header": "bar",
-    "req-param": "[foo]",
-    "value1": "hello",
-    "value2": "world"
+  "req-header": "bar",
+  "req-param": "[foo]",
+  "value1": "hello",
+  "value2": "world"
 }
 ```
 
@@ -122,7 +127,7 @@ The configuration above is a complete and valid Tyk OAS API Definition that you 
 
 {{< note success >}}
 
-**Note**  
+**Note**
 
 If using a template in a file (i.e. you configure `path` in the `transformRequestBody` object), remember that Tyk will load and evaluate the template when the Gateway starts up. If you modify the template, you will need to restart Tyk in order for the changes to take effect.
 
@@ -144,7 +149,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Request Body Transform middleware
 
-Select **ADD MIDDLEWARE** and choose the **Request Body Transform** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Request Body Transform** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-request-body.png" alt="Adding the Request Body Transform middleware" >}}
 

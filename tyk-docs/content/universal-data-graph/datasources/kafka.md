@@ -6,17 +6,16 @@ menu:
     parent: "UDG DataSources"
 weight: 2
 aliases:
-    - /universal-data-graph/data-sources/kafka
+  - /universal-data-graph/data-sources/kafka
 ---
 
 The Kafka DataSource is able to subscribe to Kafka topics and query the events with GraphQL.
 
+The Kafka DataSource utilizes consumer groups to subscribe to the given topics, and inherits all behavior of the consumer group concept.
 
-The Kafka DataSource utilizes consumer groups to subscribe to the given topics, and inherits all behavior of the consumer group concept.   
+Consumer groups are made up of multiple cooperating consumers, and the membership of these groups can change over time. Users can easily add a new consumer to the group to scale the processing load. A consumer can also go offline either for planned maintenance or due to an unexpected failure. Kafka maintains the membership of each group and redistributes work when necessary.
 
-Consumer groups are made up of multiple cooperating consumers, and the membership of these groups can change over time. Users can easily add a new consumer to the group to scale the processing load. A consumer can also go offline either for planned maintenance or due to an unexpected failure. Kafka maintains the membership of each group and redistributes work when necessary.   
-
-When multiple consumers are subscribed to a topic and belong to the same consumer group, each consumer in the group will receive messages from a different subset of the partitions in the topic. You should know that if you add more consumers to a single group with a single topic than you have partitions, some consumers will be idle and get no messages.  
+When multiple consumers are subscribed to a topic and belong to the same consumer group, each consumer in the group will receive messages from a different subset of the partitions in the topic. You should know that if you add more consumers to a single group with a single topic than you have partitions, some consumers will be idle and get no messages.
 
 #### Basic Configuration
 
@@ -25,7 +24,7 @@ You can find the full documentation for Kafka DataSource configuration here.
 **broker_addresses**
 In order to work with the Kafka DataSource, you first need a running Kafka cluster. The configuration takes a list of known broker addresses and discovers the rest of the cluster.
 
-``` bash
+```bash
 {
     "broker_addresses": ["localhost:9092"]
 }
@@ -77,17 +76,17 @@ The above configuration object is just a part of the API Definition Object of Ty
 
 1. Click on the field which should have Kafka datasource attached
 
-2. From the right-hand side *Configure data source* panel choose KAFKA at the bottom in the *Add a new external data source* section
+2. From the right-hand side _Configure data source_ panel choose KAFKA at the bottom in the _Add a new external data source_ section
 
-{{< img src="/img/dashboard/udg/datasources/kafka-config.png" alt="Kafkaconfig" >}} 
+{{< img src="/img/dashboard/udg/datasources/kafka-config.png" alt="Kafkaconfig" >}}
 
-3. Provide datasource name, broker address (at least 1), topics (at least 1), groupID, clientID. Optionally you can also choose Kafka version, balance strategy and field mapping options. 
+3. Provide datasource name, broker address (at least 1), topics (at least 1), groupID, clientID. Optionally you can also choose Kafka version, balance strategy and field mapping options.
 
-4. Click *SAVE* button to persist the configuration.
+4. Click _SAVE_ button to persist the configuration.
 
 Once done the field you just configured will show information about data source type and name:
 
-{{< img src="/img/dashboard/udg/datasources/kafka-list.png" alt="KafkaList" >}} 
+{{< img src="/img/dashboard/udg/datasources/kafka-list.png" alt="KafkaList" >}}
 
 #### Subscribing to topics
 
@@ -105,7 +104,7 @@ type Subscription {
 }
 ```
 
-The `productUpdated` field will be updated each time a product is updated. Updating a product means a `price` or `inStock` fields of `Product` are updated and an event is published to a Kafka topic.  Consumers can subscribe to the `productUpdated` field by sending the following query to the server:
+The `productUpdated` field will be updated each time a product is updated. Updating a product means a `price` or `inStock` fields of `Product` are updated and an event is published to a Kafka topic. Consumers can subscribe to the `productUpdated` field by sending the following query to the server:
 
 ```bash
 subscription Products {
@@ -121,7 +120,7 @@ You can use any GraphQL client that supports subscriptions.
 
 #### Publishing events for testing
 
-In order to test the Kafka DataSource, you can publish the following  event to `product-updates` topic:
+In order to test the Kafka DataSource, you can publish the following event to `product-updates` topic:
 
 ```bash
 {
@@ -140,7 +139,6 @@ When you change any of the fields, all subscribers of the `productUpdated`kafk f
 The result should be similar to the following:
 
 {{< img src="/img/2.10/kafka0.png" alt="API Menu" >}}
-
 
 #### API Definition for the Kafka DataSource
 

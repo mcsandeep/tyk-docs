@@ -4,7 +4,7 @@ title: How to import existing keys into Tyk CE
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 You can use an API to import existing keys that were not created in Tyk into Tyk's Gateway.
@@ -65,5 +65,3 @@ curl http://127.0.0.1:8080/quickstart/headers -H 'Authorization: mycustomkey'
 ```
 
 See also the Keys section of the [Gateway API Swagger doc](https://tyk.io/docs/tyk-rest-api/).
-
-

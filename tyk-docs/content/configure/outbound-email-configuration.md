@@ -4,23 +4,23 @@ title: Outbound Email Configuration
 menu:
   main:
     parent: "Tyk Dashboard Configuration Options"
-weight: 6 
+weight: 6
 aliases:
   - /tyk-configuration-reference/outbound-email-configuration/
 ---
 
 ### Custom Email Templates
 
-The email templates for the Portal and system messages are located in the `portal/email_templates` directory. 
+The email templates for the Portal and system messages are located in the `portal/email_templates` directory.
 The Tyk Dashboard will need to be restarted for changes to take effect.
 
 ### Supported email drivers
 
-* SMTP
-* Mandrill
-* Sendgrid
-* Mailgun
-* AmazonSES
+- SMTP
+- Mandrill
+- Sendgrid
+- Mailgun
+- AmazonSES
 
 To get email set up for your installation, add the following to your `tyk_analytics.conf` file:
 
@@ -29,7 +29,7 @@ To get email set up for your installation, add the following to your `tyk_analyt
   "enable_email_notifications": true,
   "code": "{PROVIDER-NAME}",
   "settings": {
-    // Client provider specific settings go here. You can find the specific field described below 
+    // Client provider specific settings go here. You can find the specific field described below
   },
   "default_from_email": "jeff@wheresmyrug.com",
   "default_from_name": "Jeffrey (The Dude) Lebowski"
@@ -101,27 +101,27 @@ If `SMTPUsername` or `SMTPPassword` is omitted, Tyk assumes that authentication 
   "SecretAccessKey": "KEY"
 },
 ```
+
 ### Customize your Welcome Emails
 
 You can customize the welcome email that a developer recieves when they signup to your portal. You can use images and other HTML formatted content. The following video walks you through the process.
 
 {{< youtube XNyKRAlTDVs >}}
 
-
 1. Select **Settings** from your **Dashboard** > **Portal Management**
 2. You can change the from email address and the from email name for your welcome emails.
 3. To use customized email content, select **Enable custom welcome email**.
 4. You can then add the following custom content:
-  * Email Subject
-  * Email Body content
-  * Welcome email body copy
-  * Welcome email sign-off
+
+- Email Subject
+- Email Body content
+- Welcome email body copy
+- Welcome email sign-off
 
 {{< img src="/img/2.10/welcome_email_config.png" alt="Welcome-Email" >}}
 
 5. Enter your plain text or HTML formatted content. If including an image, the `LINK TO IMAGE` in an image `<img src="[LINK TO IMAGE]"/>` link must be a publicly hosted resource.
 6. Click **Save** at the top of the Portal Settings screen.
-
 
 ### Customize your Key Approval Emails
 
@@ -140,7 +140,7 @@ You can customize the welcome email that a developer recieves when they signup t
 {{< img src="/img/2.10/key_approval_image_link.png" alt="Email-Image" >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The `LINK TO IMAGE` must be a publicly hosted resource.
 {{< /note >}}

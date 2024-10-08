@@ -1,7 +1,7 @@
 ---
 title: "Tyk Enterprise Developer Portal"
 date: 2022-02-07
-tags: ["Developer Portal","Tyk"]
+tags: ["Developer Portal", "Tyk"]
 description: "Tyk Developer Portal is the most flexible and simplest way for API providers to publish, monetize and drive the adoption of APIs"
 menu:
   main:
@@ -13,12 +13,12 @@ The Tyk Enterprise Developer Portal is the most flexible and straightforward way
 
 The Tyk Enterprise Developer Portal enables you to:
 
-* Completely customize look and feel of the portal.
-* Combine multiple APIs into API product and supply them with OpenAPI documentation and tutorials.
-* Create multiple organizations and teams to segment your developer audience.
-* Create multiple API catalogs to tailor visibility of API products and plans to different audiences.
-* Integrate with the most popular Identity providers via Dynamic client registration.
-* Fully control the flow of the developer sign-up and enrollment.
+- Completely customize look and feel of the portal.
+- Combine multiple APIs into API product and supply them with OpenAPI documentation and tutorials.
+- Create multiple organizations and teams to segment your developer audience.
+- Create multiple API catalogs to tailor visibility of API products and plans to different audiences.
+- Integrate with the most popular Identity providers via Dynamic client registration.
+- Fully control the flow of the developer sign-up and enrollment.
 
 {{< youtube UMLkTKMzGXg >}}
 

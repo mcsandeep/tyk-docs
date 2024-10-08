@@ -4,9 +4,9 @@ title: Create a Request Transformation Plugin with Java
 menu:
   main:
     parent: "gRPC"
-weight: 3 
-aliases: 
-  -  "/plugins/rich-plugins/grpc/request-transformation-java"
+weight: 3
+aliases:
+  - "/plugins/rich-plugins/grpc/request-transformation-java"
 ---
 
 This tutorial will guide you through the creation of a gRPC-based Java plugin for Tyk.
@@ -214,7 +214,6 @@ gradle runServer
 
 The gRPC server will listen on port 5555 (as defined in `Server.java`). In the next steps we'll setup the plugin bundle and modify Tyk to connect to our gRPC server.
 
-
 ## Bundle the Plugin
 
 We need to create a manifest file within the `tyk-plugin` directory. This file contains information about our plugin and how we expect it to interact with the API that will load it. This file should be named `manifest.json` and needs to contain the following:
@@ -223,9 +222,11 @@ We need to create a manifest file within the `tyk-plugin` directory. This file c
 {
   "custom_middleware": {
     "driver": "grpc",
-    "pre": [{
+    "pre": [
+      {
         "name": "MyPreMiddleware"
-    }]
+      }
+    ]
   }
 }
 ```
@@ -240,11 +241,12 @@ To bundle our plugin run the following command in the `tyk-plugin` directory. Ch
 ```
 
 For Tyk 2.8 use:
+
 ```bash
 /opt/tyk-gateway/bin/tyk bundle build -y
 ```
 
-A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial. 
+A plugin bundle is a packaged version of the plugin. It may also contain a cryptographic signature of its contents. The `-y` flag tells the Tyk CLI tool to skip the signing process in order to simplify the flow of this tutorial.
 
 For more information on the Tyk CLI tool, see [here]({{< ref "plugins/how-to-serve-plugins/plugin-bundles#using-the-bundler-tool" >}}).
 
@@ -255,7 +257,6 @@ You should now have a `bundle.zip` file in the `tyk-plugin` directory.
 To publish the plugin, copy or upload `bundle.zip` to a local web server like Nginx, or Apache or storage like Amazon S3. For this tutorial we'll assume you have a web server listening on `localhost` and accessible through `http://localhost`.
 
 {{< include "grpc-include" >}}
-
 
 ## <a name="next"></a>What's Next?
 

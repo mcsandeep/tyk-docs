@@ -31,7 +31,7 @@ When using the ignore authentication middleware, we recommend that you familiari
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk recommends that you use [exact]({{< ref "getting-started/key-concepts/url-matching#exact-match" >}}) matching for maximum security, though prefix and wildcard strategies might also apply for your particular deployment or use case.
 {{< /note >}}
@@ -45,5 +45,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Ignore Authentication middleware summary
   - The Ignore Authentication middleware is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Ignore Authentication middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Ignore Authentication middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

@@ -11,11 +11,12 @@ aliases:
 ---
 
 ## Introduction
+
 [Azure](https://azure.microsoft.com/en-us/overview/what-is-azure/) is Microsoft's cloud services platform. It supports both the running of [Ubuntu Servers](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer?tab=Overview), as well as [Docker](https://www.docker.com/docker-azure) and [Docker-Compose](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/docker-compose-quickstart).
 
 For more details, see the [Azure Documentation](https://docs.microsoft.com/en-us/azure/).
 
-## Tyk Installation Options for Azure 
+## Tyk Installation Options for Azure
 
 Azure allows you to install Tyk in the following ways:
 

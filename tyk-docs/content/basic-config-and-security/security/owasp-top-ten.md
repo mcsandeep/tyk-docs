@@ -19,10 +19,11 @@ It is the responsibility of the API to handle this form of attack since it can a
 
 ## 2 - Broken Authentication
 
-Authentication is a vital aspect of API security. Failure to do so, as noted by OWASP, leads to *Broken Authentication* posing a significant risk to both API providers and data.
+Authentication is a vital aspect of API security. Failure to do so, as noted by OWASP, leads to _Broken Authentication_ posing a significant risk to both API providers and data.
 
 Tyk provides the following features and authentication mechanisms:
--  Prioritize secure methods, like [mutual TLS]({{< ref "basic-config-and-security/security/mutual-tls" >}}), over [basic authentication]({{< ref "basic-config-and-security/security/authentication-authorization/basic-auth#what-is-basic-authentication" >}}) wherever feasible.
+
+- Prioritize secure methods, like [mutual TLS]({{< ref "basic-config-and-security/security/mutual-tls" >}}), over [basic authentication]({{< ref "basic-config-and-security/security/authentication-authorization/basic-auth#what-is-basic-authentication" >}}) wherever feasible.
 - API owners can integrate external Identity Providers (IdPs) supporting methods like [OpenID Connect]({{< ref "basic-config-and-security/security/authentication-authorization/openid-connect" >}}), [OAuth 2.0]({{< ref "basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant#exchange-code-for-a-token" >}}) or [JSON Web Tokens]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}).
 - [Single Sign-On]({{< ref "advanced-configuration/integrate/sso" >}}) can be used for a centralized and trusted authentication source. API operators can choose from common authentication methods such as OAuth 2.0, LDAP, and SAML.
 - [Dynamic Client Registration]({{< ref "tyk-developer-portal/tyk-portal-classic/dynamic-client-registration#oauth-20-dynamic-client-registration-protocol-dcr" >}}), enables third-party authorization servers to issue client credentials via the Tyk Developer Portal. This streamlines Identity Management, eliminating the need to manage credentials across multiple systems.
@@ -34,11 +35,11 @@ Tyk provides the following features and authentication mechanisms:
 REST APIs provide endpoints that return all properties of an object in the reponse, some of which could contain sensitive data. Conversely, GraphQL API requests allow the clients to specify which properties of an object should be retrieved.
 
 From a REST API perspespective, it is the responsibility of the API to ensure that the correct data is retrieved. The Gateway can provide additional security measures as follows:
+
 - [Body transformation plugins]({{< ref "advanced-configuration/transform-traffic/request-method-transform" >}}) can be used to remove sensitive data from the response if the API is unable to do so itself.
 - [JSON Schema validation]({{< ref "product-stack/tyk-gateway/middleware/validate-request-tyk-classic" >}}) to validate that an incoming data payload meets a defined schema. Payloads that do not adhere to the schema are rejected.
 
 For GraphQL APIs, the gateway can be used to define the GraphQL schemas, limiting which properties of an object are queryable. Furthermore, access can be controlled to specific properties by configuring [field-based permissions]({{< ref "graphql/field-based-permissions" >}}). Subsequently, the visiblity of a schema's properties can be controlled for different consumers of the GraphQL API.
-
 
 ## 4 - Unrestricted Resource Consumption
 
@@ -62,9 +63,9 @@ To prevent Broken Functional Level Authorization (BFLA), requests to REST API en
 
 Tyk offers several measures to assist with protection from BFLA threats:
 
-- *Establish path-based access rights*: [Policies]({{< ref "getting-started/key-concepts/what-is-a-security-policy" >}}) are predefined sets of rules which grant access to particular APIs. These can include [path-based permissions]({{< ref "security/security-policies/secure-apis-method-path" >}}), which restrict access to particular paths and methods within an API. Clients can be assigned one or more policies which the Gateway will validate when it receives a request.
-- *Access Control*: Tyk has plugins that control access to API endpoints. They are known as [allowlist]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#allowlist" >}}) and [blocklist]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#blocklist" >}}) and can be configured via the Endpoint Designer of an API Definition. Both plugins grant and deny access to API paths and methods, but do so in different ways, which makes them mutually exclusive. When the allowlist plugin is used, only the marked paths and methods are allowed, all other paths and methods are blocked. This can be perceived as *deny by default* since it provides the least privileges. The reverse is true for the blocklist plugin, only the paths and methods marked as blocklist are blocked, all other paths and methods are allowed. It is recommended to use the *allowlist* approach, since it is the most restrictive, only allowing marked endpoint paths and paths. 
-- *CORS*: This [functionality]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors" >}}) allows the Tyk Gateway to limit API access to particular browser-based consumers.
+- _Establish path-based access rights_: [Policies]({{< ref "getting-started/key-concepts/what-is-a-security-policy" >}}) are predefined sets of rules which grant access to particular APIs. These can include [path-based permissions]({{< ref "security/security-policies/secure-apis-method-path" >}}), which restrict access to particular paths and methods within an API. Clients can be assigned one or more policies which the Gateway will validate when it receives a request.
+- _Access Control_: Tyk has plugins that control access to API endpoints. They are known as [allowlist]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#allowlist" >}}) and [blocklist]({{< ref "advanced-configuration/transform-traffic/endpoint-designer#blocklist" >}}) and can be configured via the Endpoint Designer of an API Definition. Both plugins grant and deny access to API paths and methods, but do so in different ways, which makes them mutually exclusive. When the allowlist plugin is used, only the marked paths and methods are allowed, all other paths and methods are blocked. This can be perceived as _deny by default_ since it provides the least privileges. The reverse is true for the blocklist plugin, only the paths and methods marked as blocklist are blocked, all other paths and methods are allowed. It is recommended to use the _allowlist_ approach, since it is the most restrictive, only allowing marked endpoint paths and paths.
+- _CORS_: This [functionality]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors" >}}) allows the Tyk Gateway to limit API access to particular browser-based consumers.
 
 ## 6 - Unrestricted Access To Sensitive Business Flows
 
@@ -109,14 +110,14 @@ Tyk offers the following features to support improper inventory management:
 - [Versioning]({{< ref "getting-started/key-concepts/versioning" >}}) allows newer versions of APIs to coexist with the older versions, facilitating deprecation and sunsetting.
 - [Sunsetting]({{< ref "getting-started/key-concepts/versioning#sunsetting-api-versions" >}}) allows versions to be configured with an Expiry Time, ensuring that a version is not accessible after the expiry date.
 - [Key expiry]({{< ref "basic-config-and-security/control-limit-traffic/key-expiry" >}}) ensures that access to an API is short lived, with a per key configurable Time to Live (TTL) for which a token remains valid before it expires. The implementation of key expiry, with a configurable Time To Live (TTL), mitigates the impact of compromised tokens by narrowing the window of vulnerability. Setting a TTL reduces the time frame during which a compromised token could be exploited, enhancing overall security.
-- Tyk Developer Portal catalogs APIs and facilitates granting access to them.  Integrated with a CMDB it can help keep documentation updated.
+- Tyk Developer Portal catalogs APIs and facilitates granting access to them. Integrated with a CMDB it can help keep documentation updated.
 - [Tyk Analytics]({{< ref "tyk-dashboard-analytics" >}}) can help identify the stagnant APIs and used stale APIs.
 - [Tyk Pump]({{< ref "tyk-pump" >}}) can ship metrics needed for analytics into Tyk Dashboard and other systems.
 - Third-party [Secret Storage]({{< ref "tyk-configuration-reference/kv-store" >}}) can be used to centralise and protect sensitive configuration data such as passwords, rather than exposing them as plain text in Tyk configuration files.
 
 In addition, it is best practice to consider any definition of done to include corresponding documentation updates.
 
-## 10 - Unsafe Consumption Of APIs 
+## 10 - Unsafe Consumption Of APIs
 
 Attackers may identify and target the third party APIs/services used by an API. This can lead to leaked sensitive information, denial of service, injection attacks etc.
 

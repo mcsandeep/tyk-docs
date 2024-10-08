@@ -1,7 +1,7 @@
 ---
 title: "Create API Consumer organizations and catalogs"
 date: 2022-02-10
-tags: ["Tyk Developer Portal","Enterprise Portal","Catalog","Audience","Developers","Organizations"]
+tags: ["Tyk Developer Portal", "Enterprise Portal", "Catalog", "Audience", "Developers", "Organizations"]
 description: "Segment your developer audience with catalogs and organizations"
 menu:
   main:
@@ -33,8 +33,10 @@ To achieve that, the API Provider uses two catalogs to implement their business 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/org-catalogue-product-relation.png" alt="Relationship between catalogs, API Products, plans, teams, and organizations" >}}
 
 ## Create organization and teams
+
 The Tyk Enterprise Developer Portal uses Organization and Catalogs to segment access to APIs and plans. Therefore, the first thing is to create an organization for your customers. If you don't want to provision organizations manually, you can leverage the [Admin APIs]({{< ref "/product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api.md" >}}) or enable the [self-service organization registration]({{< ref "/tyk-stack/tyk-developer-portal/enterprise-developer-portal/managing-access/manage-api-consumer-organisations.md" >}}).
 In this guide, we will create the **B2B customer** organization to fulfill the above business model:
+
 1. To create an organization for the **B2B customer**, navigate to the **Organizations** menu and click on the **Add new organization** button.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/navigate-to-organisations.png" alt="Navigate to the Organizations menu" >}}
 
@@ -49,9 +51,11 @@ You can edit the default team name by navigating to **Teams** and opening up the
 {{< /note >}}
 
 ## Create catalogs
+
 1. To create catalogs, navigate to the catalogs menu in the Tyk Enterprise Developer Portal.
 
 The default catalogs that are featured when the portal is [bootstrapped]({{< ref "/product-stack/tyk-enterprise-developer-portal/deploy/bootstrapping-portal.md" >}}) are:
+
 - **Public** catalogs are available to all developers.
 - **Private** catalogs are available only to logged in developers who have been assigned with access.
 

@@ -32,6 +32,7 @@ Of course, there are plenty of other scenarios where applying a rate limit may b
 At a basic level, when rate limiting is in use, Tyk Gateway will compare the incoming request rate against the configured limit and will block requests that arrive at a higher rate. For example, let’s say you only want to allow a client to call the API a maximum of 10 times per minute. In this case, you would apply a rate limit to the API expressed as "10 requests per 60 seconds". This means that the client will be able to successfully call the API up to 10 times within any 60 second interval (or window) and after for any further requests within that window, the user will get an [HTTP 429 (Rate Limit Exceeded)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) error response stating the rate limit has been exceeded.
 
 Tyk's rate limiter is configured using two variables:
+
 - `rate` which is the maximum number of requests that will be permitted during the interval (window)
 - `per` which is the length of the interval (window) in seconds
 
@@ -51,7 +52,7 @@ Key-level rate limiting is more focused on controlling traffic from individual s
 
 - **key-level global limit** limiting the rate of calls the user of a key can make to all APIs authorized by that key
 - **key-level per-API limit** limiting the rate of calls the user of a key can make to specific individual APIs
- 
+
 These guides include explanation of how to configure key-level rate limits when using [API Keys]({{< ref "getting-started/create-api-key" >}}) and [Security Policies]({{< ref "getting-started/create-security-policy" >}}).
 
 #### Which scope should I use?
@@ -79,7 +80,7 @@ If `rate` and `per` are configured in multiple policies applied to the same key 
 Given, policy A with `rate` set to 90 and `per` set to 30 seconds (3rps) and policy B with `rate` set to 100 and `per` set to 10 seconds (10rps). If both are applied to a key, Tyk will take the rate limit from policy B as it results in a higher effective request rate (10rps).
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Prior to Tyk 5.4.0 there was a long-standing bug in the calculation of the effective rate limit applied to the key where Tyk would combine the highest `rate` and highest `per` from the policies applied to the key, so for the example above the key would have `rate` set to 100 and `per` set to 30 giving an effective rate limit of 3.33rps. This has now been corrected.
 {{< /note >}}
@@ -97,7 +98,7 @@ Tyk offers the following rate limiting algorithms:
 When the rate limits are reached, Tyk will block requests with an [HTTP 429 (Rate Limit Exceeded)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) response.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk supports selection of the rate limit algorithm at the Gateway level, so the same algorithm will be applied to all APIs.
 It can be configured to switch dynamically between two algorithms depending on the request rate, as explained [here]({{< ref "#dynamic-algorithm-selection-based-on-request-rate" >}}).
@@ -168,30 +169,30 @@ rate limit based on the current traffic patterns. It helps in managing
 request spikes by gradually increasing or decreasing the rate limit
 instead of making abrupt changes or blocking requests excessively.
 
-This mechanism uses the concept of an intermediate *current allowance* (rate limit) that moves between an initial lower 
-bound (`threshold`) and the maximum configured request rate (`rate`). As the request rate approaches the current 
-*current allowance*, Tyk will emit an event to notify you that smoothing has been triggered. When the event is emitted, 
-the *current allowance* will be increased by a defined increment (`step`). A hold-off counter (`delay`) must expire 
-before another event is emitted and the *current allowance* further increased. If the request rate exceeds the 
-*current allowance* then the rate limiter will block further requests, returning `HTTP 429` as usual.
+This mechanism uses the concept of an intermediate _current allowance_ (rate limit) that moves between an initial lower
+bound (`threshold`) and the maximum configured request rate (`rate`). As the request rate approaches the current
+_current allowance_, Tyk will emit an event to notify you that smoothing has been triggered. When the event is emitted,
+the _current allowance_ will be increased by a defined increment (`step`). A hold-off counter (`delay`) must expire
+before another event is emitted and the _current allowance_ further increased. If the request rate exceeds the
+_current allowance_ then the rate limiter will block further requests, returning `HTTP 429` as usual.
 
-As the request rate falls following the spike, the *current allowance* will gradually reduce back to the lower bound (`threshold`).
+As the request rate falls following the spike, the _current allowance_ will gradually reduce back to the lower bound (`threshold`).
 
-Events are emitted and adjustments made to the *current allowance* based on the following calculations:
+Events are emitted and adjustments made to the _current allowance_ based on the following calculations:
 
 - when the request rate rises above `current allowance - (step * trigger)`,
-  a `RateLimitSmoothingUp` event is emitted and *current allowance* increases by `step`.
+  a `RateLimitSmoothingUp` event is emitted and _current allowance_ increases by `step`.
 - when the request rate falls below `allowance - (step * (1 + trigger))`,
-  a `RateLimitSmoothingDown` event is emitted and *current allowance* decreases by `step`.
+  a `RateLimitSmoothingDown` event is emitted and _current allowance_ decreases by `step`.
 
 ##### Configuring rate limit smoothing
 
 When Redis Rate Limiter is in use, rate limit smoothing is configured with the following options within the `smoothing` object alongside the standard `rate` and `per` parameters:
 
 - `enabled` (boolean) to enable or disable rate limit smoothing
-- `threshold` is the initial rate limit (*current allowance*) beyond which smoothing will be applied
-- `step` is the increment by which the *current allowance* will be increased or decreased each time a smoothing event is emitted
-- `trigger` is a fraction (typically in the range 0.1-1.0) of the `step` at which point a smoothing event will be emitted as the request rate approaches the *current allowance*
+- `threshold` is the initial rate limit (_current allowance_) beyond which smoothing will be applied
+- `step` is the increment by which the _current allowance_ will be increased or decreased each time a smoothing event is emitted
+- `trigger` is a fraction (typically in the range 0.1-1.0) of the `step` at which point a smoothing event will be emitted as the request rate approaches the _current allowance_
 - `delay` is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
 
 Rate Limit Smoothing is configured using the `smoothing` object within access keys and policies. For API-level rate limiting, this configuration is within the `access_rights[*].limit` object.
@@ -199,13 +200,7 @@ Rate Limit Smoothing is configured using the `smoothing` object within access ke
 An example configuration would be as follows:
 
 ```yaml
-    "smoothing": {
-      "enabled": true,
-      "threshold": 5,
-      "trigger": 0.5,
-      "step": 5,
-      "delay": 30
-    }
+"smoothing": { "enabled": true, "threshold": 5, "trigger": 0.5, "step": 5, "delay": 30 }
 ```
 
 #### Redis Sentinel Rate Limiter

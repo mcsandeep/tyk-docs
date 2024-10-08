@@ -9,6 +9,7 @@ aliases:
 When you configure an API on Tyk, the Gateway will proxy all requests received at the listen path that you have defined through to the upstream (target) URL configured in the API definition. Responses from the upstream are likewise proxied on to the originating client. Requests and responses are processed through a powerful [chain of middleware]({{< ref "concepts/middleware-execution-order" >}}) that perform security and processing functions.
 
 Within that chain are a highly configurable set of optional middleware that can, on a per-endpint basis:
+
 - apply processing to [API requests](#middleware-applied-to-the-api-request) before they are proxied to the upstream service
 - apply customization to the [API response](#middleware-applied-to-the-api-response) prior to it being proxied back to the client
 
@@ -26,7 +27,7 @@ Enabling the allow list will cause the entire API to become blocked other than f
 
 ### Block list
 
-The [Block List]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}})  middleware is a feature designed to prevent access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`. 
+The [Block List]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) middleware is a feature designed to prevent access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`.
 
 ### Cache
 
@@ -80,7 +81,7 @@ When working with Tyk OAS APIs, the request validation covers both headers and b
 
 ### Track Endpoint
 
-If you do not want to include all endpoints in your [Activity by Endpoint]({{< ref "product-stack/tyk-dashboard/advanced-configurations/analytics/activity-by-endpoint" >}}) statistics in Tyk Dashboard, you can enable this middleware for the endpoints to be included. 
+If you do not want to include all endpoints in your [Activity by Endpoint]({{< ref "product-stack/tyk-dashboard/advanced-configurations/analytics/activity-by-endpoint" >}}) statistics in Tyk Dashboard, you can enable this middleware for the endpoints to be included.
 
 ### URL Rewrite
 

@@ -4,15 +4,17 @@ title: CORS issues on developer portal
 menu:
   main:
     parent: "Tyk Dashboard Troubleshooting"
-weight: 6 
+weight: 6
 ---
 
 ### Description
 
 You get following errors in the browser console:
+
 ```
 Access to fetch at 'https://<Your Gateway URL>/<Your API>/' from origin 'https://<Your Dashboard URL>' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 ```
+
 ```
 POST https://<Your Gateway URL>/<Your API>/ net::ERR_FAILED
 ```
@@ -24,12 +26,14 @@ The CORS middleware in the Gateway is blocking this request. This can happen whe
 ### Solution
 
 Make sure that your CORS in the `Advanced Options` of the API is enabled and the settings are correct. This means:
- - `Allowed Origins` should allow the developer portal domain
- - `Allowed Methods` should allow all methods needed for API documentation (at least `GET` and `POST`)
- - `Allowed Headers` should allow at least `Origin`, `Content-Type` and for authenticated requests the authorization header (e.g. `Authorization`)
 
- > **Note:** When creating a new API with Dashboard v3.1 and higher the CORS settings will be prefilled with some default values (but **disabled** by default).
+- `Allowed Origins` should allow the developer portal domain
+- `Allowed Methods` should allow all methods needed for API documentation (at least `GET` and `POST`)
+- `Allowed Headers` should allow at least `Origin`, `Content-Type` and for authenticated requests the authorization header (e.g. `Authorization`)
 
- You can learn more about CORS on this pages:
- - [CORS in API Definition]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors" >}})
- - [How to setup CORS]({{< ref "frequently-asked-questions/how-to-setup-cors" >}}) 
+> **Note:** When creating a new API with Dashboard v3.1 and higher the CORS settings will be prefilled with some default values (but **disabled** by default).
+
+You can learn more about CORS on this pages:
+
+- [CORS in API Definition]({{< ref "tyk-apis/tyk-gateway-api/api-definition-objects/cors" >}})
+- [How to setup CORS]({{< ref "frequently-asked-questions/how-to-setup-cors" >}})

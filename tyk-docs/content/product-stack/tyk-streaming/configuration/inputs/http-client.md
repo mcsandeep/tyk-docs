@@ -1,7 +1,7 @@
 ---
 title: Http Client
 description: Explains an overview of configuring Http client input
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs", "Http Client", "http_client" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs", "Http Client", "http_client"]
 ---
 
 Connects to a server and continuously performs requests for a single message.
@@ -161,16 +161,14 @@ rate_limit_resources:
 The URL to connect to.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ### verb
 
 A verb to connect with
 
-
 Type: `string`  
-Default: `"GET"`  
+Default: `"GET"`
 
 ```yml
 # Examples
@@ -188,7 +186,7 @@ A map of headers to add to the request.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}})
 
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ```yml
 # Examples
@@ -202,16 +200,14 @@ headers:
 
 Specify optional matching rules to determine which metadata keys should be added to the HTTP request as headers.
 
-
-Type: `object`  
+Type: `object`
 
 ### metadata.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -231,9 +227,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -249,7 +244,6 @@ include_patterns:
 
 Optionally set a level at which the request and response payload of each request made will be logged.
 
-
 Type: `string`  
 Default: `""`  
 Options: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`, ``.
@@ -258,29 +252,25 @@ Options: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `FATAL`, ``.
 
 Allows you to specify open authentication via OAuth version 1.
 
-
-Type: `object`  
+Type: `object`
 
 ### oauth.enabled
 
 Whether to use OAuth version 1 in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth.consumer_key
 
 A value used to identify the client to the service provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.consumer_secret
 
 A secret used to establish ownership of the consumer key.
-
 
 Type: `string`  
 Default: `""`
@@ -289,14 +279,12 @@ Default: `""`
 
 A value used to gain access to the protected resources on behalf of the user.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.access_token_secret
 
 A secret provided in order to establish ownership of a given access token.
-
 
 Type: `string`  
 Default: `""`
@@ -305,29 +293,25 @@ Default: `""`
 
 Allows you to specify open authentication via OAuth version 2 using the client credentials token flow.
 
-
-Type: `object`  
+Type: `object`
 
 ### oauth2.enabled
 
 Whether to use OAuth version 2 in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth2.client_key
 
 A value used to identify the client to the token provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2.client_secret
 
 A secret used to establish ownership of the client key.
-
 
 Type: `string`  
 Default: `""`
@@ -336,25 +320,22 @@ Default: `""`
 
 The URL of the token provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth2.scopes
 
 A list of optional requested permissions.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### oauth2.endpoint_params
 
 A list of optional endpoint parameters, values should be arrays of strings.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ```yml
 # Examples
@@ -371,29 +352,25 @@ endpoint_params:
 
 Allows you to specify basic authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### basic_auth.enabled
 
 Whether to use basic authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### basic_auth.username
 
 A username to authenticate as.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### basic_auth.password
 
 A password to authenticate with.
-
 
 Type: `string`  
 Default: `""`
@@ -402,87 +379,76 @@ Default: `""`
 
 Allows you to specify JWT authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### jwt.enabled
 
 Whether to use JWT authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### jwt.private_key_file
 
 A file with the PEM encoded via PKCS1 or PKCS8 as private key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.signing_method
 
 A method used to sign the token such as RS256, RS384, RS512 or EdDSA.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.claims
 
 A value used to identify the claims that issued the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### jwt.headers
 
 Add optional key/value headers to the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -497,9 +463,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -511,9 +476,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -531,40 +495,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -576,16 +536,14 @@ password: foo
 
 Specify which response headers should be added to resulting messages as metadata. Header keys are lowercased before matching, so ensure that your patterns target lowercased versions of the header keys that you expect.
 
-
-Type: `object`  
+Type: `object`
 
 ### extract_headers.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -605,9 +563,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -623,123 +580,107 @@ include_patterns:
 
 An optional [rate limit]({{< ref "/product-stack/tyk-streaming/configuration/rate-limits/overview" >}}) to throttle requests by.
 
-
-Type: `string`  
+Type: `string`
 
 ### timeout
 
 A static timeout to apply to requests.
 
-
 Type: `string`  
-Default: `"5s"`  
+Default: `"5s"`
 
 ### retry_period
 
 The base period to wait between failed requests.
 
-
 Type: `string`  
-Default: `"1s"`  
+Default: `"1s"`
 
 ### max_retry_backoff
 
 The maximum period to wait between failed requests.
 
-
 Type: `string`  
-Default: `"300s"`  
+Default: `"300s"`
 
 ### retries
 
 The maximum number of retry attempts to make.
 
-
 Type: `int`  
-Default: `3`  
+Default: `3`
 
 ### backoff_on
 
 A list of status codes whereby the request should be considered to have failed and retries should be attempted, but the period between them should be increased gradually.
 
-
 Type: `array`  
-Default: `[429]`  
+Default: `[429]`
 
 ### drop_on
 
-A list of status codes whereby the request should be considered to have failed but retries should not be attempted. This is useful for preventing wasted retries for requests that will never succeed. Note that with these status codes the *request* is dropped, but *message* that caused the request will not be dropped.
-
+A list of status codes whereby the request should be considered to have failed but retries should not be attempted. This is useful for preventing wasted retries for requests that will never succeed. Note that with these status codes the _request_ is dropped, but _message_ that caused the request will not be dropped.
 
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### successful_on
 
 A list of status codes whereby the attempt should be considered successful, this is useful for dropping requests that return non-2XX codes indicating that the message has been dealt with, such as a 303 See Other or a 409 Conflict. All 2XX codes are considered successful unless they are present within `backoff_on` or `drop_on`, regardless of this field.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### proxy_url
 
 An optional HTTP proxy URL.
 
-
-Type: `string`  
+Type: `string`
 
 ### payload
 
 An optional payload to deliver for each request.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ### drop_empty_bodies
 
 Whether empty payloads received from the target server should be dropped.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### stream
 
 Allows you to set streaming mode, where requests are kept open and messages are processed line-by-line.
 
-
-Type: `object`  
+Type: `object`
 
 ### stream.enabled
 
 Enables streaming mode.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### stream.reconnect
 
 Sets whether to re-establish the connection once it is lost.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### stream.scanner
 
 The [scanner]({{< ref "/product-stack/tyk-streaming/configuration/scanners/overview" >}}) by which the stream of bytes consumed will be broken out into individual messages. Scanners are useful for processing large sources of data without holding the entirety of it within memory. For example, the `csv` scanner allows you to process individual CSV rows without loading the entire CSV file in memory at once.
 
-
 Type: `scanner`  
-Default: `{"lines":{}}`  
+Default: `{"lines":{}}`
 
 ### auto_replay_nacks
 
 Whether messages that are rejected (nacked) at the output level should be automatically replayed indefinitely, eventually resulting in back pressure if the cause of the rejections is persistent. If set to `false` these messages will instead be deleted. Disabling auto replays can greatly improve memory efficiency of high throughput streams as the original shape of the data can be discarded immediately upon consumption and mutation.
-
 
 Type: `bool`  
 Default: `true`

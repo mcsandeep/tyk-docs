@@ -8,11 +8,10 @@ weight: 8
 
 When contacting support, you may be asked to supply extra information and supply log files, etc, so we can quickly handle your request. Questions may include:
 
-* "Can you send us your log files"
-* "Can you change the logging detail level"
-* "What version of Tyk are you on"
-* "What profiling information can I get"
-
+- "Can you send us your log files"
+- "Can you change the logging detail level"
+- "What version of Tyk are you on"
+- "What profiling information can I get"
 
 This page will let you know how to get the above info to us.
 
@@ -28,8 +27,8 @@ Tyk will try to output structured logs, and so will include context data around 
 
 You can set the logging verbosity in two ways:
 
- 1. Via an Environment Variable to affect all Tyk components
- 2. Just for the Gateway via your `tyk.conf` config file  
+1.  Via an Environment Variable to affect all Tyk components
+2.  Just for the Gateway via your `tyk.conf` config file
 
 ### Setting via Environment Variable
 
@@ -37,9 +36,9 @@ The environment variable is `TYK_LOGLEVEL`.
 
 By default, the setting is `info`. You also have the following options:
 
-* `debug`
-* `warn`
-* `error`
+- `debug`
+- `warn`
+- `error`
 
 You will be advised by support which setting to change the logging level to.
 
@@ -53,9 +52,9 @@ You can set the logging level in your `tyk.conf` by adding the following:
 
 By default, the setting is `info`. You also have the following options:
 
-* `debug`
-* `warn`
-* `error`
+- `debug`
+- `warn`
+- `error`
 
 You will be advised by support which setting to change the logging level to.
 
@@ -72,7 +71,3 @@ The binary is installed in `/opt/tyk-gateway/tyk` by default. If your binary is 
 ## Profile Information
 
 You can provide various profile information for us in [pprof format](https://github.com/google/pprof/). See [Gateway Profiling]({{< ref "troubleshooting/tyk-gateway/profiling" >}}) for more details.
-
-
-
-

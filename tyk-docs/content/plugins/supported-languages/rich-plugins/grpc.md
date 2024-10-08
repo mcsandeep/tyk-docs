@@ -35,7 +35,7 @@ An example architecture is illustrated below.
 Here we can see that Tyk Gateway sends requests to an external Java gRPC server to handle authentication, via a CustomAuth plugin. The flow is as follows:
 
 - Tyk receives a HTTP request.
-- Tyk serialises the request and session into a protobuf message that is dispatched to your gRPC server. 
+- Tyk serialises the request and session into a protobuf message that is dispatched to your gRPC server.
 - The gRPC server performs custom middleware operations (for example, any modification of the request object). Each plugin (Pre, PostAuthKey, Post, Response etc.) is handled as separate gRPC request.
 - The gRPC server sends the request back to Tyk.
 - Tyk proxies the request to your upstream API.
@@ -54,20 +54,21 @@ Deploying an external gRPC server to handle plugins provides numerous technical 
 ## Limitations
 
 At the time of writing the following features are currently unsupported and unavailable in the serialised request:
+
 - Client certificiates
 - OAuth keys
-- For graphQL APIs details concerning the *max_query_depth* is unavailable
+- For graphQL APIs details concerning the _max_query_depth_ is unavailable
 - A request query parameter cannot be associated with multiple values
 
 ---
 
 ## Developer Resources
 
-The [Protocol Buffers](https://github.com/TykTechnologies/tyk/tree/master/coprocess/proto ) and [bindings](https://github.com/TykTechnologies/tyk/tree/master/coprocess/bindings) provided by Tyk should be used in order for successful ommunication between Tyk Gateway and your gRPC plugin server. Documentation for the protobuf messages is available in the [Rich Plugins Data Structures]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures" >}}) page.
+The [Protocol Buffers](https://github.com/TykTechnologies/tyk/tree/master/coprocess/proto) and [bindings](https://github.com/TykTechnologies/tyk/tree/master/coprocess/bindings) provided by Tyk should be used in order for successful ommunication between Tyk Gateway and your gRPC plugin server. Documentation for the protobuf messages is available in the [Rich Plugins Data Structures]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures" >}}) page.
 
-You can generate supporting HTML documentation using the *docs* task in the [Taskfile](https://github.com/TykTechnologies/tyk/blob/master/coprocess/proto/Taskfile.yml) file of the [Tyk repository](https://github.com/TykTechnologies/tyk). This documentation explains the protobuf messages and services that allow gRPC plugins to handle a request made to the Gateway. Please refer to the README file within the proto folder of the tyk repository for further details.
+You can generate supporting HTML documentation using the _docs_ task in the [Taskfile](https://github.com/TykTechnologies/tyk/blob/master/coprocess/proto/Taskfile.yml) file of the [Tyk repository](https://github.com/TykTechnologies/tyk). This documentation explains the protobuf messages and services that allow gRPC plugins to handle a request made to the Gateway. Please refer to the README file within the proto folder of the tyk repository for further details.
 
-You may re-use the bindings that were generated for our samples or generate the bindings youself for Go, Python and Ruby, as implemented by the *generate* task in the [Taskfile](https://github.com/TykTechnologies/tyk/blob/master/coprocess/proto/Taskfile.yml) file of the [Tyk repository](https://github.com/TykTechnologies/tyk).
+You may re-use the bindings that were generated for our samples or generate the bindings youself for Go, Python and Ruby, as implemented by the _generate_ task in the [Taskfile](https://github.com/TykTechnologies/tyk/blob/master/coprocess/proto/Taskfile.yml) file of the [Tyk repository](https://github.com/TykTechnologies/tyk).
 
 If you wish to generate bindings for another target language you may generate the bindings yourself. The [Protocol Buffers](https://developers.google.com/protocol-buffers/) and [gRPC documentation](http://www.grpc.io/docs) provide specific requirements and instructions for each language.
 

@@ -11,7 +11,7 @@ The Tyk platform can be configured to log at various verbosity levels (info, deb
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Logging event handlers are currently only supported by Tyk Classic APIs.
 {{< /note >}}
@@ -23,6 +23,7 @@ Registering a logging event handler to your Tyk Classic API is the same as addin
 The `handler_name` for the logging event handler should be set to: `eh_log_handler`.
 
 The `handler_meta` for the logging event handler contains a single field:
+
 - `prefix` is a label that will be prepended to each log entry
 
 For example, to register event handlers to log the `AuthFailure` and `KeyExpired` events you might add the following to your API definition:
@@ -53,6 +54,7 @@ For example, to register event handlers to log the `AuthFailure` and `KeyExpired
 ```
 
 In this example
+
 - the `AuthFailure` event will trigger the event handler to generate a log with the prefix `AuthFailureEvent`
 - the `KeyExpired` event will trigger the event handler to generate a log with the prefix `KeyExpiredEvent`
 

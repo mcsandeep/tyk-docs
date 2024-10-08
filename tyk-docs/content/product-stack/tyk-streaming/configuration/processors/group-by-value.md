@@ -1,7 +1,7 @@
 ---
 title: Group By Value
 description: Explains an overview of group by value
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Group By Value", "group_by_value" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Group By Value", "group_by_value"]
 ---
 
 Splits a batch of messages into N batches, where each resulting batch contains a group of messages determined by a [function interpolated string]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}) evaluated per message.
@@ -24,8 +24,7 @@ The functionality of this processor depends on being applied across messages tha
 The interpolated string to group based on.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples

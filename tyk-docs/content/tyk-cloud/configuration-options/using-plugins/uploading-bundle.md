@@ -8,7 +8,7 @@ menu:
     parent: "Python Custom Authentication"
 weight: 3
 aliases:
-    - /python-custom-auth-plugin/uploading-bundle/
+  - /python-custom-auth-plugin/uploading-bundle/
 ---
 
 ## Introduction
@@ -27,8 +27,8 @@ We are going to use a Tyk CLI tool called **mservctl**. This acts as a file serv
 
 {{< img src="/img/plugins/fileserver_settings.png" alt="File Server Settings" >}}
 
-   * Your Tyk Cloud Control Plane Ingress File Server Endpoint (1)
-   * Your File Server API Key (2)
+- Your Tyk Cloud Control Plane Ingress File Server Endpoint (1)
+- Your File Server API Key (2)
 
 ## How does mservctl work?
 
@@ -41,6 +41,7 @@ To run `mservctl` from your local machine, from the binary directory, run:
 ```.bash
 ./mservctl.macos.amd64
 ```
+
 #### mservctl settings - Linux
 
 To run `mservctl` from your local machine, from the binary directory, run:
@@ -76,7 +77,7 @@ Use "mservctl [command] --help" for more information about a command.
 
 {{< note success >}}
 **Note**
-  
+
 You may have to change the CHMOD settings on the binary to make it executable. (`chmod +x <filename>`). On MacOS you may also need to change your security settings to allow the binary to run.
 {{< /note >}}
 
@@ -100,12 +101,14 @@ token: eyJvcmciOiI1ZWIyOGUwY2M3ZDc4YzAwMDFlZGQ4ZmYiLCJpZCI6ImVmMTZiNGM3Y2QwMDQ3Y
 ```.bash
 ./mservctl.macos.amd64 --config ~/my-tyk-plugin/python-demo.mservctl.yaml push ~/my-tyk-plugin/bundle.zip
 ```
+
 2. You should get confirmation that your middleware has been uploaded to your S3 bucket.
 
 ```.bash
 INFO[0000] Using config file:/Users/marksouthee/my-tyk-plugin/python-demo.mservctl.yaml  app=mservctl
 Middleware uploaded successfully, ID: 9c9ecec1-8f98-4c3f-88cd-ca3c27599e6b
 ```
+
 3. You will notice that the middleware uploaded has been given an ID. We are going to use that ID with an API that allows you to specify specific middlware. You can also check the contents of the middleware you have just uploaded using the mservctl `list` command. Run:
 
 ```.bash
@@ -119,12 +122,14 @@ INFO[0000] Using config file:/Users/marksouthee/my-tyk-plugin/python-demo.mservc
   ID                                    ACTIVE  SERVE ONLY  LAST UPDATE
 
   9c9ecec1-8f98-4c3f-88cd-ca3c27599e6b  true    false       2020-05-20T15:06:55.901Z
-  ```
+```
+
 5. If you use the -f flag with the list command, you will see the functions within your middleware listed:
 
 ```.bash
 ./mservctl.macos.amd64 --config ~/my-tyk-plugin/python-demo.mservctl.yaml list -f
 ```
+
 6. As you can see, the 2 middleware hooks specified within your `manifest.json` are returned:
 
 ```.bash

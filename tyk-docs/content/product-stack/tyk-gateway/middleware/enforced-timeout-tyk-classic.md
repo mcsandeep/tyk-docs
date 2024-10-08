@@ -18,20 +18,22 @@ If you're using Tyk Operator then check out the [configuring an enforced timeout
 To configure an enforced timeout you must add a new `hard_timeouts` object to the `extended_paths` section of your API definition.
 
 It has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `timeout`: the duration of the upstream request timer
 
 For example:
+
 ```json
 {
-    "hard_timeouts": [
-        {
-            "path": "/status/200",
-            "method": "GET",
-            "timeout": 3
-        }
-    ]
+  "hard_timeouts": [
+    {
+      "path": "/status/200",
+      "method": "GET",
+      "timeout": 3
+    }
+  ]
 }
 ```
 
@@ -57,7 +59,7 @@ Then enter the timeout to be enforced for the endpoint (in seconds):
 
 #### Step 3: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring an enforced timeout in Tyk Operator {#tyk-operator}
 

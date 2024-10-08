@@ -3,12 +3,12 @@ date: 2023-01-10
 title: Tyk Multi Data Center Bridge
 weight: 15
 menu:
-    main:
-        parent: "Tyk Stack"
+  main:
+    parent: "Tyk Stack"
 aliases:
-    - /tyk-configuration-reference/mdcb-configuration-options/
-    - /getting-started/tyk-components/mdcb/
-tags: ["MDCB", "distributed","setup"]
+  - /tyk-configuration-reference/mdcb-configuration-options/
+  - /getting-started/tyk-components/mdcb/
+tags: ["MDCB", "distributed", "setup"]
 description: "Overview of Multi Data Center Bridge MDCB"
 ---
 
@@ -44,7 +44,7 @@ This is where Tyk’s Multi Data Center Bridge (MDCB) comes in.
 
 The Tyk MDCB makes it possible to manage federated global deployments easily, from a central Dashboard: you can confidently deploy a multi-data center, geographically isolated set of Tyk Gateway clusters for maximum redundancy, failover, latency optimization, and uptime.
 
-Combining Tyk Dashboard with MDCB, you are provided with a “single pane of glass” or control plane that allows you to centrally manage multiple Tyk Gateway clusters. This has many advantages over having separate gateways and corresponding dashboard/portals, which would require manual synchronisation to roll out any changes (e.g. new APIs) across all the individual gateways. 
+Combining Tyk Dashboard with MDCB, you are provided with a “single pane of glass” or control plane that allows you to centrally manage multiple Tyk Gateway clusters. This has many advantages over having separate gateways and corresponding dashboard/portals, which would require manual synchronisation to roll out any changes (e.g. new APIs) across all the individual gateways.
 
 By deploying MDCB, API Management with Tyk becomes a service that can be easily offered to multiple teams from a centralised location.
 
@@ -113,7 +113,7 @@ Here are some examples of the benefits that deploying Tyk MDCB can bring:
 - Deploying Data Plane (Worker) Gateways close to your geographically distributed API consumers helps reduce their perceived request latency.
 - Deploying Worker Gateways close to your backend services will minimize round trip time servicing API requests.
 - The Worker Gateways cache keys and other configuration locally, so all operations can be geographically localised.
-- All traffic to and from one Gateway cluster will have rate limiting, authentication and authorization performed within the data center rather than “calling home” to a central control point; this reduces the  API request round trip time.
+- All traffic to and from one Gateway cluster will have rate limiting, authentication and authorization performed within the data center rather than “calling home” to a central control point; this reduces the API request round trip time.
 
 ### Improved Infrastructure Management
 
@@ -125,4 +125,3 @@ Here are some examples of the benefits that deploying Tyk MDCB can bring:
 - [The components of an MDCB deployment]({{< ref "/tyk-multi-data-centre/mdcb-components.md" >}})
 - [Run an MDCB Proof of Concept]({{< ref "/tyk-multi-data-centre/mdcb-example-minimising-latency.md" >}})
 - [MDCB reference guide]({{< ref "/tyk-multi-data-centre/mdcb-configuration-options.md" >}})
-

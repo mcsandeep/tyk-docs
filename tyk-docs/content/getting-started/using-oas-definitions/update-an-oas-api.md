@@ -1,7 +1,16 @@
 ---
 title: "Update a Tyk OAS API"
 date: 2022-07-08
-tags: ["Tyk Tutorials", "Getting Started", "First API", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "Updating an OAS API"]
+tags:
+  [
+    "Tyk Tutorials",
+    "Getting Started",
+    "First API",
+    "Tyk Cloud",
+    "Tyk Self-Managed",
+    "Tyk Open Source",
+    "Updating an OAS API",
+  ]
 description: "Updating an OAS API"
 aliases:
   - /getting-started/using-oas-definitions/update-api-with-oas/
@@ -19,15 +28,15 @@ The examples in these tutorials have been written assuming that you are using th
 
 You can also run these steps using the Tyk Dashboard API, noting the differences summarised here:
 
-| Interface             | Port     | Endpoint        | Authorization Header  | Authorization credentials        |
-|-----------------------|----------|-----------------|-----------------------|----------------------------------|
-| Tyk Gateway API       | 8080     | `tyk/apis/oas`  | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
-| Tyk Dashboard API     | 3000     | `api/apis/oas`  | `Authorization`       | From Dashboard User Profile      |
+| Interface         | Port | Endpoint       | Authorization Header  | Authorization credentials        |
+| ----------------- | ---- | -------------- | --------------------- | -------------------------------- |
+| Tyk Gateway API   | 8080 | `tyk/apis/oas` | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
+| Tyk Dashboard API | 3000 | `api/apis/oas` | `Authorization`       | From Dashboard User Profile      |
 
-* When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
+- When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You will also need to have ‘admin’ or ‘api’ rights if [RBAC]({{< ref "/tyk-dashboard/rbac.md" >}}) is enabled.
 {{< /note >}}
@@ -46,13 +55,13 @@ You will also need to have ‘admin’ or ‘api’ rights if [RBAC]({{< ref "/t
 
 Following the instructions to [create a Tyk OAS API]({{< ref "getting-started/using-oas-definitions/create-an-oas-api" >}}), create a new API by sending [this](https://bit.ly/39tnXgO) Tyk OAS API Definition to the Gateway API endpoint (this is an example that contains the very minimal required fields).
 
-Remember to set the `x-tyk-authorization` value in your request header and curl the domain name and port to be the correct values for your environment. 
+Remember to set the `x-tyk-authorization` value in your request header and curl the domain name and port to be the correct values for your environment.
 
 ```curl
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
   "info": {
     "title": "Petstore",
@@ -104,7 +113,7 @@ Let's say that you have updated your API definition by adding details of the `PO
 You simply update your Tyk OAS API Definition and send it to the Tyk Gateway using a `PUT` request to the `/apis/oas` endpoint.
 
 | Property     | Description              |
-|--------------|--------------------------|
+| ------------ | ------------------------ |
 | Resource URL | `/tyk/apis/oas/{API-ID}` |
 | Method       | `PUT`                    |
 | Type         | None                     |
@@ -119,7 +128,7 @@ Remember to set the `x-tyk-authorization` value in your request header and the d
 curl --location --request PUT 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API-ID}' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
     "info": {
         "title": "Petstore",
@@ -209,7 +218,7 @@ Update your Tyk OAS API Definition as follows, configuring the authentication me
 "basic-config-and-security/security":[
   {
       "api_key":[
-        
+
       ]
   }
 ],
@@ -244,7 +253,8 @@ Update your Tyk OAS API Definition as follows, configuring the authentication me
 You can check out an example of a full Tyk OAS API definition [here](https://bit.ly/3mHuBTY).
 
 #### Step 2: Update the Tyk OAS API
-You need to update the configuration of your API on your Tyk Gateway. As before, you do this by sending a `PUT` request passing the updated Tyk OAS API Definition. 
+
+You need to update the configuration of your API on your Tyk Gateway. As before, you do this by sending a `PUT` request passing the updated Tyk OAS API Definition.
 
 Remember to set the `x-tyk-authorization` value in your request header and the domain name and port to be the correct values for your environment. The path parameter is, again, the unique API Id that was assigned when you first created the API in Tyk Gateway.
 
@@ -254,7 +264,7 @@ Here's the command:
 curl --location --request PUT 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API-ID}' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
     "info": {
         "title": "Petstore",
@@ -264,10 +274,10 @@ curl --location --request PUT 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API-I
     "basic-config-and-security/security":[
       {
           "api_key":[
-            
+
           ]
       }
-    ],   
+    ],
     "components": {
       "securitySchemes": {
         "api_key": {
@@ -349,7 +359,7 @@ curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/ty
 curl --location --request POST 'http://{your-tyk-host}:{port}/petstore/pet/' \
 --header 'accept: */*' \
 --header 'Content-Type: application/json'
---data-raw 
+--data-raw
 '{
     "category": {
         "id": 0,
@@ -366,6 +376,7 @@ curl --location --request POST 'http://{your-tyk-host}:{port}/petstore/pet/' \
     "status": "available"
 }'
 ```
+
 You will see the following response:
 
 ```.json
@@ -381,7 +392,7 @@ curl --location --request GET ''http://{your-tyk-host}:{port}/petstore/pet/123' 
 --header 'accept: */*' \
 --header 'Content-Type: application/json' \
 --header 'api_key: 12345'
---data-raw 
+--data-raw
 '{
     "id": 0,
     "category": {
@@ -399,6 +410,7 @@ curl --location --request GET ''http://{your-tyk-host}:{port}/petstore/pet/123' 
     "status": "available"
 }'
 ```
+
 You will see the following response:
 
 ```.json
@@ -416,7 +428,7 @@ curl --location --request GET '${GATEWAY_URL}/petstore-test/pet/123' \
 --header 'accept: */*' \
 --header 'Content-Type: application/json' \
 --header 'api_key: ${API_KEY}'
---data-raw 
+--data-raw
 '{
     "id": 0,
     "category": {
@@ -434,6 +446,7 @@ curl --location --request GET '${GATEWAY_URL}/petstore-test/pet/123' \
     "status": "available"
 }'
 ```
+
 If the command succeeds, you will receive an HTTP 200 response with the following payload:
 
 ```.json
@@ -454,25 +467,27 @@ If the command succeeds, you will receive an HTTP 200 response with the followin
     "status": "available"
 }
 ```
+
 Congratulations! You have just created your first keyless Tyk OAS API, then protected it using Tyk.
 
 </details>
 
 {{< tab_end >}}
 {{< tab_start "Updating with a new OpenAPI Document" >}}
+
 ### Tutorial 3: Update Tyk OAS API definition with an updated OpenAPI definition
 
 #### Step 1: Create an Initial API
 
 Following the instructions to [create a Tyk OAS API]({{< ref "getting-started/using-oas-definitions/create-an-oas-api" >}}), create a new API by sending [this](https://bit.ly/39tnXgO) Tyk OAS API Definition to the Gateway API endpoint (this is an example that contains the very minimal required fields).
 
-Remember to set the `x-tyk-authorization` value in your request header and curl the domain name and port to be the correct values for your environment. 
+Remember to set the `x-tyk-authorization` value in your request header and curl the domain name and port to be the correct values for your environment.
 
 ```curl
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
   "info": {
     "title": "Petstore",
@@ -531,13 +546,13 @@ You can update your Tyk OAS API by providing just the OpenAPI Document, using th
 
 Tyk will use the content of the OpenAPI Document to update just the OpenAPI section in the Tyk OAS API definition.
 
-| Property     | Description                |
-|--------------|----------------------------|
-| Resource URL | `/tyk/apis/oas/{API-ID}`   |
-| Method       | `PATCH`                    |
-| Type         | None                       |
-| Body         | OAS API Definition         |
-| Parameters   | Path: `{API-ID}`           |
+| Property     | Description              |
+| ------------ | ------------------------ |
+| Resource URL | `/tyk/apis/oas/{API-ID}` |
+| Method       | `PATCH`                  |
+| Type         | None                     |
+| Body         | OAS API Definition       |
+| Parameters   | Path: `{API-ID}`         |
 
 ```curl
 curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API-ID}' \
@@ -552,7 +567,7 @@ curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API
    "basic-config-and-security/security":[
       {
          "api_key":[
-            
+
          ]
       }
    ],
@@ -645,17 +660,17 @@ curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/ty
 
 #### Step 4: Protect your API based on the OpenAPI definition
 
-You have now updated the Tyk OAS API definition with a new OpenAPI Document, that describes a new security mechanism. In order for Tyk Gateway to start protecting the API using this authentication mechanism, it needs to be *enabled* within the Tyk section of the Tyk OAS API definition.
+You have now updated the Tyk OAS API definition with a new OpenAPI Document, that describes a new security mechanism. In order for Tyk Gateway to start protecting the API using this authentication mechanism, it needs to be _enabled_ within the Tyk section of the Tyk OAS API definition.
 
 To do this you would add the query parameter `authentication=true` to the `PATCH` request you just performed: this tells Tyk to automatically enable authentication, based on the settings in the OpenAPI definition.
 
-| Property     | Description                                         |
-|--------------|-----------------------------------------------------|
-| Resource URL | `/tyk/apis/oas/{API-ID}`                            |
-| Method       | `PATCH`                                             |
-| Type         | None                                                |
-| Body         | OAS API Definition                                  |
-| Parameters   | Path: `{API-ID}` Query: `authentication`            |
+| Property     | Description                              |
+| ------------ | ---------------------------------------- |
+| Resource URL | `/tyk/apis/oas/{API-ID}`                 |
+| Method       | `PATCH`                                  |
+| Type         | None                                     |
+| Body         | OAS API Definition                       |
+| Parameters   | Path: `{API-ID}` Query: `authentication` |
 
 You can do this now, passing in the same OpenAPI Document again:
 

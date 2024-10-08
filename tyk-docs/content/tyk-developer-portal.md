@@ -2,9 +2,9 @@
 date: 2017-03-24T17:09:48Z
 title: Tyk Developer Portal
 weight: 10
-menu: 
-    main:
-        parent: "Tyk Stack"
+menu:
+  main:
+    parent: "Tyk Stack"
 aliases:
   - /concepts/tyk-components/developer-portal/
   - /getting-started/tyk-components/developer-portal/
@@ -13,8 +13,9 @@ aliases:
 The Tyk Developer Portal enables you to expose a facade of your APIs and then allow third-party developers to register and use your APIs.
 
 The Tyk Developer Portal comes into two flavors:
-*   Tyk Classic Developer Portal.
-*   Tyk Enterprise Developer Portal.
+
+- Tyk Classic Developer Portal.
+- Tyk Enterprise Developer Portal.
 
 The Tyk Classic Developer Portal is relevant for the primary use-cases while the Tyk Enterprise Developer Portal is suitable for more advanced use cases such audience management, developer relatationship and deep look & feel customization.
 

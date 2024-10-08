@@ -6,7 +6,7 @@ description: "How to use request rate limiting with Tyk"
 menu:
   main:
     parent: "Control & Limit Traffic"
-weight: 1 
+weight: 1
 aliases:
   - /control-limit-traffic/rate-limiting/
 ---
@@ -37,12 +37,12 @@ Check out the following video to see this being done.
 
 ## Configuring the rate limiter at the Key-Level
 
-If you want to restrict an API client to a certain rate of requests to your APIs, you can configure a Key-Level rate limit via a [Security Policy]({{< ref "basic-config-and-security/security/security-policies" >}}). The allowance that you configure in the policy will be consumed by any requests made to APIs using a key generated from the policy. Thus, if a policy grants access to three APIs with `rate=15 per=60` then a client using a key generated from that policy will be able to make a total of 15 requests - to any combination of those APIs - in any 60 second period before receiving the `HTTP 429 Too Many Requests` error. 
+If you want to restrict an API client to a certain rate of requests to your APIs, you can configure a Key-Level rate limit via a [Security Policy]({{< ref "basic-config-and-security/security/security-policies" >}}). The allowance that you configure in the policy will be consumed by any requests made to APIs using a key generated from the policy. Thus, if a policy grants access to three APIs with `rate=15 per=60` then a client using a key generated from that policy will be able to make a total of 15 requests - to any combination of those APIs - in any 60 second period before receiving the `HTTP 429 Too Many Requests` error.
 
 {{< note success >}}
-**Note**  
+**Note**
 
- It is assumed that the APIs being protected with a rate limit are using our [Authentication token]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}}) Authentication mode and have policies already created
+It is assumed that the APIs being protected with a rate limit are using our [Authentication token]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}}) Authentication mode and have policies already created
 {{< /note >}}
 
 You can configure this rate limit from the API Designer in Tyk Dashboard as follows:
@@ -54,12 +54,12 @@ You can configure this rate limit from the API Designer in Tyk Dashboard as foll
 
 ## Setting up a Key-Level Per-API rate limit
 
-If you want to restrict API clients to a certain rate of requests for a specific API you will also configure the rate limiter via the security policy. However this time you'll assign per-API limits. The allowance that you configure in the policy will be consumed by any requests made to that specific API using a key generated from that policy. Thus, if a policy grants access to an API with `rate=5 per=60` then three clients using keys generated from that policy will each independently be able to make 5 requests in any 60 second period before receiving the `HTTP 429 Too Many Requests` error. 
+If you want to restrict API clients to a certain rate of requests for a specific API you will also configure the rate limiter via the security policy. However this time you'll assign per-API limits. The allowance that you configure in the policy will be consumed by any requests made to that specific API using a key generated from that policy. Thus, if a policy grants access to an API with `rate=5 per=60` then three clients using keys generated from that policy will each independently be able to make 5 requests in any 60 second period before receiving the `HTTP 429 Too Many Requests` error.
 
 {{< note success >}}
-**Note**  
+**Note**
 
- It is assumed that the APIs being protected with a rate limit are using our [Authentication token]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}}) Authentication mode and have policies already created
+It is assumed that the APIs being protected with a rate limit are using our [Authentication token]({{< ref "basic-config-and-security/security/authentication-authorization/bearer-tokens" >}}) Authentication mode and have policies already created
 {{< /note >}}
 
 You can configure this rate limit from the API Designer in Tyk Dashboard as follows:
@@ -118,7 +118,7 @@ Yes, the rate limiter can be disabled for an API Definition by selecting **Disab
 Alternatively, you could also set the values of `Rate` and `Per (Seconds)` to be 0 in the API Designer.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Disabling the rate limiter at the API-Level does not disable rate limiting at the Key-Level. Tyk will enforce the Key-Level rate limit even if the API-Level limit is not set.
 {{< /note >}}

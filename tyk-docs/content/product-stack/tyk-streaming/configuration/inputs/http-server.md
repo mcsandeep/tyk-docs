@@ -1,7 +1,7 @@
 ---
 title: Http Server
 description: Explains an overview of configuring Http server input
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs", "Http Server" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs", "Http Server"]
 ---
 
 Receive messages POSTed over HTTP(S). HTTP 2.0 is supported when using TLS, which is enabled when key and cert files are specified.
@@ -94,7 +94,7 @@ It's also possible to specify a `ws_rate_limit_message`, which is a static paylo
 
 This input adds the following metadata fields to each message:
 
-``` text
+```text
 - http_server_user_agent
 - http_server_request_path
 - http_server_verb
@@ -106,7 +106,8 @@ This input adds the following metadata fields to each message:
 ```
 
 If HTTPS is enabled, the following fields are added as well:
-``` text
+
+```text
 - http_server_tls_version
 - http_server_tls_subject
 - http_server_tls_cipher_suite
@@ -116,7 +117,6 @@ You can access these metadata fields using [interpolation functions]({{< ref "/p
 
 ## Examples
 
-
 ### Path Switching
 
 This example shows an `http_server` input that captures all requests and processes them by switching on that path:
@@ -125,24 +125,24 @@ This example shows an `http_server` input that captures all requests and process
 input:
   http_server:
     path: /
-    allowed_verbs: [ GET, POST ]
+    allowed_verbs: [GET, POST]
     sync_response:
       headers:
         Content-Type: application/json
 
   processors:
     - switch:
-      - check: '@http_server_request_path == "/foo"'
-        processors:
-          - mapping: |
-              root.title = "You Got Fooed!"
-              root.result = content().string().uppercase()
+        - check: '@http_server_request_path == "/foo"'
+          processors:
+            - mapping: |
+                root.title = "You Got Fooed!"
+                root.result = content().string().uppercase()
 
-      - check: '@http_server_request_path == "/bar"'
-        processors:
-          - mapping: 'root.title = "Bar Is Slow"'
-          - sleep: # Simulate a slow endpoint
-              duration: 1s
+        - check: '@http_server_request_path == "/bar"'
+          processors:
+            - mapping: 'root.title = "Bar Is Slow"'
+            - sleep: # Simulate a slow endpoint
+                duration: 1s
 ```
 
 ### Mock OAuth 2.0 Server
@@ -153,7 +153,7 @@ This example shows an `http_server` input that mocks an OAuth 2.0 Client Credent
 input:
   http_server:
     path: /oauth2_test
-    allowed_verbs: [ GET, POST ]
+    allowed_verbs: [GET, POST]
     sync_response:
       headers:
         Content-Type: application/json
@@ -172,7 +172,7 @@ input:
         root.expires_in = 3600
 
     - sync_response: {}
-    - mapping: 'root = deleted()'
+    - mapping: "root = deleted()"
 ```
 
 ## Fields
@@ -181,123 +181,109 @@ input:
 
 An alternative address to host from. If left empty the service wide address is used.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### path
 
 The endpoint path to listen for POST requests.
 
-
 Type: `string`  
-Default: `"/post"`  
+Default: `"/post"`
 
 ### ws_path
 
 The endpoint path to create websocket connections from.
 
-
 Type: `string`  
-Default: `"/post/ws"`  
+Default: `"/post/ws"`
 
 ### ws_welcome_message
 
 An optional message to deliver to fresh websocket connections.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### ws_rate_limit_message
 
 An optional message to delivery to websocket connections that are rate limited.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### allowed_verbs
 
 An array of verbs that are allowed for the `path` endpoint.
 
-
 Type: `array`  
 Default: `["POST"]`  
-Requires version 3.33.0 or newer  
+Requires version 3.33.0 or newer
 
 ### timeout
 
 Timeout for requests. If a consumed messages takes longer than this to be delivered the connection is closed, but the message may still be delivered.
 
-
 Type: `string`  
-Default: `"5s"`  
+Default: `"5s"`
 
 <!-- TODO add rate limit ### rate_limit
 
 An optional [rate limit](/docs/components/rate_limits/about) to throttle requests by. -->
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### cert_file
 
 Enable TLS by specifying a certificate and key file. Only valid with a custom `address`.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### key_file
 
 Enable TLS by specifying a certificate and key file. Only valid with a custom `address`.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### cors
 
 Adds Cross-Origin Resource Sharing headers. Only valid with a custom `address`.
 
-
 Type: `object`  
-Requires version 3.63.0 or newer  
+Requires version 3.63.0 or newer
 
 ### cors.enabled
 
 Whether to allow CORS requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### cors.allowed_origins
 
 An explicit list of origins that are allowed for CORS requests.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ### sync_response
 
 <!-- TODO add links to synchronous responses -->
+
 Customize messages returned via synchronous responses.
 
-
-Type: `object`  
+Type: `object`
 
 ### sync_response.status
 
 Specify the status code to return with synchronous responses. This is a string value, which allows you to customize it based on resulting payloads and their metadata.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `"200"`  
+Default: `"200"`
 
 ```yml
 # Examples
@@ -312,24 +298,21 @@ status: ${! meta("status") }
 Specify headers to return with synchronous responses.
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `object`  
-Default: `{"Content-Type":"application/octet-stream"}`  
+Default: `{"Content-Type":"application/octet-stream"}`
 
 ### sync_response.metadata_headers
 
 Specify criteria for which metadata values are added to the response as headers.
 
-
-Type: `object`  
+Type: `object`
 
 ### sync_response.metadata_headers.include_prefixes
 
 Provide a list of explicit metadata key prefixes to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -349,9 +332,8 @@ include_prefixes:
 
 Provide a list of explicit metadata key regular expression (re2) patterns to match against.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples

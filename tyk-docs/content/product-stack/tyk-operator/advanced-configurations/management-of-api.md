@@ -3,7 +3,22 @@ title: "Management of APIs"
 date: 2024-06-25
 tags: ["Tyk", "Kubernetes", "API Management", "CRD", "DevOps", "API Gateway Configuration"]
 description: "This documentation provides a comprehensive guide on configuring various aspects of API descriptions and metadata using Tyk Operator. It includes detailed instructions and examples for setting API name, status, category, ID, path, ownership, and versioning within the ApiDefinition Custom Resource Definition (CRD). The guide ensures that users can manage their Tyk API Gateway configurations effectively within a Kubernetes environment."
-keywords: ["Tyk Operator", "Kubernetes", "API Gateway", "API Configuration", "API Metadata", "ApiDefinition CRD", "Tyk Dashboard", "API Status", "API Category", "API ID", "API Path", "API Ownership", "API Versioning"]
+keywords:
+  [
+    "Tyk Operator",
+    "Kubernetes",
+    "API Gateway",
+    "API Configuration",
+    "API Metadata",
+    "ApiDefinition CRD",
+    "Tyk Dashboard",
+    "API Status",
+    "API Category",
+    "API ID",
+    "API Path",
+    "API Ownership",
+    "API Versioning",
+  ]
 ---
 
 This documentation provides a comprehensive guide on configuring various aspects of API descriptions and metadata using Tyk Operator.
@@ -36,7 +51,7 @@ spec:
 
 An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
 
-The active status of an API can be set by modifying the `spec.active` configuration parameter. When set to `true`, this enables the API so that Tyk will listen for and process requests made to the `listenPath`. 
+The active status of an API can be set by modifying the `spec.active` configuration parameter. When set to `true`, this enables the API so that Tyk will listen for and process requests made to the `listenPath`.
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["9-9"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -57,7 +72,6 @@ spec:
 ### API Accessibility
 
 An API can be configured as internal so that external requests are not processed. This is achieved by setting the `spec.internal`configuration parameter as shown in the example below.
-
 
 ```yaml {linenos=true, linenostart=1, hl_lines=["10-10"]}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -82,7 +96,7 @@ For a Tyk Classic API, you can specify the category name using the `spec.name` f
 
 Example
 
-```yaml  {linenos=true, linenostart=1, hl_lines=["6-6"]}
+```yaml {linenos=true, linenostart=1, hl_lines=["6-6"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -106,7 +120,7 @@ If you're creating a new API using Tyk Operator, you don't need to specify the I
 
 Example
 
-```yaml  {linenos=true, linenostart=1}
+```yaml {linenos=true, linenostart=1}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:
@@ -137,7 +151,7 @@ If you already have API configurations created in the Tyk Dashboard and want to 
 
 Example
 
-```yaml  {linenos=true, linenostart=1, hl_lines=["8-8"]}
+```yaml {linenos=true, linenostart=1, hl_lines=["8-8"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:

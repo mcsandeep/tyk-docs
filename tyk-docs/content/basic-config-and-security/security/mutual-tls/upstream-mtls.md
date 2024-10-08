@@ -8,12 +8,11 @@ menu:
 weight: 2
 ---
 
-If your upstream API is protected with mutual TLS you can configure Tyk to send requests with the specified client certificate. 
+If your upstream API is protected with mutual TLS you can configure Tyk to send requests with the specified client certificate.
 
-- You can specify one certificate per host and define a default certificate. 
-- Upstream certificates can be defined on API definition level or globally (via Gateway configuration file). 
-- Specified client certificates will be used not only for internal Tyk calls but also for HTTP calls inside your JSVM middleware. 
-
+- You can specify one certificate per host and define a default certificate.
+- Upstream certificates can be defined on API definition level or globally (via Gateway configuration file).
+- Specified client certificates will be used not only for internal Tyk calls but also for HTTP calls inside your JSVM middleware.
 
 ## How To Set Up
 
@@ -21,7 +20,6 @@ If your upstream API is protected with mutual TLS you can configure Tyk to send 
 
 Inside your API definition you should set the `upstream_certificates` field to the following format:
 `{"example.com": "<cert-id>"}`. Defining on a global level looks the same, but should be specified via the `security.certificates.upstream` field in your Gateway configuration file.
-
 
 ### Via Dashboard
 
@@ -38,9 +36,9 @@ Tyk Operator supports configuring upstream mTLS using one of the following field
 
 #### upstream_certificate_refs
 
-The `upstream_certificate_refs` field can be used to configure certificates for different domains. References can be held to multiple secrets which are used for the domain mentioned in the key. Currently "*" is used as a wildcard for all the domains
+The `upstream_certificate_refs` field can be used to configure certificates for different domains. References can be held to multiple secrets which are used for the domain mentioned in the key. Currently "\*" is used as a wildcard for all the domains
 
-The example listed below shows that the certificate in the secret, *my-test-tls*, is used for all domains.
+The example listed below shows that the certificate in the secret, _my-test-tls_, is used for all domains.
 
 ```yaml
 # First apply this manifest using the command
@@ -144,18 +142,17 @@ spec:
 
 ## Domain
 
-Do **NOT** include the protocol or Tyk will not match your certificates to the correct domain.   
+Do **NOT** include the protocol or Tyk will not match your certificates to the correct domain.
 
- For example: 
- 
- ❌ `https://api.production.myupstream.com` 
+For example:
 
- ✅ `api.production.myupstream.com`
+❌ `https://api.production.myupstream.com`
 
- You need to include the port if the request is made via a non-standard HTTP port.
+✅ `api.production.myupstream.com`
 
- ✅ `api.production.myupstream.com:8443`
+You need to include the port if the request is made via a non-standard HTTP port.
 
+✅ `api.production.myupstream.com:8443`
 
 ## Wild Cards
 
@@ -163,9 +160,9 @@ You may use wild cards in combination with text to match the domain, but it only
 
 Example, if your domain is `api.production.myupstream.com`
 
- ✅ `*.production.myupstream.com`  
- 
- ❌ `*.myupstream.com`
+✅ `*.production.myupstream.com`
+
+❌ `*.myupstream.com`
 
 #### Default Upstream Cert
 

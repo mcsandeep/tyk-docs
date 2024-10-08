@@ -6,22 +6,20 @@ menu:
     parent: "UDG Getting Started"
 weight: 0
 aliases:
-    - /universal-data-graph/udg-getting-started/security/
+  - /universal-data-graph/udg-getting-started/security/
 ---
 
-{{< youtube lRLLFLv2rN4 >}} 
+{{< youtube lRLLFLv2rN4 >}}
 
 Due to the nature of graphql, clients can craft complex or large queries which can cause your upstream APIs to go down or have performance issues.
 
-Some of the common strategies to mitigate these risks include 
+Some of the common strategies to mitigate these risks include
 
 - Rate limiting
 - Throttling
 - Query depth limiting
 
-
 For this tutorial we'll mitigate these risks using `Query Depth Limit` but you can also use common strategies like rate limiting and throttling, which you can read more about [here](../../../getting-started/key-concepts/rate-limiting/)
-
 
 ### 1. Set authentication mode
 
@@ -29,10 +27,9 @@ In you Api designer core settings tab scroll down to Authentication section and 
 
 Our API is not open and keyless anymore and would need appropriate Authentication token to execute queries.
 
-
 ### 2. Applying to query depth
 
-Currently if users want they could run queries with unlimited depth as follows 
+Currently if users want they could run queries with unlimited depth as follows
 
 ```gql
 query getUser {
@@ -56,14 +53,14 @@ query getUser {
     }
   }
 }
-
 ```
 
 To avoid these kind of scenarios we will set query depth limit on the keys created to access this API.
 
 Although we can directly create keys by selecting this API but we'll use policy as it will make it easier to update keys for this API in future. You can read more about policies [here](../../../getting-started/key-concepts/what-is-a-security-policy/)
 
-  ##### Create Policy
+##### Create Policy
+
     - Navigate to policies page
     - Click Add Policy
     - Select our API from Access Rights table
@@ -74,14 +71,15 @@ Although we can directly create keys by selecting this API but we'll use policy 
     - Set expiration date for the keys that would be created using this policy
     - Click on create policy
 
-  ##### Create a key using above policy
+##### Create a key using above policy
+
     - Navigate to keys page
     - Click Add Key
     - Select our newly created policy
     - Click create key
     - Copy the key ID
 
-Now if you try to query our UDG API using the  key you should see an error as follows
+Now if you try to query our UDG API using the key you should see an error as follows
 
 ```json
 {

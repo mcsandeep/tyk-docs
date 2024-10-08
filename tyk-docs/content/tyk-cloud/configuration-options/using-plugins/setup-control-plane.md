@@ -8,12 +8,12 @@ menu:
     parent: "Python Custom Authentication"
 weight: 2
 aliases:
-    - /python-custom-auth-plugin/setup-control-plane/
+  - /python-custom-auth-plugin/setup-control-plane/
 ---
 
 ## Introduction
 
-This page explains how to set up a control plane with plugins to customize it on Tyk Cloud, so that you can ensure your API management solution is as effective as possible. 
+This page explains how to set up a control plane with plugins to customize it on Tyk Cloud, so that you can ensure your API management solution is as effective as possible.
 
 ## What do I need to do to use Plugins?
 
@@ -21,14 +21,14 @@ This page explains how to set up a control plane with plugins to customize it on
 
 1. You need to enable Plugins on a Control Plane and on a Cloud Data Plane.
 2. You need to enter Provider details to enable you to store and access your plugins. For this version of Tyk Cloud, we are supporting Amazon AWS S3. If you haven't got an AWS S3 account, go to [https://aws.amazon.com/s3/](https://aws.amazon.com/s3/) and set one up. You will need the following details to configure SW3 within your Control Plane:
-   * Your AWS Key ID
-   * Your AWS Secret
-   * Your AWS Region
+   - Your AWS Key ID
+   - Your AWS Secret
+   - Your AWS Region
 
 {{< note success >}}
 **Note**
 
-For this release of Tyk Cloud, you need to enter your AWS Region manually. You also need to consider that uploading a custom plugin bundle to Tyk Cloud results in a new bucket being created for each bundle uploaded.  It also requires that Tyk Cloud has permissions in the form of an AWS IAM policy to have create rights on AWS.
+For this release of Tyk Cloud, you need to enter your AWS Region manually. You also need to consider that uploading a custom plugin bundle to Tyk Cloud results in a new bucket being created for each bundle uploaded. It also requires that Tyk Cloud has permissions in the form of an AWS IAM policy to have create rights on AWS.
 {{< /note >}}
 
 ## AWS IAM Policy
@@ -41,7 +41,7 @@ For this release of Tyk Cloud, you need to enter your AWS Region manually. You a
 
 {{< warning success >}}
 **Warning**
-  
+
 We recommend you restrict your IAM user as much as possible before sharing the credentials with any 3rd party, including Tyk Cloud. See [IAM User Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) for more details.
 {{< /warning >}}
 

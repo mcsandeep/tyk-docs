@@ -8,11 +8,12 @@ tags: ["Request Header Transform", "middleware", "per-endpoint", "Tyk OAS"]
 Tyk's [request header transform]({{< ref "transform-traffic/request-headers" >}}) middleware enables you to append or delete headers on requests to your API endpoints before they are passed to your upstream service.
 
 There are two options for this:
+
 - API-level modification that is applied to all requests to the API
 - endpoint-level modification that is applied only to requests to a specific endpoint
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If both API-level and endpoint-level middleware are configured, the API-level transformation will be applied first.
 {{< /note >}}
@@ -32,76 +33,77 @@ To append headers to, or delete headers from, all requests to your API (i.e. for
 You only need to enable the middleware (set `enabled:true`) and then configure the details of headers to `add` and those to `remove`.
 
 For example:
+
 ```json {hl_lines=["38-56"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-request-header",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/status/200": {
-            "get": {
-                "operationId": "status/200get",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-request-header",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/status/200": {
+      "get": {
+        "operationId": "status/200get",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-request-header",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-request-header/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "global": {
-                "transformRequestHeaders": {
-                    "enabled": true,
-                    "remove": [
-                        "Auth_Id"
-                    ],
-                    "add": [
-                        {
-                            "name": "X-Static",
-                            "value": "foobar"
-                        },
-                        {
-                            "name": "X-Request-ID",
-                            "value": "$tyk_context.request_id"
-                        },
-                        {
-                            "name": "X-User-ID",
-                            "value": "$tyk_meta.uid"
-                        }
-                    ]
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-request-header",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-request-header/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "global": {
+        "transformRequestHeaders": {
+          "enabled": true,
+          "remove": ["Auth_Id"],
+          "add": [
+            {
+              "name": "X-Static",
+              "value": "foobar"
+            },
+            {
+              "name": "X-Request-ID",
+              "value": "$tyk_context.request_id"
+            },
+            {
+              "name": "X-User-ID",
+              "value": "$tyk_meta.uid"
+            }
+          ]
+        }
+      }
+    }
+  }
 }
 ```
 
 This configuration will add three new headers to each request:
+
 - `X-Static` with the value `foobar`
 - `X-Request-ID` with a dynamic value taken from the `request_id` [context variables]({{< ref "context-variables" >}})
 - `X-User-ID` with a dynamic value taken from the `uid` field in the [session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}})
 
 It will also delete one header (if present) from each request:
+
 - `Auth_Id`
 
 The configuration above is a complete and valid Tyk OAS API Definition that you can import into Tyk to try out the API-level request header transform.
@@ -113,66 +115,66 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The request header transform middleware (`transformRequestHeaders`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `transformRequestHeaders` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `add`: a list of headers, in key:value pairs, to be appended to the request
-- `remove`: a list of headers to be deleted from the request (if present) 
+- `remove`: a list of headers to be deleted from the request (if present)
 
 For example:
+
 ```json {hl_lines=["39-50"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-request-header",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/status/200": {
-            "get": {
-                "operationId": "status/200get",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-request-header",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/status/200": {
+      "get": {
+        "operationId": "status/200get",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-request-header",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-request-header/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "status/200get": {
-                    "transformRequestHeaders": {
-                        "enabled": true,
-                        "remove": [
-                            "X-Static"
-                        ],
-                        "add": [
-                            {
-                                "name": "X-Secret",
-                                "value": "the-secret-key-is-secret"
-                            }
-                        ]
-                    }
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-request-header",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-request-header/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "status/200get": {
+          "transformRequestHeaders": {
+            "enabled": true,
+            "remove": ["X-Static"],
+            "add": [
+              {
+                "name": "X-Secret",
+                "value": "the-secret-key-is-secret"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -183,12 +185,14 @@ The configuration above is a complete and valid Tyk OAS API Definition that you 
 ### Combining API-level and Endpoint-level transforms
 
 If the API-level transform in the previous [example]({{< ref "product-stack/tyk-gateway/middleware/request-header-tyk-oas#api-level-transform" >}}) is applied to the same API, then because the API-level transformation is performed first, the `X-Static` header will be added (by the API-level transform) and then removed (by the endpoint-level transform) such that the overall effect of the two transforms for a call to `GET /status/200` would be to add three headers:
- - `X-Request-ID`
- - `X-User-ID`
- - `X-Secret`
+
+- `X-Request-ID`
+- `X-User-ID`
+- `X-Secret`
 
 and to remove one:
- - `Auth_Id` 
+
+- `Auth_Id`
 
 ## Configuring the Request Header Transform in the API Designer
 
@@ -196,7 +200,7 @@ Adding and configuring the transforms to your API endpoints is easy when using t
 
 ### Adding an API-level transform
 
-From the **API Designer** on the **Settings** tab, after ensuring that you are in *edit* mode, toggle the switch to **Enable Transform request headers** in the **Middleware** section:
+From the **API Designer** on the **Settings** tab, after ensuring that you are in _edit_ mode, toggle the switch to **Enable Transform request headers** in the **Middleware** section:
 {{< img src="/img/dashboard/api-designer/tyk-oas-request-header-api-level.png" alt="Tyk OAS API Designer showing API-level Request Header Transform" >}}
 
 Then select **NEW HEADER** as appropriate to add or remove a header from API requests. You can add or remove multiple headers by selecting **ADD HEADER** to add another to the list:
@@ -216,7 +220,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 ##### Step 2: Select the Request Header Transform middleware
 
-Select **ADD MIDDLEWARE** and choose the **Request Header Transform** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Request Header Transform** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-request-header.png" alt="Adding the Request Header Transform middleware" >}}
 

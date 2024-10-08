@@ -4,7 +4,7 @@ title: “Payload signature is invalid!“ error
 menu:
   main:
     parent: "Tyk Installation"
-weight: 5 
+weight: 5
 ---
 
 ### Description

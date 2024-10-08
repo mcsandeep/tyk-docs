@@ -6,7 +6,7 @@ description: "How to use Certificate pinning with Tyk"
 menu:
   main:
     parent: "Security"
-weight: 7 
+weight: 7
 aliases:
   - /basic-config-and-security/security/certificate-pinning/
 ---
@@ -20,6 +20,7 @@ Public keys are stored inside the Tyk certificate storage, so you can use Certif
 ## Define via Gateway Config file or API Definition
 
 You can define them globally, from the Tyk Gateway configuration file - `tyk.conf` using the `security.pinned_public_keys` option, or via an API definition `pinned_public_keys` field, using the following format:
+
 ```
 {
   "example.com": "<key-id>",
@@ -31,27 +32,29 @@ You can define them globally, from the Tyk Gateway configuration file - `tyk.con
 For `key-id` you should set the ID returned after you upload the public key using the Certificate API. Additionally, you can just set path to the public key located on your server. You can specify multiple public keys by separating their IDs by a comma.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Only public keys in PEM format are supported.
 {{< /note >}}
 
 If public keys are not provided by your upstream, you can extract them
 by yourself using the following command:
+
 ```{.copyWrapper}
 openssl s_client -connect httpbin.org:443 -servername httpbin.org 2>/dev/null | openssl x509 -pubkey -noout
 ```
+
 If you already have a certificate, and just need to get its public key, you can do it using the following command:
+
 ```{.copyWrapper}
 openssl x509 -pubkey -noout -in cert.pem
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Upstream certificates now also have wildcard domain support.
 {{< /note >}}
-
 
 ## Define with the Dashboard
 
@@ -60,9 +63,9 @@ You can define certificate public key pinning from the **Advanced** tab of the A
 {{< img src="/img/2.10/cert_public_key_pinning.png" alt="Certificate Pinning" >}}
 
 1. Click **Attach Certificate**
-{{< img src="/img/2.10/add_public_keys.png" alt="Pinning Options" >}}
+   {{< img src="/img/2.10/add_public_keys.png" alt="Pinning Options" >}}
 1. From the **Add upstream certificates** options add the domain details and then add a new certificate ID or the server path to a certificate, or select from any certificates you have added previously.
-2. Click **Add**
+1. Click **Add**
 
 ## Define via Tyk Operator
 
@@ -73,7 +76,7 @@ Tyk Operator supports configuring certificate pinning using one of the following
 
 ### pinned_public_keys
 
-Use the `pinned_public_keys` mapping to pin public keys to specific domains, referencing public keys that have been uploaded to Tyk Certificate storage via the Certificate API.  
+Use the `pinned_public_keys` mapping to pin public keys to specific domains, referencing public keys that have been uploaded to Tyk Certificate storage via the Certificate API.
 
 ```yaml
 pinned_public_keys:
@@ -89,17 +92,17 @@ The `pinned_public_keys_refs` mapping should be used to configure pinning of pub
 
 Each key should be set to the name of the domain and the value should refer to the name of a Kuberenetes secret object that holds the corresponding public key for that domain.
 
-Wildcard domains are supported and "*" can be used to denote all domains.
+Wildcard domains are supported and "\*" can be used to denote all domains.
 
 {{< warning >}}
 **Caveats**
 
-- Only *kubernetes.io/tls* secret objects are allowed.
-- Please use the *tls.crt* field for the public key.
+- Only _kubernetes.io/tls_ secret objects are allowed.
+- Please use the _tls.crt_ field for the public key.
 - The secret that includes a public key must be in the same namespace as the ApiDefinition object.
-{{< /warning >}}
+  {{< /warning >}}
 
-The example below illustrates a scenario where the public key from the Kubernetes secret object, *httpbin-secret*, is used for all domains, denoted by the wildcard character '*'. In this example the *tls.crt* field of the secret is set to the actual public key of *httpbin.org*. Subsequently, if you any URL other than https://httpbin.org is targetted (e.g. https://github.com/) a *public key pinning error* will be raised for that particular domain. This is because the public key of *httpbin.org* has been configured for all domains.
+The example below illustrates a scenario where the public key from the Kubernetes secret object, _httpbin-secret_, is used for all domains, denoted by the wildcard character '*'. In this example the *tls.crt* field of the secret is set to the actual public key of *httpbin.org*. Subsequently, if you any URL other than https://httpbin.org is targetted (e.g. https://github.com/) a *public key pinning error* will be raised for that particular domain. This is because the public key of *httpbin.org\* has been configured for all domains.
 
 ```yaml
 # ApiDefinition object 'pinned_public_keys_refs' field uses the following format:
@@ -149,4 +152,3 @@ spec:
       Default:
         name: Default
 ```
-

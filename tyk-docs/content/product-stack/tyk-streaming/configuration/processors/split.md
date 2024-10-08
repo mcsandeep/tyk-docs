@@ -1,7 +1,7 @@
 ---
 title: Split
 description: Explains an overview of split processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Split" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Split"]
 ---
 
 Breaks message batches (synonymous with multiple part messages) into smaller batches. The size of the resulting batches are determined either by a discrete size or, if the field [byte_size](#byte_size) is non-zero, then by total size in bytes (which ever limit is reached first).
@@ -14,9 +14,9 @@ split:
   byte_size: 0
 ```
 
-This processor is for breaking batches down into smaller ones. 
+This processor is for breaking batches down into smaller ones.
 
-<!-- 
+<!--
 unarchive processor not in list of supported processors yet
 
 In order to break a single message out into multiple messages use the [`unarchive` processor](/docs/components/processors/unarchive).
@@ -30,14 +30,12 @@ If there is a remainder of messages after splitting a batch the remainder is als
 
 The target number of messages.
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### byte_size
 
 An optional target of total message bytes.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`

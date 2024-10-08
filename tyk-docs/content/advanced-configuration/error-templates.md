@@ -19,16 +19,16 @@ Please note that it is not possible to override the default message for HTTP 404
 
 When a HTTP 500 error occurs, and the request is a JSON request, Tyk will follow this logic:
 
-*   If `templates/error_500.json` exists, this template will be used.
-*   Otherwise, Tyk will use `templates/error.json`.
+- If `templates/error_500.json` exists, this template will be used.
+- Otherwise, Tyk will use `templates/error.json`.
 
 ### XML Request
 
 When a HTTP 500 error occurs, and the request is a XML request, Tyk will follow this logic:
 
-*   If `templates/error_500.xml` exists, this template will be used.
-*   If no specific template exists for this HTTP code, `templates/error.xml` will be used.
-*   If `error.xml` doesn't exist, `templates/error.json` will be used.
+- If `templates/error_500.xml` exists, this template will be used.
+- If no specific template exists for this HTTP code, `templates/error.xml` will be used.
+- If `error.xml` doesn't exist, `templates/error.json` will be used.
 
 ### Removing the X-Generator Header
 

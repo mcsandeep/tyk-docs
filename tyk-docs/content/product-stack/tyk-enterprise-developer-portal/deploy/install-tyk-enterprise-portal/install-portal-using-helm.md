@@ -8,7 +8,7 @@ menu:
     parent: "Installation options"
 weight: 5
 aliases:
-- tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-using-helm
+  - tyk-stack/tyk-developer-portal/enterprise-developer-portal/install-tyk-enterprise-portal/launching-portal/launching-portal-using-helm
 ---
 
 {{< warning success >}}
@@ -44,12 +44,12 @@ Where `TYK_ORG` and `TYK_AUTH` are the Tyk Dashboard Organization ID and the Tyk
 
 You must set the following values in the `values.yaml` or with `--set {field-name}={field-value}` with the helm upgrade command:
 
-| Field Name | Description |
-| ---------- | ----------- |
-| `enterprisePortal.enabled` | Enable Portal installation |
-| `enterprisePortal.bootstrap` | Enable Portal bootstrapping |
-| `enterprisePortal.license`| Tyk license key for your portal installation |
-| `enterprisePortal.storage.type`| Portal database dialect, e.g *mysql*, *postgres* or *sqlite3* |
+| Field Name                                  | Description                                                                                                                                            |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `enterprisePortal.enabled`                  | Enable Portal installation                                                                                                                             |
+| `enterprisePortal.bootstrap`                | Enable Portal bootstrapping                                                                                                                            |
+| `enterprisePortal.license`                  | Tyk license key for your portal installation                                                                                                           |
+| `enterprisePortal.storage.type`             | Portal database dialect, e.g _mysql_, _postgres_ or _sqlite3_                                                                                          |
 | `enterprisePortal.storage.connectionString` | Connection string to the Portal's database, e.g for the mysql dialect: `admin:secr3t@tcp(tyk-portal-mysql:3306)/portal?charset=utf8mb4&parseTime=true` |
 
 In addition to values.yaml, you can also define the environment variables described in the [configuration section]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/configuration.md" >}}) to further customize your portal deployment. These environment variables can also be listed as a name value list under the `extraEnvs` section of the helm chart.

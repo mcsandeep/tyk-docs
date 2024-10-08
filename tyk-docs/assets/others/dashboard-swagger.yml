@@ -33,8 +33,8 @@ info:
     authorization: <your-secret>
     ```
 servers:
-  - url: 'http://localhost:3000/'
-  - url: 'https://localhost:3000/'
+  - url: "http://localhost:3000/"
+  - url: "https://localhost:3000/"
 tags:
   - name: APIs
     description: API Definitions
@@ -73,7 +73,7 @@ paths:
       tags:
         - Policies
       responses:
-        '200':
+        "200":
           description: List of all policies
           content:
             application/json:
@@ -101,30 +101,30 @@ paths:
               per: 5
               org_id: 53ac07777cbb8c2d53000002
       responses:
-        '200':
+        "200":
           description: Policy created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiModifyKeySuccess'
+                $ref: "#/components/schemas/apiModifyKeySuccess"
               example:
                 action: created
                 status: ok
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Request malformed
                 status: error
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to create file!
                 status: error
@@ -142,7 +142,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of Policies (TODO)
   /api/portal/policies/{id}:
     get:
@@ -159,18 +159,18 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Get details of a single Policy
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Policy"
-        '404':
+        "404":
           description: Policy not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Policy not found
                 status: error
@@ -201,30 +201,30 @@ paths:
               per: 5
               org_id: 53ac07777cbb8c2d53000002
       responses:
-        '200':
+        "200":
           description: Policy updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiModifyKeySuccess'
+                $ref: "#/components/schemas/apiModifyKeySuccess"
               example:
                 action: updated
                 status: ok
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: PUT operation on different IDs
                 status: error
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to create file!
                 status: error
@@ -242,21 +242,21 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Delete policy by ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiModifyKeySuccess'
+                $ref: "#/components/schemas/apiModifyKeySuccess"
               example:
                 action: deleted
                 status: ok
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Delete failed
                 status: error
@@ -303,18 +303,18 @@ paths:
           schema:
             type: string
             oneOf:
-              - enum: ['name']
-                description: 'Sort by name in ascending order'
-              - enum: ['-name']
-                description: 'Sort by name in descending order'
-              - enum: ['updated_at']
-                description: 'Sort by updated_at in ascending order'
-              - enum: ['-updated_at']
-                description: 'Sort by updated_at in descending order'
-              - enum: ['created_at']
-                description: 'Sort by created_at in ascending order'
-              - enum: ['-created_at']
-                description: 'Sort by created_at in descending order'
+              - enum: ["name"]
+                description: "Sort by name in ascending order"
+              - enum: ["-name"]
+                description: "Sort by name in descending order"
+              - enum: ["updated_at"]
+                description: "Sort by updated_at in ascending order"
+              - enum: ["-updated_at"]
+                description: "Sort by updated_at in descending order"
+              - enum: ["created_at"]
+                description: "Sort by created_at in ascending order"
+              - enum: ["-created_at"]
+                description: "Sort by created_at in descending order"
         - name: category
           in: query
           required: false
@@ -335,14 +335,14 @@ paths:
           allowEmptyValue: true
           description: For versioned APIs, return only the base versions.
       responses:
-        '200':
+        "200":
           description: List of API definitions
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/APIDefinition'
+                  $ref: "#/components/schemas/APIDefinition"
     post:
       summary: Create API Definition
       description: Create an API Definition in Tyk Classic API format.
@@ -388,7 +388,7 @@ paths:
                   auth_header_name: authorization
                 definition:
                   location: header
-                  key: ''
+                  key: ""
                 proxy:
                   target_url: http://httpbin.org/
                 version_data:
@@ -396,12 +396,12 @@ paths:
                   not_versioned: true
                   versions:
                     Default:
-                      expires: ''
+                      expires: ""
                       name: Default
                       paths:
-                        ignored: [ ]
-                        white_list: [ ]
-                        black_list: [ ]
+                        ignored: []
+                        white_list: []
+                        black_list: []
                       extended_paths:
                         ignored:
                           - path: "/test-path/"
@@ -409,8 +409,8 @@ paths:
                               GET:
                                 action: no_action
                                 code: 200
-                                data: ''
-                                headers: { }
+                                data: ""
+                                headers: {}
                           - path: "/test-path/reply"
                             method_actions:
                               GET:
@@ -419,18 +419,18 @@ paths:
                                 data: '{"foo":"bar"}'
                                 headers:
                                   x-test: test
-                        white_list: [ ]
-                        black_list: [ ]
+                        white_list: []
+                        black_list: []
                       use_extended_paths: true
                 use_oauth2: false
                 oauth_meta:
-                  auth_login_redirect: ''
-                  allowed_access_types: [ ]
+                  auth_login_redirect: ""
+                  allowed_access_types: []
                   allowed_authorize_types:
                     - token
                 notifications:
-                  shared_secret: ''
-                  oauth_on_keychange_url: ''
+                  shared_secret: ""
+                  oauth_on_keychange_url: ""
                 enable_ip_whitelisting: true
                 allowed_ips:
                   - 127.0.0.1
@@ -442,19 +442,19 @@ paths:
               hook_references:
                 - event_name: QuotaExceeded
                   hook:
-                    api_model: { }
+                    api_model: {}
                     id: 54be6c0beba6db07a6000002
                     org_id: 54b53d3aeba6db5c35000002
                     name: Test Post
                     method: POST
                     target_path: http://httpbin.org/post
-                    template_path: ''
+                    template_path: ""
                     header_map:
-                      x-tyk-test: '123456'
+                      x-tyk-test: "123456"
                     event_timeout: 0
                   event_timeout: 60
       responses:
-        '200':
+        "200":
           description: API created
           content:
             application/json:
@@ -464,7 +464,7 @@ paths:
                 status: "ok"
                 action: "created"
                 key: "{...API JSON definition...}"
-        '400':
+        "400":
           description: Malformed data
           content:
             application/json:
@@ -487,14 +487,14 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of API definitions
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/APIDefinition'
+                  $ref: "#/components/schemas/APIDefinition"
   /api/apis/{id}:
     get:
       summary: Get a single API by ID
@@ -510,7 +510,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: API definition
           content:
             application/json:
@@ -548,7 +548,7 @@ paths:
                   auth_header_name: authorization
                 definition:
                   location: header
-                  key: ''
+                  key: ""
                 proxy:
                   target_url: http://httpbin.org/
                 version_data:
@@ -556,12 +556,12 @@ paths:
                   not_versioned: true
                   versions:
                     Default:
-                      expires: ''
+                      expires: ""
                       name: Default
                       paths:
-                        ignored: [ ]
-                        white_list: [ ]
-                        black_list: [ ]
+                        ignored: []
+                        white_list: []
+                        black_list: []
                       extended_paths:
                         ignored:
                           - path: "/test-path/"
@@ -569,8 +569,8 @@ paths:
                               GET:
                                 action: no_action
                                 code: 200
-                                data: ''
-                                headers: { }
+                                data: ""
+                                headers: {}
                           - path: "/test-path/reply"
                             method_actions:
                               GET:
@@ -579,18 +579,18 @@ paths:
                                 data: '{"foo":"bar"}'
                                 headers:
                                   x-test: test
-                        white_list: [ ]
-                        black_list: [ ]
+                        white_list: []
+                        black_list: []
                       use_extended_paths: true
                 use_oauth2: false
                 oauth_meta:
-                  auth_login_redirect: ''
-                  allowed_access_types: [ ]
+                  auth_login_redirect: ""
+                  allowed_access_types: []
                   allowed_authorize_types:
                     - token
                 notifications:
-                  shared_secret: ''
-                  oauth_on_keychange_url: ''
+                  shared_secret: ""
+                  oauth_on_keychange_url: ""
                 enable_ip_whitelisting: true
                 allowed_ips:
                   - 127.0.0.1
@@ -602,19 +602,19 @@ paths:
               hook_references:
                 - event_name: QuotaExceeded
                   hook:
-                    api_model: { }
+                    api_model: {}
                     id: 54be6c0beba6db07a6000002
                     org_id: 54b53d3aeba6db5c35000002
                     name: Test Post
                     method: POST
                     target_path: http://httpbin.org/post
-                    template_path: ''
+                    template_path: ""
                     header_map:
-                      x-tyk-test: '123456'
+                      x-tyk-test: "123456"
                     event_timeout: 0
                   event_timeout: 60
       responses:
-        '200':
+        "200":
           description: API updated
           content:
             application/json:
@@ -624,7 +624,7 @@ paths:
                 status: "ok"
                 action: "updated"
                 key: "{...API JSON definition...}"
-        '400':
+        "400":
           description: Malformed data
           content:
             application/json:
@@ -647,21 +647,21 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: API deleted
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API deleted
                 status: ok
-        '400':
+        "400":
           description: No API ID specified
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API ID not specified
                 status: error
@@ -710,7 +710,7 @@ paths:
             schema:
               $ref: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
       responses:
-        '200':
+        "200":
           description: API created
           content:
             application/json:
@@ -720,7 +720,7 @@ paths:
                 status: "ok"
                 action: "created"
                 key: "{...API JSON definition...}"
-        '400':
+        "400":
           description: Malformed data
           content:
             application/json:
@@ -738,13 +738,13 @@ paths:
         - OAS APIs
       operationId: dryRunApiOAS
       parameters:
-        - $ref: '#/components/parameters/UpstreamURL'
-        - $ref: '#/components/parameters/ListenPath'
-        - $ref: '#/components/parameters/CustomDomain'
-        - $ref: '#/components/parameters/AllowList'
-        - $ref: '#/components/parameters/ValidateRequest'
-        - $ref: '#/components/parameters/MockResponse'
-        - $ref: '#/components/parameters/Authentication'
+        - $ref: "#/components/parameters/UpstreamURL"
+        - $ref: "#/components/parameters/ListenPath"
+        - $ref: "#/components/parameters/CustomDomain"
+        - $ref: "#/components/parameters/AllowList"
+        - $ref: "#/components/parameters/ValidateRequest"
+        - $ref: "#/components/parameters/MockResponse"
+        - $ref: "#/components/parameters/Authentication"
         - name: templateID
           in: query
           required: false
@@ -757,8 +757,8 @@ paths:
             schema:
               $ref: "#/components/schemas/DryRunRequest"
       responses:
-        '200':
-          description:  Successfully generated a Tyk OAS API definition from the provided input
+        "200":
+          description: Successfully generated a Tyk OAS API definition from the provided input
           content:
             application/json:
               schema:
@@ -775,19 +775,19 @@ paths:
                     info:
                       description: This is a slimmed down single path version of the Petstore definition.
                       title: Single Path
-                      version: '1.0.0'
-                    openapi: '3.0.0'
+                      version: "1.0.0"
+                    openapi: "3.0.0"
                     paths:
                       /pet/{id}:
                         get:
                           description: This operation will find a pet in the database.
                           operationId: pet/{id}GET
                           responses:
-                            '400':
+                            "400":
                               description: Invalid ID provided
-                            '404':
+                            "404":
                               description: Pet not found
-                          security: [ ]
+                          security: []
                           summary: Find a pet
                           tags:
                             - pet
@@ -801,14 +801,14 @@ paths:
                           description: This operation will update a pet in the database.
                           operationId: pet/{id}PUT
                           responses:
-                            '400':
+                            "400":
                               description: Invalid ID provided
-                            '404':
+                            "404":
                               description: Pet not found
-                            '409':
+                            "409":
                               description: Conflict, another pet with the same ID exists
                           security:
-                            - apiKey: [ ]
+                            - apiKey: []
                           summary: Update a pet
                           tags:
                             - pet
@@ -836,19 +836,19 @@ paths:
                     info:
                       description: This is a slimmed down single path version of the Petstore definition.
                       title: Single Path
-                      version: '1.0.0'
-                    openapi: '3.0.0'
+                      version: "1.0.0"
+                    openapi: "3.0.0"
                     paths:
                       /pet/{id}:
                         get:
                           description: This operation will find a pet in the database.
                           operationId: pet/{id}GET
                           responses:
-                            '400':
+                            "400":
                               description: Invalid ID provided
-                            '404':
+                            "404":
                               description: Pet not found
-                          security: [ ]
+                          security: []
                           summary: Find a pet
                           tags:
                             - pet
@@ -862,10 +862,10 @@ paths:
                           description: This operation will update a pet in the database.
                           operationId: pet/{id}PUT
                           responses:
-                            '400':
+                            "400":
                               description: Invalid id value
                           security:
-                            - apiKey: [ ]
+                            - apiKey: []
                           summary: Update a pet
                           tags:
                             - pet
@@ -885,7 +885,7 @@ paths:
                         listenPath:
                           value: /
                           strip: true
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
@@ -894,7 +894,7 @@ paths:
               example:
                 status: "error"
                 message: "Bad request"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
@@ -927,7 +927,7 @@ paths:
           example: public
       operationId: listApiOAS
       responses:
-        '200':
+        "200":
           description: API definition
           content:
             application/json:
@@ -951,7 +951,7 @@ paths:
             schema:
               $ref: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
       responses:
-        '200':
+        "200":
           description: API updated
           content:
             application/json:
@@ -961,7 +961,7 @@ paths:
                 status: "ok"
                 action: "updated"
                 key: "{...API JSON definition...}"
-        '400':
+        "400":
           description: Malformed data
           content:
             application/json:
@@ -979,13 +979,13 @@ paths:
         - OAS APIs
       operationId: patchApiOAS
       parameters:
-        - $ref: '#/components/parameters/UpstreamURL'
-        - $ref: '#/components/parameters/ListenPath'
-        - $ref: '#/components/parameters/CustomDomain'
-        - $ref: '#/components/parameters/ValidateRequest'
-        - $ref: '#/components/parameters/AllowList'
-        - $ref: '#/components/parameters/MockResponse'
-        - $ref: '#/components/parameters/Authentication'
+        - $ref: "#/components/parameters/UpstreamURL"
+        - $ref: "#/components/parameters/ListenPath"
+        - $ref: "#/components/parameters/CustomDomain"
+        - $ref: "#/components/parameters/ValidateRequest"
+        - $ref: "#/components/parameters/AllowList"
+        - $ref: "#/components/parameters/MockResponse"
+        - $ref: "#/components/parameters/Authentication"
       requestBody:
         content:
           application/json:
@@ -1003,7 +1003,7 @@ paths:
                   type: string
                   format: binary
       responses:
-        '200':
+        "200":
           description: API patched
           content:
             application/json:
@@ -1013,7 +1013,7 @@ paths:
                 status: "ok"
                 action: "modified"
                 key: "{updated APIID}"
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
@@ -1047,21 +1047,21 @@ paths:
         - OAS APIs
       operationId: deleteOASApi
       responses:
-        '200':
+        "200":
           description: API deleted
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API deleted
                 status: ok
-        '400':
+        "400":
           description: No API ID specified
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API ID not specified
                 status: error
@@ -1080,7 +1080,7 @@ paths:
         - OAS APIs
       operationId: getApiCategories
       responses:
-        '200':
+        "200":
           description: API categories
           content:
             application/json:
@@ -1090,21 +1090,21 @@ paths:
                 categories:
                   - tag1
                   - tag2
-        '404':
+        "404":
           description: This error code is returned when the API with the requested ID is not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API not found
                 status: error
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to get API categories
                 status: error
@@ -1124,7 +1124,7 @@ paths:
                 - tag1
                 - tag2
       responses:
-        '200':
+        "200":
           description: API categories succesfuly updated response
           content:
             application/json:
@@ -1133,30 +1133,30 @@ paths:
               example:
                 message: API categories updated
                 status: OK
-        '404':
+        "404":
           description: API not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: API not found
                 status: error
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to extract categories payload
                 status: error
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to update API categories
                 status: error
@@ -1168,7 +1168,7 @@ paths:
         - APIs
       operationId: getAllApiCategories
       responses:
-        '200':
+        "200":
           description: API categories
           content:
             application/json:
@@ -1180,12 +1180,12 @@ paths:
                     count: 2
                   - name: tag2
                     count: 3
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: Failed to get API categories
                 status: error
@@ -1204,10 +1204,10 @@ paths:
         - OAS APIs
       operationId: listOASApiVersions
       parameters:
-        - $ref: '#/components/parameters/SearchText'
-        - $ref: '#/components/parameters/AccessType'
+        - $ref: "#/components/parameters/SearchText"
+        - $ref: "#/components/parameters/AccessType"
       responses:
-        '200':
+        "200":
           description: API version metas
           content:
             application/json:
@@ -1216,7 +1216,7 @@ paths:
                   apis:
                     type: array
                     items:
-                      $ref: '#/components/schemas/APIVersionMeta'
+                      $ref: "#/components/schemas/APIVersionMeta"
                   pages:
                     type: integer
   /api/apis/{apiID}/access:
@@ -1234,7 +1234,7 @@ paths:
         - APIs
       operationId: getApiAccessRights
       responses:
-        '200':
+        "200":
           description: API access rights
           content:
             application/json:
@@ -1245,51 +1245,51 @@ paths:
                   - id: 65a6ebcab1f93b1e6b4a39eb
                 userGroupIds:
                   - id: 65a6ebcab1f93b1e6b4a39ec
-        '404':
+        "404":
           description: API not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Message: "API not found"
                 Status: "error"
                 Meta: null
     put:
-        description: |-
-          Update API access rights (users and userGroups)
-        tags:
-          - APIs
-        operationId: updateApiAccessRights
-        requestBody:
+      description: |-
+        Update API access rights (users and userGroups)
+      tags:
+        - APIs
+      operationId: updateApiAccessRights
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/APIAccessManagementPayload"
+            example:
+              userIds:
+                - id: 65a6ebcab1f93b1e6b4a39eb
+              userGroupIds:
+                - id: 65a6ebcab1f93b1e6b4a39ec
+      responses:
+        "200":
+          description: API access updated
           content:
             application/json:
-                schema:
-                  $ref: "#/components/schemas/APIAccessManagementPayload"
-                example:
-                  userIds:
-                    - id: 65a6ebcab1f93b1e6b4a39eb
-                  userGroupIds:
-                    - id: 65a6ebcab1f93b1e6b4a39ec
-        responses:
-            '200':
-              description: API access updated
-              content:
-                  application/json:
-                    example:
-                        Status: "OK"
-                        Message: "Api access updated"
-                        Meta: null
-            '404':
-              description: API not found
-              content:
-                application/json:
-                  schema:
-                    $ref: '#/components/schemas/apiStatusMessage'
-                  example:
-                    Message: "API not found"
-                    Status: "error"
-                    Meta: null
+              example:
+                Status: "OK"
+                Message: "Api access updated"
+                Meta: null
+        "404":
+          description: API not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/apiStatusMessage"
+              example:
+                Message: "API not found"
+                Status: "error"
+                Meta: null
   /api/apis/oas/import:
     post:
       description: |-
@@ -1300,13 +1300,13 @@ paths:
         - OAS APIs
       operationId: importOAS
       parameters:
-        - $ref: '#/components/parameters/UpstreamURL'
-        - $ref: '#/components/parameters/ListenPath'
-        - $ref: '#/components/parameters/CustomDomain'
-        - $ref: '#/components/parameters/AllowList'
-        - $ref: '#/components/parameters/ValidateRequest'
-        - $ref: '#/components/parameters/MockResponse'
-        - $ref: '#/components/parameters/Authentication'
+        - $ref: "#/components/parameters/UpstreamURL"
+        - $ref: "#/components/parameters/ListenPath"
+        - $ref: "#/components/parameters/CustomDomain"
+        - $ref: "#/components/parameters/AllowList"
+        - $ref: "#/components/parameters/ValidateRequest"
+        - $ref: "#/components/parameters/MockResponse"
+        - $ref: "#/components/parameters/Authentication"
         - name: templateID
           in: query
           required: false
@@ -1328,7 +1328,7 @@ paths:
                   type: string
                   format: binary
       responses:
-        '200':
+        "200":
           description: API definition
           content:
             application/json:
@@ -1338,7 +1338,7 @@ paths:
                 status: "ok"
                 action: "added"
                 key: "{created APIID}"
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
@@ -1355,7 +1355,7 @@ paths:
                   value:
                     message: "invalid upstream URL"
                     status: "error"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
@@ -1391,7 +1391,7 @@ paths:
             type: string
           example: public
       responses:
-        '200':
+        "200":
           description: API definition
           content:
             application/json:
@@ -1414,14 +1414,14 @@ paths:
             type: string
           example: public
       responses:
-        '200':
+        "200":
           description: API definition
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/OASSchemaResponse'
+                  $ref: "#/components/schemas/OASSchemaResponse"
 
   /api/activity/keys/{keyHash}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}:
     get:
@@ -1474,7 +1474,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Returns analytics of all endpoints called using the key `7f3c3ca87376cabe` between October 13th 2020 and October 14th 2020.
           content:
             application/json:
@@ -1487,16 +1487,16 @@ paths:
                       hour: 0
                       code: 0
                       path: "/anything"
-                      key: ''
-                      alias: ''
-                      url: ''
-                      iso_country: ''
+                      key: ""
+                      alias: ""
+                      url: ""
+                      iso_country: ""
                       api_id: 41351a6a94094da05f75146a695a16f6
-                      api_name: ''
+                      api_name: ""
                     hits: 1
                     success: 1
                     error: 0
-                    last_hit: '2020-10-13T13:22:49.667+05:30'
+                    last_hit: "2020-10-13T13:22:49.667+05:30"
                     request_time: 0
                     latency: 217
                     upstream_latency: 217
@@ -1511,16 +1511,16 @@ paths:
                       hour: 0
                       code: 0
                       path: "/anything"
-                      key: ''
-                      alias: ''
-                      url: ''
-                      iso_country: ''
+                      key: ""
+                      alias: ""
+                      url: ""
+                      iso_country: ""
                       api_id: 1793db2cbb724ad54da582ce3191d383
-                      api_name: ''
+                      api_name: ""
                     hits: 1
                     success: 1
                     error: 0
-                    last_hit: '2020-10-13T13:22:20.534+05:30'
+                    last_hit: "2020-10-13T13:22:20.534+05:30"
                     request_time: 568
                     latency: 568
                     upstream_latency: 568
@@ -1580,7 +1580,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Returns analytics of all endpoints called using the key `7f3c3ca87376cabe` between October 13th 2020 and October 14th 2020.
           content:
             application/json:
@@ -1593,16 +1593,16 @@ paths:
                       hour: 0
                       code: 0
                       path: "/get"
-                      key: ''
-                      alias: ''
-                      url: ''
-                      iso_country: ''
+                      key: ""
+                      alias: ""
+                      url: ""
+                      iso_country: ""
                       api_id: 79fc7cb80df940cc5089772200bd4926
-                      api_name: ''
+                      api_name: ""
                     hits: 2
                     success: 1
                     error: 1
-                    last_hit: '2020-10-13T14:48:51.582+05:30'
+                    last_hit: "2020-10-13T14:48:51.582+05:30"
                     request_time: 498
                     latency: 498
                     upstream_latency: 497.5
@@ -1617,16 +1617,16 @@ paths:
                       hour: 0
                       code: 0
                       path: "/post"
-                      key: ''
-                      alias: ''
-                      url: ''
-                      iso_country: ''
+                      key: ""
+                      alias: ""
+                      url: ""
+                      iso_country: ""
                       api_id: 79fc7cb80df940cc5089772200bd4926
-                      api_name: ''
+                      api_name: ""
                     hits: 1
                     success: 1
                     error: 0
-                    last_hit: '2020-10-13T14:49:31.541+05:30'
+                    last_hit: "2020-10-13T14:49:31.541+05:30"
                     request_time: 0
                     latency: 241
                     upstream_latency: 239
@@ -1650,7 +1650,7 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Keys retrieved successfully.
           content:
             application/json:
@@ -1687,14 +1687,14 @@ paths:
       tags:
         - Keys
       responses:
-        '200':
+        "200":
           description: Key retrieved successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionState'
+                $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: eyJvcmciOiI1ZTlkOTU0NGExZGNkNjAwMDFkMGVkMjAiLCJpZCI6ImhlbGxvLXdvcmxkIiwiaCI6Im11cm11cjY0In0
                 data:
                   last_check: 1421674410
@@ -1754,14 +1754,14 @@ paths:
               hmac_enabled: true
               hmac_string: ""
       responses:
-        '200':
+        "200":
           description: Key updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionState'
+                $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: eyJvcmciOiI1ZTlkOTU0NGExZGNkNjAwMDFkMGVkMjAiLCJpZCI6ImhlbGxvLXdvcmxkIiwiaCI6Im11cm11cjY0In0
                 data:
                   last_check: 1421674410
@@ -1785,12 +1785,12 @@ paths:
                   password: ""
                 hmac_enabled: true
                 hmac_string: ""
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: User does not have permission to add API to key Access Rights!
@@ -1801,21 +1801,21 @@ paths:
         - Keys
       operationId: deleteKey
       responses:
-        '200':
+        "200":
           description: Key deleted
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: Key deleted successfully
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Attempted access to non-owned key
@@ -1852,14 +1852,14 @@ paths:
                   versions:
                     - Default
       responses:
-        '200':
+        "200":
           description: New Key added
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionState'
+                $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: eyJvcmciOiI1ZTlkOTU0NGExZGNkNjAwMDFkMGVkMjAiLCJpZCI6ImhlbGxvLXdvcmxkIiwiaCI6Im11cm11cjY0In0
                 data:
                   last_check: 1421674410
@@ -1883,12 +1883,12 @@ paths:
                   password: ""
                 hmac_enabled: true
                 hmac_string: ""
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: User does not have permission to add API to key Access Rights!
@@ -1929,14 +1929,14 @@ paths:
                   versions:
                     - Default
       responses:
-        '200':
+        "200":
           description: Custom key created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SessionState'
+                $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: eyJvcmciOiI1ZTlkOTU0NGExZGNkNjAwMDFkMGVkMjAiLCJpZCI6ImhlbGxvLXdvcmxkIiwiaCI6Im11cm11cjY0In0
                 data:
                   last_check: 1421674410
@@ -1955,12 +1955,12 @@ paths:
                       versions:
                         - Default
                 key_hash: 567b9a5419c3a9ef
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: User does not have permission to add API to key Access Rights!
@@ -1973,7 +1973,7 @@ paths:
       tags:
         - Additional Permissions
       responses:
-        '200':
+        "200":
           description: Additional Permissions retrieved successfully.
           content:
             application/json:
@@ -1985,12 +1985,12 @@ paths:
                 additional_permissions:
                   api_developer: API Developer
                   api_manager: API Manager
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -2013,21 +2013,21 @@ paths:
                 api_manager: API Manager
                 custom_permission: Custom Permission
       responses:
-        '200':
+        "200":
           description: Additional Permissions updated successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: Additional Permissions updated in org level
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -2060,31 +2060,31 @@ paths:
               EmailAddress: name@somewhere.com
               GroupID: ""
       responses:
-        '200':
+        "200":
           description: Auth Token generated.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: OK
                 Message: SSO Nonce created
                 Meta: YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw
-        '400':
+        "400":
           description: Back Request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: "Cannot create an SSO session for an invalid payload: [Error: Org id not found ('588b4f0bb275ff0001cc7471').]"
-        '401':
+        "401":
           description: Unauthorized.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 Status: Error
                 Message: Not authorised
@@ -2126,14 +2126,14 @@ paths:
               basic_auth_data:
                 password: test123
       responses:
-        '200':
+        "200":
           description: User created successfully.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: 54b53d3aeba6db5c3500000test-user
                 data:
                   last_check: 0
@@ -2152,11 +2152,11 @@ paths:
                     versions:
                       - Default
                   org_id: 54b53d3aeba6db5c35000002
-                  oauth_client_id: ''
+                  oauth_client_id: ""
                   basic_auth_data:
-                    password: ''
+                    password: ""
                   hmac_enabled: false
-                  hmac_string: ''
+                  hmac_string: ""
     put:
       summary: Update a Basic Auth User
       description: Update the Basic Auth user specified in the path {username}.
@@ -2187,14 +2187,14 @@ paths:
               basic_auth_data:
                 password: test123
       responses:
-        '200':
+        "200":
           description: User created successfully.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: 54b53d3aeba6db5c3500000test-user
                 data:
                   last_check: 0
@@ -2213,11 +2213,11 @@ paths:
                     versions:
                       - Default
                   org_id: 54b53d3aeba6db5c35000002
-                  oauth_client_id: ''
+                  oauth_client_id: ""
                   basic_auth_data:
-                    password: ''
+                    password: ""
                   hmac_enabled: false
-                  hmac_string: ''
+                  hmac_string: ""
     get:
       summary: Get a Basic Auth User
       description: Get the Basic Auth user specified in the path {username}.
@@ -2225,14 +2225,14 @@ paths:
       tags:
         - Basic Authentication
       responses:
-        '200':
+        "200":
           description: User created successfully.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: 54b53d3aeba6db5c3500000test-user
                 data:
                   last_check: 0
@@ -2251,11 +2251,11 @@ paths:
                     versions:
                       - Default
                   org_id: 54b53d3aeba6db5c35000002
-                  oauth_client_id: ''
+                  oauth_client_id: ""
                   basic_auth_data:
-                    password: ''
+                    password: ""
                     hmac_enabled: false
-                    hmac_string: ''
+                    hmac_string: ""
     delete:
       summary: Delete a Basic Auth User
       description: Delete the Basic Auth user specified in the path {username}.
@@ -2263,14 +2263,14 @@ paths:
       tags:
         - Basic Authentication
       responses:
-        '200':
+        "200":
           description: User created successfully.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionState"
               example:
-                api_model: { }
+                api_model: {}
                 key_id: 54b53d3aeba6db5c3500000test-user
                 data:
                   last_check: 0
@@ -2289,11 +2289,11 @@ paths:
                     versions:
                       - Default
                   org_id: 54b53d3aeba6db5c35000002
-                  oauth_client_id: ''
+                  oauth_client_id: ""
                   basic_auth_data:
-                    password: ''
+                    password: ""
                   hmac_enabled: false
-                  hmac_string: ''
+                  hmac_string: ""
   /api/org/opa:
     get:
       summary: List OPA Rules
@@ -2302,7 +2302,7 @@ paths:
       tags:
         - Open Policy Agent
       responses:
-        '200':
+        "200":
           description: Key retrieved successfully.
           content:
             application/json:
@@ -2326,7 +2326,7 @@ paths:
               enabled: false
               rules: "default hello = false\r\n\r\nhello {\r\n    m := input.message\r\n    m== \"world\"\r\n}"
       responses:
-        '200':
+        "200":
           description: tets
           content:
             application/json:
@@ -2344,13 +2344,13 @@ paths:
       tags:
         - Users
       responses:
-        '200':
+        "200":
           description: "Users retrieved successfully."
           content:
             application/json:
               example:
                 users:
-                  - api_model: { }
+                  - api_model: {}
                     first_name: John
                     last_name: Smith
                     email_address: john@jive.ly
@@ -2362,11 +2362,11 @@ paths:
                     user_permissions:
                       IsAdmin: admin
                       ResetPassword: admin
-                  - api_model: { }
+                  - api_model: {}
                     first_name: Test
                     last_name: User
                     email_address: banana@test.com
-                    password: ''
+                    password: ""
                     org_id: 54b53d3aeba6db5c35000002
                     active: true
                     id: 54bd0ad9ff4329b88985aafb
@@ -2395,14 +2395,14 @@ paths:
               user_permissions:
                 IsAdmin: admin
       responses:
-        '200':
+        "200":
           description: User added succesfully
           content:
             application/json:
               example:
                 Status: OK
                 Message: User created
-                Meta: ''
+                Meta: ""
   /api/users/search:
     get:
       summary: Retrieve user search results
@@ -2419,13 +2419,13 @@ paths:
             type: string
           example: "user"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               example:
                 users:
-                  - api_model: { }
+                  - api_model: {}
                     id: "65e9a499b1f93be3d4b531fb"
                     first_name: "John"
                     last_name: "Smith"
@@ -2441,7 +2441,7 @@ paths:
                     last_login_date: "0001-01-01T01:44:24+01:44"
                     created_at: "2024-03-07T13:27:21.354+02:00"
                 pages: 1
-        '404':
+        "404":
           description: Error response
           content:
             application/json:
@@ -2458,18 +2458,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserSearchCriteria'
+              $ref: "#/components/schemas/UserSearchCriteria"
             example:
               filters:
                 query: "user"
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               example:
                 users:
-                  - api_model: { }
+                  - api_model: {}
                     id: "65e9a499b1f93be3d4b531fb"
                     first_name: "John"
                     last_name: "Smith"
@@ -2485,7 +2485,7 @@ paths:
                     last_login_date: "0001-01-01T01:44:24+01:44"
                     created_at: "2024-03-07T13:27:21.354+02:00"
                 pages: 1
-        '404':
+        "404":
           description: Error response
           content:
             application/json:
@@ -2508,16 +2508,16 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: "User retrieved succesfully"
           content:
             application/json:
               example:
-                api_model: { }
+                api_model: {}
                 first_name: Test
                 last_name: User
                 email_address: banana@test.com
-                password: ''
+                password: ""
                 org_id: 54b53d3aeba6db5c35000002
                 active: true
                 id: 54bd0ad9ff4329b88985aafb
@@ -2548,7 +2548,7 @@ paths:
               user_permissions:
                 IsAdmin: admin
       responses:
-        '200':
+        "200":
           description: User updated
           content:
             application/json:
@@ -2576,19 +2576,19 @@ paths:
             schema:
               type: object
             example:
-              current_password: '12345'
+              current_password: "12345"
               new_password: test123456
               user_permissions:
                 IsAdmin: admin
       responses:
-        '200':
+        "200":
           description: User password updated
           content:
             application/json:
               example:
                 Status: OK
                 Message: User password updated
-                Meta: ''
+                Meta: ""
   /api/users/{USER_ID}/actions/key/reset:
     parameters:
       - name: USER_ID
@@ -2609,9 +2609,9 @@ paths:
             schema:
               type: object
             example:
-              userId: '{USER_ID}'
+              userId: "{USER_ID}"
       responses:
-        '200':
+        "200":
           description: Dashboard session for specified user has been reset successfully
           content:
             application/json:
@@ -2626,14 +2626,14 @@ paths:
       tags:
         - Users
       responses:
-        '200':
+        "200":
           description: Dashboard user deleted
           content:
             application/json:
               example:
                 Status: OK
                 Message: User deleted
-                Meta: ''
+                Meta: ""
   /api/data-graphs/data-sources/import:
     post:
       summary: Import a new data source
@@ -2660,13 +2660,13 @@ paths:
                 - $ref: "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/master/schemas/2.3.0.json"
                 - $ref: "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/master/schemas/2.4.0.json"
       responses:
-        '200':
+        "200":
           description: A new data source imported
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DataSourceImported"
-        '400':
+        "400":
           description: Bad request
           content:
             application/json:
@@ -2684,8 +2684,7 @@ paths:
                     message: "Unknown data source type"
                     status: "error"
 
-
-  '/api/schema':
+  "/api/schema":
     get:
       description: |-
         Get OAS schema
@@ -2699,34 +2698,34 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OAS schema response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OASSchemaResponse'
+                $ref: "#/components/schemas/OASSchemaResponse"
               example:
-                status: 'Success'
+                status: "Success"
                 schema: <open api 3.0.3 schema>
-        '400':
+        "400":
           description: response when parameter oasVersion is missing
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OASSchemaResponse'
+                $ref: "#/components/schemas/OASSchemaResponse"
               example:
-                message: 'Should provide a value for parameter oasVersion'
-                status: 'Failed'
-        '500':
+                message: "Should provide a value for parameter oasVersion"
+                status: "Failed"
+        "500":
           description: response when oasSchema fetch failed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OASSchemaResponse'
+                $ref: "#/components/schemas/OASSchemaResponse"
               example:
-                message: 'Could not retrieve OAS schema: Schema not found for version 5.0.0'
-                status: 'Failed'
-  
+                message: "Could not retrieve OAS schema: Schema not found for version 5.0.0"
+                status: "Failed"
+
   /api/examples:
     get:
       summary: Get a list of example API definitions
@@ -2747,7 +2746,7 @@ paths:
             type: string
             default: "https://raw.githubusercontent.com/TykTechnologies/tyk-examples/main/repository.json"
       responses:
-        '200':
+        "200":
           description: List of API examples response
           content:
             application/json:
@@ -2760,7 +2759,7 @@ paths:
                   pages:
                     type: integer
                     example: 1
-        '400':
+        "400":
           description: Invalid parameters
           content:
             application/json:
@@ -2769,12 +2768,12 @@ paths:
               example:
                 message: "Invalid examples index file or root path"
                 status: "error"
-        '500':
+        "500":
           description: Internal Server Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: "Failed to fetch examples index file"
                 status: "error"
@@ -2820,13 +2819,13 @@ paths:
             type: boolean
             default: false
       responses:
-        '200':
+        "200":
           description: Details on the fetched example API definition.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/APIExampleDetailed"
-        '400':
+        "400":
           description: Invalid parameters
           content:
             application/json:
@@ -2835,7 +2834,7 @@ paths:
               example:
                 message: "Invalid examples index file or root path"
                 status: "error"
-        '404':
+        "404":
           description: Example API definition not found.
           content:
             application/json:
@@ -2844,19 +2843,19 @@ paths:
               example:
                 message: "Example API definition not found"
                 status: "error"
-        '500':
+        "500":
           description: Internal Server Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 message: "Failed to fetch example API definition"
                 status: "Failed"
 
   /api/system/stats:
     get:
-      summary: 'Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided.'
+      summary: "Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided."
       tags:
         - System
       operationId: getSystemStats
@@ -2883,36 +2882,36 @@ paths:
           required: false
           schema:
             type: string
-            enum: [ day ]
+            enum: [day]
         - name: entity
           in: query
           description: The entity for which stats should be retrieved.
           schema:
             type: string
-            enum: [ apis ]
+            enum: [apis]
       responses:
-        '200':
+        "200":
           description: System statistics details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SystemStats'
-        '400':
+                $ref: "#/components/schemas/SystemStats"
+        "400":
           description: Bad request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 400
                 message:
                   request validation failed: invalid date format
-        '404':
+        "404":
           description: Configuration not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 404
                 message: Stats not found
@@ -2933,30 +2932,29 @@ paths:
             default: oas-template
           example: oas-template
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Asset'
-        '400':
+                  $ref: "#/components/schemas/Asset"
+        "400":
           description: bad request.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 400
-                message:
-                  "unsupported asset kind: 'invalid-asset-kind'"
-        '500':
+                message: "unsupported asset kind: 'invalid-asset-kind'"
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 500
                 message: something went wrong
@@ -2970,33 +2968,33 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Asset'
+              $ref: "#/components/schemas/Asset"
       responses:
-        '201':
+        "201":
           description: Asset created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 200
                 status: success
                 message: asset created
-        '409':
+        "409":
           description: conflict on custom asset ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 409
                 message: "asset ID already exists: 'my-custom-asset'"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 500
                 message: something went wrong
@@ -3020,27 +3018,27 @@ paths:
             dbID:
               value: 659b9613a1ed7ef7afdccb9d
       responses:
-        '200':
+        "200":
           description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Asset'
-        '404':
+                $ref: "#/components/schemas/Asset"
+        "404":
           description: asset not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 404
                 message: "asset not found: 'my-custom-asset'"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 500
                 message: "error fetching asset: 'my-custom-asset'"
@@ -3066,62 +3064,61 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Asset'
+              $ref: "#/components/schemas/Asset"
       responses:
-        '200':
+        "200":
           description: Asset updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 200
                 status: success
                 message: asset updated
-        '400':
+        "400":
           description: cannot change db ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 400
                 status: failure
                 message: cannot change db ID of asset
-        '422':
+        "422":
           description: Unprocessible entity
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 422
-                message:
-                  unsupported asset kind
-        '404':
+                message: unsupported asset kind
+        "404":
           description: asset not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 404
                 message: asset not found
-        '409':
+        "409":
           description: conflict on custom asset ID
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 409
                 message: "asset ID already exists: 'my-custom-asset'"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 500
                 message: something went wrong
@@ -3133,7 +3130,7 @@ paths:
       parameters:
         - name: assetID
           in: path
-          description:  ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update.
+          description: ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update.
           required: true
           schema:
             type: string
@@ -3143,30 +3140,30 @@ paths:
             dbID:
               value: 659b9613a1ed7ef7afdccb9d
       responses:
-        '200':
+        "200":
           description: Asset removed successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 200
                 message: asset removed successfully
-        '404':
+        "404":
           description: asset not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 404
                 message: "asset not found: 'my-custom-asset'"
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
               example:
                 code: 500
                 message: something went wrong
@@ -3184,29 +3181,29 @@ paths:
           required: false
           schema:
             type: string
-          example: 'detailed'
+          example: "detailed"
       operationId: listCerts
       responses:
-        '200':
+        "200":
           description: List of all Certificates or Certificates IDs based on mode.
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/APIAllCertificates'
-                  - $ref: '#/components/schemas/APIAllCertificateBasics'
-        '400':
+                  - $ref: "#/components/schemas/APIAllCertificates"
+                  - $ref: "#/components/schemas/APIAllCertificateBasics"
+        "400":
           description: Error fetching certificates from cert store
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-        '500':
+                $ref: "#/components/schemas/apiStatusMessage"
+        "500":
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
     post:
       tags:
         - Certificates
@@ -3225,7 +3222,7 @@ paths:
                   format: binary
                   description: The PEM file to upload
       responses:
-        '200':
+        "200":
           description: Create certificate success response
           content:
             application/json:
@@ -3235,12 +3232,12 @@ paths:
                   id:
                     description: ID of the certificate created
                     type: string
-        '500':
+        "500":
           description: Error reading request body.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
 
   /api/certs/{certID}:
     get:
@@ -3256,24 +3253,24 @@ paths:
           required: true
       summary: Get certificate by ID.
       responses:
-        '200':
+        "200":
           description: Success response on Get certificate details.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CertificateMeta'
-        '400':
+                $ref: "#/components/schemas/CertificateMeta"
+        "400":
           description: Error attempted to access a certificate that doesn't belong to the logged in user's org.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-        '404':
+                $ref: "#/components/schemas/apiStatusMessage"
+        "404":
           description: Error when certificate fetch from store returned error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
     delete:
       tags:
         - Certificates
@@ -3287,24 +3284,24 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: Success response on certificate deletion.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-        '400':
+                $ref: "#/components/schemas/apiStatusMessage"
+        "400":
           description: Error attempted to delete a certificate that doesn't belong to the logged in user's org.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-        '404':
+                $ref: "#/components/schemas/apiStatusMessage"
+        "404":
           description: Error deleting certificate from cert store.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
 
   /api/certs/details:
     get:
@@ -3314,24 +3311,24 @@ paths:
       description: List certificates details stored in Tyk organisation certificate store.
       operationId: listCertificateDetails
       responses:
-        '200':
+        "200":
           description: List of all Certificates details.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AllCertificateDetailedList'
-        '400':
+                $ref: "#/components/schemas/AllCertificateDetailedList"
+        "400":
           description: Error retrieving certificates details from org cert store.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-        '500':
+                $ref: "#/components/schemas/apiStatusMessage"
+        "500":
           description: internal server error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
 
   /certs/dependencies/{certID}:
     get:
@@ -3348,12 +3345,12 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CertificateDependencies'
+                $ref: "#/components/schemas/CertificateDependencies"
     delete:
       tags:
         - Certificates
@@ -3367,12 +3364,12 @@ paths:
             type: string
           required: true
       responses:
-        '200':
+        "200":
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
+                $ref: "#/components/schemas/apiStatusMessage"
 
 components:
   securitySchemes:
@@ -3422,7 +3419,7 @@ components:
           description: Min tyk version this api definition works with
           example: "5.0"
         apiDefinition:
-          $ref: '#/components/schemas/APIDefinition'
+          $ref: "#/components/schemas/APIDefinition"
         readme:
           type: string
           description: Readme.md content (markdown) of the example.
@@ -3486,11 +3483,11 @@ components:
           type: string
           x-go-name: APIID
         auth:
-          $ref: '#/components/schemas/Auth'
+          $ref: "#/components/schemas/Auth"
         auth_provider:
-          $ref: '#/components/schemas/AuthProviderMeta'
+          $ref: "#/components/schemas/AuthProviderMeta"
         base_identity_provided_by:
-          $ref: '#/components/schemas/AuthTypeEnum'
+          $ref: "#/components/schemas/AuthTypeEnum"
         basic_auth:
           properties:
             body_password_regexp:
@@ -3517,7 +3514,7 @@ components:
           type: array
           x-go-name: BlacklistedIPs
         cache_options:
-          $ref: '#/components/schemas/CacheOptions'
+          $ref: "#/components/schemas/CacheOptions"
         certificates:
           items:
             type: string
@@ -3534,7 +3531,7 @@ components:
           type: object
           x-go-name: ConfigData
         custom_middleware:
-          $ref: '#/components/schemas/MiddlewareSection'
+          $ref: "#/components/schemas/MiddlewareSection"
         custom_middleware_bundle:
           type: string
           x-go-name: CustomMiddlewareBundle
@@ -3588,13 +3585,13 @@ components:
           type: boolean
           x-go-name: EnableSignatureChecking
         event_handlers:
-          $ref: '#/components/schemas/EventHandlerMetaConfig'
+          $ref: "#/components/schemas/EventHandlerMetaConfig"
         expire_analytics_after:
           format: int64
           type: integer
           x-go-name: ExpireAnalyticsAfter
         global_rate_limit:
-          $ref: '#/components/schemas/GlobalRateLimit'
+          $ref: "#/components/schemas/GlobalRateLimit"
         hmac_allowed_algorithms:
           items:
             type: string
@@ -3605,7 +3602,7 @@ components:
           type: number
           x-go-name: HmacAllowedClockSkew
         id:
-          $ref: '#/components/schemas/ObjectID'
+          $ref: "#/components/schemas/ObjectID"
         internal:
           type: boolean
           x-go-name: Internal
@@ -3651,17 +3648,17 @@ components:
           type: string
           x-go-name: Name
         notifications:
-          $ref: '#/components/schemas/NotificationsManager'
+          $ref: "#/components/schemas/NotificationsManager"
         oauth_meta:
           properties:
             allowed_access_types:
               items:
-                $ref: '#/components/schemas/AccessRequestType'
+                $ref: "#/components/schemas/AccessRequestType"
               type: array
               x-go-name: AllowedAccessTypes
             allowed_authorize_types:
               items:
-                $ref: '#/components/schemas/AuthorizeRequestType'
+                $ref: "#/components/schemas/AuthorizeRequestType"
               type: array
               x-go-name: AllowedAuthorizeTypes
             auth_login_redirect:
@@ -3670,7 +3667,7 @@ components:
           type: object
           x-go-name: Oauth2Meta
         openid_options:
-          $ref: '#/components/schemas/OpenIDOptions'
+          $ref: "#/components/schemas/OpenIDOptions"
         org_id:
           type: string
           x-go-name: OrgID
@@ -3697,7 +3694,7 @@ components:
               type: boolean
               x-go-name: PreserveHostHeader
             service_discovery:
-              $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+              $ref: "#/components/schemas/ServiceDiscoveryConfiguration"
             strip_listen_path:
               type: boolean
               x-go-name: StripListenPath
@@ -3732,7 +3729,7 @@ components:
           x-go-name: Proxy
         response_processors:
           items:
-            $ref: '#/components/schemas/ResponseProcessor'
+            $ref: "#/components/schemas/ResponseProcessor"
           type: array
           x-go-name: ResponseProcessors
         session_lifetime:
@@ -3740,7 +3737,7 @@ components:
           type: integer
           x-go-name: SessionLifetime
         session_provider:
-          $ref: '#/components/schemas/SessionProviderMeta'
+          $ref: "#/components/schemas/SessionProviderMeta"
         slug:
           type: string
           x-go-name: Slug
@@ -3761,7 +3758,7 @@ components:
           properties:
             check_list:
               items:
-                $ref: '#/components/schemas/HostCheckObject'
+                $ref: "#/components/schemas/HostCheckObject"
               type: array
               x-go-name: CheckList
             config:
@@ -3775,7 +3772,7 @@ components:
                   type: integer
                   x-go-name: RecheckWait
                 service_discovery:
-                  $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+                  $ref: "#/components/schemas/ServiceDiscoveryConfiguration"
               type: object
               x-go-name: Config
           type: object
@@ -3808,7 +3805,7 @@ components:
               x-go-name: NotVersioned
             versions:
               additionalProperties:
-                $ref: '#/components/schemas/VersionInfo'
+                $ref: "#/components/schemas/VersionInfo"
               type: object
               x-go-name: Versions
           type: object
@@ -3858,7 +3855,7 @@ components:
           x-go-name: ThrottleRetryLimit
         smoothing:
           type: object
-          $ref: '#/components/schemas/RateLimitSmoothing'
+          $ref: "#/components/schemas/RateLimitSmoothing"
           description: Smoothing contains rate limit smoothing settings.
           x-go-name: Smoothing
       type: object
@@ -3868,7 +3865,7 @@ components:
       properties:
         allowed_urls:
           items:
-            $ref: '#/components/schemas/AccessSpec'
+            $ref: "#/components/schemas/AccessSpec"
           type: array
           x-go-name: AllowedURLs
         api_id:
@@ -3878,7 +3875,7 @@ components:
           type: string
           x-go-name: APIName
         limit:
-          $ref: '#/components/schemas/APILimit'
+          $ref: "#/components/schemas/APILimit"
         versions:
           items:
             type: string
@@ -3917,7 +3914,7 @@ components:
           type: string
           x-go-name: ParamName
         signature:
-          $ref: '#/components/schemas/SignatureConfig'
+          $ref: "#/components/schemas/SignatureConfig"
         use_certificate:
           type: boolean
           x-go-name: UseCertificate
@@ -3943,9 +3940,9 @@ components:
           type: object
           x-go-name: Meta
         name:
-          $ref: '#/components/schemas/AuthProviderCode'
+          $ref: "#/components/schemas/AuthProviderCode"
         storage_engine:
-          $ref: '#/components/schemas/StorageEngineCode'
+          $ref: "#/components/schemas/StorageEngineCode"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     AuthTypeEnum:
@@ -4026,7 +4023,7 @@ components:
       properties:
         method_actions:
           additionalProperties:
-            $ref: '#/components/schemas/EndpointMethodMeta'
+            $ref: "#/components/schemas/EndpointMethodMeta"
           type: object
           x-go-name: MethodActions
         path:
@@ -4040,7 +4037,7 @@ components:
     EndpointMethodMeta:
       properties:
         action:
-          $ref: '#/components/schemas/EndpointMethodAction'
+          $ref: "#/components/schemas/EndpointMethodAction"
         code:
           format: int64
           type: integer
@@ -4087,12 +4084,12 @@ components:
       properties:
         advance_cache_config:
           items:
-            $ref: '#/components/schemas/CacheMeta'
+            $ref: "#/components/schemas/CacheMeta"
           type: array
           x-go-name: AdvanceCacheConfig
         black_list:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: BlackList
         cache:
@@ -4102,97 +4099,97 @@ components:
           x-go-name: Cached
         circuit_breakers:
           items:
-            $ref: '#/components/schemas/CircuitBreakerMeta'
+            $ref: "#/components/schemas/CircuitBreakerMeta"
           type: array
           x-go-name: CircuitBreaker
         do_not_track_endpoints:
           items:
-            $ref: '#/components/schemas/TrackEndpointMeta'
+            $ref: "#/components/schemas/TrackEndpointMeta"
           type: array
           x-go-name: DoNotTrackEndpoints
         hard_timeouts:
           items:
-            $ref: '#/components/schemas/HardTimeoutMeta'
+            $ref: "#/components/schemas/HardTimeoutMeta"
           type: array
           x-go-name: HardTimeouts
         ignored:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: Ignored
         internal:
           items:
-            $ref: '#/components/schemas/InternalMeta'
+            $ref: "#/components/schemas/InternalMeta"
           type: array
           x-go-name: Internal
         method_transforms:
           items:
-            $ref: '#/components/schemas/MethodTransformMeta'
+            $ref: "#/components/schemas/MethodTransformMeta"
           type: array
           x-go-name: MethodTransforms
         rate_limit:
           type: array
           items:
-            $ref: '#/components/schemas/RateLimitMeta'
+            $ref: "#/components/schemas/RateLimitMeta"
           x-go-name: RateLimit
         size_limits:
           items:
-            $ref: '#/components/schemas/RequestSizeMeta'
+            $ref: "#/components/schemas/RequestSizeMeta"
           type: array
           x-go-name: SizeLimit
         track_endpoints:
           items:
-            $ref: '#/components/schemas/TrackEndpointMeta'
+            $ref: "#/components/schemas/TrackEndpointMeta"
           type: array
           x-go-name: TrackEndpoints
         transform:
           items:
-            $ref: '#/components/schemas/TemplateMeta'
+            $ref: "#/components/schemas/TemplateMeta"
           type: array
           x-go-name: Transform
         transform_headers:
           items:
-            $ref: '#/components/schemas/HeaderInjectionMeta'
+            $ref: "#/components/schemas/HeaderInjectionMeta"
           type: array
           x-go-name: TransformHeader
         transform_jq:
           items:
-            $ref: '#/components/schemas/TransformJQMeta'
+            $ref: "#/components/schemas/TransformJQMeta"
           type: array
           x-go-name: TransformJQ
         transform_jq_response:
           items:
-            $ref: '#/components/schemas/TransformJQMeta'
+            $ref: "#/components/schemas/TransformJQMeta"
           type: array
           x-go-name: TransformJQResponse
         transform_response:
           items:
-            $ref: '#/components/schemas/TemplateMeta'
+            $ref: "#/components/schemas/TemplateMeta"
           type: array
           x-go-name: TransformResponse
         transform_response_headers:
           items:
-            $ref: '#/components/schemas/HeaderInjectionMeta'
+            $ref: "#/components/schemas/HeaderInjectionMeta"
           type: array
           x-go-name: TransformResponseHeader
         url_rewrites:
           items:
-            $ref: '#/components/schemas/URLRewriteMeta'
+            $ref: "#/components/schemas/URLRewriteMeta"
           type: array
           x-go-name: URLRewrite
         validate_json:
           items:
-            $ref: '#/components/schemas/ValidatePathMeta'
+            $ref: "#/components/schemas/ValidatePathMeta"
           type: array
           x-go-name: ValidateJSON
         virtual:
           items:
-            $ref: '#/components/schemas/VirtualMeta'
+            $ref: "#/components/schemas/VirtualMeta"
           type: array
           x-go-name: Virtual
         white_list:
           items:
-            $ref: '#/components/schemas/EndPointMeta'
+            $ref: "#/components/schemas/EndPointMeta"
           type: array
           x-go-name: WhiteList
       type: object
@@ -4318,9 +4315,9 @@ components:
     MiddlewareIdExtractor:
       properties:
         extract_from:
-          $ref: '#/components/schemas/IdExtractorSource'
+          $ref: "#/components/schemas/IdExtractorSource"
         extract_with:
-          $ref: '#/components/schemas/IdExtractorType'
+          $ref: "#/components/schemas/IdExtractorType"
         extractor_config:
           additionalProperties:
             type: object
@@ -4331,29 +4328,29 @@ components:
     MiddlewareSection:
       properties:
         auth_check:
-          $ref: '#/components/schemas/MiddlewareDefinition'
+          $ref: "#/components/schemas/MiddlewareDefinition"
         driver:
-          $ref: '#/components/schemas/MiddlewareDriver'
+          $ref: "#/components/schemas/MiddlewareDriver"
         id_extractor:
-          $ref: '#/components/schemas/MiddlewareIdExtractor'
+          $ref: "#/components/schemas/MiddlewareIdExtractor"
         post:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Post
         post_key_auth:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: PostKeyAuth
         pre:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Pre
         response:
           items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
+            $ref: "#/components/schemas/MiddlewareDefinition"
           type: array
           x-go-name: Response
       type: object
@@ -4387,7 +4384,7 @@ components:
       type: object
       x-go-package: github.com/TykTechnologies/tyk
     NotificationsManager:
-      description: 'TODO: Make this more generic'
+      description: "TODO: Make this more generic"
       properties:
         oauth_on_keychange_url:
           type: string
@@ -4424,7 +4421,7 @@ components:
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     ObjectID:
-      description: 'http://www.mongodb.org/display/DOCS/Object+IDs'
+      description: "http://www.mongodb.org/display/DOCS/Object+IDs"
       title: >-
         ObjectID is a unique ID identifying a BSON value. It must be exactly 12
         bytes
@@ -4438,7 +4435,7 @@ components:
       properties:
         providers:
           items:
-            $ref: '#/components/schemas/OIDProviderConfig'
+            $ref: "#/components/schemas/OIDProviderConfig"
           type: array
           x-go-name: Providers
         segregate_by_client:
@@ -4449,7 +4446,7 @@ components:
     Policy:
       properties:
         _id:
-          $ref: '#/components/schemas/ObjectID'
+          $ref: "#/components/schemas/ObjectID"
           type: object
           x-go-name: MID
         id:
@@ -4491,7 +4488,7 @@ components:
           type: object
           x-go-name: AccessRights
           additionalProperties:
-              $ref: '#/components/schemas/AccessDefinition'
+            $ref: "#/components/schemas/AccessDefinition"
         hmac_enabled:
           type: boolean
           x-go-name: HMACEnabled
@@ -4514,7 +4511,7 @@ components:
           type: number
           x-go-name: KeyExpiresIn
         partitions:
-          $ref: '#/components/schemas/PolicyPartitions'
+          $ref: "#/components/schemas/PolicyPartitions"
           type: object
           x-go-name: Partitions
         last_updated:
@@ -4522,14 +4519,14 @@ components:
           x-go-name: LastUpdates
         smoothing:
           type: object
-          $ref: '#/components/schemas/RateLimitSmoothing'
+          $ref: "#/components/schemas/RateLimitSmoothing"
           description: Smoothing contains rate limit smoothing settings.
           x-go-name: Smoothing
         meta_data:
           type: object
           x-go-name: MetaData
         graphql_access_rights:
-          $ref: '#/components/schemas/GraphAccessDefinition'
+          $ref: "#/components/schemas/GraphAccessDefinition"
       type: object
       title: Policy represents a user policy
       x-go-package: github.com/TykTechnologies/tyk/user
@@ -4584,66 +4581,66 @@ components:
           exclusiveMinimum: true
           multipleOf: 0.01
           x-go-name: Trigger
-      title:  RateLimitSmoothing holds the rate smoothing configuration.
+      title: RateLimitSmoothing holds the rate smoothing configuration.
       description: |-
         Rate Limit Smoothing is a mechanism to dynamically adjust the request rate
         limits based on the current traffic patterns. It helps in managing request
         spikes by gradually increasing or decreasing the rate limit instead of making
         abrupt changes or blocking requests excessively.
-    
+
         Once the rate limit smoothing triggers an allowance change, one of the
         following events is emitted:
-    
+
         - `RateLimitSmoothingUp` when the allowance increases
         - `RateLimitSmoothingDown` when the allowance decreases
-    
+
         Events are emitted based on the configuration:
-    
+
         - `enabled` (boolean) to enable or disable rate limit smoothing
         - `threshold` after which to apply smoothing (minimum rate for window)
         - `trigger` configures at which fraction of a step a smoothing event is emitted
         - `step` is the value by which the rate allowance will get adjusted
         - `delay` is a hold-off in seconds providing a minimum period between rate allowance adjustments
-    
+
         To determine if the request rate is growing and needs to be smoothed, the
         `step * trigger` value is subtracted from the request allowance and, if
         the request rate goes above that, then a RateLimitSmoothingUp event is
         emitted and the rate allowance is increased by `step`.
-    
+
         Once the request allowance has been increased above the `threshold`, Tyk
         will start to check for decreasing request rate. When the request rate
         drops `step * (1 + trigger)` below the request allowance, a
         `RateLimitSmoothingDown` event is emitted and the rate allowance is
         decreased by `step`.
-    
+
         After the request allowance has been adjusted (up or down), the request
         rate will be checked again over the next `delay` seconds and, if
         required, further adjustment made to the rate allowance after the
         hold-off.
-    
+
         For any allowance, events are emitted based on the following calculations:
-    
+
          - When the request rate rises above `allowance - (step * trigger)`,
           a RateLimitSmoothingUp event is emitted and allowance increases by `step`.
          - When the request rate falls below `allowance - (step + step * trigger)`,
           a RateLimitSmoothingDown event is emitted and allowance decreases by `step`.
-    
+
         Example: Threshold: 400, Request allowance: 600, Current rate: 500, Step: 100, Trigger: 0.5.
-    
+
         To trigger a RateLimitSmoothingUp event, the request rate must exceed:
-    
+
          - Calculation: Allowance - (Step * Trigger).
          - Example: 600 - (100 * 0.5) = `550`.
-    
+
         Exceeding a request rate of `550` will increase the allowance to 700 (Allowance + Step).
-    
+
         To trigger a RateLimitSmoothingDown event, the request rate must fall below:
-    
+
          - Calculation: Allowance - (Step + (Step * Trigger)).
          - Example: 600 - (100 + (100 * 0.5)) = 450.
-    
+
         As the request rate falls below 450, that will decrease the allowance to 500 (Allowance - Step).
-    
+
         The request allowance will be smoothed between `threshold`, and the
         defined `rate` limit (maximum). The request allowance will be updated
         internally every `delay` seconds.
@@ -4685,10 +4682,10 @@ components:
       x-go-package: github.com/TykTechnologies/tyk/apidef
     RoutingTrigger:
       properties:
-        'on':
-          $ref: '#/components/schemas/RoutingTriggerOnType'
+        "on":
+          $ref: "#/components/schemas/RoutingTriggerOnType"
         options:
-          $ref: '#/components/schemas/RoutingTriggerOptions'
+          $ref: "#/components/schemas/RoutingTriggerOptions"
         rewrite_to:
           type: string
           x-go-name: RewriteTo
@@ -4701,29 +4698,29 @@ components:
       properties:
         header_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: HeaderMatches
         path_part_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: PathPartMatches
         payload_matches:
-          $ref: '#/components/schemas/StringRegexMap'
+          $ref: "#/components/schemas/StringRegexMap"
         query_val_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: QueryValMatches
         request_context_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: RequestContextMatches
         session_meta_matches:
           additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
+            $ref: "#/components/schemas/StringRegexMap"
           type: object
           x-go-name: SessionMetaMatches
       type: object
@@ -4774,9 +4771,9 @@ components:
           type: object
           x-go-name: Meta
         name:
-          $ref: '#/components/schemas/SessionProviderCode'
+          $ref: "#/components/schemas/SessionProviderCode"
         storage_engine:
-          $ref: '#/components/schemas/StorageEngineCode'
+          $ref: "#/components/schemas/StorageEngineCode"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     SessionState:
@@ -4793,7 +4790,7 @@ components:
           x-go-name: Tags
         access_rights:
           additionalProperties:
-            $ref: '#/components/schemas/AccessDefinition'
+            $ref: "#/components/schemas/AccessDefinition"
           type: object
           x-go-name: AccessRights
         alias:
@@ -4814,7 +4811,7 @@ components:
         basic_auth_data:
           properties:
             hash_type:
-              $ref: '#/components/schemas/HashType'
+              $ref: "#/components/schemas/HashType"
             password:
               type: string
               x-go-name: Password
@@ -4917,7 +4914,7 @@ components:
           x-go-name: SessionLifetime
         smoothing:
           type: object
-          $ref: '#/components/schemas/RateLimitSmoothing'
+          $ref: "#/components/schemas/RateLimitSmoothing"
           description: Smoothing contains rate limit smoothing settings.
           x-go-name: Smoothing
         throttle_interval:
@@ -4976,9 +4973,9 @@ components:
           type: boolean
           x-go-name: EnableSession
         input_type:
-          $ref: '#/components/schemas/RequestInputType'
+          $ref: "#/components/schemas/RequestInputType"
         template_mode:
-          $ref: '#/components/schemas/TemplateMode'
+          $ref: "#/components/schemas/TemplateMode"
         template_source:
           type: string
           x-go-name: TemplateSource
@@ -4993,7 +4990,7 @@ components:
           type: string
           x-go-name: Path
         template_data:
-          $ref: '#/components/schemas/TemplateData'
+          $ref: "#/components/schemas/TemplateData"
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     TemplateMode:
@@ -5025,7 +5022,7 @@ components:
     URLRewriteMeta:
       properties:
         MatchRegexp:
-          $ref: '#/components/schemas/Regexp'
+          $ref: "#/components/schemas/Regexp"
         match_pattern:
           type: string
           x-go-name: MatchPattern
@@ -5040,7 +5037,7 @@ components:
           x-go-name: RewriteTo
         triggers:
           items:
-            $ref: '#/components/schemas/RoutingTrigger'
+            $ref: "#/components/schemas/RoutingTrigger"
           type: array
           x-go-name: Triggers
       type: object
@@ -5108,7 +5105,7 @@ components:
           type: string
           x-go-name: Expires
         extended_paths:
-          $ref: '#/components/schemas/ExtendedPathsSet'
+          $ref: "#/components/schemas/ExtendedPathsSet"
         global_headers:
           additionalProperties:
             type: string
@@ -5203,7 +5200,7 @@ components:
           type: string
           x-go-name: Action
         key:
-          description: 'in:body'
+          description: "in:body"
           type: string
           x-go-name: Key
         key_hash:
@@ -5241,7 +5238,7 @@ components:
       properties:
         cert_basics:
           items:
-            $ref: '#/components/schemas/CertificateBasics'
+            $ref: "#/components/schemas/CertificateBasics"
           type: array
           x-go-name: Certs
         pages:
@@ -5293,9 +5290,9 @@ components:
           type: string
           x-go-name: HasPrivateKey
         issuer:
-          $ref: '#/components/schemas/pkixName'
+          $ref: "#/components/schemas/pkixName"
         subject:
-          $ref: '#/components/schemas/pkixName'
+          $ref: "#/components/schemas/pkixName"
         not_before:
           type: string
           x-go-name: NotBefore
@@ -5319,7 +5316,7 @@ components:
         certificates:
           type: array
           items:
-            $ref: '#/components/schemas/CertificateMeta'
+            $ref: "#/components/schemas/CertificateMeta"
         pages:
           type: integer
     CertificateDependencies:
@@ -5385,11 +5382,11 @@ components:
         Names:
           type: array
           items:
-            $ref: '#/components/schemas/pkixAttributeTypeAndValue'
+            $ref: "#/components/schemas/pkixAttributeTypeAndValue"
         ExtraNames:
           type: array
           items:
-            $ref: '#/components/schemas/pkixAttributeTypeAndValueSET'
+            $ref: "#/components/schemas/pkixAttributeTypeAndValueSET"
     pkixAttributeTypeAndValue:
       description: AttributeTypeAndValue mirrors the ASN.1 structure of the same name in RFC 5280, Section 4.1.2.4.
       properties:
@@ -5446,9 +5443,9 @@ components:
                     strip:
                       type: boolean
     TykOasApiDefinition:
-        allOf:
-          - $ref: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
-          - $ref: "#/components/schemas/XTykApiGateway"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
+        - $ref: "#/components/schemas/XTykApiGateway"
     DryRunRequest:
       type: object
       properties:
@@ -5458,19 +5455,19 @@ components:
           $ref: "#/components/schemas/TykOasApiDefinition"
 
     APIAccessManagementPayload:
-        description: APIAccessManagementPayload represents two lists containing users and user groups that have access to an API
-        properties:
-          userIds:
-            type: array
-            items:
-              type: string
-          userGroupIds:
-            type: array
-            items:
-              type: string
-        type: object
-        x-go-name: AccessManagementPayload
-        x-go-package: github.com/TykTechnologies/tyk-analytics/dashboard/model
+      description: APIAccessManagementPayload represents two lists containing users and user groups that have access to an API
+      properties:
+        userIds:
+          type: array
+          items:
+            type: string
+        userGroupIds:
+          type: array
+          items:
+            type: string
+      type: object
+      x-go-name: AccessManagementPayload
+      x-go-package: github.com/TykTechnologies/tyk-analytics/dashboard/model
     pkixAttributeTypeAndValueSET:
       description: AttributeTypeAndValueSET represents a set of ASN.1 sequences of AttributeTypeAndValue sequences from RFC 2986 (PKCS #10).
       properties:
@@ -5483,7 +5480,7 @@ components:
           items:
             type: array
             items:
-              $ref: '#/components/schemas/pkixAttributeTypeAndValue'
+              $ref: "#/components/schemas/pkixAttributeTypeAndValue"
     APICertificateStatusMessage:
       description: Status message when certificate is added
       properties:
@@ -5511,7 +5508,7 @@ components:
           description: <OAS schema definition>
     BooleanQueryParam:
       type: boolean
-      enum: [ true, false ]
+      enum: [true, false]
       example: true
     APIVersionMeta:
       description: API version meta
@@ -5561,14 +5558,14 @@ components:
           example: 200
         message:
           type: string
-          example: 'success'
+          example: "success"
         stats:
           type: object
           properties:
             apis:
               type: array
               items:
-                $ref: '#/components/schemas/Stats'
+                $ref: "#/components/schemas/Stats"
     Stats:
       type: object
       properties:
@@ -5621,12 +5618,23 @@ components:
         data:
           type: object
           description: Data associated with the asset
-          example: { "info": { "title": "oas doc title","version": "1" },"openapi": "3.0.3","paths": { },"x-tyk-api-gateway": { "info": { "orgId": "659f7ebba1ed7e3ab9796caa","name": "oas api","state": { "active": false } },"upstream": { "url": "" },"server": { "listenPath": { "value": "/" } } } }
+          example:
+            {
+              "info": { "title": "oas doc title", "version": "1" },
+              "openapi": "3.0.3",
+              "paths": {},
+              "x-tyk-api-gateway":
+                {
+                  "info": { "orgId": "659f7ebba1ed7e3ab9796caa", "name": "oas api", "state": { "active": false } },
+                  "upstream": { "url": "" },
+                  "server": { "listenPath": { "value": "/" } },
+                },
+            }
         last_updated_at:
           type: string
           description: last updated time stamp
           readOnly: true
-          example: '2024-01-10T08:48:36.183Z'
+          example: "2024-01-10T08:48:36.183Z"
   parameters:
     UpstreamURL:
       name: upstreamURL
@@ -5655,33 +5663,33 @@ components:
       description: Enable validateRequest middleware for all endpoints having a request body with media type application/json
       required: false
       schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
+        $ref: "#/components/schemas/BooleanQueryParam"
     MockResponse:
       name: mockResponse
       in: query
       description: Enable mockResponse middleware for all endpoints having responses configured.
       required: false
       schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
+        $ref: "#/components/schemas/BooleanQueryParam"
     AllowList:
       name: allowList
       in: query
       description: Enable allowList middleware for all endpoints
       required: false
       schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
+        $ref: "#/components/schemas/BooleanQueryParam"
     Authentication:
       name: authentication
       in: query
       description: Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API
       schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
+        $ref: "#/components/schemas/BooleanQueryParam"
     TemplateID:
       name: templateID
       in: query
       description: The asset ID of template applied while creating or importing an OAS API.
       schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
+        $ref: "#/components/schemas/BooleanQueryParam"
     SearchText:
       name: searchText
       schema:
@@ -5693,9 +5701,9 @@ components:
       name: accessType
       schema:
         type: string
-        enum: [ "internal", "external" ]
+        enum: ["internal", "external"]
       description: Filter for internal or external API versions
       in: query
       required: false
 security:
-  - bearerAuth: [ ]
+  - bearerAuth: []

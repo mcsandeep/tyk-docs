@@ -1,7 +1,8 @@
 ---
 title: "OAS Glossary"
 date: 2022-07-13
-tags: ["Tyk Tutorials", "Getting Started", "First API", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "OAS Glossary"]
+tags:
+  ["Tyk Tutorials", "Getting Started", "First API", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "OAS Glossary"]
 description: "OAS glossary of terms"
 menu:
   main:
@@ -11,7 +12,7 @@ weight: 7
 
 ### OpenAPI Specification (OAS)
 
-The [OpenAPI Specification](https://spec.openapis.org/oas/v3.0.3) is an open standard specification managed by the [OpenAPI Initiative](https://www.openapis.org) that describes a language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. 
+The [OpenAPI Specification](https://spec.openapis.org/oas/v3.0.3) is an open standard specification managed by the [OpenAPI Initiative](https://www.openapis.org) that describes a language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection.
 
 ### OpenAPI Description
 

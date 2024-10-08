@@ -1,7 +1,7 @@
 ---
 title: Schema Registry Encode
 description: Explains an overview of schema registry encode processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Schema Registry Encode", "Parsing", "Integration" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Schema Registry Encode", "Parsing", "Integration"]
 ---
 
 Automatically encodes and validates messages with schemas from a Confluent Schema Registry service.
@@ -82,7 +82,7 @@ This processor encodes protobuf messages either from any format parsed within Ty
 
 #### Multiple Message Support
 
-When a target subject presents a protobuf schema that contains multiple messages it becomes ambiguous which message definition a given input data should be encoded against. In such scenarios Tyk Streams will attempt to encode the data against each of them and select the first to successfully match against the data, this process currently *ignores all nested message definitions*. In order to speed up this exhaustive search the last known successful message will be attempted first for each subsequent input.
+When a target subject presents a protobuf schema that contains multiple messages it becomes ambiguous which message definition a given input data should be encoded against. In such scenarios Tyk Streams will attempt to encode the data against each of them and select the first to successfully match against the data, this process currently _ignores all nested message definitions_. In order to speed up this exhaustive search the last known successful message will be attempted first for each subsequent input.
 
 ## Fields
 
@@ -90,8 +90,7 @@ When a target subject presents a protobuf schema that contains multiple messages
 
 The base URL of the schema registry service.
 
-
-Type: `string`  
+Type: `string`
 
 ### subject
 
@@ -99,8 +98,7 @@ The schema subject to derive schemas from.
 
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -114,9 +112,8 @@ subject: ${! meta("kafka_topic") }
 
 The period after which a schema is refreshed for each subject, this is done by polling the schema registry service.
 
-
 Type: `string`  
-Default: `"10m"`  
+Default: `"10m"`
 
 ```yml
 # Examples
@@ -130,165 +127,144 @@ refresh_period: 1h
 
 Whether messages encoded in Avro format should be parsed as normal JSON ("json that meets the expectations of regular internet json") rather than [Avro JSON](https://avro.apache.org/docs/current/specification/_print/#json-encoding). If `true` the schema returned from the subject should be parsed as [standard json](https://pkg.go.dev/github.com/linkedin/goavro/v2#NewCodecForStandardJSONFull) instead of as [avro json](https://pkg.go.dev/github.com/linkedin/goavro/v2#NewCodec). There is a [comment in goavro](https://github.com/linkedin/goavro/blob/5ec5a5ee7ec82e16e6e2b438d610e1cab2588393/union.go#L224-L249), the [underlining library used for avro serialization](https://github.com/linkedin/goavro), that explains in more detail the difference between standard json and avro json.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth
 
 Allows you to specify open authentication via OAuth version 1.
 
-
-Type: `object`  
+Type: `object`
 
 ### oauth.enabled
 
 Whether to use OAuth version 1 in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### oauth.consumer_key
 
 A value used to identify the client to the service provider.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.consumer_secret
 
 A secret used to establish ownership of the consumer key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.access_token
 
 A value used to gain access to the protected resources on behalf of the user.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### oauth.access_token_secret
 
 A secret provided in order to establish ownership of a given access token.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### basic_auth
 
 Allows you to specify basic authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### basic_auth.enabled
 
 Whether to use basic authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### basic_auth.username
 
 A username to authenticate as.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### basic_auth.password
 
 A password to authenticate with.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt
 
 BETA: Allows you to specify JWT authentication.
 
-
-Type: `object`  
+Type: `object`
 
 ### jwt.enabled
 
 Whether to use JWT authentication in requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### jwt.private_key_file
 
 A file with the PEM encoded via PKCS1 or PKCS8 as private key.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.signing_method
 
 A method used to sign the token such as RS256, RS384, RS512 or EdDSA.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### jwt.claims
 
 A value used to identify the claims that issued the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### jwt.headers
 
 Add optional key/value headers to the JWT.
 
-
 Type: `object`  
-Default: `{}`  
+Default: `{}`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -303,9 +279,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -317,9 +292,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -337,41 +311,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example

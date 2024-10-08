@@ -4,20 +4,19 @@ title: Dashboard Admin API Import
 menu:
   main:
     parent: "Tyk Dashboard Admin API"
-weight: 4 
+weight: 4
 ---
 
-The import API enables you to add *Organizations*, *APIs* and *Policies* back into a Tyk installation while retaining their base IDs so that they work together.
+The import API enables you to add _Organizations_, _APIs_ and _Policies_ back into a Tyk installation while retaining their base IDs so that they work together.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 To enable this feature, the minimum required versions for the Gateway and Dashboard are v2.3 and v1.3.1.2, respectively.
 {{< /note >}}
 
-
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 In a production environment, you will need to change the default `admin_secret` value that is called by the `admin-auth` header in your `tyk_analytics.conf` file. This is located in `/opt/tyk-dashboard`.
 {{< /warning >}}
@@ -90,7 +89,7 @@ admin-auth: 12345
 
 ### Import APIs
 
-The import APIs operates on *lists* of APIs.
+The import APIs operates on _lists_ of APIs.
 
 | **Property** | **Description**     |
 | ------------ | ------------------- |
@@ -126,7 +125,7 @@ admin-auth: 12345
 
 ### Import Policies
 
-The import Policies operates on *lists* of Policies.
+The import Policies operates on _lists_ of Policies.
 
 | **Property** | **Description**         |
 | ------------ | ----------------------- |

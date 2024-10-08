@@ -1,6 +1,28 @@
 ---
 title: Tyk Dashboard v5.0
-tags: ["release notes", "Tyk Dashboard", "v5.0", "5.0", "5.0.0", "5.0.1", "5.0.1", "5.0.2", "5.0.3", "5.0.4", "5.0.5", "5.0.6", "5.0.7", "5.0.8", "5.0.9", "5.0.10", "5.0.11", "5.0.12", "5.0.13", "5.0.14"]
+tags:
+  [
+    "release notes",
+    "Tyk Dashboard",
+    "v5.0",
+    "5.0",
+    "5.0.0",
+    "5.0.1",
+    "5.0.1",
+    "5.0.2",
+    "5.0.3",
+    "5.0.4",
+    "5.0.5",
+    "5.0.6",
+    "5.0.7",
+    "5.0.8",
+    "5.0.9",
+    "5.0.10",
+    "5.0.11",
+    "5.0.12",
+    "5.0.13",
+    "5.0.14",
+  ]
 weight: 2
 ---
 
@@ -18,9 +40,7 @@ weight: 2
 
 This release is not tightly coupled with Tyk Gateway v5.0.14, so you do not have to upgrade both together.
 
-
 Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk) section for detailed upgrade instructions.
-
 
 ### Release Highlights
 
@@ -36,6 +56,7 @@ This release fixes some display issues in Tyk Dashboard and Tyk Classic Portal w
 <summary>Tyk Dashboard UI: Fixed display issue for API statistics</summary>
 
 Fixed an issue where API statistics were not being shown when using PostgreSQL and adding two or more tags in the Activity page
+
 </details>
 </li>
 <li>
@@ -43,6 +64,7 @@ Fixed an issue where API statistics were not being shown when using PostgreSQL a
 <summary>Tyk Dashboard UI:  Fixed issue with display of HTTP 429 status codes on the Activity page</summary>
 
 Fixed an issue where HTTP 429 status codes were not being shown on the Activity page when using PostgreSQL
+
 </details>
 </li>
 <li>
@@ -50,6 +72,7 @@ Fixed an issue where HTTP 429 status codes were not being shown on the Activity 
 <summary>Tyk Classic Portal UI: Fixed display of graphs and requests counter</summary>
 
 Fixed wrong graphs and incorrect requests counter on Tyk Classic Portal when using PostgreSQL
+
 </details>
 </li>
 <li>
@@ -57,6 +80,7 @@ Fixed wrong graphs and incorrect requests counter on Tyk Classic Portal when usi
 <summary>Tyk Dashboard UI: fixed issues with the Error Breakdown display, specifically related to date handling</summary>
 
 Fixed Error Breakdown issue showing errors that happened on different dates than selected date
+
 </details>
 </li>
 </ul>
@@ -64,56 +88,67 @@ Fixed Error Breakdown issue showing errors that happened on different dates than
 ---
 
 ## 5.0.13 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.13)
 
 ---
 
 ## 5.0.12 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.12)
 
 ---
 
 ## 5.0.11 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.11)
 
 ---
 
 ## 5.0.10 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.10)
 
 ---
 
 ## 5.0.9 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.9)
 
 ---
 
 ## 5.0.8 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.8)
 
---- 
+---
 
 ## 5.0.7 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.7).
 
 ---
 
 ## 5.0.6 Release Notes
-Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.6). 
+
+Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.6).
 
 ---
 
 ## 5.0.5 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.5).
 
 ---
 
 ## 5.0.4 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.4).
 
 ---
 
 ## 5.0.3 Release Notes
+
 Please refer to our GitHub [release notes](https://github.com/TykTechnologies/tyk/releases/tag/v5.0.3).
 
 ---
@@ -125,9 +160,11 @@ Please refer to our GitHub [release notes](https://github.com/TykTechnologies/ty
 #### Release Highlights
 
 ##### Support for MongoDB 5 and 6
-From Tyk 5.0.2, we added support for MongoDB 5.0.x and 6.0.x. To enable this, you have to set new Dashboard config option driver to *mongo-go*. 
+
+From Tyk 5.0.2, we added support for MongoDB 5.0.x and 6.0.x. To enable this, you have to set new Dashboard config option driver to _mongo-go_.
 The driver setting defines the driver type to use for MongoDB. It can be one of the following values:
-- [mgo](https://github.com/go-mgo/mgo) (default): Uses the *mgo* driver. This driver supports MongoDB versions <= v4.x (lower or equal to v4.x). You can get more information about this driver in the [mgo](https://github.com/go-mgo/mgo) GH repository. To allow users more time for migration, we will update our default driver to the new driver, *mongo-go*, in next major release.
+
+- [mgo](https://github.com/go-mgo/mgo) (default): Uses the _mgo_ driver. This driver supports MongoDB versions <= v4.x (lower or equal to v4.x). You can get more information about this driver in the [mgo](https://github.com/go-mgo/mgo) GH repository. To allow users more time for migration, we will update our default driver to the new driver, _mongo-go_, in next major release.
 - [mongo-go](https://github.com/mongodb/mongo-go-driver): Uses the official MongoDB driver. This driver supports MongoDB versions >= v4.x (greater or equal to v4.x). You can get more information about this driver in [mongo-go-driver](https://github.com/mongodb/mongo-go-driver) GH repository.
 
 See how to [Choose a MongoDB driver]({{< ref "planning-for-production/database-settings/mongodb#choose-a-mongodb-driver" >}})
@@ -138,10 +175,10 @@ See how to [Choose a MongoDB driver]({{< ref "planning-for-production/database-s
 
 [docker image to pull](https://hub.docker.com/layers/tykio/tyk-dashboard/v5.0.2/images/sha256-fe3009c14ff9096771d10995a399a494389321707e951a3c46f944afd28d18cd?context=explore)
 
-
 #### Changelog {#Changelog-v5.0.2}
 
 ##### Fixed
+
 - Fixed a bug on migration of a portal catalog with deleted policy to SQL
 - Fixed: Redirect unregistered user to new page when SSOOnlyForRegisteredUsers is set to true
 
@@ -152,24 +189,29 @@ See how to [Choose a MongoDB driver]({{< ref "planning-for-production/database-s
 ##### Release Date 25 Apr 2023
 
 #### Release Highlights
-This release primarily focuses on bug fixes. 
+
+This release primarily focuses on bug fixes.
 For a comprehensive list of changes, please refer to the detailed [changelog]({{< ref "#Changelog-v5.0.1">}}) below.
 
 #### Downloads
+
 - [docker image to pull](https://hub.docker.com/layers/tykio/tyk-dashboard/v5.0.1/images/sha256-013d971fc826507702f7226fa3f00e1c7e9d390fc0fb268bed42e410b126e89d?context=explore)
 
 #### Changelog {#Changelog-v5.0.1}
 
 ##### Added
+
 - Improved security for people using the Dashboard by adding the Referrer-Policy header with the value `no-referrer`
 - Added ability to select the plugin driver within the Tyk OAS API Designer
 
 ##### Changed
+
 - When creating a new API in the Tyk OAS API Designer, caching is now disabled by default
 
 ##### Fixed
+
 - Fixed a bug where a call to the `/hello` endpoint would unnecessarily log `http: superfluous response.WriteHeader call`
-- Fixed a bug where the Dashboard was showing *Average usage over time* for all Developers, rather than just those relevant to the logged in developer
+- Fixed a bug where the Dashboard was showing _Average usage over time_ for all Developers, rather than just those relevant to the logged in developer
 - Fixed a bug where logged in users could see Identity Management pages, even if they didn't have the rights to use these features
 - Fixed a bug that prevented Tyk Dashboard users from resetting their own passwords
 - Fixed issue with GraphQL proxy headers added via UI
@@ -210,7 +252,8 @@ Of course, we’ve also addressed some bugs and usability issues as part of our 
 This release is all about making things easier for our users with GraphQL and Universal Data Graph.
 
 In order to get our users up and running with a working Universal Data Graph quickly, we’ve created a repository of examples that anyone can import into their Dashboard or Gateway and see what Universal Data Graph is capable of. Import can be done in two ways:
-- manually, by simply copying a Tyk API definition from GitHub - [TykTechnologies/tyk-examples](https://TykTechnologies/tyk-examples): A repository containing example API definitions and policies for Tyk products. 
+
+- manually, by simply copying a Tyk API definition from GitHub - [TykTechnologies/tyk-examples](https://TykTechnologies/tyk-examples): A repository containing example API definitions and policies for Tyk products.
 - via command line [using tyk-sync]({{< ref "universal-data-graph/udg-examples" >}})
 
 To make it easier for our users to find their way to Universal Data Graph, we’ve also given it its own space in the Dashboard. From now on you can find UDG under Data Graphs section of the menu.
@@ -228,6 +271,7 @@ Additionally we’ve added Dashboard support for introspection control on policy
 #### Changelog {#Changelog-v5.0.0}
 
 ##### Added
+
 - Numerous UX improvements
 - New UI for custom middleware for Tyk OAS APIs
 - Significantly improved Tyk OAS API versioning user experience
@@ -236,6 +280,7 @@ Additionally we’ve added Dashboard support for introspection control on policy
 - Way to control access to introspection on policy and key level
 
 ##### Changed
+
 - Universal Data Graph moved to a separate dashboard section
 
 ---
@@ -243,6 +288,7 @@ Additionally we’ve added Dashboard support for introspection control on policy
 ## Further Information
 
 ### Upgrading Tyk
+
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### API Documentation
@@ -251,4 +297,5 @@ Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for furthe
 - [Postman Collection](https://www.postman.com/tyk-technologies/workspace/tyk-public-workspace/collection/27225007-374cc3d0-f16d-4620-a435-68c53553ca40)
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

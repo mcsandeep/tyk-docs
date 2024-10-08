@@ -25,7 +25,7 @@ The AWS Marketplace products:
 
 ## BYOL
 
-These [AWS Marketplace products][5] are delivered as CloudFormation products. You will need to bring your own license.  You can choose from one of 3 fulfillment options:
+These [AWS Marketplace products][5] are delivered as CloudFormation products. You will need to bring your own license. You can choose from one of 3 fulfillment options:
 
 - PoC (1 gw node)
 - High Availability (2 nodes)
@@ -34,7 +34,8 @@ These [AWS Marketplace products][5] are delivered as CloudFormation products. Yo
 Please [contact an account manager][7] in order to get a license.
 
 ## PAYG
-There are three billed through AWS Marketplace PAYG products to get you started.  The license for these products is baked into the product as an hourly cost.  Please follow this video in order to get started
+
+There are three billed through AWS Marketplace PAYG products to get you started. The license for these products is baked into the product as an hourly cost. Please follow this video in order to get started
 
 - [PoC](https://aws.amazon.com/marketplace/pp/prodview-elvk5mxxlkueu?qid=1575313242174&sr=0-4&ref_=srh_res_product_title)
 - [High Availability (2-node)](https://aws.amazon.com/marketplace/pp/prodview-nempvlrcr4fq4?qid=1575313242174&sr=0-3&ref_=srh_res_product_title)
@@ -52,21 +53,23 @@ You will need to create the following AWS resources in an AWS VPC before you are
 
 Once these 3 are setup, we can deploy the AWS Marketplace PAYG products.
 
-*Example:*
+_Example:_
 
-|  Resource            | IPV4 CIDR     |
-|----------------------|---------------|
+| Resource             | IPV4 CIDR     |
+| -------------------- | ------------- |
 | VPC                  | 10.0.0.0 /24  |
 | CF-US Subnet East 1A | 10.0.0.0 /28  |
 | CF-US Subnet East 1B | 10.0.0.32 /28 |
 | CF-US Subnet East 1C | 10.0.0.64 /28 |
 
 #### Video Walkthrough
+
 This video will walk you through how to set up a PAYG product beginning to end on AWS, including the prerequisites.
 
 {{< youtube IiGyB_IHqWw >}}
 
 #### Logging Into Dashboard
+
 Once the stack is running, in order to access the Dashboard, simply set up an Elastic IP to the Dashboard instance and then visit:
 
 `http://<elastic_public_ip>:3000`
@@ -87,9 +90,10 @@ The CF Template already creates Security Groups for the Dashboard with port 3000
 {{% tabs_start %}}
 {{% tab_start "PoC" %}}
 <br>
-In order to access GW, simply assign Elastic IP to the GW instance.  The auto generated GW security group is already set up to allow traffic on port 8080.
+In order to access GW, simply assign Elastic IP to the GW instance. The auto generated GW security group is already set up to allow traffic on port 8080.
 
-To test, cURL the following: 
+To test, cURL the following:
+
 ```{.copyWrapper}
 $ curl http://<elastic_public_ip>:8080/hello
 {"status":"pass","version":"v3.0.0","description":"Tyk GW","details":{"dashboard":{"status":"pass","componentType":"system","time":"2020-08-28T17:19:49+02:00"},"redis":{"status":"pass","componentType":"datastore","time":"2020-08-28T17:19:49+02:00"}}}
@@ -98,11 +102,12 @@ $ curl http://<elastic_public_ip>:8080/hello
 {{% tab_end %}}
 {{% tab_start "High Availability / Autoscaling" %}}
 <br>
-The CloudFormation stack sets up an Elastic Load Balancer for the Gateway cluster.  
+The CloudFormation stack sets up an Elastic Load Balancer for the Gateway cluster.
 
-Navigate to the AWS Load Balancing section and find the  `TYKElasticLoadBalancerALB`.  The Cloud Formation template sets up a public DNS entry, something like `TYKElasticLoadBalancerALB-2050138050.us-east-1.elb.amazonaws.com`
+Navigate to the AWS Load Balancing section and find the `TYKElasticLoadBalancerALB`. The Cloud Formation template sets up a public DNS entry, something like `TYKElasticLoadBalancerALB-2050138050.us-east-1.elb.amazonaws.com`
 
 We can check it is running by visiting
+
 ```{.copyWrapper}
 $ curl http://TYKElasticLoadBalancerALB-2050138050.us-east-1.elb.amazonaws.com/hello
 {"status":"pass","version":"v3.0.0","description":"Tyk GW","details":{"dashboard":{"status":"pass","componentType":"system","time":"2020-08-28T17:19:49+02:00"},"redis":{"status":"pass","componentType":"datastore","time":"2020-08-28T17:19:49+02:00"}}}
@@ -113,10 +118,9 @@ Note that ALB rules are already setup to accept traffic on port 80 and forward i
 
 {{% tabs_end %}}
 
-
 ### Tyk Component Updates
-Updates to the PAYG products can be done manually or automatically.  The manual method requires SSHing into the EC2 instances and doing the updates through the CLI.  To do this automatically, there is a mechanism to upgrade CloudFormation stack. The idea is to apply a new version of CloudFormation to your existing stack. We are releasing new versions of the product from time to time. When this happens, you will get a notification from AWS.
 
+Updates to the PAYG products can be done manually or automatically. The manual method requires SSHing into the EC2 instances and doing the updates through the CLI. To do this automatically, there is a mechanism to upgrade CloudFormation stack. The idea is to apply a new version of CloudFormation to your existing stack. We are releasing new versions of the product from time to time. When this happens, you will get a notification from AWS.
 
 [2]: https://aws.amazon.com/marketplace/pp/prodview-elvk5mxxlkueu?qid=1575313242174&sr=0-4&ref_=srh_res_product_title
 [3]: https://aws.amazon.com/marketplace/pp/prodview-2bgdxbpeygf5w?qid=1575313242174&sr=0-5&ref_=srh_res_product_title

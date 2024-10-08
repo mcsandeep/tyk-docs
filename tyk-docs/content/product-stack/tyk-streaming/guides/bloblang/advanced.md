@@ -1,7 +1,7 @@
 ---
 title: Advanced Bloblang
 description: Explains some advanced Bloblang patterns
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Advanced", "Bloblang Patterns" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Advanced", "Bloblang Patterns"]
 ---
 
 This section explains some advanced [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) patterns
@@ -66,16 +66,13 @@ root = this.apply("unescape_values")
 ## Message Expansion
 
 <!-- TODO: Add unarchive processor -->
+
 Expanding a single message into multiple messages can be done by mapping messages into an array and following it up with an unarchive processor. For example, given documents of this format:
 
 ```json
 {
   "id": "foobar",
-  "items": [
-    {"content":"foo"},
-    {"content":"bar"},
-    {"content":"baz"}
-  ]
+  "items": [{ "content": "foo" }, { "content": "bar" }, { "content": "baz" }]
 }
 ```
 

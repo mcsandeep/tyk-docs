@@ -1,7 +1,7 @@
 ---
 title: Log
 description: Explains an overview of log processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Log" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Log"]
 ---
 
 Prints a log event for each message. Messages always remain unchanged. The log message can be set using [function interpolations]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}) which allows you to log the contents and metadata of messages.
@@ -38,13 +38,11 @@ pipeline:
           root.kafka_topic = meta("kafka_topic")
 ```
 
-
 ## Fields
 
 ### level
 
 The log level to use.
-
 
 Type: `string`  
 Default: `"INFO"`  
@@ -54,8 +52,7 @@ Options: `FATAL`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`, `ALL`.
 
 An optional [Bloblang mapping]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that can be used to specify extra fields to add to the log. If log fields are also added with `fields` then those values will override matching keys from this mapping.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -73,6 +70,5 @@ The message to print.
 
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`

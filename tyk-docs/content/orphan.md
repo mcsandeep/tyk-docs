@@ -4,4 +4,3 @@ title: Orphan pages
 ---
 
 Root for pages which do not have place in menu
-

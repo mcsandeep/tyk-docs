@@ -6,8 +6,8 @@ description: " A guide demonstrating the process of running a Lua plugin with Ty
 menu:
   main:
     parent: "LuaJIT"
-weight: 0 
-aliases: 
+weight: 0
+aliases:
   - plugins/supported-languages/rich-plugins/luajittutorial-add-demo-plugin-api
   - plugins/rich-plugins/luajit/tutorial-add-demo-plugin-api
 ---
@@ -49,7 +49,7 @@ To add a Lua plugin to your API, you must specify the bundle name using the `cus
     "target_url": "http://httpbin.org",
     "strip_listen_path": true
   },
-  "custom_middleware_bundle": "test-bundle",
+  "custom_middleware_bundle": "test-bundle"
 }
 ```
 

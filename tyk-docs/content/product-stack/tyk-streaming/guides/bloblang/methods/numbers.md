@@ -1,7 +1,7 @@
 ---
 title: Number Manipulation Methods
 description: Explains Number Manipulation Methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Number", "Number Manipulation" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Number", "Number Manipulation"]
 ---
 
 Number manipulation methods in Bloblang offer a robust suite of tools for performing various numerical transformations and calculations. These methods enable users to convert, round, and compute values with precision, catering to specific data type requirements.
@@ -11,7 +11,6 @@ Number manipulation methods in Bloblang offer a robust suite of tools for perfor
 Returns the absolute value of an int64 or float64 number. As a special case, when an integer is provided that is the minimum value it is converted to the maximum value.
 
 #### Examples
-
 
 ```coffee
 
@@ -27,7 +26,6 @@ root.outs = this.ins.map_each(ele -> ele.abs())
 Returns the least integer value greater than or equal to a number. If the resulting value fits within a 64-bit integer then that is returned, otherwise a new floating point number is returned.
 
 #### Examples
-
 
 ```coffee
 root.new_value = this.value.ceil()
@@ -79,7 +77,6 @@ Returns the greatest integer value less than or equal to the target number. If t
 
 #### Examples
 
-
 ```coffee
 root.new_value = this.value.floor()
 
@@ -124,7 +121,6 @@ If the value is a string then an attempt will be made to parse it as a 32-bit si
 
 #### Examples
 
-
 ```coffee
 
 root.a = this.a.int32()
@@ -148,13 +144,11 @@ root = this.int32()
 
 ## int64
 
-
 Converts a numerical type into a 64-bit signed integer, this is for advanced use cases where a specific data type is needed for a given component (such as the ClickHouse SQL driver).
 
 If the value is a string then an attempt will be made to parse it as a 64-bit signed integer. If the target value exceeds the capacity of an integer or contains decimal values then this method will throw an error. In order to convert a floating point number containing decimals first use [.round()](#round) on the value. Please refer to the [strconv.ParseInt documentation](https://pkg.go.dev/strconv#ParseInt) for details regarding the supported formats.
 
 #### Examples
-
 
 ```coffee
 
@@ -228,7 +222,6 @@ Returns the decimal logarithm of a number.
 
 #### Examples
 
-
 ```coffee
 root.new_value = this.value.log10()
 
@@ -244,7 +237,6 @@ root.new_value = this.value.log10()
 Returns the largest numerical value found within an array. All values must be numerical and the array must not be empty, otherwise an error is returned.
 
 #### Examples
-
 
 ```coffee
 root.biggest = this.values.max()
@@ -269,7 +261,6 @@ Returns the smallest numerical value found within an array. All values must be n
 
 #### Examples
 
-
 ```coffee
 root.smallest = this.values.min()
 
@@ -293,7 +284,6 @@ Rounds numbers to the nearest integer, rounding half away from zero. If the resu
 
 #### Examples
 
-
 ```coffee
 root.new_value = this.value.round()
 
@@ -311,7 +301,6 @@ Converts a numerical type into a 16-bit unsigned integer, this is for advanced u
 If the value is a string then an attempt will be made to parse it as a 16-bit unsigned integer. If the target value exceeds the capacity of an integer or contains decimal values then this method will throw an error. In order to convert a floating point number containing decimals first use [.round()](#round) on the value. Please refer to the [strconv.ParseInt documentation](https://pkg.go.dev/strconv#ParseInt) for details regarding the supported formats.
 
 #### Examples
-
 
 ```coffee
 
@@ -341,7 +330,6 @@ Converts a numerical type into a 32-bit unsigned integer, this is for advanced u
 If the value is a string then an attempt will be made to parse it as a 32-bit unsigned integer. If the target value exceeds the capacity of an integer or contains decimal values then this method will throw an error. In order to convert a floating point number containing decimals first use [.round()](#round) on the value. Please refer to the [strconv.ParseInt documentation](https://pkg.go.dev/strconv#ParseInt) for details regarding the supported formats.
 
 #### Examples
-
 
 ```coffee
 

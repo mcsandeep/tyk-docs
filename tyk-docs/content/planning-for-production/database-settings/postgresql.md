@@ -24,13 +24,13 @@ How you configure your PostgreSQL installation depends on whether you are instal
 For v4.0 we have provided a migration command that will help you migrate all data from the main storage layer (APIs, Policies, Users, UserGroups, Webhooks, Certificates, Portal Settings, Portal Catalogs, Portal Pages, Portal CSS etc.).
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The migration tool will not migrate any Logs, Analytics or Uptime analytics data.
 {{< /note >}}
 
 1. Make sure your new SQL platform and the existing MongoDB instance are both running
-2. Configure the `main` part of  `storage` section of your `tyk-analytics.conf`:
+2. Configure the `main` part of `storage` section of your `tyk-analytics.conf`:
 
 ```yaml
 {
@@ -42,13 +42,15 @@ The migration tool will not migrate any Logs, Analytics or Uptime analytics data
       "connection_string": "user=root password=admin database=tyk-demo-db host=tyk-db port=5432"
     }
   }
-} 
+}
 ```
+
 3. Run the following command:
 
 ```console
 ./tyk-analytics migrate-sql
 ```
+
 You will see output listing the transfer of each database table. For example: `Migrating 'tyk_apis' collection. Records found: 7`.
 
 4. You can now remove your `mongo_url` (or `TYK_DB_MONGOURL` environment variable) from your `tyk-analytics.conf`
@@ -56,17 +58,18 @@ You will see output listing the transfer of each database table. For example: `M
 
 ## PostgreSQL sizing
 
-The aggregate record size depends on the number of APIs and Keys you have. Each counter size ~50b, and every aggregated value has its own counter. 
+The aggregate record size depends on the number of APIs and Keys you have. Each counter size ~50b, and every aggregated value has its own counter.
 
-So an hourly aggregate record is computed like this: 50 * active_apis + 50 * api_versions + 50 * active_api_keys  + 50 * oauth_keys, etc. 
+So an hourly aggregate record is computed like this: 50 _ active_apis + 50 _ api_versions + 50 _ active_api_keys + 50 _ oauth_keys, etc.
 
 The average aggregate record size (created hourly) on our cloud is about ~ 40KB (a single record includes all the aggregate stats mentioned above).
 
-So for 1 million requests per day, it will generate 1KB * 1M request stats (1GB) + 24 * 40KB aggregate stats (~1MB).
+So for 1 million requests per day, it will generate 1KB _ 1M request stats (1GB) + 24 _ 40KB aggregate stats (~1MB).
 
 Per month: 30GB request logs + 30MB aggregate logs
 
 ## PostgreSQL Database Storage Calculator
+
 You can calculate your PostgreSQL storage requirements by entering your known values in the middle section of the calculator settings below:
 
 {{< database-calculator >}}

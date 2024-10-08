@@ -11,14 +11,13 @@ menu:
 
 ## Introduction
 
+This page walks you through how to start using Tyk Cloud, creating organization, environment and users before creating an API. If you are in a hurry, try the [Quick Start guide]({{< ref "../deployment-and-operations/tyk-cloud-platform/quick-start.md" >}}) for a 5 min version of this tutorial.
 
-This page walks you through how to start using Tyk Cloud, creating organization, environment and users before creating an API. If you are in a hurry, try the [Quick Start guide]({{< ref "../deployment-and-operations/tyk-cloud-platform/quick-start.md" >}}) for a 5 min version of this tutorial. 
-
-* Creating your Tyk Cloud account
-* Your first Organization
-* Creating your first Team and Environment
-* Configuring and deploying your Control Plane and creating your Cloud Data Plane
-* Adding and testing your first API
+- Creating your Tyk Cloud account
+- Your first Organization
+- Creating your first Team and Environment
+- Configuring and deploying your Control Plane and creating your Cloud Data Plane
+- Adding and testing your first API
 
 At the end of this process you will have a simple API set up via a Tyk Dashboard and you'll see analytics for this API on the Tyk Activity Dashboard.
 
@@ -34,5 +33,5 @@ This diagram shows how _Organization, Teams, Environments, Control Planes and Cl
 
 The following information would be useful so you can set up Tyk Cloud as quickly as possible:
 
-* Team member information including their email address and the role you plan to assign to them.
-* We have some specific terminology used within Tyk Cloud. It would be useful to checkout our [Glossary]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md" >}}) so you understand what we are referring to.
+- Team member information including their email address and the role you plan to assign to them.
+- We have some specific terminology used within Tyk Cloud. It would be useful to checkout our [Glossary]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md" >}}) so you understand what we are referring to.

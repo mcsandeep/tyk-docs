@@ -28,19 +28,20 @@ The `go_plugin` object has the following configuration:
 You can register multiple plugin functions for a single endpoint. Tyk will process them in the order they appear in the API definition.
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "extended_paths": {
-        "go_plugin": [
-            {
-                "disabled": false,
-                "path": "/anything",
-                "method": "GET",
-                "plugin_path": "/middleware/myPlugin.so",
-                "func_name": "myUniqueFunctionName"
-            }
-        ]
-    }
+  "extended_paths": {
+    "go_plugin": [
+      {
+        "disabled": false,
+        "path": "/anything",
+        "method": "GET",
+        "plugin_path": "/middleware/myPlugin.so",
+        "func_name": "myUniqueFunctionName"
+      }
+    ]
+  }
 }
 ```
 
@@ -58,7 +59,7 @@ From the **Endpoint Designer** add an endpoint that matches the path for which y
 
 #### Step 2: Locate the middleware in the raw API definition
 
-Once you have selected the middleware for the endpoint, you need to switch to the *Raw Definition* view and then locate the `go_plugin` section (you can search within the text editor window).
+Once you have selected the middleware for the endpoint, you need to switch to the _Raw Definition_ view and then locate the `go_plugin` section (you can search within the text editor window).
 
 {{< img src="/img/dashboard/endpoint-designer/endpointplugin_search.png" alt="Locating the middleware configuration" >}}
 
@@ -70,4 +71,4 @@ Now you can directly edit the `plugin_path` and `func_name` to locate your compi
 
 #### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.

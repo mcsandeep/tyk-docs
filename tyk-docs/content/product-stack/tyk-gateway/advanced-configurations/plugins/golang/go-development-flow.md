@@ -22,7 +22,7 @@ The general steps for initialising plugins can be summarised as follows:
 3. Determine the commit hash for the Tyk Gateway version that will be used to build the plugin. Commit hashes can be found for tagged [Gateway releases](https://github.com/TykTechnologies/tyk/tags)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The process for initialising plugins changed with Tyk Gateway v5.1, please ensure that you follow the correct steps based on your Gateway version.
 {{< /note >}}
@@ -62,9 +62,9 @@ go mod vendor
 
 #### Initialise plugin for Tyk Gateway versions prior to v4.2
 
-Up to Tyk Gateway v4.2, plugin compilation relies on *graphql-go-tools*. An alias needs to be configured to associate imports of *github.com/TykTechnologies/graphql-go-tools* with *github.com/jensneuse/graphql-go-tools*. To determine the dependency version open the *go.mod* file in the associated release branch of the [Gateway repository](https://github.com/TykTechnologies/tyk).
+Up to Tyk Gateway v4.2, plugin compilation relies on _graphql-go-tools_. An alias needs to be configured to associate imports of _github.com/TykTechnologies/graphql-go-tools_ with _github.com/jensneuse/graphql-go-tools_. To determine the dependency version open the _go.mod_ file in the associated release branch of the [Gateway repository](https://github.com/TykTechnologies/tyk).
 
-For example, for Tyk Gateway v4.0.3, the dependency version for *graphql-go-tools* is *v1.6.2-0.20220426094453-0cc35471c1ca*. This can be found by inspecting the contents of *go.mod* in the *release-4.0.3* branch, particularly the `replace` statements within.  
+For example, for Tyk Gateway v4.0.3, the dependency version for _graphql-go-tools_ is _v1.6.2-0.20220426094453-0cc35471c1ca_. This can be found by inspecting the contents of _go.mod_ in the _release-4.0.3_ branch, particularly the `replace` statements within.
 
 ```bash
 mkdir tyk-plugin
@@ -107,7 +107,7 @@ We see that the Golang plugin:
 - has one exported `func AddFooBarHeader` which must have the same method signature as `type HandlerFunc func(ResponseWriter, *Request)` from the standard `"net/http"` Golang package
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If a dependency that your plugin uses is also used by the gateway, the version _used by the gateway_ will be used in your plugin. This may mask conflicts between transitive dependencies.
 {{< /note >}}
@@ -131,7 +131,6 @@ go mod vendor    # only for Tyk Gateway <5.1
 If you are working with a Tyk Gateway prior to v5.1 you must run these commands on initial plugin initialisation and every time you add a new third-party library in your code.
 {{< /note >}}
 
-
 ### Step 4: Build the plugin
 
 A Golang plugin is built as a shared library (`.so`), and must use exactly the same Tyk Gateway binary as the one to be installed. We provide a [Docker image](https://hub.docker.com/r/tykio/tyk-plugin-compiler/tags), that we also use internally for building our official binaries.
@@ -142,10 +141,10 @@ The steps for building a plugin are as follows:
 2. Specify the docker tag for the target Tyk Gateway version, e.g. `v5.2.1`
 3. Specify the name for your plugin's shared library file, e.g. `plugin.so`
 
-An example is shown below that builds a plugin named *plugin.so*, compatible with Gateway version v5.2.1. This mounts the source code from the current directory into the docker container at `/plugin-source`.
+An example is shown below that builds a plugin named _plugin.so_, compatible with Gateway version v5.2.1. This mounts the source code from the current directory into the docker container at `/plugin-source`.
 
 ```bash
-docker pull tykio/tyk-plugin-compiler:v5.2.1 
+docker pull tykio/tyk-plugin-compiler:v5.2.1
 docker run --rm -v `pwd`:/plugin-source \
            --platform=linux/amd64 \
            tykio/tyk-plugin-compiler:v5.2.1 plugin.so

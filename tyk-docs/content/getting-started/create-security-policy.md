@@ -4,7 +4,7 @@ title: Secure an API
 tags: ["Tyk Tutorials", "Getting Started", "Security Policy", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source"]
 description: "Creating a first security policy for your API using Tyk"
 menu:
-  main: 
+  main:
     parent: "Getting Started"
 weight: 5
 aliases:
@@ -44,9 +44,7 @@ Adding a policy to the Tyk Gateway is very easy. Polices are loaded into memory 
         "allowed_urls": [],
         "api_id": "{API-ID}",
         "api_name": "{API-NAME}",
-        "versions": [
-            "Default"
-        ]
+        "versions": ["Default"]
       }
     },
     "active": true,

@@ -4,7 +4,7 @@ title: “No Elasticsearch node available“
 menu:
   main:
     parent: "Tyk Pump Troubleshooting"
-weight: 5 
+weight: 5
 ---
 
 ### Description

@@ -1,7 +1,7 @@
 ---
 title: Generate Input
 description: Explains an overview of configuring generate input
-tags: [ "Tyk Streams", "Stream Outputs", "Inputs", "Generate" ]
+tags: ["Tyk Streams", "Stream Outputs", "Inputs", "Generate"]
 ---
 
 Generates messages at a given interval using a [Bloblang]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}) mapping executed without a context. This allows you to generate messages for testing your pipeline configs.
@@ -27,14 +27,14 @@ A common use case for the generate input is to trigger processors on a schedule 
 ```yaml
 input:
   generate:
-    interval: '@every 5m'
-    mapping: 'root = {}'
+    interval: "@every 5m"
+    mapping: "root = {}"
   processors:
     - sql_select:
         driver: postgres
         dsn: postgres://foouser:foopass@localhost:5432/testdb?sslmode=disable
         table: foo
-        columns: [ "*" ]
+        columns: ["*"]
 ```
 
 ## Generate 100 Rows
@@ -66,8 +66,7 @@ input:
 
 A [bloblang]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}) mapping to use for generating messages.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -81,9 +80,8 @@ mapping: root = {"test":"message","id":uuid_v4()}
 
 The time interval at which messages should be generated, expressed either as a duration string or as a cron expression. If set to an empty string messages will be generated as fast as downstream services can process them. Cron expressions can specify a timezone by prefixing the expression with `TZ=<location name>`, where the location name corresponds to a file within the IANA Time Zone database.
 
-
 Type: `string`  
-Default: `"1s"`  
+Default: `"1s"`
 
 ```yml
 # Examples
@@ -105,22 +103,19 @@ interval: TZ=Europe/London 30 3-6,20-23 * * *
 
 An optional number of messages to generate, if set above 0 the specified number of messages is generated and then the input will shut down.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### batch_size
 
 The number of generated messages that should be accumulated into each batch flushed at the specified interval.
 
-
 Type: `int`  
-Default: `1`  
+Default: `1`
 
 ### auto_replay_nacks
 
 Whether messages that are rejected (nacked) at the output level should be automatically replayed indefinitely, eventually resulting in back pressure if the cause of the rejections is persistent. If set to `false` these messages will instead be deleted. Disabling auto replays can greatly improve memory efficiency of high throughput streams as the original shape of the data can be discarded immediately upon consumption and mutation.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`

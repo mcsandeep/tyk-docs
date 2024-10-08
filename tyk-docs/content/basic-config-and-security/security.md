@@ -1,10 +1,20 @@
 ---
 date: 2017-03-23T14:29:56Z
 title: How to secure your APIs in Tyk
-tags: ["Security", "Configuration", "SSL", "Certificates", "Authentication", "Authorization", "API security", "API Gateway Security"]
+tags:
+  [
+    "Security",
+    "Configuration",
+    "SSL",
+    "Certificates",
+    "Authentication",
+    "Authorization",
+    "API security",
+    "API Gateway Security",
+  ]
 description: "Security in Tyk. Securing your APIs is one of the primary uses of Tyk. Out of the box the Gateway offers functionality for securing your APIs & the Gateway itself."
 weight: 1
-menu: 
+menu:
   main:
     parent: "Basic Configuration and Security"
 aliases:
@@ -41,12 +51,12 @@ Introduced in Tyk Gateway 2.6.0, [certificate pinning]({{< ref "security/certifi
 
 Tyk supports various ways to secure your APIs, including:
 
-* Bearer Tokens
-* HMAC
-* JSON Web Tokens (JWT)
-* Multi Chained Authentication
-* OAuth 2.0
-* OpenID Connect
+- Bearer Tokens
+- HMAC
+- JSON Web Tokens (JWT)
+- Multi Chained Authentication
+- OAuth 2.0
+- OpenID Connect
 
 See [Authentication and Authorization]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}}) for more details.
 

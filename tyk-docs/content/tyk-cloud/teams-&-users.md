@@ -16,4 +16,3 @@ This section covers the following:
 - [Managing Users]({{< ref "tyk-cloud/teams-&-users/managing-users.md" >}})
 - Available Tyk Cloud [User Roles]({{< ref "tyk-cloud/teams-&-users/user-roles.md" >}})
 - [Tyk Cloud Single Sign-On (SSO)]({{< ref "tyk-cloud/teams-&-users/single-sign-on.md" >}})
-

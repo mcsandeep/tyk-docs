@@ -4,7 +4,7 @@ title: “ValueError No JSON object could be decoded" when running Dashboard Boo
 menu:
   main:
     parent: "Tyk Dashboard Troubleshooting"
-weight: 5 
+weight: 5
 ---
 
 ### Description
@@ -60,4 +60,3 @@ The bootstrap script requires a valid hostname and port number to generate a new
 ### Solution
 
 Make sure that the correct hostname and port number used to run the bootstrap.sh script. An example command would be: `./bootstrap.sh new-tyk-instance.com:3000`
-

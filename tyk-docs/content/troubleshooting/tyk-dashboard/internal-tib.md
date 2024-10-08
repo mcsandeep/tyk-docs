@@ -23,8 +23,6 @@ You can check this from:
 
 {{< img src="/img/2.10/identity_profile2.png" alt="DashboardCredentials" >}}
 
-
-
 ### Workaround Solution
 
 If, as above, the `DashboardCredential` setting is empty (`"DashboardCredential": ""`), you can manually add the user's Tyk Dashboard API Access Credentials by performing the following:
@@ -39,7 +37,7 @@ If, as above, the `DashboardCredential` setting is empty (`"DashboardCredential"
 5. The user should now be able to log in to the Dashboard/Portal
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This issue is due to be fixed in an up coming release
 {{< /note >}}

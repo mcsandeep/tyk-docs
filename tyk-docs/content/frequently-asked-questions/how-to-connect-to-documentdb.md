@@ -4,7 +4,7 @@ date: 2020-03-26T10:32:49Z
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 As AWS DocumentDB runs with TLS enabled, we require a way to run it without disabling the TLS verification.
@@ -13,10 +13,9 @@ Additionally DocumentDB can't be exposed to the local machine outside of the Ama
 
 So, in order to support it, we provide the following variables for both our [Tyk Analytics Dashboard]({{< ref "tyk-dashboard/configuration" >}}) and [Tyk Pump]({{< ref "tyk-pump/configuration" >}}):
 
-* `mongo_ssl_ca_file` - path to the PEM file with trusted root certificates
-* `mongo_ssl_pem_keyfile` - path to the PEM file which contains both client certificate and private key. This is required for Mutual TLS.
-* `mongo_ssl_allow_invalid_hostnames` - ignore hostname check when it differs from the original (for example with SSH tunneling). The rest of the TLS verification will still be performed.
-
+- `mongo_ssl_ca_file` - path to the PEM file with trusted root certificates
+- `mongo_ssl_pem_keyfile` - path to the PEM file which contains both client certificate and private key. This is required for Mutual TLS.
+- `mongo_ssl_allow_invalid_hostnames` - ignore hostname check when it differs from the original (for example with SSH tunneling). The rest of the TLS verification will still be performed.
 
 A working DocumentDB configuration looks like this (assuming that there is SSH tunnel, proxying to 27018 port).
 

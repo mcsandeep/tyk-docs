@@ -1,10 +1,10 @@
 ---
 title: Processing Pipelines
 description: Explains processing pipelines
-tags: [ "Tyk Streams", "Processing Pipelines", "Pipelines" ]
+tags: ["Tyk Streams", "Processing Pipelines", "Pipelines"]
 ---
 
-Within a Tyk Streams configuration, in between `input` and `output`, is a `pipeline` section. This section describes an array of processors that are to be applied to *all* messages, and are not bound to any particular input or output.
+Within a Tyk Streams configuration, in between `input` and `output`, is a `pipeline` section. This section describes an array of processors that are to be applied to _all_ messages, and are not bound to any particular input or output.
 
 If you have processors that are heavy on CPU and aren't specific to a certain input or output they are best suited for the pipeline section. It is advantageous to use the pipeline section as it allows you to set an explicit number of parallel threads of execution:
 

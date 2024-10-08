@@ -4,7 +4,7 @@ title: Monetize
 menu:
   main:
     parent: "Tyk Portal Classic"
-weight: 11 
+weight: 11
 aliases:
   - /tyk-developer-portal/monetise/
 ---
@@ -24,7 +24,7 @@ With Tyk, it is possible to prevent step 4, which auto-enables the key, and inst
 
 When Tyk hands off to the redirected app, it will also add the key request ID to the request, so the application that handles the transaction can then use the Tyk Dashboard REST API to approve the key request (triggering the email that notifies the developer of their token, as well as notifying the calling application of the raw token), closing the loop.
 
-To enable the developer hand-off in a Tyk Portal, from the **Portal Settings**  enable the redirect option:
+To enable the developer hand-off in a Tyk Portal, from the **Portal Settings** enable the redirect option:
 
 {{< img src="/img/dashboard/portal-management/portal_redirect_2.5.png" alt="Redirect key requests form" >}}
 

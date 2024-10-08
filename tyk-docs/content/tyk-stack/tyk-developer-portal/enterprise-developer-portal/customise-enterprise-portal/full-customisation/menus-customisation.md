@@ -8,6 +8,7 @@ menu:
     parent: "Content Manager Workflow"
 weight: 3
 ---
+
 {{< note success >}}
 **Tyk Enterprise Developer Portal**
 
@@ -18,6 +19,7 @@ If you are interested in getting access contact us at [support@tyk.io](<mailto:s
 ## Introduction
 
 The Developer portal has two types of menus:
+
 1. The main navigation at the top (in the header)
 2. The footer at the bottom.
 
@@ -68,6 +70,7 @@ We have mentioned above the relationship between a menu’s `Path` and the code 
   {{ end }}
 {{ end }}
 ```
+
 Let's pick each line that is used to render the menu attributes and see how they work:
 
 1. `{{ if GetMenus.Primary }}`: This statement calls the “GetMenus” function and checks if there is a menu called `Primary`. If present, it goes into the next line:
@@ -77,6 +80,7 @@ Let's pick each line that is used to render the menu attributes and see how they
 <li class="nav-item {{ if .Children }}dropdown{{end}} mr-2">
 <a class="nav-link {{ if .Children }}dropdown-toggle{{end}}" href="{{.Path}}" {{ if .Children }}data-toggle="dropdown" aria-haspopup=”true" aria-expanded="false"{{end}}>{{.Tag}}</a>
 ```
+
 Where:
 
 - `{{ .Path }}` is the Path we have defined from the UI and
@@ -85,4 +89,4 @@ Where:
 So this will render all the menu items (Catalogs - as per screenshot) of the menu (Primary - the name we’ve given to the menu).
 
 3. `{{ if .Children }}`: This line checks if the menu item has any submenus. If it does it loops through those children `{{ range .Children }}` and finally renders them `<a class="dropdown-item" href="{{.Path}}">{{.Tag}}</a>` similarly as the main menu items.
-So now the child of **Catalogs** which we named **Product 1** has been rendered.
+   So now the child of **Catalogs** which we named **Product 1** has been rendered.

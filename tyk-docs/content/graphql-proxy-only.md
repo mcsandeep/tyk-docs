@@ -3,12 +3,12 @@ title: Graphql Proxy Only
 tags: ["GraphQL", "Playground", "CORS", "Tyk"]
 date: 2021-11-19T13:01:30Z
 menu:
-    main:
-        parent: "Key Concepts"
+  main:
+    parent: "Key Concepts"
 weight: 100
 aliases:
-- /concepts/graphql-proxy-only/
-- /getting-started/key-concepts/graphql-proxy-only/
+  - /concepts/graphql-proxy-only/
+  - /getting-started/key-concepts/graphql-proxy-only/
 ---
 
 ### What is GraphQL Proxy Only
@@ -46,7 +46,6 @@ In case your upstream URL is protected, select **Upstream Protected** and provid
 
 {{< img src="/img/dashboard/graphql/gql_upstream_header.png" alt="Adding Auth Header for GraphQL Proxy Only API" >}}
 
-
 4. Once done, click **Configure API** and the Dashboard API designer will show up.
 
 5. Configure your API and click **save**, Your API will now be saved.
@@ -75,6 +74,7 @@ and fill in your credentials
 #### Field based permission
 
 You may want to allow different consumers access to your GraphQL API without exposing all data to them. So for example this could be a schema for a GraphQL API:
+
 ```graphql
 type Query {
   accounts: [Account!]
@@ -88,13 +88,14 @@ type Account {
 ```
 
 and you don't want some associate with a certain key to access `balance` field on type `Account`, the gateway will respond with:
+
 ```json
 {
-    "errors": [
-        {
-            "message": "field: balance is restricted on type: Account"
-        }
-    ]
+  "errors": [
+    {
+      "message": "field: balance is restricted on type: Account"
+    }
+  ]
 }
 ```
 
@@ -103,6 +104,7 @@ Checkout [this link](https://tyk.io/docs/graphql/field-based-permissions/#setup-
 #### Complexity Limiting
 
 The complexity of a GraphQL query is about its depth. checkout this query:
+
 ```graphql
 {
   continents {

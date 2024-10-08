@@ -1,7 +1,7 @@
 ---
 title: String Manipulation Methods
 description: Explains Bloblang string manipulation methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Strings", "Methods" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Strings", "Methods"]
 ---
 
 Bloblang offers powerful string manipulation methods designed to handle a wide range of tasks from basic transformations to complex operations like hashing and formatting. These methods facilitate string manipulation, making Bloblang an ideal tool for data transformation pipelines and integration workflows.
@@ -11,7 +11,6 @@ Bloblang offers powerful string manipulation methods designed to handle a wide r
 Takes a string value and returns a copy with all Unicode letters that begin words mapped to their Unicode title case.
 
 #### Examples
-
 
 ```coffee
 root.title = this.title.capitalize()
@@ -26,10 +25,9 @@ Checks whether a string matches a hashed secret using Argon2.
 
 #### Parameters
 
-**hashed_secret** &lt;string&gt; The hashed secret to compare with the input. This must be a fully-qualified string which encodes the Argon2 options used to generate the hash.  
+**hashed_secret** &lt;string&gt; The hashed secret to compare with the input. This must be a fully-qualified string which encodes the Argon2 options used to generate the hash.
 
 #### Examples
-
 
 ```coffee
 root.match = this.secret.compare_argon2("$argon2id$v=19$m=4096,t=3,p=1$c2FsdHktbWNzYWx0ZmFjZQ$RMUMwgtS32/mbszd+ke4o4Ej1jFpYiUqY6MHWa69X7Y")
@@ -51,7 +49,7 @@ Checks whether a string matches a hashed secret using bcrypt.
 
 #### Parameters
 
-**hashed_secret** &lt;string&gt; The hashed secret value to compare with the input.  
+**hashed_secret** &lt;string&gt; The hashed secret value to compare with the input.
 
 #### Examples
 
@@ -75,7 +73,7 @@ Checks whether a string contains a substring and returns a boolean result.
 
 #### Parameters
 
-**value** &lt;unknown&gt; A value to test against elements of the target.  
+**value** &lt;unknown&gt; A value to test against elements of the target.
 
 #### Examples
 
@@ -108,7 +106,6 @@ Escapes a string so that it can be safely placed within a URL query.
 
 #### Examples
 
-
 ```coffee
 root.escaped = this.value.escape_url_query()
 
@@ -122,7 +119,6 @@ Joins an array of path elements into a single file path. The separator depends o
 
 #### Examples
 
-
 ```coffee
 root.path = this.path_elements.filepath_join()
 
@@ -135,7 +131,6 @@ root.path = this.path_elements.filepath_join()
 Splits a file path immediately following the final Separator, separating it into a directory and file name component returned as a two element array of strings. If there is no Separator in the path, the first element will be empty and the second will contain the path. The separator depends on the operating system of the machine.
 
 #### Examples
-
 
 ```coffee
 root.path_sep = this.path.filepath_split()
@@ -166,10 +161,9 @@ Checks whether a string has a prefix argument and returns a bool.
 
 #### Parameters
 
-**value** &lt;string&gt; The string to test.  
+**value** &lt;string&gt; The string to test.
 
 #### Examples
-
 
 ```coffee
 root.t1 = this.v1.has_prefix("foo")
@@ -185,10 +179,9 @@ Checks whether a string has a suffix argument and returns a bool.
 
 #### Parameters
 
-**`value`** &lt;string&gt; The string to test.  
+**`value`** &lt;string&gt; The string to test.
 
 #### Examples
-
 
 ```coffee
 root.t1 = this.v1.has_suffix("foo")
@@ -204,10 +197,9 @@ Returns the starting index of the argument substring in a string target, or `-1`
 
 #### Parameters
 
-**value** &lt;string&gt; A string to search for.  
+**value** &lt;string&gt; A string to search for.
 
 #### Examples
-
 
 ```coffee
 root.index = this.thing.index_of("bar")
@@ -229,7 +221,6 @@ Returns the length of a string.
 
 #### Examples
 
-
 ```coffee
 root.foo_len = this.foo.length()
 
@@ -243,7 +234,6 @@ Convert a string value into lowercase.
 
 #### Examples
 
-
 ```coffee
 root.foo = this.foo.lowercase()
 
@@ -256,7 +246,6 @@ root.foo = this.foo.lowercase()
 Quotes a target string using escape sequences (`\t`, `\n`, `\xFF`, `\u0100`) for control characters and non-printable characters.
 
 #### Examples
-
 
 ```coffee
 root.quoted = this.thing.quote()
@@ -272,10 +261,9 @@ Replaces all occurrences of the first argument in a target string with the secon
 #### Parameters
 
 **`old`** &lt;string&gt; A string to match against.  
-**`new`** &lt;string&gt; A string to replace with.  
+**`new`** &lt;string&gt; A string to replace with.
 
 #### Examples
-
 
 ```coffee
 root.new_value = this.value.replace_all("foo","dog")
@@ -290,10 +278,9 @@ For each pair of strings in an argument array, replaces all occurrences of the f
 
 #### Parameters
 
-**values** &lt;array&gt; An array of values, each even value will be replaced with the following odd value.  
+**values** &lt;array&gt; An array of values, each even value will be replaced with the following odd value.
 
 #### Examples
-
 
 ```coffee
 root.new_value = this.value.replace_all_many([
@@ -312,7 +299,6 @@ root.new_value = this.value.replace_all_many([
 Returns the target string in reverse order.
 
 #### Examples
-
 
 ```coffee
 root.reversed = this.thing.reverse()
@@ -335,10 +321,9 @@ Extract a slice from a string by specifying two indices, a low and high bound, w
 #### Parameters
 
 **low** &lt;integer&gt; The low bound, which is the first element of the selection, or if negative selects from the end.  
-**high** &lt;(optional) integer&gt; An optional high bound.  
+**high** &lt;(optional) integer&gt; An optional high bound.
 
 #### Examples
-
 
 ```coffee
 root.beginning = this.value.slice(0, 2)
@@ -360,11 +345,11 @@ root.the_rest = this.value.slice(0, -4)
 
 ## slug
 
-Creates a "slug" from a given string. Wraps the *github.com/gosimple/slug* package. See accompanying [docs](https://pkg.go.dev/github.com/gosimple/slug) for more information.
+Creates a "slug" from a given string. Wraps the _github.com/gosimple/slug_ package. See accompanying [docs](https://pkg.go.dev/github.com/gosimple/slug) for more information.
 
 #### Parameters
 
-**lang** &lt;(optional) string, default `"en"`&gt;   
+**lang** &lt;(optional) string, default `"en"`&gt;
 
 #### Examples
 
@@ -392,10 +377,9 @@ Split a string value into an array of strings by splitting it on a string separa
 
 #### Parameters
 
-**delimiter** &lt;string&gt; The delimiter to split with.  
+**delimiter** &lt;string&gt; The delimiter to split with.
 
 #### Examples
-
 
 ```coffee
 root.new_value = this.value.split(",")
@@ -410,10 +394,9 @@ Attempts to remove all HTML tags from a target string.
 
 #### Parameters
 
-**preserve** &lt;(optional) array&gt; An optional array of element types to preserve in the output.  
+**preserve** &lt;(optional) array&gt; An optional array of element types to preserve in the output.
 
 #### Examples
-
 
 ```coffee
 root.stripped = this.value.strip_html()
@@ -437,10 +420,9 @@ Remove all leading and trailing characters from a string that are contained with
 
 #### Parameters
 
-**cutset** &lt;(optional) string&gt; An optional string of characters to trim from the target value.  
+**cutset** &lt;(optional) string&gt; An optional string of characters to trim from the target value.
 
 #### Examples
-
 
 ```coffee
 root.title = this.title.trim("!?")
@@ -454,13 +436,11 @@ root.description = this.description.trim()
 
 Remove the provided leading prefix substring from a string. If the string does not have the prefix substring, it is returned unchanged.
 
-
 #### Parameters
 
-**prefix** &lt;string&gt; The leading prefix substring to trim from the string.  
+**prefix** &lt;string&gt; The leading prefix substring to trim from the string.
 
 #### Examples
-
 
 ```coffee
 root.name = this.name.trim_prefix("foobar_")
@@ -474,13 +454,11 @@ root.description = this.description.trim_prefix("foobar_")
 
 Remove the provided trailing suffix substring from a string. If the string does not have the suffix substring, it is returned unchanged.
 
-
 #### Parameters
 
-**suffix** &lt;string&gt; The trailing suffix substring to trim from the string.  
+**suffix** &lt;string&gt; The trailing suffix substring to trim from the string.
 
 #### Examples
-
 
 ```coffee
 root.name = this.name.trim_suffix("_foobar")
@@ -496,7 +474,6 @@ Unescapes a string so that entities like `&lt;` become `<`. It unescapes a large
 
 #### Examples
 
-
 ```coffee
 root.unescaped = this.value.unescape_html()
 
@@ -509,7 +486,6 @@ root.unescaped = this.value.unescape_html()
 Expands escape sequences from a URL query string.
 
 #### Examples
-
 
 ```coffee
 root.unescaped = this.value.unescape_url_query()
@@ -524,7 +500,6 @@ Unquotes a target string, expanding any escape sequences (`\t`, `\n`, `\xFF`, `\
 
 #### Examples
 
-
 ```coffee
 root.unquoted = this.thing.unquote()
 
@@ -537,7 +512,6 @@ root.unquoted = this.thing.unquote()
 Convert a string value into uppercase.
 
 #### Examples
-
 
 ```coffee
 root.foo = this.foo.uppercase()

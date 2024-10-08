@@ -4,21 +4,19 @@ title: Manage Key Requests
 menu:
   main:
     parent: "Tyk Dashboard API"
-weight: 9 
+weight: 9
 ---
 
 ### List key requests
 
-| **Property** | **Description**                                      |
-| ------------ | ---------------------------------------------------- |
-| Resource URL | `/api/portal/requests`                               |
-| Method       | GET                                                  |
-| Type         | None                                                 |
-| Body         | None                                                 |
-| Param        | `p={page-num}` (optional, set to `-1` for no paging) |
+| **Property** | **Description**                                                                                                      |
+| ------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Resource URL | `/api/portal/requests`                                                                                               |
+| Method       | GET                                                                                                                  |
+| Type         | None                                                                                                                 |
+| Body         | None                                                                                                                 |
+| Param        | `p={page-num}` (optional, set to `-1` for no paging)                                                                 |
 | Param        | `approved={true or false}` (optional, returns `false` for Pending Key Requests, or `true` for Approved Key Requests) |
-
-
 
 ### Sample Request
 

@@ -1,7 +1,7 @@
 ---
 title: For Each
 description: Explains an overview of the For Each processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "For Each", "For" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "For Each", "For"]
 ---
 
 A processor that applies a list of child processors to messages of a batch as though they were each a batch of one message.

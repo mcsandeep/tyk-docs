@@ -18,11 +18,13 @@ If you're using Tyk Operator then check out the [configuring the middleware in T
 To enable the middleware you must add a new `internal` object to the `extended_paths` section of your API definition.
 
 The `internal` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 
 For example:
-```.json  {linenos=true, linenostart=1}
+
+```.json {linenos=true, linenostart=1}
 {
     "extended_paths": {
         "internal": [
@@ -50,7 +52,7 @@ From the **Endpoint Designer** add an endpoint that matches the path that you wi
 
 #### Step 2: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the middleware in Tyk Operator {#tyk-operator}
 

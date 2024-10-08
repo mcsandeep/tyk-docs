@@ -1,12 +1,12 @@
 ---
 title: Overview
 description: Explains an overview for configuring Tyk Streams
-tags: [ "Tyk Streams", "Stream Configuration", "Tyk Streams Configuration" ]
+tags: ["Tyk Streams", "Stream Configuration", "Tyk Streams Configuration"]
 aliases:
   - /product-stack/tyk-streaming/configuration/common-configuration/secrets
 ---
 
-Tyk streams configuration is specified using YAML. The configuration consists of several main sections: *input*, *pipeline*, *output* and optionally *resources*, *logger*, and *metrics*.
+Tyk streams configuration is specified using YAML. The configuration consists of several main sections: _input_, _pipeline_, _output_ and optionally _resources_, _logger_, and _metrics_.
 
 ## Input
 
@@ -88,7 +88,6 @@ metrics:
     prefix: tyk
     listen_address: ":8080"
 ```
-
 
 A complete example combining all the sections is given below:
 

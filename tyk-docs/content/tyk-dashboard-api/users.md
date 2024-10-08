@@ -4,15 +4,15 @@ title: Users
 menu:
   main:
     parent: "Tyk Dashboard API"
-weight: 5 
+weight: 5
 aliases: /tyk-apis/tyk-dashboard-api/users/
 ---
+
 {{< note success >}}
-**Note**  
+**Note**
 
 `USER_ID` is a placeholder for your User ID value.
 {{< /note >}}
-
 
 ### List Users
 
@@ -74,13 +74,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Get User
 
-| **Property** | **Description**         |
-| ------------ | ----------------------- |
-| Resource URL | `/api/users/{USER_ID}`  |
-| Method       | GET                     |
-| Type         | None                    |
-| Body         | None                    |
-| Param        | None                    |
+| **Property** | **Description**        |
+| ------------ | ---------------------- |
+| Resource URL | `/api/users/{USER_ID}` |
+| Method       | GET                    |
+| Type         | None                   |
+| Body         | None                   |
+| Param        | None                   |
 
 #### Sample Request
 
@@ -109,7 +109,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 ### Add User
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You can add a user via the API without a password by leaving out the `password` field. You then use [Set User Password](#set-user-password) request to add a password.
 {{< /note >}}
@@ -160,7 +160,7 @@ If a user is created with a blank password, you will need to add a password in a
 You need to have the `users` [Permission object]({{< ref "basic-config-and-security/security/dashboard/user-roles#the-permissions-object" >}}) set to **read** to use **Set User Password**.
 
 | **Property** | **Description**                      |
-| ------------ | -------------------------------------|
+| ------------ | ------------------------------------ |
 | Resource URL | `/api/users/{USER_ID}/actions/reset` |
 | Method       | POST                                 |
 | Type         | None                                 |
@@ -193,25 +193,27 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Allow Reset Password
 
-| **Property** | **Description**                                       |
-| ------------ | ------------------------------------------------------|
-| Resource URL | `/admin/users/{USER_ID}/actions/allow_reset_passwords`|
-| Method       | PUT                                                   |
-| Type         | None                                                  |
-| Body         | None                                                  |
-| Param        | None                                                  |
+| **Property** | **Description**                                        |
+| ------------ | ------------------------------------------------------ |
+| Resource URL | `/admin/users/{USER_ID}/actions/allow_reset_passwords` |
+| Method       | PUT                                                    |
+| Type         | None                                                   |
+| Body         | None                                                   |
+| Param        | None                                                   |
 
 #### Sample Request
+
 ```{.copyWrapper}
 PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/actions/allow_reset_passwords
 ```
 
 #### Sample Response
+
 ```
 {
   "Status": "OK",
   "Message": "User updated",
-  "Meta": 
+  "Meta":
     { …user object payload …}
 }
 ```
@@ -219,7 +221,7 @@ PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/acti
 ### Disallow Reset Password
 
 | **Property** | **Description**                                           |
-| ------------ | ----------------------------------------------------------|
+| ------------ | --------------------------------------------------------- |
 | Resource URL | `/admin/users/{USER_ID}/actions/disallow_reset_passwords` |
 | Method       | PUT                                                       |
 | Type         | None                                                      |
@@ -227,6 +229,7 @@ PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/acti
 | Param        | None                                                      |
 
 #### Sample Request
+
 ```{.copyWrapper}
 PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/actions/disallow_reset_passwords
 ```
@@ -237,7 +240,7 @@ PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/acti
 {
   "Status": "OK",
   "Message": "User updated",
-  "Meta": 
+  "Meta":
     { …user object payload …}
 }
 ```
@@ -247,7 +250,7 @@ PUT -H "admin-auth: <your secret>" http://<dashboard>/admin/users/{USER_ID}/acti
 You need to have the `users` [Permission object]({{< ref "basic-config-and-security/security/dashboard/user-roles#the-permissions-object" >}}) set to write to use **Update User**.
 
 | **Property** | **Description**        |
-| ------------ | -----------------------|
+| ------------ | ---------------------- |
 | Resource URL | `/api/users/{USER_ID}` |
 | Method       | PUT                    |
 | Type         | None                   |
@@ -287,18 +290,18 @@ This call allows you to reset a user's current Dashboard session.
 You need to have the `users` [Permission object]({{< ref "basic-config-and-security/security/dashboard/user-roles#the-permissions-object" >}}) set to write to use this call.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-This also resets the user's Dashboard API credentials. 
+This also resets the user's Dashboard API credentials.
 {{< /note >}}
 
-| **Property** | **Description**                            |
-| ------------ | ------------------------------------------ |
-| Resource URL | `/api/users/{USER_ID}/actions/key/reset`   |
-| Method       | PUT                                        |
-| Type         | None                                       |
-| Body         | {"userId":"{USER_ID}"}                     |
-| Param        | None                                       |
+| **Property** | **Description**                          |
+| ------------ | ---------------------------------------- |
+| Resource URL | `/api/users/{USER_ID}/actions/key/reset` |
+| Method       | PUT                                      |
+| Type         | None                                     |
+| Body         | {"userId":"{USER_ID}"}                   |
+| Param        | None                                     |
 
 #### Sample Request
 
@@ -324,7 +327,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 ### Delete User
 
 | **Property** | **Description**        |
-| ------------ | -----------------------|
+| ------------ | ---------------------- |
 | Resource URL | `/api/users/{USER_ID}` |
 | Method       | DELETE                 |
 | Type         | None                   |

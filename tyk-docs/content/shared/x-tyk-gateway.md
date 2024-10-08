@@ -97,7 +97,6 @@ GatewayTags contain segment tags to indicate which Gateways your upstream servic
 **Field: `customDomain` ([Domain](#domain))**
 CustomDomain is the domain to bind this API to. This enforces domain matching for client requests.
 
-
 Tyk classic API definition: `domain`.
 
 **Field: `detailedActivityLogs` ([DetailedActivityLogs](#detailedactivitylogs))**
@@ -106,12 +105,10 @@ DetailedActivityLogs configures detailed analytics recording.
 **Field: `detailedTracing` ([DetailedTracing](#detailedtracing))**
 DetailedTracing enables OpenTelemetry's detailed tracing for this API.
 
-
 Tyk classic API definition: `detailed_tracing`.
 
 **Field: `eventHandlers` ([EventHandlers](#eventhandlers))**
 EventHandlers contains the configuration related to Tyk Events.
-
 
 Tyk classic API definition: `event_handlers`.
 
@@ -185,7 +182,6 @@ ServiceDiscovery holds configuration required for service discovery.
 **Field: `enabled` (`boolean`)**
 Enabled activates Service Discovery.
 
-
 Tyk classic API definition: `service_discovery.use_discovery_service`.
 
 **Field: `queryEndpoint` (`string`)**
@@ -211,7 +207,6 @@ For example, if your service responds with:
 
 then your namespace would be `node.value`.
 
-
 Tyk classic API definition: `service_discovery.data_path`.
 
 **Field: `useNestedQuery` (`boolean`)**
@@ -230,7 +225,6 @@ It is necessary when the data lives within this string-encoded JSON object.
 }
 ```
 
-
 Tyk classic API definition: `service_discovery.use_nested_query`.
 
 **Field: `parentDataPath` (`string`)**
@@ -242,7 +236,6 @@ resides in the JSON string. Tyk automatically assumes that
 `dataPath` in this case is in a string-encoded JSON object and
 will try to deserialize it.
 
-
 Tyk classic API definition: `service_discovery.parent_data_path`.
 
 **Field: `portDataPath` (`string`)**
@@ -251,13 +244,11 @@ for the service in the nested JSON. In this case, you can set the `portDataPath`
 the hostname and zip them together (this assumes that the hostname element does not end in a slash or resource identifier
 such as `/widgets/`). In the above example, the `portDataPath` would be `port`.
 
-
 Tyk classic API definition: `service_discovery.port_data_path`.
 
 **Field: `useTargetList` (`boolean`)**
 UseTargetList should be set to `true` if you are using load balancing. Tyk will treat the data path as a list and
 inject it into the target list of your API definition.
-
 
 Tyk classic API definition: `service_discovery.use_target_list`.
 
@@ -268,14 +259,13 @@ failures are not recovered from quickly enough.
 
 Deprecated: The field is deprecated. Use `service_discovery` to configure service discovery cache options.
 
-
 Tyk classic API definition: `service_discovery.cache_timeout`.
 
 **Field: `cache` ([ServiceDiscoveryCache](#servicediscoverycache))**
 Cache holds cache related flags.
 
-
 Tyk classic API definition:.
+
 - `service_discovery.cache_disabled`
 - `service_discovery.cache_timeout`
 
@@ -285,12 +275,10 @@ discovered endpoint, since many service discovery services only provide
 host and port data. It is important to be able to target a specific
 resource on that host. Setting this value will enable that.
 
-
 Tyk classic API definition: `service_discovery.target_path`.
 
 **Field: `endpointReturnsList` (`boolean`)**
 EndpointReturnsList is set `true` when the response type is a list instead of an object.
-
 
 Tyk classic API definition: `service_discovery.endpoint_returns_list`.
 
@@ -324,12 +312,10 @@ CertificatePinning holds the configuration about mapping of domains to pinned pu
 **Field: `enabled` (`boolean`)**
 Enabled is a boolean flag, if set to `true`, it enables certificate pinning for the API.
 
-
 Tyk classic API definition: `certificate_pinning_disabled`.
 
 **Field: `domainToPublicKeysMapping` ([PinnedPublicKeys](#pinnedpublickeys))**
 DomainToPublicKeysMapping maintains the mapping of domain to pinned public keys.
-
 
 Tyk classic API definition: `pinned_public_keys`.
 
@@ -342,7 +328,6 @@ Tyk classic API definition: `global_rate_limit`.
 **Field: `enabled` (`boolean`)**
 Enabled activates API level rate limiting for this API.
 
-
 Tyk classic API definition: `!disable_rate_limit`.
 
 **Field: `rate` (`int`)**
@@ -354,7 +339,6 @@ A higher value indicates a higher number of allowed requests in the given
 time frame. For instance, if `Per` is set to `1m` (one minute), a Rate of `100`
 means up to 100 requests can be made per minute.
 
-
 Tyk classic API definition: `global_rate_limit.rate`.
 
 **Field: `per` ([ReadableDuration](#readableduration))**
@@ -364,16 +348,16 @@ where hours, minutes and seconds are denoted by 'h', 'm' and 's' respectively.
 Multiple units can be combined to represent the duration.
 
 Examples of valid shorthand notations:
-- "1h"   : one hour
-- "20m"  : twenty minutes
-- "30s"  : thirty seconds
+
+- "1h" : one hour
+- "20m" : twenty minutes
+- "30s" : thirty seconds
 - "1m29s": one minute and twenty-nine seconds
 - "1h30m" : one hour and thirty minutes
 
 An empty value is interpreted as "0s", implying no rate limiting interval, which disables the API-level rate limit.
 It's important to format the string correctly, as invalid formats will
 be considered as 0s/empty.
-
 
 Tyk classic API definition: `global_rate_limit.per`.
 
@@ -392,11 +376,10 @@ Tyk classic API definition: `proxy.listen_path`.
 **Field: `strip` (`boolean`)**
 Strip removes the inbound listen path (as accessed by the client) when generating the outbound request for the upstream service.
 
-For example, consider the scenario where the Tyk base address is `http://acme.com/', the listen path is `example/` and the upstream URL is `http://httpbin.org/`:
+For example, consider the scenario where the Tyk base address is `http://acme.com/', the listen path is `example/`and the upstream URL is`http://httpbin.org/`:
 
 - If the client application sends a request to `http://acme.com/example/get` then the request will be proxied to `http://httpbin.org/example/get`
 - If stripListenPath is set to `true`, the `example` listen path is removed and the request would be proxied to `http://httpbin.org/get`.
-
 
 Tyk classic API definition: `proxy.strip_listen_path`.
 
@@ -407,12 +390,10 @@ Authentication contains configuration about the authentication methods and secur
 **Field: `enabled` (`boolean`)**
 Enabled makes the API protected when one of the authentication modes is enabled.
 
-
 Tyk classic API definition: `!use_keyless`.
 
 **Field: `stripAuthorizationData` (`boolean`)**
 StripAuthorizationData ensures that any security tokens used for accessing APIs are stripped and not passed to the upstream.
-
 
 Tyk classic API definition: `strip_auth_data`.
 
@@ -430,24 +411,20 @@ It should be set to one of the following:
 - `oauth_key`
 - `custom_auth`
 
-
 Tyk classic API definition: `base_identity_provided_by`.
 
 **Field: `hmac` ([HMAC](#hmac))**
 HMAC contains the configurations related to HMAC authentication mode.
-
 
 Tyk classic API definition: `auth_configs["hmac"]`.
 
 **Field: `oidc` ([OIDC](#oidc))**
 OIDC contains the configurations related to OIDC authentication mode.
 
-
 Tyk classic API definition: `auth_configs["oidc"]`.
 
 **Field: `custom` ([CustomPluginAuthentication](#custompluginauthentication))**
 Custom contains the configurations related to Custom authentication mode.
-
 
 Tyk classic API definition: `auth_configs["coprocess"]`.
 
@@ -488,7 +465,6 @@ Name is the name of the domain.
 Certificates defines a field for specifying certificate IDs or file paths
 that the Gateway can utilise to dynamically load certificates for your custom domain.
 
-
 Tyk classic API definition: `certificates`.
 
 ### **DetailedActivityLogs**
@@ -497,7 +473,6 @@ DetailedActivityLogs holds the configuration related to recording detailed analy
 
 **Field: `enabled` (`boolean`)**
 Enabled activates detailed activity logs.
-
 
 Tyk classic API definition: `enable_detailed_recording`.
 
@@ -560,7 +535,6 @@ Deprecated: Use ResponsePlugins instead.
 **Field: `responsePlugins` ([CustomPlugins](#customplugins))**
 ResponsePlugins contains configuration related to the custom plugin that is run during processing of the response from the upstream service.
 
-
 Tyk classic API definition: `custom_middleware.response`.
 
 **Field: `cache` ([Cache](#cache))**
@@ -607,12 +581,10 @@ ServiceDiscoveryCache holds configuration for caching ServiceDiscovery data.
 **Field: `enabled` (`boolean`)**
 Enabled turns service discovery cache on or off.
 
-
 Tyk classic API definition: `service_discovery.cache_disabled`.
 
 **Field: `timeout` (`int64`)**
 Timeout is the TTL for a cached object in seconds.
-
 
 Tyk classic API definition: `service_discovery.cache_timeout`.
 
@@ -657,7 +629,6 @@ Tyk supports the following HMAC algorithms:
 
 and reads the value from the algorithm header.
 
-
 Tyk classic API definition: `hmac_allowed_algorithms`.
 
 **Field: `allowedClockSkew` (`float64`)**
@@ -673,18 +644,15 @@ OIDC contains configuration for the OIDC authentication mode.
 **Field: `enabled` (`boolean`)**
 Enabled activates the OIDC authentication mode.
 
-
 Tyk classic API definition: `use_openid`.
 
 **Field: `segregateByClientId` (`boolean`)**
 SegregateByClientId is a boolean flag. If set to `true, the policies will be applied to a combination of Client ID and User ID.
 
-
 Tyk classic API definition: `openid_options.segregate_by_client`.
 
 **Field: `providers` ([[]Provider](#provider))**
 Providers contains a list of authorized providers, their Client IDs and matched policies.
-
 
 Tyk classic API definition: `openid_options.providers`.
 
@@ -697,7 +665,6 @@ CustomPluginAuthentication holds configuration for custom plugins.
 
 **Field: `enabled` (`boolean`)**
 Enabled activates the CustomPluginAuthentication authentication mode.
-
 
 Tyk classic API definition: `enable_coprocess_auth`/`use_go_plugin_auth`.
 
@@ -746,7 +713,6 @@ The value should be set to one of the following:
 - `grpc`,
 - `goplugin`.
 
-
 Tyk classic API definition: `custom_middleware.driver`.
 
 **Field: `bundle` ([PluginBundle](#pluginbundle))**
@@ -762,12 +728,10 @@ CORS holds configuration for cross-origin resource sharing.
 **Field: `enabled` (`boolean`)**
 Enabled is a boolean flag, if set to `true`, this option enables CORS processing.
 
-
 Tyk classic API definition: `CORS.enable`.
 
 **Field: `maxAge` (`int`)**
 MaxAge indicates how long (in seconds) the results of a preflight request can be cached. The default is 0 which stands for no max age.
-
 
 Tyk classic API definition: `CORS.max_age`.
 
@@ -775,18 +739,15 @@ Tyk classic API definition: `CORS.max_age`.
 AllowCredentials indicates if the request can include user credentials like cookies,
 HTTP authentication or client side SSL certificates.
 
-
 Tyk classic API definition: `CORS.allow_credentials`.
 
 **Field: `exposedHeaders` (`[]string`)**
 ExposedHeaders indicates which headers are safe to expose to the API of a CORS API specification.
 
-
 Tyk classic API definition: `CORS.exposed_headers`.
 
 **Field: `allowedHeaders` (`[]string`)**
 AllowedHeaders holds a list of non simple headers the client is allowed to use with cross-domain requests.
-
 
 Tyk classic API definition: `CORS.allowed_headers`.
 
@@ -798,24 +759,20 @@ will be able to test the API using trial keys.
 
 If your service handles CORS natively, then enable this option.
 
-
 Tyk classic API definition: `CORS.options_passthrough`.
 
 **Field: `debug` (`boolean`)**
 Debug is a boolean flag, If set to `true`, this option produces log files for the CORS middleware.
-
 
 Tyk classic API definition: `CORS.debug`.
 
 **Field: `allowedOrigins` (`[]string`)**
 AllowedOrigins holds a list of origin domains to allow access from. Wildcards are also supported, e.g. `http://*.foo.com`
 
-
 Tyk classic API definition: `CORS.allowed_origins`.
 
 **Field: `allowedMethods` (`[]string`)**
 AllowedMethods holds a list of methods to allow access via.
-
 
 Tyk classic API definition: `CORS.allowed_methods`.
 
@@ -887,12 +844,10 @@ Cache holds configuration for caching the requests.
 Enabled turns global cache middleware on or off. It is still possible to enable caching on a per-path basis
 by explicitly setting the endpoint cache middleware.
 
-
 Tyk classic API definition: `cache_options.enable_cache`.
 
 **Field: `timeout` (`int64`)**
 Timeout is the TTL for a cached object in seconds.
-
 
 Tyk classic API definition: `cache_options.cache_timeout`.
 
@@ -900,30 +855,25 @@ Tyk classic API definition: `cache_options.cache_timeout`.
 CacheAllSafeRequests caches responses to (`GET`, `HEAD`, `OPTIONS`) requests overrides per-path cache settings in versions,
 applies across versions.
 
-
 Tyk classic API definition: `cache_options.cache_all_safe_requests`.
 
 **Field: `cacheResponseCodes` (`[]int`)**
 CacheResponseCodes is an array of response codes which are safe to cache e.g. `404`.
-
 
 Tyk classic API definition: `cache_options.cache_response_codes`.
 
 **Field: `cacheByHeaders` (`[]string`)**
 CacheByHeaders allows header values to be used as part of the cache key.
 
-
 Tyk classic API definition: `cache_options.cache_by_headers`.
 
 **Field: `enableUpstreamCacheControl` (`boolean`)**
 EnableUpstreamCacheControl instructs Tyk Cache to respect upstream cache control headers.
 
-
 Tyk classic API definition: `cache_options.enable_upstream_cache_control`.
 
 **Field: `controlTTLHeaderName` (`string`)**
 ControlTTLHeaderName is the response header which tells Tyk how long it is safe to cache the response for.
-
 
 Tyk classic API definition: `cache_options.cache_control_ttl_header`.
 
@@ -1042,9 +992,10 @@ where hours, minutes and seconds are denoted by 'h', 'm' and 's' respectively.
 Multiple units can be combined to represent the duration.
 
 Examples of valid shorthand notations:
-- "1h"   : one hour
-- "20m"  : twenty minutes
-- "30s"  : thirty seconds
+
+- "1h" : one hour
+- "20m" : twenty minutes
+- "30s" : thirty seconds
 - "1m29s": one minute and twenty-nine seconds
 - "1h30m" : one hour and thirty minutes
 
@@ -1064,7 +1015,6 @@ PluginBundle holds configuration for custom plugins.
 
 **Field: `enabled` (`boolean`)**
 Enabled activates the custom plugin bundles.
-
 
 Tyk classic API definition: `custom_middleware_bundle_disabled`.
 
@@ -1271,18 +1221,15 @@ Tyk classic API definition: `auth_configs{}`.
 **Field: `header` ([AuthSource](#authsource))**
 Header contains configurations for the header value auth source, it is enabled by default.
 
-
 Tyk classic API definition: `auth_configs[x].header`.
 
 **Field: `cookie` ([AuthSource](#authsource))**
 Cookie contains configurations for the cookie value auth source.
 
-
 Tyk classic API definition: `auth_configs[x].cookie`.
 
 **Field: `query` ([AuthSource](#authsource))**
 Query contains configurations for the query parameters auth source.
-
 
 Tyk classic API definition: `auth_configs[x].query`.
 
@@ -1483,18 +1430,15 @@ JWT holds the configuration for the JWT middleware.
 **Field: `enabled` (`boolean`)**
 Enabled activates the basic authentication mode.
 
-
 Tyk classic API definition: `enable_jwt`.
 
 **Field: `source` (`string`)**
 Source contains the source for the JWT.
 
-
 Tyk classic API definition: `jwt_source`.
 
 **Field: `signingMethod` (`string`)**
 SigningMethod contains the signing method to use for the JWT.
-
 
 Tyk classic API definition: `jwt_signing_method`.
 
@@ -1502,20 +1446,17 @@ Tyk classic API definition: `jwt_signing_method`.
 IdentityBaseField specifies the claim name uniquely identifying the subject of the JWT.
 The identity fields that are checked in order are: `kid`, IdentityBaseField, `sub`.
 
-
 Tyk classic API definition: `jwt_identity_base_field`.
 
 **Field: `skipKid` (`boolean`)**
 SkipKid controls skipping using the `kid` claim from a JWT (default behaviour).
 When this is true, the field configured in IdentityBaseField is checked first.
 
-
 Tyk classic API definition: `jwt_skip_kid`.
 
 **Field: `policyFieldName` (`string`)**
 PolicyFieldName is a configurable claim name from which a policy ID is extracted.
 The policy is applied to the session as a base policy.
-
 
 Tyk classic API definition: `jwt_policy_field_name`.
 
@@ -1524,7 +1465,6 @@ ClientBaseField is used when PolicyFieldName is not provided. It will get
 a session key and use the policies from that. The field ensures that requests
 use the same session.
 
-
 Tyk classic API definition: `jwt_client_base_field`.
 
 **Field: `scopes` ([Scopes](#scopes))**
@@ -1532,7 +1472,6 @@ Scopes holds the scope to policy mappings for a claim name.
 
 **Field: `defaultPolicies` (`[]string`)**
 DefaultPolicies is a list of policy IDs that apply to the session.
-
 
 Tyk classic API definition: `jwt_default_policies`.
 
@@ -1839,18 +1778,15 @@ Token holds the values related to authentication tokens.
 **Field: `enabled` (`boolean`)**
 Enabled activates the token based authentication mode.
 
-
 Tyk classic API definition: `auth_configs["authToken"].use_standard_auth`.
 
 **Field: `enableClientCertificate` (`boolean`)**
 EnableClientCertificate allows to create dynamic keys based on certificates.
 
-
 Tyk classic API definition: `auth_configs["authToken"].use_certificate`.
 
 **Field: `signatureValidation` ([Signature](#signature))**
 Signature holds the configuration for verifying the signature of the token.
-
 
 Tyk classic API definition: `auth_configs["authToken"].use_certificate`.
 
@@ -1904,7 +1840,7 @@ If this matches the defined pattern, the primary URL rewrite is triggered.
 **Field: `rewriteTo` (`string`)**
 RewriteTo specifies the URL to which the request shall be rewritten if the primary URL rewrite is triggered.
 
-**Field: `triggers` ([[]*URLRewriteTrigger](#urlrewritetrigger))**
+**Field: `triggers` ([[]\*URLRewriteTrigger](#urlrewritetrigger))**
 Triggers contain advanced additional triggers for the URL rewrite.
 The triggers are processed only if the requested URL matches the pattern above.
 
@@ -1962,7 +1898,7 @@ URLRewriteTrigger represents a set of matching rules for a rewrite.
 **Field: `condition` ([URLRewriteCondition](#urlrewritecondition))**
 Condition indicates the logical combination that will be applied to the rules for an advanced trigger.
 
-**Field: `rules` ([[]*URLRewriteRule](#urlrewriterule))**
+**Field: `rules` ([[]\*URLRewriteRule](#urlrewriterule))**
 Rules contain individual checks that are combined according to the
 `condition` to determine if the URL rewrite will be triggered.
 If empty, the trigger is ignored.
@@ -2007,4 +1943,3 @@ ProxyOnError proxies if virtual endpoint errors out.
 
 **Field: `requireSession` (`boolean`)**
 RequireSession if enabled passes session to virtual endpoint.
-

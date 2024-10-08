@@ -6,7 +6,7 @@ description: "How to combine multiple authentication methods to lock-down your A
 menu:
   main:
     parent: "Authentication & Authorization"
-weight: 5 
+weight: 5
 ---
 
 ## Multiple (Chained) Authentication
@@ -43,13 +43,13 @@ Once these have been set up, you will see the traditional configuration screens 
 
 To enable this mode you must set the `base_identity_provided_by` field in your API Definitions to one of the supported chained enums below:
 
-*   `AuthToken`
-*   `HMACKey` 
-*   `BasicAuthUser` 
-*   `JWTClaim` 
-*   `OIDCUser` 
-*   `OAuthKey` 
-*   `UnsetAuth`
+- `AuthToken`
+- `HMACKey`
+- `BasicAuthUser`
+- `JWTClaim`
+- `OIDCUser`
+- `OAuthKey`
+- `UnsetAuth`
 
 The provider set here will then be the one that provides the session object that determines rate limits, ACL rules and quotas.
 

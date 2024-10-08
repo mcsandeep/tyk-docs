@@ -1,7 +1,7 @@
 ---
 title: Sync Response
 description: Explains an overview of sync response processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Sync Response", "sync_response" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Sync Response", "sync_response"]
 ---
 
 Adds the payload in its current state as a synchronous response to the input source, where it is dealt with according to that specific input type.

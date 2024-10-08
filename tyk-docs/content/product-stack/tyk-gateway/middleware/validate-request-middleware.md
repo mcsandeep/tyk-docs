@@ -45,6 +45,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Validate Request middleware summary
   - The Validate Request middleware is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Validate Request middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Validate Request middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->
- 

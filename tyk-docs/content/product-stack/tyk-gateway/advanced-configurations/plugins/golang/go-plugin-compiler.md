@@ -8,7 +8,7 @@ tags: ["custom plugin", "golang", "go plugin", "middleware", "plugin compiler", 
 Tyk provides a Plugin Compiler tool that will create a file that can be [loaded into Tyk]({{< ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/loading-go-plugins" >}}) to implement your desired custom logic.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The plugin compiler is not supported on Ubuntu 16.04 (Xenial Xerus) as it uses glibc 2.23 which is incompatible with our standard build environment. If you absolutely must have Go plugin support on Xenial, please contact Tyk support.
 
@@ -58,14 +58,14 @@ You simply provide the target `GOOS` and `GOARCH` arguments to the plugin compil
 
 ```yaml
 docker run --rm -v `pwd`:/plugin-source \
-           --platform=linux/amd64 \
-           tykio/tyk-plugin-compiler:v5.2.1 plugin.so $build_id linux arm64
+--platform=linux/amd64 \
+tykio/tyk-plugin-compiler:v5.2.1 plugin.so $build_id linux arm64
 ```
 
 This command will cross-compile your plugin for a `linux/arm64` architecture. It will produce an output file named `plugin_v5.2.1_linux_arm64.so`.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are using the plugin compiler on MacOS, the docker run argument `--platform=linux/amd64` is necessary. The plugin compiler is a cross-build environment implemented with `linux/amd64`.
 {{< /note >}}

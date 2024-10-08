@@ -1,7 +1,7 @@
 ---
 title: "Upgrade Strategies"
 date: 2024-03-1
-tags: ["upgrade strategy", "upgrade" ]
+tags: ["upgrade strategy", "upgrade"]
 description: "Explains rolling and blue-green upgrade strategies"
 ---
 
@@ -12,6 +12,7 @@ Tyk is compatible with both rolling and blue-green upgrade strategies.
 A rolling upgrade updates servers incrementally rather than simultaneously. This approach helps reduce application downtime and mitigates the risk of unforeseen consequences or errors during software updates.
 
 ### Steps for Rolling Upgrade:
+
 1. **Redundancy:** Ensure there are at least two instances of each Tyk component that needs upgrading.
 2. **Load Balancer:** Use a load balancer to distribute traffic for the Dashboard and Gateway components, ensuring continuous availability during the upgrade process. Note that the Pump operates with one-way traffic and does not require load balancing.
 3. **Upgrade Process:**
@@ -24,6 +25,7 @@ A rolling upgrade updates servers incrementally rather than simultaneously. This
 A blue-green deployment involves two identical production environments, labeled blue and green. At any time, only one environment is live and serving traffic, while the other is inactive. For example, if the blue environment is live, the green environment will be inactive, and vice versa.
 
 ### Steps for Blue-Green Upgrade:
+
 1. **Replication:** Replicate the entire environment into a separate environment.
 2. **Traffic Routing:** Use a load balancer or DNS to route traffic to the green environment (current production) while the blue environment undergoes the upgrade.
 3. **Upgrade Process:**

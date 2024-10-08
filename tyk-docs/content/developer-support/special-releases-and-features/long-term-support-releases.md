@@ -34,18 +34,20 @@ We provide [full support]({{< ref "#full-support" >}}) for the first 12 months, 
 We release a new Gateway LTS version every 12 months, which includes the [latest stable Golang version](https://go.dev/dl/).
 
 ### Advantages of a 12-Month Long-Term Support (LTS) Cycle
+
 1. It allows us to keep pace with Golang versions and other key dependency upgrades, which keeps both our customers and your customers safe (low CVE).
 2. It allows us to bring you the best capability whilst offering stability.
 3. It allows us to get great product insight and use that to improve the product.
 
-In case there's a need to operate on a version beyond the established LTS policy, potential assistance may be available. However, this requires a discussion with your designated *Account Manager*.
+In case there's a need to operate on a version beyond the established LTS policy, potential assistance may be available. However, this requires a discussion with your designated _Account Manager_.
 
 ### Support Definitions
 
 #### Full Support {#full-support}
 
-During the full support period, we patch the LTS branch on a regular 7-week cadence. 
+During the full support period, we patch the LTS branch on a regular 7-week cadence.
 These patches may include any of the following:
+
 - Security updates
 - Bug fixes
 - UX and UI improvements
@@ -58,11 +60,11 @@ If we find something critical we will react immediately and invoke our critical 
 
 ### Current LTS releases Timeline
 
-| Version | Full Support Window | Maintenance Support Window | Completely Unsupported From |
-| ------- | ------------------- | -------------------------- | --------------------------- |
-| 5.0 LTS | April 2023 - April 2024 | May 2024 - April 2025 | May 2025 |
-| 5.3 LTS | May 2024-May 2025 | June 2025 - May 2026 | June 2026 |
-| LTS+1 (version TBC) | April 2025 - April 2026 | May 2026 - April 2027 | May 2027 |
+| Version             | Full Support Window     | Maintenance Support Window | Completely Unsupported From |
+| ------------------- | ----------------------- | -------------------------- | --------------------------- |
+| 5.0 LTS             | April 2023 - April 2024 | May 2024 - April 2025      | May 2025                    |
+| 5.3 LTS             | May 2024-May 2025       | June 2025 - May 2026       | June 2026                   |
+| LTS+1 (version TBC) | April 2025 - April 2026 | May 2026 - April 2027      | May 2027                    |
 
 ---
 
@@ -78,7 +80,7 @@ Although these releases receive support, it's essential to note their limited su
 
 We know that an LTS release that has a major semantic version is not a desirable practice.
 
-So, we will always endeavor to avoid shipping major versions, especially major versions as LTS releases. However, sometimes it is unavoidable and we have to ship a major version. 
+So, we will always endeavor to avoid shipping major versions, especially major versions as LTS releases. However, sometimes it is unavoidable and we have to ship a major version.
 
 Our first commitment to you is to make our definitions of major / minor / patch are transparent:
 
@@ -93,11 +95,11 @@ The major version is designated as X.0 and is defined by one or more of the foll
 5. Crypto deprecations.
 6. Changes to common names in certificates.
 
-In summary, breaking changes involves anything with which a user interacts with a Tyk product and might have to make changes to maintain functionality in response to a change we implement. Subsequently, breaking changes are introduced in a major version, in accordance with the *Semantic Versioning* [specification](https://semver.org/).
+In summary, breaking changes involves anything with which a user interacts with a Tyk product and might have to make changes to maintain functionality in response to a change we implement. Subsequently, breaking changes are introduced in a major version, in accordance with the _Semantic Versioning_ [specification](https://semver.org/).
 
 #### Minor Version
 
-According to the *Semantic Versioning* [specification](https://semver.org/), a MINOR version is incremented when you add functionality in a backward compatible manner. In other words, if Tyk makes changes to your software that do not break any existing functionality, you can increment the MINOR version number. For example, if you add new features or capabilities to your software without changing any existing functionality, you can increase the MINOR version number.
+According to the _Semantic Versioning_ [specification](https://semver.org/), a MINOR version is incremented when you add functionality in a backward compatible manner. In other words, if Tyk makes changes to your software that do not break any existing functionality, you can increment the MINOR version number. For example, if you add new features or capabilities to your software without changing any existing functionality, you can increase the MINOR version number.
 
 #### Patch Version
 
@@ -137,7 +139,7 @@ The table below shows the recommended compatibility:
 The compatibility matrix table shown above will be part of upcoming [Gateway release notes]({{< ref "product-stack/tyk-gateway/release-notes/overview" >}}) for versions x.x and beyond. Additionally, these release notes will list tested third-party dependencies like *PostgreSQL, MongoDB, Redis* and more.
 -->
 
---- 
+---
 
 ## How Do I Upgrade and How Can Tyk Help?
 
@@ -165,12 +167,15 @@ Ultimately, our diversified support approach aims to balance agility with assura
 To provide the most secure and efficient environment, we advise the following with the release of a new LTS version:
 
 ### Developer Portal
+
 Continually evolves with frequent updates. We recommend adopting the latest release for optimal performance and feature set, ensuring consistent user experience and accessibility to the newest enhancements.
 
 ### MDCB and Helm
+
 Receive updates synchronized with the core Gateway and Dashboard to support new features and capabilities. These components are mature and updates typically consist of minor iterations.
 
 ### Pump, TIB, Sync and Operator
+
 We recommend staying up to date with these components because they are rigorously tested to operate smoothly with the active LTS versions of Tyk Gateway and Tyk Dashboard.
 
 With new releases of Tyk Gateway and Tyk Dashboard LTS versions, our customers should follow the above guidelines to ensure the most secure, stable and efficient environment.

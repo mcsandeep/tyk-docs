@@ -3,8 +3,8 @@ date: 2017-03-24T16:39:31Z
 title: Manage existing APIs and policies
 weight: 16
 menu:
-    main:
-        parent: "Tyk Operator"
+  main:
+    parent: "Tyk Operator"
 ---
 
 If you have existing APIs and Policies running on your Tyk platform, and you want to start using Tyk Operator to manage them, you probably would not want to re-create the APIs and Policies on the platform using Operator CRDs. It is because you will lose keys, policies, and analytics linked to the APIs. You can instead link existing APIs and Policies to a CRD by specifying the API ID or Policy ID in the CRD spec. This way, Operator will update the existing API or Policy according to the CRD spec. Any keys, policies and analytics linked to the API will continue to operate the same. This is great for idempotency.
@@ -51,17 +51,19 @@ apidefinition.tyk.tyk.io/my-existing-api created
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The source of truth for the API definition is now the CRD, meaning it will override any differences in your existing API definition.
 {{< /note >}}
 
 ## Migration of existing Policy
+
 If you have existing pre-Operator policies, you can easily link them to a CRD, which will allow you to modify them through the YAML moving forward.
-Simply set the id field in the SecurityPolicy YAML to the _id field in the existing Policy's JSON. This will allow the Operator to make the link.
+Simply set the id field in the SecurityPolicy YAML to the \_id field in the existing Policy's JSON. This will allow the Operator to make the link.
 Note that the YAML becomes the source of truth and will overwrite any changes between it and the existing Policy.
 
 **Example**:
+
 1. Find out your existing Policy ID, e.g. `5f8f3933f56e1a5ffe2cd58c`
 
 2. Stick the policy ID `5f8f3933f56e1a5ffe2cd58c` into the YAML's `spec.id` field like below
@@ -79,7 +81,7 @@ spec:
   active: true
   access_rights_array:
     - name: new-httpbin-api # name of your ApiDefinition object.
-      namespace: default    # namespace of your ApiDefinition object.
+      namespace: default # namespace of your ApiDefinition object.
       versions:
         - Default
 ```

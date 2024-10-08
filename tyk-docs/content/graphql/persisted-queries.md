@@ -8,7 +8,7 @@ menu:
     parent: "GraphQL"
 weight: 7
 aliases:
-    - /graphql/persist-query/
+  - /graphql/persist-query/
 ---
 
 Tyk Gateway `4.3.0` release includes a way to expose GraphQL queries as REST endpoints. For now, this can only be configured via the raw API definition, Tyk Dashboard support is coming soon.
@@ -92,7 +92,7 @@ On its own, this isn’t particularly remarkable. To enable GraphQL to REST midd
 
 The vital part of this is the `extended_paths.persist_graphql` field. The `persist_graphql` object consists of three fields:
 
-`method`: The HTTP method used to access that endpoint, in this example, any GET requests to `<PROXY ENDPOINT>/getContinentByCode` will be handled by the *persist graphql* middleware
+`method`: The HTTP method used to access that endpoint, in this example, any GET requests to `<PROXY ENDPOINT>/getContinentByCode` will be handled by the _persist graphql_ middleware
 
 `path`: The path the middleware listens to
 
@@ -100,7 +100,7 @@ The vital part of this is the `extended_paths.persist_graphql` field. The `persi
 
 `variables`: A list of variables that should be included in the upstream request.
 
-If you run a request to your proxy, you should get a response similar to this: 
+If you run a request to your proxy, you should get a response similar to this:
 
 ```json
 {
@@ -140,12 +140,12 @@ Making a request to that endpoint and providing header `"code": "UK"`, should re
 
 ```json
 {
-    "data": {
-        "country": {
-            "code": "UK",
-            "name": "United Kingdom"
-        }
+  "data": {
+    "country": {
+      "code": "UK",
+      "name": "United Kingdom"
     }
+  }
 }
 ```
 
@@ -166,11 +166,11 @@ If you now make a request to `/getCountryByCode/NG` you should get a result simi
 
 ```json
 {
-    "data": {
-        "country": {
-            "code": "NG",
-            "name": "Nigeria"
-        }
+  "data": {
+    "country": {
+      "code": "NG",
+      "name": "Nigeria"
     }
+  }
 }
 ```

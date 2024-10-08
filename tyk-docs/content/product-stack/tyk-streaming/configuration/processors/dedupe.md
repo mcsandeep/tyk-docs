@@ -1,7 +1,7 @@
 ---
 title: Dedupe
 description: Explains an overview of the Dedupe processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Dedupe" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Dedupe"]
 ---
 
 Deduplicates messages by storing a key value in a cache using the `add` operator. If the key already exists within the cache it is dropped.
@@ -34,18 +34,17 @@ This problem can be mitigated by using an in-memory cache and distributing messa
 ### cache
 
 <!-- TODO Add Link To Cache resource overview -->
+
 The cache resource to target with this processor.
 
-
-Type: `string`  
+Type: `string`
 
 ### key
 
 An interpolated string yielding the key to deduplicate by for each message.
 This field supports [interpolation functions](#bloblang-queries).
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -59,9 +58,8 @@ key: ${! content().hash("xxhash64") }
 
 Whether messages should be dropped when the cache returns a general error such as a network issue.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ## Examples
 

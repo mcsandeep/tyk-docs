@@ -32,54 +32,54 @@ For example:
 
 ```json {hl_lines=["39-45"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-endpoint-plugin",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-endpoint-plugin",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-endpoint-plugin",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },          
-        "server": {
-            "listenPath": {
-                "value": "/example-endpoint-plugin/",                
-                "strip": true
-            }
-        },      
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "postPlugins": [
-                        {
-                            "enabled": true,
-                            "functionName": "myUniqueFunctionName",
-                            "path": "/middleware/myPlugin.so"
-                        }
-                    ]
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-endpoint-plugin",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-endpoint-plugin/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "postPlugins": [
+            {
+              "enabled": true,
+              "functionName": "myUniqueFunctionName",
+              "path": "/middleware/myPlugin.so"
+            }
+          ]
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -103,7 +103,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Go Post-Plugin middleware
 
-Select **ADD MIDDLEWARE** and choose **Go Post-Plugin** from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose **Go Post-Plugin** from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-go-plugin.png" alt="Adding the Go Post-Plugin middleware" >}}
 
@@ -118,7 +118,7 @@ You must provide the path to the compiled plugin and the name of the Go function
 Select **ADD MIDDLEWARE** to save the middleware configuration. Remember to select **SAVE API** to apply the changes.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You are only able to add one custom plugin to each endpoint when using the API Designer, however you can add more by editing the API definition directly in the Raw Definition editor.
 {{< /note >}}

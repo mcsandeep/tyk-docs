@@ -4,10 +4,11 @@ title: Separated Analytics Storage
 menu:
   main:
     parent: Tyk Pump
-weight: 10 
+weight: 10
 aliases:
   - /analytics-and-reporting/separated-analytics-storage/
 ---
+
 For high-traffic systems that make heavy use of analytics, it makes sense to separate out the Redis analytics server from the Redis configuration server that supplies auth tokens and handles rate limiting configuration.
 
 To enable a separate analytics server, update your `tyk.conf` with the following section:
@@ -31,7 +32,7 @@ To enable a separate analytics server, update your `tyk.conf` with the following
 ```
 
 {{< note success >}}
-**Note**  
+**Note**
 
 `addrs` is new in v2.9.3, and replaces `hosts` which is now deprecated.
 {{< /note >}}
@@ -39,4 +40,3 @@ To enable a separate analytics server, update your `tyk.conf` with the following
 If you set `enable_cluster` to `false`, you only need to set one entry in `addrs`:
 
 The configuration is the same (and uses the same underlying driver) as the regular configuration, so Redis Cluster is fully supported.
-

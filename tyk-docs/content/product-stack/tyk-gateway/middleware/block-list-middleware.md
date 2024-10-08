@@ -17,7 +17,7 @@ If you are versioning your API and deprecating an endpoint then, instead of havi
 
 ## How the block list works
 
-Tyk Gateway does not actually maintain a list of blocked endpoints but rather works on the model whereby if the *block list* middleware is added to an endpoint then any request to that endpoint will be rejected, returning `HTTP 403 Forbidden`.
+Tyk Gateway does not actually maintain a list of blocked endpoints but rather works on the model whereby if the _block list_ middleware is added to an endpoint then any request to that endpoint will be rejected, returning `HTTP 403 Forbidden`.
 
 ### Case sensitivity
 
@@ -31,7 +31,7 @@ When using the block list middleware, we recommend that you familiarize yourself
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk recommends that you use [exact]({{< ref "getting-started/key-concepts/url-matching#exact-match" >}}) matching for maximum security, though prefix and wildcard strategies might also apply for your particular deployment or use case.
 {{< /note >}}
@@ -45,5 +45,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Block List middleware summary
   - The Block List is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Block List can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Block List can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

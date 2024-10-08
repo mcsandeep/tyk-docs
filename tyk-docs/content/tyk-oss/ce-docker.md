@@ -7,7 +7,6 @@ menu:
   main:
     parent: "Open Source Installation" # Child of APIM -> OSS
 weight: 1
-
 ---
 
 We will show you two methods of installing our Community Edition Gateway on Docker.
@@ -16,9 +15,10 @@ The quickest way to get started is using docker-compose. Visit our [Dockerhub](h
 ## Prerequisites
 
 The following are required for a Tyk OSS installation:
- - Redis   - Required for all Tyk installations.
-             Simple Redis installation instructions are included below.
- - MongoDB - Required only if you chose to use the MongoDB Tyk Pump with your Tyk OSS installation. Same goes with any [other pump data stores]({{< ref "tyk-stack/tyk-pump/other-data-stores.md" >}}) you choose to use.
+
+- Redis - Required for all Tyk installations.
+  Simple Redis installation instructions are included below.
+- MongoDB - Required only if you chose to use the MongoDB Tyk Pump with your Tyk OSS installation. Same goes with any [other pump data stores]({{< ref "tyk-stack/tyk-pump/other-data-stores.md" >}}) you choose to use.
 
 ## How To Install?
 
@@ -54,9 +54,6 @@ docker run \
 
 Congratulations, you're done!
 
-
-
-
 ## Test Installation
 
 Your Tyk Gateway is now configured and ready to use. Confirm this by making a network request to the 'hello' endpoint:
@@ -66,10 +63,10 @@ curl localhost:8080/hello
 ```
 
 Output should be similar to that shown below:
-```json
-{"status":"pass","version":"v3.2.1","description":"Tyk GW"}
-```
 
+```json
+{ "status": "pass", "version": "v3.2.1", "description": "Tyk GW" }
+```
 
 ## Next Steps
 

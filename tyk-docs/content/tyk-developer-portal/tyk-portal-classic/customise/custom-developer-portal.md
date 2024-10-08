@@ -5,23 +5,23 @@ linktitle: Custom Portal
 menu:
   main:
     parent: "Customize"
-weight: 5 
+weight: 5
 aliases:
   - /tyk-developer-portal/customise/custom-developer-po...
   - /tyk-developer-portal/customise/custom-developer-portal/
 ---
+
 {{< note success >}}
-**Note**  
+**Note**
 
 This functionality is available from v2.3.8
 {{< /note >}}
-
 
 ## Why Build a Custom Developer Portal?
 
 The Tyk Dashboard includes portal functionality by default, but in some cases it is required to use custom logic or, for example, embed the portal into an existing platform. Thankfully Tyk is flexible enough to provide an easy way of integrating the portal to any platform and language using a few API calls.
 
-The source code is available from the following GitHub repo - [https://github.com/TykTechnologies/tyk-custom-portal](https://github.com/TykTechnologies/tyk-custom-portal) 
+The source code is available from the following GitHub repo - [https://github.com/TykTechnologies/tyk-custom-portal](https://github.com/TykTechnologies/tyk-custom-portal)
 
 A video covering the process of building a custom portal is available to view here:
 
@@ -40,14 +40,14 @@ To run queries against the Tyk Dashboard API you need to obtain credentials from
 3.  The API key is the **Tyk Dashboard API Access Credentials**, copy this somewhere you can refer to it.
 
 ### API Key Location
+
 Let's save it to the environment variable to simplify code examples in this guide. All the commands should be run in your terminal.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Don't forget to replace TYK_API_KEY=1efdefd6c93046bc4102f7bf77f17f4e with your own value
 {{< /note >}}
-
 
 ### Creating a Developer
 
@@ -96,7 +96,7 @@ curl https://admin.cloud.tyk.io/api/portal/developers/email/apidev%40example.com
 By default, the Tyk Developer portal automatically accepts all developer registrations, if they are not completely disabled in the portal configuration.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Do not confuse developer registration with key access, if they are registered to the portal, it does not mean they automatically have access to your APIs.
 {{< /note >}}
@@ -138,7 +138,6 @@ curl https://admin.cloud.tyk.io/api/portal/developers/598d4a33ac42130001c1257c \
 ```
 
 Note that all non-empty custom fields are shown in the Tyk Dashboard Developer view. All the keys created for this developer inherit his custom fields, if they are specified in the Portal settings **Signup fields** list.
-
 
 ### Login Workflow: Checking User Credentials
 
@@ -204,7 +203,7 @@ curl https://admin.cloud.tyk.io/api/portal/catalogue \
 
 ### Issuing Keys
 
-To generate a key for the developer, first he should send a request to the administrator of the API, and if needed provide details of the key usage. By default, all keys requests are approved automatically, and the user immediately receives his API key, but you can turn on the  **Review all key requests before approving them** option in the portal settings, to add additional verification step, and approve all keys manually. Once a key is issued, the user receives an email with the key details.
+To generate a key for the developer, first he should send a request to the administrator of the API, and if needed provide details of the key usage. By default, all keys requests are approved automatically, and the user immediately receives his API key, but you can turn on the **Review all key requests before approving them** option in the portal settings, to add additional verification step, and approve all keys manually. Once a key is issued, the user receives an email with the key details.
 
 #### Request
 
@@ -240,7 +239,6 @@ The Developer object contains the `subscriptions` field with information about u
 ```
 
 {{% include "portal-developer-analytics" %}}
-
 
 ## <a name="building-portal"></a> Building a Portal
 

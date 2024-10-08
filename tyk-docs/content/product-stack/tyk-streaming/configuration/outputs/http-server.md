@@ -1,7 +1,7 @@
 ---
 title: Http Server
 description: Explains an overview of configuring Http server output
-tags: [ "Tyk Streams", "Stream Outputs", "Outputs", "Http Server" ]
+tags: ["Tyk Streams", "Stream Outputs", "Outputs", "Http Server"]
 ---
 
 Sets up an HTTP server that will send messages over HTTP(S) GET requests. HTTP 2.0 is supported when using TLS, which is enabled when key and cert files are specified.
@@ -42,13 +42,13 @@ output:
       allowed_origins: []
 ```
 
-Sets up an HTTP server that will send messages over HTTP(S) GET requests. 
+Sets up an HTTP server that will send messages over HTTP(S) GET requests.
 
 <!-- TODO add link here  If the `address` config field is left blank the [service-wide HTTP server](/docs/components/http/about) will be used. -->
 
 Three endpoints will be registered at the paths specified by the fields `path`, `stream_path` and `ws_path`. Which allow you to consume a single message batch, a continuous stream of line delimited messages, or a websocket of messages for each request respectively.
 
-When messages are batched the `path` endpoint encodes the batch according to [RFC1341](https://www.w3.org/Protocols/rfc1341/7_2_Multipart.html). 
+When messages are batched the `path` endpoint encodes the batch according to [RFC1341](https://www.w3.org/Protocols/rfc1341/7_2_Multipart.html).
 
 <!-- TODO add link here - This behavior can be overridden by [archiving your batches](/docs/configuration/batching#post-batch-processing). -->
 
@@ -62,93 +62,80 @@ It is therefore recommended that you ensure paths of separate components do not 
 
 For example, if you were to deploy two separate `http_server` inputs, one with a path `/foo/` and the other with a path `/foo/bar`, it would not be possible to ensure that the path `/foo/` does not swallow requests made to `/foo/bar`.
 
-
 ## Fields
 
 ### address
 
 An alternative address to host from. If left empty the service wide address is used.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### path
 
 The path from which discrete messages can be consumed.
 
-
 Type: `string`  
-Default: `"/get"`  
+Default: `"/get"`
 
 ### stream_path
 
 The path from which a continuous stream of messages can be consumed.
 
-
 Type: `string`  
-Default: `"/get/stream"`  
+Default: `"/get/stream"`
 
 ### ws_path
 
 The path from which websocket connections can be established.
 
-
 Type: `string`  
-Default: `"/get/ws"`  
+Default: `"/get/ws"`
 
 ### allowed_verbs
 
 An array of verbs that are allowed for the `path` and `stream_path` HTTP endpoint.
 
-
 Type: `array`  
-Default: `["GET"]`  
+Default: `["GET"]`
 
 ### timeout
 
 The maximum time to wait before a blocking, inactive connection is dropped (only applies to the `path` endpoint).
 
-
 Type: `string`  
-Default: `"5s"`  
+Default: `"5s"`
 
 ### cert_file
 
 Enable TLS by specifying a certificate and key file. Only valid with a custom `address`.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### key_file
 
 Enable TLS by specifying a certificate and key file. Only valid with a custom `address`.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### cors
 
 Adds Cross-Origin Resource Sharing headers. Only valid with a custom `address`.
 
-
-Type: `object`  
+Type: `object`
 
 ### cors.enabled
 
 Whether to allow CORS requests.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### cors.allowed_origins
 
 An explicit list of origins that are allowed for CORS requests.
 
-
 Type: `array`  
-Default: `[]`  
-
+Default: `[]`

@@ -9,19 +9,18 @@ menu:
 weight: 2
 aliases:
   - /getting-started/installation/with-tyk-on-premises/docker/docker-pro-demo/docker-pro-demo-windows/
-
 ---
 
 The Tyk Pro Docker demo is our full [On-Premises](https://tyk.io/api-gateway/on-premise/) Pro solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed Pro on your machine, which contains 5 containers: Tyk Gateway, Tyk Dashboard, Tyk Pump, Redis and MongoDB. This demo is great for proof of concept and demo purposes, but if you want to test performance, you will need to move each component to a separate machine.
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
-This demo is NOT designed for production use or performance testing. 
+This demo is NOT designed for production use or performance testing.
 {{< /warning >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 You use this at your own risk. Tyk is not supported on the Windows platform. However you can test it as a proof of concept using our Pro Demo Docker installation.
 {{< /note >}}
@@ -95,7 +94,7 @@ You need to enter the following:
 - **Re-enter** your user **Password**
 
 {{< note success >}}
-**Note**  
+**Note**
 
 For a password, we recommend a combination of alphanumeric characters, with both upper and lower case
 letters.
@@ -191,7 +190,7 @@ This creates the developer portal URL. For the `Authorization` Header, the Value
 #### Sample Request
 
 ```yaml
-{SECRET_VALUE}
+{ SECRET_VALUE }
 ```
 
 #### Sample Response

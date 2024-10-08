@@ -32,7 +32,7 @@ The main idea of the ID extractor is to reduce the number of calls made to your 
 When enabled, the ID extractor runs right before the authentication step, allowing it to take control of the flow and decide whether to call your authentication mechanism or not.
 
 If my ID is cached by this mechanism and my plugin isn't longer called, how do I expire it?
-When you implement your own authentication mechanism using plugins, you initialise the session object from your own code. The session object has a field that's used to configure the lifetime of a cached ID, this field is called `id_extractor_deadline`. See [Plugin Data Structures]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures" >}}) for more details. 
+When you implement your own authentication mechanism using plugins, you initialise the session object from your own code. The session object has a field that's used to configure the lifetime of a cached ID, this field is called `id_extractor_deadline`. See [Plugin Data Structures]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-data-structures" >}}) for more details.
 The value of this field should be a UNIX timestamp on which the cached ID will expire, like `1507268142958`. It's an integer.
 
 For example, this snippet is used in a NodeJS plugin, inside a custom authentication function:
@@ -63,12 +63,12 @@ The API should be a protected one and have the `enable_coprocess_auth` flag set 
   "org_id": "my-org",
   "use_keyless": false,
   "auth": {
-      "auth_header_name": "Authorization"
+    "auth_header_name": "Authorization"
   },
   "proxy": {
-      "listen_path": "/test-api/",
-      "target_url": "http://httpbin.org/",
-      "strip_listen_path": true
+    "listen_path": "/test-api/",
+    "target_url": "http://httpbin.org/",
+    "strip_listen_path": true
   },
   "enable_coprocess_auth": true,
   "custom_middleware_bundle": "bundle.zip"
@@ -95,10 +95,9 @@ The second requirement is to append an additional configuration block to your pl
 }
 ```
 
-*   `extract_from` specifies the source of the ID to extract.
-*   `extract_with` specifies how to extract and parse the extracted ID.
-*   `extractor_config` specifies additional parameters like the header name or the regular expression to use, this is different for every choice, see below for more details.
-
+- `extract_from` specifies the source of the ID to extract.
+- `extract_with` specifies how to extract and parse the extracted ID.
+- `extractor_config` specifies additional parameters like the header name or the regular expression to use, this is different for every choice, see below for more details.
 
 ## Available ID Extractor Sources
 
@@ -122,7 +121,6 @@ Use this source to extract the key from a HTTP header. Only the name of the head
 
 Use this source to extract the key from a submitted form, where `param_name` represents the key of the submitted parameter:
 
-
 ```json
 {
   "id_extractor": {
@@ -134,7 +132,6 @@ Use this source to extract the key from a submitted form, where `param_name` rep
   }
 }
 ```
-
 
 ## Available ID Extractor Modes
 
@@ -175,7 +172,9 @@ Use this to match the ID with a regular expression. This requires additional par
 Using the example above, if we send a header like `prefix-d28e17f7`, given the regular expression we're using, the extracted ID value will be `d28e17f7`.
 
 ## Example Session
+
 Here's an example of a Session being built in GoLang custom middleware:
+
 ```{.copyWrapper}
 extractorDeadline := time.Now().Add(time.Second * 5).Unix()
 object.Session = &coprocess.SessionState{
@@ -191,6 +190,7 @@ object.Session = &coprocess.SessionState{
         ApplyPolicies: ["5d8929d8f56e1a138f628269"],
     }
 ```
+
 [source](https://github.com/TykTechnologies/tyk-grpc-go-basicauth-jwt/blob/master/main.go#L102)
 
-Note: When using an ID Extractor, you must set a `LastUpdated` or else token updates will not be applied.  If you don't set an ID Extractor, Tyk will store session information in the cache based off the `token` field that is set in the metadata.
+Note: When using an ID Extractor, you must set a `LastUpdated` or else token updates will not be applied. If you don't set an ID Extractor, Tyk will store session information in the cache based off the `token` field that is set in the metadata.

@@ -1,7 +1,7 @@
 ---
 title: Interpolation
 description: Explains an overview of Interpolation
-tags: [ "Tyk Streams", "Interpolation" ]
+tags: ["Tyk Streams", "Interpolation"]
 ---
 
 Tyk Streams allows you to dynamically set config fields using [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) queries.
@@ -11,7 +11,7 @@ Tyk Streams allows you to dynamically set config fields using [Bloblang]({{< ref
 ```yaml
 output:
   kafka:
-    addresses: [ "TODO:6379" ]
+    addresses: ["TODO:6379"]
     topic: 'meow-${! json("topic") }'
 ```
 
@@ -19,7 +19,7 @@ A message with the contents `{"topic":"foo","message":"hello world"}` would be r
 
 If a literal string is required that matches this pattern (`${!foo}`) then you can escape it with double brackets. For example, the string `${{!foo}}` would be read as the literal `${!foo}`.
 
-[Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) supports arithmetic, boolean operators, coalesce and mapping expressions. 
+[Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) supports arithmetic, boolean operators, coalesce and mapping expressions.
 
 ## Examples
 
@@ -30,7 +30,7 @@ A common usecase for interpolated functions is dynamic routing at the output lev
 ```yaml
 output:
   kafka:
-    addresses: [ TODO ]
+    addresses: [TODO]
     topic: ${! meta("output_topic") }
     key: ${! meta("key") }
 ```
@@ -45,8 +45,8 @@ pipeline:
     - cache:
         resource: foocache
         operator: set
-        key: '${! json().message.(foo | bar).id }'
-        value: '${! content() }'
+        key: "${! json().message.(foo | bar).id }"
+        value: "${! content() }"
 ```
 
 Here's a map of inputs to resulting values:
@@ -64,9 +64,8 @@ We have a stream of JSON documents each with a unix timestamp field `doc.receive
 ```yaml
 pipeline:
   processors:
-  - sleep:
-      duration: '${! 3600 - ( timestamp_unix() - json("doc.created_at").number() ) }s'
+    - sleep:
+        duration: '${! 3600 - ( timestamp_unix() - json("doc.created_at").number() ) }s'
 ```
 
 If the calculated result is less than or equal to zero the processor does not sleep at all. If the value of `doc.created_at` is a string then our method `.number()` will attempt to parse it into a number.
-

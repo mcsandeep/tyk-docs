@@ -4,18 +4,18 @@ title: User Groups
 menu:
   main:
     parent: "Tyk Dashboard API"
-weight: 6 
+weight: 6
 ---
 
 ### List User Groups
 
-| **Property** | **Description** |
-| ------------ | --------------- |
-| Resource URL | `/api/usergroups`    |
-| Method       | GET             |
-| Type         | None            |
-| Body         | None            |
-| Param        | None            |
+| **Property** | **Description**   |
+| ------------ | ----------------- |
+| Resource URL | `/api/usergroups` |
+| Method       | GET               |
+| Type         | None              |
+| Body         | None              |
+| Param        | None              |
 
 #### Sample Request
 
@@ -53,13 +53,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Get User Group
 
-| **Property** | **Description**         |
-| ------------ | ----------------------- |
-| Resource URL | `/api/usergroups/{user_group-id}`  |
-| Method       | GET                     |
-| Type         | None                    |
-| Body         | None                    |
-| Param        | None                    |
+| **Property** | **Description**                   |
+| ------------ | --------------------------------- |
+| Resource URL | `/api/usergroups/{user_group-id}` |
+| Method       | GET                               |
+| Type         | None                              |
+| Body         | None                              |
+| Param        | None                              |
 
 #### Sample Request
 
@@ -78,21 +78,19 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
   "name": "Certificates team",
   "description": "Team to manage certificates",
   "active": true,
-  "user_permissions": { "certificates": "write" }  
+  "user_permissions": { "certificates": "write" }
 }
 ```
 
 ### Add User Group
 
-
-
-| **Property** | **Description** |
-| ------------ | --------------- |
-| Resource URL | `/api/usergroups`    |
-| Method       | POST            |
-| Type         | None            |
-| Body         | User Object     |
-| Param        | None            |
+| **Property** | **Description**   |
+| ------------ | ----------------- |
+| Resource URL | `/api/usergroups` |
+| Method       | POST              |
+| Type         | None              |
+| Body         | User Object       |
+| Param        | None              |
 
 #### Sample Request
 
@@ -118,17 +116,15 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 }
 ```
 
-
-
 ### Update User Group
 
-| **Property** | **Description**        |
-| ------------ | -----------------------|
+| **Property** | **Description**                   |
+| ------------ | --------------------------------- |
 | Resource URL | `/api/usergroups/{user_group-id}` |
-| Method       | PUT                    |
-| Type         | None                   |
-| Body         | User Group Object            |
-| Param        | None                   |
+| Method       | PUT                               |
+| Type         | None                              |
+| Body         | User Group Object                 |
+| Param        | None                              |
 
 #### Sample Request
 
@@ -155,13 +151,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Delete User Group
 
-| **Property** | **Description**        |
-| ------------ | -----------------------|
+| **Property** | **Description**                   |
+| ------------ | --------------------------------- |
 | Resource URL | `/api/usergroups/{user_group-id}` |
-| Method       | DELETE                 |
-| Type         | None                   |
-| Body         | None                   |
-| Param        | None                   |
+| Method       | DELETE                            |
+| Type         | None                              |
+| Body         | None                              |
+| Param        | None                              |
 
 #### Sample Request
 

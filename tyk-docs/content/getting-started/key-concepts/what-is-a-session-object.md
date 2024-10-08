@@ -4,7 +4,7 @@ title: Session Object
 menu:
   main:
     parent: "Key Concepts"
-weight: 80 
+weight: 80
 aliases:
   - /concepts/session-meta-data/
   - /concepts/what-is-a-session-object/
@@ -16,23 +16,22 @@ You should think about a session object as the metadata associated with a user, 
 
 In Tyk, a session object encapsulates the following details for any given identity:
 
-*   What rate limit to apply
-*   What quota to apply
-*   What Access Control List to apply
-*   What policy ID to use to override the above (if set)
-*   When the session holder's access expires
+- What rate limit to apply
+- What quota to apply
+- What Access Control List to apply
+- What policy ID to use to override the above (if set)
+- When the session holder's access expires
 
 Tyk also allows some additional metadata for a session object which is valuable for transformation or upstream identification purposes:
 
-*   Metadata (a string key/value map that can hold any data)
-*   Alias (a human-readable name for the identity)
+- Metadata (a string key/value map that can hold any data)
+- Alias (a human-readable name for the identity)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Expiry is not the same as invalidation, in Tyk, a session object will be "expired" but will still be in the database in order to inform the session owner that their token has expired and they should renew, if the token was invalidated (deleted after the expiry period), then the user would simply be denied access and their token would be invalid. This is important for developers that have (but shouldn't) hard-coded their token into their app so it is hard to change.
 {{< /note >}}
-
 
 #### Where are session objects stored?
 

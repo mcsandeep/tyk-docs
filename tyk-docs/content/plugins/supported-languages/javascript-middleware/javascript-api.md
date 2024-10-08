@@ -1,18 +1,18 @@
 ---
 title: JavaScript API
 tags:
-    - JavaScript
-    - JS
-    - middleware
-    - scripting
-    - JSVM
-    - plugins
-    - javascript API
+  - JavaScript
+  - JS
+  - middleware
+  - scripting
+  - JSVM
+  - plugins
+  - javascript API
 description: Tyk JavaScript system API
 date: "2017-03-24T14:54:24Z"
 aliases:
-    - /customise-tyk/plugins/javascript-middleware/javascript-api/
-    - /plugins/javascript-middleware/javascript-api
+  - /customise-tyk/plugins/javascript-middleware/javascript-api/
+  - /plugins/javascript-middleware/javascript-api
 ---
 
 This system API provides access to resources outside of the JavaScript Virtual Machine sandbox, the ability to make outbound HTTP requests and access to the key management REST API functions.
@@ -32,12 +32,12 @@ Below is the list of functions currently provided by Tyk.
 
 ```js
 newRequest = {
-  "Method": "POST",
-  "Body": JSON.stringify(event),
-  "Headers": {},
-  "Domain": "http://foo.com",
-  "Resource": "/event/quotas",
-  "FormData": {"field": "value"}
+  Method: "POST",
+  Body: JSON.stringify(event),
+  Headers: {},
+  Domain: "http://foo.com",
+  Resource: "/event/quotas",
+  FormData: { field: "value" },
 };
 ```
 
@@ -75,8 +75,8 @@ To work with the key session object, two functions are provided: `TykGetKeyData`
 
   ```js
   // In an event handler, we can get the key idea from the event, and the API ID from the context variable.
-  var thisSession = JSON.parse(TykGetKeyData(event.EventMetaData.Key, context.APIID))
-  log("Expires: " + thisSession.expires)
+  var thisSession = JSON.parse(TykGetKeyData(event.EventMetaData.Key, context.APIID));
+  log("Expires: " + thisSession.expires);
   ```
 
 - `TykSetKeyData(api_key, api_id)`: Use this method to write data back into the Tyk session store:

@@ -30,19 +30,16 @@ as a Kubernetes liveness probe.
 
 The following component status will not be returned:
 
-* MongDB or SQL
-* Tyk Pump
+- MongDB or SQL
+- Tyk Pump
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Health check is implemented as per the [Health Check Response Format for HTTP APIs](https://tools.ietf.org/id/draft-inadarei-api-health-check-01.html) RFC
 {{< /note >}}
 
-
-
 An example of the response from this API is as follows:
-
 
 ```{.copyWrapper}
 {
@@ -73,7 +70,6 @@ An example of the response from this API is as follows:
 
 The following status levels can be returned in the JSON response.
 
-
 - **pass**: Indicates that all components required for the Gateway to work 100% are available, and there is no impact on your traffic.
 
 - **warn**: Indicates that one of the components is having an outage but your Gateway is able to keep processing traffic. The impact is medium (i.e. no quotas are applied, no analytics, no RPC connection to MDCB).
@@ -84,7 +80,6 @@ The following status levels can be returned in the JSON response.
 
 By default, the liveness health check runs on the `/hello` path. But
 it can be configured to run on any path you want to set. For example:
-
 
 ```{.copyWrapper}
 health_check_endpoint_name: "status"
@@ -98,16 +93,13 @@ The Health check endpoint will refresh every 10 seconds.
 
 ### HTTP error code
 
-
 The Health check endpoint will always return a `HTTP 200 OK` response if the polled health check endpoint is available on your Tyk Gateway. If `HTTP 200 OK` is not returned, your Tyk Gateway is in an error state.
-
 
 For MDCB installations the `/hello` endpoint can be polled in either your Management or Worker Gateways. It is recommended to use the `/hello` endpoint behind a load balancer for HA purposes.
 
 ## Health check examples
 
 The following examples show how the Health check endpoint returns
-
 
 ### Open Source installation
 
@@ -133,6 +125,7 @@ Date: Wed, 14 Apr 2021 17:36:09 GMT
   "version": "v3.1.1"
 }
 ```
+
 ### Self Managed
 
 #### Redis outage
@@ -192,6 +185,7 @@ Date: Wed, 14 Apr 2021 15:52:47 GMT
   "version": "v3.1.2"
 }
 ```
+
 #### Dashboard and Redis outage
 
 ```
@@ -221,6 +215,7 @@ Date: Wed, 14 Apr 2021 17:53:33 GMT
   "version": "v3.1.2"
 }
 ```
+
 ### MDCB installation
 
 #### Management Gateway outage

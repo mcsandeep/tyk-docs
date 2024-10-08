@@ -2,26 +2,27 @@
 date: 2017-03-23T13:19:38Z
 title: Keeping and updating API Definitions locally
 description: "Learn about how API developers who prefer to manage their API definitions on their local file system during development can use the `publish` or `update` commands of Tyk Sync to upload local API configurations to the Tyk Dashboard."
-tags: [ "Tyk Sync" ]
+tags: ["Tyk Sync"]
 ---
 
 This tutorial is aimed at API developers who prefer to manage their API definitions on their local file system during development. It explains how to use the `publish` or `update` commands of Tyk Sync to upload local API Definitions to the Tyk Dashboard. The expected outcome is a streamlined process for maintaining and updating API definitions locally and ensuring they are reflected in the Tyk Dashboard.
 
 ### Step 1. Prepare your API Definition
 
-Create your API definition file and save it locally. For example, save it as *api1.json* in a directory structure of your choice.
+Create your API definition file and save it locally. For example, save it as _api1.json_ in a directory structure of your choice.
 
 ### Step 2: Create a .tyk.json index file
 
 In the root directory of your API definitions, create a `.tyk.json` file to list all API definition files that Tyk Sync should process.
 
 Example `.tyk.json`:
+
 ```json
 {
   "type": "apidef",
   "files": [
-    { 
-        "file": "api1.json" 
+    {
+      "file": "api1.json"
     }
   ]
 }

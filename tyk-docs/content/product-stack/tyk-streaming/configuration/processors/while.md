@@ -1,7 +1,7 @@
 ---
 title: While
 description: Explains an overview of while processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "While" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "While"]
 ---
 
 A processor that checks a [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) against each batch of messages and executes child processors on them for as long as the query resolves to true.
@@ -43,25 +43,22 @@ The conditions of this processor are applied across entire message batches using
 
 Whether to always run the child processors at least one time.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### max_loops
 
 An optional maximum number of loops to execute. Helps protect against accidentally creating infinite loops.
 
-
 Type: `int`  
-Default: `0`  
+Default: `0`
 
 ### check
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether the while loop should execute again.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -75,5 +72,4 @@ check: this.urls.unprocessed.length() > 0
 
 A list of child processors to execute on each loop.
 
-
-Type: `array`  
+Type: `array`

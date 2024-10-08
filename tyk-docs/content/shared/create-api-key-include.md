@@ -9,7 +9,6 @@ We have a video walkthrough for creating an API Key.
 
 {{< youtube sydrO2qv88Y >}}
 
-
 ### Step 1: Select "Keys" from the "System Management" section
 
 {{< img src="/img/2.10/keys_menu.png" alt="Keys menu" >}}
@@ -20,17 +19,16 @@ We have a video walkthrough for creating an API Key.
 
 ### Step 3: Add a Policy or API to your Key
 
-You have the option to add your new key to either an existing Policy or an existing individual API. For this Tutorial we are going to use an API. 
-
+You have the option to add your new key to either an existing Policy or an existing individual API. For this Tutorial we are going to use an API.
 
 #### Add an API to your Key
 
 To select an API, you can either:
 
-* Scroll through your API Name list
-* Use the Search field
-* You can also Group by Authentication Type to filter your APIs
-* You can also Group by Category 
+- Scroll through your API Name list
+- Use the Search field
+- You can also Group by Authentication Type to filter your APIs
+- You can also Group by Category
 
 You can leave all other options at their default settings.
 
@@ -39,7 +37,7 @@ You can leave all other options at their default settings.
 You use the Configuration section to set the following:
 
 1. Enable Detailed Logging. This is disabled by default and isn't required for this tutorial
-2. Give your Key an Alias. This makes your key easier 
+2. Give your Key an Alias. This makes your key easier
 3. Set an Expiry time after which the key will expire. Select a value from the drop-down list. This is a required setting. See [Key Expiry]({{< ref "basic-config-and-security/security/key-level-security#key-expiry" >}}) for more details.
 4. Add Tags to your policy. Any tags you add can be used when filtering Analytics Data. Tags are case sensitive.
 5. Add Metadata to your policy. Adding metadata such as User IDs can be used by middleware components. See [Session Metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}}) for more details.
@@ -64,7 +62,7 @@ You will also need your own API Key, to get these values:
 2.  In the users list, click **Edit** for your user.
 3.  The API key is the **Tyk Dashboard API Access Credentials**, copy this somewhere you can reference it. {{< img src="/img/2.10/user_api_id.png" alt="API key location" >}}
 4.  Select **APIs** from the **System Management** section.
-5.  From the **Actions** menu for your API, select Copy API ID 
+5.  From the **Actions** menu for your API, select Copy API ID
 
 {{< img src="/img/2.10/api_id.png" alt="API ID location" >}}
 
@@ -73,12 +71,10 @@ Once you have these values, you can use them to access the Dashboard API, the be
 {{< note success >}}
 **Note**
 
-  1. Replace the `authorization` header value with your Tyk Dashboard API Access Credentials
-  2. Replace the API ID (`ad5004d961a147d4649fd3216694ebe2`) with your API ID
-  3. It's recommended to validate the JSON using JSON validator to avoid any `malformed input` error
-{{< /note >}}
-  
-
+1. Replace the `authorization` header value with your Tyk Dashboard API Access Credentials
+2. Replace the API ID (`ad5004d961a147d4649fd3216694ebe2`) with your API ID
+3. It's recommended to validate the JSON using JSON validator to avoid any `malformed input` error
+   {{< /note >}}
 
 ```{.copyWrapper}
 curl -X POST -H "authorization: 1238b7e0e2ff4c2957321724409ee2eb" \

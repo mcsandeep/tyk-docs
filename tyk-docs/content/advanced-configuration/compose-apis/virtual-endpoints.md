@@ -1,16 +1,16 @@
 ---
 title: Tyk Virtual Endpoints
 tags:
-    - virtual endpoint
-    - middleware
-    - per-endpoint
-    - JavaScript
-    - JS
+  - virtual endpoint
+  - middleware
+  - per-endpoint
+  - JavaScript
+  - JS
 description: Virtual Endpoint middleware
 date: "2017-03-23T18:08:16Z"
 aliases:
-    - /compose-apis/virtual-endpoints/
-    - /advanced-configuration/compose-apis
+  - /compose-apis/virtual-endpoints/
+  - /advanced-configuration/compose-apis
 ---
 
 Tyk's Virtual Endpoint is a programmable middleware component that is invoked towards the end of the request processing chain. It can be enabled at the per-endpoint level and can perform complex interactions with your upstream service(s) that cannot be handled by one of the other middleware components.
@@ -74,5 +74,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Virtual Endpoint middleware summary
   - The Virtual Endpoint middleware is an optional stage in Tyk's API Request processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Virtual Endpoint middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Virtual Endpoint middleware can be configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

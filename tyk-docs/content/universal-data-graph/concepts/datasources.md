@@ -6,7 +6,7 @@ menu:
     parent: "Universal Data Graph"
 weight: 10
 aliases:
-    - /universal-data-graph/datasources/
+  - /universal-data-graph/datasources/
 ---
 
 Datasources are the fuel to power any Unified Data Graph and the designed schema.
@@ -18,6 +18,7 @@ You can add Datasources to your Universal Data Graph without adding them to Tyk 
 If you want to add quotas, rate limiting, body transformations etc. to a REST Datasource it is recommended to first import the API to Tyk.
 
 Supported DataSources:
+
 - REST
 - GraphQL
 - SOAP (through the REST DataSource)

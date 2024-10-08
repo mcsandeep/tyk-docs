@@ -6,7 +6,7 @@ menu:
     parent: "UDG DataSources"
 weight: 2
 aliases:
-    - /universal-data-graph/data-sources/graphql
+  - /universal-data-graph/data-sources/graphql
 ---
 
 The GraphQL Datasource is able to make GraphQL queries to your upstream GraphQL service. In terms of configuration there are no real differences between the GraphQL Datasource and the one for REST with one slight exception.
@@ -19,11 +19,11 @@ Consider the following schema:
 
 ```graphql
 type Query {
-    employee(id: Int!): Employee
+  employee(id: Int!): Employee
 }
 type Employee {
-    id: Int!
-    name: String!
+  id: Int!
+  name: String!
 }
 ```
 
@@ -31,10 +31,10 @@ Let's assume we would send the following query to a GraphQL server running this 
 
 ```graphql
 query TykCEO {
-    employee(id: 1) {
-        id
-        name
-    }
+  employee(id: 1) {
+    id
+    name
+  }
 }
 ```
 
@@ -44,9 +44,9 @@ The response of this query would look like this:
 {
   "data": {
     "employee": {
-        "id": 1,
-        "name": "Martin Buhr"
-      }
+      "id": 1,
+      "name": "Martin Buhr"
+    }
   }
 }
 ```
@@ -57,14 +57,14 @@ For simplicity reasons the GraphQL Datasource will not return the "data" object 
 So if you want to get the field mappings right you don't have to think about errors or data.
 You can assume that your response object looks like this:
 
-````json
+```json
 {
   "employee": {
     "id": 1,
     "name": "Martin Buhr"
   }
 }
-````
+```
 
 Compared to a REST API you should be able to identify the key difference here.
 The response is wrapped in the field "employee" whereas in a typical REST API you usually don't have this wrapping.
@@ -93,10 +93,9 @@ In case you want to add GraphQL data source at a lower level of your schema - ty
 
 1. Navigate to the field you want the GraphQL data source to be connected to and click on it.
 2. From the right-hand side menu choose **GraphQL | Tyk** or **External GraphQL** depending on wheather your data source was previously created in Tyk or if it's an external service.
-Provide a data source name and URL.
+   Provide a data source name and URL.
 
 Above steps are explained in detail in our [Getting started pages]({{< ref "universal-data-graph/udg-getting-started/connect-datasource.md" >}}).
-
 
 4. Tick the box next to `Add GraphQL operation` to see additional configuration fields. This will allow you to provide a query that will execute against the data source.
 5. Write the query in the `Operation` box and if you're using any variables provide those in `Variables` box.
@@ -106,6 +105,4 @@ Above steps are explained in detail in our [Getting started pages]({{< ref "univ
 You can use objects from your Data Graph schema as variables by referring to them using this syntax: `{{.object.code}}`
 {{< /note >}}
 
-
 {{< img src="/img/dashboard/udg/datasources/add_gql_operation.png" alt="Add GQL Operation" >}}
-

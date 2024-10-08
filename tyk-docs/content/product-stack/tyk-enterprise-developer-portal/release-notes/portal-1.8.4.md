@@ -13,41 +13,49 @@ weight: 7
 ##### Release Date 5 Mar 2024
 
 #### Breaking Changes
+
 This release has no breaking changes.
 
 #### Future breaking changes
+
 This release doesn't introduce future breaking changes.
 
 #### Deprecations
+
 There are no deprecations in this release.
 
 #### Upgrade instructions
+
 If you are on 1.8.1 or an older version we advise you to upgrade ASAP directly to this release.
 
 To upgrade the portal's theme please follow the [upgrade instructions]({{< ref "product-stack/tyk-enterprise-developer-portal/upgrading/theme-upgrades" >}}) for the portal's themes.
 
-
 ## Release Highlights
+
 The 1.8.4 release addresses ten high-priority bugs and vulnerabilities, and introduces multiple improvements to experience of admins in the portal's admin app.
 
 ## Download
+
 - [Docker image to pull](https://hub.docker.com/layers/tykio/portal/v1.8.4/images/sha256-4dd01c11b79f46a06934b0b0ea8d3bbb63835bd31953eccd896481aa4d9cfe56?context=explore)
 - [The default theme package](https://github.com/TykTechnologies/portal-default-theme/releases/tag/1.8.4)
 
 ## Changelog
+
 #### Added
+
 - Added [new configuration option]({{< ref "product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) for setting the `SameSite` attribute on the portal's cookie.
 - Added [new welcome email for admin users]({{< ref "product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) that is sent when new admin account is created.
 - Added [new welcome email for developers]({{< ref "product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api" >}}) that is sent when new developer account is created.
 - Added a fallback mechanism for referencing assets. This searches for assets, such as images, referenced in the rich text editor or markdown editor. It searches the container's filesystem whenever the portal can't find the referenced asset in the `PORTAL_STORAGE`.
 
 #### Changed
+
 - Changed the title for the subject of the new developer registration request from "Registering email - subject" in the settings UI to "Developer Registration Approval Request - Subject" to better reflect the context in which this email is used.
 - Adjusted the portal's behavior for saving pages through the admin API or the Pages UI. Now, if a content block referenced in a template is absent in the page using that template, the portal will ignore this issue instead of preventing the page from being saved. When rendering the respective page, any missing content blocks will be filled with empty strings.
 - Changed title for the portal's private pages for better SEO performance:
 
 | URL                          | Page title             |
-|------------------------------|------------------------|
+| ---------------------------- | ---------------------- |
 | /portal/private/analytics    | Analytics              |
 | /portal/private/dashboard    | Dashboard              |
 | /portal/private/apps/        | Create an application  |
@@ -60,6 +68,7 @@ The 1.8.4 release addresses ten high-priority bugs and vulnerabilities, and intr
 | /portal/private/profile      | Profile                |
 | /auth/password/login         | Developer portal login |
 | /auth/password/new           | Password reset         |
+
 - Changed the credential provisioning flow to automatically include DeveloperID, OrganizationID, ApplicationID, and TeamIDs in [the credential metadata]({{< ref "/product-stack/tyk-enterprise-developer-portal/portal-customisation/customise-user-model#default-attributes" >}}).
 - Added warning regarding potential PII exposure to the [custom attributes menu]({{< ref "/product-stack/tyk-enterprise-developer-portal/portal-customisation/customise-user-model#default-attributes" >}}).
 - Changed the behavior of the portal for 404 errors. Now whenever a user requests non-existing page both private (e.i. requiring sign-in to access) or public, the portal now always renders the `not_found.tmpl` template.
@@ -71,6 +80,7 @@ The 1.8.4 release addresses ten high-priority bugs and vulnerabilities, and intr
 - Made the organization invite email's subject configurable via [the emails settings section]({{< ref "tyk-stack/tyk-developer-portal/enterprise-developer-portal/customise-enterprise-portal/full-customisation/email-customization#list-of-email-notifications" >}}).
 
 #### Fixed
+
 - Fixed the bug where it was impossible to create an ordered list in the rich text editor in the admin app due to CSS issues.
 - Fixed the bug where it was possible to copy the 'portal-session' cookie and use it with different IP address or browser.
 - Fixed the bug where the audit log didn't reflect some actions initiated by admin users and developers.
@@ -83,7 +93,9 @@ The 1.8.4 release addresses ten high-priority bugs and vulnerabilities, and intr
 ## Further Information
 
 ### Upgrading Tyk
+
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance with respect to the upgrade strategy.
 
 ### FAQ
+
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.

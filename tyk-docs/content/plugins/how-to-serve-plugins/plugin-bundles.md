@@ -8,15 +8,15 @@ aliases:
   - /plugins/how-to-serve/plugin-bundles
 ---
 
-For Tyk Gateway to execute local custom plugins during the processing of API requests and responses, the plugin source code must be loaded into the Gateway. The source is usually stored in files and the API definition is used to point the Gateway at the correct file for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}). To simplify the management of plugins, you can group (or *bundle*) multiple plugin files together in a ZIP file that is referred to as a *plugin bundle*.
+For Tyk Gateway to execute local custom plugins during the processing of API requests and responses, the plugin source code must be loaded into the Gateway. The source is usually stored in files and the API definition is used to point the Gateway at the correct file for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}). To simplify the management of plugins, you can group (or _bundle_) multiple plugin files together in a ZIP file that is referred to as a _plugin bundle_.
 
 ## When To Use Plugin Bundles
 
-Plugin bundles are intended to simplify the process of attaching and loading custom middleware. Multiple API definitions can refer to the same plugin bundle (containing the source code and configuration) if required. Having this common, shared resource avoids you from having to duplicate plugin configuration for each of your APIs definitions. 
+Plugin bundles are intended to simplify the process of attaching and loading custom middleware. Multiple API definitions can refer to the same plugin bundle (containing the source code and configuration) if required. Having this common, shared resource avoids you from having to duplicate plugin configuration for each of your APIs definitions.
 
 ## How Plugin Bundles Work
 
-The source code and a [manifest file](#manifest) are bundled into a zip file and uploaded to an external remote web server. The manifest file references the source code file path and the function name within the code that should be invoked for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}). Within the API definition, custom plugins are configured simply using the name of the bundle (zip file). Tyk Gateway downloads, caches, extracts and executes plugins from the downloaded bundle according to the configuration in the manifest file. 
+The source code and a [manifest file](#manifest) are bundled into a zip file and uploaded to an external remote web server. The manifest file references the source code file path and the function name within the code that should be invoked for each [plugin type]({{< ref "plugins/plugin-types/plugintypes" >}}). Within the API definition, custom plugins are configured simply using the name of the bundle (zip file). Tyk Gateway downloads, caches, extracts and executes plugins from the downloaded bundle according to the configuration in the manifest file.
 
 {{< img src= "/img/plugins/plugin-bundles-overview.png" alt="plugin bundles architectural overview" >}}
 
@@ -26,7 +26,7 @@ Tyk downloads a plugin bundle on startup based on the configuration in the API d
 
 As a suggestion, you may organize your plugin bundle files using a Git commit reference or version number, e.g. `bundle-e5e6044.zip`, `bundle-48714c8.zip`, `bundle-1.0.0.zip`, `bundle-1.0.1.zip`, etc.
 
-Alternatively, you may delete the cached bundle from Tyk manually and then trigger a hot reload to tell Tyk to fetch a new one.  By default, Tyk will store downloaded bundles in this path:
+Alternatively, you may delete the cached bundle from Tyk manually and then trigger a hot reload to tell Tyk to fetch a new one. By default, Tyk will store downloaded bundles in this path:
 `{ TYK_ROOT } / { CONFIG_MIDDLEWARE_PATH } / bundles`
 
 ### Gateway configuration
@@ -41,10 +41,10 @@ To configure Tyk Gateway to load plugin bundles the following parameters must be
 
 - `enable_bundle_downloader`: Enables the bundle downloader.
 - `bundle_base_url`: A base URL that will be used to download the bundle. For example if we have `bundle-latest.zip` specified in the API definition, Tyk will fetch the following file: `http://my-bundle-server.com/bundles/bundle-latest.zip` (see the next section for details).
--  `public_key_path`: Sets a public key, used for verifying signed bundles. If unsigned bundles are used you may omit this.
+- `public_key_path`: Sets a public key, used for verifying signed bundles. If unsigned bundles are used you may omit this.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Remember to set `"enable_coprocess": true` in your `tyk.conf` when using [rich plugins]({{< ref "plugins/how-to-serve-plugins/plugin-bundles" >}})!
 {{< /note >}}
@@ -57,10 +57,7 @@ A sample manifest file looks like this:
 
 ```json
 {
-  "file_list": [
-    "middleware.py",
-    "mylib.py"
-  ],
+  "file_list": ["middleware.py", "mylib.py"],
   "custom_middleware": {
     "pre": [
       {

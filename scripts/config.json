@@ -5,10 +5,10 @@
   "only_content_level": true,
   "selectors": {
     "default": {
-	    "lvl0": "article h1",
-	    "lvl1": "article h2",
-	    "lvl2": "article h3",
-	    "text": "article p, article span, article li, article td"
+      "lvl0": "article h1",
+      "lvl1": "article h2",
+      "lvl2": "article h3",
+      "text": "article p, article span, article li, article td"
     }
   }
 }

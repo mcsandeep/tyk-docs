@@ -4,7 +4,7 @@ title: How to Check Your Gateway Version
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 Since Gateway version `5.0.8` or `5.2.3` you can inspect detailed build information including the release version by running `tyk version`.
@@ -22,15 +22,15 @@ If you need this in a machine readable format, a `--json` flag is available.
 
 ```json
 {
-    "Version": "v5.3.0-dev",
-    "BuiltBy": "goreleaser",
-    "BuildDate": "<date>",
-    "Commit": "<commit-hash>",
-    "Go": {
-        "Os": "linux",
-        "Arch": "amd64",
-        "Version": "go1.20"
-    }
+  "Version": "v5.3.0-dev",
+  "BuiltBy": "goreleaser",
+  "BuildDate": "<date>",
+  "Commit": "<commit-hash>",
+  "Go": {
+    "Os": "linux",
+    "Arch": "amd64",
+    "Version": "go1.20"
+  }
 }
 ```
 
@@ -40,4 +40,4 @@ The binary is installed in `/opt/tyk-gateway/tyk` by default. If your binary is 
 
 ```
 time="Oct 31 17:06:06" level=info msg="Tyk API Gateway v5.3.0-dev" prefix=main
-``` 
+```

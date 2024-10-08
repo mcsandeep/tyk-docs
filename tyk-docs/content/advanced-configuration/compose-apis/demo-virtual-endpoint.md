@@ -1,22 +1,23 @@
 ---
 title: Virtual Endpoint examples
 tags:
-    - JavaScript
-    - JS
-    - middleware
-    - scripting
-    - JSVM
-    - examples
-    - virtual endpoint
+  - JavaScript
+  - JS
+  - middleware
+  - scripting
+  - JSVM
+  - examples
+  - virtual endpoint
 description: Examples of Virtual Endpoints
 date: "2017-03-23T18:08:16Z"
 aliases:
-    - /advanced-configuration/compose-apis/sample-batch-funtion/
+  - /advanced-configuration/compose-apis/sample-batch-funtion/
 ---
 
 Here we offer some examples to demonstrate valid use of JavaScript within Virtual Endpoints. You can either copy and paste the JavaScript code into the code editor in the Tyk Dashboard API Designer, or create a file and place it in a subdirectory of the Tyk configuration environment (for example under the `middleware` folder in your Tyk installation).
 
 For instruction on how to configure the Virtual Endpoint middleware for your APIs, please see the appropriate documentation for the format of API that you are using:
+
 - [Tyk OAS API]({{< ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-oas" >}})
 - [Tyk Classic API]({{< ref "product-stack/tyk-gateway/middleware/virtual-endpoint-tyk-classic" >}})
 
@@ -27,27 +28,27 @@ In this example, we demonstrate how you can access different [external Tyk objec
 1. Enable the Virtual Endpoint middleware on an endpoint of your API and paste this JavaScript into the API Designer (or save in a file and reference it from the middleware config):
 
 ```javascript
-function myFirstVirtualHandler (request, session, config) {
-  log("Virtual Test running")
-  
-  log("Request Body: " + request.Body)
-  log("Session: " + JSON.stringify(session.allowance))
-  log("Config: " + JSON.stringify(config.APIID))
-  log("param-1: " + request.Params["param1"]) // case sensitive
-  log("auth Header: " + request.Headers["Authorization"]) // case sensitive
-  
+function myFirstVirtualHandler(request, session, config) {
+  log("Virtual Test running");
+
+  log("Request Body: " + request.Body);
+  log("Session: " + JSON.stringify(session.allowance));
+  log("Config: " + JSON.stringify(config.APIID));
+  log("param-1: " + request.Params["param1"]); // case sensitive
+  log("auth Header: " + request.Headers["Authorization"]); // case sensitive
+
   var responseObject = {
     Body: "VIRTUAL ENDPOINT EXAMPLE #1",
     Headers: {
       "x-test": "virtual-header",
-      "x-test-2": "virtual-header-2"
+      "x-test-2": "virtual-header-2",
     },
-    Code: 200
-  }
-  
-  return TykJsResponse(responseObject, session.meta_data)   
+    Code: 200,
+  };
+
+  return TykJsResponse(responseObject, session.meta_data);
 }
-log("Virtual Test initialised")
+log("Virtual Test initialised");
 ```
 
 2. Make a call to your API endpoint passing a request body, a value in the `Authorization` header and a query parameter `param1`.
@@ -62,7 +63,7 @@ X-Test: virtual-header
 X-Test-2: virtual-header-2
 Content-Length: 27
 Content-Type: text/plain; charset=utf-8
- 
+
 VIRTUAL ENDPOINT EXAMPLE #1
 ```
 
@@ -96,18 +97,18 @@ You can add [custom attributes]({{< ref "plugins/supported-languages/javascript-
 2. Enable the Virtual Endpoint middleware on an endpoint of your API and paste this JavaScript into the API Designer (or save in a file and reference it from the middleware config):
 
 ```js
-function mySecondVirtualHandler (request, session, config) {      
+function mySecondVirtualHandler(request, session, config) {
   var responseObject = {
     Body: "VIRTUAL ENDPOINT EXAMPLE #2",
     Headers: {
       "foo-header": "bar",
       "map-header": JSON.stringify(config.config_data.map),
       "string-header": config.config_data.string,
-      "num-header": JSON.stringify(config.config_data.num)
+      "num-header": JSON.stringify(config.config_data.num),
     },
-      Code: 200
-  }
-  return TykJsResponse(responseObject, session.meta_data)
+    Code: 200,
+  };
+  return TykJsResponse(responseObject, session.meta_data);
 }
 ```
 
@@ -125,7 +126,7 @@ Server: tyk
 String-Header: string
 Content-Length: 26
 Content-Type: text/plain; charset=utf-8
- 
+
 VIRTUAL ENDPOINT EXAMPLE #2
 ```
 
@@ -139,52 +140,51 @@ In this example, every line in the script gives an example of a functionality us
 - using `TykMakeHttpRequest` to make an HTTP request from within the virtual endpoint, and the json it returns - `.Code` and `.Body`.
 
 ```js
-function myVirtualHandlerGetHeaders (request, session, config) {
-  rawlog("Virtual Test running")
-    
+function myVirtualHandlerGetHeaders(request, session, config) {
+  rawlog("Virtual Test running");
+
   //Usage examples:
-  log("Request Session: " + JSON.stringify(session))
-  log("API Config:" + JSON.stringify(config))
- 
-  log("Request object: " + JSON.stringify(request))   
-  log("Request Body: " + JSON.stringify(request.Body))
-  log("Request Headers:" + JSON.stringify(request.Headers))
-  log("param-1:" + request.Params["param1"])
-    
-  log("Request header type:" + typeof JSON.stringify(request.Headers))
-  log("Request header:" + JSON.stringify(request.Headers.Location))
-    
+  log("Request Session: " + JSON.stringify(session));
+  log("API Config:" + JSON.stringify(config));
+
+  log("Request object: " + JSON.stringify(request));
+  log("Request Body: " + JSON.stringify(request.Body));
+  log("Request Headers:" + JSON.stringify(request.Headers));
+  log("param-1:" + request.Params["param1"]);
+
+  log("Request header type:" + typeof JSON.stringify(request.Headers));
+  log("Request header:" + JSON.stringify(request.Headers.Location));
 
   //Make api call to upstream target
   newRequest = {
-    "Method": "GET",
-    "Body": "",
-    "Headers": {"location":JSON.stringify(request.Headers.Location)},
-    "Domain": "http://httpbin.org",
-    "Resource": "/headers",
-    "FormData": {}
+    Method: "GET",
+    Body: "",
+    Headers: { location: JSON.stringify(request.Headers.Location) },
+    Domain: "http://httpbin.org",
+    Resource: "/headers",
+    FormData: {},
   };
-  rawlog("--- before get to upstream ---")
+  rawlog("--- before get to upstream ---");
   response = TykMakeHttpRequest(JSON.stringify(newRequest));
-  rawlog("--- After get to upstream ---")
+  rawlog("--- After get to upstream ---");
   log("response type: " + typeof response);
   log("response: " + response);
   usableResponse = JSON.parse(response);
   var bodyObject = JSON.parse(usableResponse.Body);
-    
+
   var responseObject = {
     //Body: "THIS IS A VIRTUAL RESPONSE",
     Body: "yo yo",
     Headers: {
-      "test": "virtual",
+      test: "virtual",
       "test-2": "virtual",
-      "location" : bodyObject.headers.Location
+      location: bodyObject.headers.Location,
     },
-    Code: usableResponse.Code
-  }
-    
-  rawlog("Virtual Test ended")
-  return TykJsResponse(responseObject, session.meta_data)   
+    Code: usableResponse.Code,
+  };
+
+  rawlog("Virtual Test ended");
+  return TykJsResponse(responseObject, session.meta_data);
 }
 ```
 
@@ -259,50 +259,49 @@ function batchTest(request, session, config) {
   var response = {
     Body: "",
     Headers: {
-      "test": "virtual-header-1",
+      test: "virtual-header-1",
       "test-2": "virtual-header-2",
-      "content-type": "application/json"
+      "content-type": "application/json",
     },
-    Code: 200
-  }
-    
+    Code: 200,
+  };
+
   // Batch request
   var batch = {
-    "requests": [
+    requests: [
       {
-        "method": "GET",
-        "headers": {
+        method: "GET",
+        headers: {
           "x-tyk-test": "1",
           "x-tyk-version": "1.2",
-          "authorization": "1dbc83b9c431649d7698faa9797e2900f"
+          authorization: "1dbc83b9c431649d7698faa9797e2900f",
         },
-        "body": "",
-        "relative_url": "http://httpbin.org/get"
+        body: "",
+        relative_url: "http://httpbin.org/get",
       },
       {
-        "method": "GET",
-        "headers": {},
-        "body": "",
-        "relative_url": "http://httpbin.org/user-agent"
-      }
+        method: "GET",
+        headers: {},
+        body: "",
+        relative_url: "http://httpbin.org/user-agent",
+      },
     ],
-    "suppress_parallel_execution": false
-  }
-    
-  log("[Virtual Test] Making Upstream Batch Request")
-  var newBody = TykBatchRequest(JSON.stringify(batch))
-    
+    suppress_parallel_execution: false,
+  };
+
+  log("[Virtual Test] Making Upstream Batch Request");
+  var newBody = TykBatchRequest(JSON.stringify(batch));
+
   // We know that the requests return JSON in their body, lets flatten it
-  var asJS = JSON.parse(newBody)
+  var asJS = JSON.parse(newBody);
   for (var i in asJS) {
-    asJS[i].body = JSON.parse(asJS[i].body)
+    asJS[i].body = JSON.parse(asJS[i].body);
   }
-    
+
   // We need to send a string object back to Tyk to embed in the response
-  response.Body = JSON.stringify(asJS)
-    
-  return TykJsResponse(response, session.meta_data)
-    
+  response.Body = JSON.stringify(asJS);
+
+  return TykJsResponse(response, session.meta_data);
 }
-log("Batch Test initialised")                
+log("Batch Test initialised");
 ```

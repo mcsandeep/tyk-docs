@@ -1,7 +1,7 @@
 ---
 title: Select Parts
 description: Explains an overview of select parts processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Select Parts" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Select Parts"]
 ---
 
 Cherry pick a set of messages from a batch by their index. Indexes larger than the number of messages are simply ignored.
@@ -27,7 +27,5 @@ This processor is only applicable to [batched messages]({{< ref "/product-stack/
 
 An array of message indexes of a batch. Indexes can be negative, and if so the part will be selected from the end counting backwards starting from -1.
 
-
 Type: `array`  
-Default: `[]`  
-
+Default: `[]`

@@ -1,7 +1,7 @@
 ---
 title: Redis
 description: Redis Processor
-tags: [ "Processors", "Redis","Integration" ]
+tags: ["Processors", "Redis", "Integration"]
 ---
 
 Performs actions against Redis that aren't possible using a [cache]({{< ref "/product-stack/tyk-streaming/configuration/processors/cache" >}}) processor.
@@ -36,14 +36,12 @@ redis:
     enable_renegotiation: false
     root_cas: ""
     root_cas_file: ""
-    client_certs: [ ]
+    client_certs: []
   command: scard # No default (optional)
   args_mapping: root = [ this.key ] # No default (optional)
   retries: 3
   retry_period: 500ms
 ```
-
-
 
 ## Examples
 
@@ -62,9 +60,8 @@ pipeline:
               url: TODO
               command: scard
               args_mapping: 'root = [ meta("set_key") ]'
-        result_map: 'root.cardinality = this'
+        result_map: "root.cardinality = this"
 ```
-
 
 ### Running Total
 
@@ -140,8 +137,8 @@ pipeline:
           - redis:
               url: TODO
               command: incrby
-              args_mapping: 'root = [ this.name, this.friends_visited ]'
-        result_map: 'root.total = this'
+              args_mapping: "root = [ this.name, this.friends_visited ]"
+        result_map: "root.total = this"
 ```
 
 ## Fields
@@ -229,7 +226,6 @@ Default: `false`
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent
 trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
 Default: `""`
 
@@ -311,7 +307,6 @@ A plain text password for when the private key is password encrypted in PKCS#1 o
 obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not
 authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
 Default: `""`
 
@@ -329,8 +324,7 @@ The command to execute.
 
 This field supports [interpolation functions]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/interpolation#bloblang-queries" >}}).
 
-Type: `string`  
-
+Type: `string`
 
 ```yml
 # Examples
@@ -368,4 +362,4 @@ Default: `3`
 The time to wait before consecutive retry attempts.
 
 Type: `string`  
-Default: `"500ms"`  
+Default: `"500ms"`

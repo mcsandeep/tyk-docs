@@ -18,55 +18,57 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The do-not-track middleware (`doNotTrackEndpoint`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `doNotTrackEndpoint` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 
 For example:
+
 ```json {hl_lines=["39-41"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-do-not-track",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-do-not-track",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-do-not-track",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-do-not-track/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "doNotTrackEndpoint": {
-                        "enabled": true
-                    }               
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-do-not-track",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-do-not-track/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "doNotTrackEndpoint": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -90,7 +92,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Do Not Track Endpoint middleware
 
-Select **ADD MIDDLEWARE** and choose the **Do Not Track Endpoint** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Do Not Track Endpoint** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-do-not-track.png" alt="Adding the Do Not Track middleware" >}}
 

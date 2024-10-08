@@ -14,13 +14,12 @@ Please note that upgrade order is as explained in the upgrade [overview]({{< ref
 </br>
 
 {{< note success >}}
-**Upgrade instructions for *Tyk Dashboard*, *Tyk Pump* and *MDCB***
+**Upgrade instructions for _Tyk Dashboard_, _Tyk Pump_ and _MDCB_**
 
-The instruction below refer to upgrading *Tyk Gateway*. You can follow the same steps for *Tyk Dashboard*, *Tyk Pump*
-and *MDCB*.
+The instruction below refer to upgrading _Tyk Gateway_. You can follow the same steps for _Tyk Dashboard_, _Tyk Pump_
+and _MDCB_.
 
 {{< /note >}}
-
 
 ## Simple Kubernetes Environment Upgrade
 
@@ -28,20 +27,23 @@ When upgrading a non-production environment, where it's okay to have a brief dow
 gateways, the upgrade is trivial as with any other image you want to upgrade in Kubernetes:
 
 In a similar way to docker:
+
 1. Backup your gateway config file (`tyk.conf` or the name you chose for it)
 2. Update the image version in the manifest file.
 3. Apply the file/s using kubectl
 
 ```console
 $ kubectl apply -f .
-``` 
+```
+
 You will see that the deployment has changed.
 
 Now you can check the gateway pod to see the latest events (do `kubectl get pods` to get the pod name):
-    
+
 ```console
 $ kubectl describe pods <gateway pod name>
 ```
+
 You should see that the image was pulled, the container got created and the gateway started running again, similar to the following output:
 
 ```bash
@@ -56,13 +58,16 @@ Events:
 ```
 
 4. Check the log to see that the new version is used and if the gateway is up and running
+
 ```console
-$ kubectl logs service/gateway-svc-tyk-gateway-tyk-headless --tail=100 --follow 
+$ kubectl logs service/gateway-svc-tyk-gateway-tyk-headless --tail=100 --follow
 Defaulted container "gateway-tyk-headless" out of: gateway-tyk-headless, setup-directories (init)
 time="Jul 17 20:58:27" level=info msg="Tyk API Gateway 5.1.0" prefix=main
 ...
 ```
+
 5. Check the gateway is healthy
+
 ```console
 $ curl  localhost:8080/hello | jq .
 {

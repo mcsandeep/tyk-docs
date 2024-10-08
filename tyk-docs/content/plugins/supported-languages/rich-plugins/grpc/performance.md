@@ -4,8 +4,8 @@ title: gRPC Performance
 menu:
   main:
     parent: "gRPC"
-weight: 0 
-aliases: 
+weight: 0
+aliases:
   - "/plugins/rich-plugins/grpc/performance"
 ---
 
@@ -22,6 +22,5 @@ gRPC plugins may use different transports, we've tested TCP and Unix Sockets.
 ## Unix Socket
 
 {{< img src="/img/diagrams/unixResponseTime.png" alt="Unix Socket Response Times" >}}
-
 
 {{< img src="/img/diagrams/unixHitRate.png" alt="Unix Socket Hit Rate" >}}

@@ -6,8 +6,8 @@ tags: ["Tyk Classic Portal API", "Classic Portal API "]
 
 This section describes the Tyk Classic Portal API endpoints. It includes the following:
 
-* [Portal Keys]({{< ref "tyk-apis/tyk-portal-api/portal-keys" >}})
-* [Portal Policies]({{< ref "tyk-apis/tyk-dashboard-api/portal-policies" >}})
-* [Portal Developers]({{< ref "tyk-apis/tyk-portal-api/portal-developers" >}})
-* [Portal Configuration]({{< ref "tyk-apis/tyk-portal-api/portal-configuration" >}})
-* [Portal Documentation]({{< ref "tyk-apis/tyk-portal-api/portal-documentation" >}})
+- [Portal Keys]({{< ref "tyk-apis/tyk-portal-api/portal-keys" >}})
+- [Portal Policies]({{< ref "tyk-apis/tyk-dashboard-api/portal-policies" >}})
+- [Portal Developers]({{< ref "tyk-apis/tyk-portal-api/portal-developers" >}})
+- [Portal Configuration]({{< ref "tyk-apis/tyk-portal-api/portal-configuration" >}})
+- [Portal Documentation]({{< ref "tyk-apis/tyk-portal-api/portal-documentation" >}})

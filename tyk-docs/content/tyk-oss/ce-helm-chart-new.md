@@ -13,14 +13,16 @@ The following guides provide instructions to install Redis and Tyk Open Source w
 
 ## Prerequisites
 
-* [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
-* [Helm 3+](https://helm.sh/docs/intro/install/)
+- [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
+- [Helm 3+](https://helm.sh/docs/intro/install/)
 
 ## Quick Start
+
 The following quick start guide explains how to use the Tyk OSS Helm chart to configure the Tyk Gateway that includes:
+
 - Redis for key storage
 
-At the end of this quickstart Tyk Gateway should be accessible through service `gateway-svc-tyk-oss-tyk-gateway` at port `8080`. 
+At the end of this quickstart Tyk Gateway should be accessible through service `gateway-svc-tyk-oss-tyk-gateway` at port `8080`.
 
 **1. Install Redis and Tyk**
 
@@ -44,7 +46,7 @@ helm upgrade tyk-oss tyk-helm/tyk-oss -n $NAMESPACE --create-namespace \
 
 **2. Done!**
 
-Now Tyk Gateway should be accessible through service `gateway-svc-tyk-oss-tyk-gateway` at port `8080`. 
+Now Tyk Gateway should be accessible through service `gateway-svc-tyk-oss-tyk-gateway` at port `8080`.
 
 You are now ready to [create an API]({{<ref "/getting-started/create-api">}}).
 

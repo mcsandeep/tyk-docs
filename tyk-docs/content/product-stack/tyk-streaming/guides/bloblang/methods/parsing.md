@@ -1,10 +1,10 @@
 ---
 title: Parsing Methods
 description: Explains Bloblang parsing methods
-tags: [ "Tyk Streams", "Bloblang", "Bloblang Methods", "Methods", "Parsing" ]
+tags: ["Tyk Streams", "Bloblang", "Bloblang Methods", "Methods", "Parsing"]
 ---
 
-This page provides a comprehensive overview of the various parsing methods available in Bloblang, the data transformation language used within Tyk Streams. Whether you're looking to transform JSON, XML, CSV, or other data formats, these methods will help you achieve dynamic mappings and efficient data processing. Each method includes detailed parameters and practical examples to guide you through their implementation. 
+This page provides a comprehensive overview of the various parsing methods available in Bloblang, the data transformation language used within Tyk Streams. Whether you're looking to transform JSON, XML, CSV, or other data formats, these methods will help you achieve dynamic mappings and efficient data processing. Each method includes detailed parameters and practical examples to guide you through their implementation.
 
 ## bloblang
 
@@ -12,10 +12,9 @@ Executes an argument [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/blo
 
 #### Parameters
 
-**mapping** &lt;string&gt; The mapping to execute.  
+**mapping** &lt;string&gt; The mapping to execute.
 
 #### Examples
-
 
 ```coffee
 root.body = this.body.bloblang(this.mapping)
@@ -34,10 +33,9 @@ Serializes a target value into a pretty-printed JSON byte array (with 4 space in
 #### Parameters
 
 **indent** &lt;string, default `"    "`&gt; Indentation string. Each element in a JSON object or array will begin on a new, indented line followed by one or more copies of indent according to the indentation nesting.  
-**no_indent** &lt;bool, default `false`&gt; Disable indentation.  
+**no_indent** &lt;bool, default `false`&gt; Disable indentation.
 
 #### Examples
-
 
 ```coffee
 root = this.doc.format_json()
@@ -85,7 +83,6 @@ Formats data as a [MessagePack](https://msgpack.org/) message in bytes format.
 
 #### Examples
 
-
 ```coffee
 root = this.format_msgpack().encode("hex")
 
@@ -104,14 +101,12 @@ root.encoded = this.format_msgpack().encode("base64")
 
 Serializes a target value into an XML byte array.
 
-
 #### Parameters
 
 **indent** &lt;string, default `"    "`&gt; Indentation string. Each element in an XML object or array will begin on a new, indented line followed by one or more copies of indent according to the indentation nesting.  
-**no_indent** &lt;bool, default `false`&gt; Disable indentation.  
+**no_indent** &lt;bool, default `false`&gt; Disable indentation.
 
 #### Examples
-
 
 Serializes a target value into a pretty-printed XML byte array (with 4 space indentation by default).
 
@@ -163,7 +158,6 @@ Serializes a target value into a YAML byte array.
 
 #### Examples
 
-
 ```coffee
 root = this.doc.format_yaml()
 
@@ -188,10 +182,9 @@ Attempts to parse a string into an array of objects by following the CSV format 
 
 **parse_header_row** &lt;bool, default `true`&gt; Whether to reference the first row as a header row. If set to true the output structure for messages will be an object where field keys are determined by the header row. Otherwise, the output will be an array of row arrays.  
 **delimiter** &lt;string, default `","`&gt; The delimiter to use for splitting values in each record. It must be a single character.  
-**lazy_quotes** &lt;bool, default `false`&gt; If set to `true`, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.  
+**lazy_quotes** &lt;bool, default `false`&gt; If set to `true`, a quote may appear in an unquoted field and a non-doubled quote may appear in a quoted field.
 
 #### Examples
-
 
 Parses CSV data with a header row
 
@@ -235,7 +228,6 @@ Attempts to parse a url-encoded query string (from an x-www-form-urlencoded requ
 
 #### Examples
 
-
 ```coffee
 root.values = this.body.parse_form_url_encoded()
 
@@ -249,10 +241,9 @@ Attempts to parse a string as a JSON document and returns the result.
 
 #### Parameters
 
-**use_number** &lt;(optional) bool&gt; An optional flag that when set makes parsing numbers as json.Number instead of the default float64.  
+**use_number** &lt;(optional) bool&gt; An optional flag that when set makes parsing numbers as json.Number instead of the default float64.
 
 #### Examples
-
 
 ```coffee
 root.doc = this.doc.parse_json()
@@ -274,7 +265,6 @@ Parses a [MessagePack](https://msgpack.org/) message into a structured document.
 
 #### Examples
 
-
 ```coffee
 root = content().decode("hex").parse_msgpack()
 
@@ -295,10 +285,9 @@ Decodes a [Parquet file](https://parquet.apache.org/docs/) into an array of obje
 
 #### Parameters
 
-**byte_array_as_string** &lt;bool, default `false`&gt; Deprecated: This parameter is no longer used.  
+**byte_array_as_string** &lt;bool, default `false`&gt; Deprecated: This parameter is no longer used.
 
 #### Examples
-
 
 ```coffee
 root = content().parse_parquet()
@@ -309,7 +298,6 @@ root = content().parse_parquet()
 Attempts to parse a URL from a string value, returning a structured result that describes the various facets of the URL. The fields returned within the structured result roughly follow https://pkg.go.dev/net/url#URL, and may be expanded in future in order to present more information.
 
 #### Examples
-
 
 ```coffee
 root.foo_url = this.foo_url.parse_url()
@@ -338,13 +326,11 @@ Attempts to parse a string as an XML document and returns a structured result, w
 - When elements are repeated the resulting JSON value is an array.
 - If cast is true, try to cast values to numbers and booleans instead of returning strings.
 
-
 #### Parameters
 
-**cast** &lt;(optional) bool, default `false`&gt; whether to try to cast values that are numbers and booleans to the right type.  
+**cast** &lt;(optional) bool, default `false`&gt; whether to try to cast values that are numbers and booleans to the right type.
 
 #### Examples
-
 
 ```coffee
 root.doc = this.doc.parse_xml()
@@ -372,7 +358,6 @@ root.doc = this.doc.parse_xml(cast: true)
 Attempts to parse a string as a single YAML document and returns the result.
 
 #### Examples
-
 
 ```coffee
 root.doc = this.doc.parse_yaml()

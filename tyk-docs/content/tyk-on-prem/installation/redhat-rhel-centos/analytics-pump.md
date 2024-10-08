@@ -6,10 +6,11 @@ description: "How to install the Tyk Pump as part of the Tyk Stack on Red Hat or
 menu:
   main:
     parent: "Red Hat (RHEL / CentOS) "
-weight: 2 
+weight: 2
 aliases:
   - /getting-started/installation/with-tyk-on-premises/redhat-rhel-centos/analytics-pump
 ---
+
 {{< tabs_start >}}
 {{< tab_start "Ansible" >}}
 <br />
@@ -20,6 +21,7 @@ aliases:
 {{< /note >}}
 
 ## Getting Started
+
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -27,6 +29,7 @@ $ git clone https://github.com/TykTechnologies/tyk-ansible
 ```
 
 2. `cd` into the directory
+
 ```.bash
 $ cd tyk-ansible
 ```
@@ -46,21 +49,23 @@ $ ansible-playbook playbook.yaml -t tyk-pump
 ```
 
 ## Supported Distributions
+
 | Distribution | Version | Supported |
-| --------- | :---------: | :---------: |
-| Amazon Linux | 2 | ✅ |
-| CentOS | 8 | ✅ |
-| CentOS | 7 | ✅ |
-| RHEL | 8 | ✅ |
-| RHEL | 7 | ✅ |
+| ------------ | :-----: | :-------: |
+| Amazon Linux |    2    |    ✅     |
+| CentOS       |    8    |    ✅     |
+| CentOS       |    7    |    ✅     |
+| RHEL         |    8    |    ✅     |
+| RHEL         |    7    |    ✅     |
 
 {{< tab_end >}}
 {{< tab_start "Shell" >}}
+
 ## Install Tyk Pump on Red Hat (RHEL) / CentOS
 
 Tyk has it's own signed RPMs in a YUM repository hosted by the kind folks at [packagecloud.io][1], which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
-This tutorial will run on an [Amazon AWS][2] *Red Hat Enterprise Linux 7.1* instance. We will install Tyk Pump with all dependencies stored locally.
+This tutorial will run on an [Amazon AWS][2] _Red Hat Enterprise Linux 7.1_ instance. We will install Tyk Pump with all dependencies stored locally.
 
 We're installing on a `t2.micro` because this is a tutorial, you'll need more RAM and more cores for better performance.
 
@@ -73,15 +78,17 @@ We are assuming that Redis and either MongoDB or SQL are installed (these are in
 ### Step 1: Set up YUM Repositories
 
 First, we need to install some software that allows us to use signed packages:
+
 ```bash
 sudo yum install pygpgme yum-utils wget
 ```
 
 Next, we need to set up the various repository configurations for Tyk and MongoDB:
 
-Create a file named `/etc/yum.repos.d/tyk_tyk-pump.repo` that contains the repository configuration below: 
+Create a file named `/etc/yum.repos.d/tyk_tyk-pump.repo` that contains the repository configuration below:
 
 Make sure to replace `el` and `7` in the config below with your Linux distribution and version:
+
 ```bash
 [tyk_tyk-pump]
 name=tyk_tyk-pump
@@ -97,6 +104,7 @@ metadata_expire=300
 ```
 
 Finally we'll need to update our local cache, so run:
+
 ```bash
 sudo yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-pump'
 ```
@@ -104,6 +112,7 @@ sudo yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-pump'
 ### Step 2: Install Packages
 
 We're ready to go, you can now install the relevant packages using yum:
+
 ```bash
 sudo yum install -y tyk-pump
 ```
@@ -120,12 +129,13 @@ If you don't complete this step, you won't see any analytics in your Dashboard, 
 {{< note success >}}
 **Note**
 
-You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Mongo IP Address>`, `<Mongo Port>` ` for `--mongo=mongodb://<Mongo IP Address>:<Mongo Port>/` with your own values to run this script.
+You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Mongo IP Address>`, `<Mongo Port>` `for`--mongo=mongodb://<Mongo IP Address>:<Mongo Port>/` with your own values to run this script.
 {{< /note >}}
 
 ```bash
 sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --mongo=mongodb://<IP Address>:<Mongo Port>/tyk_analytics
 ```
+
 {{< tab_end >}}
 {{< tab_start "SQL" >}}
 <br>
@@ -134,13 +144,16 @@ sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --mo
 
 You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Postgres Host Name>`,`<Port>`, `<User>`, `<Password>`, `<DB>` for `--postgres="host=<Postgres Host Name> port=<Port> user=<User> password=<Password> dbname=<DB>"` with your own values to run this script.
 {{< /note >}}
+
 ```bash
 sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --postgres="host=<Postgres Host Name> port=<Port> user=<User> password=<Password> dbname=<DB>"
 ```
+
 {{< tab_end >}}
 {{< tabs_end >}}
 
 ### Step 4: Start Tyk Pump
+
 ```bash
 sudo service tyk-pump start
 ```
@@ -148,13 +161,13 @@ sudo service tyk-pump start
 That's it, the Pump should now be up and running.
 
 You can verify if Tyk Pump is running and working by accessing the logs:
+
 ```bash
 sudo journalctl -u tyk-pump
 ```
 
-
- [1]: https://packagecloud.io
- [2]: http://aws.amazon.com
+[1]: https://packagecloud.io
+[2]: http://aws.amazon.com
 
 {{< tab_end >}}
 {{< tabs_end >}}

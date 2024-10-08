@@ -2,7 +2,7 @@
 date: 2017-03-27T19:30:10+01:00
 title: “There was a problem updating your CNAME“ error in the Dashboard
 notoc: true
-weight: 5 
+weight: 5
 ---
 
 ### Description

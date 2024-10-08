@@ -1,9 +1,13 @@
 {{ define "content" }}
-<a href="https://www.postman.com/tyk-technologies/workspace/379673ec-4cc5-4b8e-bef5-8a6a988071cb/overview" target="_blank">Visit our Postman Collections</a>
-<div id="swagger-ui">Loading...</div>
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui.css">
-<script src="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui-standalone-preset.js"></script>
-<script src="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui-bundle.js"></script>
+  <a
+    href="https://www.postman.com/tyk-technologies/workspace/379673ec-4cc5-4b8e-bef5-8a6a988071cb/overview"
+    target="_blank"
+    >Visit our Postman Collections</a
+  >
+  <div id="swagger-ui">Loading...</div>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui.css" />
+  <script src="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui-standalone-preset.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@5.9.2/swagger-ui-bundle.js"></script>
 <script>
 setTimeout(function(){
 const DisableTryItOutPlugin = function() {
@@ -57,89 +61,97 @@ var ui = SwaggerUIBundle({
   document.querySelector(".page-content.wysiwyg").className = "page-content"
 }, 0);
 </script>
-<style>
-.swagger-ui .base-url, .swagger-ui .scheme-container, .swagger-ui .title small, .swagger-ui .global-server-container { display: none !important }
+  <style>
+    .swagger-ui .base-url,
+    .swagger-ui .scheme-container,
+    .swagger-ui .title small,
+    .swagger-ui .global-server-container {
+      display: none !important;
+    }
 
-.swagger-ui .info { margin: 0 !important }
+    .swagger-ui .info {
+      margin: 0 !important;
+    }
 
-.wysiwyg .swagger-ui table tbody tr td:first-of-type { border-left: none }
+    .wysiwyg .swagger-ui table tbody tr td:first-of-type {
+      border-left: none;
+    }
 
-.wysiwyg .swagger-ui table tbody td { border-right: none }
+    .wysiwyg .swagger-ui table tbody td {
+      border-right: none;
+    }
 
-.page-content > h1 {
-    display: none;
-}
+    .page-content > h1 {
+      display: none;
+    }
 
-.swagger-ui * {
-  font-family: 'Roboto', sans-serif !important;
-  line-height: 1.5;
-  letter-spacing: 0.015em;
-}
+    .swagger-ui * {
+      font-family: "Roboto", sans-serif !important;
+      line-height: 1.5;
+      letter-spacing: 0.015em;
+    }
 
-.swagger-ui .info p, .swagger-ui .info li {
-  font-size: 16px;
-}
+    .swagger-ui .info p,
+    .swagger-ui .info li {
+      font-size: 16px;
+    }
 
-.swagger-ui .wrapper {
-  margin-top: 3em;
-}
+    .swagger-ui .wrapper {
+      margin-top: 3em;
+    }
 
-.swagger-ui h3.opblock-tag {
-  flex-direction: column;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  padding-left: 0;
-  cursor: default;
+    .swagger-ui h3.opblock-tag {
+      flex-direction: column;
+      -webkit-box-align: flex-start;
+      -ms-flex-align: flex-start;
+      align-items: flex-start;
+      padding-left: 0;
+      cursor: default;
 
-  position: relative;
-}
+      position: relative;
+    }
 
-.swagger-ui h3 > a:last-child  {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-.swagger-ui .opblock-tag small {
-  padding: 0;
-}
+    .swagger-ui h3 > a:last-child {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .swagger-ui .opblock-tag small {
+      padding: 0;
+    }
 
-.swagger-ui .expand-operation {
-  display: none;
-}
+    .swagger-ui .expand-operation {
+      display: none;
+    }
 
-.swagger-ui .parameters tbody td {
-  padding-right: 1em !important;
-}
+    .swagger-ui .parameters tbody td {
+      padding-right: 1em !important;
+    }
 
-.swagger-ui .parameters p {
-  font-size: 14px;
-}
+    .swagger-ui .parameters p {
+      font-size: 14px;
+    }
 
-.swagger-ui .models {
-  display: none;
-}
+    .swagger-ui .models {
+      display: none;
+    }
 
-.swagger-ui .info .title {
-    margin-bottom: 26px;
-    font-size: 48px;
-    font-family: "smoolthan", sans-serif !important;
-    font-weight: bold;
-    color: #000;
-}
+    .swagger-ui .info .title {
+      margin-bottom: 26px;
+      font-size: 48px;
+      font-family: "smoolthan", sans-serif !important;
+      font-weight: bold;
+      color: #000;
+    }
 
-.swagger-ui .renderedMarkdown code {
-    color: #d63384;
+    .swagger-ui .renderedMarkdown code {
+      color: #d63384;
+    }
 
-}
+    /* Disable Try it Now button */
 
-
-/* Disable Try it Now button */
-
-.swagger-ui .btn {
-  display: none;
-}
-
-</style>
-
+    .swagger-ui .btn {
+      display: none;
+    }
+  </style>
 {{ end }}

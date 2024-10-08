@@ -26,7 +26,7 @@ is_admin {
     input.user.user_permissions["IsAdmin"] == "admin"
 }
 # Check if the request path matches any of the known permissions.
-# input.permissions is an object passed from the Tyk Dashboard containing mapping between user permissions (“read”, “write” and “deny”) and the endpoint associated with the permission. 
+# input.permissions is an object passed from the Tyk Dashboard containing mapping between user permissions (“read”, “write” and “deny”) and the endpoint associated with the permission.
 # (eg. If “deny” is the permission for Analytics, it means the user would be denied the ability to make a request to ‘/api/usage’.)
 #
 # Example object:
@@ -42,7 +42,7 @@ is_admin {
 #        ....
 #  ]
 #
-# The input.permissions object can be extended with additional permissions (eg. you could create a permission called ‘Monitoring’ which gives “read” access to the analytics API ‘/analytics’). 
+# The input.permissions object can be extended with additional permissions (eg. you could create a permission called ‘Monitoring’ which gives “read” access to the analytics API ‘/analytics’).
 # This is can be achieved inside this script using the array.concat function.
 request_permission[role] {
 	perm := input.permissions[_]
@@ -126,10 +126,10 @@ deny["You do not have permission to change the API status."] {
 	not is_null(diff.api_definition.active)
 }
 # Using the patch_request helper you can modify the content of the request
-# You should respond with JSON merge patch. 
+# You should respond with JSON merge patch.
 # See https://tools.ietf.org/html/rfc7396 for more details
 #
-# Example: Modify data under a certain condition by enforcing http proxy configuration for all APIs with the #external category. 
+# Example: Modify data under a certain condition by enforcing http proxy configuration for all APIs with the #external category.
 patch_request[x] {
     # Enforce only for users with ["test_patch_request"] permissions.
     # Remove the ["test_patch_request"] permission to enforce the proxy configuration for all users instead of those with the permission.

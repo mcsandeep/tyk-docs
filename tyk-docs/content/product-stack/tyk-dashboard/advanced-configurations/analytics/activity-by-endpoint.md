@@ -2,7 +2,19 @@
 title: Activity by endpoint
 date: 2024-03-27
 description: "API traffic analytics aggregated by endpoint"
-tags: ["traffic analytics", "analytics", "track endpoint", "endpoint tracking", "analytics", "transaction logging", "middleware", "per-endpoint", "Tyk OAS", "Tyk Classic"]
+tags:
+  [
+    "traffic analytics",
+    "analytics",
+    "track endpoint",
+    "endpoint tracking",
+    "analytics",
+    "transaction logging",
+    "middleware",
+    "per-endpoint",
+    "Tyk OAS",
+    "Tyk Classic",
+  ]
 ---
 
 To get a tabular view of how your API traffic is performing at the endpoint level, you can select the Activity by Endpoint option in the navigation and see a tabular view of your API endpoints. This table will list your API endpoints by their traffic volume and you’ll be able to see when they were last accessed:
@@ -18,9 +30,9 @@ You can alternatively select only a subset of the endpoints to include in the ag
 Tyk Gateway will set `TrackPath` to `true` in transaction records generated for endpoints that have the track endpoint middleware enabled.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-The *track endpoint* middleware only affects the inclusion of endpoints in the per-endpoint aggregates, it does not have any impact on other [aggregated data]({{< ref "tyk-dashboard-analytics#aggregated-analytics" >}}) nor the [per-request data]({{< ref "tyk-dashboard-analytics#per-request-raw-analytics" >}}).
+The _track endpoint_ middleware only affects the inclusion of endpoints in the per-endpoint aggregates, it does not have any impact on other [aggregated data]({{< ref "tyk-dashboard-analytics#aggregated-analytics" >}}) nor the [per-request data]({{< ref "tyk-dashboard-analytics#per-request-raw-analytics" >}}).
 {{< /note >}}
 
 ## Selecting Tyk OAS APIs endpoints to be tracked
@@ -30,55 +42,57 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The track endpoint middleware (`trackEndpoint`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `trackEndpoint` object has the following configuration:
- - `enabled`: enable the middleware for the endpoint
+
+- `enabled`: enable the middleware for the endpoint
 
 For example:
+
 ```json {hl_lines=["39-41"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-track-endpoint",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-track-endpoint",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-track-endpoint",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-track-endpoint/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "trackEndpoint": {
-                        "enabled": true
-                    }               
-                }
-            }
-        }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-track-endpoint",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-track-endpoint/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "trackEndpoint": {
+            "enabled": true
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -102,7 +116,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 ##### Step 2: Select the Track Endpoint middleware
 
-Select **ADD MIDDLEWARE** and choose the **Track Endpoint** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Track Endpoint** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-track.png" alt="Adding the Track Endpoint middleware" >}}
 
@@ -110,15 +124,18 @@ Select **ADD MIDDLEWARE** and choose the **Track Endpoint** middleware from the 
 
 Select **SAVE API** to apply the changes to your API.
 
-## Selecting Tyk Classic API endpoints to be tracked 
+## Selecting Tyk Classic API endpoints to be tracked
+
 If you are working with Tyk Classic APIs then you must add a new `track_endpoints` object to the `extended_paths` section of your API definition.
 
 The `track_endpoints` object has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 
 For example:
-```.json  {linenos=true, linenostart=1}
+
+```.json {linenos=true, linenostart=1}
 {
     "extended_paths": {
         "track_endpoints": [
@@ -132,7 +149,7 @@ For example:
 }
 ```
 
-In this example the track endpoint middleware has been configured for HTTP `GET` requests to the `/anything` endpoint.  These requests will appear in the Endpoint Popularity analytics screen, located within the API Usage section of Tyk Dashboard.
+In this example the track endpoint middleware has been configured for HTTP `GET` requests to the `/anything` endpoint. These requests will appear in the Endpoint Popularity analytics screen, located within the API Usage section of Tyk Dashboard.
 
 ### Configuring the middleware in the API Designer
 
@@ -146,4 +163,4 @@ From the **Endpoint Designer** add an endpoint that matches the path for which y
 
 ##### Step 2: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware for the selected endpoint.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware for the selected endpoint.

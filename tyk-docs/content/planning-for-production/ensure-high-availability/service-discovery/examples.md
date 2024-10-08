@@ -1,12 +1,25 @@
 ---
 date: 2017-03-24T11:25:23Z
 title: Service Discovery Examples
-tags: ["High Availability", "SLAs", "Uptime", "Monitoring", "Service Discovery", "Mesosphere", "Eureka", "Etcd", "Zookeeper", "Consul", "Linkerd"]
+tags:
+  [
+    "High Availability",
+    "SLAs",
+    "Uptime",
+    "Monitoring",
+    "Service Discovery",
+    "Mesosphere",
+    "Eureka",
+    "Etcd",
+    "Zookeeper",
+    "Consul",
+    "Linkerd",
+  ]
 description: "Tyk service discovery integration examples with third party services"
 menu:
   main:
     parent: "Service Discovery"
-weight: 0 
+weight: 0
 ---
 
 ## Mesosphere Example
@@ -57,6 +70,7 @@ For this, you need to spin up a REST server that communicates with the Zookeeper
 Here is one open source project, ZooREST, that does just that: https://github.com/Difrex/zoorest
 
 With Zookeeper and ZooREST running, test the query endpoint. Don't forget the `+json`:
+
 ```{.copyWrapper}
 $ curl http://zoorest:8889/v1/get/zk_tyk+json
 {
@@ -71,6 +85,7 @@ $ curl http://zoorest:8889/v1/get/zk_tyk+json
 ```
 
 Then, you can use the following Tyk SD configurations:
+
 ```{.copyWrapper}
   isNested = false
   isTargetList = false
@@ -98,7 +113,7 @@ For integrating service discovery with Consul, you can use the following configu
 ## Linkerd Example
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This configuration is a Tyk Community Contribution.
 {{< /note >}}
@@ -131,7 +146,7 @@ This is needed since Tyk appends a "Host" header when proxying the request and t
 
 ##### For further Linkerd information, see:
 
-[Linkerd - HTTP proxy documentation](https://linkerd.io/features/http-proxy/ ) (Alternatives Section)
+[Linkerd - HTTP proxy documentation](https://linkerd.io/features/http-proxy/) (Alternatives Section)
 
 [Linkered - Header Token Identifier documentation](https://linkerd.io/config/0.9.1/linkerd/index.html#header-token-identifier)
 

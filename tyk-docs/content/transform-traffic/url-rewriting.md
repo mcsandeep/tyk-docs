@@ -53,5 +53,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
  - The URL Rewrite middleware is an optional stage in Tyk's API Request processing chain, sitting between the [Request Header Transform]({{< ref "/transform-traffic/request-headers" >}}) and [Response Caching]({{< ref "/basic-config-and-security/reduce-latency/caching" >}}) middleware.
  - URL Rewrite is configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  - URL Rewrite can access both [session metadata]({{< ref "/getting-started/key-concepts/session-meta-data" >}}) and [request context variables]({{< ref "/context-variables" >}}).
- 
+
 -->

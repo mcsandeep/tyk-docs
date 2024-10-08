@@ -4,11 +4,10 @@ title: Tyk Identity Broker Configuration Options
 menu:
   main:
     parent: "Tyk Identity Broker"
-weight: 3 
+weight: 3
 aliases:
   - /tyk-stack/tyk-manager/sso/dashboard-login-ldap-tib/
 ---
-
 
 The Tyk Identity Broker (TIB) is configured through two files: The configuration file `tib.conf` and the profiles file `profiles.json`. TIB can also be managed via the [TIB REST API]({{< ref "tyk-identity-broker/tib-rest-api" >}}) for automated configurations.
 
@@ -126,7 +125,7 @@ Add your Redis hosts here as a map of hostname:port. Since TIB uses the same clu
 (env var:**TYK_IB_BACKEND_IDENTITYBACKENDSETTINGS_HOSTS**)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 To set this value via env var you must follow the declaration syntax `export TYK_IB_BACKEND_IDENTITYBACKENDSETTINGS_HOSTS="host1:port,host2:port"`
 
@@ -157,7 +156,7 @@ If you are using a TLS protected Redis enable to connect.
 (env var:**TYK_IB_BACKEND_IDENTITYBACKENDSETTINGS_USESSL**)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This option is available from TIB v0.4.0
 {{< /note >}}
@@ -169,11 +168,10 @@ Allows usage of self-signed certificates when connecting to an encrypted Redis d
 (env var:**TYK_IB_BACKEND_IDENTITYBACKENDSETTINGS_SSLINSECURESKIPVERIFY**)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 This option is available from TIB v0.4.0
 {{< /note >}}
-
 
 ### TykAPISettings
 
@@ -194,11 +192,10 @@ The port to use on the Tyk Gateway host.
 (env var:**TYK_IB_TYKAPISETTINGS_GATEWAYCONFIG_PORT**)
 
 {{< note success >}}
-**Note**  
+**Note**
 
 For HTTP or HTTPS endpoints, you do need need to specify the default ports (80 and 443) for this setting. These two ports are handled automatically.
 {{< /note >}}
-
 
 ### TykAPISettings.GatewayConfig.AdminSecret
 
@@ -223,5 +220,3 @@ The port of your Advanced API.
 The high-level secret for the Advanced API. This is required because of the SSO-nature of some of the actions provided by TIB, it requires the capability to access a special SSO endpoint in the Advanced API to create one-time tokens for access.
 
 (env var:**TYK_IB_TYKAPISETTINGS_DASHBOARDCONFIG_ADMINSECRET**)
-
-

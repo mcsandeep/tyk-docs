@@ -1,7 +1,19 @@
 ---
 title: "Extending Tyk OAS APIs with Tyk Middleware"
 date: 2023-10-03
-tags: ["Tyk Tutorials OpenAPI", "Getting Started OpenAPI", "First API OpenAPI", "Tyk Cloud OpenAPI", "Tyk Self-Managed OpenAPI", "Tyk Open Source OpenAPI", "Updating API with OAS", "Update OpenAPI definition", "Middleware", "Mock Response"]
+tags:
+  [
+    "Tyk Tutorials OpenAPI",
+    "Getting Started OpenAPI",
+    "First API OpenAPI",
+    "Tyk Cloud OpenAPI",
+    "Tyk Self-Managed OpenAPI",
+    "Tyk Open Source OpenAPI",
+    "Updating API with OAS",
+    "Update OpenAPI definition",
+    "Middleware",
+    "Mock Response",
+  ]
 description: "Using middleware with Tyk OAS APIs"
 ---
 
@@ -10,7 +22,7 @@ description: "Using middleware with Tyk OAS APIs"
 Tyk OAS APIs have access to an increasing range of Tyk middleware that you can configure to customize the handling of API requests and responses. In this guide we will show you how to enable some of these features in your Tyk OAS APIs.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Tyk OAS API support is currently in [Early Access]({{< ref "developer-support/special-releases-and-features/early-access-features" >}}) and some Tyk features are not yet supported. You can see the status of what is and isn't yet supported [here]({{< ref "/getting-started/using-oas-definitions/oas-reference.md" >}}).
 {{< /note >}}
@@ -20,7 +32,7 @@ Tyk OAS API support is currently in [Early Access]({{< ref "developer-support/sp
 Tyk Gateway's allow list function explicitly allows access just to paths that are documented in the Tyk OAS API definition. You can enable this when updating a Tyk API OAS definition using the `PATCH` method by passing the `allowList` query parameter with the payload.
 
 | Property     | Description                                     |
-|--------------|-------------------------------------------------|
+| ------------ | ----------------------------------------------- |
 | Resource URL | `/tyk/apis/oas/{API-ID}`                        |
 | Method       | `PATCH`                                         |
 | Type         | None                                            |
@@ -111,6 +123,7 @@ Go to the `/apps` folder of your Tyk Gateway installation (by default in `/var/t
   }
 }
 ```
+
 ### validateRequest: check that the API request payload meets a defined schema
 
 In the OAS Document in this example, we define a JSON schema that describes the payload format for any request that hits the `POST /pet` path.
@@ -118,7 +131,7 @@ In the OAS Document in this example, we define a JSON schema that describes the 
 You can instruct the Gateway to validate any incoming request against the documented JSON schema. This is achieved by adding the `validateRequest` query parameter to the `PATCH` request, when updating the Tyk OAS API Definition.
 
 | Property     | Description                                           |
-|--------------|-------------------------------------------------------|
+| ------------ | ----------------------------------------------------- |
 | Resource URL | `/tyk/apis/oas/{API-ID}`                              |
 | Method       | `PATCH`                                               |
 | Type         | None                                                  |
@@ -138,7 +151,7 @@ curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API
   "basic-config-and-security/security":[
      {
         "api_key":[
-           
+
         ]
      }
   ],
@@ -259,14 +272,14 @@ The OpenAPI Document that you used in the example [above]({{< ref "#validateRequ
 Tyk Gateway can "understand" and use this schema to create a mock response for any incoming requests.
 This is achieved by adding the `mockResponse` query parameter to the `PATCH` request, when updating the Tyk OAS API Definition.
 
-| Property     | Description                               |
-|--------------|-------------------------------------------|
-| Resource URL | `/tyk/apis/oas/{API-ID}`                  |
-| Method       | `PATCH`                                   |
-| Type         | None                                      |
-| Body         | OAS API Definition                        |
-| Path Param   |  `{API-ID}`                               |
-| Query Param  | Query param: `mockResponse`               |
+| Property     | Description                 |
+| ------------ | --------------------------- |
+| Resource URL | `/tyk/apis/oas/{API-ID}`    |
+| Method       | `PATCH`                     |
+| Type         | None                        |
+| Body         | OAS API Definition          |
+| Path Param   | `{API-ID}`                  |
+| Query Param  | Query param: `mockResponse` |
 
 ```curl
 curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API-ID}?mockResponse=true' \
@@ -281,7 +294,7 @@ curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API
   "basic-config-and-security/security":[
      {
         "api_key":[
-           
+
         ]
      }
   ],
@@ -371,7 +384,7 @@ curl --location --request PATCH 'http://{your-tyk-host}:{port}/tyk/apis/oas/{API
                   }
             ]
          }
-      }  
+      }
    }
 }'
 ```
@@ -391,6 +404,7 @@ Once you have updated your API, you will need to either restart the Tyk Gateway,
 ```.curl
 curl -H "x-tyk-authorization: {your-secret}" -s http://{your-tyk-host}:{port}/tyk/reload/group
 ```
+
 #### Check your Tyk OAS API definition
 
 Go to the `/apps` folder of your Tyk Gateway installation (by default in `/var/tyk-gateway`) and check the newly modified Tyk OAS API Definition. Notice that under the `middleware.operations.addPet` configuration has been added the `validateRequest` middleware configuration that ensures the payload validation from now on.

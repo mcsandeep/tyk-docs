@@ -16,6 +16,7 @@ The guide includes practical examples for managing API ownership via OperatorCon
 In Tyk Dashboard, API Ownership ensures that only designated 'users' who own an API can modify it. This security model is crucial for maintaining control over API configurations, especially in a multi-tenant environment where multiple teams or departments may have different responsibilities and permissions.
 
 Tyk Operator is designed to interact with Tyk Dashboard as a system user. For the Tyk Dashboard, Tyk Operator is just another user that must adhere to the same access controls and permissions as any other user. This means:
+
 - Tyk Operator needs the correct access rights to modify any APIs.
 - It must be capable of managing APIs according to the ownership rules set in Tyk Dashboard.
 

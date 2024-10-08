@@ -2,16 +2,17 @@
 date: 2017-03-27T15:47:05+01:00
 title: Splunk Setup
 menu:
-    main:
-        parent: "Tyk Pump Configuration"
-weight: 4 
+  main:
+    parent: "Tyk Pump Configuration"
+weight: 4
 ---
 
 This is a step by step guide to setting Splunk to receive logs from the Tyk Pump.
 
 The assumptions are that you have Docker installed and Tyk Pro Self-Managed already running.
 
-## 1.   Run Splunk using Docker
+## 1. Run Splunk using Docker
+
 Assuming you have Docker installed locally, run the following from a terminal:
 
 ```{.copyWrapper}
@@ -49,24 +50,24 @@ Make sure to add your token from the previous step into the `collector_token` fi
 
 ```json
 {
-    "pumps": {
-        "splunk": {
-            "type": "splunk",
-            "meta": {
-                "collector_token": "<token>",
-                "collector_url": "https://localhost:8088/services/collector/event",
-                "ssl_insecure_skip_verify": true
-            }
-        }
+  "pumps": {
+    "splunk": {
+      "type": "splunk",
+      "meta": {
+        "collector_token": "<token>",
+        "collector_url": "https://localhost:8088/services/collector/event",
+        "ssl_insecure_skip_verify": true
+      }
     }
+  }
 }
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 Make sure that the `localhost` value matches with your setup. Head on over to our [community forum](https://community.tyk.io/) to ask for help if you are stuck here.
 {{< /note >}}
-
 
 ### 4. Restart Tyk Pump to pickup the Splunk config
 

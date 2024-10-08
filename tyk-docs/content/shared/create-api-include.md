@@ -8,7 +8,7 @@
 **Note: Integration with your OpenAPI documentation**
 
 In Tyk v4.1 we introduced support for APIs defined according to the [OpenAPI Specification v3.0.3](https://spec.openapis.org/oas/v3.0.3) (OAS).  
-This introduces a standard way to describe the vendor-agnostic elements of an API (the OpenAPI Definition, stored as an OpenAPI Document); we take this and add Tyk-specific configuration options to create the *Tyk OAS API Definition*. You can import your own OpenAPI document and Tyk will use this to generate the Tyk OAS API Definition.  
+This introduces a standard way to describe the vendor-agnostic elements of an API (the OpenAPI Definition, stored as an OpenAPI Document); we take this and add Tyk-specific configuration options to create the _Tyk OAS API Definition_. You can import your own OpenAPI document and Tyk will use this to generate the Tyk OAS API Definition.  
 For a detailed tutorial on using OAS with Tyk Gateway, check out our guide to [creating a Tyk OAS API Definition]({{< ref "getting-started/using-oas-definitions/create-an-oas-api#tutorial-create-an-oas-api-with-the-tyk-gateway-api" >}}).
 
 {{< /note >}}
@@ -35,15 +35,11 @@ We will use the Tyk Dashboard to create a very simple API that has no special el
 
 {{< img src="/img/2.10/add_api.png" alt="Add API button location" >}}
 
-
 ### Step 3: Set up the basic configuration of your API
-
 
 {{< img src="/img/dashboard/4.1-updates/create-api.png" alt="Create API" >}}
 
-
-
-- In the **Overview** section, add a **Name** for your API and select the **Type** of API you wish to create. We will use HTTP for this tutorial. 
+- In the **Overview** section, add a **Name** for your API and select the **Type** of API you wish to create. We will use HTTP for this tutorial.
 - In the **Details** section, add the **Upstream URL**. This is the Target URL that hosts the service to which you want to proxy incoming requests. You can configure Tyk to perform round-robin load balancing between multiple upstream servers (Target URLs) by selecting **Enable round-robin load balancing**; see [Load Balancing]({{< ref "planning-for-production/ensure-high-availability/load-balancing" >}}) for more details. For this tutorial, we will use a single upstream target: [http://httpbin.org](http://httpbin.org).
 - Click **Configure API** when you have finished.
 
@@ -55,7 +51,7 @@ Take a look at the **Authentication** section:
 
 You have the following options:
 
-- **Authentication mode**: This is the method that Tyk should use to authenticate requests to call your API. Tyk supports several different authentication modes - see [Authentication and Authorization]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}}) for more details on securing your API. For this tutorial, you should select `Open (Keyless)`. 
+- **Authentication mode**: This is the method that Tyk should use to authenticate requests to call your API. Tyk supports several different authentication modes - see [Authentication and Authorization]({{< ref "basic-config-and-security/security/authentication-&-authorization" >}}) for more details on securing your API. For this tutorial, you should select `Open (Keyless)`.
 - **Strip Authorization Data**: Select this option to ensure that any security (authentication) tokens provided to authorize requests to your API on Tyk are not leaked to the upstream. You can leave this unchecked for this tutorial.
 - **Auth Key Header Name**: The header parameter that will hold the authentication token (or key) for requests to this API; the default for this is `Authorization`.
 - **Allow query parameter as well as header**: This option allows the authentication token to be set in the query parameter, not just in the Request Header. For this tutorial, leave this unchecked.
@@ -70,7 +66,7 @@ Click **SAVE**
 
 Once saved, you will be taken back to the API list, where your new API will be displayed.
 
-If you select the API from the list to open it again, the API URL will be displayed in the top of the editor. This is the URL that your consumers will need to call to invoke your API. 
+If you select the API from the list to open it again, the API URL will be displayed in the top of the editor. This is the URL that your consumers will need to call to invoke your API.
 
 {{< img src="/img/2.10/api_url.png" alt="API URL location" >}}
 
@@ -81,15 +77,15 @@ You will need an API key for your organization (to authenticate with the Dashboa
 
 ### Step 1: Obtain your Tyk Dashboard API access credentials key & Dashboard URL
 
-- From the Tyk Dashboard, select "Users" in the "System Management" section.  
-- Click **Edit** for your username, then scroll to the bottom of the page.  
+- From the Tyk Dashboard, select "Users" in the "System Management" section.
+- Click **Edit** for your username, then scroll to the bottom of the page.
 - Your personal API key, granting you access to the Dashboard API, is labeled **Tyk Dashboard API Access Credentials** key
 
 {{< img src="/img/2.10/user_api_id.png" alt="API key location" >}}
 
 - Store your Dashboard Key, Dashboard URL & Gateway URL as environment variables so you don't need to keep typing them in
 
-```bash
+````bash
 export DASH_KEY=db8adec7615d40db6419a2e4688678e0
 
 # Locally installed dashboard
@@ -104,7 +100,7 @@ export GATEWAY_URL=http://localhost:8080
 ```curl
 curl -H "Authorization: ${DASH_KEY}" ${DASH_URL}/apis
 {"apis":[],"pages":1}
-```
+````
 
 As you've got a fresh install, you will see that no APIs currently exist
 

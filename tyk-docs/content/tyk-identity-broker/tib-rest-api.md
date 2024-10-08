@@ -3,7 +3,7 @@ title: TIB REST API
 menu:
   main:
     parent: "Tyk Identity Broker"
-weight: 0 
+weight: 0
 aliases:
   - /advanced-configuration/integrate/3rd-party-identity-providers/tib-rest-api/
   - /integrate/3rd-party-identity-providers/tib-rest-api/
@@ -11,12 +11,11 @@ aliases:
 
 The Tyk Identity Broker (TIB) has an API to allow policies to be created, updated, removed and listed for programmatic and automated access. TIB also has a "flush" feature that enables you to flush the current configuration to disk for use when the client starts again.
 
-TIB does not store profiles in a shared store, so if you have multiple TIB instances, they need to be configured individually (for now). Since we don't expect TIB stores to change often, this is acceptable. 
+TIB does not store profiles in a shared store, so if you have multiple TIB instances, they need to be configured individually (for now). Since we don't expect TIB stores to change often, this is acceptable.
 
 Starting from Tyk Dashboard 3, TIB is built-in to the dashboard. TIB endpoints are exposed as part of dashboard API on the `/api/tib/` prefix. So if in the guide below external TIB API endpoint is `/api/profiles` the similar endpoint on the dashboard API will be `/api/tib/profiles`.
 
-
-## <a name="list-profile"></a>List Profiles 
+## <a name="list-profile"></a>List Profiles
 
 ```{.copyWrapper}
 GET /api/profiles/

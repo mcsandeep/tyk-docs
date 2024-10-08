@@ -1,7 +1,7 @@
 ---
 title: "Upgrading On Debian - DEB"
 date: 2024-02-6
-tags: ["Upgrade Go Plugins", "Tyk plugins", "DEB", "Self Managed", "upgrade" ]
+tags: ["Upgrade Go Plugins", "Tyk plugins", "DEB", "Self Managed", "upgrade"]
 description: "Explains how to upgrade on Self Managed (DEB)"
 ---
 
@@ -19,6 +19,7 @@ upgrading Tyk Self-Managed (DEB).
 ---
 
 ## Preparations
+
 After reviewing guidelines for [preparing for upgrade]({{< ref "developer-support/upgrading-tyk/preparations/upgrade-guidelines" >}}),
 follow the instructions below to upgrade your Tyk components and plugins.
 
@@ -27,14 +28,14 @@ Please note that upgrade order is as explained in the upgrade [overview]({{< ref
 
 ## Distro versions
 
-Tyk supports the following version for *Debian* and its derivative *Ubuntu*:
+Tyk supports the following version for _Debian_ and its derivative _Ubuntu_:
 
-| Distribution | Version | 
-|--------------|---------|
+| Distribution | Version |
+| ------------ | ------- |
 | Debian       | 11      |
 | Ubuntu       | 20      |
 | Ubuntu       | 18      |
-| Ubuntu       | 16      | 
+| Ubuntu       | 16      |
 
 Our repositories will be updated at https://packagecloud.io/tyk when new versions are released.
 
@@ -53,7 +54,7 @@ from the [packagecloud.io/tyk](https://packagecloud.io/tyk) repository.
 
 The package name contains the version number and the distro/version column displays the specific distribution release.
 
-{{< img src="/img/upgrade-guides/deb_packages.png" 
+{{< img src="/img/upgrade-guides/deb_packages.png"
     alt="Package names" >}}
 
 ---
@@ -62,19 +63,21 @@ The package name contains the version number and the distro/version column displ
 
 ### Configuration files:
 
-Please take a backup of below configuration files of each Tyk component. This will be useful in case you need to cross reference configuration changes or need to rollback your deployment. 
+Please take a backup of below configuration files of each Tyk component. This will be useful in case you need to cross reference configuration changes or need to rollback your deployment.
 
 - Dashboard Configuration File: `/opt/tyk-dashboard/tyk_analytics.conf`
 - Gateway Configuration File: `/opt/tyk-gateway/tyk.conf`
 - Pump Configuration File: `/opt/tyk-pump/pump.conf`
 
 ### Databases
+
 {{< note >}}
-**Note** 
+**Note**
 Redis and MongoDB are not Tyk products and what we provide here are basic backup and restore instructions. It is advisable to consult the official documentation for Redis and MongoDB on backups.
 {{< /note >}}
 
 #### Redis
+
 For more detailed instructions on managing Redis backups, please refer to the official Redis documentation:
 https://redis.io/docs/management/persistence/
 
@@ -87,7 +90,8 @@ SAVE
 ```
 
 ##### Example - SAVE
-{{< img src="/img/upgrade-guides/redis_save.png" 
+
+{{< img src="/img/upgrade-guides/redis_save.png"
     alt="Redis SAVE example" width="600" height="auto">}}
 
 To restore Redis data, follow these steps:
@@ -99,10 +103,12 @@ To locate your Redis directory, you can use the CONFIG command. Specifically, th
 the configuration parameters of a running Redis server.
 
 ##### Example - CONFIG
-{{< img src="/img/upgrade-guides/redis_config.png" 
+
+{{< img src="/img/upgrade-guides/redis_config.png"
     alt="Redis CONFIG example" width="600" height="auto">}}
 
 #### MongoDB
+
 For detailed instructions on performing backups in MongoDB, please refer to the official MongoDB documentation:
 https://www.mongodb.com/docs/manual/core/backups/
 
@@ -113,7 +119,8 @@ mongodump --db tyk_analytics --out /path/to/dump/directory
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/mongo_dump.png" 
+
+{{< img src="/img/upgrade-guides/mongo_dump.png"
     alt="Mongo DUMP example" height="600">}}
 
 To restore a database using a previously saved snapshot, simply employ the mongorestore command.
@@ -128,7 +135,7 @@ Before executing the upgrade, ensure that you have consulted and performed all t
 
 #### 1. Update Tyk Repositories
 
-Fetch and update information about the available packages from the specified repositories. 
+Fetch and update information about the available packages from the specified repositories.
 
 ```bash
 sudo apt-get update
@@ -143,7 +150,8 @@ dpkg -l | grep -i tyk
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/check_packages.png" 
+
+{{< img src="/img/upgrade-guides/check_packages.png"
     alt="Check packages" height="600">}}
 
 List available versions of upgradable packages of Tyk components and ensure that the version you are planning to upgrade to is listed in the output of the above command.
@@ -153,7 +161,8 @@ apt list -a 'tyk*'
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/list_packages.png" 
+
+{{< img src="/img/upgrade-guides/list_packages.png"
     alt="List packages example" width="600">}}
 
 #### 3. Upgrade Tyk Components
@@ -173,7 +182,8 @@ sudo apt-get install tyk-pump=<desired-version>
 ```
 
 ##### Example
-{{< img src="/img/upgrade-guides/install_deb.png" 
+
+{{< img src="/img/upgrade-guides/install_deb.png"
     alt="apt-get install example" width="600" height="auto">}}
 
 #### 4. Restart Components
@@ -197,16 +207,19 @@ systemctl status tyk-pump
 Perform a health check on all 3 Tyk Components. The host and port number varies on your setup.
 
 ##### Tyk Dashboard
+
 ```curl
 curl http://localhost:3000/hello
 ```
 
 ##### Tyk Gateway
+
 ```curl
 curl http://localhost:8080/hello
 ```
 
 ##### Tyk Pump
+
 ```curl
 curl http://localhost:8083/health
 ```

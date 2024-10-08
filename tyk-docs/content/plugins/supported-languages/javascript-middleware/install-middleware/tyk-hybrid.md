@@ -2,11 +2,11 @@
 weight: 0
 title: Installing Middleware on Tyk Hybrid
 menu:
-    main:
-        parent: Install Middleware
+  main:
+    parent: Install Middleware
 date: "2017-03-24T15:41:38Z"
 aliases:
-    - /plugins/javascript-middleware/install-middleware/tyk-hybrid
+  - /plugins/javascript-middleware/install-middleware/tyk-hybrid
 ---
 
 In some cases middleware references can't be directly embedded in API Definitions (for example, when using the dashboard in a Hybrid install). However, there is an easy way to distribute and enable custom middleware for an API on a Tyk node.

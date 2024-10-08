@@ -5,7 +5,7 @@ description: "Using the Block list middleware with Tyk OAS APIs"
 tags: ["Block list", "middleware", "per-endpoint", "Tyk OAS"]
 ---
 
-The [block list]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) is a feature designed to block access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`. 
+The [block list]({{< ref "product-stack/tyk-gateway/middleware/block-list-middleware" >}}) is a feature designed to block access to specific API endpoints. Tyk Gateway rejects all requests made to endpoints with the block list enabled, returning `HTTP 403 Forbidden`.
 
 When working with Tyk OAS APIs the middleware is configured in the [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#operation" >}}). You can do this via the Tyk Dashboard API or in the API Designer.
 
@@ -18,71 +18,73 @@ The design of the Tyk OAS API Definition takes advantage of the `operationId` de
 The block list middleware (`block`) can be added to the `operations` section of the Tyk OAS Extension (`x-tyk-api-gateway`) in your Tyk OAS API Definition for the appropriate `operationId` (as configured in the `paths` section of your OpenAPI Document).
 
 The `block` object has the following configuration:
+
 - `enabled`: enable the middleware for the endpoint
 - `ignoreCase`: if set to `true` then the path matching will be case insensitive
 
 For example:
+
 ```json {hl_lines=["47-50", "53-56"],linenos=true, linenostart=1}
 {
-    "components": {},
-    "info": {
-        "title": "example-block-list",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/anything": {
-            "get": {
-                "operationId": "anythingget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            },
-            "put": {
-                "operationId": "anythingput",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "components": {},
+  "info": {
+    "title": "example-block-list",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/anything": {
+      "get": {
+        "operationId": "anythingget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-block-list",
-            "state": {
-                "active": true
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        },
-        "server": {
-            "listenPath": {
-                "value": "/example-block-list/",
-                "strip": true
-            }
-        },
-        "middleware": {
-            "operations": {
-                "anythingget": {
-                    "block": {
-                        "enabled": true,
-                        "ignoreCase": true
-                    }                
-                },
-                "anythingput": {
-                    "block": {
-                        "enabled": true,
-                        "ignoreCase": true
-                    }                
-                }
-            }
+      },
+      "put": {
+        "operationId": "anythingput",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
+      }
     }
+  },
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-block-list",
+      "state": {
+        "active": true
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    },
+    "server": {
+      "listenPath": {
+        "value": "/example-block-list/",
+        "strip": true
+      }
+    },
+    "middleware": {
+      "operations": {
+        "anythingget": {
+          "block": {
+            "enabled": true,
+            "ignoreCase": true
+          }
+        },
+        "anythingput": {
+          "block": {
+            "enabled": true,
+            "ignoreCase": true
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
@@ -108,7 +110,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the Block List middleware
 
-Select **ADD MIDDLEWARE** and choose the **Block List** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **Block List** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-block.png" alt="Adding the Block List middleware" >}}
 

@@ -6,7 +6,7 @@ menu:
     parent: "GraphQL"
 weight: 6
 aliases:
-    - /graphql/graphql-playground/
+  - /graphql/graphql-playground/
 ---
 
 When you are creating or editing your GraphQL API, any change you make can be tested using Tyk Dashboard built-in GraphiQL Playground.
@@ -18,22 +18,23 @@ At the top of the Playground itself, you can switch between Dark and Light theme
 There's also a built in `Explorer` to help with query building and a `Prettify` button that helps to make the typed out operation easier to read.
 
 The GraphiQL try-out playground comes with a series of features by default, which can be very useful while configuring the API:
-  1.  Syntax highlighting.
-  2.  Intelligent type ahead of fields, arguments, types, and more.
-  3.  Real-time error highlighting and reporting for queries and variables.
-  4.  Automatic query and variables completion.
-  5.  Automatically adds required fields to queries.
-  6.  Documentation explorer, search, with markdown support.
-  7.  Query History using local storage
-  8.  Run and inspect query results using any promise that resolves JSON results. 9.  HTTPS or WSS not required.
-  10. Supports full GraphQL Language Specification: Queries, Mutations, Subscriptions, Fragments, Unions, directives, multiple operations per query, etc
+
+1.  Syntax highlighting.
+2.  Intelligent type ahead of fields, arguments, types, and more.
+3.  Real-time error highlighting and reporting for queries and variables.
+4.  Automatic query and variables completion.
+5.  Automatically adds required fields to queries.
+6.  Documentation explorer, search, with markdown support.
+7.  Query History using local storage
+8.  Run and inspect query results using any promise that resolves JSON results. 9. HTTPS or WSS not required.
+9.  Supports full GraphQL Language Specification: Queries, Mutations, Subscriptions, Fragments, Unions, directives, multiple operations per query, etc
 
 ## GraphQL Playgrounds in Tyk
 
 Tyk offers you two types of Playgrounds, depending on who should be authorized to use them.
 
-* **Playground** tab in `API Designer`, that's only accessible via Tyk Dashboard and is always enabled. You need to log into the Tyk Dashboard to be able to use it.
-* **Public Playground** that you can enable for any GraphQL API and that is accessible for any consumer interacting with your GQL API. This playground will follow all security rules you set for your GQL API - authentication, authorization, etc.
+- **Playground** tab in `API Designer`, that's only accessible via Tyk Dashboard and is always enabled. You need to log into the Tyk Dashboard to be able to use it.
+- **Public Playground** that you can enable for any GraphQL API and that is accessible for any consumer interacting with your GQL API. This playground will follow all security rules you set for your GQL API - authentication, authorization, etc.
 
 ### Enabling Public GraphQL Playground
 
@@ -83,20 +84,16 @@ A query or mutation string in this case, would be written like in the example be
 
 ```graphql
 mutation createUser {
-  createUser(input: {
-      username: "test", 
-      email: "test@test.cz", 
-      phone: "479332973", 
-      firstName: "David", 
-      lastName: "Test"
-      }) {
+  createUser(
+    input: { username: "test", email: "test@test.cz", phone: "479332973", firstName: "David", lastName: "Test" }
+  ) {
     user {
-        id
-        username
-        email
-        phone
-        firstName
-        lastName
+      id
+      username
+      email
+      phone
+      firstName
+      lastName
     }
   }
 }
@@ -104,7 +101,7 @@ mutation createUser {
 
 #### Using query variables in GraphiQL Playground
 
-For complex sets of variables, you might want to split the above example into two parts: GQL operation and variables. 
+For complex sets of variables, you might want to split the above example into two parts: GQL operation and variables.
 
 The operation itself would change to:
 
@@ -145,7 +142,6 @@ Debugging a GraphQL API might require additional headers to be passed to the req
 
 You can also [forward headers]({{< ref "graphql/gql-headers.md" >}}) from your client request to the upstream data sources.
 
-
 ### Logs
 
 {{< note >}}
@@ -156,7 +152,7 @@ GraphQL request logs described below are **only available in Tyk Dashboard**.
 Besides the results displayed in the GraphiQL playground, Tyk also provides you with a full list of logs of the triggered request, which can help a lot when debugging the API functionality.
 
 {{< img src="/img/dashboard/udg/getting-started/logs.png" alt="Logs" >}}
-  
+
 The Request Logs can be seen under the playground itself. When no logs are present, there will be no option to expand the logs, and the filter buttons (top right) will be disabled:
 
 {{< img src="/img/dashboard/udg/getting-started/logs_bar.png" alt="Logs Bar" >}}
@@ -167,7 +163,7 @@ After creating and sending a query, the logs will automatically expand, and the 
 
 #### Contents of the logs
 
-There are four levels (categories) of logs: `Info`, `Debug`, `Warning`, and `Error`, and each log belongs to one of these levels. 
+There are four levels (categories) of logs: `Info`, `Debug`, `Warning`, and `Error`, and each log belongs to one of these levels.
 
 The first column of the table displays the color-coded `“level”` property of the log. A log should never be absent of a level. The second column displays the log `“msg”` (message) property, if any. The third column displays the `“mw” `(middleware) property, if any.
 
@@ -177,13 +173,13 @@ The Request Logs can be expanded or collapsed, using the chevron on the left sid
 
 #### Filter buttons and states
 
-Filter buttons have two states: active and inactive; the default of which is active. A solid background color of the button indicates that a filter is active. 
+Filter buttons have two states: active and inactive; the default of which is active. A solid background color of the button indicates that a filter is active.
 
 In the below picture, the `info` and `error` filters buttons are both active. If there are no logs for a particular level of log, the button will appear as a gray and disabled, as shown by the `Warning` filter button.
 
 {{< img src="/img/dashboard/udg/getting-started/logs_navigation.png" alt="Logs navigation" >}}
 
-Here's an example where there is at least one log, but all the filter buttons are in the inactive state. If the cursor (not shown) hovers over an inactive filter button, the button background will change to solid, and the tooltip will display `“Show”`. 
+Here's an example where there is at least one log, but all the filter buttons are in the inactive state. If the cursor (not shown) hovers over an inactive filter button, the button background will change to solid, and the tooltip will display `“Show”`.
 
 If all filter buttons are inactive, a message asking whether the user would like to reset all filters will display. Clicking this text will activate all available filters.
 

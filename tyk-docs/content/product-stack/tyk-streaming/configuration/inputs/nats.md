@@ -1,7 +1,7 @@
 ---
 title: Nats
 description: Explains an overview of nats input
-tags: [ "Tyk Streams", "Stream Inputs", "Inputs", "Nats" ]
+tags: ["Tyk Streams", "Stream Inputs", "Inputs", "Nats"]
 ---
 
 Subscribe to a NATS subject.
@@ -20,6 +20,7 @@ input:
 ```
 
 ### Advanced
+
 ```yml
 # All config fields, showing default values
 input:
@@ -50,7 +51,7 @@ input:
 
 This input adds the following metadata fields to each message:
 
-``` text
+```text
 - nats_subject
 - nats_reply_subject
 - All message headers (when supported by the connection)
@@ -66,6 +67,7 @@ setting the connection name option when creating a NATS connection.
 
 Tyk Streams will automatically set the connection name based off the label of the given
 NATS component, so that monitoring tools between NATS and Tyk Streams can stay in sync.
+
 ### Authentication
 
 There are several components within Tyk Streams which utilize NATS services. You will find that each of these components
@@ -102,8 +104,7 @@ More details [here](https://docs.nats.io/developing-with-nats/security/creds).
 
 A list of URLs to connect to. If an item of the list contains commas it will be expanded into multiple URLs.
 
-
-Type: `array`  
+Type: `array`
 
 ```yml
 # Examples
@@ -119,8 +120,7 @@ urls:
 
 A subject to consume from. Supports wildcards for consuming multiple subjects. Either a subject or stream must be specified.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -138,23 +138,20 @@ subject: foo.>
 
 An optional queue group to consume as.
 
-
-Type: `string`  
+Type: `string`
 
 ### auto_replay_nacks
 
 Whether messages that are rejected (nacked) at the output level should be automatically replayed indefinitely, eventually resulting in back pressure if the cause of the rejections is persistent. If set to `false` these messages will instead be deleted. Disabling auto replays can greatly improve memory efficiency of high throughput streams as the original shape of the data can be discarded immediately upon consumption and mutation.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### nak_delay
 
 An optional delay duration on redelivering a message when negatively acknowledged.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -166,49 +163,42 @@ nak_delay: 1m
 
 The maximum number of messages to pull at a time.
 
-
 Type: `int`  
-Default: `524288`  
+Default: `524288`
 
 ### tls
 
 Custom TLS settings can be used to override system defaults.
 
-
-Type: `object`  
+Type: `object`
 
 ### tls.enabled
 
 Whether custom TLS settings are enabled.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.skip_cert_verify
 
 Whether to skip server side certificate verification.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### tls.enable_renegotiation
 
 Whether to allow the remote server to repeatedly request renegotiation. Enable this option if you're seeing the error message `local error: tls: no renegotiation`.
 
-
 Type: `bool`  
-Default: `false`  
-  
+Default: `false`
 
 ### tls.root_cas
 
 An optional root certificate authority to use. This is a string, representing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -223,9 +213,8 @@ root_cas: |-
 
 An optional path of a root certificate authority file to use. This is a file, often with a .pem extension, containing a certificate chain from the parent trusted root certificate, to possible intermediate signing certificates, to the host certificate.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Examples
@@ -237,9 +226,8 @@ root_cas_file: ./root_cas.pem
 
 A list of client certificates to use. For each certificate either the fields `cert` and `key`, or `cert_file` and `key_file` should be specified, but not both.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ```yml
 # Examples
@@ -257,41 +245,36 @@ client_certs:
 
 A plain text certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key
 
 A plain text certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].cert_file
 
 The path of a certificate to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].key_file
 
 The path of a certificate key to use.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ### tls.client_certs[].password
 
 A plain text password for when the private key is password encrypted in PKCS#1 or PKCS#8 format. The obsolete `pbeWithMD5AndDES-CBC` algorithm is not supported for the PKCS#8 format. Warning: Since it does not authenticate the ciphertext, it is vulnerable to padding oracle attacks that can let an attacker recover the plaintext.
 
-
 Type: `string`  
-Default: `""`  
+Default: `""`
 
 ```yml
 # Example
@@ -305,15 +288,13 @@ password: foo
 
 Optional configuration of NATS authentication parameters.
 
-
-Type: `object`  
+Type: `object`
 
 ### auth.nkey_file
 
 An optional file containing a NKey seed.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -325,8 +306,7 @@ nkey_file: ./seed.nk
 
 An optional file containing user credentials which consist of an user JWT and corresponding NKey seed.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -338,23 +318,19 @@ user_credentials_file: ./user.creds
 
 An optional plain text user JWT (given along with the corresponding user NKey Seed).
 
-
-Type: `string`  
+Type: `string`
 
 ### auth.user_nkey_seed
 
 An optional plain text user NKey Seed (given along with the corresponding user JWT).
 
-
-Type: `string`  
+Type: `string`
 
 ### extract_tracing_map
 
 EXPERIMENTAL: A [Bloblang]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) mapping that attempts to extract an object containing tracing propagation information, which will then be used as the root tracing span for the message. The specification of the extracted fields must match the format used by the service wide tracer.
 
-
-Type: string 
-  
+Type: string
 
 ```yml
 # Examples
@@ -363,4 +339,3 @@ extract_tracing_map: root = @
 
 extract_tracing_map: root = this.meta.span
 ```
-

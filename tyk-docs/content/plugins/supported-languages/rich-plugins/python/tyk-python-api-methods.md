@@ -4,11 +4,11 @@ title: Tyk Python API methods
 menu:
   main:
     parent: "Python"
-weight: 1 
+weight: 1
 aliases:
   - /customise-tyk/plugins/rich-plugins/python/tutorial-add-demo-plugin-api/
-  -  "plugins/supported-languages/rich-plugins/python/tyk-python-api-methods"
-  -  plugins/rich-plugins/python/tyk-python-api-methods
+  - "plugins/supported-languages/rich-plugins/python/tyk-python-api-methods"
+  - plugins/rich-plugins/python/tyk-python-api-methods
 ---
 
 Python plugins may call these Tyk API methods:
@@ -29,6 +29,6 @@ Python plugins may call these Tyk API methods:
 
 `log` will log a message (`msg`) using the specified `level`.
 
-### log_error(*args)
+### log_error(\*args)
 
 `log_error` is a shortcut for `log`, it uses the error log level.

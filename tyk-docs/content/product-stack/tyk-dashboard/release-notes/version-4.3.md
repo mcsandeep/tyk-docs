@@ -17,7 +17,7 @@ Tyk v4.3 adds API versioning to the Dashboard UI, including:
 
 #### Importing OAS v3 via the Dashboard
 
-Importing OpenAPI v3 documents in order to generate Tyk OAS API definition is now fully supported in our Dashboard UI. Our UI automatically detects the version of your OpenAPI Document, and will suggest options that you can pass or allow Tyk to read from the provided document, in order to configure the Tyk OAS API Definition. Such as: 
+Importing OpenAPI v3 documents in order to generate Tyk OAS API definition is now fully supported in our Dashboard UI. Our UI automatically detects the version of your OpenAPI Document, and will suggest options that you can pass or allow Tyk to read from the provided document, in order to configure the Tyk OAS API Definition. Such as:
 
 - custom upstream URL
 - custom listen path
@@ -33,7 +33,6 @@ Importing OpenAPI v3 documents in order to generate Tyk OAS API definition is no
 The deprecated, legacy behavior of treating the CommonName field on X.509 certificates as a host name when no Subject Alternative Names are present is now disabled by default. It can be temporarily re-enabled by adding the value x509ignoreCN=0 to the GODEBUG environment variable.
 
 Note that if the CommonName is an invalid host name, it's always ignored, regardless of GODEBUG settings. Invalid names include those with any characters other than letters, digits, hyphens and underscores, and those with empty labels or trailing dots.
-
 
 ## Changelog
 
@@ -67,7 +66,7 @@ Follow the [standard upgrade guide]({{< ref "/content/upgrading-tyk.md" >}}), th
 If you want switch from MongoDB to SQL, you can [use our migration tool]({{< ref "/content/planning-for-production/database-settings/postgresql.md#migrating-from-an-existing-mongodb-instance" >}}), but keep in mind that it does not yet support the migration of your analytics data.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Note: Upgrading the Golang version implies that all the Golang custom plugins that you are using need to be recompiled before migrating to 4.3 version of the Gateway. Check our docs for more details [Golang Plugins]({{< ref "/content/plugins/supported-languages/golang.md" >}}).
 {{< /note >}}

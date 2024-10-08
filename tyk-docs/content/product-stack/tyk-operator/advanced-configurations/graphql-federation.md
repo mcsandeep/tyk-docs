@@ -5,7 +5,7 @@ tags: ["Tyk Operator", "GraphQL Federation", "Kubernetes"]
 description: ""
 ---
 
-Tyk, with release *v4.0* offers [GraphQL federation]({{<ref "getting-started/key-concepts/graphql-federation#federation-version-support">}}) that allows you to divide GraphQL implementation across multiple back-end
+Tyk, with release _v4.0_ offers [GraphQL federation]({{<ref "getting-started/key-concepts/graphql-federation#federation-version-support">}}) that allows you to divide GraphQL implementation across multiple back-end
 services, while still exposing them all as a single graph for the consumers.
 
 Tyk Operator supports GraphQL Federation subgraph and supergraph with following Custom Resources.
@@ -34,7 +34,7 @@ spec:
     <SDL of the SubGraph>
 ```
 
-SubGraph Custom Resource Definitions (CRD) takes `schema` and `sdl` values for your subgraph. 
+SubGraph Custom Resource Definitions (CRD) takes `schema` and `sdl` values for your subgraph.
 
 To create a Subgraph API in Tyk, you can reference the subgraph's metadata name through `graphql.graph_ref` field, as follows:
 
@@ -45,7 +45,7 @@ metadata:
   name: subgraph-api
 spec:
   name: Federation - Subgraph
-  ... 
+  ...
   graphql:
     enabled: true
     execution_mode: subgraph
@@ -127,6 +127,7 @@ Let's assume that a developer responsible for the [Users SubGraph](#users-subgra
 Also, the [Supergraph](#supergraph-1) called Social Media already uses the Users Subgraph.
 
 To achieve this, the developer should update the Users SubGraph CRD. Once the SubGraph CRD is updated, Tyk Operator will:
+
 1. Update Users SubGraph CRD,
 2. Update Social Media Supergraph ApiDefinition since it is referencing the Users SubGraph CRD.
 
@@ -135,6 +136,7 @@ To achieve this, the developer should update the Users SubGraph CRD. Once the Su
 ### SubGraph without any reference
 
 If the subgraph is not referenced in any ApiDefinition CRD or SuperGraph CRD, it is easy to delete SubGraph CRDs as follows:
+
 ```bash
 kubectl delete subgraphs.tyk.tyk.io <SUBGRAPH_NAME>
 ```
@@ -156,6 +158,7 @@ In order to delete this subgraph, SuperGraph CR should not have reference to cor
 ## Deleting SuperGraph
 
 ### SuperGraph without any reference
+
 If the supergraph is not referenced in any ApiDefinition CRD, it can be deleted as follows:
 
 ```bash
@@ -163,6 +166,7 @@ kubectl delete supergraphs.tyk.tyk.io <SUPERGRAPH_NAME>
 ```
 
 ### SuperGraph referenced in ApiDefinition
+
 If a supergraph is referenced in any ApiDefinition, the Tyk Operator will not delete the SuperGraph CRD.
 
 In order to delete this supergraph, the ApiDefinition that has a reference to the supergraph must de-reference the supergraph
@@ -229,25 +233,25 @@ metadata:
 spec:
   schema: |
     directive @extends on OBJECT | INTERFACE
-    
+
     directive @external on FIELD_DEFINITION
-    
+
     directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
-    
+
     directive @provides(fields: _FieldSet!) on FIELD_DEFINITION
-    
+
     directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
-    
+
     scalar _Any
-    
+
     union _Entity = User
-    
+
     scalar _FieldSet
-    
+
     type _Service {
       sdl: String
     }
-    
+
     type Address {
       street: String!
       suite: String!
@@ -255,29 +259,29 @@ spec:
       zipcode: String!
       geo: GeoLocation!
     }
-    
+
     type Company {
       name: String!
       catchPhrase: String!
       bs: String!
     }
-    
+
     type Entity {
       findUserByID(id: ID!): User!
     }
-    
+
     type GeoLocation {
       lat: String!
       lng: String!
     }
-    
+
     type Query {
       user(id: ID!): User!
       users: [User!]!
       _entities(representations: [_Any!]!): [_Entity]!
       _service: _Service!
     }
-    
+
     type User {
       id: ID!
       name: String!
@@ -293,7 +297,7 @@ spec:
         user(id: ID!): User!
         users: [User!]!
     }
-    
+
     type User @key(fields: "id") {
         id: ID!
         name: String!
@@ -304,7 +308,7 @@ spec:
         website: String!
         company: Company!
     }
-    
+
     type Address {
         street: String!
         suite: String!
@@ -312,12 +316,12 @@ spec:
         zipcode: String!
         geo: GeoLocation!
     }
-    
+
     type GeoLocation {
         lat: String!
         lng: String!
     }
-    
+
     type Company {
         name: String!
         catchPhrase: String!
@@ -401,44 +405,44 @@ metadata:
 spec:
   schema: |
     directive @extends on OBJECT | INTERFACE
-    
+
     directive @external on FIELD_DEFINITION
-    
+
     directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
-    
+
     directive @provides(fields: _FieldSet!) on FIELD_DEFINITION
-    
+
     directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
-    
+
     scalar _Any
-    
+
     union _Entity = Post | User
-    
+
     scalar _FieldSet
-    
+
     type _Service {
       sdl: String
     }
-    
+
     type Entity {
       findPostByID(id: ID!): Post!
       findUserByID(id: ID!): User!
     }
-    
+
     type Post {
       id: ID!
       userId: ID!
       title: String!
       body: String!
     }
-    
+
     type Query {
       post(id: ID!): Post!
       posts: [Post!]!
       _entities(representations: [_Any!]!): [_Entity]!
       _service: _Service!
     }
-    
+
     type User {
       id: ID!
       posts: [Post!]!
@@ -448,14 +452,14 @@ spec:
         post(id: ID!): Post!
         posts: [Post!]!
     }
-    
+
     type Post @key(fields: "id") {
         id: ID!
         userId: ID!
         title: String!
         body: String!
     }
-    
+
     extend type User @key(fields: "id") {
         id: ID! @external
         posts: [Post!]!
@@ -506,7 +510,7 @@ spec:
       post(id: ID!): Post!
       posts: [Post!]!
     }
-    
+
     type User {
       id: ID!
       name: String!
@@ -518,7 +522,7 @@ spec:
       company: Company!
       posts: [Post!]!
     }
-    
+
     type Address {
       street: String!
       suite: String!
@@ -526,18 +530,18 @@ spec:
       zipcode: String!
       geo: GeoLocation!
     }
-    
+
     type GeoLocation {
       lat: String!
       lng: String!
     }
-    
+
     type Company {
       name: String!
       catchPhrase: String!
       bs: String!
     }
-    
+
     type Post {
       id: ID!
       userId: ID!

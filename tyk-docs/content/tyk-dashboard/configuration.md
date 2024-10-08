@@ -4,7 +4,7 @@ title: Tyk Dashboard Configuration Options
 menu:
   main:
     parent: "Tyk Dashboard"
-weight: 2 
+weight: 2
 aliases:
   - /tyk-dashboard-v1-0/configuration/
   - /tyk-dashboard-v1-0/tyk-dashboard-configuration/
@@ -86,13 +86,13 @@ The file will look like the sample below, the various fields are explained in th
   "redis_hosts": null,
   "redis_addrs": null,
   "hash_keys": true,
-    "enable_hashed_keys_listing": false,
+  "enable_hashed_keys_listing": false,
   "email_backend": {
     "enable_email_notifications": false,
     "code": "sendgrid",
     "settings": {
       "ClientKey": ""
-      },
+    },
     "default_from_email": "you@somewhere.com",
     "default_from_name": "Some Person",
     "dashboard_hostname": ""
@@ -136,14 +136,14 @@ The file will look like the sample below, the various fields are explained in th
     "enable_content_security_policy": false,
     "allowed_content_sources": "",
     "private_certificate_encoding_secret": "some-secret",
-    "open_policy":{
+    "open_policy": {
       "enabled": true,
       "debug": true,
       "enable_api": true
-      },
+    },
     "additional_permissions": {
       "api_manager": "API Manager"
-      }
+    }
   },
   "ui": {
     "languages": {

@@ -8,6 +8,7 @@ tags: ["Response Transform", "Header Transform", "transform"]
 Tyk enables you to modify header information when a response is proxied back to the client. This can be very useful in cases where you have an upstream API that potentially exposes sensitive headers that you need to remove.
 
 There are two options for this:
+
 - API-level modification that is applied to responses for all requests to the API
 - endpoint-level modification that is applied only to responses for requests to a specific endpoint
 
@@ -40,6 +41,7 @@ You can use response header transformation to dynamically optimize the performan
 The response header transform can be applied per-API or per-endpoint; each has a separate entry in the API definition so that you can configure both API-level and endpoint-level transforms for a single API.
 
 The middleware is configured with a list of headers to delete from the response and a list of headers to add to the response. Each header to be added to the response is configured as a key:value pair.
+
 - the "delete header" functionality is intended to ensure that any header in the delete list is not present once the middleware completes. If a header in the delete list is not present in the upstream response, the middleware will ignore the omission
 - the "add header" functionality will capitalize any header name provided. For example, if you configure the middleware to append `x-request-id` it will be added to the response as `X-Request-Id`
 
@@ -48,6 +50,7 @@ In the response middleware chain, the endpoint-level transform is applied before
 #### Injecting dynamic data into headers
 
 You can enrich the response headers by injecting data from context variables or session objects into the headers.
+
 - [context variables]({{< ref "context-variables" >}}), extracted from the request at the start of the middleware chain, can be injected into added headers using the `$tyk_context.` namespace
 - [session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}}), from the Tyk Session Object linked to the request, can be injected into added headers using the `$tyk_meta.` namespace
 - values from [key-value (KV) storage]({{< ref "tyk-configuration-reference/kv-store#transformation-middleware" >}}) can be injected into added headers using the notation appropriate to the location of the KV store
@@ -61,5 +64,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Response Header Transform middleware summary
   - The Response Header Transform is an optional stage in Tyk's API Response processing chain, sitting between the [TBC]() and [TBC]() middleware.
-  - The Response Header Transform can be configured at the per-endpoint or per-API level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Response Header Transform can be configured at the per-endpoint or per-API level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

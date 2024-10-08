@@ -5,7 +5,7 @@ linktitle: Developer Signup Form
 menu:
   main:
     parent: "Customize"
-weight: 4 
+weight: 4
 aliases:
   - /tyk-developer-portal/customise/developer-meta-data/
 ---

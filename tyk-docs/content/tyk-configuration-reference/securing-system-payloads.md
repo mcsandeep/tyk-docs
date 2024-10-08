@@ -4,7 +4,7 @@ title: Securing System Payloads
 menu:
   main:
     parent: "Tyk Gateway Configuration Options"
-weight: 8 
+weight: 8
 aliases:
   - /tyk-configuration-reference/tyk-gateway-configuration-options/securing-system-payloads/
 ---

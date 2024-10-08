@@ -4,7 +4,7 @@ title: Developer Profiles
 menu:
   main:
     parent: "Tyk Portal Classic"
-weight: 2 
+weight: 2
 aliases:
   - /tyk-developer-portal/developer-profiles
 ---
@@ -44,7 +44,7 @@ The next panel will show you their apI usage as an aggregate for all the tokens 
 In this panel, you will be able to see the various Keys the developer has access to, and the policies that are connected to the individual Key.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 From version 1.9, you can now apply multiple policies to an individual Key.
 {{< /note >}}
@@ -57,7 +57,7 @@ To drill down into the specific usage patterns for each Key, click **ANALYTICS**
 
 To subscribe a developer to a new Key, from the Edit Developer screen, click **New Key**. From the pop-up screen, select one or more policies from the drop-down list and click **Request Key**.
 
- {{< img src="/img/2.10/developer_new_key.png" alt="New Key Request" >}}
+{{< img src="/img/2.10/developer_new_key.png" alt="New Key Request" >}}
 
 ### Changing Developer Policy Keys
 
@@ -89,7 +89,6 @@ Click **CHANGE KEY POLICY** to save the changes.
 
 ### Developer OAuth Clients
 
-
 ### Edit the Developer Profile
 
 All fields in the profile are editable. In this section you can select a field and modify that data for the developer. This will not affect any tokens they may have, but it will affect how it appears in their Developer Dashboard in your Portal.
@@ -113,11 +112,12 @@ Once logged in, a developer can edit their profile. Select **Edit profile** from
 {{< img src="/img/dashboard/portal-management/developer_manage_profile.png" alt="Manage Profile" >}}
 
 A developer can change the following:
-* Email
-* Change Password
-* Name
-* Telephone
-* Country Location
+
+- Email
+- Change Password
+- Name
+- Telephone
+- Country Location
 
 ### Reset Developer Password
 
@@ -133,28 +133,22 @@ If a developer has forgotten their password, they can request a password reset e
 You will be sent an email with a link to reset your Developer password. Enter your new password and click **Update**. You can then login with your new details.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Your password must be a minimum of 6 characters.
 {{< /note >}}
 
 {{< img src="/img/dashboard/portal-management/password_confirmation.png" alt="Confirm password" >}}
 
-
-
-
-
- [1]: /img/dashboard/portal-management/developer_menu_2.5.png
- [2]: /img/dashboard/portal-management/add_developer_2.5.png
- [3]: /img/dashboard/portal-management/developer_details_2.5.png
- [4]: /img/dashboard/portal-management/developer_overview_2.5.png
- [5]: /img/dashboard/portal-management/developer_usage_2.5.png
- [6]: /img/dashboard/portal-management/developer_subs_2.5.png
- [7]: /img/dashboard/portal-management/developer_edit_2.5.png
- [8]: /img/dashboard/portal-management/developer_search_2.5.png
- [13]: /img/dashboard/portal-management/developer_edit_2.5.png
- [14]: /img/dashboard/portal-management/keys_dev_profile.png
- [15]: /img/dashboard/portal-management/change_key_policy.png
- [16]: /img/dashboard/portal-management/new_key_request.png 
-
-
+[1]: /img/dashboard/portal-management/developer_menu_2.5.png
+[2]: /img/dashboard/portal-management/add_developer_2.5.png
+[3]: /img/dashboard/portal-management/developer_details_2.5.png
+[4]: /img/dashboard/portal-management/developer_overview_2.5.png
+[5]: /img/dashboard/portal-management/developer_usage_2.5.png
+[6]: /img/dashboard/portal-management/developer_subs_2.5.png
+[7]: /img/dashboard/portal-management/developer_edit_2.5.png
+[8]: /img/dashboard/portal-management/developer_search_2.5.png
+[13]: /img/dashboard/portal-management/developer_edit_2.5.png
+[14]: /img/dashboard/portal-management/keys_dev_profile.png
+[15]: /img/dashboard/portal-management/change_key_policy.png
+[16]: /img/dashboard/portal-management/new_key_request.png

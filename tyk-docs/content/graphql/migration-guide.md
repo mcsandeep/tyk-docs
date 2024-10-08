@@ -6,9 +6,8 @@ menu:
     parent: "GraphQL"
 weight: 12
 aliases:
-    - /graphql/migration/
+  - /graphql/migration/
 ---
-
 
 As of 3.2 GraphQL schema for Tyk API definitions (i.e `api_definition.graphql`) changed significantly, hence GraphQL API definitions created in previous beta versions are not supported via the UI and need to go through a manual migration.
 
@@ -22,13 +21,12 @@ Before you continue, we strongly advise to simply create a new API and avoid mig
 {{< note success >}}
 **Note**
 
-
 Old API definitions will continue to work for the Tyk Gateway
 
 {{< /note >}}
 
-
 ## The changes
+
 - To improve performance now a single Data Source can be used to link to multiple fields instead of having an independent data source for every field hence `graphql.type_field_configurations` is now obsolete and new data sources can be defined under `graphql.engine.data_sources` (see example below).
 
 - Data Source kind are `REST` or `GraphQL` regardless of your API being internal or not.
@@ -40,8 +38,6 @@ Old API definitions will continue to work for the Tyk Gateway
 - Each field connected to the data source is expected to be configured for mapping under `graphql.engine.field_configs` regardless of it requiring mapping or not.
 
 - It is important that all new GraphQL APIs have the version `graphql.version` property set to `2`.
-
-
 
 ## Examples
 
@@ -157,7 +153,7 @@ Old API definitions will continue to work for the Tyk Gateway
 
 ### Example of new graphql definition
 
-``` json
+```json
 "graphql" : {
   "schema": "type Mutation {\n  addPet(name: String, status: String): Pet\n}\n\ntype Pet {\n  id: Int\n  name: String\n  status: String\n}\n\ntype Query {\n  default: String\n}\n",
   "enabled": true,

@@ -1,7 +1,7 @@
 ---
 title: Processors
 description: Explains an overview of processors processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors"]
 ---
 
 A processor grouping several sub-processors.

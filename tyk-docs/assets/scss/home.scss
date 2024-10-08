@@ -11,10 +11,7 @@ a {
 }
 
 .text-primary {
-  color: var(
-                  --action-primary-default,
-                  var(--primary-primary-50, #8438fa)
-  ) !important;
+  color: var(--action-primary-default, var(--primary-primary-50, #8438fa)) !important;
 }
 
 .text-dk {
@@ -24,7 +21,6 @@ a {
 .btn {
   border-radius: 20px;
 }
-
 
 .text-sec {
   color: var(--text-subdued, #515071);
@@ -69,11 +65,10 @@ a {
 }
 
 .banner {
-  background-image: url('../img/leaf_background.svg');
+  background-image: url("../img/leaf_background.svg");
   background-size: auto;
   background-repeat: no-repeat;
   background-position: right;
-
 }
 
 .banner-c-right {
@@ -83,15 +78,13 @@ a {
 
 .home-section {
   margin-top: 40px;
-
 }
 
 .explore-section {
-  background-image: url('../img/gradiet_explore.svg');
+  background-image: url("../img/gradiet_explore.svg");
   background-size: auto;
   background-repeat: no-repeat;
   background-attachment: scroll;
-
 }
 
 .image-container {
@@ -104,12 +97,12 @@ a {
 }
 
 .home-section-heading {
-  color: $brand-black;;
+  color: $brand-black;
   font-family: "Inter", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
-  line-height: 28px ;
+  line-height: 28px;
 }
 
 .home-section-pd {
@@ -119,28 +112,26 @@ a {
 .stack-box {
   padding: 4px 4px 4px 13px;
   border-radius: 4px;
-  border: 1px solid var(--border-default, #D8D8DF);
+  border: 1px solid var(--border-default, #d8d8df);
   background: var(--surface-neutral-default, $white);
   text-decoration: none !important;
   margin-bottom: 24px;
   align-items: center;
   display: flex;
-
-
 }
 
 .stack-heading {
-  color: var(--action-primary-default, var(--primary-primary-50, #8438FA));
+  color: var(--action-primary-default, var(--primary-primary-50, #8438fa));
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 20px; /* 142.857% */
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 0;
 }
-
 
 .parent-container {
   display: flex;
@@ -162,7 +153,7 @@ ol, ul {
 }
 
 .lh-20 {
-  line-height: 20px ;
+  line-height: 20px;
 }
 
 .fs-16 {
@@ -170,12 +161,11 @@ ol, ul {
 }
 
 .lh-normal {
-  line-height: normal ;
-
+  line-height: normal;
 }
 
 .fs-normal {
-  font-style: normal ;
+  font-style: normal;
 }
 
 .sec-btn {
@@ -184,14 +174,16 @@ ol, ul {
   background: var(--surface-surface-100, $white);
   padding: 8px;
   color: $brand-black;
-  font-feature-settings: 'clig' off, 'liga' off;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
 
   &:hover {
-    background: #E5E5E8;
+    background: #e5e5e8;
   }
 }
 
@@ -210,49 +202,51 @@ ol, ul {
 }
 
 .mn-btn {
-  color: #03031C;
-  font-feature-settings: 'clig' off, 'liga' off;
+  color: #03031c;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px; /* 142.857% */
   border-radius: 20px;
   padding: 8px 16px;
-  border: 1.2px solid #03031C;
-  background: var(--secondary-secondary-50, #20EDBA);
+  border: 1.2px solid #03031c;
+  background: var(--secondary-secondary-50, #20edba);
 
   &:hover {
-    background: var(--secondary-secondary-50, #20EDBA);
-    color: #03031C;
-    border: 1.2px solid #03031C;
+    background: var(--secondary-secondary-50, #20edba);
+    color: #03031c;
+    border: 1.2px solid #03031c;
   }
 }
 
 @include breakpoint(large, up) {
   .pr-40 {
-    margin-right: 40px ;
-    padding-bottom: 9px ;
-    padding-top: 35px ;
+    margin-right: 40px;
+    padding-bottom: 9px;
+    padding-top: 35px;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   .home-mobile-padding {
     padding-top: 0;
-    padding-left: 0 ;
-    padding-right: 0 ;
-
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (min-width: 1400px) {
-  .container-xl, .container-xxl {
-      max-width: 95% !important;
+  .container-xl,
+  .container-xxl {
+    max-width: 95% !important;
   }
 }
 
 @media (min-width: 1200px) {
   .container-xl {
-      max-width: 97%;
+    max-width: 97%;
   }
 }

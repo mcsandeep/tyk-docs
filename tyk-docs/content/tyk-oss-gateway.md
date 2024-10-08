@@ -17,7 +17,8 @@ aliases:
 
 {{< include "tyk-gateway-features-include" >}}
 
-## Install 
+## Install
+
 [Installation options]({{< ref "apim/open-source/installation" >}}) for the Tyk Gateway
 
 Want to get started?

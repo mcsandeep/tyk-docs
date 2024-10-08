@@ -7,9 +7,10 @@ aliases:
   - /developer-support/cloud-saas/
 ---
 
-The following guide explains how to upgrade your Tyk deployment when using *Tyk Cloud*.
+The following guide explains how to upgrade your Tyk deployment when using _Tyk Cloud_.
 
 ## Preparations
+
 Before proceeding with the upgrade process, ensure that you have thoroughly reviewed and completed the steps outlined in
 the [upgrade guidelines]({{< ref "developer-support/upgrading-tyk/preparations/upgrade-guidelines" >}}).
 Once you have adequately prepared, follow the instructions below to upgrade your Tyk components and plugins in this
@@ -18,6 +19,7 @@ specified order. Adhering to the provided sequence is crucial for a smooth and s
 ---
 
 ## Upgrade Guide Video
+
 Please refer to our [upgrade guide video](https://tyk-1.wistia.com/medias/t0oamm63ae) below for visual guidance:
 
 <div>
@@ -48,12 +50,12 @@ Follow our guide for deploying your [Go plugins on Tyk Cloud]({{< ref "/develope
 
 2. Validate that your plugin is working per your expectations as at this stage, your Gateway will be running the plugin for your current version still.
 
-  {{< note success >}}
-  **Note**
+{{< note success >}}
+**Note**
 
-  This step is a sanity check to catch any potential issues with the bundle for the current version and will ensure that any requests that your Gateway processes prior to being upgraded are able to invoke the plugin as you expect.
+This step is a sanity check to catch any potential issues with the bundle for the current version and will ensure that any requests that your Gateway processes prior to being upgraded are able to invoke the plugin as you expect.
 
-  {{< /note >}}
+{{< /note >}}
 
 3. Proceed with [upgrading your Tyk Data Plane (Gateway)](#upgrading-cloud-data-planes). Given that you loaded your target version plugin in step 1, this version will be loaded automatically once you upgrade.
 4. Validate that your plugin is working per your expectations, as the Gateway now should have loaded the plugin for the target version automatically.

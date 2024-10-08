@@ -6,7 +6,7 @@ description: "Configuring your Tyk installation with Redis Cluster"
 menu:
   main:
     parent: "Tyk Gateway Configuration Options"
-weight: 7 
+weight: 7
 aliases:
   - /tyk-configuration-reference/redis-cluster-sentinel/
 ---
@@ -16,22 +16,21 @@ aliases:
 Our Gateway, Dashboard and Pump all support integration with Redis Cluster. Redis Cluster allows data to be automatically sharded across multiple Redis Nodes. To setup Redis Cluster correctly, we recommend you read the [Redis Cluster Tutorial](https://redis.io/topics/cluster-tutorial). You must use the same settings across the Gateway, Dashboard and Pump.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Redis Cluster operates differently from a Redis setup where one instance serves as the primary and others as replicas.
 {{< /note >}}
 
 {{< redis-versions >}}
 
-
-## Redis Cluster & Tyk Gateway 
+## Redis Cluster & Tyk Gateway
 
 To configure the Tyk Gateway to work with your Redis Cluster, set `enable_cluster` to `true` and list your servers under `addrs` in your `tyk.conf` file.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-`addrs` is new in v2.9.3, and replaces `hosts` which is now deprecated. 
+`addrs` is new in v2.9.3, and replaces `hosts` which is now deprecated.
 {{< /note >}}
 
 If you are using TLS for Redis connections, set `use_ssl` to `true`.
@@ -57,11 +56,10 @@ If you are using TLS for Redis connections, set `use_ssl` to `true`.
 ## Redis Cluster & Tyk Dashboard
 
 {{< note success >}}
-**Note**  
+**Note**
 
-`redis_addrs` is new in v1.9.3 for the Dashboard, and replaces `hosts` which is now deprecated. 
+`redis_addrs` is new in v1.9.3 for the Dashboard, and replaces `hosts` which is now deprecated.
 {{< /note >}}
-
 
 ```json
 "redis_addrs": [
@@ -72,19 +70,18 @@ If you are using TLS for Redis connections, set `use_ssl` to `true`.
 "redis_use_ssl": true,
 "enable_cluster": true
 ```
-To configure the Tyk Dashboard to work with your Redis Cluster, add the Redis address information to your `tyk_analytics.conf` file:
 
+To configure the Tyk Dashboard to work with your Redis Cluster, add the Redis address information to your `tyk_analytics.conf` file:
 
 ## Redis Cluster & Tyk Pump
 
 To configure the Tyk Pump to work with your Redis Cluster, set `enable_cluster` to `true` and list your servers under `addrs` in your `pump.conf` file.
 
 {{< note success >}}
-**Note**  
+**Note**
 
-`addrs` is new in v2.9.3, and replaces `hosts` which is now deprecated. 
+`addrs` is new in v2.9.3, and replaces `hosts` which is now deprecated.
 {{< /note >}}
-
 
 ```json
 "analytics_storage_config": {
@@ -115,7 +112,7 @@ Set the environment variable `TYK_GW_STORAGE_ENABLECLUSTER` to `true`.
 
 Add all the Redis Cluster endpoints into Tyk, not just the primary. If Tyk can't see the whole cluster, then it will not work.
 
-For ElastiCache Redis, you can bypass having to list all your nodes, and instead just use the *configuration endpoint*,
+For ElastiCache Redis, you can bypass having to list all your nodes, and instead just use the _configuration endpoint_,
 this allows read and write operations and the endpoint will determine the correct node to target.
 
 If this does not work, you can still list out the hosts using an environment variable. To do so, set the environment variable:
@@ -132,13 +129,15 @@ It is recommended to ensure that the connection pool is big enough. To do so, se
 TYK_GW_STORAGE_MAXIDLE=6000
 TYK_GW_STORAGE_MAXACTIVE=10000
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 These are suggested settings, please verify them by load testing.
 {{< /note >}}
 
 ### Redis Cluster with TLS
+
 If you are using TLS for Redis connections, set `use_ssl` to `true` for Gateway and Pump, and `redis_use_ssl` to `true` for the dashboard.
 Redis supports [SSL/TLS encryption](https://redis.io/topics/encryption) from version 6 as an optional feature, enhancing the security of data in transit. Similarly, Amazon ElastiCache offers encryption in transit and at rest. To configure TLS or mTLS connections between an application and Redis, consider the following settings in Tyk's configuration files:
 
@@ -155,20 +154,24 @@ From **Tyk 5.3**, additional options are available for more granular control:
 - `storage.max_version` and `storage.min_version`: Define the acceptable range of TLS versions, enhancing security by restricting connections to secure TLS protocols (1.2 or 1.3).
 
 #### Setting up an Insecure TLS Connection
+
 - **Enable TLS**: By setting `"use_ssl": true`, you encrypt the connection.
 - **Skip Certificate Verification**: Setting `"ssl_secure_skip_verify": true` bypasses the server's certificate verification, suitable only for non-production environments.
 
 #### Setting up a Secure TLS Connection
+
 - Ensure `use_ssl` is set to `true`.
 - Set `ssl_secure_skip_verify` to `false` to enforce certificate verification against the CA specified in `ca_file`.
 - Specify the path to the CA file in `ca_file` for server certificate verification.
 - Adjust `min_version` and `max_version` to secure TLS versions, ideally 1.2 and 1.3.
 
 #### Setting up a Mutual TLS (mTLS) Connection
+
 - Follow the steps for a secure TLS connection.
 - Provide paths for `cert_file` and `key_file` for your application's TLS certificate and private key, enabling Redis server to verify your application's identity.
 
 #### Example Gateway Configuration
+
 ```json
 "storage": {
   "type": "redis",

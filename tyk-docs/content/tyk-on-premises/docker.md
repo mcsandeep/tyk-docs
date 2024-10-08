@@ -16,9 +16,9 @@ aliases:
 
 Tyk has three containers that are available to set up a Docker installation:
 
-* [The Tyk Gateway container](https://hub.docker.com/r/tykio/tyk-gateway/)
-* [The Tyk Dashboard container](https://hub.docker.com/r/tykio/tyk-dashboard/)
-* [The Tyk Pump container](https://hub.docker.com/r/tykio/tyk-pump-docker-pub/)
+- [The Tyk Gateway container](https://hub.docker.com/r/tykio/tyk-gateway/)
+- [The Tyk Dashboard container](https://hub.docker.com/r/tykio/tyk-dashboard/)
+- [The Tyk Pump container](https://hub.docker.com/r/tykio/tyk-pump-docker-pub/)
 
 All three are required for a full deployment. We recommend that each container is installed on a separate machine for optimum performance.
 

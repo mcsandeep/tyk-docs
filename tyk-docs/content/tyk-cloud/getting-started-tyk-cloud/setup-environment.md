@@ -8,7 +8,7 @@ menu:
     parent: "Getting Started with Tyk Cloud"
 weight: 4
 aliases:
-    - /tyk-cloud/create-environment/
+  - /tyk-cloud/create-environment/
 ---
 
 ## Introduction
@@ -21,19 +21,17 @@ An environment is a grouping of ‘deployments’ that can have multiple Control
 
 ## Steps to set up your environment
 
-* **Step 1 - Name your Environment:** Give your [Environment]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#environment" >}}) a name. You may find it useful to reflect the names used within your organization such as Development, Production etc.
-  
-* **Step 2 - Name your Control Plane:** Give your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}) a name. Again, this is up to you and you may already have an infrastructure you want to re-create in Tyk Cloud.
-  
-* **Step 3 - Configure your first Cloud Data Plane:** Select the region you want to locate your [Cloud Data Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#cloud-data-plane" >}}) in from the drop-down list. Your Cloud Data Plane is not confined to the same region as your Organization and Control Plane but the amount of regions you have to choose from can be limited depending on your subscription plan. Give your Cloud Data Plane a name. 
+- **Step 1 - Name your Environment:** Give your [Environment]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#environment" >}}) a name. You may find it useful to reflect the names used within your organization such as Development, Production etc.
+- **Step 2 - Name your Control Plane:** Give your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}) a name. Again, this is up to you and you may already have an infrastructure you want to re-create in Tyk Cloud.
+- **Step 3 - Configure your first Cloud Data Plane:** Select the region you want to locate your [Cloud Data Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#cloud-data-plane" >}}) in from the drop-down list. Your Cloud Data Plane is not confined to the same region as your Organization and Control Plane but the amount of regions you have to choose from can be limited depending on your subscription plan. Give your Cloud Data Plane a name.
 
 {{< note success >}}
 **Note**
-  
-You need to have at least one Cloud Data Plane with a *Deployed* status connected to your Control Plane.
+
+You need to have at least one Cloud Data Plane with a _Deployed_ status connected to your Control Plane.
 {{< /note >}}
 
-* **Step 4 - Deployment:**
+- **Step 4 - Deployment:**
 
 1. Click [Deploy Control Plane and Create a Cloud Data Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#deploy" >}}). You can watch your Control Plane being deployed and your Cloud Data Plane being created. You will then be taken to the Control Plane overview screen within the Tyk Cloud dashboard.
 2. From your Control Plane overview you will see the Cloud Data Plane is in a **Not Deployed** state. Click on your Cloud Data Plane to open its overview.

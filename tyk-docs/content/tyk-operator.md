@@ -3,20 +3,23 @@ date: 2017-03-24T16:39:31Z
 title: Tyk Operator
 weight: 16
 menu:
-    main:
-        parent: "Tyk Stack"
+  main:
+    parent: "Tyk Stack"
 aliases:
-    - /tyk-stack/tyk-operator/getting-started-tyk-operator
-    - /product-stack/tyk-operator/key-concepts/key-concepts
+  - /tyk-stack/tyk-operator/getting-started-tyk-operator
+  - /product-stack/tyk-operator/key-concepts/key-concepts
 ---
 
 ### What is Tyk Operator?
+
 Tyk Operator is a Kubernetes Operator designed to simplify the management of Tyk API configurations both inside and outside of Kubernetes environments. With our [custom resources]({{<ref "product-stack/tyk-operator/key-concepts/custom-resources">}}), Tyk Operator simplifies the processes of deploying and configuring API resources, allowing you to focus more on application development and less on infrastructure management. It is ideal for those who like to manage configurations declaratively or with GitOps workflows via tools such as Argo CD and Flux CD.
 
 {{< img src="/img/operator/tyk-operator.svg" alt="Tyk Operator" width="600" >}}
 
 ### Why use Tyk Operator?
+
 Managing, checking, and synchronizing APIs from multiple teams across environments can be complex. Tyk Operator provides an efficient way to handle API configurations. Here’s why it matters:
+
 - **Simple custom resource**: Tyk's Classic API Definition is a large and complex JSON document, making maintenance difficult. Operator's CRD (Custom Resource Definition) is designed to be simple and does not require you to specify default values, resulting in a document that is easy to understand and maintain.
 - **Declarative configurations**: By using declarative configurations, users can store configurations in Git. Changes can then be managed via Git pull requests, making it easy to compare different API configuration versions. Automatic linting and checking can be implemented, ensuring that changes are properly reviewed and approved before merging.
 - **Kubernetes integration**: Operator works natively with Kubernetes, allowing both development and operations teams to follow their usual workflows for making changes and automating deployments. You can also benefit from Kubernetes tooling support for manifest management (e.g., using Helm or Kustomize) and GitOps deployment (e.g., using ArgoCD or Flux CD).
@@ -39,6 +42,7 @@ Consider using Tyk Operator if:
 - You aim to streamline the operations of your API gateways with minimal manual intervention.
 
 ### Getting Started
+
 To get started with Tyk Operator, learn about Operator key concepts:
 
 - [Custom Resources]({{< ref "/product-stack/tyk-operator/key-concepts/custom-resources" >}})

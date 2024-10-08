@@ -8,7 +8,7 @@ weight: 1
 ---
 
 {{< note success >}}
-**Note**  
+**Note**
 
 See [API Definition Objects]({{< ref "tyk-gateway-api/api-definition-objects" >}}) section for an explanation of each field in the request & response.
 {{< /note >}}
@@ -155,7 +155,7 @@ Similar to API list response
 | Param        | None             |
 
 {{< note success >}}
-**Note**  
+**Note**
 
 `{id}` can either be the internal or public ID ( see `api_id` in the [sample response](#sample-response-1) )
 {{< /note >}}
@@ -475,7 +475,7 @@ Please note that Tyk matches the Ignored paths in the order in which they are sp
 
 APIs that are created using the advanced Dashboard API are referenced by their internal ID instead of their API-ID.
 
-Please note that whilst `api_id` can be updated for Self-Managed installations, this is currently not possible when the Dashboard resides in Tyk Cloud.  Updates to `api_id` in Tyk Cloud will be ignored.
+Please note that whilst `api_id` can be updated for Self-Managed installations, this is currently not possible when the Dashboard resides in Tyk Cloud. Updates to `api_id` in Tyk Cloud will be ignored.
 
 | **Property** | **Description**                       |
 | ------------ | ------------------------------------- |

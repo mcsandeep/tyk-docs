@@ -1,7 +1,16 @@
 ---
 title: "Versioning an OAS API"
 date: 2022-07-13
-tags: ["Tyk Tutorials", "Getting Started", "First API", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "Versioning an OAS API"]
+tags:
+  [
+    "Tyk Tutorials",
+    "Getting Started",
+    "First API",
+    "Tyk Cloud",
+    "Tyk Self-Managed",
+    "Tyk Open Source",
+    "Versioning an OAS API",
+  ]
 description: "Exporting an OAS API"
 menu:
   main:
@@ -30,14 +39,14 @@ This tutorial has been written assuming that you are using the Tyk Gateway API.
 
 You can also run these steps using the Tyk Dashboard API, noting the differences summarised here:
 
-| Interface             | Port     | Endpoint        | Authorization Header  | Authorization credentials        |
-|-----------------------|----------|-----------------|-----------------------|----------------------------------|
-| Tyk Gateway API       | 8080     | `tyk/apis/oas`  | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
-| Tyk Dashboard API     | 3000     | `api/apis/oas`  | `Authorization`       | From Dashboard User Profile      |
+| Interface         | Port | Endpoint       | Authorization Header  | Authorization credentials        |
+| ----------------- | ---- | -------------- | --------------------- | -------------------------------- |
+| Tyk Gateway API   | 8080 | `tyk/apis/oas` | `x-tyk-authorization` | `secret` value set in `tyk.conf` |
+| Tyk Dashboard API | 3000 | `api/apis/oas` | `Authorization`       | From Dashboard User Profile      |
 
 As explained in the section on [Creating an OAS API]({{< ref "/getting-started/using-oas-definitions/create-an-oas-api" >}}) remember that when using the Tyk Dashboard API you only need to issue one command to create the API and load it onto the Gateway; when using the Tyk Gateway API you must remember to restart or hot reload the Gateway after creating the API.
 
-* When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
+- When using the Tyk Dashboard API, you can find your credentials key from your **User Profile > Edit Profile > Tyk Dashboard API Access Credentials**
 
 {{< note success >}}
 **Note**
@@ -50,7 +59,7 @@ You will also need to have ‘admin’ or ‘api’ rights if [RBAC]({{< ref "/t
 You need to create a new API that will be the [Base API]({{< ref "/getting-started/key-concepts/oas-versioning#key-concepts" >}}) for the future versions. You do this by sending a Tyk OAS API Definition to the Tyk Gateway API's `apis/oas` endpoint. Note that there is no special command required to create this new API as a Base API - i.e. any Tyk OAS API can be used as a Base API.
 
 | Property     | Description            |
-|--------------|------------------------|
+| ------------ | ---------------------- |
 | Resource URL | `/tyk/apis/oas`        |
 | Method       | `POST`                 |
 | Type         | None                   |
@@ -63,7 +72,7 @@ We will use [this](https://bit.ly/39tnXgO) minimal API definition.
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas' \
 --header 'x-tyk-authorization: {your-secret}' \
 --header 'Content-Type: text/plain' \
---data-raw 
+--data-raw
 '{
   "info": {
     "title": "Petstore",
@@ -127,6 +136,7 @@ You should see the following response:
     "message": "Pet not found"
 }
 ```
+
 The above response shows that, whilst the request successfully reached the upstream URL, there is no pet in the store with id 123. This is the expected result.
 
 #### Step 3: Create a new version of your API
@@ -135,14 +145,13 @@ Now you will create a second API, this time using the [Httpbin](https://httpbin.
 
 The following call runs atomically: it creates a new API as a version of the Base API, updating the Base API accordingly.
 
-
-| Property     | Description                                                                    |
-|--------------|--------------------------------------------------------------------------------|
-| Resource URL | `/tyk/apis/oas`                                                                |
-| Method       | `POST`                                                                         |
-| Type         | None                                                                           |
-| Body         | Tyk OAS API Definition                                                         |
-| Parameters   | Query (options): <br>- `base_api_id`: The API ID of the Base API to which the new version will be linked.<br>- `base_api_version_name`: The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override the base API version name.<br>- `new_version_name`: The version name of the created version.<br>- `set_default`: If true, the new version is set as default version.|
+| Property     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource URL | `/tyk/apis/oas`                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Method       | `POST`                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Type         | None                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Body         | Tyk OAS API Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Parameters   | Query (options): <br>- `base_api_id`: The API ID of the Base API to which the new version will be linked.<br>- `base_api_version_name`: The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override the base API version name.<br>- `new_version_name`: The version name of the created version.<br>- `set_default`: If true, the new version is set as default version. |
 
 ```curl
 curl --location --request POST 'http://{your-tyk-host}:{port}/tyk/apis/oas?
@@ -176,6 +185,7 @@ base_api_id={BASE-API-ID}&base_api_version_name=v1&new_version_name=v2&set_defau
   }
 }'
 ```
+
 If the command succeeds, you will see the following response, where `key` contains the unique identifier (`id`) for the API you have just created:
 
 ```.json
@@ -216,6 +226,7 @@ Try out the newly created API by calling it directly and check that it hits the 
 ```curl
 curl --location --request GET 'http://{GATEWAY_URL}/second-api/get'
 ```
+
 You should get the following response:
 
 ```.json
@@ -264,6 +275,7 @@ You should receive this response:
     "url": "http://httpbin.org/get"
 }
 ```
+
 You can see that you got the same response as in step 5: this response has come from the Httpbin service rather than the Petstore service.
 
 #### What did you just do?
@@ -285,17 +297,15 @@ This tutorial takes you through the OAS API versioning process using your Tyk Da
 
 1. Select “APIs” from the “System Management” section
 
-
 {{< img src="/img/oas/api-menu.png" alt="Add new API" >}}
-
 
 2. Add a new API:
 
- - If you have a fresh Tyk installation with no other APIs added, click **Design new API**:
+- If you have a fresh Tyk installation with no other APIs added, click **Design new API**:
 
 {{< img src="/img/oas/first-api.png" alt="First API screen" >}}
 
- - If you already have APIs in your Tyk installation, click **Add new API**:
+- If you already have APIs in your Tyk installation, click **Add new API**:
 
 {{< img src="/img/oas/add-new-api.png" alt="Add new API" >}}
 
@@ -303,9 +313,9 @@ This tutorial takes you through the OAS API versioning process using your Tyk Da
 
 {{< img src="/img/oas/api-overview.png" alt="API Base Configuration" >}}
 
- - In the **Overview** section, provide a name for your API (**API Name**) and select the OAS HTTP type (**API Type**)
- - In the **Details** section, provide the URL for the upstream service your API should target (**Target URL**); for this tutorial you should use http://petstore.swagger.io/v2/
- - Click **Configure API** when you have finished
+- In the **Overview** section, provide a name for your API (**API Name**) and select the OAS HTTP type (**API Type**)
+- In the **Details** section, provide the URL for the upstream service your API should target (**Target URL**); for this tutorial you should use http://petstore.swagger.io/v2/
+- Click **Configure API** when you have finished
 
 We will use this as your Base API but note that up to now you've not had to do anything different compared to creating any other Tyk OAS API via the Tyk Dashboard GUI.
 
@@ -325,7 +335,7 @@ We will use this as your Base API but note that up to now you've not had to do a
 6. Click **Create Version**
 
 {{< note success >}}
-**Note**  
+**Note**
 
 After setting up a versioned API, when creating subsequent versions, the dialog box only asks you to add a new version name.
 {{< /note >}}
@@ -341,7 +351,6 @@ This step is where you can select to which Gateway(s) in your installation you w
 {{< img src="/img/oas/connect-gateways-drop-down.png" alt="Select your Edge Gateways" >}}
 
 Click **Confirm** to continue.
-
 
 #### Step 3: Save your APIs
 
@@ -369,14 +378,14 @@ After creating a version for your API, you are able to manage the versions.
 
 From this screen you can:
 
- - Visualise all the versions
+- Visualise all the versions
 
- - Create new versions
+- Create new versions
 
- - Perform search by version name
+- Perform search by version name
 
- - Set a specific version to be the default
+- Set a specific version to be the default
 
- - Access a quick link to visit the API details page of a specific version
+- Access a quick link to visit the API details page of a specific version
 
 </details>

@@ -4,7 +4,7 @@ title: Web Hooks
 menu:
   main:
     parent: "Tyk Dashboard API"
-weight: 7 
+weight: 7
 ---
 
 ### List web hooks
@@ -108,7 +108,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
   "header_map": {
     "x-test": "y-answer"
   }
-}    
+}
 ```
 
 #### Sample Response
@@ -150,7 +150,7 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
     "x-test": "y-answer"
   },
   "event_timeout": 0
-} 
+}
 ```
 
 #### Sample Response
@@ -165,13 +165,13 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
 
 ### Delete web hook
 
-| **Property** | **Description**           |
-| ------------ | ------------------------- |
-| Resource URL | `/api/hooks/{hook-id}`    |
-| Method       | DELETE                    |
-| Type         | None                      |
-| Body         | None                      |
-| Param        | None                      |
+| **Property** | **Description**        |
+| ------------ | ---------------------- |
+| Resource URL | `/api/hooks/{hook-id}` |
+| Method       | DELETE                 |
+| Type         | None                   |
+| Body         | None                   |
+| Param        | None                   |
 
 #### Sample Request
 

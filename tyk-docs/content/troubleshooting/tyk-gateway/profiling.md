@@ -16,15 +16,15 @@ There are two way to get profiles:
 
 1. Running the process with flags mentioned below which will gather information about the running process for the first 30 seconds, and will generate files containing profiling info:
 
-    * `--memprofile` - memory profile, generates `tyk.mprof` file
-    * `--cpuprofile` - CPU usage profile, generates `tyk.prof` file
-    * `--blockprofile` - Blocking profile, generates `tyk.blockprof` file
-    * `--mutexprofile` - Mutex profile, generates `tyk.mutexprof` file
+   - `--memprofile` - memory profile, generates `tyk.mprof` file
+   - `--cpuprofile` - CPU usage profile, generates `tyk.prof` file
+   - `--blockprofile` - Blocking profile, generates `tyk.blockprof` file
+   - `--mutexprofile` - Mutex profile, generates `tyk.mutexprof` file
 
 2. Running with the `--httpprofile` flag, or set `enable_http_profiler` to `true` in tyk.conf, which will run a special `/debug/pprof/` public web page, containing dynamic information about the running process, and where you can download various profiles:
 
-    * goroutine    - stack traces of all current goroutines
-    * heap         - a sampling of all heap allocations
-    * threadcreate - stack traces that led to the creation of new OS threads
-    * block        - stack traces that led to blocking on synchronisation primitives
-    * mutex        - stack traces of holders of contended mutexes
+   - goroutine - stack traces of all current goroutines
+   - heap - a sampling of all heap allocations
+   - threadcreate - stack traces that led to the creation of new OS threads
+   - block - stack traces that led to blocking on synchronisation primitives
+   - mutex - stack traces of holders of contended mutexes

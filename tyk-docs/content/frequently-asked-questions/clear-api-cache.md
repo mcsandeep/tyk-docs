@@ -4,7 +4,7 @@ title: How to clear / invalidate API cache
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
 
 Use the REST API to clear the cache

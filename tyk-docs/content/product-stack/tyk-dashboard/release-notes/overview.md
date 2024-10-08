@@ -15,10 +15,10 @@ This page provides access to release notes for Tyk Dashboard. Links to archived 
 - [v5.1]({{< ref "product-stack/tyk-dashboard/release-notes/version-5.1.md" >}})
 - [v5.0]({{< ref "product-stack/tyk-dashboard/release-notes/version-5.0.md" >}})
 
-
 Historic release notes can be previewed by expanding the links in the sections below.
 
 ### Release 4
+
 <details>
     <summary>
         Click to expand
@@ -31,6 +31,7 @@ Historic release notes can be previewed by expanding the links in the sections b
 </details>
 
 ### Release 3
+
 <details>
     <summary>
         Click to expand
@@ -44,6 +45,7 @@ Historic release notes can be previewed by expanding the links in the sections b
 ## Archived Releases
 
 ### Release 2
+
 <details>
     <summary>
         Click to expand

@@ -1,7 +1,7 @@
 ---
 title: Parse Log
 description: Explains an overview of parse_log processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "parse_log", "Logs", "Log" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "parse_log", "Logs", "Log"]
 ---
 
 Parses common log [formats](#formats) into [structured data](#codecs).
@@ -34,7 +34,6 @@ parse_log:
 
 A common log [format](#formats) to parse.
 
-
 Type: `string`  
 Options: `syslog_rfc5424`, `syslog_rfc3164`.
 
@@ -42,33 +41,29 @@ Options: `syslog_rfc5424`, `syslog_rfc3164`.
 
 Still returns partially parsed messages even if an error occurs.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### allow_rfc3339
 
 Also accept timestamps in rfc3339 format while parsing. Applicable to format `syslog_rfc3164`.
 
-
 Type: `bool`  
-Default: `true`  
+Default: `true`
 
 ### default_year
 
 Sets the strategy used to set the year for rfc3164 timestamps. Applicable to format `syslog_rfc3164`. When set to `current` the current year will be set, when set to an integer that value will be used. Leave this field empty to not set a default year at all.
 
-
 Type: `string`  
-Default: `"current"`  
+Default: `"current"`
 
 ### default_timezone
 
 Sets the strategy to decide the timezone for rfc3164 timestamps. Applicable to format `syslog_rfc3164`. This value should follow the [time.LoadLocation](https://golang.org/pkg/time/#LoadLocation) format.
 
-
 Type: `string`  
-Default: `"UTC"`  
+Default: `"UTC"`
 
 ## Codecs
 

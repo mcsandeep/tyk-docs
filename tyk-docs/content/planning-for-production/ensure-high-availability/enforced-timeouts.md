@@ -36,7 +36,7 @@ The enforced timeout middleware is enabled and configured at the endpoint level.
 The configuration is very simple, the only option being the duration of the timeout (which is declared in seconds) after which the upstream request will be terminated and an `HTTP 504 Gateway Timeout` error returned to the client.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are using the Service Discovery option, if an enforced timeout is triggered, the service discovery module will refresh the host / host list.
 {{< /note >}}
@@ -50,5 +50,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Enforced Timeout middleware summary
   - The Enforced Timeout is an optional stage in Tyk's API Request processing chain, activated when the request is proxied to the upstream service.
-  - The Enforced Timeout is configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Enforced Timeout is configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

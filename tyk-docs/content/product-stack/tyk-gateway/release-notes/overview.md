@@ -18,6 +18,7 @@ This page provides access to release notes for Tyk Gateway. Links to archived re
 Historic release notes can be previewed by expanding the links in the sections below.
 
 ## Release 4
+
 <details>
     <summary>
         Click to expand
@@ -30,6 +31,7 @@ Historic release notes can be previewed by expanding the links in the sections b
 </details>
 
 ## Release 3
+
 <details>
     <summary>
         Click to expand
@@ -43,6 +45,7 @@ Historic release notes can be previewed by expanding the links in the sections b
 ## Archived Releases
 
 ### Release 2
+
 <details>
     <summary>
         Click to expand

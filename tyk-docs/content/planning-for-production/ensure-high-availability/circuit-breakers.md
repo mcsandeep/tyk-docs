@@ -56,6 +56,7 @@ In the _half-open_ mode, Tyk will periodically issue requests to the upstream se
 ### Configuring the circuit breaker
 
 The circuit breaker is configured using only three parameters:
+
 - sample size
 - error rate threshold
 - cooldown period
@@ -67,7 +68,7 @@ The cooldown period is the time that the circuit breaker will remain _open_ afte
 There is also an option to enable or disable the _half-open_ state if this would be damaging to your system.
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are using the Service Discovery module, every time the breaker trips, Tyk will attempt to refresh the Gateway list.
 {{< /note >}}
@@ -87,8 +88,9 @@ The circuit breaker automatically controls the flow of requests to the upstream 
 - When the circuit breaker trips (from closed to open), Tyk will generate a `BreakerTripped` event
 - When the breaker resets (from open to closed), whether at the end of the cooldown period or if connection is restored while in _half-open_ mode, Tyk will generate a `BreakerReset` event
 - In addition to these, whenever the circuit breaker changes state (from closed to open or vice versa), Tyk will generate a `BreakerTriggered` event
- 
+
 For the generic `BreakerTriggered` event, the state change will be indicated in the `Status` field in the webhook template as follows:
+
 - when a breaker trips `CircuitEvent = 0`
 - when a breaker resets `CircuitEvent = 1`
 
@@ -105,5 +107,5 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
 <!-- proposed "summary box" to be shown graphically on each middleware page
  ## Circuit Breaker middleware summary
   - The Circuit Breaker is an optional stage in Tyk's API Request processing chain, activated when the request is proxied to the upstream service.
-  - The Circuit Breaker is configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard. 
+  - The Circuit Breaker is configured at the per-endpoint level within the API Definition and is supported by the API Designer within the Tyk Dashboard.
  -->

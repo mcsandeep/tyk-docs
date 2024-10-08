@@ -1,7 +1,16 @@
 ---
 title: "Tyk Self-Managed Debugging"
 date: 2023-01-06
-tags: ["Debugging", "On-Prem Debugging", "Debugging Guide", "Debugging Tips", "Tyk Self-Managed", "Tyk debugging", "Tyk debugging series" ]
+tags:
+  [
+    "Debugging",
+    "On-Prem Debugging",
+    "Debugging Guide",
+    "Debugging Tips",
+    "Tyk Self-Managed",
+    "Tyk debugging",
+    "Tyk debugging series",
+  ]
 description: "Debugging Tips and Tricks on how-to debug a Tyk Instance"
 ---
 
@@ -14,30 +23,30 @@ This guide should help a user of Tyk Self-Managed in debugging common issues. A 
 
 Querying the gateway's `/hello` health endpoint is the quickest way to determine the status of your Tyk instance. You can find more information in our docs about the [Gateway Liveness health check]({{< ref "planning-for-production/ensure-high-availability/health-check" >}}).
 
-This endpoint is important as it allows the user to isolate the problem's origin. At a glance, the `/hello` endpoint reports the Gateways connectivity to Redis, and the control plane components eg. Tyk Dashboard, Tyk Multi-Data Center Bridge (MDCB), and Tyk Cloud. 
+This endpoint is important as it allows the user to isolate the problem's origin. At a glance, the `/hello` endpoint reports the Gateways connectivity to Redis, and the control plane components eg. Tyk Dashboard, Tyk Multi-Data Center Bridge (MDCB), and Tyk Cloud.
 
 ```json
 {
+  "status": "pass",
+  "version": "v5.0",
+  "description": "Tyk GW",
+  "details": {
+    "dashboard": {
+      "status": "pass",
+      "componentType": "system",
+      "time": "2023-01-13T14:45:00Z"
+    },
+    "redis": {
+      "status": "pass",
+      "componentType": "datastore",
+      "time": "2023-01-13T14:45:00Z"
+    }
+  },
+  "rpc": {
     "status": "pass",
-    "version": "v5.0",
-    "description": "Tyk GW",
-    "details":{
-        "dashboard":{
-            "status": "pass",
-            "componentType": "system",
-            "time": "2023-01-13T14:45:00Z"
-            },
-        "redis":{
-            "status": "pass",
-            "componentType": "datastore",
-            "time": "2023-01-13T14:45:00Z"
-            }
-        },
-        "rpc": {
-            "status": "pass",
-            "componentType": "system",
-            "time": "2023-01-13T14:45:00Z"
-        }
+    "componentType": "system",
+    "time": "2023-01-13T14:45:00Z"
+  }
 }
 ```
 
@@ -139,14 +148,15 @@ You can access all Tyk release information on the [release notes](https://tyk.io
 We recommend always using the [Long-Term Support (LTS) release]({{< ref "developer-support/special-releases-and-features/long-term-support-releases" >}}) for stability and long term support.
 
 ### Non-LTS versions
+
 Tyk is backwards compatible, upgrading to newer versions won't turn on new features or change the behavior of your existing environment.
 
-For the best experience when experimenting with Tyk and exploring its latest capabilities, you can use our latest version. You can access all Tyk releases on the [release notes summary](https://tyk.io/docs/developer-support/tyk-release-summary/overview/) page. 
+For the best experience when experimenting with Tyk and exploring its latest capabilities, you can use our latest version. You can access all Tyk releases on the [release notes summary](https://tyk.io/docs/developer-support/tyk-release-summary/overview/) page.
 
 ## Dashboard
 
 The Dashboard front-end (GUI included) uses [Tyk Dashboard API]({{< ref "tyk-dashboard-api" >}}) to retrieve data to display or update. This means you can use the [developer tools on your browser](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools) to access the API and its information. Looking into the API details, the URL, the headers, the payload and the response can help you investigate the source of the issue and replicate it with API calls using an HTTP client such as [cURL](https://curl.se/) or [Postman](https://www.postman.com/).
-As a next step to this investigation, if that specific endpoint exists also in [Tyk Gateway API]({{< ref "tyk-gateway-api" >}}), you can compare the responses from both gateway and dashboard requests. 
+As a next step to this investigation, if that specific endpoint exists also in [Tyk Gateway API]({{< ref "tyk-gateway-api" >}}), you can compare the responses from both gateway and dashboard requests.
 
 ### Isolating
 
@@ -154,7 +164,7 @@ As mentioned above, errors can happen in any of the components of your Tyk deplo
 
 ### Dashboard Level
 
-When debugging an issue, in order to isolate the gateway from the Dashboard, try to call the same API ednpoint on both Tyk Dashboard and Tyk Gateway 
+When debugging an issue, in order to isolate the gateway from the Dashboard, try to call the same API ednpoint on both Tyk Dashboard and Tyk Gateway
 If it works with the gateway API only, then the issue is likely to be in the Dashboard. It could be that you need to set in the Dashboard some [configuration parameters](https://tyk.io/docs/tyk-dashboard/configuration/) (using the config file or via environment variables).
 
 ### Gateway or API level
@@ -164,21 +174,22 @@ Are you making calls against your gateway or API, and it's not working? Try isol
 In the case of the API error-ing out, you can also isolate it by:
 
 - Creating a generic Httpbin API and calling it
-    - If this works, then the API configuration or the backend is at fault
+  - If this works, then the API configuration or the backend is at fault
 - Changing the target URL of the API
-    - The upstream API can be at fault
+  - The upstream API can be at fault
 - Assuming your API has a plugin, take away the plugin and test the API
-    - The error most likely exists in the plugin
+  - The error most likely exists in the plugin
 - If the error exists in your plugin, try taking out certain parts of the code and testing it with minimal logic
-    - This means that part of your code with integrated logic is incorrect
+  - This means that part of your code with integrated logic is incorrect
 - Is the target URL the same in another one of your APIs?
-    - The gateway sees the API as duplicated and changes the new target URL causing the gateway to error.
+  - The gateway sees the API as duplicated and changes the new target URL causing the gateway to error.
 
 You will eventually hit the point of error by further isolating parts of your API.
 
 ## What do you do when you can’t fix the error?
+
 You're probably not the first to encounter this error. Visit these relevant Tyk resources for additional help or guidance:
 
 1. Search the rest of documentation including [Tyk FAQ Section]({{< ref "frequently-asked-questions" >}})
 2. [Tyk Community Forums](https://community.tyk.io/)
-3. For paying users - Contact us via our Tyk Support portal(Click on the link above *24/7 Support*)
+3. For paying users - Contact us via our Tyk Support portal(Click on the link above _24/7 Support_)

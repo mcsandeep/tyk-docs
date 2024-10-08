@@ -2,14 +2,15 @@
 date: 2023-01-10
 title: Minimizing latency with MDCB
 menu:
-    main:
-        parent: "Tyk Multi Data Center Bridge"
+  main:
+    parent: "Tyk Multi Data Center Bridge"
 weight: 2
-tags: ["MDCB","poc","kubernetes","demo","latency"]
+tags: ["MDCB", "poc", "kubernetes", "demo", "latency"]
 description: "Proof Of Concept demo of how to use MDCB to minimize latency."
 ---
 
 ## Overview
+
 As described [previously]({{< ref "/tyk-multi-data-centre.md#managing-geographically-distributed-gateways-to-minimize-latency-and-protect-data-sovereignty" >}}), Acme Global Bank has operations and customers in both the EU and USA.
 
 To decrease the latency in response from their systems and to ensure that data remains in the same legal jurisdiction as the customers (data residency), they have deployed backend (or, from the perspective of the API gateway, “upstream”) services in two data centers: one in the US, the other in the EU.
@@ -29,73 +30,76 @@ In this example we will show you how to create the Acme Global Bank deployment u
 ### Pre-requisites and configuration
 
 1. What you need to install/set-up
-    - Tyk Pro license (Dashboard and MDCB keys - obtained from Tyk)
-    - Access to a cloud account of your choice, e.g. GCP
-    - You need to grab this Tyk Demo repository: [GitHub - TykTechnologies/tyk-k8s-demo](https://github.com/TykTechnologies/tyk-k8s-demo)
-    - You need to install `helm`, `jq`, `kubectl` and `watch`
+
+   - Tyk Pro license (Dashboard and MDCB keys - obtained from Tyk)
+   - Access to a cloud account of your choice, e.g. GCP
+   - You need to grab this Tyk Demo repository: [GitHub - TykTechnologies/tyk-k8s-demo](https://github.com/TykTechnologies/tyk-k8s-demo)
+   - You need to install `helm`, `jq`, `kubectl` and `watch`
 
 2. To configure GCP
-    - Create a GCP cluster
-    - Install the Google Cloud SDK
-       - install `gcloud`
-       - `./google-cloud-sdk/install.sh`
-    - Configure the Google Cloud SDK to access your cluster
-       - `gcloud auth login`
-       - `gcloud components install gke-gcloud-auth-plugin`
-       - `gcloud container clusters get-credentials <<gcp_cluster_name>> —zone <<zone_from_gcp_cluster>>—project <<gcp_project_name>>`
-    - Verify that everything is connected using `kubectl`
-       - `kubectl get nodes`
+
+   - Create a GCP cluster
+   - Install the Google Cloud SDK
+     - install `gcloud`
+     - `./google-cloud-sdk/install.sh`
+   - Configure the Google Cloud SDK to access your cluster
+     - `gcloud auth login`
+     - `gcloud components install gke-gcloud-auth-plugin`
+     - `gcloud container clusters get-credentials <<gcp_cluster_name>> —zone <<zone_from_gcp_cluster>>—project <<gcp_project_name>>`
+   - Verify that everything is connected using `kubectl`
+     - `kubectl get nodes`
 
 3. You need to configure the Tyk build
-    - Create a `.env` file within tyk-k8s-demo based on the provided `.env.example` file
-    - Add the Tyk license keys to your `.env`:
-       - `LICENSE=<dashboard_license>`
-       - `MDCB_LICENSE=<mdcb_license>`
+   - Create a `.env` file within tyk-k8s-demo based on the provided `.env.example` file
+   - Add the Tyk license keys to your `.env`:
+     - `LICENSE=<dashboard_license>`
+     - `MDCB_LICENSE=<mdcb_license>`
 
 ### Deploy Tyk Stack to create the Control and Data Planes
 
 1. Create the Tyk Control Plane
-     - `./up.sh -r redis-cluster -e load-balancer tyk-cp`
+   - `./up.sh -r redis-cluster -e load-balancer tyk-cp`
 
-*Deploying the Tyk Control Plane*
+_Deploying the Tyk Control Plane_
 {{< img src="/img/mdcb/mdcb-poc1-screenshot1.png" alt="Tyk Control Plane Deployed" >}}
 
 2. Create two logically-separate Tyk Data Planes (Workers) to represent Acme Global Bank’s US and EU operations using the command provided in the output from the `./up.sh` script:
-    - `TYK_WORKER_CONNECTIONSTRING=<MDCB-exposure-address:port> TYK_WORKER_ORGID=<org_id> TYK_WORKER_AUTHTOKEN=<mdcb_auth_token> TYK_WORKER_USESSL=false ./up.sh --namespace <worker-namespace> tyk-worker`
+   - `TYK_WORKER_CONNECTIONSTRING=<MDCB-exposure-address:port> TYK_WORKER_ORGID=<org_id> TYK_WORKER_AUTHTOKEN=<mdcb_auth_token> TYK_WORKER_USESSL=false ./up.sh --namespace <worker-namespace> tyk-worker`
 
 Note that you need to run the same command twice, once setting `<worker-namespace>` to `tyk-worker-us`, the other to `tyk-worker-eu` (or namespaces of your choice)
 
-*Deploying the `tyk-worker-us` namespace (Data Plane #1)*
-{{< img src="/img/mdcb/mdcb-poc1-screenshot2.png" alt="Deploying the tyk-worker-us namespace" >}}  
+_Deploying the `tyk-worker-us` namespace (Data Plane #1)_
+{{< img src="/img/mdcb/mdcb-poc1-screenshot2.png" alt="Deploying the tyk-worker-us namespace" >}}
 
-*Deploying the `tyk-worker-eu` namespace (Data Plane #2)*
+_Deploying the `tyk-worker-eu` namespace (Data Plane #2)_
 {{< img src="/img/mdcb/mdcb-poc1-screenshot3.png" alt="Deploying the tyk-worker-eu namespace" >}}
 
 3. Verify and observe the Tyk Control and Data Planes
-    - Use `curl` to verify that the gateways are alive by calling their `/hello` endpoints
+   - Use `curl` to verify that the gateways are alive by calling their `/hello` endpoints
 
 {{< img src="/img/mdcb/mdcb-poc1-screenshot4.png" alt="observe Tyk K8s namespace console output">}}
 
     - You can use `watch` to observe each of the Kubernetes namespaces
 
-*`tyk-cp` (Control Plane)*
-{{< img src="/img/mdcb/mdcb-poc1-screenshot5.png" alt="Control Plane" >}}  
+_`tyk-cp` (Control Plane)_
+{{< img src="/img/mdcb/mdcb-poc1-screenshot5.png" alt="Control Plane" >}}
 
-*`tyk-worker-us` (Data Plane #1)*
-{{< img src="/img/mdcb/mdcb-poc1-screenshot6.png" alt= "Data Plane #1" >}} 
+_`tyk-worker-us` (Data Plane #1)_
+{{< img src="/img/mdcb/mdcb-poc1-screenshot6.png" alt= "Data Plane #1" >}}
 
-*`tyk-worker-eu` (Data Plane #2)*
+_`tyk-worker-eu` (Data Plane #2)_
 {{< img src="/img/mdcb/mdcb-poc1-screenshot7.png" alt="Data Plane #2" >}}
 
 ### Testing the deployment to prove the concept
+
 As you know, the Tyk Multi Data Center Bridge provides a link from the Control Plane to the Data Plane (worker) gateways, so that we can control all the remote gateways from a single dashboard.
 
 1. Access Tyk Dashboard
-    - You can log into the dashboard at the external IP address reported in the watch window for the Control Plane - in this example it was at `34.136.51.227:3000`, so just enter this in your browser
-    - The user name and password are provided in the `./up.sh` output:
-      - username: `default@example.com`
-      - password: `topsecretpassword` (or whatever you’ve configured in the `.env` file)
-      
+   - You can log into the dashboard at the external IP address reported in the watch window for the Control Plane - in this example it was at `34.136.51.227:3000`, so just enter this in your browser
+   - The user name and password are provided in the `./up.sh` output:
+     - username: `default@example.com`
+     - password: `topsecretpassword` (or whatever you’ve configured in the `.env` file)
+
 {{< img src="/img/mdcb/mdcb-poc1-screenshot8.png" alt="Tyk Dashboard login" >}}
 
 2. Create an API in the dashboard, but don’t secure it (set it to `Open - keyless`); for simplicity we suggest a simple pass-through proxy to `httbin.org`.
@@ -104,11 +108,11 @@ As you know, the Tyk Multi Data Center Bridge provides a link from the Control P
 5. If you try to hit the API again from the workers, you’ll find that the request is now rejected because MDCB has propagated out the change in authentication rules. Go ahead and add the Authentication key to the request header… and now you reach `httpbin.org` again. You can see in the Dashboard’s API Usage Data section that there will have been success and error requests to the API.
 6. OK, so that’s pretty basic stuff, let’s show what MDCB is actually doing for you… reset the API authentication to be `Open - keyless` and confirm that you can hit the endpoint without the Authentication key from both workers.
 7. Next we’re going to experience an MDCB outage - by deleting its deployment in Kubernetes:
-<br>`kubectl delete deployment.apps/mdcb-tyk-cp-tyk-pro -n tyk`
+   <br>`kubectl delete deployment.apps/mdcb-tyk-cp-tyk-pro -n tyk`
 8. Now there's no connection from the data placne to the control plane, but try hitting the API endpoint on either worker and you’ll see that they continue serving your users' requests regardless of their isolation from the Control Plane.
 9. Back on the Tyk Dashboard make some changes - for example, re-enable Authentication on your API, add a second API. Verify that these changes **do not** propagate through to the workers.
 10. Now we’ll bring MDCB back online with this command:
-<br>`./up.sh -r redis-cluster -e load-balancer tyk-cp`
+    <br>`./up.sh -r redis-cluster -e load-balancer tyk-cp`
 11. Now try hitting the original API endpoint from the workers - you’ll find that you need the Authorization key again because MDCB has updated the Data Planes with the new config from the Control Plane.
 12. Now try hitting the new API endpoint - this will also have automatically been propagated out to the workers when MDCB came back up and so is now available for your users to consume.
 
@@ -117,7 +121,9 @@ Pretty cool, huh?
 There’s a lot more that you could do - for example by deploying real APIs (after all, this is a real Tyk deployment) and configuring different Organization Ids for each Data Plane to control which APIs propagate to which workers (allowing you to ensure data localisation, as required by the Acme Global Bank).
 
 ### Closing everything down
+
 We’ve provided a simple script to tear down the demo as follows:
+
 1. `./down.sh -n tyk-worker-us`
 2. `./down.sh -n tyk-worker-eu`
 3. `./down.sh`
@@ -127,5 +133,6 @@ We’ve provided a simple script to tear down the demo as follows:
 ---
 
 Next Steps
- - [MDCB reference guide]({{< ref "/tyk-multi-data-centre/mdcb-configuration-options.md" >}})
- - [MDCB Troubleshooting and FAQ]({{< ref "/frequently-asked-questions/faq" >}})
+
+- [MDCB reference guide]({{< ref "/tyk-multi-data-centre/mdcb-configuration-options.md" >}})
+- [MDCB Troubleshooting and FAQ]({{< ref "/frequently-asked-questions/faq" >}})

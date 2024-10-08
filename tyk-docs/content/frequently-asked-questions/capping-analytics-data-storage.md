@@ -4,10 +4,8 @@ title: Capping analytics data storage
 menu:
   main:
     parent: "Frequently Asked Questions"
-weight: 0 
+weight: 0
 ---
-
-
 
 What methods are available to enable me to manage my MongoDB analytics storage?
 
@@ -16,13 +14,13 @@ What methods are available to enable me to manage my MongoDB analytics storage?
 [Size Based Caps]({{< ref "tyk-stack/tyk-manager/analytics/capping-analytics-data-storage.md#a-name-size-based-cap-a-size-based-cap" >}})
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Time based caps (TTL indexes) are incompatible with already configured size based caps.
 {{< /note >}}
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If you are using DocumentDB, capped collections are not supported. See [here](https://docs.aws.amazon.com/documentdb/latest/developerguide/mongo-apis.html) for more details.
 {{< /note >}}

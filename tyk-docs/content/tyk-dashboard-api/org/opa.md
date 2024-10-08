@@ -4,11 +4,12 @@ title: Open Policy Agent API
 menu:
   main:
     parent: "Tyk Dashboard API"
-weight: 5 
+weight: 5
 aliases: /tyk-apis/tyk-dashboard-api/org/opa
 ---
+
 {{< note success >}}
-**Note**  
+**Note**
 
 The Open Policy Agent API helps you to manage (CRUD) the OPA (Open Policy Agent) rules that are being applied to the Tyk Dashboard. You can also change the OPA settings, such as to enable/disable it or enable/disable the debug mode.
 
@@ -16,19 +17,20 @@ Only Admin role Dashboard users are authorized to use it.
 {{< /note >}}
 
 For more information on how to configure OPA see [Open Policy Agent]({{< ref "tyk-dashboard/open-policy-agent" >}}).
+
 ### List OPA rules and settings
 
 This endpoint returns by defaul the initial set of OPA rules defined in your Tyk Dashboard, which are located in [schema/dashboard.rego]({{< ref "tyk-dashboard/opa-rules" >}}) (accessible in Self-Managed installations).
 
 Once you update the rules via the API, the OPA rules will be stored at the organization level.
 
-| **Property** | **Description**       |
-| ------------ | --------------------- |
-| Resource URL | `/api/org/opa        `|
-| Method       | GET                   |
-| Type         | None                  |
-| Body         | None                  |
-| Param        | None                  |
+| **Property** | **Description**        |
+| ------------ | ---------------------- |
+| Resource URL | `/api/org/opa        ` |
+| Method       | GET                    |
+| Type         | None                   |
+| Body         | None                   |
+| Param        | None                   |
 
 #### Sample Request
 
@@ -48,23 +50,23 @@ authorization:7a7b140f-2480-4d5a-4e78-24049e3ba7f8
   }
 }
 ```
+
 ### Update OPA rules and settings
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Whenever you want to update OPA rules or its settings, send the updated value of the OPA rules or changed values for the settings (`enabled`) via a PUT request to the `permissions` endpoint.
 
 {{< /note >}}
 
-
-| **Property** | **Description**          |
-| ------------ | ------------------------ |
-| Resource URL | `/api/org/permission`    |
-| Method       | PUT                      |
-| Type         | None                     |
-| Body         | Permissions Object       |
-| Param        | None                     |
+| **Property** | **Description**       |
+| ------------ | --------------------- |
+| Resource URL | `/api/org/permission` |
+| Method       | PUT                   |
+| Type         | None                  |
+| Body         | Permissions Object    |
+| Param        | None                  |
 
 #### Sample Request
 

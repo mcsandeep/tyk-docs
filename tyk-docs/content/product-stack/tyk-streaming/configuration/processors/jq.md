@@ -1,7 +1,7 @@
 ---
 title: Jq
 description: Explains an overview of Jq
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Jq" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Jq"]
 ---
 
 Transforms and filters messages using jq queries.
@@ -52,24 +52,21 @@ Queries can fail, in which case the message remains unchanged, errors are logged
 
 The jq query to filter and transform messages with.
 
-
-Type: `string`  
+Type: `string`
 
 ### raw
 
 Whether to process the input as a raw string instead of as JSON.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ### output_raw
 
 Whether to output raw text (unquoted) instead of JSON strings when the emitted values are string types.
 
-
 Type: `bool`  
-Default: `false`  
+Default: `false`
 
 ## Examples
 
@@ -80,10 +77,10 @@ When receiving JSON documents of the form:
 ```json
 {
   "locations": [
-    {"name": "Seattle", "state": "WA"},
-    {"name": "New York", "state": "NY"},
-    {"name": "Bellevue", "state": "WA"},
-    {"name": "Olympia", "state": "WA"}
+    { "name": "Seattle", "state": "WA" },
+    { "name": "New York", "state": "NY" },
+    { "name": "Bellevue", "state": "WA" },
+    { "name": "Olympia", "state": "WA" }
   ]
 }
 ```
@@ -91,7 +88,7 @@ When receiving JSON documents of the form:
 We could collapse the location names from the state of Washington into a field `Cities`:
 
 ```json
-{"Cities": "Bellevue, Olympia, Seattle"}
+{ "Cities": "Bellevue, Olympia, Seattle" }
 ```
 
 With the following config:

@@ -1,21 +1,20 @@
 ---
 title: URL Path Matching
 tags:
-    - URL path matching
-    - Regular expressions
-    - Secure access
-    - Middleware
-    - Routing
-    - Endpoint
-    - Listen path
+  - URL path matching
+  - Regular expressions
+  - Secure access
+  - Middleware
+  - Routing
+  - Endpoint
+  - Listen path
 description: Overview of URL path matching with the Tyk Gateway
 date: "2024-08-30"
 ---
 
-When a request is made to an API hosted on Tyk Gateway, the gateway matches the incoming URL path against routes (patterns) defined in the API definition. Matching the request path against the *listen path* of an API exposed on the gateway is the first step for Tyk determining how to handle the request. Tyk provides a very flexible and configurable approach to URL path matching to support a wide range of use cases.
- 
-Understanding this process is crucial because it directly impacts how URLs are routed and matched, influencing both API behavior and security controls.
+When a request is made to an API hosted on Tyk Gateway, the gateway matches the incoming URL path against routes (patterns) defined in the API definition. Matching the request path against the _listen path_ of an API exposed on the gateway is the first step for Tyk determining how to handle the request. Tyk provides a very flexible and configurable approach to URL path matching to support a wide range of use cases.
 
+Understanding this process is crucial because it directly impacts how URLs are routed and matched, influencing both API behavior and security controls.
 
 ## What is URL path matching?
 
@@ -39,13 +38,12 @@ URL path matching is fundamental to the behavior of various Tyk middleware, incl
 - [Request and Response transformation]({{< ref "advanced-configuration/transform-traffic" >}})
 
 {{< note success >}}
-**Note**  
+**Note**
 
 The [URL Rewriting]({{< ref "transform-traffic/url-rewriting#how-url-rewriting-works" >}}) middleware's
 rule check implements regular expression matching only: it does not apply URL path matching logic and is not
 affected by the configurations described in this section
 {{< /note >}}
-
 
 ## When might you want to control URL path matching?
 
@@ -59,50 +57,49 @@ By fine-tuning these configurations, developers can create robust,
 secure, and maintainable routing rules tailored to their specific use
 cases.
 
-
 ## Structure of the API request
 
-When a client makes a request to an API hosted on Tyk Gateway, they provide an HTTP method and *request path*. This *request path* will comprise the host (or domain) name for the Gateway, the API *listen path* and then (optionally) the *endpoint path*.
+When a client makes a request to an API hosted on Tyk Gateway, they provide an HTTP method and _request path_. This _request path_ will comprise the host (or domain) name for the Gateway, the API _listen path_ and then (optionally) the _endpoint path_.
 
-The *listen path* is a mandatory field defined in the API definition loaded onto the Gateway. Tyk will compare the incoming *request path* (after stripping off the host name) against all registered *listen paths* to identify the API definition (and hence Gateway configuration) that should be used to handle the request. If no match is found, then Tyk will reject the request with `HTTP 404 Not Found`.
+The _listen path_ is a mandatory field defined in the API definition loaded onto the Gateway. Tyk will compare the incoming _request path_ (after stripping off the host name) against all registered _listen paths_ to identify the API definition (and hence Gateway configuration) that should be used to handle the request. If no match is found, then Tyk will reject the request with `HTTP 404 Not Found`.
 
-If a match is found, Tyk will then handle the request according to the configuration in the matching API definition. The *endpoint path* will be compared against any endpoints defined in the API definition to determine which endpoint-level configuration (such as transformation middleware) should be applied to the request.
+If a match is found, Tyk will then handle the request according to the configuration in the matching API definition. The _endpoint path_ will be compared against any endpoints defined in the API definition to determine which endpoint-level configuration (such as transformation middleware) should be applied to the request.
 
 ### Listen path
 
-Tyk treats the *listen path* configured in the API definition as a regex, allowing advanced users to perform complex listen path matching by setting a regex in the API definition.
+Tyk treats the _listen path_ configured in the API definition as a regex, allowing advanced users to perform complex listen path matching by setting a regex in the API definition.
 
-The [TYK_GW_HTTPSERVEROPTIONS_ENABLESTRICTROUTES]({{< ref "tyk-oss-gateway/configuration#http_server_optionsenable_strict_routes" >}}) option in the Tyk Gateway configuration is provided to avoid nearest-neighbour requests on overlapping routes. If this is set to `true` then Tyk will perform an exact match of the request against the configured *listen path* including the trailing `/` used to mark the end of the *listen path*. For example:
-- with strict routes enabled, an API with *listen path* set to `/app` will match requests to `/app`, `/app/` and `/app/*` but will not match `/app1/*` or `/apple/`
-- without strict routes, all of the above requests would match to the API with *listen path* set to `/app`
+The [TYK_GW_HTTPSERVEROPTIONS_ENABLESTRICTROUTES]({{< ref "tyk-oss-gateway/configuration#http_server_optionsenable_strict_routes" >}}) option in the Tyk Gateway configuration is provided to avoid nearest-neighbour requests on overlapping routes. If this is set to `true` then Tyk will perform an exact match of the request against the configured _listen path_ including the trailing `/` used to mark the end of the _listen path_. For example:
+
+- with strict routes enabled, an API with _listen path_ set to `/app` will match requests to `/app`, `/app/` and `/app/*` but will not match `/app1/*` or `/apple/`
+- without strict routes, all of the above requests would match to the API with _listen path_ set to `/app`
 
 <br>
 {{< note success >}}
-**Note**  
+**Note**
 
-Tyk is acting as a secure proxy between the client and upstream service, so when proxying the request upstream, it will replace the Gateway's *host name* with the *target URL* configured in the API definition.
+Tyk is acting as a secure proxy between the client and upstream service, so when proxying the request upstream, it will replace the Gateway's _host name_ with the _target URL_ configured in the API definition.
 <br>
 Thus a request to `<gateway-address>/<listen-path>/<version-identifier>/<endpoint-path>` will be proxied to `<target-url>/<listen-path>/<version-identifier>/<endpoint-path>`.
 <br>
-The [strip listen path]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#listenpath" >}}) option in the API definition is provided to remove the *listen path* from the upstream request; this allows differentiation between the publicly exposed API and private upstream API, for example to provide a cleaner, user-friendly facade to a legacy upstream service.
+The [strip listen path]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#listenpath" >}}) option in the API definition is provided to remove the _listen path_ from the upstream request; this allows differentiation between the publicly exposed API and private upstream API, for example to provide a cleaner, user-friendly facade to a legacy upstream service.
 {{< /note >}}
 
 ### Versioning identifier
 
-If [URL path versioning]({{< ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning#request-url-path" >}}) is in use for an API, Tyk will perform a match of the first fragment after the *listen path* to identify which version of the API should be invoked.
+If [URL path versioning]({{< ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning#request-url-path" >}}) is in use for an API, Tyk will perform a match of the first fragment after the _listen path_ to identify which version of the API should be invoked.
 
 ### Endpoint path
 
-The remainder of the *request path* after any version identifier is considered to be the *endpoint path* (which may be simply `/`). When performing a match against endpoints configured in the API definition, Tyk treats the configured patterns as regular expressions, allowing advanced users to perform complex endpoint path matching by use of regexes in their API definitions.
+The remainder of the _request path_ after any version identifier is considered to be the _endpoint path_ (which may be simply `/`). When performing a match against endpoints configured in the API definition, Tyk treats the configured patterns as regular expressions, allowing advanced users to perform complex endpoint path matching by use of regexes in their API definitions.
 
+## Pattern matching
 
-## Pattern matching 
-
-Tyk supports a wide range of patterns when defining *listen path* and *endpoint paths* in API definitions, through the interpretation of the configured pattern as a regular expression during the matching operation. It's easiest to consider three categories of patterns of increasing complexity:
+Tyk supports a wide range of patterns when defining _listen path_ and _endpoint paths_ in API definitions, through the interpretation of the configured pattern as a regular expression during the matching operation. It's easiest to consider three categories of patterns of increasing complexity:
 
 ### 1. **Basic matching**
 
-Basic path matching involves the direct comparison of a path against a fixed pattern, for example setting the *listen path* pattern to `/users`.
+Basic path matching involves the direct comparison of a path against a fixed pattern, for example setting the _listen path_ pattern to `/users`.
 
 ### 2. **Dynamic path parameter matching**
 
@@ -112,12 +109,12 @@ For example, the pattern `/users/{id}` would match any URL of the form `/users/1
 
 Tyk converts dynamic path segments in the configured pattern into capturing groups in the regular expression (`([^/]+)`)as follows (note that these examples include the `^` and `$` that are added when [exact matching](#exact-match) is in use):
 
-|   | **Path pattern**                   | **Regular Expression used in match** |
-|---|------------------------------------|--------------------------------------|
-| 1 | `/users/{id}`                      | `^/users/([^/]+)$`                   |
-| 2 | `/static/{path}/assets/{file}`     | `^/static/([^/]+)/assets/[^/]+)$`    |
-| 3 | `/orders/{orderId}/items/{itemId}` | `^/orders/([^/]+)/items/([^/]+)$`    |
-| 4 | `/orders/{orderId}/items/{itemId}` | `^/orders/([^/]+)/items/([^/]+)$`    |
+|     | **Path pattern**                   | **Regular Expression used in match** |
+| --- | ---------------------------------- | ------------------------------------ |
+| 1   | `/users/{id}`                      | `^/users/([^/]+)$`                   |
+| 2   | `/static/{path}/assets/{file}`     | `^/static/([^/]+)/assets/[^/]+)$`    |
+| 3   | `/orders/{orderId}/items/{itemId}` | `^/orders/([^/]+)/items/([^/]+)$`    |
+| 4   | `/orders/{orderId}/items/{itemId}` | `^/orders/([^/]+)/items/([^/]+)$`    |
 
 1. Matches `/users/123`, where `id` is dynamic.
 2. Matches `/static/images/assets/logo.png`, where `path` and `file` are dynamic.
@@ -130,25 +127,25 @@ You can replace any dynamic path segment with a `*` (wildcard) (or `{*}` in olde
 
 Advanced pattern matching involves the use of more complex regular expressions in the configured patterns, enabling developers to define granular rules that handle varied use cases such as versioning, optional parameters, and multiple route patterns.
 
-You can include regular expressions as dynamic path segments in the *listen path* pattern. Tyk will automatically convert these into capturing groups as follows (note that these examples include the `^` and `$` that are added when [exact matching](#exact-match) is in use):
+You can include regular expressions as dynamic path segments in the _listen path_ pattern. Tyk will automatically convert these into capturing groups as follows (note that these examples include the `^` and `$` that are added when [exact matching](#exact-match) is in use):
 
-|   | **Listen path pattern**                      | **Regular Expression used in match**      |
-|---|----------------------------------------------|-------------------------------------------|
-| 1 | `/users/{id}/profile/{type:[a-zA-Z]+}`       | `^/users/([^/]+)/profile/([a-zA-Z]+)$`    |
-| 2 | `/items/{itemID:[0-9]+}/details/{detail}`    | `^/items/([0-9]+)/details/([^/]+)$`       |
-| 3 | `/products/{productId}/reviews/{rating:\d+}` | `^/products/([^/]+)/reviews/(\d+)$`       |
+|     | **Listen path pattern**                      | **Regular Expression used in match**   |
+| --- | -------------------------------------------- | -------------------------------------- |
+| 1   | `/users/{id}/profile/{type:[a-zA-Z]+}`       | `^/users/([^/]+)/profile/([a-zA-Z]+)$` |
+| 2   | `/items/{itemID:[0-9]+}/details/{detail}`    | `^/items/([0-9]+)/details/([^/]+)$`    |
+| 3   | `/products/{productId}/reviews/{rating:\d+}` | `^/products/([^/]+)/reviews/(\d+)$`    |
 
 1. Matches paths where `id` is dynamic, and `type` only includes alphabetic characters.
 2. Matches paths like `/items/45/details/overview`, where `itemID` is a number and `detail` is dynamic.
 3. Matches paths like `/products/987/reviews/5`, where `productId` is dynamic and `rating` must be a digit.
 
-With *endpoint path* patterns, however, the logic is more limited. The conversion will be as follows, matching any path segment but not using the regular expression defined in the named parameter (again note that these examples include the `^` and `$` that are added when [exact matching](#exact-match) is in use):
+With _endpoint path_ patterns, however, the logic is more limited. The conversion will be as follows, matching any path segment but not using the regular expression defined in the named parameter (again note that these examples include the `^` and `$` that are added when [exact matching](#exact-match) is in use):
 
-|   | **User Input**                               | **Converted Regular Expression**     |
-|---|----------------------------------------------|--------------------------------------|
-| 1 | `/users/{id}/profile/{type:[a-zA-Z]+}`       | `^/users/([^/]+)/profile/([^/]+)$`    |
-| 2 | `/items/{itemID:[0-9]+}/details/{detail}`    | `^/items/([^/]+)/details/([^/]+)$`    |
-| 3 | `/products/{productId}/reviews/{rating:\d+}` | `^/products/([^/]+)/reviews/([^/]+)$` |
+|     | **User Input**                               | **Converted Regular Expression**      |
+| --- | -------------------------------------------- | ------------------------------------- |
+| 1   | `/users/{id}/profile/{type:[a-zA-Z]+}`       | `^/users/([^/]+)/profile/([^/]+)$`    |
+| 2   | `/items/{itemID:[0-9]+}/details/{detail}`    | `^/items/([^/]+)/details/([^/]+)$`    |
+| 3   | `/products/{productId}/reviews/{rating:\d+}` | `^/products/([^/]+)/reviews/([^/]+)$` |
 
 ##### Example - ULID validation for a route
 
@@ -165,7 +162,6 @@ prefix all the way to the end of the defined pattern.
 The input has full go regex (RE2) support. See
 [pkg.go.dev/regexp](https://pkg.go.dev/regexp) for details.
 
-
 ## Path matching modes
 
 Tyk Gateway can be configured to perform path matching in one of four modes:
@@ -177,7 +173,7 @@ Tyk Gateway can be configured to perform path matching in one of four modes:
 
 This configuration can be set in the Gateway config file (`tyk.conf`) or using the equivalent environment variables, as described below.
 
-The default behavior of Tyk Gateway is *wildcard* matching as both prefix and suffix controls default to `false`; the introduction of these controls does not change the behavior of any existing API definitions unless either is set to `true` to enforce a different path matching mode.
+The default behavior of Tyk Gateway is _wildcard_ matching as both prefix and suffix controls default to `false`; the introduction of these controls does not change the behavior of any existing API definitions unless either is set to `true` to enforce a different path matching mode.
 
 **Tyk recommends the use of exact path matching with [strict routes](#listen-path) for most use cases**
 
@@ -218,6 +214,7 @@ Example:
 When [TYK_GW_HTTPSERVEROPTIONS_ENABLEPATHSUFFIXMATCHING]({{< ref "tyk-oss-gateway/configuration#http_server_optionsenable_path_suffix_matching" >}}) is enabled, the Gateway switches to suffix matching where it treats the configured pattern as a suffix which will only match against the end of the path. For example, a pattern such as `/json` will only match request URLs that end with `/json`, rather than matching any URL containing `/json`.
 
 The gateway checks the request URL against several variations depending on whether path versioning is enabled:
+
 - Full path (listen path + version + endpoint): `/listen-path/v4/json`
 - Non-versioned full path (listen path + endpoint): `/listen-path/json`
 - Path without version (endpoint only): `/json`
@@ -251,44 +248,44 @@ The Gateway-wide configuration of prefix and/or suffix matching can be overridde
 
 - if you include `^` at the start of the listen path/endpoint definition the Gateway will apply prefix matching when checking against this pattern
 - if you include `$` at the end of the listen path/endpoint definition the Gateway will apply prefix matching when checking against this pattern
-- if you omit the leading `/` from the listen path/endpoint definition then *prefix* matching will *not* be applied even if set in the Gateway config
+- if you omit the leading `/` from the listen path/endpoint definition then _prefix_ matching will _not_ be applied even if set in the Gateway config
 
 Note that if suffix matching is configured in the Gateway config this cannot be overridden using control characters in the pattern, though wildcard matches can be achieved by defining a full regular expression that starts with `^/` and ends with a `$`
 
 ##### Summary of the effect of control characters with Gateway settings
 
-The following table indicates the matching that will be performed by the Gateway for different combinations of prefix and suffix modes with different patterns, demonstrating how the use of the `^` and `$` symbols in your *listen path* and *endpoint path* patterns will interact with the configured matching mode.
+The following table indicates the matching that will be performed by the Gateway for different combinations of prefix and suffix modes with different patterns, demonstrating how the use of the `^` and `$` symbols in your _listen path_ and _endpoint path_ patterns will interact with the configured matching mode.
 
-| Prefix mode | Suffix mode | Pattern | Effective matching mode |
-|--------|--------|------|--------|
-| ❌️ | ❌️ | `/my-api/my-endpoint/{my-param}` | wildcard |
-| ✅  | ❌️ | `/my-api/my-endpoint/{my-param}` | prefix |
-| ❌️ | ✅  | `/my-api/my-endpoint/{my-param}` | suffix |
-| ✅  | ✅  | `/my-api/my-endpoint/{my-param}` | exact |
-| ❌️ | ❌️ | `^/my-api/my-endpoint/{my-param}` | prefix |
-| ✅  | ❌️ | `^/my-api/my-endpoint/{my-param}` | prefix |
-| ❌️ | ✅  | `^/my-api/my-endpoint/{my-param}` | exact |
-| ✅  | ✅  | `^/my-api/my-endpoint/{my-param}` | exact |
-| ❌️ | ❌️ | `/my-api/my-endpoint/{my-param}$` | suffix |
-| ✅  | ❌️ | `/my-api/my-endpoint/{my-param}$` | exact |
-| ❌️ | ✅  | `/my-api/my-endpoint/{my-param}$` | suffix |
-| ✅  | ❌️ | `/my-api/my-endpoint/{my-param}$` | exact |
-| ❌️ | ❌️ | `^/my-api/my-endpoint/{my-param}$` | exact |
-| ✅  | ❌️ | `^/my-api/my-endpoint/{my-param}$` | exact |
-| ❌️ | ✅  | `^/my-api/my-endpoint/{my-param}$` | exact |
-| ✅  | ✅  | `^/my-api/my-endpoint/{my-param}$` | exact |
-| ❌️ | ❌️ | `my-api/my-endpoint/{my-param}` | wildcard |
-| ✅  | ❌️ | `my-api/my-endpoint/{my-param}` | wildcard |
-| ❌️ | ✅  | `my-api/my-endpoint/{my-param}` | suffix |
-| ✅  | ✅  | `my-api/my-endpoint/{my-param}` | suffix |
-| ❌️ | ❌️ | `/my-api/my-endpoint/*` | wildcard |
-| ✅  | ❌️ | `/my-api/my-endpoint/*` | prefix |
-| ❌️ | ✅  | `/my-api/my-endpoint/*` | wildcard |
-| ✅  | ✅  | `/my-api/my-endpoint/*` | prefix |
-| ❌️ | ❌️ | `my-api/my-endpoint/*` | wildcard |
-| ✅  | ❌️ | `my-api/my-endpoint/*` | wildcard |
-| ❌️ | ✅  | `my-api/my-endpoint/*` | wildcard |
-| ✅  | ✅  | `my-api/my-endpoint/*` | wildcard |
+| Prefix mode | Suffix mode | Pattern                            | Effective matching mode |
+| ----------- | ----------- | ---------------------------------- | ----------------------- |
+| ❌️         | ❌️         | `/my-api/my-endpoint/{my-param}`   | wildcard                |
+| ✅          | ❌️         | `/my-api/my-endpoint/{my-param}`   | prefix                  |
+| ❌️         | ✅          | `/my-api/my-endpoint/{my-param}`   | suffix                  |
+| ✅          | ✅          | `/my-api/my-endpoint/{my-param}`   | exact                   |
+| ❌️         | ❌️         | `^/my-api/my-endpoint/{my-param}`  | prefix                  |
+| ✅          | ❌️         | `^/my-api/my-endpoint/{my-param}`  | prefix                  |
+| ❌️         | ✅          | `^/my-api/my-endpoint/{my-param}`  | exact                   |
+| ✅          | ✅          | `^/my-api/my-endpoint/{my-param}`  | exact                   |
+| ❌️         | ❌️         | `/my-api/my-endpoint/{my-param}$`  | suffix                  |
+| ✅          | ❌️         | `/my-api/my-endpoint/{my-param}$`  | exact                   |
+| ❌️         | ✅          | `/my-api/my-endpoint/{my-param}$`  | suffix                  |
+| ✅          | ❌️         | `/my-api/my-endpoint/{my-param}$`  | exact                   |
+| ❌️         | ❌️         | `^/my-api/my-endpoint/{my-param}$` | exact                   |
+| ✅          | ❌️         | `^/my-api/my-endpoint/{my-param}$` | exact                   |
+| ❌️         | ✅          | `^/my-api/my-endpoint/{my-param}$` | exact                   |
+| ✅          | ✅          | `^/my-api/my-endpoint/{my-param}$` | exact                   |
+| ❌️         | ❌️         | `my-api/my-endpoint/{my-param}`    | wildcard                |
+| ✅          | ❌️         | `my-api/my-endpoint/{my-param}`    | wildcard                |
+| ❌️         | ✅          | `my-api/my-endpoint/{my-param}`    | suffix                  |
+| ✅          | ✅          | `my-api/my-endpoint/{my-param}`    | suffix                  |
+| ❌️         | ❌️         | `/my-api/my-endpoint/*`            | wildcard                |
+| ✅          | ❌️         | `/my-api/my-endpoint/*`            | prefix                  |
+| ❌️         | ✅          | `/my-api/my-endpoint/*`            | wildcard                |
+| ✅          | ✅          | `/my-api/my-endpoint/*`            | prefix                  |
+| ❌️         | ❌️         | `my-api/my-endpoint/*`             | wildcard                |
+| ✅          | ❌️         | `my-api/my-endpoint/*`             | wildcard                |
+| ❌️         | ✅          | `my-api/my-endpoint/*`             | wildcard                |
+| ✅          | ✅          | `my-api/my-endpoint/*`             | wildcard                |
 
 ## URL path matching without the Gateway configuration options
 
@@ -315,7 +312,7 @@ path to the URL, and using a regex such as `^/listen-path/users`. You might cons
 using the ending `$` expression to achieve [exact matching](#exact-match).
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 Misconfiguration is possible so special care should be taken to ensure
 that your regular expressions are valid; an invalid regular expression

@@ -33,7 +33,7 @@ This page goes through the reset password routine. If you have forgotten your pa
 {{< img src="/img/dashboard/portal-management/enterprise-portal/forgot-password-email.png" alt="Forgot Password email sent" >}}
 
 4. Check your email and you should have received an email that contains a link the following format:
-`https://the-portal-domain.com/auth/reset/code?token=<token-id>`
+   `https://the-portal-domain.com/auth/reset/code?token=<token-id>`
 
 5. Click on the link and you will be taken to the reset password screen.
 6. Enter your new password and click **Reset**.

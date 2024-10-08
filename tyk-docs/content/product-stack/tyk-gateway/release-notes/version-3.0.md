@@ -3,20 +3,19 @@ title: Tyk Gateway v3.0
 description: "Tyk Gateway 3.0 release notes"
 tags: ["release notes", "Tyk Gateway", "v3.0", "3.0"]
 aliases:
-    - /release-notes/version-3.0/
+  - /release-notes/version-3.0/
 ---
 
 ## Release Highlights
 
 #### Version changes and LTS releases
 
-We have bumped our major Tyk Gateway version from 2 to 3, a long overdue change as we’ve been on version 2 for 3 years. We have also changed our Tyk Dashboard major version from 1 to 3, and from now on it will always be aligned with the Tyk Gateway for major and minor releases. The Tyk Pump has also now updated to 1.0, so we can better indicate major changes in future. 
+We have bumped our major Tyk Gateway version from 2 to 3, a long overdue change as we’ve been on version 2 for 3 years. We have also changed our Tyk Dashboard major version from 1 to 3, and from now on it will always be aligned with the Tyk Gateway for major and minor releases. The Tyk Pump has also now updated to 1.0, so we can better indicate major changes in future.
 
 Importantly, such a big change in versions does not mean that we going to break backward compatibility. More-over we are restructuring our internal release strategy to guarantee more stability and to allow us to deliver all Tyk products at a faster pace. We aim to bring more clarity to our users on the stability criteria they can expect, based on the version number.
 Additionally we are introducing Long Term Releases (also known as LTS).
 
 Read more about this changes in our blogpost: https://tyk.io/introducing-long-term-support-some-changes-to-our-release-process-product-versioning/
-
 
 #### Universal Data Graph and GraphQL
 
@@ -42,7 +41,6 @@ We added a new middleware hook allowing middleware to modify the response from t
 
 At the moment the Response hook is supported for [Python and gRPC plugins]({{< ref "plugins/supported-languages/rich-plugins/rich-plugins-work#overriding-response" >}}).
 
-
 #### Enhanced Gateway health check API
 
 Now the standard Health Check API response include information about health of the dashboard, redis and mdcb connections.
@@ -51,7 +49,8 @@ You can configure notifications or load balancer rules, based on new data. For e
 [Read More]({{< ref "planning-for-production/ensure-high-availability/health-check" >}})
 
 #### Enhanced Detailed logging
-Detailed logging is used in a lot of the cases for debugging issues. Now as well as enabling detailed logging globally (which can cause a huge overhead with lots of traffic), you can enable it for a single key, or specific APIs. 
+
+Detailed logging is used in a lot of the cases for debugging issues. Now as well as enabling detailed logging globally (which can cause a huge overhead with lots of traffic), you can enable it for a single key, or specific APIs.
 
 New detailed logging changes are available only to our Self-Managed customers currently.
 
@@ -73,7 +72,7 @@ This change requires updating to new Tyk Pump 1.0
 
 #### 404 Error logging - unmatched paths
 
-Concerned that client’s are getting a 404 response? Could it be that the API definition or URL rewrites have been misconfigured? Telling Tyk to track 404 logs, will cause the Tyk Gateway to produce error logs showing that a particular resource has not been found. 
+Concerned that client’s are getting a 404 response? Could it be that the API definition or URL rewrites have been misconfigured? Telling Tyk to track 404 logs, will cause the Tyk Gateway to produce error logs showing that a particular resource has not been found.
 
 The feature can be enabled by setting the config `track_404_logs` to `true` in the gateway's config file.
 
@@ -81,7 +80,7 @@ The feature can be enabled by setting the config `track_404_logs` to `true` in t
 
 #### Fixes
 
-- Fixed the bug when tokens created with non empty quota, and quota expiration set to `Never`, were treated as having unlimited quota. Now such tokens will stop working, once initial quota is reached. 
+- Fixed the bug when tokens created with non empty quota, and quota expiration set to `Never`, were treated as having unlimited quota. Now such tokens will stop working, once initial quota is reached.
 
 ## Updated Versions
 

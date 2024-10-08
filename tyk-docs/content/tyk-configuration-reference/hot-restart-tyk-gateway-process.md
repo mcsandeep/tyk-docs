@@ -5,7 +5,6 @@ description: Explains how to restart a Tyk Gateway process without dropping any 
 tags: ["reload", "hot reload", "SIGUSR2"]
 aliases:
   - /tyk-rest-api/hot-reload/
-
 ---
 
 It is possible to hot-restart a Tyk Gateway process without dropping any connections. This can be useful if you need to load up a new configuration or change a configuration on a production server without losing any traffic.

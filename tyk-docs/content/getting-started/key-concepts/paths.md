@@ -51,6 +51,7 @@ Whenever a middleware needs to be enabled for a specific API path, you need to m
   }
 }
 ```
+
 ### Configuring middleware when importing an OAS API Definition
 
 When importing an OAS API Definition, if the request is accompanied by either `validateRequest` or `allowList` query params, Tyk traverses the entire paths section, and if there is an existing operationId setting already configured for a path, Tyk will copy that value and uses it as a key for the path middleware configuration, under `x-tyk-api-gateway.middleware.operations`.
@@ -70,7 +71,8 @@ For example: We want to explicitly allow access for paths when importing the fol
   }
 }
 ```
-The resulting Tyk OAS API Definition will use the `addPet` `operationId` to match the middleware configuration to the `/pet` `post` path and method. 
+
+The resulting Tyk OAS API Definition will use the `addPet` `operationId` to match the middleware configuration to the `/pet` `post` path and method.
 
 Tyk OAS API Definition
 
@@ -98,6 +100,7 @@ Tyk OAS API Definition
   }
 }
 ```
+
 If there is no existing `operationId` setting for a path, then Tyk will concatenate the path value with the method value, to generate an `operationId` unique value. Tyk uses that in the `x-tyk-api-gateway.middleware.operations` to link the middleware configuration back to the paths section
 
 For example: When you want to explicitly allow access for the paths when importing the following OAS API Definition:
@@ -114,6 +117,7 @@ For example: When you want to explicitly allow access for the paths when importi
   }
 }
 ```
+
 The resulting Tyk OAS API Definition will generate the petpost `operationId`, and use this value in both paths `operationId` as well as in `middleware.operations`.
 
 Tyk OAS API Definition:
@@ -142,8 +146,9 @@ Tyk OAS API Definition:
   }
 }
 ```
-{{< note success >}}
-**Note**  
 
-The same logic for configuring middleware applies as well when updating a Tyk OAS API Definition by providing an updated OAS API Definition. 
+{{< note success >}}
+**Note**
+
+The same logic for configuring middleware applies as well when updating a Tyk OAS API Definition by providing an updated OAS API Definition.
 {{< /note >}}

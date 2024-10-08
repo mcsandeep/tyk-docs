@@ -60,17 +60,17 @@ Tyk Gateway should be configured for downloading plugin bundles from a secured w
 
 ## Configuring plugin bundles in the API Designer
 
-To configure plugin bundles for Tyk Classic APIs click on the APIs menu item in the *API Management* menu of Dashboard and select your API to display the API editor screen. Subsequently, follow the steps below:
+To configure plugin bundles for Tyk Classic APIs click on the APIs menu item in the _API Management_ menu of Dashboard and select your API to display the API editor screen. Subsequently, follow the steps below:
 
 ##### Step 1: Access plugin options
 
-Click on the *Advanced Options* tab and scroll down until the *Plugin Options* section is displayed.
+Click on the _Advanced Options_ tab and scroll down until the _Plugin Options_ section is displayed.
 
 {{< img src="/img/plugins/plugins_classic_api_bundles_config.png" alt="Tyk Classic Plugin Options section" >}}
 
 ##### Step 2: Enter relative path to bundle file
 
-Enter the relative path of the plugin bundle file in the *Plugin Bundle ID* field that Tyk Gateway should download from the web server hosting plugin bundles.
+Enter the relative path of the plugin bundle file in the _Plugin Bundle ID_ field that Tyk Gateway should download from the web server hosting plugin bundles.
 
 ##### Step 3: Save the API
 

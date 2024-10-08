@@ -1,7 +1,7 @@
 ---
 title: Processors
 description: Explains an overview of processors
-tags: [ "Tyk Streams", "Stream Processors", "Processors" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors"]
 ---
 
 Tyk Streams processors are functions applied to messages passing through a pipeline. The function signature allows a processor to mutate or drop messages depending on the content of the message. There are many types on offer but the most powerful are the [mapping]({{< ref "/product-stack/tyk-streaming/configuration/processors/mapping" >}}) and [mutation]({{< ref "/product-stack/tyk-streaming/configuration/processors/mutation" >}}) processors.
@@ -22,7 +22,7 @@ The `threads` field in the pipeline section determines how many parallel process
 
 ## Labels
 
-<!-- 
+<!--
 
 TODO: Replace paragraph below in subsequent iteration when know if metrics supported from product
 
@@ -42,7 +42,7 @@ Errors that occur during processing can be roughly separated into two groups; th
 
 All processing errors result in the messages being flagged as failed and debug level logs being emitted that describe the error. Only errors that are known to be intermittent are also logged at the error level.
 
-<!-- 
+<!--
 
 TODO: Subsequent iteration when know if metrics supported from product
 
@@ -50,7 +50,7 @@ All processing errors result in the messages being flagged as failed, [error met
 
 -->
 
-The reason for this behavior is to prevent noisy logging in cases where logical errors are expected and will likely be [handled in config]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/error-handling" >}}). However, this can also sometimes make it easy to miss logical errors in your configs when they lack error handling. 
+The reason for this behavior is to prevent noisy logging in cases where logical errors are expected and will likely be [handled in config]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/error-handling" >}}). However, this can also sometimes make it easy to miss logical errors in your configs when they lack error handling.
 
 <!-- We cannot include this yet until CLI and config functionality is provided
 
@@ -70,13 +70,13 @@ In such cases it's possible to place these processors within a [reject]({{< ref 
 
 ```yaml
 output:
-  reject: 'failed to send data: ${! error() }'
+  reject: "failed to send data: ${! error() }"
   processors:
     - try:
         - redis:
             url: tcp://localhost:6379
             command: sadd
-            args_mapping: 'root = [ this.key, this.value ]'
+            args_mapping: "root = [ this.key, this.value ]"
         - mapping: root = deleted()
 ```
 
@@ -86,7 +86,7 @@ The way this works is that if your processor with the side effect (`redis` in th
 
 All Tyk Streams processors support multiple part messages, which are synonymous with batches.
 
-<!-- TODO: Add referring link to windowed_processing when determine from product if this feature is supported 
+<!-- TODO: Add referring link to windowed_processing when determine from product if this feature is supported
 
 All Tyk Streams processors support multiple part messages, which are synonymous with batches. This enables some cool [windowed processing][windowed_processing] capabilities.
 

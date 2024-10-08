@@ -2,17 +2,18 @@
 title: Using the Response Header Transform with Tyk Classic APIs
 date: 2024-01-24
 description: "Using the Response Header Transform middleware with Tyk Classic APIs"
-tags: ["Response Header Transform", "middleware", "per-endpoint","per-API", "Tyk Classic"]
+tags: ["Response Header Transform", "middleware", "per-endpoint", "per-API", "Tyk Classic"]
 ---
 
 Tyk's [response header transform]({{< ref "advanced-configuration/transform-traffic/response-headers" >}}) middleware enables you to append or delete headers on responses received from the upstream service before sending them to the client.
 
 There are two options for this:
+
 - API-level modification that is applied to all responses for the API
 - endpoint-level modification that is applied only to responses from a specific endpoint
 
 {{< note success >}}
-**Note**  
+**Note**
 
 If both API-level and endpoint-level middleware are configured, the endpoint-level transformation will be applied first.
 {{< /note >}}
@@ -35,9 +36,7 @@ Prior to Tyk 5.3.0, there was an additional step to enable response header trans
 
 ```json
 {
-    "response_processors":[
-        {"name": "header_injector"}
-    ]
+  "response_processors": [{ "name": "header_injector" }]
 }
 ```
 
@@ -53,57 +52,57 @@ To **append** headers to all responses from your API (i.e. for all endpoints) yo
 To **delete** headers from all responses from your API (i.e. for all endpoints), you must add a new `global_response_headers_remove` object to the `versions` section of the API definition. This contains a list of the names of existing headers to be removed from responses.
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "version_data": {
-        "versions": {
-            "Default": {
-                "global_response_headers": {
-                    "X-Static": "foobar",
-                    "X-Request-ID":"$tyk_context.request_id",
-                    "X-User-ID": "$tyk_meta.uid"
-                },
-                "global_response_headers_remove": [
-                    "X-Secret"
-                ]
-            }
-        }
-    },
+  "version_data": {
+    "versions": {
+      "Default": {
+        "global_response_headers": {
+          "X-Static": "foobar",
+          "X-Request-ID": "$tyk_context.request_id",
+          "X-User-ID": "$tyk_meta.uid"
+        },
+        "global_response_headers_remove": ["X-Secret"]
+      }
+    }
+  }
 }
 ```
 
 This configuration will add three new headers to each response:
+
 - `X-Static` with the value `foobar`
 - `X-Request-ID` with a dynamic value taken from the `request_id` [context variable]({{< ref "context-variables" >}})
 - `X-User-ID` with a dynamic value taken from the `uid` field in the [session metadata]({{< ref "getting-started/key-concepts/session-meta-data" >}})
 
 It will also delete one header (if present) from each response:
- - `X-Secret`
+
+- `X-Secret`
 
 #### Endpoint-level transform {#tyk-classic-endpoint}
 
 To configure response header transformation for a specific endpoint you must add a new `transform_response_headers` object to the `extended_paths` section of your API definition.
 
 It has the following configuration:
+
 - `path`: the endpoint path
 - `method`: the endpoint HTTP method
 - `delete_headers`: a list of the headers that should be deleted from the response
 - `add_headers`: a list of headers, in key:value pairs, that should be added to the response
 
 For example:
-```json  {linenos=true, linenostart=1}
+
+```json {linenos=true, linenostart=1}
 {
-    "transform_response_headers": [
-        {
-            "path": "status/200",
-            "method": "GET",
-            "delete_headers": ["X-Static"],
-            "add_headers": [
-                {"X-Secret": "the-secret-key-is-secret"},
-                {"X-New": "another-header"}
-            ],
-        }
-    ]
+  "transform_response_headers": [
+    {
+      "path": "status/200",
+      "method": "GET",
+      "delete_headers": ["X-Static"],
+      "add_headers": [{ "X-Secret": "the-secret-key-is-secret" }, { "X-New": "another-header" }]
+    }
+  ]
 }
 ```
 
@@ -112,6 +111,7 @@ In this example the Response Header Transform middleware has been configured for
 #### Combining API-level and Endpoint-level transforms
 
 If the example [API-level]({{< ref "product-stack/tyk-gateway/middleware/response-header-tyk-classic#api-level-transform" >}}) and [endpoint-level]({{< ref "product-stack/tyk-gateway/middleware/response-header-tyk-classic#endpoint-level-transform" >}}) transforms are applied to the same API, then the `X-Secret` header will be added (by the endpoint-level transform first) and then removed (by the API-level transform). Subsequently, the result of the two transforms for a call to `GET /status/200` would be to add four headers:
+
 - `X-Request-ID`
 - `X-User-ID`
 - `X-Static`
@@ -124,23 +124,25 @@ A middleware called `header_transform` was added in Tyk 2.1 specfically to allow
 This is configured by adding a new `rev_proxy_header_cleanup` object to the `response_processors` section of your API definition.
 
 It has the following configuration:
+
 - `headers`: a list of headers in the response that should be modified
 - `target_host`: the value to which the listed headers should be updated
- 
+
 For example:
+
 ```json
 {
-    "response_processors": [
-        {
-            "name": "header_transform",
-            "options": {
-                "rev_proxy_header_cleanup": {
-                    "headers": ["Link", "Location"],
-                    "target_host": "http://TykHost:TykPort"
-                }
-            }
+  "response_processors": [
+    {
+      "name": "header_transform",
+      "options": {
+        "rev_proxy_header_cleanup": {
+          "headers": ["Link", "Location"],
+          "target_host": "http://TykHost:TykPort"
         }
-    ]
+      }
+    }
+  ]
 }
 ```
 
@@ -184,7 +186,7 @@ Select the headers to delete and insert using the provided fields. You need to c
 
 ##### Step 4: Save the API
 
-Use the *save* or *create* buttons to save the changes and activate the middleware.
+Use the _save_ or _create_ buttons to save the changes and activate the middleware.
 
 ## Configuring the Response Header Transform in Tyk Operator {#tyk-operator}
 
@@ -192,7 +194,7 @@ The process for configuring a response header transform in Tyk Operator is simil
 
 ### API-level transform {#tyk-operator-api}
 
-The process of configuring transformation of response headers for a specific API in Tyk Operator is similar to that defined in section [API-level transform](#tyk-classic-api) for the Tyk Classic API definition. 
+The process of configuring transformation of response headers for a specific API in Tyk Operator is similar to that defined in section [API-level transform](#tyk-classic-api) for the Tyk Classic API definition.
 
 To **append** headers to all responses from your API (i.e. for all endpoints) you must add a new `global_response_headers` object to the `versions` section of your API definition. This contains a list of key:value pairs, being the names and values of the headers to be added to responses.
 
@@ -244,7 +246,6 @@ This configuration will add three new headers to each response:
 It will also delete one header (if present) from each response:
 
 - `X-Secret`
-
 
 ### Endpoint-level transform {#tyk-operator-endpoint}
 
@@ -318,7 +319,7 @@ spec:
 
 If using Tyk Gateway < v5.3.0 then a `response_processor` object must be added to the API definition containing a `header_injector` item, as highlighted below:
 
-```yaml  {linenos=true, linenostart=1, hl_lines=["17", "19", "57-63"]}
+```yaml {linenos=true, linenostart=1, hl_lines=["17", "19", "57-63"]}
 apiVersion: tyk.tyk.io/v1alpha1
 kind: ApiDefinition
 metadata:

@@ -87,7 +87,7 @@ In this example the basic trigger has been configured to match the path for a re
 
 If you send a request to `GET http://localhost:8181/example-url-rewrite/json/hello`
 
-```bash  {hl_lines=["1"],linenos=true, linenostart=1}
+```bash {hl_lines=["1"],linenos=true, linenostart=1}
 GET /example-url-rewrite/json/hello HTTP/1.1
 User-Agent: PostmanRuntime/7.36.3
 Accept: */*
@@ -102,7 +102,7 @@ The URL rewrite middleware will match the pattern:
 
 It will then rewrite the target URL to `/anything?value1=json&value2=hello` and `httpbin.org` will respond with:
 
-```bash  {hl_lines=["13-16", "31"],linenos=true, linenostart=1}
+```bash {hl_lines=["13-16", "31"],linenos=true, linenostart=1}
 HTTP/1.1 200 OK
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
@@ -113,7 +113,7 @@ Server: gunicorn/19.9.0
 X-Ratelimit-Limit: 0
 X-Ratelimit-Remaining: 0
 X-Ratelimit-Reset: 0
- 
+
 {
 "args": {
 "value1": "json",
@@ -136,6 +136,7 @@ X-Ratelimit-Reset: 0
 "url": "http://httpbin.org/anything?value1=json&value2=hello"
 }
 ```
+
 The configuration above is a complete and valid Tyk OAS API Definition that you can import into Tyk to try out the URL rewrite middleware.
 
 ### Using advanced triggers
@@ -143,21 +144,24 @@ The configuration above is a complete and valid Tyk OAS API Definition that you 
 You can add **advanced triggers** to your URL rewriter configuration by adding the `triggers` element within the `urlRewrite` middleware configuration for the operation.
 
 The `triggers` element is an array, with one entry per advanced trigger. For each of those triggers you configure:
+
 - `condition` to set the logical condition to be applied to the rules (`any` or `all`)
 - `rules` a list of rules for the trigger
 - `rewriteTo` the address to which the (target) URL should be rewritten if the trigger fires
 
 The rules are defined using this format:
+
 ```yaml
 {
-    "in": key_location,
-    "name": key_name,
-    "pattern": pattern,
-    "negate": true/false //set to true to trigger if pattern does not match
+  "in": key_location,
+  "name": key_name,
+  "pattern": pattern,
+  "negate": true/false //set to true to trigger if pattern does not match,
 }
 ```
 
 Key locations are encoded as follows:
+
 - `header` - request header parameter
 - `query` - query parameter
 - `path` - path parameter (i.e. components of the path itself)
@@ -169,98 +173,102 @@ For example:
 
 ```json {hl_lines=["31-67"],linenos=true, linenostart=1}
 {
-    "info": {
-        "title": "example-url-rewrite2",
-        "version": "1.0.0"
-    },
-    "openapi": "3.0.3",
-    "paths": {
-        "/json": {
-            "get": {
-                "operationId": "jsonget",
-                "responses": {
-                    "200": {
-                        "description": ""
-                    }
-                }
-            }
+  "info": {
+    "title": "example-url-rewrite2",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/json": {
+      "get": {
+        "operationId": "jsonget",
+        "responses": {
+          "200": {
+            "description": ""
+          }
         }
-    },
-    "components": {},   
-    "x-tyk-api-gateway": {
-        "info": {
-            "name": "example-url-rewrite2",
-            "state": {
-                "active": true,
-                "internal": false
-            }
-        },
-        "middleware": {
-            "operations": {
-                "jsonget": {
-                    "urlRewrite": {
-                        "enabled": true,
-                        "pattern": "/(\\w+)/(\\w+)",
-                        "rewriteTo": "anything?value1=$1&value2=$2",
-                        "triggers": [
-                            {
-                                "condition": "all",
-                                "rewriteTo": "anything?value1=$1&query=$tyk_context.trigger-0-numBytes-0",
-                                "rules": [
-                                    {
-                                        "in": "query",
-                                        "pattern": "[0-9]+",
-                                        "negate": false,
-                                        "name": "numBytes"
-                                    },
-                                    {
-                                        "in": "header",
-                                        "pattern": "true",
-                                        "negate": true,
-                                        "name": "x-bytes"
-                                    }
-                                ]
-                            },
-                            {
-                                "condition": "any",
-                                "rewriteTo": "bytes/$tyk_context.trigger-1-numBytes-0",
-                                "rules": [
-                                    {
-                                        "in": "query",
-                                        "pattern": "[0-9]+",
-                                        "negate": false,
-                                        "name": "numBytes"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            }
-        },
-        "server": {
-            "listenPath": {
-                "strip": true,
-                "value": "/example-url-rewrite2/"
-            }
-        },
-        "upstream": {
-            "url": "http://httpbin.org/"
-        } 
+      }
     }
+  },
+  "components": {},
+  "x-tyk-api-gateway": {
+    "info": {
+      "name": "example-url-rewrite2",
+      "state": {
+        "active": true,
+        "internal": false
+      }
+    },
+    "middleware": {
+      "operations": {
+        "jsonget": {
+          "urlRewrite": {
+            "enabled": true,
+            "pattern": "/(\\w+)/(\\w+)",
+            "rewriteTo": "anything?value1=$1&value2=$2",
+            "triggers": [
+              {
+                "condition": "all",
+                "rewriteTo": "anything?value1=$1&query=$tyk_context.trigger-0-numBytes-0",
+                "rules": [
+                  {
+                    "in": "query",
+                    "pattern": "[0-9]+",
+                    "negate": false,
+                    "name": "numBytes"
+                  },
+                  {
+                    "in": "header",
+                    "pattern": "true",
+                    "negate": true,
+                    "name": "x-bytes"
+                  }
+                ]
+              },
+              {
+                "condition": "any",
+                "rewriteTo": "bytes/$tyk_context.trigger-1-numBytes-0",
+                "rules": [
+                  {
+                    "in": "query",
+                    "pattern": "[0-9]+",
+                    "negate": false,
+                    "name": "numBytes"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "server": {
+      "listenPath": {
+        "strip": true,
+        "value": "/example-url-rewrite2/"
+      }
+    },
+    "upstream": {
+      "url": "http://httpbin.org/"
+    }
+  }
 }
 ```
+
 In this example, the basic trigger is configured as before, but two advanced triggers have been added.
 
 The first advanced trigger will fire if the request has this configuration:
+
 - query parameter `numBytes` is provided with a numeric value, AND
-- header parameter `x-bytes` is *not* set to `true` (note that `negate` is set to `true` in this rule)
+- header parameter `x-bytes` is _not_ set to `true` (note that `negate` is set to `true` in this rule)
 
 Such a request will be redirected to `/anything` passing two query parameters
+
 - `value1` with the first string matched in the basic trigger (i.e. `json`)
 - `query` with the value provided in the `numBytes` query parameter
 
 The second advanced trigger will fire if the first doesn't and if this condition is met:
+
 - query parameter `numBytes` is provided with a numeric value
 
 Such a request will be redirected to `/bytes/{numBytes}`, which will return `numBytes` random bytes from `httpbin.org`.
@@ -285,7 +293,7 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 #### Step 2: Select the URL Rewrite middleware
 
-Select **ADD MIDDLEWARE** and choose the **URL Rewrite** middleware from the *Add Middleware* screen.
+Select **ADD MIDDLEWARE** and choose the **URL Rewrite** middleware from the _Add Middleware_ screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-add-url-rewrite.png" alt="Adding the URL Rewrite middleware" >}}
 

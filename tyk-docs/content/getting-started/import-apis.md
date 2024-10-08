@@ -1,7 +1,17 @@
 ---
 date: 2017-03-27T15:52:45+01:00
 title: Import an API
-tags: ["Tyk Tutorials", "Getting Started", "Importing APIs", "Tyk Cloud", "Tyk Self-Managed", "Tyk Open Source", "Swagger", "OpenAPI Specification"]
+tags:
+  [
+    "Tyk Tutorials",
+    "Getting Started",
+    "Importing APIs",
+    "Tyk Cloud",
+    "Tyk Self-Managed",
+    "Tyk Open Source",
+    "Swagger",
+    "OpenAPI Specification",
+  ]
 description: "Importing your existing APIs into Tyk"
 menu:
   main:
@@ -19,15 +29,15 @@ Our support for API Blueprint is being deprecated. We have been packaging [aglio
 
 As a work around, you can do the following:
 
-* Create API Blueprint in JSON format using the Apiary [Drafter](https://github.com/apiaryio/drafter) tool
-* Convert API Blueprint to OpenAPI (Swagger) using the Apiary [API Elements CLI](https://github.com/apiaryio/api-elements.js/tree/master/packages/cli) tool.
+- Create API Blueprint in JSON format using the Apiary [Drafter](https://github.com/apiaryio/drafter) tool
+- Convert API Blueprint to OpenAPI (Swagger) using the Apiary [API Elements CLI](https://github.com/apiaryio/api-elements.js/tree/master/packages/cli) tool.
 
 ## Import APIs via the Gateway
 
 ### Using API Blueprint
 
 {{< note success >}}
-**Note**  
+**Note**
 
 See [note](#api-blueprint-is-being-deprecated) above regarding deprecation of support for API Blueprint.
 {{< /note >}}
@@ -73,12 +83,12 @@ Create a new definition from Swagger:
 ```{.copyWrapper}
 ./tyk --import-swagger=petstore.json --create-api --org-id=<id> --upstream-target="http://widgets.com/api/"
 ```
+
 {{< note success >}}
-**Note**  
+**Note**
 
 When creating a new definition from an OAS 3.0 spec, you will have to manually add the listen path after the API is created.
 {{< /note >}}
-
 
 #### Importing a Swagger document as a version into an existing API
 
@@ -149,10 +159,10 @@ For WSDL:
 
 You need to enter the following information:
 
-* Your **Upstream Target**
-* A **Version Name** (optional)
-* An optional **Service Name** and **Port** (WSDL only)
-* Copy code into the editor
+- Your **Upstream Target**
+- A **Version Name** (optional)
+- An optional **Service Name** and **Port** (WSDL only)
+- Copy code into the editor
 
 #### Step 4: Click "Generate API"
 

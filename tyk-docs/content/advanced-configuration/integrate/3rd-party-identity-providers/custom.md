@@ -4,7 +4,7 @@ title: Custom
 menu:
   main:
     parent: "3rd Party Identity Providers"
-weight: 0 
+weight: 0
 ---
 
 ## <a name="integration"></a>Integration Tutorials: Custom Proxy Identity Provider
@@ -49,5 +49,3 @@ The configuration below will proxy a request to `http://{TARGET-HOSTNAME}:{PORT}
   "Type": "redirect"
 }
 ```
-
-

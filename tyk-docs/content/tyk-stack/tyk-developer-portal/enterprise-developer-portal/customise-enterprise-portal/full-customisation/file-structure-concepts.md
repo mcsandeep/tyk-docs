@@ -25,7 +25,6 @@ The following page explains how they are structured and their main concepts. We 
 
 ## Theming
 
-
 Generally speaking, a theme defines an application’s styling, templates and scripts.
 In the Tyk Developer Portal a “themes” folder is located in the root of the application and is the directory where each theme folder must be added. If you navigate to `path /themes/` you’ll see our default theme which has the following structure:
 
@@ -49,25 +48,25 @@ You can find an example of the manifest within the “default” theme that is l
   "version": "0.0.1",
   "author": "Tyk Technologies Ltd. <hello@tyk.io>",
   "templates": [
-      {
-        "name": "Content Page",
-        "template": "page",
-        "layout": "site_layout"
-      },
-      {
-        "name": "Portal Home",
-        "template": "portal_home",
-        "layout": "portal_layout"
-      },
-      {
-        "name": "Home",
-        "template": "home",
-        "layout": "portal_layout"
-      },
-      {
-        "name": "Catalogue",
-        "template": "catalogue",
-        "layout": "portal_layout"
+    {
+      "name": "Content Page",
+      "template": "page",
+      "layout": "site_layout"
+    },
+    {
+      "name": "Portal Home",
+      "template": "portal_home",
+      "layout": "portal_layout"
+    },
+    {
+      "name": "Home",
+      "template": "home",
+      "layout": "portal_layout"
+    },
+    {
+      "name": "Catalogue",
+      "template": "catalogue",
+      "layout": "portal_layout"
     }
   ]
 }
@@ -77,7 +76,6 @@ The `templates` field establishes a list of available templates. Every template 
 
 To illustrate the current template hierarchy, this is what a typically rendered page would look like. The `layout` would be the top level template and base structure of the page:
 {{< img src="/img/dashboard/portal-management/enterprise-portal/portal-template-layout.png" alt="Template structure" >}}
-
 
 Also note that the Developer Portal will let you use not just multiple `layouts` and `views` but also any combination of them. These combinations are set in your manifest file (`theme.json`).
 
@@ -123,8 +121,8 @@ There are four code references in the above snippet. In this example we have a h
 
 1. `{{ .page.Title }}`. This is the `Title` input in the form UI (Screenshot #1)
 1. `{{ .blocks.HeaderDescription.Content }}`. This is the `HeaderDescription` input in the form UI (Screenshot #2)
-2. `{{ .blocks.HeaderButtonLink.Content }}`. This is the `HeaderDescription` input in the form UI (Screenshot #3)
-3. `{{ .blocks.HeaderButtonLabel.Content }}`. This is the `HeaderButtonLabel` input in the form UI (Screenshot #4)
+1. `{{ .blocks.HeaderButtonLink.Content }}`. This is the `HeaderDescription` input in the form UI (Screenshot #3)
+1. `{{ .blocks.HeaderButtonLabel.Content }}`. This is the `HeaderButtonLabel` input in the form UI (Screenshot #4)
 
 {{< img src="/img/dashboard/portal-management/enterprise-portal/go-template-ui.png" alt="Go template blocks and portal UI" >}}
 
@@ -135,10 +133,12 @@ This will display in your portal as following:
 In order for a page to render properly the content manager will need to be aware of the content blocks that are required by a particular template.
 
 ## Theme management workflow
+
 The Tyk Enterprise Developer Portal enables the admin users and developers to manage theme such as create, delete, modify, and select which theme is visible in the portal.
 To enable this capability, the portal has theme management UI.
 
 ### Part 1: Create a new theme
+
 Follow the example below to create a new theme called "TestTheme" using the default theme as a blueprint:
 
 1. As an admin user, navigate to the Theme management UI and download the default theme. The Tyk Enterprise Developer Portal doesn't allow modifications to the default theme so that you will always have access to the vanilla theme.
@@ -156,8 +156,10 @@ Follow the example below to create a new theme called "TestTheme" using the defa
 7. Now you should see a success message meaning the theme was successfully created.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/new-theme-is-created.png" alt="Theme is created" >}}
 
-###  Part 2: Preview a theme
+### Part 2: Preview a theme
+
 The Tyk Enterprise Developer Portal enables the admin users to preview the theme before it gets reflected on the public-facing portal. This enables to review the changes that are made to the theme before exposing them to the developer community.
+
 1. To preview a theme as an admin user, navigate to the **Themes** menu. Select a theme, and click on the **Preview** button.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/preview-theme-button.png" alt="Preview theme" >}}
 2. The previewer will open the selected theme in a new tab. Now you can browse your theme and review the changes. For the demonstration purposes, we've modified the API Catalog page so it displays "Modified catalog" instead of "Product Catalogs".
@@ -165,8 +167,10 @@ The Tyk Enterprise Developer Portal enables the admin users to preview the theme
 3. Once the review is done, you can quit the preview by clicking on the **Quit preview button**.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/quit-theme-preview.png" alt="Quite theme preview" >}}
 
-###  Part 3: Activate a theme
+### Part 3: Activate a theme
+
 The Tyk Enterprise Developer Portal enables you to have multiple themes at the same time but only one of them is active.
+
 1. As an admin user, navigate to the **Themes** menu. The current status of each theme is displayed in the **Status** column.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/default-theme-is-current.png" alt="Default theme is the current theme" >}}
 2. To activate the new theme, click on the **Activate** button.
@@ -175,7 +179,9 @@ The Tyk Enterprise Developer Portal enables you to have multiple themes at the s
    {{< img src="/img/dashboard/portal-management/enterprise-portal/modified-theme-is-active.png" alt="Modified theme is activated" >}}
 
 ### Part 4: Modify an existing theme (not default)
+
 The Tyk Enterprise Developer Portal enables modification to any existing theme, except the default one.
+
 1. To start modification of any existing theme, navigate to the **Themes** menu and download the theme package.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/download-a-theme.png" alt="Download existing theme" >}}
 2. Unzip the package, do any required modification and zip it back. You should keep the name of the theme. If you need to change the name of the theme, you will need to create a new theme as described above.
@@ -186,4 +192,3 @@ The Tyk Enterprise Developer Portal enables modification to any existing theme, 
 5. Click on the **Save changes** button to save changes to the theme.
    {{< img src="/img/dashboard/portal-management/enterprise-portal/save-changes-to-theme.png" alt="Save changes" >}}
 6. If the theme is the current changes to the Live portal, it will be applied immediately. Otherwise, you can preview and activate the theme as described above.
-

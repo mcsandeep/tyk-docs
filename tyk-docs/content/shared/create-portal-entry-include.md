@@ -7,26 +7,23 @@ You can use the Tyk Dashboard to create a portal that allows developers to acces
 
 {{< youtube cywF9Dvg6lI >}}
 
-
 ### Prerequisites for a portal catalog entry:
 
 - An API configured and live on your Tyk Gateway
 - The API must be **Closed** (i.e. it must use either Auth Token or Basic Auth security mechanisms)
 - A security policy configured to grant access to the API
 
-
 {{< note success >}}
-**Note**  
+**Note**
 
 If you intend to use the developer portal, you need to configure it with a different hostname to your dashboard. The developer portal cannot be accessed via an IP address.
 {{< /note >}}
 
 {{< warning success >}}
-**Warning**  
+**Warning**
 
 Without these prerequisites, you may get a 404 error when trying to access the portal.
 {{< /warning >}}
-
 
 ### Step 1: Select "Catalog" from the "Portal Management" section
 
@@ -65,7 +62,6 @@ All catalog entries can have a description. You can use Markdown formatting in t
 
 You can also add an email address if you require notification that an API subscription has been submitted or granted. We'll leave that blank for this tutorial. The same goes for Custom Fields. See [Custom Portal]({{< ref "tyk-developer-portal/tyk-portal-classic/customise/custom-developer-portal#updating-a-developer-example-adding-custom-fields" >}}) for an example of a Custom Field implementation.
 
-
 ### Step 6: Attach Documentation
 
 You can add import documentation in the following formats:
@@ -75,7 +71,7 @@ You can add import documentation in the following formats:
 - From API Blueprint
 
 {{< note success >}}
-**Note**  
+**Note**
 
 Support for API Blueprint is being deprecated. See [Importing APIs]({{< ref "getting-started/import-apis#api-blueprint-is-being-deprecated" >}}) for more details.
 {{< /note >}}
@@ -86,8 +82,8 @@ You can add your documentation before or after saving your API.
 
 We are not going to do anything with these options for this tutorial. For more information:
 
-* See [OAuth Clients]({{< ref "tyk-developer-portal/tyk-portal-classic/portal-oauth-clients" >}}) for details of using OAuth with your catalog entry.
-* See [Portal Customization]({{< ref "tyk-developer-portal/customise" >}})for details about redirection of key requests and developer signup customization.
+- See [OAuth Clients]({{< ref "tyk-developer-portal/tyk-portal-classic/portal-oauth-clients" >}}) for details of using OAuth with your catalog entry.
+- See [Portal Customization]({{< ref "tyk-developer-portal/customise" >}})for details about redirection of key requests and developer signup customization.
 
 ### Step 6: Save the API
 

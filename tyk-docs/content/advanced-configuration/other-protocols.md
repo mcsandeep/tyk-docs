@@ -1,7 +1,7 @@
 ---
 date: 2017-03-24T12:51:34Z
 title: Other Protocols
-menu: 
+menu:
   main:
     parent: "Advanced Configuration"
 weight: 7

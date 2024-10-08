@@ -1,7 +1,7 @@
 ---
 title: Group By
 description: Explains an overview of group by processor
-tags: [ "Tyk Streams", "Stream Processors", "Processors", "Group_By" ]
+tags: ["Tyk Streams", "Stream Processors", "Processors", "Group_By"]
 ---
 
 Splits a [batch of messages]({{< ref "/product-stack/tyk-streaming/configuration/common-configuration/batching" >}}) into N batches, where each resulting batch contains a group of messages determined by a [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}).
@@ -22,8 +22,7 @@ The functionality of this processor depends on being applied across messages tha
 
 A [Bloblang query]({{< ref "/product-stack/tyk-streaming/guides/bloblang/overview" >}}) that should return a boolean value indicating whether a message belongs to a given group.
 
-
-Type: `string`  
+Type: `string`
 
 ```yml
 # Examples
@@ -39,9 +38,8 @@ check: "true"
 
 A list of processors to execute on the newly formed group.
 
-
 Type: `array`  
-Default: `[]`  
+Default: `[]`
 
 ## Examples
 
@@ -53,13 +51,13 @@ Imagine we have a batch of messages that we wish to split into a group of foos a
 pipeline:
   processors:
     - group_by:
-      - check: content().contains("this is a foo")
-        processors:
-          - archive:
-              format: tar
-          - compress:
-              algorithm: gzip
-          - mapping: 'meta grouping = "foo"'
+        - check: content().contains("this is a foo")
+          processors:
+            - archive:
+                format: tar
+            - compress:
+                algorithm: gzip
+            - mapping: 'meta grouping = "foo"'
 
 output:
   switch:
