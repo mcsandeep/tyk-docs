@@ -19,5 +19,7 @@ jobs:
       - name: Lint the docs with prettier
         run: |
           ls -a
+          # to uncomment this to fix all formatting issues later
+          # npx prettier . --write 
           npx prettier . --check
          
