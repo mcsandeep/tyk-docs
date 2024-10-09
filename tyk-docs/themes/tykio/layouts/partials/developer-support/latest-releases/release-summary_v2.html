@@ -13,24 +13,21 @@
                 {{ range $index, $component := $components }}
                     {{/* Determine license type */}}
                     {{- $license := "Licensed" -}}
-                    {{- $licensed := $component.licensed -}}
-                    {{- $releaseNotesPath := $component.releaseNotesPath -}}
+                    {{- $licensed := .licensed -}}
+                    {{- $releaseNotesPath := .releaseNotesPath -}}
                     {{- if not $licensed -}}
                         {{- $license = "Open Source" -}}
                     {{ end }}
-                    
+
                     {{/* Get latest and lts data */}}
                     {{- $lts := false -}}
-                    {{- $ltsData := "" -}}
-                    {{- $ltsTag := $component.lts -}}
-                    {{- $ltsDocker := $component.lts_docker -}}
-                    {{- if $ltsTag -}}
+                    {{- $ltsData := .ltsData -}}
+                    {{- if $ltsData -}}
                         {{- $lts = true -}}
                     {{ end }}
                     {{- $latest := false -}}
-                    {{- $latestDocker := $component.latest_docker -}}
-                    {{- $latestTag := $component.latest -}}
-                    {{- if $latestTag -}}
+                    {{- $latestData := .latestData -}}
+                    {{- if $latestData -}}
                         {{- $latest = true -}}
                     {{ end }}
                     <div class="col-md-4 mb-4">
@@ -55,11 +52,11 @@
                                         </p>
                                     </div>
                                     <div class="col-md-12"></hr></div>
-                                    {{- with $latestDocker -}}
+                                    {{- with $latestData.docker -}}
                                     <div class="col-md-6">
                                         {{- if $latest -}}
                                             <p class="release-title mb-0 mt-0">Docker</p>
-                                            <a href="{{ $latestDocker }}"
+                                            <a href="{{ $latestData.docker}}"
                                             target="_blank"
                                             rel="nopener noreferrer"
                                             class="release-link mb-0"
@@ -68,21 +65,21 @@
                                             </a>
                                         {{- end -}}
                                         {{- if $lts -}}
-                                            <a href="{{ $ltsDocker}}"
+                                            <a href="{{ $ltsData.docker }}"
                                             target="_blank"
                                             rel="nopener noreferrer"
                                             class="release-link mb-0"
                                             >
                                                 LTS {{ $component.lts}}
-                                            </a> 
-                                        {{- end -}} 
+                                            </a>
+                                        {{- end -}}
                                     </div>
-                                    {{ end }} 
+                                    {{ end }}
                                     {{- if not $licensed -}}
                                     <div class="col-md-6">
                                         <p class="release-title mb-0 mt-0">GitHub</p>
                                         {{- if $latest -}}
-                                            <a href="{{- $latestTag -}}"
+                                            <a href="{{- $latestData.tag -}}"
                                             target="_blank"
                                             rel="nopener noreferrer"
                                             class="release-link mb-0"
@@ -91,7 +88,7 @@
                                             </a>
                                         {{- end -}}
                                         {{- if $lts -}}
-                                            <a href="{{- $ltsTag -}}"
+                                            <a href="{{- $ltsData.tag -}}"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             class="release-link mb-0"
@@ -103,7 +100,7 @@
                                     {{- end -}}
                                 </div>
                             </div>
-                    
+
                             <!-- Footer -->
                             <div class="card-footer bg-transparent border-0 p-0 d-flex">
                                 <a

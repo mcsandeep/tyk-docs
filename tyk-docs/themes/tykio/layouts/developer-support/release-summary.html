@@ -20,6 +20,7 @@
 
 {{- $dashboard := .Site.Data.releases.dashboard -}}
 {{- $licensed_v2 := .Site.Data.releases.release.licensed -}}
+{{- $open_source_v2 := .Site.Data.releases.release.opensource -}}
 {{- $gateway := .Site.Data.releases.gateway -}}
 {{- $helm := "" -}}
 {{- $helmChart := .Site.Data.releases.helm -}} 
@@ -68,7 +69,8 @@
   <div class="container-xl p-0">
     {{ partial "developer-support/latest-releases/release-summary.html" (dict "section" "Licensed" "components" $licensed)  }}
     {{ partial "developer-support/latest-releases/release-summary.html" (dict "section" "Open Source" "components" $openSource)  }}
-    {{ partial "developer-support/latest-releases/release-summary_v2.html" (dict "section" "Open Source" "components" $licensed_v2)  }}
+    {{ partial "developer-support/latest-releases/release-summary_v2.html" (dict "section" "Licensed" "components" $licensed_v2)  }}
+    {{ partial "developer-support/latest-releases/release-summary_v2.html" (dict "section" "Open Source" "components" $open_source_v2)  }}
   <div style="margin-bottom: 80px;"></div>
   </div>
 </section>
