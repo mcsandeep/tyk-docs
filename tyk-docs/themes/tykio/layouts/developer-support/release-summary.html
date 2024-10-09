@@ -18,59 +18,13 @@
   </div>
 </div>
 
-{{- $dashboard := .Site.Data.releases.dashboard -}}
-{{- $licensed_v2 := .Site.Data.releases.release.licensed -}}
-{{- $open_source_v2 := .Site.Data.releases.release.opensource -}}
-{{- $gateway := .Site.Data.releases.gateway -}}
-{{- $helm := "" -}}
-{{- $helmChart := .Site.Data.releases.helm -}} 
-{{- $mdcb := .Site.Data.releases.mdcb -}}
-{{- $operator := .Site.Data.releases.operator -}} 
-{{- $portal := .Site.Data.releases.portal -}} 
-{{- $pump := .Site.Data.releases.pump -}}
-{{- $sync := .Site.Data.releases.sync -}}
-{{- $tib := .Site.Data.releases.tib -}}
-
-{{- $components := slice -}}
-{{- $openSource:= slice -}}
-{{- $licensed := slice -}}
-
-{{- with $dashboard -}}
-  {{- $licensed = $licensed | append (dict "name" " Tyk Dashboard" "data" $dashboard) -}}
-{{ end }}
-{{- with $gateway -}}
-  {{- $openSource = $openSource| append (dict "name" "Tyk Gateway" "data" $gateway) -}}
-{{ end }}
-{{- with $operator -}}
-  {{- $openSource = $openSource | append (dict "name" "Tyk Operator" "data" $operator) -}}
-{{ end }}
-{{- with $pump -}}
-  {{- $openSource = $openSource| append (dict "name" "Tyk Pump" "data" $pump) -}}
-{{ end }}
-{{- with $sync -}}
-  {{- $openSource = $openSource| append (dict "name" "Tyk Sync" "data" $sync) -}}
-{{ end }}
-{{- with $tib -}}
-  {{- $openSource = $openSource| append (dict "name" "Tyk Identity Broker" "data" $tib) -}}
-{{ end }}
-{{- with $helmChart -}}
-  {{- $openSource = $openSource | append (dict "name" "Tyk Helm Charts" "data" $helmChart) -}}
-  {{- $helm = (dict "name" "Helm" "data" $helmChart) -}}
-{{ end }}
-{{- with $mdcb -}}
-  {{- $licensed = $licensed | append (dict "name" "Tyk MDCB" "data" $mdcb) -}}
-{{ end }}
-{{- with $portal -}}
-  {{- $licensed = $licensed | append (dict "name" "Tyk Enterprise Developer Portal" "data" $portal) -}}
-{{ end }}
-
+{{- $licensed := .Site.Data.releases.release.licensed -}}
+{{- $openSource := .Site.Data.releases.release.opensource -}}
 
 <section class="home-section">
   <div class="container-xl p-0">
     {{ partial "developer-support/latest-releases/release-summary.html" (dict "section" "Licensed" "components" $licensed)  }}
     {{ partial "developer-support/latest-releases/release-summary.html" (dict "section" "Open Source" "components" $openSource)  }}
-    {{ partial "developer-support/latest-releases/release-summary_v2.html" (dict "section" "Licensed" "components" $licensed_v2)  }}
-    {{ partial "developer-support/latest-releases/release-summary_v2.html" (dict "section" "Open Source" "components" $open_source_v2)  }}
   <div style="margin-bottom: 80px;"></div>
   </div>
 </section>
