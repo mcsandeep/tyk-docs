@@ -1,5 +1,15 @@
+
+
+
+{{- $page := .page -}}
+{{- $pattern := `\/docs\/\d+\.\d+` -}}
+{{- $pagePath := replaceRE $pattern "" .page.RelPermalink -}}
+{{- $pagePath := replace $pagePath "/docs" "" -}}
+{{- $pagePath := replace $pagePath "/nightly" "" -}}
+{{- $pagePath := replace $pagePath "/" "" -}}
+
 <ul>
-    {{- range . -}}
+    {{- range .menu -}}
       <!-- Check if the "show" field exists and is true, or is undefined (default to true) -->
       {{- $showPage := true -}}
       {{- if isset . "show" -}}
@@ -10,7 +20,14 @@
         {{- $is := false -}}
         {{- $has := false -}}
 
+        {{- $path := replace .path "/" "" -}}
+        {{- if eq $path $pagePath -}}
+          {{- $has = true -}}
+          {{- $is = true -}}
+        {{- end -}}
+
         {{- if (isset . "menu") -}}
+
           <li class="category-{{.category}} {{if $is}} active {{end}} {{if or $is $has (eq .category `Label`)}} st-open {{else}} st-collapsed {{end}}">
             {{- if .path -}}
               {{- $prefixPath := strings.TrimLeft "/" .path -}}
@@ -21,7 +38,7 @@
               <a class="{{if not .show}} paint-red {{end}}">{{- .title -}}</a>
             {{- end -}}
 
-            {{ partial "menu_recursive_2.html" .menu }}
+            {{ partial "menu_recursive_2.html" (dict "menu" .menu "page" $page) }}
 
           </li>
 
