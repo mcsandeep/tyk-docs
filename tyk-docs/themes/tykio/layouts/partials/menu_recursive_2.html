@@ -20,12 +20,6 @@
         {{- $is := false -}}
         {{- $has := false -}}
 
-        {{- $path := replace .path "/" "" -}}
-        {{- if eq $path $pagePath -}}
-          {{- $has = true -}}
-          {{- $is = true -}}
-        {{- end -}}
-
         {{- if (isset . "menu") -}}
 
           <li class="category-{{.category}} {{if $is}} active {{end}} {{if or $is $has (eq .category `Label`)}} st-open {{else}} st-collapsed {{end}}">
