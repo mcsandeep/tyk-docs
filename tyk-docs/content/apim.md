@@ -8,11 +8,11 @@ aliases:
   - /getting-started/deployment-options/
 ---
 
-Tyk API Platform offers various deployment options, consisting of both [open source and proprietary]({{< ref "tyk-stack" >}})
-components.
+Tyk API Platform offers various deployment options, consisting of both [open source and
+proprietary]({{< ref "tyk-stack" >}}) components.
 
-Choosing the right one for your organization depends on your specific requirements and preferences.
-</br>Don’t hesitate to contact us for assistance {{< button_left href="https://tyk.io/contact/" color="green" content="Contact us" >}}
+Choosing the right one for your organization depends on your specific requirements and preferences. </br>Don’t hesitate
+to contact us for assistance {{< button_left href="https://tyk.io/contact/" color="green" content="Contact us" >}}
 
 |                                                                                                                                                                                                                                   | [Open Source]({{< ref "apim/open-source" >}}) | [Self-Managed]({{< ref "tyk-on-premises" >}}) | [Cloud](https://account.cloud-ara.tyk.io/signup) |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------- | ------------------------------------------------ |
@@ -39,12 +39,12 @@ Choosing the right one for your organization depends on your specific requiremen
 
 ### Cloud (Software as a Service / SaaS)
 
-With Tyk Cloud, all of the above closed-source components are available. Get your free account [here](https://account.cloud-ara.tyk.io/signup).
+With Tyk Cloud, all of the above closed-source components are available. Get your free account
+[here](https://account.cloud-ara.tyk.io/signup).
 
 ### Open Source (OSS)
 
-The Tyk Gateway is the backbone of all our solutions and can be deployed for free, forever.
-Visit the [OSS section]({{< ref "apim/open-source" >}}) for more information on it and other open source components.
+The Tyk Gateway is the backbone of all our solutions and can be deployed for free, forever. Visit the [OSS
+section]({{< ref "apim/open-source" >}}) for more information on it and other open source components.
 
-Explore the various open and closed source [Tyk components]({{< ref "tyk-stack" >}}) that are part of the Tyk platform
-solutions.
+Explore the various open and closed source [Tyk components]({{< ref "tyk-stack" >}}) that are part of the Tyk platform solutions.
