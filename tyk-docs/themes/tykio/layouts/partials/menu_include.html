@@ -23,8 +23,10 @@
     <!-- Only add <hr> if it's not the first item -->
     {{- if gt $index 0 -}}
       <hr>
+      <h6 style="font-size: 15px;" >{{ .title }}</h6>
+    {{- else -}}
+      <a href="/docs/nightly" style="font-size: 15px;" >{{ .title }}</a>
     {{- end -}}
-    <h6 style="font-size: 15px;" >{{ .title }}</h6>
     <!-- Increment the index for each Tab -->
     {{- $index = add $index 1 -}}
   {{- end -}}
@@ -33,6 +35,6 @@
   {{- $menu = $rootMenu -}}
 
   <!-- Recursively render the menu structure -->
-  {{ partial "menu_recursive_2.html" $menu }}
+  {{ partial "menu_recursive_2.html" (dict "menu" $menu "page" $s) }}
 
 {{- end -}}
