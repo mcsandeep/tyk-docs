@@ -67,7 +67,7 @@
     {{- end -}}
   {{- end -}}
 
-  {{- if (isset . "menu") -}}
+  {{- if and (isset . "menu") (ne .category "Label") -}}
       {{if or (.show) ($showEmptyPages) -}}
     <li class="category-{{.category}} {{if $is}} active {{end}} {{if or $is $has (eq .category `Label`)}} st-open {{else}} st-collapsed {{end}}">
       {{- if .path -}}
@@ -104,5 +104,10 @@
     </li>
       {{- end -}}
   {{- end -}}
+
+  {{- if (eq .category "Label") -}}
+    {{- partial "menu_recursive.html" (dict "menu" .menu "page" $page "site" $site) -}}
+  {{- end -}}
+
 {{- end -}}
 </ul>

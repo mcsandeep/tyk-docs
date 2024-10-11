@@ -73,4 +73,4 @@
   {{- end -}}
 {{- end -}}
 
-{{- partial "menu_recursive.html" (dict "menu" $menu "page" . "site" .Site) -}}
+{{- partial "menu_recursive.html" (dict "menu" .Site.Data.menu.menu "page" . "site" .Site) -}}
