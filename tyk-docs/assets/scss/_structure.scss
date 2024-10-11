@@ -42,7 +42,7 @@ body {
 
   .hasSidebar & {
     width: 90%;
-    padding-left: 100px;
+    padding-left: 30px;
     border-left: 1px solid $brandpurple-light;
 
     @include breakpoint(large) {
@@ -83,8 +83,9 @@ body {
     }
 
     .hasSidebar &__container {
-      padding-right: 4rem;
+      padding-right: 100px;
       padding-top: 60px;
+      padding-left: 100px;
     }
   }
 }
