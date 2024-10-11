@@ -1,21 +1,76 @@
 {{- $s := . -}}
 
-<!-- Initialize an empty menu variable -->
+{{- $pattern := `\/docs\/\d+\.\d+` -}}
+{{- $pagePath := replaceRE $pattern "" $s.Page.RelPermalink -}}
+{{- $pagePath := replace $pagePath "/docs" "" -}}
+{{- $pagePath := replace $pagePath "/nightly" "" -}}
+{{- $pagePath := replace $pagePath "/" "" -}}
+{{/*  {{- $pagePath := trim $pagePath "/" -}}  */}}
+
 {{- $menu := slice -}}
-
-<!-- Initialize an index counter, this is used for removing the 1st <hr> element while rendering labels -->
-{{- $index := 0 -}}
-
-<!-- Initial padding for the first label  -->
-<div style="padding: 8px;"></div>
-
-<!-- Loop through the top-level menu items -->
 {{- range .Site.Data.menu.menu -}}
-
   {{- $rootMenu := .menu -}}
 
-  {{- if not .show -}}
-    {{ continue }}
+  {{- $path := replace .path "/" "" -}}
+  {{- if eq $path $pagePath -}}
+    {{- $menu = $rootMenu -}}
   {{- end -}}
+  {{- if (isset . "menu") -}}
+    {{- range .menu -}}
+      {{- $path := replace .path "/" "" -}}
+      {{- if eq $path $pagePath -}}
+        {{- $menu = $rootMenu -}}
+      {{- end -}}
+      {{- if (isset . "menu") -}}
+        {{- range .menu -}}
+          {{- $path := replace .path "/" "" -}}
+          {{- if eq $path $pagePath -}}
+            {{- $menu = $rootMenu -}}
+          {{- end -}}
+          {{- if (isset . "menu") -}}
+            {{- range .menu -}}
+              {{- $path := replace .path "/" "" -}}
+              {{- if eq $path $pagePath -}}
+                {{- $menu = $rootMenu -}}
+              {{- end -}}
+                {{- if (isset . "menu") -}}
+                  {{- range .menu -}}
+                    {{- $path := replace .path "/" "" -}}
+                    {{- if eq $path $pagePath -}}
+                      {{- $menu = $rootMenu -}}
+                    {{- end -}}
+                       {{- if (isset . "menu") -}}
+                          {{- range .menu -}}
+                            {{- $path := replace .path "/" "" -}}
+                              {{- if eq $path $pagePath -}}
+                                {{- $menu = $rootMenu -}}
+                              {{- end -}}
+                                {{- if (isset . "menu") -}}
+                                    {{- range .menu -}}
+                                        {{- $path := replace .path "/" "" -}}
+                                         {{- if eq $path $pagePath -}}
+                                            {{- $menu = $rootMenu -}}
+                                         {{- end -}}
+                                            {{- if (isset . "menu") -}}
+                                              {{- range .menu -}}
+                                                  {{- $path := replace .path "/" "" -}}
+                                                  {{- if eq $path $pagePath -}}
+                                                    {{- $menu = $rootMenu -}}
+                                                  {{- end -}}
+                                              {{- end -}}
+                                            {{- end -}}
+                                     {{- end -}}
+                                {{- end -}}
+                          {{- end -}}
+                       {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 {{- partial "menu_recursive.html" (dict "menu" .Site.Data.menu.menu "page" . "site" .Site) -}}

@@ -5,11 +5,6 @@ menu:
     path: /
     category: Label
     show: True
-    menu:
-    - title: "Tyk API Gateway Documentation"
-      path: /
-      category: Page
-      show: False
   - title: "Deployment and Operations"
     path: /apim
     category: Label
