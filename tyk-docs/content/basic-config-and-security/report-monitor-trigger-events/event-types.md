@@ -11,8 +11,12 @@ The built-in events that Tyk Gateway will generate are:
 
 - `RatelimitExceeded`: the rate limit has been exceeded for a specific key
 - `OrgRateLimitExceeded`: the rate limit has been exceeded for a specific organisation
-- `RateLimitSmoothingUp`: the [intermediate rate limit allowance]({{< ref "getting-started/key-concepts/rate-limiting#rate-limit-smoothing" >}}) has been increased for a specific key
-- `RateLimitSmoothingDown`: the [intermediate rate limit allowance]({{< ref "getting-started/key-concepts/rate-limiting#rate-limit-smoothing" >}}) has been decreased for a specific key
+- `RateLimitSmoothingUp`: the [intermediate rate limit
+  allowance]({{< ref "getting-started/key-concepts/rate-limiting#rate-limit-smoothing" >}}) has been increased for a specific
+  key
+- `RateLimitSmoothingDown`: the [intermediate rate limit
+  allowance]({{< ref "getting-started/key-concepts/rate-limiting#rate-limit-smoothing" >}}) has been decreased for a specific
+  key
 
 ### Standard quota events
 
@@ -32,7 +36,9 @@ The built-in events that Tyk Gateway will generate are:
 
 - `BreakerTripped`: a circuit breaker on a path has tripped and been taken offline
 - `BreakerReset`: a circuit breaker has reset and the path is available again
-- `BreakerTriggered`: a circuit breaker has changed state, this is generated when either a `BreakerTripped`, or a `BreakerReset` event occurs; a status code in the metadata passed to the webhook will indicate which of these events was triggered
+- `BreakerTriggered`: a circuit breaker has changed state, this is generated when either a `BreakerTripped`, or a
+  `BreakerReset` event occurs; a status code in the metadata passed to the webhook will indicate which of these events
+  was triggered
 
 ### Uptime events
 
