@@ -18,7 +18,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install prettier@3.3.3 prettier-plugin-go-template
-
       # Fetch the base branch and compare changes
       - name: Get changed files
         id: changed_files
