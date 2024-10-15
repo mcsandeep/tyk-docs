@@ -31,6 +31,7 @@ jobs:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           for file in ${ALL_CHANGED_FILES}; do
+            npx prettier --write "$file"
             echo "$file was changed"
           done
 
@@ -39,4 +40,11 @@ jobs:
         with:
           commit_message: save formatted content
 
-
+      - name: Check all changed files are linted
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            npx prettier --check "$file"
+            echo "$file was linted"
+          done
