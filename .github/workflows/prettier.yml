@@ -23,25 +23,16 @@ jobs:
 
       # Fetch the base branch and compare changes
       - name: Get changed files
-        id: changed_files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          # Fetch the base branch (e.g., master or main)
-          git fetch origin ${{ github.event.pull_request.base.ref }}
-
-          # Get the list of changed files only between the PR branch and the base branch
-          git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD > changed-files.txt
-
-          # Show the list of changed files
-          cat changed-files.txt
-
-      # Lint only the changed files using Prettier
-      - name: Lint changed files with prettier
-        run: |
-          if [ -s changed-files.txt ]; then
-            cat changed-files.txt | xargs npx prettier --write
-          else
-            echo "No files to lint."
-          fi
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
 
       # Auto commit the changes if any
       - uses: stefanzweifel/git-auto-commit-action@v5
