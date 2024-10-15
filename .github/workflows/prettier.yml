@@ -9,6 +9,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Ensure that the PR ref is checked out
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -18,13 +21,13 @@ jobs:
       - name: Install dependencies
         run: |
           npm install prettier@3.3.3 prettier-plugin-go-template
+
       # Fetch the base branch and compare changes
       - name: Get changed files
         id: changed_files
         run: |
-          # Ensure we are in the PR branch and fetch the base branch (master or main)
-          git checkout ${{ github.head_ref }}  # Check out the PR branch
-          git fetch origin ${{ github.event.pull_request.base.ref }}  # Fetch the base branch (e.g., master)
+          # Fetch the base branch (e.g., master or main)
+          git fetch origin ${{ github.event.pull_request.base.ref }}
 
           # Get the list of changed files only between the PR branch and the base branch
           git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD > changed-files.txt
