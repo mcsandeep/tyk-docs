@@ -8,4 +8,5 @@ tyk-docs/themes/tykio/layouts/_default/list.urlcheck.json
 .prettierignore
 .prettierrc
 changed-files.txt
+.github
 
