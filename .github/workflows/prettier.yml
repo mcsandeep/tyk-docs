@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Ensure that the PR ref is checked out
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
@@ -27,7 +26,6 @@ jobs:
         run: |
           # Fetch the base branch (e.g., master or main)
           git fetch origin ${{ github.event.pull_request.base.ref }}
-
           # Get the list of changed files only between the PR branch and the base branch
           git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD > changed-files.txt
 
