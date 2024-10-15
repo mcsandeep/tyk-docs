@@ -10,7 +10,7 @@
 name: "PR files Formatting"
 on:
   pull_request:
-
+    types: [opened, synchronize, reopened, edited]
 jobs:
   docs_linter:
     runs-on: ubuntu-latest
