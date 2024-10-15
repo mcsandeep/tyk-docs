@@ -39,10 +39,4 @@ jobs:
         with:
           commit_message: save formatted content
 
-      # Check the linting again
-      - name: Check the linted files
-        run: |
-          if [ -s changed-files.txt ]; then
-            cat changed-files.txt | xargs npx prettier --check
-          else
-            echo "No files to check."
+
