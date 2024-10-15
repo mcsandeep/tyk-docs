@@ -1,7 +1,7 @@
----
 name: "Lint the docs with prettier"
 on:
   pull_request:
+
 jobs:
   docs_linter:
     runs-on: ubuntu-latest
@@ -19,17 +19,18 @@ jobs:
         run: |
           npm install prettier@3.3.3 prettier-plugin-go-template
 
-      # Fetch both the base branch and the PR branch, and list only files changed in the PR
+      # Fetch the base branch and compare changes
       - name: Get changed files
         id: changed_files
         run: |
-          # Fetch both the base branch and the PR branch
-          git fetch origin ${{ github.event.pull_request.base.ref }} ${{ github.event.pull_request.head.ref }}
+          # Ensure we are in the PR branch and fetch the base branch (master or main)
+          git checkout ${{ github.head_ref }}  # Check out the PR branch
+          git fetch origin ${{ github.event.pull_request.base.ref }}  # Fetch the base branch (e.g., master)
 
-          # Get the list of files changed only in the PR branch, excluding changes from master
-          git diff --name-only origin/${{ github.event.pull_request.base.ref }}..origin/${{ github.event.pull_request.head.ref }} > changed-files.txt
+          # Get the list of changed files only between the PR branch and the base branch
+          git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD > changed-files.txt
 
-          # Display the changed files
+          # Show the list of changed files
           cat changed-files.txt
 
       # Lint only the changed files using Prettier
