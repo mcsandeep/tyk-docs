@@ -51,7 +51,7 @@ jobs:
       # Auto commit the changes if any
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # skip-linter-57846 is a Marker to skip rerun of the linter once it makes a commit
+          # skip-linter-43n2w is a Marker to skip rerun of the linter once it makes a commit
           # This prevents cyclic run of the linter
           commit_message: save content formatted by prettier linter [skip-linter-43n2w]
 
