@@ -11,6 +11,7 @@ name: "PR files Formatting"
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
+  push:
 jobs:
   docs_linter:
     runs-on: ubuntu-latest
