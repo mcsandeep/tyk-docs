@@ -21,6 +21,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}  # Automatically checks out the PR branch
+          token: ${{ secrets.ORG_GH_TOKEN }}
 
       - uses: actions/setup-node@v4
         with:
@@ -48,6 +49,7 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: save formatted content
+          token: ${{ secrets.ORG_GH_TOKEN }}
 
       - name: Check all changed files are linted
         env:
