@@ -22,7 +22,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}  # Automatically checks out the PR branch
           token: ${{ secrets.ORG_GH_TOKEN }}
-
+      - name: Print GitHub Actor
+        run: |
+          echo "Actor: ${{ github.actor }}"
       - uses: actions/setup-node@v4
         with:
           node-version: 20
