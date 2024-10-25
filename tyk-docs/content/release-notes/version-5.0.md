@@ -7,6 +7,77 @@ weight: 1
 tags: ["release notes", "Tyk Gateway", "Tyk Dashboard", "v5.0", "5.0", "5.0.0", "5.0.1", "5.0.1", "5.0.2", "5.0.3", "5.0.4", "5.0.5", "5.0.6", "5.0.7", "5.0.8", "5.0.9"]
 ---
 
+## 5.0.15 Release Notes {#rn-v5.0.15}
+
+### Release Date 24 October 2024
+
+### Tyk Gateway
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
+### Upgrade Instructions
+
+Go to the [Upgrading Tyk](https://tyk.io/docs/product-stack/tyk-gateway/release-notes/version-5.0/#upgrading-tyk)
+section for detailed upgrade instructions.
+
+### Release Highlights
+
+This patch release for Tyk Gateway addresses critical stability issues for users running Tyk Gateway within the data
+plane, connecting to the control plane or Tyk Hybrid. Affected users should upgrade immediately to version 5.0.15 to
+avoid service interruptions and ensure reliable operations with the control plane or Tyk Hybrid.
+
+For a comprehensive list of changes, please refer to the detailed [changelog]({{< ref "#Changelog-v5.0.15">}}) below.
+
+### Changelog {#Changelog-v5.0.15}
+
+#### Fixed
+
+<ul>
+<li>
+<details>
+<summary>Resolved gateway panic on reconnecting to MDCB control plane or Tyk Cloud</summary>
+In version 5.0.14, Tyk Gateway could encounter panic when attempting to reconnect to the control plane after it was restarted. This patch version has resolved this issue, ensuring stable connectivity between the gateway and control plane following reconnections and reducing the need for manual intervention.
+</details>
+</li>
+</ul>
+
+#### Security Fixes
+
+<ul>
+<li>
+<details>
+<summary>Strengthened RBAC password reset permissions</summary>
+We have fixed a privilege escalation vulnerability where a user with certain permissions could potentially reset other users’ passwords, including admin accounts. The following changes have been made to tighten the behavior of the password reset permission:
+- All users can reset their own passwords
+- A specific permission is required to reset the password of another user within the same Tyk organization
+- This permission can only be assigned by an admin or super-admin
+- This permission can only be assigned to an admin and cannot be assigned to a user group
+</details>
+</li>
+</ul>
+
+### Tyk Dashboard
+
+### Release Highlights
+
+This is a version bump to align with Gateway v5.0.15, no changes have been implemented in this release.
+
+### Breaking Changes
+
+There are no breaking changes in this release.
+
+### Upgrade instructions {#upgrade-5.0.15}
+
+If you are upgrading to 5.0.15, please follow the detailed [upgrade instructions](#upgrading-tyk). 
+
+### Changelog {#Changelog-v5.0.15}
+
+No changes in this release.
+
+---
+
 ## 5.0.14 Release Notes {#rn-v5.0.14}
 
 ### Release Date 18th September 2024
