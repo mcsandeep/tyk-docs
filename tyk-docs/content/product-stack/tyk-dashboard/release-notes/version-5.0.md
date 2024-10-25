@@ -30,6 +30,20 @@ If you are upgrading to 5.0.15, please follow the detailed [upgrade instructions
 
 No changes in this release.
 
+#### Security Fixes
+
+<ul>
+<li>
+<details>
+<summary>Strengthened RBAC password reset permissions</summary>
+We have fixed a privilege escalation vulnerability where a user with certain permissions could potentially reset other users’ passwords, including admin accounts. The following changes have been made to tighten the behavior of the password reset permission:
+- All users can reset their own passwords
+- A specific permission is required to reset the password of another user within the same Tyk organization
+- This permission can only be assigned by an admin or super-admin
+- This permission can only be assigned to an admin and cannot be assigned to a user group
+</details>
+</li>
+</ul>
 
 ---
 
