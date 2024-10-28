@@ -11,7 +11,7 @@ weight: 7
 {{< warning success >}}
  **Warning** 
  
- Support for External OAuth Middleware will be deprecated starting with version 5.7.0. To avoid any disruptions, please switch to JWT Authentication. For detailed guidance, please refer to our documentation.
+ Support for External OAuth Middleware will be deprecated starting with version 5.7.0. To avoid any disruptions, please switch to JWT Authentication.
  {{< /warning >}}
 
 ## Introduction
