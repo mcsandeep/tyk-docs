@@ -9,6 +9,8 @@ menu:
 weight: 7
 ---
 
+ **Warning: Support for External OAuth Middleware will be deprecated starting with version 5.7.0. To avoid any disruptions, please switch to JWT Authentication. For detailed guidance, please refer to our documentation.**
+
 ## Introduction
 
 Tyk offers two types of OAuth authentication flow; Tyk itself as the identity provider (IdP) and Tyk connecting to an external 3rd party IdP. ‘External OAuth’ is what we call this second mechanism. To call an API that is protected by OAuth, you need to have an access token from the third party IDP (it could be an opaque token or a JWT). 
