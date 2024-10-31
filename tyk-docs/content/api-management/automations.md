@@ -11,16 +11,16 @@ title: Automation Tools
 date: 2020-06-24
 ---
 
+Managing APIs across multiple environments can quickly become complex, with configurations, security policies, and deployments requiring consistent updates and oversight. Tyk’s suite of automation tools simplifies this process by enabling automated control over API management tasks, helping teams ensure reliability, reduce manual errors, and maintain consistency across deployments.
 
-Tyk offers a powerful suite of tools and features to automate your API lifecycle management, enabling efficient, consistent, and secure API operations across multiple environments. This guide will walk you through automating various aspects of API management using Tyk's comprehensive toolset.
+In this guide, we’ll walk through the primary tools for automating API management with Tyk, including:
 
-This page covers:
-- Automating API management in Kubernetes environments with Tyk Operator
-- Synchronizing Tyk configurations across different environments using Tyk Sync
-- Programmatically managing Tyk resources via APIs
-- Automating multi-environment deployments
+* Tyk Operator for Kubernetes: Automate API deployments within Kubernetes environments.
+* Tyk Sync: Sync configurations across environments for consistent API management.
+* Programmatic API Management: Use Tyk’s APIs to automate tasks such as token management and policy updates.
+* Multi-Environment Deployments: Simplify deployments across various staging, testing, and production environments.
 
-Use Ctrl+F or the sidebar to quickly find specific topics. For example, search "Tyk Operator" for Kubernetes-based automation, "Tyk Sync" for configuration synchronization details.
+With this guide, you’ll learn how each of these tools fits into Tyk’s automation ecosystem, when to use them, and how to implement them in real-world scenarios. Let’s dive into each tool and get started on setting up a streamlined, automated API management workflow.
 
 ## Prerequisites
 
@@ -1330,3 +1330,15 @@ To migrate from Tyk Classic to Tyk OAS definitions:
 3. Update your CI/CD pipelines and Tyk Operator configurations to work with the new OAS definitions.
 
 4. Gradually replace Classic definitions with OAS definitions in your Tyk installation.
+
+## Conclusion
+
+With Tyk’s automation tools, you now have a set of options for streamlining API management, from handling deployments within Kubernetes to establishing consistency across multiple environments. By integrating these tools, you can simplify complex API workflows, maintain secure configurations, and save time through reduced manual intervention.
+
+To continue building on what you’ve set up here, explore the following topics:
+
+- **Security Policies**: For a deeper dive into securing your APIs, read our [guide on security policies](/basic-config-and-security/security/security-policies/), covering token management, user roles, and access control.
+- **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/advanced-configuration/)
+- **CI/CD Integrations**: Learn how to embed Tyk automation into your CI/CD pipeline, enabling continuous deployment and reducing release cycle times.
+
+These resources will help you enhance your API management automation and develop a robust, scalable infrastructure with Tyk. 
