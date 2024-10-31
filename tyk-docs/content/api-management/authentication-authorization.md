@@ -1,6 +1,5 @@
 ---
 title: Authentication and Authorization
-date: 2017-03-23T15:23:32Z
 description: Learn how to apply security options to lock down your APIs with Tyk. Here you will find everything there is to know about Authentication and Authorization in Tyk.
 tags: ["Authentication", "Authorization", "Tyk Authentication", "Tyk Authorization", "Secure APIs"]
 ---
@@ -8,11 +7,13 @@ tags: ["Authentication", "Authorization", "Tyk Authentication", "Tyk Authorizati
 
 In API management, authentication and authorization are responsible for controlling access to your APIs and protecting sensitive data. Each serves a distinct purpose:
 
-Authentication: Confirms the identity of the user or system making the API request. This step validates "who" is attempting to access the API, commonly through methods like tokens, passwords, or certificates.
+* **Authentication**: Confirms the identity of the user or system making the API request. This step validates "who" is attempting to access the API, commonly through methods like tokens, passwords, or certificates.
 
-Authorization: Determines if the authenticated user or system has the right permissions to perform the requested action. This step defines "what" they are allowed to do based on assigned roles, scopes, or policies.
+* **Authorization**: Determines if the authenticated user or system has the right permissions to perform the requested action. This step defines "what" they are allowed to do based on assigned roles, scopes, or policies.
 
 Together, these processes allow API providers to control access, safeguard data integrity, and meet security and compliance standards, making them vital for any API management strategy.
+
+---
 
 Tyk offers various authentication and authorization methods to secure your APIs. This page provides an overview of the industry-standard options available, helping you choose what works best for you.
 
