@@ -9,10 +9,10 @@ Managing APIs across multiple environments can quickly become complex, with conf
 
 In this guide, we’ll walk through the primary tools for automating API management with Tyk, including:
 
-* Tyk Operator for Kubernetes: Automate API deployments within Kubernetes environments.
-* Tyk Sync: Sync configurations across environments for consistent API management.
-* Programmatic API Management: Use Tyk’s APIs to automate tasks such as token management and policy updates.
-* Multi-Environment Deployments: Simplify deployments across various staging, testing, and production environments.
+* **Tyk Operator for Kubernetes**: Automate API deployments within Kubernetes environments.
+* **Tyk Sync**: Sync configurations across environments for consistent API management.
+* **Programmatic API Management**: Use Tyk’s APIs to automate tasks such as token management and policy updates.
+* **Multi-Environment Deployments**: Simplify deployments across various staging, testing, and production environments.
 
 With this guide, you’ll learn how each of these tools fits into Tyk’s automation ecosystem, when to use them, and how to implement them in real-world scenarios. Let’s dive into each tool and get started on setting up a streamlined, automated API management workflow.
 
@@ -47,10 +47,16 @@ If you're missing any of these prerequisites, please follow the provided links t
 
 Before diving into the quick start guides for using the tyk-operator, take a look at these tables to get an overview of the API types, management features, authentication methods, and routing options supported by the Tyk Operator. This will help you understand which features are available, their supported versions, and how to implement them effectively in your setup.
 
-### Tyk Operator Overview
-Here is the continuation of the tables in markdown format with brief explanations:
+### What is Tyk Operator
+If you’re using Kubernetes, or if you’re building an API that operates within a Kubernetes environment, the Tyk Operator is a powerful tool for automating the API lifecycle.
+
+Tyk Operator integrates directly with Kubernetes, allowing you to define and manage APIs as code. This means you can deploy, update, and secure APIs using the same declarative configuration approach Kubernetes uses for other application components. 
+
+{{< img src="/img/operator/tyk-operator.svg" alt="Tyk Operator" width="600" >}}
 
 #### API Types
+Tyk supports various API types, including HTTP, HTTPS, TCP, TLS, and GraphQL. It also includes Universal Data Graph versions for unified data access and federation, allowing seamless querying across multiple services.
+
 
 | Type                           | Support | Supported From | Comments                     |
 |--------------------------------|---------|----------------|------------------------------|
@@ -64,6 +70,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | GraphQL - Federation           | ✅      | v0.12          | Supports GraphQL Federation for querying multiple services as one API. |
 
 #### Management of APIs
+Tyk offers flexible API management features such as setting active/inactive status, categorizing and naming APIs, versioning, and defining ownership within teams or organizations for streamlined administration.
 
 | Type                           | Support | Supported From | Comments                     |
 |--------------------------------|---------|----------------|------------------------------|
@@ -75,6 +82,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | API Versioning                 | ✅      | v0.1           | Enable version control for APIs. |
 
 #### Traffic Routing
+Tyk enables traffic routing through path-based or host-based proxies and allows redirection to specific target URLs, providing control over how requests are directed to backend services.
 
 | Type                        | Supported | Supported From | Comments                     |
 | --------------------------- | --------- | -------------- | ---------------------------- |
@@ -83,6 +91,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | Target URL                  | ✅        | v0.1           | Redirect traffic to a specific target URL. |
 
 #### Client to Gateway Authentication and Authorization
+Tyk provides multiple authentication options for client-to-gateway interactions, including keyless access, JWT, client mTLS, IP allow/block lists, and custom authentication plugins for enhanced security.
 
 | Type                          | Supported | Supported From | Comments                                        |
 | ----------------------------- | --------- | -------------- | ----------------------------------------------- |
@@ -101,6 +110,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | IP Blocklist                  | ✅        | v0.5           | Blocks access from specific IP addresses.       |
 
 #### Gateway to Upstream Authentication
+Tyk supports secure upstream connections through mutual TLS, certificate pinning, and public key verification to ensure data integrity between the gateway and backend services.
 
 | Type                                            | Supported | Supported From | Comments                     |
 |-------------------------------------------------|-----------|----------------|------------------------------|
@@ -109,6 +119,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | Upstream Request Signing                        | ❌        | -              | Upstream request signing is not implemented. |
 
 #### API-level (Global) Features
+Tyk offers global features for APIs, such as detailed traffic logging, CORS management, rate limiting, header transformations, and analytics plugins, with support for tagging, load balancing, and dynamic variables.
 
 | Feature                              | Supported | Supported From | Comments                                                               |
 |--------------------------------------|-----------|----------------|------------------------------------------------------------------------|
@@ -132,6 +143,7 @@ Here is the continuation of the tables in markdown format with brief explanation
 | Round Robin Load Balancing           | ✅        | -              | Supports round-robin load balancing across upstream servers. |
 
 #### Endpoint-level Features
+For specific API endpoints, Tyk includes features like caching, circuit breaking, request validation, URL rewriting, and response transformations, allowing for precise control over request processing and response handling at an endpoint level.
 
 | Endpoint Middleware               | Supported | Supported From | Comments                                       |
 |-----------------------------------|-----------|----------------|------------------------------------------------|
