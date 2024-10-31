@@ -1,14 +1,8 @@
 ---
 description: Tyk Tools that help with automating deployment and API Management operations
 linkTitle: Automation Tools
-tags:
-- Tyk API Management
-- Open Source
-- Self-Managed
-- Tyk Cloud
-- API Gateway
+tags: ["Tyk API Management", "Open Source", "Self-Managed", "Tyk Cloud", "API Gateway"]
 title: Automation Tools
-date: 2020-06-24
 ---
 
 Managing APIs across multiple environments can quickly become complex, with configurations, security policies, and deployments requiring consistent updates and oversight. Tyk’s suite of automation tools simplifies this process by enabling automated control over API management tasks, helping teams ensure reliability, reduce manual errors, and maintain consistency across deployments.

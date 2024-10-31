@@ -727,7 +727,7 @@ menu:
         path: /api-management/authentication-authorization
         category: Page
         show: True
-       - title: "Automations"
+      - title: "Automations"
         path: /api-management/automations
         category: Page
         show: True
