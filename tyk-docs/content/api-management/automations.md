@@ -4,7 +4,7 @@ linkTitle: Automation Tools
 tags: ["Tyk API Management", "Open Source", "Self-Managed", "Tyk Cloud", "API Gateway"]
 title: Automation Tools
 ---
-
+## Introduction
 Managing APIs across multiple environments can quickly become complex, with configurations, security policies, and deployments requiring consistent updates and oversight. Tyk’s suite of automation tools simplifies this process by enabling automated control over API management tasks, helping teams ensure reliability, reduce manual errors, and maintain consistency across deployments.
 
 In this guide, we’ll walk through the primary tools for automating API management with Tyk, including:
@@ -14,28 +14,27 @@ In this guide, we’ll walk through the primary tools for automating API managem
 * **Programmatic API Management**: Use Tyk’s APIs to automate tasks such as token management and policy updates.
 * **Multi-Environment Deployments**: Simplify deployments across various staging, testing, and production environments.
 
-With this guide, you’ll learn how each of these tools fits into Tyk’s automation ecosystem, when to use them, and how to implement them in real-world scenarios. Let’s dive into each tool and get started on setting up a streamlined, automated API management workflow.
 
 ## Prerequisites
 
 Before diving into lifecycle automations with Tyk, ensure you have the following:
 
-- A Tyk installation (Self-Managed or Cloud)
+- **A Tyk installation** (Self-Managed or Cloud)
   - If you don't have Tyk installed, follow our [installation guide](https://tyk.io/docs/tyk-on-premises/installation/)
   - For Tyk Cloud, sign up [here](https://tyk.io/sign-up/)
 
-- Access to a Kubernetes cluster (for Tyk Operator sections)
+- **Access to a Kubernetes cluster** (for Tyk Operator sections)
   - If you're new to Kubernetes, check out the official [Kubernetes documentation](https://kubernetes.io/docs/setup/)
 
-- Helm (for installing Tyk Operator)
+- **Helm** (for installing Tyk Operator)
   - If you don't have Helm installed, follow the [official Helm installation guide](https://helm.sh/docs/intro/install/)
   - Verify your installation by running `helm version` in your terminal
 
-- Tyk Dashboard access and API credentials
+- **Tyk Dashboard access and API credentials**
   - Learn how to set up the Tyk Dashboard [here](https://tyk.io/docs/tyk-dashboard/)
   - For API credentials, see our guide on [creating API tokens](https://tyk.io/docs/tyk-dashboard/managing-users/#create-an-api-token)
 
-- Basic knowledge of Kubernetes, YAML, and API concepts
+- **Basic knowledge of Kubernetes, YAML, and API concepts**
   - For Kubernetes, visit the [official tutorials](https://kubernetes.io/docs/tutorials/)
   - For YAML, check out this [YAML tutorial](https://yaml.org/spec/1.2/spec.html)
   - For API concepts, review our [API management basics](https://tyk.io/docs/getting-started/key-concepts/)
@@ -47,12 +46,14 @@ If you're missing any of these prerequisites, please follow the provided links t
 
 Before diving into the quick start guides for using the tyk-operator, take a look at these tables to get an overview of the API types, management features, authentication methods, and routing options supported by the Tyk Operator. This will help you understand which features are available, their supported versions, and how to implement them effectively in your setup.
 
-### What is Tyk Operator
+### What is Tyk Operator?
 If you’re using Kubernetes, or if you’re building an API that operates within a Kubernetes environment, the Tyk Operator is a powerful tool for automating the API lifecycle.
 
 Tyk Operator integrates directly with Kubernetes, allowing you to define and manage APIs as code. This means you can deploy, update, and secure APIs using the same declarative configuration approach Kubernetes uses for other application components. 
 
 {{< img src="/img/operator/tyk-operator.svg" alt="Tyk Operator" width="600" >}}
+
+Below, you will find details about the support Tyk Operator offers.
 
 #### API Types
 Tyk supports various API types, including HTTP, HTTPS, TCP, TLS, and GraphQL. It also includes Universal Data Graph versions for unified data access and federation, allowing seamless querying across multiple services.
@@ -1346,5 +1347,3 @@ To continue building on what you’ve set up here, explore the following topics:
 - **Security Policies**: For a deeper dive into securing your APIs, read our [guide on security policies](/basic-config-and-security/security/security-policies/), covering token management, user roles, and access control.
 - **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/advanced-configuration/)
 - **CI/CD Integrations**: Learn how to embed Tyk automation into your CI/CD pipeline, enabling continuous deployment and reducing release cycle times.
-
-These resources will help you enhance your API management automation and develop a robust, scalable infrastructure with Tyk. 
