@@ -11,6 +11,14 @@ aliases:
 ---
 
 
+In API management, authentication and authorization are responsible for controlling access to your APIs and protecting sensitive data. Each serves a distinct purpose:
+
+Authentication: Confirms the identity of the user or system making the API request. This step validates "who" is attempting to access the API, commonly through methods like tokens, passwords, or certificates.
+
+Authorization: Determines if the authenticated user or system has the right permissions to perform the requested action. This step defines "what" they are allowed to do based on assigned roles, scopes, or policies.
+
+Together, these processes allow API providers to control access, safeguard data integrity, and meet security and compliance standards, making them vital for any API management strategy.
+
 Tyk offers various authentication and authorization methods to secure your APIs. This page provides an overview of the industry-standard options available, helping you choose what works best for you.
 
 Use Ctrl+F or the sidebar to find specific topics, like “JWT” for JSON Web Tokens or “mTLS” for mutual TLS.
@@ -58,7 +66,11 @@ Secure APIs with username and password credentials.
 
 ## Set Up OAuth 2.0 Authorization
 
-Tyk offers comprehensive support for OAuth 2.0, providing two main approaches to integrate this authorization framework:
+OAuth 2.0 is an authorization protocol that enables applications to request limited access to resources on behalf of a user, without needing the user’s password. This approach is common for allowing apps to share data across platforms securely—for example, letting a calendar app access your contacts so you can share schedules between coworkers and friends- making it easier to find an open slot in your day.
+
+In API management, OAuth 2.0 offers flexible ways to handle access requests depending on the scenario, such as user login or server-to-server interactions. This section will guide you through setting up OAuth 2.0 with Tyk, either by integrating it with your current setup or by using Tyk as the OAuth provider to simplify token management.
+
+To implement OAuth 2.0 in Tyk, you have two main options:
 
 ### Integrating OAuth 2.0
 #### Option 1: Integrate Existing OAuth 2.0 Flow
@@ -81,22 +93,44 @@ Tyk offers comprehensive support for OAuth 2.0, providing two main approaches to
 
 ### Understanding the OAuth 2.0 Flow within Tyk
 
-* **Client ID Registration:** Begin by registering a unique Client ID within Tyk for each resource owner.
-* **Request Validation and User Authentication:** Tyk rigorously validates all incoming OAuth 2.0 requests to ensure they adhere to the standard. Valid requests are then directed to your application’s authorization page for user login and permission granting.
-* **Authorization Code Generation and Redirection:** Upon successful authentication, Tyk generates an authorization code, providing your application with a redirect URL for seamless user redirection.
-* **Access Token Exchange and Notification:** Clients can then use the generated authorization code to request an access token from Tyk. Upon successful token generation, Tyk notifies your application via webhooks.
-* **Simplified Flow for Specific Applications:** Tyk offers a streamlined access token flow, well-suited for mobile and single-page applications, though it does not accommodate refresh tokens.
+1. **Register a Client ID in Tyk**: 
+   - Start by registering a new OAuth client on the Tyk dashboard. This generates a **Client ID** and **Client Secret** for your app, which you’ll use for secure access requests.
+
+2. **Request Authorization for the Client**: 
+   - Your app directs the user to Tyk’s authorization URL (`/oauth/authorize/`) with the Client ID, prompting Tyk to check that the request follows OAuth standards and that the Client ID is active and valid.
+
+3. **Redirect to User Login and Authorization**:
+   - If the authorization request is valid, Tyk redirects the user to your app’s **Login and Authorization page**. Here, the user logs in, approves access, and grants permissions to the app, similar to a standard OAuth consent flow.
+
+4. **Authorize the Client in Tyk**:
+   - After the user approves, your app calls Tyk’s Authorization API (`/authorize-client/`), sending the Client ID and user permissions. Tyk then generates an **Authorization Code** for your app.
+
+5. **Redirect the User Back to Your App**:
+   - Tyk redirects the user to your app’s specified **redirect URL**, including the newly generated authorization code.
+
+6. **Exchange Authorization Code for an Access Token**:
+   - Your app now exchanges the authorization code for an access token by calling Tyk’s token endpoint (`/oauth/token`). This token lets the app access the user’s data per the permissions granted.
+
+7. **Optional: Receive Notifications via Webhook**:
+   - If needed, set up a webhook endpoint in your app to receive notifications from Tyk whenever a new access token is issued. This helps your app keep track of the user’s access status in real time.
+
+This seems like a complicated process and very verbose - however in actuality, the integration piece is very small. As an API owner, the only steps that require active integration are:
+
+- **Step 1**: Registering a Client ID (done in Tyk dashboard)
+- **Step 3**: Creating a login and authorization page for users to approve app access
+- **Step 7**: Setting up a webhook to track access tokens (optional)
+
 
 #### Enabling OAuth 2.0 via the Dashboard
 
-1. **Select OAuth 2.0 for Your API:** In the API Designer, go to the Core Settings tab for your API and choose "OAuth 2.0" as the authentication mode.
+1. **Select OAuth 2.0 for Your API**: On the Tyk Dashboard, Navigate to APIs, select the API you want to affect and select "edit". Enable 
 
-   {{< img src="/img/dashboard/system-management/oauth-auth-mode.png" alt="Set Authentication Mode" >}}
+   {{< img src="/img/dashboard/system-management/oauth-auth-mode-new.png" alt="Set Authentication Mode" >}}
 
 2. **Configure Grant Type Settings**: Define allowed access and authorize types aligned with your chosen OAuth 2.0 grant type (e.g., Authorization Code).
-3. **Set Redirection URLs:** For grant types involving redirects, provide the OAuth login redirect URL and the OAuth notification URL.
-4. **Create an Access Policy:** Establish a policy that explicitly grants access to this API.
-5. **Register a New OAuth Client:** Go to the "OAuth Clients" section for your API and add a new client.
+3. **Set Redirection URLs**: For grant types involving redirects, provide the OAuth login redirect URL and the OAuth notification URL.
+4. **Create an Access Policy**: Establish a policy that explicitly grants access to this API.
+5. **Register a New OAuth Client**: Go to the "OAuth Clients" section for your API and add a new client.
      * Specify a valid redirect URI.
      * Associate the client with the access policy you created.
 
@@ -592,6 +626,28 @@ curl -X GET \
 | **Authorization** | Bearer token, e.g., `Bearer abcd1234token`.         |
 
 
+#### Use Bearer Tokens
+
+Bearer tokens are a type of access token that allows the bearer to access a protected resource. In OAuth 2.0, the token is typically passed in the Authorization header.
+
+##### Access a Protected Resource
+
+The client application sends an HTTP request with an `Authorization` header containing the word "Bearer" followed by the access token.
+
+```bash
+curl -X GET \
+  https://api.example.com/protected-resource \
+  -H 'Authorization: Bearer ACCESS_TOKEN'
+```
+
+**Request:**
+
+| Parameter       | Value                                       |
+| --------------- | ------------------------------------------ |
+| **Method**      | `GET`                                        |
+| **URL**         | The API endpoint for the protected resource. |
+| **Authorization** | Bearer token, e.g., `Bearer ACCESS_TOKEN`.    |
+
 
 ### Revoke OAuth Tokens
 
@@ -628,11 +684,13 @@ curl -X POST \
 | `client_secret`    | The client secret, e.g., `CLIENT_SECRET`.    |
 
 
-## Use Basic Authentication
+## Other Authentication Methods
+
+### Use Basic Authentication
 
 Basic Authentication is a straightforward method where the user's credentials (username and password) are sent in an HTTP header encoded in Base64.
 
-### Access a Protected Resource
+#### Access a Protected Resource
 
 The client application sends an HTTP request with an `Authorization` header containing the word "Basic" followed by a base64-encoded string of the username and password.
 
@@ -650,33 +708,12 @@ curl -X GET \
 | **URL**         | The API endpoint for the protected resource.                     |
 | **Authorization** | Basic authorization using base64 encoded credentials, e.g., `dXNlcm5hbWU6cGFzc3dvcmQ=`. |
 
-## Use Bearer Tokens
 
-Bearer tokens are a type of access token that allows the bearer to access a protected resource. In OAuth 2.0, the token is typically passed in the Authorization header.
-
-### Access a Protected Resource
-
-The client application sends an HTTP request with an `Authorization` header containing the word "Bearer" followed by the access token.
-
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Bearer ACCESS_TOKEN'
-```
-
-**Request:**
-
-| Parameter       | Value                                       |
-| --------------- | ------------------------------------------ |
-| **Method**      | `GET`                                        |
-| **URL**         | The API endpoint for the protected resource. |
-| **Authorization** | Bearer token, e.g., `Bearer ACCESS_TOKEN`.    |
-
-## Integrate External OAuth Middleware
+### Integrate External OAuth Middleware
 
 Tyk can integrate with external OAuth providers to delegate authentication and authorization. This allows you to leverage existing OAuth infrastructures while using Tyk as the API gateway.
 
-### Connect Tyk to an External OAuth Provider
+#### Connect Tyk to an External OAuth Provider
 
 Set up Tyk to interact with the external OAuth provider's token introspection endpoint. This allows Tyk to validate tokens issued by providers such as Auth0 or Okta.
 
@@ -721,7 +758,7 @@ Set up Tyk to interact with the external OAuth provider's token introspection en
 
 
 
-### Use the Validated Token to Access Protected Resources
+#### Use the Validated Token to Access Protected Resources
 
 After Tyk validates the token with the external provider, the client can access the protected resources as usual.
 
@@ -739,17 +776,17 @@ curl -X GET \
 | **URL**         | The API endpoint for the protected resource. |
 | **Authorization** | Bearer token, e.g., `Bearer VALIDATED_ACCESS_TOKEN`. |
 
-## Authenticate Using Go Plugins
+### Authenticate Using Go Plugins
 
 Go Plugin Authentication allows you to implement custom authentication logic using the Go programming language. This method is useful for scenarios where you need to implement specialized authentication mechanisms that are not natively supported by Tyk.
 To learn more about using Tyk Golang Plugins, go [here](plugins/supported-languages/golang/#authentication-with-a-golang-plugin)
 
 
-## Sign Requests with HMAC
+### Sign Requests with HMAC
 
 HMAC (Hash-based Message Authentication Code) is a mechanism that allows for verifying the integrity and authenticity of a message. It uses a shared secret key between the client and server to generate a unique hash for each request.
 
-### Generate and Include HMAC Signature in the Request
+#### Generate and Include HMAC Signature in the Request
 
 The client generates an HMAC signature using a shared secret and includes it in the request's `Authorization` header.
 
@@ -767,16 +804,16 @@ curl -X GET \
 | **URL**         | The API endpoint for the protected resource.        |
 | **Authorization** | HMAC signature, e.g., `HMAC <calculated-signature>`. |
 
-### Server Validates the HMAC Signature
+#### Server Validates the HMAC Signature
 
 The server regenerates the signature using the same secret and compares it with the one sent by the client. If they match, the request is considered authentic.
 
 
-## Use JSON Web Tokens (JWT)
+### Use JSON Web Tokens (JWT)
 
 JSON Web Tokens (JWT) are a compact, URL-safe means of representing claims to be transferred between two parties. They are commonly used in API authentication and authorization.
 
-### Protecting an API with JWT
+#### Protecting an API with JWT
 
 To protect an API with JWT, we need to execute the following steps:
 * Set Authentication Mode
@@ -786,19 +823,19 @@ To protect an API with JWT, we need to execute the following steps:
 * Generate a JWT
 
 
-#### Set Authentication Mode
+##### Set Authentication Mode
 
 Select JSON Web Tokens as the Authentication mode:
 
 {{< img src="/img/2.10/jwt_auth_method.png" alt="Target Details: JSON Web Token" >}}
 
-#### Set the JWT Signing Method
+##### Set the JWT Signing Method
 
 [Set the cryptographic signing method](#jwt-signing-method) to `HMAC (shared)` and the public secret as `tyk123`
 
 {{< img src="/img/2.10/jwt_signing_method.png" alt="JWT signing method dropdown" >}}
 
-#### Set the Identity Source and Policy Field Name
+##### Set the Identity Source and Policy Field Name
 
 The "sub" is unique to our end user or client.  The policy rate limiting and authorization will apply to this unique bearer.
 
@@ -806,7 +843,7 @@ The "sub" is unique to our end user or client.  The policy rate limiting and aut
 
 We are telling Tyk to extract this unique ID from the `sub` Header, which is the JWT standard.  [Read more here](#identity-source-and-policy-field-name)
 
-#### Set a Default Policy
+##### Set a Default Policy
 
 If Tyk cannot find a `pol` claim, it will apply this Default Policy. Select a policy that gives access to this API we are protecting, or [go create one first]({{< ref "getting-started/create-security-policy" >}}) if it doesn't exist.
 
@@ -814,7 +851,7 @@ If Tyk cannot find a `pol` claim, it will apply this Default Policy. Select a po
 
 Make sure to save the changes to the API Definition.
 
-#### Generate a JWT
+##### Generate a JWT
 
 Let's generate a JWT so we can test our new protected API.
 
@@ -829,7 +866,7 @@ $ curl http://localhost:8080/my-jwt-api/get \
 --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.7u0ls1snw4tPEzd0JTFaf19oXoOvQYtowiHEAZnan74"
 ```
 
-### Use the JWT
+#### Use the JWT
 
 The client includes the JWT in the Authorization header when making requests to the API.
 
@@ -847,18 +884,18 @@ curl -X GET \
 | **URL**         | The API endpoint for the protected resource.           |
 | **Authorization** | Bearer token, e.g., `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`. |
 
-### JWT and Auth0 with Tyk
+#### JWT and Auth0 with Tyk
 
 This will walk you through securing your APIs with JWTs via Auth0. We also have the following video that will walk you through the process.
 
 {{< youtube jm4V7XzbrZw>}}
 
-#### Prerequisites
+##### Prerequisites
 
 * A free account with Auth0
 * A Tyk Self-Managed or Cloud installation
 
-#### Create an Application in Auth0
+##### Create an Application in Auth0
 
 1. Log in to your Auth0 account.
 2. Select APIs from the Applications menu.
@@ -899,7 +936,7 @@ This will walk you through securing your APIs with JWTs via Auth0. We also have 
 
    {{< img src="/img/auth0/auth0-basic-info.png" alt="Auth0 Application Basic Information" >}}
 
-#### Create Your API in Tyk
+##### Create Your API in Tyk
 
 1. Log in to your Tyk Dashboard.
 2. Create a new HTTP API (the default `http://httpbin.org` upstream URL is fine).
@@ -948,16 +985,16 @@ This will walk you through securing your APIs with JWTs via Auth0. We also have 
     }
     ```
 
-### JWT and Keycloak with Tyk
+#### JWT and Keycloak with Tyk
 
 This guide will walk you through securing your APIs with JWTs via Keycloak.
 
-#### Prerequisites
+##### Prerequisites
 
 * A Keycloak installation
 * A Tyk Self-Managed or Cloud installation
 
-#### Create an Application in Keycloak
+##### Create an Application in Keycloak
 
 1. Access your Keycloak admin dashboard.
 2. Navigate to the Administration console.
@@ -1033,7 +1070,7 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
     }
     ```
 
-#### Create Your API in Tyk
+##### Create Your API in Tyk
 
 1. Log in to your Tyk Dashboard.
 2. Create a new HTTP API (the default `http://httpbin.org` upstream URL is fine).
@@ -1076,21 +1113,21 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
         -H "Authorization: Bearer TOKEN"
     ```
 
-#### Running in k8s
+##### Running in k8s
 
 If you are looking to POC this functionality in Kubernetes, you can run a fully worked-out example using our tyk-k8s-demo library. You can read more [here]({{< ref "getting-started/quick-start/tyk-k8s-demo" >}}).
 
-### Split Token
+#### Split Token
 
 OAuth2, OIDC, and their foundation, JWT, have been industry standards for many years and continue to evolve, particularly with the iterative improvements in the OAuth RFC, aligning with FHIR and Open Banking principles. The OAuth flow remains a dominant approach for secure API access.
 
 In the OAuth flow, two types of access tokens are commonly used: opaque and JWT (more precisely, JWS). However, the use of JWTs has sparked debates regarding security, as JWTs can leak information when base64 decoded. While some argue that JWTs should not contain sensitive information, others consider JWTs inherently insecure for authorization.
 
-#### Introduction to Split Token Flow
+##### Introduction to Split Token Flow
 
 JWT Access Tokens can carry sensitive information, making them vulnerable if compromised. The Split Token Flow offers a solution by storing only the JWT signature on the client side while keeping the header and payload on the server side. This approach combines the flexibility of JWTs with the security of opaque tokens, ensuring that sensitive data is not exposed.
 
-#### How Tyk Implements Split Token Flow
+##### How Tyk Implements Split Token Flow
 
 Tyk API Gateway is well-positioned to broker the communication between the client and the authorization server. It can handle requests for new access tokens, split the JWT, and return only the signature to the client, storing the rest of the token internally.
 
@@ -1108,7 +1145,7 @@ https://keycloak-host/auth/realms/tyk/protocol/openid-connect/token \
 
 This request returns a JWT access token.
 
-##### Split the JWT
+###### Split the JWT
 
 The JWT consists of three parts:
 
@@ -1120,7 +1157,7 @@ Using the Split Token Flow, only the signature is returned to the client, while 
 
 {{< img src="/img/2.10/split_token2.png" alt="Split Token Example" >}}
 
-##### Create a Virtual Endpoint in Tyk
+###### Create a Virtual Endpoint in Tyk
 
 Create a virtual endpoint or API in Tyk to handle the token request. This endpoint receives the auth request, exchanges credentials with the authorization server, and returns the split token.
 
@@ -1197,11 +1234,11 @@ This request uses the opaque token, which Tyk validates and then injects the ful
 
 
 
-### Configure your JWT Setup
+#### Configure your JWT Setup
 Learn how to configure and manage JWT authentication in your Tyk API Gateway.
 
 
-#### Set Up JWT Signing Method
+##### Set Up JWT Signing Method
 Select the cryptographic method to verify JWT signatures from the following options:
 
 - RSA public key
@@ -1220,7 +1257,7 @@ openssl rsa -in key.rsa -pubout > key.rsa.pub
 ```
 
 
-#### Set Up Individual JWT Secrets
+##### Set Up Individual JWT Secrets
 Enable Tyk to validate an inbound token using stored keys:
 
 1. Set up your token with the following fields:
@@ -1235,14 +1272,14 @@ Enable Tyk to validate an inbound token using stored keys:
 The advantage of using RSA is that only the hashed ID and public key of the end user are stored, ensuring high security.
 
 
-#### Configure Identity Source and Policy Field Name
+##### Configure Identity Source and Policy Field Name
 Define the identity and policy applied to the JWT:
 
 - **Identity Source**: Select which identity claim to use (e.g., `sub`) for rate-limiting and quota counting.
 - **Policy Field Name**: Add a policy ID claim to the JWT that applies a specific security policy to the session.
 
 
-#### Enable Dynamic Public Key Rotation Using JWKs
+##### Enable Dynamic Public Key Rotation Using JWKs
 Instead of a static public key, configure a public JSON Web Key Sets (JWKs) URL to dynamically verify JWT tokens:
 
 1. Use the JWKs URL to dynamically maintain and rotate active public keys.
@@ -1292,7 +1329,7 @@ All of this happens automatically.  You just need to specify to Tyk what the JWK
 
 
 
-#### Adjust JWT Clock Skew Configuration
+##### Adjust JWT Clock Skew Configuration
 Prevent token rejection due to clock skew between servers by configuring clock skew values:
 
 - `jwt_issued_at_validation_skew`
@@ -1302,7 +1339,7 @@ Prevent token rejection due to clock skew between servers by configuring clock s
 All values are in seconds. The default is `0`.
 
 
-#### Map JWT Scopes to Policies
+##### Map JWT Scopes to Policies
 Assign JWT scopes to security policies to control access:
 
 1. Specify scope-to-policy mapping:
@@ -1334,12 +1371,64 @@ Assign JWT scopes to security policies to control access:
 Several scopes in JWT claim will lead to have several policies applied to a key. In this case all policies should have `"per_api"` set to `true` and shouldn't have the same `API ID` in access rights. I.e. if claim with scopes contains value `"admin developer"` then two policies `"59672779fa4387000129507d"` and `"53222349fa4387004324324e"` will be applied to a key (with using our example config above).
 {{< /note >}}
 
-
-
-#### Visualize JWT Flow in Tyk API Gateway
+##### Visualize JWT Flow in Tyk API Gateway
 View the diagram below for an overview of JWT flow in Tyk:
 
 {{< img src="/img/diagrams/diagram_docs_JSON-web-tokens@2x.png" alt="JSON Web Tokens Flow" >}}
+
+
+### Use Open (Keyless) Authentication
+
+Open or keyless authentication allows access to APIs without any authentication. This method is suitable for public APIs where access control is not required.
+
+#### Configure the API as Open or Keyless in Tyk
+
+In Tyk, configure the API to not require any authentication for access.
+To implement keyless access, simply set the flag in your API Definition:
+
+```{.copyWrapper}
+{
+  ...
+  "use_keyless": true,
+  "auth": {
+      "auth_header_name": ""
+  },
+  ...
+}
+```
+This will stop checking keys that are proxied by Tyk.
+
+{{< note success >}}
+**Note**  
+
+Keyless APIs cannot be selected for [Access Rights]({{< ref "getting-started/create-security-policy" >}}) in a security policy.
+{{< /note >}}
+
+#### Request a Public Resource
+
+Access the API directly without any authentication tokens or credentials.
+
+```bash
+curl -X GET \
+  https://api.example.com/public-resource
+```
+
+**Request:**
+
+| Parameter | Value                                  |
+| ---------- | ------------------------------------- |
+| **Method**  | `GET`                                   |
+| **URL**     | The API endpoint for the public resource. |
+
+
+**Request:**
+
+| Parameter       | Value                              |
+| --------------- | ---------------------------------- |
+| **Method**      | `GET`                                |
+| **URL**         | The API endpoint for the protected resource. |
+| **Authorization** | Bearer token, e.g., `Bearer ID_TOKEN`. |
+
 
 
 ## Combine Authentication Methods
@@ -1389,66 +1478,12 @@ The provider set here will then be the one that provides the session object that
 Tyk will chain the auth mechanisms as they appear in the code and will default to an auth token if none are specified. You can explicitly set auth token support by setting `use_standard_auth` to `true`.
 
 
-## Use Open (Keyless) Authentication
-
-Open or keyless authentication allows access to APIs without any authentication. This method is suitable for public APIs where access control is not required.
-
-### Configure the API as Open or Keyless in Tyk
-
-In Tyk, configure the API to not require any authentication for access.
-To implement keyless access, simply set the flag in your API Definition:
-
-```{.copyWrapper}
-{
-  ...
-  "use_keyless": true,
-  "auth": {
-      "auth_header_name": ""
-  },
-  ...
-}
-```
-This will stop checking keys that are proxied by Tyk.
-
-{{< note success >}}
-**Note**  
-
-Keyless APIs cannot be selected for [Access Rights]({{< ref "getting-started/create-security-policy" >}}) in a security policy.
-{{< /note >}}
-
-### Request a Public Resource
-
-Access the API directly without any authentication tokens or credentials.
-
-```bash
-curl -X GET \
-  https://api.example.com/public-resource
-```
-
-**Request:**
-
-| Parameter | Value                                  |
-| ---------- | ------------------------------------- |
-| **Method**  | `GET`                                   |
-| **URL**     | The API endpoint for the public resource. |
-
-
-**Request:**
-
-| Parameter       | Value                              |
-| --------------- | ---------------------------------- |
-| **Method**      | `GET`                                |
-| **URL**         | The API endpoint for the protected resource. |
-| **Authorization** | Bearer token, e.g., `Bearer ID_TOKEN`. |
-
 ## Use Python CoProcess and JSVM Plugin Authentication
 
 Tyk allows for custom authentication logic using Python and JavaScript Virtual Machine (JSVM) plugins. This method is useful for implementing unique authentication mechanisms that are tailored to your specific requirements.
 
 * See [Custom Authentication with a Python plugin]({{< ref "plugins/supported-languages/rich-plugins/python/custom-auth-python-tutorial" >}}) for a detailed example of a custom Python plugin.
 * See [JavaScript Middleware]({{< ref "plugins/supported-languages/javascript-middleware" >}}) for more details on using JavaScript Middleware. 
-
-
 
 
 ## Set Physical Key Expiry and Deletion
@@ -1697,10 +1732,8 @@ This configuration will apply the specified certificate to all upstream requests
 
 ## Conclusion
 
-Tyk empowers you to safeguard your APIs effectively with its wide array of industry-standard authentication and authorization methods, offering the flexibility to choose the best fit for your security needs.
+Securing your APIs is a foundational step toward managing data integrity and access control effectively. Now that you've configured authentication and authorization, the next steps in your API journey with Tyk should involve:
 
-This revised structure aims to:
+Defining Access Policies: Use Tyk’s policies to refine API access controls, rate limits, and quotas. This lets you align your security model with business needs and enhance user experience through granular permissions. You can learn more about policies [here](/basic-config-and-security/security/security-policies/).
 
-* **Provide a Clear Overview:** Introduce all authentication methods upfront.
-* **Maintain Technical Depth:** Retain all original details, including code snippets, configuration steps, and explanations.
-* **Emphasize User Actions:** Frame subheadings around what users can *do* with each method.
+Exploring API Analytics: Leverage Tyk’s analytics to monitor access patterns, track usage, and gain insights into potential security risks or high-demand endpoints. Understanding usage data can help in optimizing API performance and enhancing security measures. You can learn more about analytics [here](/tyk-dashboard-analytics/).
