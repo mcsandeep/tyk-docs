@@ -17,7 +17,7 @@ The Tyk Dashboard is your central hub for managing APIs, monitoring performance,
 
 ## Access the Dashboard
 
-Log in to your [Tyk Dashboard](https://dashboard.cloud-ara.tyk.io/) using your credentials. Familiarize yourself with the interface, where the main navigation menu is located on the left side, and the top bar provides quick access to user settings and notifications.
+Log in to your **Tyk Dashboard** using your credentials. Familiarize yourself with the interface, where the main navigation menu is located on the left side, and the top bar provides quick access to user settings and notifications.
 
 ## Dashboard Organization
 
