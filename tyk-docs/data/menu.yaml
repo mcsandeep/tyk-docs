@@ -723,10 +723,6 @@ menu:
         path: /getting-started
         category: Page
         show: True
-      - title: "Authentication and Authorization"
-        path: /api-management/authentication-authorization
-        category: Page
-        show: True
       - title: "Automations"
         path: /api-management/automations
         category: Page
