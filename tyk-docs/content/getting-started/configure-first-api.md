@@ -14,7 +14,7 @@ title: Tyk QuickStart Configure Your First API
 ---
 
 
-Overview
+## Overview
 This guide helps you get started with Tyk Cloud by covering the basics:
 
 - **Set up your API**: Create and configure a new API in the Tyk Cloud Dashboard.
@@ -41,6 +41,13 @@ Start by creating a new API in Tyk Cloud:
    - **API Name**: Name your API (e.g., `My First API`).
    - **Target URL**: Provide the URL of your backend service (e.g., `https://my-backend-service.com`).
    - **API Slug**: Define the path through which your API will be accessible (e.g., `/my-first-api/`).
+
+  {{< img src="/img/getting-started/apis-create-new-api.png" alt="Create New API" >}}
+4. **Connect to Your Desired Gateway**
+  {{< img src="/img/getting-started/apis-connect-gateways.png" alt="Connect Gateways" >}}
+
+5. **Configure Settings**
+  {{< img src="/img/getting-started/apis-configure-settings.png" alt="Configure Settings" >}}
 4. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
 
 #### Example API Creation Payload
@@ -78,7 +85,7 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
      - Use the **Search field**,
      - Or **Group by Authentication Type** or **Category** to filter APIs.
    - Leave all other options at their default settings.
-
+  {{< img src="/img/getting-started/apis-add-key.png" alt="APIs Add Key" >}}
 4. **Add Configuration Details**:
    - **Enable Detailed Logging**: This is optional and disabled by default.
    - **Key Alias**: Assign an alias to your key for easier identification.
@@ -104,6 +111,8 @@ With your API live, monitor its traffic and analyze performance:
 1. **Navigate to the Analytics Section** in the dashboard.
 2. **View Traffic Metrics**: Review metrics such as request count, response times, and error rates.
 3. **Analyze Data**: Use traffic trends to identify performance issues or optimize API behavior.
+
+{{< img src="/img/getting-started/apis-analytics.png" alt="APIs Analytics" >}}
 
 #### Example Traffic Analytics Response
 
