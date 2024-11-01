@@ -17,11 +17,19 @@ aliases:
 {{< note success >}}
 **Note**  
 
+<<<<<<< HEAD
 Tyk's dedicated OpenID Connect Authentication middleware will be deprecated from Tyk 5.7.0. Tyk's [JSON Web Token (JWT)]({{< ref "/api-management/authentication-authorization#use-json-web-tokens-jwt#about-jwts" >}}) authentication method also allows you to integrate with an OIDC provider, so the dedicated OIDC middleware will be deprecated to reduce duplication and potential for misconfiguration.
 {{< /note >}}
 
 
 [OpenID Connect](https://openid.net/developers/how-connect-works) (OIDC) builds on top of OAuth 2.0, adding authentication. You can secure your APIs on Tyk by integrating with any standards compliant OIDC provider using [JSON Web Tokens]({{< ref "/api-management/authentication-authorization#use-json-web-tokens-jwt" >}}) (JWTs).
+=======
+Tyk's dedicated OpenID Connect Authentication middleware will be deprecated from Tyk 5.7.0. Tyk's [JSON Web Token (JWT)]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens#about-jwts" >}}) authentication method also allows you to integrate with an OIDC provider, so the dedicated OIDC middleware will be deprecated to reduce duplication and potential for misconfiguration.
+{{< /note >}}
+
+
+[OpenID Connect](https://openid.net/developers/how-connect-works) (OIDC) builds on top of OAuth 2.0, adding authentication. You can secure your APIs on Tyk by integrating with any standards compliant OIDC provider using [JSON Web Tokens]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}) (JWTs).
+>>>>>>> ac06b53ba ([DX-1722]  Deprecation announcement  (#5643))
 JWTs offer a simple way to use the third-party Identity Provider (IdP) without needing any direct integration between the Tyk and 3rd-party systems.
 
 To integrate a 3rd party OAuth2/OIDC IdP with Tyk, all you will need to do is ensure that your IdP can issue OAuth2 JWT access tokens as opposed to opaque tokens.
