@@ -2,6 +2,10 @@
 title: Authentication and Authorization
 description: Learn how to apply security options to lock down your APIs with Tyk. Here you will find everything there is to know about Authentication and Authorization in Tyk.
 tags: ["Authentication", "Authorization", "Tyk Authentication", "Tyk Authorization", "Secure APIs"]
+aliases:
+  - /security/your-apis/
+  - /basic-config-and-security/security/authentication-authorization/
+  - /basic-config-and-security/security/authentication-&-authorization/
 ---
 ## Introduction
 
@@ -84,7 +88,7 @@ To implement OAuth 2.0 in Tyk, you have two main options:
 2. **Seamless Application Integration:** Integrate your application with Tyk's API and notification endpoints for streamlined OAuth 2.0 functionality.
 
 
-{{< youtube C4CUDTIHynk >}}
+{{< youtube-seo id="C4CUDTIHynk" title="Using OAuth2.0 To Authenticate Your APIs">}}
 
 
 ### Understanding the OAuth 2.0 Flow within Tyk
@@ -884,7 +888,7 @@ curl -X GET \
 
 This will walk you through securing your APIs with JWTs via Auth0. We also have the following video that will walk you through the process.
 
-{{< youtube jm4V7XzbrZw>}}
+{{< youtube-seo id="jm4V7XzbrZw" title="Protect Your APIs with Auth0 JWT and Tyk">}}
 
 ##### Prerequisites
 
@@ -1433,7 +1437,7 @@ curl -X GET \
 
 As of Tyk v2.3, it is possible to have multiple authentication middleware chained together. For example, you can use an Access Token in combination with Basic Auth or with a JSON Web Token. Below is a video demonstration of this functionality:
 
-{{< youtube vYGYYXcJ6Wc>}}
+{{< youtube-seo id="vYGYYXcJ6Wc" title="Protect an API with Multiple Authentication Types">}}
 
 #### Enable Multi (Chained) Authentication with the Dashboard
 
