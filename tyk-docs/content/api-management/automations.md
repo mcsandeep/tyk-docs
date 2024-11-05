@@ -51,9 +51,6 @@ aliases:
   - /product-stack/tyk-operator/reference/api-definition
   - /product-stack/tyk-operator/reference/security-policy
   - /product-stack/tyk-operator/reference/tyk-oas-api-definition
-  - /product-stack/tyk-operator/release-notes/operator-0.18
-  - /product-stack/tyk-operator/release-notes/operator-0.17
-  - /product-stack/tyk-operator/release-notes/operator-1.0
   - /product-stack/tyk-operator/tyk-ingress-controller
   - /tyk-stack/tyk-operator/migration
   - /universal-data-graph/udg-examples
