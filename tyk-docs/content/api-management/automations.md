@@ -424,8 +424,11 @@ To uninstall Tyk Operator, you need to run the following command:
 $ helm delete tyk-operator -n tyk-operator-system
 ```
 
-### Create your OAS API
-#### Prepare the Tyk OAS API Definition
+### Set Up OAS API
+Setting up OpenAPI Specification (OAS) APIs with Tyk involves preparing an OAS-compliant API definition and configuring it within your Kubernetes cluster using Tyk Operator. This process allows you to streamline API management by storing the OAS definition in a Kubernetes ConfigMap and linking it to Tyk Gateway through a TykOasApiDefinition resource. 
+
+#### Create your OAS API
+##### Prepare the Tyk OAS API Definition
 First, you need to have a complete Tyk OAS API definition file ready. This file will contain all the necessary configuration details for your API in OpenAPI Specification (OAS) format.
 
 Here is an example of what the Tyk OAS API definition might look like. Note that Tyk extension `x-tyk-api-gateway` section should be present.
@@ -472,7 +475,7 @@ You can create and configure your API easily using Tyk Dashboard in a developer 
 4. This will display the raw OAS API definition of your API, which you can then copy and save locally.
 {{< /note >}}
 
-#### Create a ConfigMap for the Tyk OAS API Definition
+##### Create a ConfigMap for the Tyk OAS API Definition
 
 You need to create a [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object) in Kubernetes to store your Tyk OAS API definition. The Tyk Operator will reference this ConfigMap to retrieve the API configuration.
 
@@ -496,7 +499,7 @@ There is inherent size limit to a ConfigMap. The data stored in a ConfigMap cann
 If you prefer to create ConfigMap with a manifest using `kubectl apply` command, you may get an error that the annotation metadata cannot exceed 256KB. It is because by using `kubectl apply`, `kubectl` automatically saves the whole configuration in the annotation [kubectl.kubernetes.io/last-applied-configuration](https://kubernetes.io/docs/reference/labels-annotations-taints/#kubectl-kubernetes-io-last-applied-configuration) for tracking changes. Your OAS API Definition may easily exceed the size limit of annotations (256KB). Therefore, `kubectl create` is used here to get around the problem.
 {{< /note >}}
 
-#### Create a TykOasApiDefinition Custom Resource
+##### Create a TykOasApiDefinition Custom Resource
 
 Now, create a `TykOasApiDefinition` resource to tell the Tyk Operator to use the OAS API definition stored in the ConfigMap.
 
@@ -515,7 +518,7 @@ spec:
       keyName: oas-api-definition.json # Key for retrieving OAS API Definition from the ConfigMap
 ```
 
-#### Apply the TykOasApiDefinition Manifest
+##### Apply the TykOasApiDefinition Manifest
 
 Use `kubectl` to apply the `TykOasApiDefinition` manifest to your cluster:
 
@@ -525,7 +528,7 @@ kubectl apply -f tyk-oas-api-definition.yaml
 
 This command creates a new `TykOasApiDefinition` resource in your cluster. The Tyk Operator will watch for this resource and configures Tyk Gateway or Tyk Dashboard with a new API using the provided OAS API definition.
 
-#### Verify the Tyk OAS API Creation
+##### Verify the Tyk OAS API Creation
 
 To verify that the API has been successfully created, check the status of the TykOasApiDefinition resource:
 
@@ -540,7 +543,7 @@ NAME       DOMAIN   LISTENPATH   PROXY.TARGETURL                  ENABLED   SYNC
 petstore            /petstore/   https://petstore.swagger.io/v2   true      Successful
 ```
 
-#### Test the Tyk OAS API
+##### Test the Tyk OAS API
 After the Tyk OAS API has been successfully created, you can test it by sending a request to the API endpoint defined in your OAS file.
 
 For example, if your API endpoint is `/store/inventory"`, you can use `curl` or any API client to test it:
@@ -551,7 +554,7 @@ curl "TYK_GATEWAY_URL/petstore/store/inventory"
 
 Replace TYK_GATEWAY_URL with a URL of Tyk Gateway.
 
-#### Manage and Update the Tyk OAS API
+##### Manage and Update the Tyk OAS API
 To make any changes to your API configuration, update the OAS file in your ConfigMap and then re-apply the ConfigMap using `kubectl replace`:
 
 ```sh
@@ -566,7 +569,7 @@ The Tyk Operator will automatically detect the change and update the API in the 
 `kubectl replace` without `--save-config` option is used here instead of `kubectl apply` because we do not want to save the OAS API definition in its annotation. If you want to enable `--save-config` option or use `kubectl apply`, the OAS API definition size would be further limited to at most 262144 bytes.
 {{< /note >}}
 
-#### OAS API Examples
+##### OAS API Examples
 This example shows the minimum resources and fields required to define a Tyk OAS API using Tyk Operator. 
 
 ```yaml{hl_lines=["7-7", "41-44"],linenos=true}
@@ -622,8 +625,8 @@ To apply it, simply save the manifest into a file (e.g., `tyk-oas-api.yaml`) and
 
 
 
-### Secure your OAS API
-#### Update your Tyk OAS API Definition
+#### Secure your OAS API
+##### Update your Tyk OAS API Definition
 
 First, you'll modify your existing Tyk OAS API Definition to include the API key authentication configuration.
 
@@ -691,7 +694,7 @@ You can configure your API for any Tyk supported authentication method by follow
 
 Save your updated API definition in the same file, `oas-api-definition.json`.
 
-#### Update the ConfigMap with the new Tyk OAS API Definition
+##### Update the ConfigMap with the new Tyk OAS API Definition
 
 Update the existing ConfigMap that contains your Tyk OAS API Definition with the following command:
 
@@ -718,7 +721,7 @@ spec:
 
 Any changes in the ConfigMap would be detected by Tyk Operator. Tyk Operator will then automatically reconcile the changes and update the API configuration at Tyk.
 
-#### Verify the changes
+##### Verify the changes
 
 Verify that the `TykOasApiDefinition` has been updated successfully:
 
@@ -737,7 +740,7 @@ status:
 
 The **Successful** status shows that Tyk Operator has reconciled the API with Tyk successfully. The last update time is shown in the `time` field.
 
-#### Test the API Endpoint
+##### Test the API Endpoint
 Now, test your API endpoint to confirm that it requires an API key.
 
 For example, if your API endpoint is `/store/inventory"`, you can use `curl` or any API client to test it:
@@ -750,11 +753,11 @@ Replace TYK_GATEWAY_URL with a URL of Tyk Gateway.
 
 Request should fail with a `401 Unauthorized` response now as an API key is required for access. Your API has been secured by Tyk Gateway.
 
-### Add a Security Policy to your OAS API
+#### Add a Security Policy to your OAS API
 To further protect access to your APIs, you will want to add a security policy. 
 Below, we take you through how to define the security policy but you can find [Security Policy Examples](#Security-Policy-Examples)
 
-#### Define the Security Policy manifest
+##### Define the Security Policy manifest
 
 To create a security policy, you must define a Kubernetes manifest using the `SecurityPolicy` CRD. The following example illustrates how to configure a default policy for trial users for a Tyk Classic API named `httpbin` and a Tyk OAS API named `petstore`.
 
@@ -790,7 +793,7 @@ Save the manifest locally in a file, e.g. `trial-policy.yaml`
 
 In this example, we have defined a security policy as described below:
 
-##### Define Security Policy status and metadata
+**Define Security Policy status and metadata**
 
   - **`name`**: A descriptive name for the security policy.
   - **`active`**: Marks the policy as active (true or false).
@@ -814,7 +817,7 @@ In this example, we have defined a security policy as described below:
       hello: world
     ```
 
-##### Define Access Lists for APIs
+**Define Access Lists for APIs**
 
   - **`access_rights_array`**: Defines the list of APIs that the security policy applies to and the versions of those APIs.
     - **`name`**: The Kubernetes metadata name of the API resource to which the policy grants access.
@@ -824,7 +827,7 @@ In this example, we have defined a security policy as described below:
 
 In this example, the security policy will apply to an `ApiDefinition` resource named `httpbin` in the `default` namespace and a `TykOasApiDefinition` resource named `petstore` in the `default` namespace. Note that with Tyk Operator, you do not need to specify API ID as in the raw [Policy definition]({{<ref "basic-config-and-security/security/security-policies/policies-guide">}}). Tyk Operator will automatically retrieve the API ID of referenced API Definition resources for you.
 
-##### Define Rate Limits, Usage Quota, and Throttling
+**Define Rate Limits, Usage Quota, and Throttling**
 
 - **`rate`**: The maximum number of requests allowed per time period (Set to `-1` to disable).
 - **`per`**: The time period (in seconds) for the rate limit (Set to `-1` to disable).
@@ -835,14 +838,14 @@ In this example, the security policy will apply to an `ApiDefinition` resource n
 
 In this example, trial users under this security policy can gain access to the `httpbin` API at a rate limit of maximum 120 times per 60 seconds (`"rate": 120, "per": 60`), with a usage quota of 1000 every hour (`"quota_max": 1000, "quota_renewal_rate": 3600`), without any request throttling (`throttle_interval: -1, throttle_retry_limit: -1`).
 
-#### Apply the Security Policy manifest
+##### Apply the Security Policy manifest
 Once you have defined your security policy manifest, apply it to your Kubernetes cluster using the `kubectl apply` command:
 
 ```bash
 kubectl apply -f trial-policy.yaml
 ```
 
-#### Verify the Security Policy
+##### Verify the Security Policy
 
 After applying the manifest, you can verify that the security policy has been created successfully by running:
 
@@ -867,8 +870,8 @@ Events:         <none>
 From the `status` field, you can see that this security policy has been linked to `httpbin` and `petstore` APIs.
 
 
-#### Security Policy Examples
-##### Key-Level Per-API Rate Limits and Quota{#per-api-limit}
+##### Security Policy Examples
+###### Key-Level Per-API Rate Limits and Quota{#per-api-limit}
 
 By configuring per-API limits, you can set specific rate limits, quotas, and throttling rules for each API in the access rights array. When these per-API settings are enabled, the API inherits the global limit settings unless specific limits and quotas are set in the `limit` field for that API.
 
@@ -933,7 +936,7 @@ Global Rate Limits and Quota:
 
 By setting per-API rate limits and quotas, you gain granular control over how each API is accessed and used, allowing you to apply different limits for different APIs as needed. This configuration is particularly useful when you want to ensure that critical APIs have stricter controls while allowing more flexibility for others. Use this example as a guideline to tailor your security policies to your specific requirements.
 
-##### Key-Level Per-Endpoint Rate Limits{#per-endpoint-rate-limit}
+**Key-Level Per-Endpoint Rate Limits{#per-endpoint-rate-limit}**
 
 By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
 
@@ -997,7 +1000,7 @@ spec:
   quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
 ```
 
-##### Path based permissions{#path-based-permissions}
+**Path based permissions{#path-based-permissions}**
 
 You can secure your APIs by specifying [allowed URLs]({{<ref "security/security-policies/secure-apis-method-path">}}) (methods and paths) for each API within a security policy. This is done using the `allowed_urls` field under `access_rights_array`.
 
@@ -1053,7 +1056,7 @@ With this security policy applied:
         { "error": "Access to this resource has been disallowed" }
     ```
 
-##### Partitioned policies{#partitioned-policies}
+**Partitioned policies{#partitioned-policies}**
 
 [Partitioned policies]({{<ref "basic-config-and-security/security/security-policies/partitioned-policies">}}) allow you to selectively enforce different segments of a security policy, such as quota, rate limiting, access control lists (ACL), and GraphQL complexity rules. This provides flexibility in applying different security controls as needed.
 
@@ -1092,6 +1095,798 @@ spec:
 - **`complexity`**: Set to true to enforce GraphQL complexity rules (limits the complexity of GraphQL queries to prevent resource exhaustion).
 
 ### Go Beyond OAS APIs
+
+#### Create a Tyk Classic API with Tyk Operator
+First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
+
+##### Create an ApiDefinition resource in YAML format
+Create a file called `httpbin.yaml`, then add the following:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+ name: httpbin
+spec:
+ name: httpbin
+ use_keyless: true
+ protocol: http
+ active: true
+ proxy:
+   target_url: http://httpbin.org
+   listen_path: /httpbin
+   strip_listen_path: true
+```
+
+You can also use other sample files from the following pages:
+
+- [HTTP Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http">}})
+- [TCP Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-tcp">}})
+- [GraphQL Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-graphql">}})
+- [UDG example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-udg">}})
+
+##### Deploy the ApiDefinition resource
+We are going to create an ApiDefinition from the httpbin.yaml file, by running the  following command:
+
+```console
+$ kubectl apply -f httpbin.yaml
+```
+
+Or, if you don’t have the manifest with you, you can run the following command:
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+    name: httpbin
+spec:
+    name: httpbin
+    use_keyless: true
+    protocol: http
+    active: true
+    proxy:
+        target_url: http://httpbin.org
+        listen_path: /httpbin
+        strip_listen_path: true
+EOF
+```
+
+The ApiDefinition resource is created. You can verify by the following command:
+
+```console
+$ kubectl get tykapis
+NAME      DOMAIN   LISTENPATH   PROXY.TARGETURL      ENABLED
+httpbin            /httpbin     http://httpbin.org   true
+```
+
+You can make a request to verify that your API is working:
+
+```bash
+$ curl -i localhost:8080/httpbin/get
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/7.77.0",
+    "X-Amzn-Trace-Id": "Root=1-62161e8c-2a1ece436633f2e42129be2a"
+  },
+  "origin": "127.0.0.1, 176.88.45.17",
+  "url": "http://httpbin.org/get"
+}
+```
+
+##### Understanding the ApiDefinition CRD
+
+We have an ApiDefinition called `httpbin`, as specified in `spec.name` field, which listens to path `/httpbin` and proxies requests to [http://httpbin.org](http://httpbin.org), as specified under `spec.proxy` field. Now, any requests coming to the `/httpbin` endpoint will be proxied to the target URL that we defined in `spec.proxy.target_url`, which is [http://httpbin.org](http://httpbin.org) in our example.
+
+You can visit the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page to see all the latest API Definitions fields and features we support.
+
+##### Configure Kubernetes service as an upstream target
+
+Tyk Gateway deployed in your Kubernetes cluster can easily access other Kubernetes services as an upstream proxy target.
+In the ApiDefinition manifest, set the `proxy.target_url` as a Kubernetes Service following [DNS for Services and Pods guideline](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), so that the requests will be proxied to your service.
+In general, Kubernetes Services have a `<service-name>.<namespace-name>`.svc.cluster.local DNS entry once they are created.
+For example, if you have a service called `httpbin` in `default` namespace, you can contact `httpbin` service with `httpbin.default.svc` DNS record in the cluster, instead of IP addresses.
+Please visit the official [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/) for more details.
+Suppose you want to create a Deployment of [httpbin](https://hub.docker.com/r/kennethreitz/httpbin/) service using [ci/upstreams/httpbin.yaml](https://github.com/TykTechnologies/tyk-operator/blob/master/ci/upstreams/httpbin.yaml) file. You are going to expose the application through port `8000` as described under the Service [specification](https://github.com/TykTechnologies/tyk-operator/blob/master/ci/upstreams/httpbin.yaml#L10).
+You can create Service and Deployment by either applying the manifest defined in our repository:
+
+```console
+$ kubectl apply -f ci/upstreams/httpbin.yaml
+```
+
+Or, if you don’t have the manifest with you, you can run the following command:
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+  labels:
+    app: httpbin
+spec:
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 80
+  selector:
+    app: httpbin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: httpbin
+        version: v1
+    spec:
+      containers:
+        - image: docker.io/kennethreitz/httpbin
+          imagePullPolicy: IfNotPresent
+          name: httpbin
+          ports:
+            - containerPort: 80
+EOF
+```
+
+You need to wait until all pods reach READY `1/1` and STATUS `Running` state.
+Once the pod is ready, you can update your `httpbin` API's `target_url` field to proxy your requests to the Service that you created above.
+You can check all services in the `<ns>` namespace as follows:
+
+```console
+$ kubectl get service -n <ns>
+```
+
+You can update your `httpbin` as follows:
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.default.svc:8000
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+Pay attention to the value of the `spec.proxy.target_url` field.
+It is set to `http://httpbin.default.svc:8000` by following the convention described above (`<service_name>.<namespace>.svc:<service_port>`).
+Now, if you send your request to the `/httpbin` endpoint of the Tyk Gateway, the request will be proxied to the `httpbin Service`:
+
+```curl
+curl -sS http://localhost:8080/httpbin/headers
+{
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip", 
+    "Host": "httpbin.default.svc:8000", 
+    "User-Agent": "curl/7.68.0"
+  }
+}
+```
+
+As you can see from the response, the host that your request should be proxied to is `httpbin.default.svc:8000`.
+
+#### Update your API to require a key
+
+You might already have realized that our `httpbin` API is keyless. If you check the APIDefinition's specification, the `use_keyless` field is set to `true`.
+Tyk keyless access represents completely open access for your API and causes Tyk to bypass any session-based middleware (middleware that requires access to token-related metadata). Keyless access will enable all requests through.
+You can disable keyless access by setting `use_keyless` to false. 
+
+1. Update your `httpbin.yaml` file
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: false
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+2. Apply the changes
+
+```bash
+kubectl apply -f httpbin.yaml
+```
+
+Or, if you don’t have the manifest with you, you can run the following command:
+
+```yaml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+    name: httpbin
+spec:
+    name: httpbin
+    use_keyless: false
+    protocol: http
+    active: true
+    proxy:
+        target_url: http://httpbin.org
+        listen_path: /httpbin
+        strip_listen_path: true
+EOF
+```
+
+If you have set `use_keyless` to false, the default authentication mode is Authentication token.
+
+Now, to access `httpbin` API, you need to include a key to the header. Otherwise, you will get a `HTTP 401 Unauthorized` response.
+
+
+```curl
+curl -i localhost:8080/httpbin/get
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+X-Generator: tyk.io
+Date: Thu, 03 Mar 2022 15:47:30 GMT
+Content-Length: 46
+
+{
+    "error": "Authorization field missing"
+}
+```
+
+{{< note success >}}
+
+**Note**  
+
+Tyk Operator supported authentication types are listed in the [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
+
+{{< /note >}}
+
+#### Create an API key
+
+You need to generate a key to access the `httpbin` API now. Follow [this guide](https://tyk.io/docs/getting-started/create-api-key/) to see how to create an API key for your installation. 
+
+You can obtain the API name and API ID of our example `httpbin` API by following command:
+
+```yaml
+kubectl describe tykapis httpbin
+Name:         httpbin
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  tyk.tyk.io/v1alpha1
+Kind:         ApiDefinition
+Metadata:
+  ...
+Spec:
+  ...
+  Name: httpbin
+  ...
+Status:
+  api_id:  ZGVmYXVsdC9odHRwYmlu
+Events:    <none>
+```
+
+You can obtain the API name and API ID from `name` and `status.api_id` field.
+
+In our example, it is as follows:
+
+- {API-NAME}: httpbin
+- {API-ID}: ZGVmYXVsdC9odHRwYmlu
+
+When you have successfully created a key, you can use it to access the `httpbin` API.
+
+```curl
+curl -H "Authorization: Bearer {Key ID}" localhost:8080/httpbin/get
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Authorization": "Bearer {Key ID}",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/7.77.0",
+    "X-Amzn-Trace-Id": "Root=1-6221de2a-01aa10dd56f6f13f420ba313"
+  },
+  "origin": "127.0.0.1, 176.42.143.200",
+  "url": "http://httpbin.org/get"
+}
+```
+Since you have provided a valid key along with your request, you do not get a `HTTP 401 Unauthorized` response.
+
+
+#### Set Up Tyk Classic API Authentication
+Client to Gateway Authentication in Tyk ensures secure communication between clients and the Tyk Gateway. Tyk supports various authentication methods to authenticate and authorize clients before they can access your APIs. These methods include API keys, Static Bearer Tokens, JWT, mTLS, Basic Authentication, and more. This document provides example manifests for each authentication method supported by Tyk.
+
+##### Keyless (Open)
+
+This configuration allows [keyless (open)]({{<ref "basic-config-and-security/security/authentication-authorization/open-keyless">}}) access to the API without any authentication.
+
+```yaml {hl_lines=["7-7"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-keyless
+spec:
+  name: httpbin-keyless
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+##### Auth Token (Bearer Token)
+
+This setup requires a [bearer token]({{<ref "basic-config-and-security/security/authentication-authorization/bearer-tokens">}}) for access.
+
+In the below example, the authentication token is set by default to the `Authorization` header of the request. You can customize this behavior by configuring the following fields:
+
+- `use_cookie`: Set to true to use a cookie value for the token.
+- `cookie_name`: Specify the name of the cookie if use_cookie is enabled.
+- `use_param`: Set to true to allow the token to be passed as a query parameter.
+- `param_name`: Specify the parameter name if use_param is enabled.
+- `use_certificate`: Enable client certificate. This allows you to create dynamic keys based on certificates.
+- `validate_signature`: Enable [signature validation]({{<ref "basic-config-and-security/security/authentication-authorization/bearer-tokens#signature-validation">}}).
+
+```yaml {hl_lines=["13-35"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-auth-token
+spec:
+  name: httpbin-auth-token
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  use_standard_auth: true
+  auth_configs:
+    authToken:
+      # Auth Key Header Name
+      auth_header_name: Authorization
+      # Use cookie value
+      use_cookie: false
+      # Cookie name
+      cookie_name: ""
+      # Allow query parameter as well as header
+      use_param: false
+      # Parameter name
+      param_name: ""
+      # Enable client certificate
+      use_certificate: false
+      # Enable Signature validation
+      validate_signature: false
+      signature:
+        algorithm: ""
+        header: ""
+        secret: ""
+        allowed_clock_skew: 0
+        error_code: 0
+```
+
+##### JWT
+
+This configuration uses [JWT tokens]({{<ref "basic-config-and-security/security/authentication-authorization/json-web-tokens">}}) for authentication.
+
+Users can configure JWT authentication by defining the following fields:
+
+- `jwt_signing_method`: Specify the method used to sign the JWT. Refer to [JWT Signing Method]({{<ref "basic-config-and-security/security/authentication-authorization/json-web-tokens#jwt-signing-method">}}) for supported methods.
+- `jwt_source`: Specify the public key used for verifying the JWT.
+- `jwt_identity_base_field`: Define the identity source, typically set to `sub` (subject), which uniquely identifies the user or entity.
+- `jwt_policy_field_name`: Specify the claim within the JWT payload that indicates the policy ID to apply.
+- `jwt_default_policies` (Optional): Define default policies to apply if no policy claim is found in the JWT payload.
+
+The following example configures an API to use JWT authentication. It specifies the ECDSA signing method and public key, sets the `sub` claim as the identity source, uses the `pol` claim for policy ID, and assigns a default policy (`jwt-policy` SecurityPolicy in `default` namespace) if no policy is specified in the token.
+
+```yaml {hl_lines=["13-22"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-jwt1
+spec:
+  name: httpbin-jwt1
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin-jwt1
+    strip_listen_path: true
+  enable_jwt: true
+  strip_auth_data: true
+  jwt_signing_method: ecdsa
+  # ecdsa pvt: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ2V2WnpMMWdkQUZyODhoYjIKT0YvMk54QXBKQ3pHQ0VEZGZTcDZWUU8zMGh5aFJBTkNBQVFSV3oram42NUJ0T012ZHlIS2N2akJlQlNEWkgycgoxUlR3am1ZU2k5Ui96cEJudVE0RWlNbkNxZk1QV2lacUI0UWRiQWQwRTdvSDUwVnB1WjFQMDg3RwotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0t
+  # ecdsa pub: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFRVZzL281K3VRYlRqTDNjaHluTDR3WGdVZzJSOQpxOVVVOEk1bUVvdlVmODZRWjdrT0JJakp3cW56RDFvbWFnZUVIV3dIZEJPNkIrZEZhYm1kVDlQT3hnPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t
+  jwt_source: LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZrd0V3WUhLb1pJemowQ0FRWUlLb1pJemowREFRY0RRZ0FFRVZzL281K3VRYlRqTDNjaHluTDR3WGdVZzJSOQpxOVVVOEk1bUVvdlVmODZRWjdrT0JJakp3cW56RDFvbWFnZUVIV3dIZEJPNkIrZEZhYm1kVDlQT3hnPT0KLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t
+  jwt_identity_base_field: sub
+  jwt_policy_field_name: pol
+  jwt_default_policies:
+    - default/jwt-policy
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: jwt-policy
+spec:
+  access_rights_array:
+    - name: httpbin-jwt1
+      namespace: default
+      versions:
+        - Default
+  active: true
+  name: jwt-policy
+  state: active
+```
+
+You can verify the API is properly authenticated with following command:
+
+1. JWT with default policy
+```bash
+curl http://localhost:8080/httpbin-jwt1/get -H 'Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNTE2MjM5MDIyfQ.rgPyrCJYs2im7zG6im5XUqsf_oAf_Kqk-F6IlLb3yzZCSZvrQObhBnkLKgfmVTbhQ5El7Q6KskXPal5-eZFuTQ'
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Host": "httpbin.org",
+    "Traceparent": "00-d2b93d763ca27f29181c8e508b5ac0c9-a446afa3bd053617-01",
+    "User-Agent": "curl/8.6.0",
+    "X-Amzn-Trace-Id": "Root=1-6696f0bf-1d9e532c6a2eb3a709e7086b"
+  },
+  "origin": "127.0.0.1, 178.128.43.98",
+  "url": "http://httpbin.org/get"
+}
+```
+
+2. JWT with explicit policy
+```bash
+curl http://localhost:8080/httpbin-jwt1/get -H 'Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNTE2MjM5MDIyLCJwb2wiOiJaR1ZtWVhWc2RDOXFkM1F0Y0c5c2FXTjUifQ.7nY9TvYgsAZqIHLhJdUPqZtzqU_5T-dcNtCt4zt8YPyUj893Z_NopL6Q8PlF8TlMdxUq1Ff8rt4-p8gVboIqlA'
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Host": "httpbin.org",
+    "Traceparent": "00-002adf6632ec20377cb7ccf6c3037e78-3c4cb97c70d790cb-01",
+    "User-Agent": "curl/8.6.0",
+    "X-Amzn-Trace-Id": "Root=1-6696f1dd-7f9de5f947c8c73279f7cca6"
+  },
+  "origin": "127.0.0.1, 178.128.43.98",
+  "url": "http://httpbin.org/get"
+}
+```
+
+##### Basic Authentication
+
+This configuration uses [Basic Authentication]({{<ref "basic-config-and-security/security/authentication-authorization/basic-auth">}}), requiring a username and password for access.
+
+```yaml {hl_lines=["13-13"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-basic-auth
+spec:
+  name: Httpbin Basic Authentication
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  use_basic_auth: true
+```
+
+##### Custom Plugin Auth (go)
+
+This configuration uses a [Golang plugin]({{<ref "plugins/supported-languages/golang">}}) for custom authentication. The following example shows how to create an API definition with a Golang custom plugin for `httpbin-go-auth`.
+
+For an example of Golang authentication middleware, see [Performing custom authentication with a Golang plugin]({{<ref "product-stack/tyk-gateway/advanced-configurations/plugins/golang/go-plugin-examples#performing-custom-authentication-with-a-golang-plugin">}}).
+
+```yaml {hl_lines=["7-7", "14-21"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-go-auth
+spec:
+  name: httpbin-go-auth
+  use_go_plugin_auth: true # Turn on GO auth
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  custom_middleware:
+    driver: goplugin
+    pre:
+      - name: "AddFooBarHeader"
+        path: "/mnt/tyk-gateway/example-go-plugin.so"
+    auth_check:
+        name: "MyPluginCustomAuthCheck"
+        path: "/mnt/tyk-gateway/example-go-plugin.so"
+```
+
+##### Custom Plugin Auth (gRPC)
+
+This configuration uses a [gRPC plugin]({{<ref "plugins/supported-languages/golang">}}) for custom authentication. The following example shows how to create an API definition with a gRPC custom plugin for `httpbin-grpc-auth`.
+
+For a detailed walkthrough on setting up Tyk with gRPC authentication plugins, refer to [Extending Tyk with gRPC Authentication Plugins](https://tyk.io/blog/how-to-setup-custom-authentication-middleware-using-grpc-and-java/).
+
+```yaml {hl_lines=["9-9", "14-26"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-grpc-auth
+spec:
+  name: httpbin-grpc-auth
+  protocol: http
+  active: true
+  enable_coprocess_auth: true
+  proxy:
+    target_url: http://httpbin.default.svc:8000
+    listen_path: /httpbin-grpc-auth
+    strip_listen_path: true
+  custom_middleware:
+    driver: grpc
+    post_key_auth:
+      - name: "HelloFromPostKeyAuth"
+        path: ""
+    auth_check:
+      name: foo
+      path: ""
+    id_extractor:
+      extract_from: header
+      extract_with: value
+      extractor_config:
+        header_name: Authorization
+```
+
+##### Multiple (Chained) Auth
+
+This setup allows for [multiple authentication]({{<ref "basic-config-and-security/security/authentication-authorization/multiple-auth">}}) methods to be chained together, requiring clients to pass through each specified authentication provider.
+
+To enable multiple (chained) auth, you should set `base_identity_provided_by` field to one of the supported chained enums. Consult [Enable Multi (Chained) Authentication in your API Definition]({{<ref "basic-config-and-security/security/authentication-authorization/multiple-auth#enable-multi-chained-authentication-in-your-api-definition">}}) for the supported auths.
+
+In this example, we are creating an API definition with basic authentication and mTLS with basic authentication as base identity for `httpbin-multiple-authentications`.
+
+```yaml {hl_lines=["19-21"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-multiple-authentications
+spec:
+  name: Httpbin Multiple Authentications
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+  base_identity_provided_by: basic_auth_user
+  use_basic_auth: true
+  use_mutual_tls_auth: true
+```
+
+##### IP Allowlist
+
+To enable [IP Allowlist]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-whitelisting">}}), set the following fields:
+
+* `enable_ip_whitelisting`: Enables IPs allowlist. When set to `true`, only requests coming from the explicit list of IP addresses defined in (`allowed_ips`) are allowed through.
+* `allowed_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are allowed access via Tyk.
+
+In this example, only requests coming from 127.0.0.2 is allowed.
+
+```yaml {hl_lines=["10-12"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  enable_ip_whitelisting: true
+  allowed_ips:
+    - 127.0.0.2
+  proxy:
+    target_url: http://httpbin.default.svc:8000
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+##### IP Blocklist
+
+To enable [IP Blocklist]({{<ref "tyk-apis/tyk-gateway-api/api-definition-objects/ip-blacklisting">}}), set the following fields:
+
+* `enable_ip_blacklisting`: Enables IPs blocklist. If set to `true`, requests coming from the explicit list of IP addresses (blacklisted_ips) are not allowed through.
+* `blacklisted_ips`: A list of strings that defines the IP addresses (in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation) that are blocked access via Tyk. This list is explicit and wildcards are currently not supported. 
+
+In this example, requests coming from 127.0.0.2 will be forbidden (`403`).
+
+```yaml {hl_lines=["10-12"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  enable_ip_blacklisting: true
+  blacklisted_ips:
+    - 127.0.0.2
+  proxy:
+    target_url: http://httpbin.default.svc:8000
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+
+#### Publish Your Tyk Classic API
+For Tyk Self Managed or Tyk Cloud, you can set up a Developer Portal to expose a facade of your APIs and then allow third-party developers to register and use your APIs.
+You can make use of Tyk Operator CRDs to publish the APIs as part of your CI/CD workflow. If you have followed this Getting Started guide to create the httpbin example API, you can publish it to your Tyk Classic Developer Portal in a few steps.
+
+{{< note success >}}
+
+**Note**  
+Currently Operator only supports publishing Tyk Classic API to the Tyk Classic Portal.
+{{< /note >}}
+
+##### Publish an API with Tyk Operator
+1. Creating a security policy
+
+When you publish an API to the Portal, Tyk actually publishes a way for developers to enroll in a policy, not into the API directly. Therefore, you should first set up a security policy for the developers, before proceeding with the publishing.
+
+To do that, you can use the following command:
+
+```yml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+ name: standard-pol
+spec:
+ name: standard-pol
+ active: true
+ state: active
+ access_rights_array:
+ - name: httpbin
+   namespace: default
+   versions:
+     - Default
+EOF
+```
+
+The above command will create a basic security policy and attribute it to the `httpbin` API that was previously created.
+
+2. Creating an API description
+
+The Tyk Classic Developer Portal enables you to host your API documentation in Swagger/OpenAPI or API Blueprint for developers to use. In the case of Swagger/OpenAPI, you can either paste your Swagger content (JSON or YAML) in the CRD, or via a link to a public Swagger hosted URL, which can then be rendered by using Swagger UI.
+
+Create a file called `apidesc.yaml`, then add the following;
+
+```yml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: APIDescription
+metadata:
+ name: standard-desc
+spec:
+ name: HTTPBIN API
+ policyRef:
+  name: standard-pol
+  namespace: default
+ docs:
+  doc_type: swagger_custom_url
+  documentation: "https://httpbin.org/spec.json"
+ show: true
+ version: v2
+```
+
+3. Apply the changes
+
+```console
+kubectl apply -f apidesc.yaml
+```
+Or, if you don’t have the manifest with you, you can run the following command:
+
+```yml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: APIDescription
+metadata:
+ name: standard-desc
+spec:
+ name: HTTPBIN API
+ policyRef:
+  name: standard-pol
+  namespace: default
+ docs:
+  doc_type: swagger_custom_url
+  documentation: "https://httpbin.org/spec.json"
+ show: true
+ version: v2
+EOF
+```
+
+4. Creating a PortalAPICatalog resource
+
+Unlike other platforms, Tyk will not auto-publish your APIs to the Portal, instead they are presented as a facade, you choose what APIs and what Policies to expose to the Portal. You can configure what APIs and what Policies to expose to the Portal via Tyk Operator by creating a PortalAPICatalog resource.
+
+Create a file called `api_portal.yaml`, then add the following:
+
+```yml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: PortalAPICatalogue
+metadata:
+ name: test-httpbin-api
+spec:
+ apis:
+ - apiDescriptionRef:
+    name: standard-desc
+    namespace: default
+```
+
+You have added your API Descriptions under `apis`.
+
+5. Apply the changes
+
+```console
+kubectl apply -f api_portal.yaml
+```
+
+Now your new API and its documentation is loaded to the Developer Portal.
+
+**APIDescription CRD**
+
+Different types of documents are supported:
+
+Swagger Documents:
+
+- `doc_type: swagger`
+- `documentation`: Base64 encoded swagger doc
+
+Swagger Hosted URL:
+
+- `doc_type: swagger_custom_url`
+- `documentation`: The URL to the swagger documentation, for example *"https://httpbin.org/spec.json"*
+
+GraphQL:
+
+- `doc_type: graphql`
+
+
 
 #### Set Up Manifest for GraphQL
 In the example below we can see that the configuration is contained within the `graphql` configuration object. A GraphQL schema is specified within the `schema` field and the execution mode is set to `proxyOnly`. The [GraphQL public playground]({{< ref "graphql/graphql-playground#enabling-public-graphql-playground" >}}) is enabled with the path set to `/playground`.
