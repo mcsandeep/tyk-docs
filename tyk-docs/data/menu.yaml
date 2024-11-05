@@ -3869,10 +3869,6 @@ menu:
         category: Directory
         show: True
         menu:
-          - title: "Getting Started"
-            category: Directory
-            show: True
-            menu:
           - title: "Advanced configurations"
             category: Directory
             show: True
