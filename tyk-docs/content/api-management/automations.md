@@ -3,6 +3,41 @@ description: Tyk Tools that help with automating deployment and API Management o
 linkTitle: Automation Tools
 tags: ["Tyk API Management", "Open Source", "Self-Managed", "Tyk Cloud", "API Gateway"]
 title: Automation Tools
+aliases:
+  - /tyk-operator
+  - /tyk-stack/tyk-operator/secure-an-api
+  - /product-stack/tyk-operator/getting-started/create-an-oas-api
+  - /product-stack/tyk-sync/tutorials/tutorial-synchronise-api-configurations
+  - /product-stack/tyk-sync/tutorials/tutorial-backup-api-configurations
+  - /product-stack/tyk-operator/getting-started/quick-start-udg
+  - /product-stack/tyk-sync/commands/sync-dump
+  - /tyk-stack/tyk-operator/access-an-api
+  - /product-stack/tyk-operator/advanced-configurations/client-authentication
+  - /product-stack/tyk-sync/installing-tyk-sync
+  - /product-stack/tyk-operator/getting-started/create-an-api-overview
+  - /product-stack/tyk-operator/key-concepts/operator-context
+  - /tyk-stack/tyk-operator/publish-an-api
+  - /product-stack/tyk-sync/commands/sync-examples
+  - /product-stack/tyk-sync/tutorials/tutorial-update-api-configurations
+  - /tyk-stack/tyk-operator/installing-tyk-operator
+  - /product-stack/tyk-operator/getting-started/quick-start-http
+  - /product-stack/tyk-operator/getting-started/quick-start-tcp
+  - /product-stack/tyk-operator/getting-started/example-tyk-oas-api
+  - /product-stack/tyk-operator/getting-started/secure-an-oas-api
+  - /tyk-stack/tyk-operator/tyk-operator-reconciliation
+  - /product-stack/tyk-operator/key-concepts/operator-user
+  - /product-stack/tyk-sync/commands/sync-publish
+  - /product-stack/tyk-operator/getting-started/quick-start-graphql
+  - /product-stack/tyk-operator/getting-started/secure-an-api-overview
+  - /product-stack/tyk-operator/key-concepts/custom-resources
+  - /product-stack/tyk-sync/overview
+  - /product-stack/tyk-operator/troubleshooting/tyk-operator-changes-not-applied
+  - /tyk-stack/tyk-operator/create-an-api
+  - /product-stack/tyk-operator/getting-started/security-policy-example
+  - /product-stack/tyk-sync/commands/sync-sync
+  - /product-stack/tyk-operator/troubleshooting/tyk-operator-reconciliation-troubleshooting
+  - /product-stack/tyk-sync/commands/sync-update
+
 ---
 ## Introduction
 Managing APIs across multiple environments can quickly become complex. Updating and overseeing multiple configurations, security policies, and deployments requires a significant amount of effort without the right tools. Tyk’s suite of automation tools simplifies this process by enabling automated control over API management tasks, helping teams ensure reliability, reduce manual errors, and maintain consistency across deployments.
@@ -20,7 +55,7 @@ In this guide, we’ll walk through the primary tools for automating API managem
 Before diving into lifecycle automations with Tyk, ensure you have the following:
 
 - **A Tyk installation** (Self-Managed or Cloud)
-  - If you don't have Tyk installed, follow our [installation guide](/tyk-on-premises/installation/)
+  - If you don't have Tyk installed, follow our [installation guide](/tyk-self-managed/install/)
   - For Tyk Cloud, sign up [here](https://tyk.io/sign-up/)
   - Tyk Operator license key. Starting from Tyk Operator v1.0, a valid [license key](#obtain-a-license-key) is required.
 - **Access to a Kubernetes cluster v1.19+** (for Tyk Operator sections)
@@ -30,9 +65,8 @@ Before diving into lifecycle automations with Tyk, ensure you have the following
   - If you don't have Helm installed, follow the [official Helm installation guide](https://helm.sh/docs/intro/install/)
   - Verify your installation by running `helm version` in your terminal
 
-- **Tyk Dashboard v3+ access and API credentials** (for Tyk Sync setup)
+- **Tyk Dashboard v3+ access** (for Tyk Sync setup)
   - Learn how to set up the Tyk Dashboard [here](/tyk-dashboard/)
-  - For API credentials, see our guide on [creating API tokens](/tyk-dashboard/managing-users/#create-an-api-token)
 
 - **Basic knowledge of Kubernetes, YAML, and API concepts** (important for Tyk Operator and Tyk Sync)
   - For Kubernetes, visit the [official tutorials](https://kubernetes.io/docs/tutorials/)
@@ -73,12 +107,6 @@ If you use Tyk Operator to manage your APIs, you should set up RBAC such that hu
 ##### Tyk Operator in your GitOps workflow
 You can install Argo CD, Flux CD or the GitOps tool of your choice in a cluster, and connect it to the Git repository where you version control your API manifests. The tool can alert on any divergence between Git and what’s running on a cluster. If there’s a difference, Tyk Operator has a Kubernetes controller to automatically reconcile the API configurations on your Tyk Gateway or Tyk Dashboard. 
 
-With Tyk Operator and GitOps, you can manage your APIs as code with these benefits:
-- Security 
-- Compliance
-
-All changes must go through peer review through pull requests. The configurations are versioned in your version control system and approved by your API Product Owner and Platform team.
-
 **Kubernetes-Native Developer Experience** 
 API Developers enjoy a smoother Continuous Integration process as they can develop, test, and deploy the microservices. API configurations together use familiar development toolings and pipeline.
 
@@ -86,7 +114,7 @@ API Developers enjoy a smoother Continuous Integration process as they can devel
 With declarative API configurations, you have a single source of truth to recover after any system failures, reducing the meantime to recovery from hours to minutes.
 
 ##### Single source of Truth for API configurations
-Tyk Operator will reconcile any divergence between Git and the actual state in Tyk Gateway or Tyk Dashboard. Therefore, you should maintain the API definition manifests as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
+Tyk Operator will reconcile any divergence between Git and the actual state in [Tyk Gateway](/tyk-oss-gateway/) or [Tyk Dashboard](/tyk-dashboard/). Therefore, you should maintain the API definition manifests as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
 
 
 #### Custom Resources in Tyk
@@ -2727,9 +2755,9 @@ Tyk Sync works with *Tyk Dashboard* installation. With Tyk Dashboard, Tyk Sync s
 
 **Working with OAS APIs**
 
-Starting with Sync v1.5+ and Dashboard v5.3.2+, Tyk Sync supports both [Tyk OAS APIs](getting-started/key-concepts/high-level-concepts) and [Tyk Classic APIs](getting-started/key-concepts/what-is-an-api-definition#api-definition-types) when working with the Tyk Dashboard, without requiring special flags or configurations.
+Starting with Sync v1.5+ and Dashboard v5.3.2+, Tyk Sync supports both [Tyk OAS APIs](/getting-started/key-concepts/high-level-concepts) and [Tyk Classic APIs](/getting-started/key-concepts/what-is-an-api-definition#api-definition-types) when working with the Tyk Dashboard, without requiring special flags or configurations.
 
-For Sync versions v1.4.1 to v1.4.3, enabling Tyk Sync for Tyk OAS APIs requires the [allow-unsafe-oas](tyk-dashboard/configuration#allow_unsafe_oas) configuration in the Dashboard, along with the `--allow-unsafe-oas` flag when invoking Tyk Sync. Note that Tyk Sync versions v1.4.1 to 1.4.3 do not support API Category for Tyk OAS APIs.
+For Sync versions v1.4.1 to v1.4.3, enabling Tyk Sync for Tyk OAS APIs requires the [allow-unsafe-oas](/tyk-dashboard/configuration#allow_unsafe_oas) configuration in the Dashboard, along with the `--allow-unsafe-oas` flag when invoking Tyk Sync. Note that Tyk Sync versions v1.4.1 to 1.4.3 do not support API Category for Tyk OAS APIs.
 
 **Working with Open Source Gateway**
 
