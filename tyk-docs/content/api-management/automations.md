@@ -1096,7 +1096,7 @@ spec:
 
 ### Set Up Tyk Classic API
 
-#### Create a Tyk Classic API with Tyk Operator
+#### Create a Tyk Classic API
 First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
 
 ##### Create an ApiDefinition resource in YAML format
@@ -1286,7 +1286,8 @@ curl -sS http://localhost:8080/httpbin/headers
 
 As you can see from the response, the host that your request should be proxied to is `httpbin.default.svc:8000`.
 
-#### Update your API to require a key
+#### Secure your Classic API
+##### Update your API to Require a Key
 
 You might already have realized that our `httpbin` API is keyless. If you check the APIDefinition's specification, the `use_keyless` field is set to `true`.
 Tyk keyless access represents completely open access for your API and causes Tyk to bypass any session-based middleware (middleware that requires access to token-related metadata). Keyless access will enable all requests through.
@@ -1362,7 +1363,7 @@ Tyk Operator supported authentication types are listed in the [API Definition fe
 
 {{< /note >}}
 
-#### Create an API key
+##### Create an API key
 
 You need to generate a key to access the `httpbin` API now. Follow [this guide](https://tyk.io/docs/getting-started/create-api-key/) to see how to create an API key for your installation. 
 
@@ -1415,7 +1416,7 @@ curl -H "Authorization: Bearer {Key ID}" localhost:8080/httpbin/get
 Since you have provided a valid key along with your request, you do not get a `HTTP 401 Unauthorized` response.
 
 
-#### Set Up Tyk Classic API Authentication
+##### Set Up Tyk Classic API Authentication
 Client to Gateway Authentication in Tyk ensures secure communication between clients and the Tyk Gateway. Tyk supports various authentication methods to authenticate and authorize clients before they can access your APIs. These methods include API keys, Static Bearer Tokens, JWT, mTLS, Basic Authentication, and more. This document provides example manifests for each authentication method supported by Tyk.
 
 ##### Keyless (Open)
