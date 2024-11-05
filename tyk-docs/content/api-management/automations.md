@@ -424,7 +424,7 @@ To uninstall Tyk Operator, you need to run the following command:
 $ helm delete tyk-operator -n tyk-operator-system
 ```
 
-### Create an OAS API
+### Create your OAS API
 #### Prepare the Tyk OAS API Definition
 First, you need to have a complete Tyk OAS API definition file ready. This file will contain all the necessary configuration details for your API in OpenAPI Specification (OAS) format.
 
@@ -622,7 +622,7 @@ To apply it, simply save the manifest into a file (e.g., `tyk-oas-api.yaml`) and
 
 
 
-### Secure an OAS API
+### Secure your OAS API
 #### Update your Tyk OAS API Definition
 
 First, you'll modify your existing Tyk OAS API Definition to include the API key authentication configuration.
@@ -750,7 +750,7 @@ Replace TYK_GATEWAY_URL with a URL of Tyk Gateway.
 
 Request should fail with a `401 Unauthorized` response now as an API key is required for access. Your API has been secured by Tyk Gateway.
 
-### Add a Security Policy To An OAS API
+### Add a Security Policy to your OAS API
 To further protect access to your APIs, you will want to add a security policy. 
 Below, we take you through how to define the security policy but you can find [Security Policy Examples](#Security-Policy-Examples)
 
@@ -2167,6 +2167,6 @@ With Tyk’s automation tools, you now have a set of options for streamlining AP
 
 To continue building on what you’ve set up here, explore the following topics:
 
-- **Security Policies**: For a deeper dive into securing your APIs, read our [guide on security policies](/basic-config-and-security/security/security-policies/), covering token management, user roles, and access control.
+- **Secure Your API Using Client mTLS** If you plan to secure your API using Client mTLS, also review [Manage TLS certificates]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) documentation to see how to let Tyk Operator manage the TLS certificates stored in Kubernetes.
 - **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/advanced-configuration/)
 - **CI/CD Integrations**: Learn how to embed Tyk automation into your CI/CD pipeline, enabling continuous deployment and reducing release cycle times.
