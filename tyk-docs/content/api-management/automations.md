@@ -37,7 +37,26 @@ aliases:
   - /product-stack/tyk-sync/commands/sync-sync
   - /product-stack/tyk-operator/troubleshooting/tyk-operator-reconciliation-troubleshooting
   - /product-stack/tyk-sync/commands/sync-update
-  - /tyk-stack/tyk-operator/migration/
+  - /product-stack/tyk-operator/key-concepts/custom-resources
+  - /product-stack/tyk-operator/getting-started/create-an-api-overview
+  - /tyk-stack/tyk-operator/secure-an-api
+  - /tyk-stack/tyk-operator/publish-an-api
+  - /product-stack/tyk-operator/key-concepts/operator-context
+  - /product-stack/tyk-operator/key-concepts/operator-user
+  - /product-stack/tyk-operator/getting-started/quick-start-http
+  - /product-stack/tyk-operator/getting-started/quick-start-tcp
+  - /product-stack/tyk-operator/getting-started/quick-start-graphql
+  - /product-stack/tyk-operator/getting-started/quick-start-udg
+  - /tyk-stack/tyk-operator/installing-tyk-operator
+  - /product-stack/tyk-operator/reference/api-definition
+  - /product-stack/tyk-operator/reference/security-policy
+  - /product-stack/tyk-operator/reference/tyk-oas-api-definition
+  - /product-stack/tyk-operator/release-notes/operator-0.18
+  - /product-stack/tyk-operator/release-notes/operator-0.17
+  - /product-stack/tyk-operator/release-notes/operator-1.0
+  - /product-stack/tyk-operator/tyk-ingress-controller
+  - /tyk-stack/tyk-operator/migration
+  - /universal-data-graph/udg-examples
 
 ---
 ## Introduction
