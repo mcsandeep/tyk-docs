@@ -159,7 +159,7 @@ Using `OperatorContext` offers flexibility for multi-tenancy, helping organizati
 {{< img src="/img/operator/tyk-operator-context.svg" alt="Multi-tenancy in Kubernetes Tyk Operator" width="600" >}}
 
 
-### Configure Tyk Operator
+### Install and Configure Tyk Operator
 
 We assume you have already installed Tyk. If you don’t have it, check out [Tyk
 Cloud]({{<ref "deployment-and-operations/tyk-cloud-platform/quick-start">}}) or [Tyk Self
@@ -191,7 +191,7 @@ of cert-manager by checking [supported releases page](https://cert-manager.io/do
 
 Please wait for the cert-manager to become available before continuing with the next step.
 
-### Installation steps
+
 
 #### Option 1: Install Tyk Operator via Tyk's Umbrella Helm Charts
 
@@ -1091,7 +1091,7 @@ spec:
 - **`acl`**: Set to true to enforce access control rules (controls which APIs or paths can be accessed).
 - **`complexity`**: Set to true to enforce GraphQL complexity rules (limits the complexity of GraphQL queries to prevent resource exhaustion).
 
-### Going Beyond OAS APIs
+### Go Beyond OAS APIs
 
 #### Set Up Manifest for GraphQL
 In the example below we can see that the configuration is contained within the `graphql` configuration object. A GraphQL schema is specified within the `schema` field and the execution mode is set to `proxyOnly`. The [GraphQL public playground]({{< ref "graphql/graphql-playground#enabling-public-graphql-playground" >}}) is enabled with the path set to `/playground`.
