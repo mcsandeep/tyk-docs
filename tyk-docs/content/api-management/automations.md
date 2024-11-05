@@ -1094,7 +1094,7 @@ spec:
 - **`acl`**: Set to true to enforce access control rules (controls which APIs or paths can be accessed).
 - **`complexity`**: Set to true to enforce GraphQL complexity rules (limits the complexity of GraphQL queries to prevent resource exhaustion).
 
-### Go Beyond OAS APIs
+### Set Up Tyk Classic API
 
 #### Create a Tyk Classic API with Tyk Operator
 First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
