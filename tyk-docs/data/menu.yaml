@@ -3877,14 +3877,6 @@ menu:
                 path: /product-stack/tyk-operator/advanced-configurations/management-of-api
                 category: Page
                 show: True
-              - title: "Manage existing APIs and policies"
-                path: /tyk-stack/tyk-operator/migration
-                category: Page
-                show: True
-              - title: "Kubernetes Ingress Controller"
-                path: /product-stack/tyk-operator/tyk-ingress-controller
-                category: Page
-                show: True
               - title: "Manage multiple organisations"
                 path: /product-stack/tyk-operator/getting-started/tyk-operator-multiple-organisations
                 category: Page
