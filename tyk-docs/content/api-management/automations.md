@@ -2714,7 +2714,7 @@ The following table shows an example of path matching if the listen-path is set 
 Tyk Sync enables you to export and import Tyk configurations directly from Git, keeping environments aligned without manual configuration updates. This section covers the setup and use of Tyk Sync, providing steps to ensure consistent configurations across different environments.
 
 
-## Tyk Sync Features
+### Tyk Sync Features
 Tyk Sync works with *Tyk Dashboard* installation. With Tyk Dashboard, Tyk Sync supports managing Classic and OAS API definitions, security policies, and API templates.
 
 | Tyk Sync Feature                                                           | Tyk Dashboard (Licensed) |
