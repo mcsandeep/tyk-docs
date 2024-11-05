@@ -1416,7 +1416,7 @@ curl -H "Authorization: Bearer {Key ID}" localhost:8080/httpbin/get
 Since you have provided a valid key along with your request, you do not get a `HTTP 401 Unauthorized` response.
 
 
-##### Set Up Tyk Classic API Authentication
+#### Set Up Tyk Classic API Authentication
 Client to Gateway Authentication in Tyk ensures secure communication between clients and the Tyk Gateway. Tyk supports various authentication methods to authenticate and authorize clients before they can access your APIs. These methods include API keys, Static Bearer Tokens, JWT, mTLS, Basic Authentication, and more. This document provides example manifests for each authentication method supported by Tyk.
 
 ##### Keyless (Open)
