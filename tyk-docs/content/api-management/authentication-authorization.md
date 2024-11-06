@@ -8,7 +8,6 @@ aliases:
   - /basic-config-and-security/security/authentication-&-authorization/
 ---
 ## Introduction
-
 In API management, authentication and authorization are responsible for controlling access to your APIs and protecting sensitive data. Each serves a distinct purpose:
 
 * **Authentication**: Confirms the identity of the user or system making the API request. This step validates "who" is attempting to access the API, commonly through methods like tokens, passwords, or certificates.
