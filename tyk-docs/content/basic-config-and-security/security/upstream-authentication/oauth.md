@@ -39,7 +39,6 @@ Example:
       "authentication": {
         "enabled": true,
         "oauth": {
-          "enabled": true,
           "allowedAuthorizeTypes": [
             "clientCredentials"
           ],
