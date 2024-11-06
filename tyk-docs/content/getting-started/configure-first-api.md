@@ -44,17 +44,19 @@ Start by creating a new API in Tyk Cloud:
 
   {{< img src="/img/getting-started/apis-create-new-api.png" alt="Create New API" >}}
 
+<br>
 
 4. **Connect to Your Desired Gateway**
   {{< img src="/img/getting-started/apis-connect-gateways.png" alt="Connect Gateways" >}}
 
+<br>
 
 5. **Configure Settings**
   {{< img src="/img/getting-started/apis-configure-settings.png" alt="Configure Settings" >}}
 
+<br>
 
-
-4. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
+6. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
 
 #### Example API Creation Payload
 
@@ -80,12 +82,13 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
    
    {{< img src="/img/getting-started/apis-sidebar-security.png" alt="Keys Menu" >}}
 
+<br>
 
 2. **Click "Add Key"** to generate a new key.
 
    {{< img src="/img/getting-started/apis-add-key.png" alt="Add Key" >}}
 
-
+<br>
 
 3. **Add a Policy or API to Your Key**:
    - You can either add your key to an existing **Policy** or assign it to an individual **API**.
@@ -106,11 +109,11 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
    - Once the key is created, a **Key successfully generated** pop-up will be displayed showing your key. **Copy the key** to your clipboard and save it for future reference as it will not be shown again.
 
    {{< img src="/img/getting-started/apis-create-key.png" alt="APIs Create Key" >}}
-
+<br>
    - And that should result in a successfully generated key!
 
    {{< img src="/img/getting-started/apis-keys-success.png" alt="Key Success" >}}
-   
+  
 
 ## Monitor Traffic and Analyze API Performance
 
