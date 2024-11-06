@@ -24,11 +24,9 @@ Inside your OAS API definition you should configure `x-tyk-api-gateway.upstream.
 - `username` is the username to be used.
 - `password` is the password to be used.
 
-```
 {{< note success >}}
 **Note**
 `x-tyk-api-gateway.upstream.authentication.enabled` needs to be true to enable upstream authentication.
 
 If the configured `headerName` is also sent from clientside, Tyk will replace it with basic auth credentials before sending it to upstream.
 {{< /note >}}
-```
