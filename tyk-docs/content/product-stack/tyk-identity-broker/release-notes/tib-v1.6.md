@@ -135,18 +135,12 @@ Each change log item should be expandable. The first line summarises the changel
 <ul>
 <li>
 <details>
-<summary>Changelog item summary</summary>
+<summary>Support for JSON Web Encryption (JWE) in OIDC SSO with TIB</summary>
 
-The actual changelog item text should go here. It should be no more than three or four sentences. It should link to a content page for further explanation where applicable. There should be a blank line between the summary tags and this paragraph, otherwise, links will not be rendered.
+This release adds support for JSON Web Encryption (JWE) in OIDC Single Sign-On (SSO) with TIB, providing enhanced security for token handling in authentication flows. This feature enables processing and validation of JWE tokens, with configuration options for setting the private key required for decryption.
 </details>
 </li>
-<li>
-<details>
-<summary>Another changelog item summary</summary>
 
-The actual changelog item text should go here. It should be no more than three or four sentences. It should link to a content page for further explanation where applicable. There should be a blank line between the summary tags and this paragraph, otherwise, links will not be rendered.
-</details>
-</li>
 </ul>
 
   
