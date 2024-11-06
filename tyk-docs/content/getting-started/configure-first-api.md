@@ -43,11 +43,17 @@ Start by creating a new API in Tyk Cloud:
    - **API Slug**: Define the path through which your API will be accessible (e.g., `/my-first-api/`).
 
   {{< img src="/img/getting-started/apis-create-new-api.png" alt="Create New API" >}}
+
+
 4. **Connect to Your Desired Gateway**
   {{< img src="/img/getting-started/apis-connect-gateways.png" alt="Connect Gateways" >}}
 
+
 5. **Configure Settings**
   {{< img src="/img/getting-started/apis-configure-settings.png" alt="Configure Settings" >}}
+
+
+
 4. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
 
 #### Example API Creation Payload
@@ -75,9 +81,10 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
    {{< img src="/img/getting-started/apis-sidebar-security.png" alt="Keys Menu" >}}
 
 
-2. **Click "CREATE"** to generate a new key.
+2. **Click "Add Key"** to generate a new key.
 
    {{< img src="/img/getting-started/apis-add-key.png" alt="Add Key" >}}
+
 
 
 3. **Add a Policy or API to Your Key**:
