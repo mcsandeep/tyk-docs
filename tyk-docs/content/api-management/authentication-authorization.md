@@ -627,31 +627,110 @@ curl -X GET \
 
 
 #### Use Bearer Tokens
+##### What is a bearer token ?
 
-Bearer tokens are a type of access token that allows the bearer to access a protected resource. In OAuth 2.0, the token is typically passed in the Authorization header.
+> Any party in possession of a bearer token (a "bearer") can use it to get access to the associated resources (without demonstrating possession of a cryptographic key). To prevent misuse, bearer tokens need to be protected from disclosure in storage and in transport.
 
-##### Access a Protected Resource
+Tyk provides bearer token access as one of the most convenient building blocks for managing security to your API. In a Tyk setup, this is called "Access Tokens" and is the default mode of any API Definition created for Tyk.
 
-The client application sends an HTTP request with an `Authorization` header containing the word "Bearer" followed by the access token.
+Bearer tokens are added to a request as a header or as a query parameter. If added as a header, they may be preceded by the word "Bearer" to indicate their type, though this is optional.
 
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Bearer ACCESS_TOKEN'
+Traditionally these tokens are used as part of the `Authorization` header.
+
+##### Enable bearer tokens in your API Definition with the Dashboard
+
+To enable the use of a bearer token in your API:
+
+1. Select your API from the **System Management > APIs** menu
+2. Scroll to the **Authentication** options
+3. Select **Authentication Token** from the drop-down list
+4. Select **Strip Authorization Data** to strip any authorization data from your API requests
+5. Tyk will by default assume you are using the `Authorization` header, but you can change this by setting the **Auth Key Header** name value
+6. You can select whether to use a URL query string parameter as well as a header, and what parameter to use. If this is left blank, it will use the **Auth Key Header** name value.
+7. You can select whether to use a **cookie value**. If this is left blank, it will use the Header name value.
+8. You can select to use a **client certificate**. This allows you to create dynamic keys based on certificates.
+
+{{< img src="/img/2.10/auth_token_api_settings.png" alt="Target Details: Auth Token" >}}
+
+##### Enable bearer tokens in your API Definition with file-based
+
+Tyk will by default use the bearer token method to protect your API unless it is told otherwise.
+
+These tokens can be set as a *header, url parameter, or cookie name of a request*. A request for a resource at the API endpoint of `/api/widgets/12345` that uses access tokens will require the addition of a header field, traditionally this is the `Authorization` header.
+
+The name of the key can be defined as part of the API definition under the `auth` section of an API Definition file:
+
+```{.copyWrapper}
+"auth": {
+  "auth_header_name": "authorization",
+  "use_param": false,
+  "param_name": "",
+  "use_cookie": false,
+  "cookie_name": ""
+},
 ```
 
-**Request:**
+To use URL query parameters instead of a header, set the `auth.use_param` setting in your API definition to `true`. 
 
-| Parameter       | Value                                       |
-| --------------- | ------------------------------------------ |
-| **Method**      | `GET`                                        |
-| **URL**         | The API endpoint for the protected resource. |
-| **Authorization** | Bearer token, e.g., `Bearer ACCESS_TOKEN`.    |
+{{< note success >}}
+**Note**  
 
+Unlike headers, URL query parameters are *case sensitive*.
+{{< /note >}}
+
+
+To use a cookie name instead of a header or request parameter, set the `use_cookie` parameter to `true`. Cookie names are also case sensitive.
+
+**Signature validation**
+
+If you are migrating from platforms like Mashery, which use request signing, you can enable signature validation like this:
+
+```{.copyWrapper}
+...
+"auth": {
+  "validate_signature": true,
+  "signature": {
+    "algorithm": "MasherySHA256",
+    "header": "X-Signature",
+    "secret": "secret",
+    "allowed_clock_skew": 2
+  }
+}
+...
+```
+`validate_signature`: boolean value to tell Tyk whether to enable signature validation or not
+
+`signature.algorithm`: the algorithm you wish to validate the signature against. Currently supported
+ - `MasherySHA256`
+ - `MasheryMD5`
+ 
+ `signature.header`: header key of attempted signature
+ 
+ `signature.secret`: the shared secret which was used to sign the request
+ - Can hold a dynamic value, by referencing `$tyk_meta` or `$tyk_context` variables.
+ - Example: `"secret": "$tyk_meta.individual_secret"`. Which effectively means that you have created/imported the api key into Tyk, and have stored the shared secret in the field `individual_secret` of the session token's meta-data.
+
+`signature.allowed_clock_skew`: allowed deviation in seconds between UNIX timestamp of Tyk & UNIX timestamp used to generate the signed request
+
+**Custom tokens**
+
+It is possible to provide Tyk with your own custom tokens, this can be achieved using the Tyk Gateway REST API. This is very useful if you have your own identity provider and don't want Tyk to create and manage tokens for you, and instead just mirror those tokens within Tyk to off-load access control, quotas and rate limiting from your own application.
+
+##### Enabling bearer tokens with Tyk Operator
+
+Please consult the Tyk Operator supporting documentation for an example of how to [enable a bearer token]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#auth-token-bearer-token" >}}) with Tyk Operator.
 
 ### Revoke OAuth Tokens
 
-OAuth tokens can be revoked by the client or server when they are no longer needed, preventing further access to the protected resources.
+This feature gives you (both developers and Dashboard users) the ability to revoke OAuth tokens. You can revoke specific tokens by providing the token and token hint (`access_token` or `refresh_token`) or you can revoke all OAuth Client tokens. 
+
+You can revoke OAuth tokens via the following methods:
+* From a Gateway API endpoint (in compliance with https://tools.ietf.org/html/rfc7009). See the OAuth section of our [Swagger doc]({{< ref "tyk-gateway-api" >}}) for the Gateway REST API for details.
+* Via a Dashboard API calls - [Revoke a token]({{< ref "tyk-apis/tyk-dashboard-api/oauth-key-management#revoke-a-single-oauth-client-token" >}}) and [revoke all tokens]({{< ref "tyk-apis/tyk-dashboard-api/oauth-key-management#revoke-all-oauth-client-tokens" >}})
+* Via a Portal Developer API call - [Revoke a token]({{< ref "tyk-apis/tyk-portal-api/portal-developers#revoke-a-single-oauth-client-token" >}}) and [revoke all tokens]({{< ref "tyk-apis/tyk-portal-api/portal-developers#revoke-all-oauth-client-tokens" >}})
+* Via the Developer menu from the Tyk Dashboard
+
+Here's an example of how to revoke a token via the Tyk Dashboard API
 
 #### Submit a Request to Revoke the Token
 
@@ -1487,27 +1566,71 @@ Tyk allows for custom authentication logic using Python and JavaScript Virtual M
 
 
 ## Set Physical Key Expiry and Deletion
+Tyk makes a clear distinction between an API authorization key expiring and being deleted from the Redis storage.
 
-Tyk supports managing API keys with specific expiry dates and allows for the deletion of keys when they are no longer needed. This ensures that access to your APIs is properly controlled and limited to authorized users.
+- When a key expires, it remains in the Redis storage but is no longer valid. Consequently, it is no longer authorized to access any APIs. If a key in Redis has expired and is passed in an API request, Tyk will return `HTTP 401 Key has expired, please renew`.
+ - When a key is deleted from Redis, Tyk no longer knows about it, so if it is passed in an API request, Tyk will return `HTTP 400 Access to this API has been disallowed`.
 
-### Configure Key Expiry in Tyk
+Tyk provides separate control for the expiration and deletion of keys.
 
-Set an expiry date for API keys during their creation or update.
+Note that where we talk about keys here, we are referring to [Session Objects]({{< ref "getting-started/key-concepts/what-is-a-session-object" >}}), also sometimes referred to as Session Tokens
 
-**Example Configuration:**
+### Key expiry
 
-```yaml
-{
-  "key": "USER_API_KEY",
-  "expires": 1625151600,
-  "delete": true
-}
+Tyk's API keys ([token session objects]({{< ref "tyk-apis/tyk-gateway-api/token-session-object-details" >}})) have an `expires` field. This is a UNIX timestamp and, when this date/time is reached, the key will automatically expire; any subsequent API request made using the key will be rejected.
+
+### Key lifetime
+
+Tyk does not automatically delete keys when they expire. You may prefer to leave expired keys in Redis storage, so that they can be renewed (for example if a user has - inadvisedly - hard coded the key into their application). Alternatively, you may wish to delete keys to avoid cluttering up Redis storage with obsolete keys.
+
+You have two options for configuring the lifetime of keys when using Tyk:
+
+1.  At the API level
+2.  At the Gateway level
+
+#### API-level key lifetime control
+
+You can configure Tyk to delete keys after a configurable period (lifetime) after they have been created. Simply set the `session_lifetime` field in your API Definition and keys created for that API will automatically be deleted when that period (in seconds) has passed.
+
+The default value for `session_lifetime` is 0, this is interpreted as an infinite lifetime which means that keys will not be deleted from Redis.
+
+For example, to have keys live in Redis for only 24 hours (and be deleted 24 hours after their creation) set:
+
+```{.json}
+"session_lifetime": 86400
 ```
 
-### Automatically or Manually Delete Expired Keys
+{{< note success >}} 
+**Note**
 
-Tyk can be configured to automatically delete expired keys, or you can manually delete them through the Tyk dashboard or API.
+There is a risk, when configuring API-level lifetime, that a key will be deleted before it has expired, as `session_lifetime` is applied regardless of whether the key is active or expired. To protect against this, you can configure the [session_lifetime_respects_key_expiration]({{< ref "tyk-oss-gateway/configuration#session_lifetime_respects_key_expiration" >}}) parameter in your `tyk.conf`, so that keys that have exceeded their lifetime will not be deleted from Redis until they have expired.
+{{< /note >}}
 
+This feature works nicely with [JWT]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}) or [OIDC]({{< ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) authentication methods, as the keys are created in Redis the first time they are in use so you know when they will be removed. Be extra careful in the case of keys created by Tyk (Auth token or JWT with individual secrets) and set a long `session_lifetime`, otherwise the user might try to use the key **after** it has already been removed from Redis.
+
+#### Gateway-level key lifetime control
+
+You can set a global lifetime for all keys created in the Redis by setting [global_session_lifetime]({{< ref "tyk-oss-gateway/configuration#global_session_lifetime" >}}) in the `tyk.conf` file; this parameter is an integer value in seconds.
+
+To enable this global lifetime, you must also set the [force_global_session_lifetime]({{< ref "tyk-oss-gateway/configuration#force_global_session_lifetime" >}}) parameter in the `tyk.conf` file.
+
+#### Summary of key lifetime precedence
+
+The table below shows the key lifetime assigned for the different permutations of `force_global_session_lifetime` and  `session_lifetime_respects_key_expiration` configuration parameters.
+| `force_global_session_lifetime` | `session_lifetime_respects_key_expiration` | Assigned lifetime |
+|---------------------------------|--------------------------------------------|-------------------------------------------|
+| `true`                          | `true`                                     | `global_session_lifetime`                 |
+| `true`                          | `false`                                    | `global_session_lifetime`                 |
+| `false`                         | `true`                                     | larger of `session_lifetime` or `expires` |
+| `false`                         | `false`                                    | `session_lifetime`                        |
+
+{{< note success >}} 
+**Note**
+
+It is important to remember that a value of `0` in `session_lifetime` or `global_session_lifetime` is interpreted as infinity (i.e. key will not be deleted if that control is in use) - and if a field is not set, this is treated as `0`.
+<br>
+If you want the key to be deleted when it expires (i.e. to use the expiry configured in `expires` within the key to control deletion) then you must set a non-zero value in `session_lifetime` and configure both `session_lifetime_respects_key_expiration:true` and `force_global_session_lifetime:false`.
+{{< /note >}}
 
 
 ## Enable Mutual TLS
@@ -1540,6 +1663,11 @@ This mutual verification ensures that both parties are legitimate, securing the 
 * **Enhanced Security:** Provides two-way authentication, ensuring both the client and server are verified and trusted.
 * **Data Integrity:** Protects the data exchanged between client and server by encrypting it, preventing tampering or interception.
 * **Compliance:** Helps meet stringent security and compliance requirements, especially in regulated industries.
+
+
+### mTLS for cloud users:
+- Cloud users can secure their upstream services with mTLS but mTLS between the client (caller of the API) and Tyk's gateway cannot be done for the time being.
+- Multi cloud users - since you own and manage the gateways, you can use mTLS for gateway <--> upstream  as well as client <--> gateway connections.
 
 ### Client mTLS
 
@@ -1635,6 +1763,118 @@ The base identity can be anything, as the client certificate will be the primary
 
 {{< img src="/img/2.10/client_mtls_multiple_auth.png" alt="enable_cert" >}}
 
+
+
+##### Setup Static mTLS in Tyk Operator using the Tyk Classic API Definition{#tyk-operator-classic}
+
+This setup requires mutual TLS (mTLS) for client authentication using specified client certificates. The example provided shows how to create an API definition with mTLS authentication for `httpbin-client-mtls`.
+
+1. **Generate Self-Signed Key Pair:**
+
+You can generate a self-signed key pair using the following OpenSSL command:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+```
+
+2. **Create Kubernetes Secret:**
+
+Create a secret in Kubernetes to store the client certificate:
+
+```bash
+kubectl create secret tls my-test-tls --cert cert.pem --key key.pem
+```
+
+3. **Create API Definition:**
+
+Below is the YAML configuration for an API that uses mTLS authentication. Note that the `client_certificate_refs` field references the Kubernetes secret created in the previous step.
+
+```yaml {hl_lines=["19-21"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin-client-mtls
+spec:
+  name: Httpbin Client MTLS
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+  use_mutual_tls_auth: true
+  client_certificate_refs:
+    - my-test-tls
+```
+
+##### Setup Static mTLS in Tyk Operator using Tyk OAS API Definition{#tyk-operator-oas}
+
+Client certificates, In Tyk OAS API Definition, are managed using the `TykOasApiDefinition` CRD. You can reference Kubernetes secrets that store client certificates in your API definitions.
+
+**Example of Referencing Client Certificates in Tyk OAS**
+
+In this example, the `clientCertificate` section allows you to enable client certificate management and specify a list of Kubernetes secrets (`tls-cert`) that store allowed client certificates.
+
+```yaml {hl_lines=["48-50"],linenos=false}
+# Secret is not created in this manifest.
+# Please store client certificate in k8s TLS secret `tls-cert`.
+
+apiVersion: v1
+data:
+  test_oas.json: |-
+    {
+        "info": {
+          "title": "Petstore",
+          "version": "1.0.0"
+        },
+        "openapi": "3.0.3",
+        "components": {},
+        "paths": {},
+        "x-tyk-api-gateway": {
+          "info": {
+            "name": "Petstore",
+            "state": {
+              "active": true
+            }
+          },
+          "upstream": {
+            "url": "https://petstore.swagger.io/v2"
+          },
+          "server": {
+            "listenPath": {
+              "value": "/petstore/",
+              "strip": true
+            }
+          }
+        }
+      }
+kind: ConfigMap
+metadata:
+  name: cm
+  namespace: default
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: petstore
+spec:
+  tykOAS:
+    configmapRef:
+      name: cm
+      namespace: default
+      keyName: test_oas.json
+  clientCertificate: 
+      enabled: true
+      allowlist: [tls-cert]
+```
+
+
 ##### FAQ
 
 *   **Why am I getting an error stating that certificates are not enabled for this API?**
@@ -1693,6 +1933,145 @@ To configure upstream mTLS using the Tyk Dashboard:
 3.  Find the Upstream Certificates section and attach the appropriate certificate.
 
     {{< img src="/img/2.10/attach_upstream_cert.png" alt="upstream_cert" >}}
+
+#### Via Tyk Operator using the Tyk Classic API Definition{#tyk-operator-classic}
+
+Tyk Operator supports configuring upstream mTLS using one of the following fields within the ApiDefinition object:
+
+- **upstream_certificate_refs**: Configure using certificates stored within Kubernetes secret objects.
+- **upstream_certificates**: Configure using certificates stored within Tyk Dashboard's certificate store.
+
+##### upstream_certificate_refs
+
+The `upstream_certificate_refs` field can be used to configure certificates for different domains. References can be held to multiple secrets which are used for the domain mentioned in the key. Currently "*" is used as a wildcard for all the domains
+
+The example listed below shows that the certificate in the secret, *my-test-tls*, is used for all domains.
+
+```yaml
+# First apply this manifest using the command
+# "kubectl apply -f config/samples/httpbin_upstream_cert.yaml"
+#
+# The operator will try to create the ApiDefinition and will succeed but will log an error that a certificate is missing
+# in the cluster for an upstream
+#
+# Generate your public-private key pair , for test you can use the following command to obtain one fast:
+# "openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt -keyout tls.key"
+#
+# Run the following command to obtain the values that must be put inside the yaml that contians the secret resource:
+# "kubectl create secret tls my-test-tls --key="tls.key" --cert="tls.crt" -n default -o yaml --dry-run=client"
+#
+# Apply your TLS certificate using the following command: (we already have an example one in our repo)
+# "kubectl apply -f config/sample/simple_tls_secret.yaml"
+#
+# NOTE: the upstream_certificate_refs can hold references to multiple secrets which are used for the domain
+# mentioned in the key (currently "*" is used as a wildcard for all the domains)
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: true
+  upstream_certificate_refs:
+    "*": my-test-tls
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+```
+
+A secret can be created and output in yaml format using the following command:
+
+```bash
+kubectl create secret tls my-test-tls --key="keyfile.key" --cert="certfile.crt" -n default -o yaml --dry-run=client
+kubectl apply -f path/to/your/tls_secret.yaml
+```
+
+##### upstream_certificates
+
+The `upstream_certificates` field allows certificates uploaded to the certificate store in Tyk Dashboard to be referenced in the Api Definition:
+
+```yaml
+# Skip the concatenation and .pem file creation if you already have a certificate in the correct format
+
+# First generate your public-private key pair , for test use you can use the following command to obtain one fast:
+# "openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out tls.crt -keyout tls.key"
+
+# Concatenate the above files to obtain a .pem file which we will upload using the dashboard UI
+# "cat tls.crt tls.key > cert.pem"
+
+# Upload it to the tyk certificate store using the dashboard
+
+# Fill in the manifest with the certificate id (the long hash) that you see is given to it in the dashboard
+# (in place of "INSERT UPLOADED CERTIFICATE NAME FROM DASHBOARD HERE")
+# Optional: Change the domain from "*" to something more specific if you need to use different
+# upstream certificates for different domains
+
+# Then apply this manifest using the command
+# "kubectl apply -f config/samples/httpbin_upstream_cert_manual.yaml"
+
+# The operator will try create the ApiDefinition and will succeed and it will have the requested domain upstream certificate
+# in the cluster for an upstream
+
+# NOTE: the upstream_certificate can hold multiple domain-certificateName pairs
+# (currently "*" is used as a wildcard for all the domains)
+
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+spec:
+  name: httpbin
+  use_keyless: true
+  upstream_certificates:
+    "*": #INSERT UPLOADED CERTIFICATE NAME FROM DASHBOARD HERE#
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+```
+
+#### Via Tyk Operator using Tyk OAS API Definition{#tyk-operator-oas}
+Tyk Operator supports configuring upstream mTLS using the `mutualTLS` field in `TykOasApiDefinition` object:
+
+```yaml{hl_lines=["12-18"],linenos=false}
+apiVersion: tyk.tyk.io/v1alpha1
+ kind: TykOasApiDefinition
+ metadata:
+   name: petstore
+   namespace: default
+ spec:
+   tykOAS:
+     configmapRef:
+       name: petstore
+       namespace: default
+       keyName: petstore.json
+   mutualTLS:
+     enabled: true
+     domainToCertificateMapping:
+       - domain: "petstore.com"
+         certificateRef: petstore-domain
+       - domain: "petstore.co.uk"
+         certificateRef: petstore-uk-domain
+```
+
+
 
 #### Domain Configuration
 
