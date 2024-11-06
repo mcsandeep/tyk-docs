@@ -17,7 +17,7 @@ title: Tyk QuickStart Configure Your First API
 ## Overview
 This guide helps you get started with Tyk Cloud by covering the basics:
 
-- **Set up your API**: Create and configure a new API in the Tyk Cloud Dashboard.
+- **Set up your API**: Create and configure a new API in the Tyk Dashboard.
 - **Create API keys**: Generate API keys and assign them to your APIs for secure access.
 - **Monitor API performance**: Track traffic, logs, and performance analytics.
 
@@ -27,7 +27,7 @@ Follow these steps to quickly create and manage your APIs in Tyk Cloud.
 
 Before you begin, make sure you have:
 - A Tyk Cloud account.
-- Admin access to the Tyk Cloud dashboard.
+- Admin access to the Tyk Dashboard.
 - A backend service that your API will proxy (e.g., a RESTful API).
 
 
@@ -35,7 +35,7 @@ Before you begin, make sure you have:
 
 Start by creating a new API in Tyk Cloud:
 
-1. **Log in to the Tyk Cloud Dashboard**.
+1. **Log in to the Tyk Dashboard**.
 2. **Navigate to APIs** and click **Create New API**.
 3. **Configure API Details**:
    - **API Name**: Name your API (e.g., `My First API`).
@@ -72,11 +72,13 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
 
 1. **Select "Keys"** from the **System Management** section.
    
-   {{< img src="/img/2.10/keys_menu.png" alt="Keys Menu" >}}
+   {{< img src="/img/getting-started/apis-sidebar-security.png" alt="Keys Menu" >}}
+
 
 2. **Click "CREATE"** to generate a new key.
 
-   {{< img src="/img/2.10/add_key.png" alt="Add Key" >}}
+   {{< img src="/img/getting-started/apis-add-key.png" alt="Add Key" >}}
+
 
 3. **Add a Policy or API to Your Key**:
    - You can either add your key to an existing **Policy** or assign it to an individual **API**.
@@ -85,7 +87,7 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
      - Use the **Search field**,
      - Or **Group by Authentication Type** or **Category** to filter APIs.
    - Leave all other options at their default settings.
-  {{< img src="/img/getting-started/apis-add-key.png" alt="APIs Add Key" >}}
+
 4. **Add Configuration Details**:
    - **Enable Detailed Logging**: This is optional and disabled by default.
    - **Key Alias**: Assign an alias to your key for easier identification.
@@ -96,10 +98,11 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
 5. **Click "CREATE"**:
    - Once the key is created, a **Key successfully generated** pop-up will be displayed showing your key. **Copy the key** to your clipboard and save it for future reference as it will not be shown again.
 
-   {{< img src="/img/2.10/create_key.png" alt="Create Key" >}}
-   
+   {{< img src="/img/getting-started/apis-create-key.png" alt="APIs Create Key" >}}
 
-   {{< img src="/img/2.10/key_success.png" alt="Key Success" >}}
+   - And that should result in a successfully generated key!
+
+   {{< img src="/img/getting-started/apis-keys-success.png" alt="Key Success" >}}
    
 
 ## Monitor Traffic and Analyze API Performance
@@ -113,6 +116,8 @@ With your API live, monitor its traffic and analyze performance:
 3. **Analyze Data**: Use traffic trends to identify performance issues or optimize API behavior.
 
 {{< img src="/img/getting-started/apis-analytics.png" alt="APIs Analytics" >}}
+
+
 
 #### Example Traffic Analytics Response
 

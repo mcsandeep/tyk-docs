@@ -20,7 +20,10 @@ The Tyk Dashboard is your central hub for managing APIs, monitoring performance,
 Log in to your **Tyk Dashboard** using your credentials. Familiarize yourself with the interface, where the main navigation menu is located on the left side, and the top bar provides quick access to user settings and notifications.
 
 ## Dashboard Organization
+{{< img src="/img/getting-started/apis-front-page.png" alt="Front Page" >}}
 
+
+Welcome to the Tyk Dashboard! Let's zoom into the side bar and take a look at the features that are made available to you.
 
 ### Side Bar
 Tyk is organized into a few key categories:
