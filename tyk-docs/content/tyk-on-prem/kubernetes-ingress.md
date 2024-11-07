@@ -9,6 +9,7 @@ weight: 2
 aliases:
   - /getting-started/installation/with-tyk-on-premises/kubernetes/tyk-kubernetes-ingress-controller/
   - /tyk-on-prem/kubernetes-ingress
+  - /tyk-oss/ce-kubenetes-ingress
 ---
 
 Ingress is an API object that manages external access to the services in a cluster, typically HTTP (source [kubernetes.io - ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)).
