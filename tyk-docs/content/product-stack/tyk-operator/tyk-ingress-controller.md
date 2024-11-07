@@ -355,7 +355,7 @@ To make use of the TykOasApiDefinition template, make sure to add annotations `t
 The value of the `kubernetes.io/ingress.class` annotation identifies the IngressClass that will process Ingress objects.
 
 Tyk Operator by default looks for the value `tyk` and will ignore all other ingress classes. If you wish to override this default behavior,
- you may do so by setting the environment variable `WATCH_INGRESS_CLASS` in the operator manager deployment. [See Installing Tyk Operator]({{<ref "/api-management/automations/#install-and-configure-tyk-operator">}}) for further information.
+ you may do so by setting the environment variable `WATCH_INGRESS_CLASS` in the operator manager deployment. [See Installing Tyk Operator]({{<ref "/api-management/automation#install-and-configure-tyk-operator">}}) for further information.
 
 ## API name
 

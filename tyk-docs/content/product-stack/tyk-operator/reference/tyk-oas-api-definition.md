@@ -15,13 +15,13 @@ The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API De
 |----------|---------|-----------------|----------|--------|
 | API Category | ✅      | v1.0 | - | [Manage API Categories]({{<ref "product-stack/tyk-operator/advanced-configurations/api-categories">}}) |
 | API Version | ✅      | v1.0 | - | [Manage API versioning]({{<ref "product-stack/tyk-operator/advanced-configurations/api-versioning">}}) |
-| API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership]({{<ref "/api-management/automations/#manage-api-ownership-with-tyk-operator">}}) |
+| API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership]({{<ref "/api-management/automation#manage-api-ownership-with-tyk-operator">}}) |
 | Client Certificates | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
 | Custom Domain Certificates | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
 | Public keys pinning | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
 | Upstream mTLS | ✅      | v1.0 | - | [Manage TLS certificate]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) |
 | Kubernetes Ingress | ✅      | v1.0 | - | [Kubernetes Ingress Controller]({{<ref "product-stack/tyk-operator/tyk-ingress-controller">}}) |
-| Link with SecurityPolicy | ✅      | v1.0 | - | [Protect an API]({{<ref "/api-management/automations/#add-a-security-policy-to-your-oas-api">}}) |
+| Link with SecurityPolicy | ✅      | v1.0 | - | [Protect an API]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api">}}) |
 
 <!--
 ## CRD Specification
