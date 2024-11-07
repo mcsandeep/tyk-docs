@@ -31,7 +31,7 @@ Before you begin, make sure you have:
 - A backend service that your API will proxy (e.g., a RESTful API).
 
 
-## Create a Project (Set Up Your API)
+## Set Up Your API
 
 Start by creating a new API in Tyk Cloud:
 
