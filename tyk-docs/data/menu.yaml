@@ -4690,7 +4690,7 @@ menu:
             show: True
             menu:
               - title: "Tyk Identity Broker 1.6"
-                path: /product-stack/tyk-identity-broker/release-notes/tib-v1.6.md
+                path: /product-stack/tyk-identity-broker/release-notes/tib-v1.6
                 category: Page
                 show: True
       - title: "Tyk Helm Charts (Open Source)"
