@@ -125,7 +125,7 @@ Tyk Operator will reconcile any divergence between Git and the actual state in [
 
 In Kubernetes, a [Custom Resource (CR)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) is an extension of the Kubernetes API that allows you to introduce custom objects in your cluster. Custom Resources enable you to define and manage custom configurations and settings specific to your applications, making Kubernetes highly extensible. These custom objects are defined using Custom Resource Definitions (CRDs), which specify the schema and structure of the resource.
 
-Tyk Operator manages two custom resources to help users create and maintain their API configurations:
+Tyk Operator manages multiple custom resources to help users create and maintain their API configurations:
 
 TykOasApiDefinition: Available from Tyk Operator v1.0. It represents a [Tyk OAS API configuration]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}). Tyk OAS API is based on the OpenAPI specification (OAS) and is the recommended format for standard HTTP APIs. Tyk Operator supports all [Tyk OAS API feature]({{<ref "getting-started/using-oas-definitions/oas-reference">}}) as they become available on the Gateway.
 
@@ -133,7 +133,7 @@ ApiDefinition: Available on all versions of Tyk Operator. It represents a [Tyk C
 
 These custom resources enable users to leverage Kubernetes' declarative configuration management to define, modify, and version their APIs, seamlessly integrating with other Kubernetes-based workflows and tools.
 
-##### API Definition and Security Policy
+##### Custom Resources for API and Policy Configuration
 
 The following custom resources can be used to configure APIs and policies at [Tyk Gateway]({{<ref "tyk-oss-gateway">}}) or [Tyk Dashboard]({{<ref "tyk-dashboard">}}).
 
