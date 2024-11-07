@@ -1,22 +1,10 @@
-<!--
-
-This is a Markdown template that serves to provide guidance for compiling consistently structured release notes.
-For each specific release if there is additional miscellaneous information or announcements that will be helpful to the customer then squads
-should add additional sections to their release notes.
--->
-
 ---
 title: Tyk Identity Broker 1.6 Release Notes
-date: 2023-09-27T15:49:11Z
+date: 2024-10-27T15:49:11Z
 description: "Release notes documenting updates, enhancements, and changes for Tyk Identity Broker versions within the 1.6.x series."
 tags: ["Tyk Identity Broker", "Release notes", "changelog", "v1.6", "1.6.1"]
 ---
-
-<!-- Required. oss or licensed. Choose one of the following:
-    **Licensed Protected Product**
-    Or
-    ****Open Source** ([Mozilla Public License](https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md))**
--->
+****Open Source** ([Mozilla Public License](https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md))**
 
 **This page contains all release notes for version 1.6.x displayed in a reverse chronological order**
 
@@ -88,11 +76,8 @@ Go to the [Upgrading Tyk](#upgrading-tyk) section for detailed upgrade Instructi
 This release primarily focuses on bug fixes.
 For a comprehensive list of changes, please refer to the detailed [changelog]({{< ref "#Changelog-vX.Y.0">}}) below.
 -->
-##### Topic in The Release Highlights
-Topic in The Release Highlights
-
-##### Another Topic in The Release Highlights
-Topic in The Release Highlights
+##### Enhanced Security with JWE Support for OIDC SSO
+This release introduces JSON Web Encryption (JWE) support for OpenID Connect (OIDC) Single Sign-On (SSO) in the Tyk Identity Broker (TIB). With this enhancement, organizations can achieve greater security for token handling during authentication flows. JWE token validation and processing are now seamlessly integrated, offering configurable private key support for decryption.
 
 #### Downloads
 - [Docker image to pull](https://hub.docker.com/r/tykio/tyk-identity-broker/tags?name=1.6.1)
@@ -123,6 +108,8 @@ Each change log item should be expandable. The first line summarises the changel
 <summary>Support for JSON Web Encryption (JWE) in OIDC SSO with TIB</summary>
 
 This release adds support for JSON Web Encryption (JWE) in OIDC Single Sign-On (SSO) with TIB, providing enhanced security for token handling in authentication flows. This feature enables processing and validation of JWE tokens, with configuration options for setting the private key required for decryption.
+
+For more details, refer to the [OIDC SSO with JWE]({{<ref "/tyk-stack/tyk-identity-broker/about-profiles">}}) documentation.
 </details>
 </li>
 
@@ -141,18 +128,6 @@ links to API documentation and FAQs. You can copy it from the previous release. 
 
 ### Upgrading Tyk
 Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for further guidance on the upgrade strategy.
-
-### API Documentation
-<!-- Required. Update the link to the Gateway "tyk-gateway-api" or dashboard "tyk-dashboard-api" and the Postman collection
-
-If there were changes in any of Tyk’s API docs:
-
-- Have API endpoints been documented in the release note summary and changelog?				
-- Has a link to the endpoint documentation being included?
-- Has the benefit of the new/updated endpoint been explained in the release highlights and changelog?
--->
-- [OpenAPI Document]({{<ref "blabla" >}})
-- [Postman Collection](https://www.postman.com/tyk-technologies/workspace/tyk-public-workspace/collection/<collection-id>)
 
 ### FAQ
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.
