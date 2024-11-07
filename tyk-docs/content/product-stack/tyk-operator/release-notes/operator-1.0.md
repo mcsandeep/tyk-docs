@@ -48,7 +48,7 @@ For details please refer to the [changelog]({{< ref "#Changelog-v1.0.0">}}) belo
 ### Breaking Changes
 <!-- Required. Use the following statement if there are no breaking changes, or explain if there are -->
 <!-- This release has no breaking changes. -->
-**License Requirement:** Tyk Operator is now a closed-source product and requires a valid license key to operate. Please follow our [Installation and Upgrade Guide]({{<ref "/api-management/automation#install-and-configure-tyk-operator">}}) to set your license key before installation or upgrade.
+**License Requirement:** Tyk Operator is now a closed-source product and requires a valid license key to operate. Please follow our [Installation and Upgrade Guide]({{<ref "/api-management/automations#install-and-configure-tyk-operator">}}) to set your license key before installation or upgrade.
 
 If the license is missing, invalid, or expired, Tyk Operator will exit with an error message. Ensure that you carefully review the setup steps to avoid any issues during the upgrade or installation process.
 
@@ -123,7 +123,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/TykTechnologies/tyk-charts/
 ```
 
 
-Go to the [Upgrading Tyk Operator]({{<ref "/api-management/automation#install-and-configure-tyk-operator#upgrading-tyk-operator">}}) section for detailed upgrade instructions.
+Go to the [Upgrading Tyk Operator]({{<ref "/api-management/automations#install-and-configure-tyk-operator#upgrading-tyk-operator">}}) section for detailed upgrade instructions.
 
 
 ### Downloads
@@ -194,7 +194,7 @@ Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "product-stack/tyk-opera
 
 This update extends the security policy to include TykOasApiDefinition resources within the `access_rights_array`, allowing you to manage security policies for both Tyk Classic APIs and Tyk OAS APIs. By specifying the API kind, you can now apply rate limits, quotas, and other access controls to Tyk OAS APIs, streamlining security management in mixed environments.
 
-Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})
+Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})
 </details>
 </li>
 <li>

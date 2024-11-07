@@ -161,7 +161,7 @@ For details on how to configure API category, refer to [Manage API category]({{<
 
 ## API Ownership
 
-To configure API ownership, ensure Tyk Operator is also an owner of the API. This can be done using Operator Context. For details, refer to Tyk Operator [API Ownership]({{< ref "/api-management/automation#manage-api-ownership-with-tyk-operator">}}).
+To configure API ownership, ensure Tyk Operator is also an owner of the API. This can be done using Operator Context. For details, refer to Tyk Operator [API Ownership]({{< ref "/api-management/automations#manage-api-ownership-with-tyk-operator">}}).
 
 ## API Versioning
 

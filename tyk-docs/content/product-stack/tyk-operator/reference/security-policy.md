@@ -11,12 +11,12 @@ Here are the supported features:
 
 | Features                       | Support   | Supported From | Example |
 |--------------------------------|-----------|----------------|---------|
-| API Access                     | ✅        | v0.1           | [API Access]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
-| Rate Limit, Throttling, Quotas | ✅        | v0.1           | [Rate Limit, Throttling, Quotas]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
-| Meta Data & Tags               | ✅        | v0.1           | [Tags and Meta-data]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
+| API Access                     | ✅        | v0.1           | [API Access]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
+| Rate Limit, Throttling, Quotas | ✅        | v0.1           | [Rate Limit, Throttling, Quotas]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
+| Meta Data & Tags               | ✅        | v0.1           | [Tags and Meta-data]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})        |
 | Path and Method based permissions | ✅     | v0.1           | [Path based permission]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#path-based-permissions">}})        |
 | Partitions                     | ✅        | v0.1           | [Partitioned policies]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#partitioned-policies">}})       |
 | Per API limit                  | ✅        | v1.0           | [Per API Limit]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-api-limit">}})        |
 | Per-Endpoint limit             | ✅        | v1.0           | [Per Endpoint Limit]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-api-limit">}})        |
 
-Consult [Protect an API with a Security Policy]({{<ref "/api-management/automation#add-a-security-policy-to-your-oas-api">}}) and [Security Policy example]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example">}}) to see examples of setting these features.
+Consult [Protect an API with a Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api">}}) and [Security Policy example]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example">}}) to see examples of setting these features.

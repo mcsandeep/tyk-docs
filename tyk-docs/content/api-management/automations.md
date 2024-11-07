@@ -473,11 +473,6 @@ upgraded from v0.x versions to one of v1.0+ versions, Tyk Operator needs a valid
 during upgrade process. This section describes how to set Tyk Operator license key to make sure Tyk Operator continues
 functioning.
 
-{{< note >}} When upgrading Tyk Operator between licensed versions, follow the standard upgrade procedure described
-under [Upgrading
-Tyk Operator]({{<ref "tyk-stack/tyk-operator/installing-tyk-operator#upgrading-tyk-operator-and-crds">}}) section. It is
-important to note that this process differs if transitioning from an unlicensed to a licensed version. {{< /note >}}
-
 To provide the license key for Tyk Operator, Kubernetes secret used to configure Tyk Operator (typically named
 tyk-operator-conf as described above) requires an additional field called `TYK_OPERATOR_LICENSEKEY`. Populate this field
 with your Tyk Operator license key.
@@ -1330,10 +1325,10 @@ spec:
 
 You can also use other sample files from the following pages:
 
-- [HTTP Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http">}})
-- [TCP Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-tcp">}})
-- [GraphQL Proxy example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-graphql">}})
-- [UDG example]({{<ref "product-stack/tyk-operator/getting-started/quick-start-udg">}})
+- [HTTP Proxy example](#set-up-manifest-for-http)
+- [TCP Proxy example](#set-up-manifest-for-tcp)
+- [GraphQL Proxy example](#set-up-manifest-for-graphql)
+- [UDG example](#set-up-manifest-for-udg)
 
 ##### Deploy the ApiDefinition resource
 We are going to create an ApiDefinition from the httpbin.yaml file, by running the  following command:
@@ -2817,7 +2812,7 @@ To make use of the TykOasApiDefinition template, make sure to add annotations `t
 The value of the `kubernetes.io/ingress.class` annotation identifies the IngressClass that will process Ingress objects.
 
 Tyk Operator by default looks for the value `tyk` and will ignore all other ingress classes. If you wish to override this default behavior,
- you may do so by setting the environment variable `WATCH_INGRESS_CLASS` in the operator manager deployment. [See Installing Tyk Operator]({{<ref "/tyk-stack/tyk-operator/installing-tyk-operator">}}) for further information.
+ you may do so by setting the environment variable `WATCH_INGRESS_CLASS` in the operator manager deployment. [See Installing Tyk Operator](#install-and-configure-tyk-operator) for further information.
 
 #### API name
 
