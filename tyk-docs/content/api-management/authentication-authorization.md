@@ -37,6 +37,17 @@ aliases:
   - /security/your-apis/json-web-tokens
   - /security/your-apis/openid-connect
   - /tyk-apis/tyk-gateway-api/api-definition-objects/jwt/docs/basic-config-and-security/security/authentication-authorization/json-web-tokens
+  - /basic-config-and-security/security/authentication-authorization/oauth2-0/auth-code-grant
+  - /basic-config-and-security/security/authentication-authorization/oauth2-0/client-credentials-grant
+  - /basic-config-and-security/security/authentication-authorization/oauth2-0/refresh-token-grant
+  - /basic-config-and-security/security/authentication-authorization/oauth2-0/username-password-grant
+  - /basic-config-and-security/security/authentication-authorization/oauth2.0/auth-code-grant
+  - /basic-config-and-security/security/authentication-authorization/physical-token-expiry
+  - /basic-config-and-security/security/tls-and-ssl/mutual-tls
+  - /basic-config-and-security/security/your-apis/oauth2.0/revoke-oauth-tokens
+  - /security/tls-and-ssl/mutual-tls
+  - /security/your-apis/oauth-2-0
+
 
 ---
 ## Introduction
@@ -864,7 +875,7 @@ Set up Tyk to interact with the external OAuth provider's token introspection en
 }
 ```
 
-* Set up the necessary [client credentials in Tyk's dashboard](api-management/authentication-authorization/#use-client-credentials-grant) or configuration file.
+* Set up the necessary [client credentials in Tyk's dashboard](/api-management/authentication-authorization/#use-client-credentials-grant) or configuration file.
 
 
 
@@ -889,7 +900,7 @@ curl -X GET \
 ### Authenticate Using Go Plugins
 
 Go Plugin Authentication allows you to implement custom authentication logic using the Go programming language. This method is useful for scenarios where you need to implement specialized authentication mechanisms that are not natively supported by Tyk.
-To learn more about using Tyk Golang Plugins, go [here](plugins/supported-languages/golang/#authentication-with-a-golang-plugin)
+To learn more about using Tyk Golang Plugins, go [here](/plugins/supported-languages/golang/#authentication-with-a-golang-plugin)
 
 
 ### Sign Requests with HMAC
