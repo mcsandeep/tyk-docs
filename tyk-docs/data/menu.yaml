@@ -1296,11 +1296,7 @@ menu:
                 category: Directory
                 show: True
                 menu:
-<<<<<<< HEAD
-                  - title: "Security policies"
-=======
                 - title: "Security policies"
->>>>>>> 34433d493 (delete redundant content and update youtube links)
                     category: Directory
                     show: True
                     menu:
