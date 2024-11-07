@@ -10,7 +10,7 @@ Client to Gateway Authentication in Tyk ensures secure communication between cli
 
 ## Keyless (Open)
 
-This configuration allows [keyless (open)]({{<ref "basic-config-and-security/security/authentication-authorization/open-keyless">}}) access to the API without any authentication.
+This configuration allows [keyless (open)]({{<ref "/api-management/authentication-authorization#use-open-keyless-authentication">}}) access to the API without any authentication.
 
 ```yaml {hl_lines=["7-7"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
