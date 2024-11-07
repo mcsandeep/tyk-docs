@@ -127,9 +127,9 @@ In Kubernetes, a [Custom Resource (CR)](https://kubernetes.io/docs/concepts/exte
 
 Tyk Operator manages multiple custom resources to help users create and maintain their API configurations:
 
-TykOasApiDefinition: Available from Tyk Operator v1.0. It represents a [Tyk OAS API configuration]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}). Tyk OAS API is based on the OpenAPI specification (OAS) and is the recommended format for standard HTTP APIs. Tyk Operator supports all [Tyk OAS API feature]({{<ref "getting-started/using-oas-definitions/oas-reference">}}) as they become available on the Gateway.
+**TykOasApiDefinition**: Available from Tyk Operator v1.0. It represents a [Tyk OAS API configuration]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}). Tyk OAS API is based on the OpenAPI specification (OAS) and is the recommended format for standard HTTP APIs. Tyk Operator supports all [Tyk OAS API feature]({{<ref "getting-started/using-oas-definitions/oas-reference">}}) as they become available on the Gateway.
 
-ApiDefinition: Available on all versions of Tyk Operator. It represents a [Tyk Classic API configuration]({{<ref "tyk-gateway-api/api-definition-objects">}}). Tyk Classic API is the traditional format used for defining all APIs in Tyk, and now the recommended format for non-HTTP APIs such as TCP, GraphQL, and Universal Data Graph (UDG). Tyk Operator supports the major features of Tyk Classic API and the feature support details can be tracked at our [reference]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
+**ApiDefinition**: Available on all versions of Tyk Operator. It represents a [Tyk Classic API configuration]({{<ref "tyk-gateway-api/api-definition-objects">}}). Tyk Classic API is the traditional format used for defining all APIs in Tyk, and now the recommended format for non-HTTP APIs such as TCP, GraphQL, and Universal Data Graph (UDG). Tyk Operator supports the major features of Tyk Classic API and the feature support details can be tracked at our [reference]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
 
 These custom resources enable users to leverage Kubernetes' declarative configuration management to define, modify, and version their APIs, seamlessly integrating with other Kubernetes-based workflows and tools.
 
@@ -965,7 +965,7 @@ Request should fail with a `401 Unauthorized` response now as an API key is requ
 
 #### Add a Security Policy to your OAS API
 To further protect access to your APIs, you will want to add a security policy. 
-Below, we take you through how to define the security policy but you can find [Security Policy Examples](#Security-Policy-Examples)
+Below, we take you through how to define the security policy but you can also find [Security Policy Example](#Security-Policy-Example) below.
 
 ##### Define the Security Policy manifest
 
@@ -1080,7 +1080,7 @@ Events:         <none>
 From the `status` field, you can see that this security policy has been linked to `httpbin` and `petstore` APIs.
 
 
-##### Security Policy Examples
+##### Security Policy Example
 ###### Key-Level Per-API Rate Limits and Quota{#per-api-limit}
 
 By configuring per-API limits, you can set specific rate limits, quotas, and throttling rules for each API in the access rights array. When these per-API settings are enabled, the API inherits the global limit settings unless specific limits and quotas are set in the `limit` field for that API.
@@ -1962,141 +1962,7 @@ spec:
     target_url: http://httpbin.default.svc:8000
     listen_path: /httpbin
     strip_listen_path: true
-```
-
-
-#### Publish Your Tyk Classic API
-For Tyk Self Managed or Tyk Cloud, you can set up a Developer Portal to expose a facade of your APIs and then allow third-party developers to register and use your APIs.
-You can make use of Tyk Operator CRDs to publish the APIs as part of your CI/CD workflow. If you have followed this Getting Started guide to create the httpbin example API, you can publish it to your Tyk Classic Developer Portal in a few steps.
-
-{{< note success >}}
-
-**Note**  
-Currently Operator only supports publishing Tyk Classic API to the Tyk Classic Portal.
-{{< /note >}}
-
-##### Publish an API with Tyk Operator
-1. Creating a security policy
-
-When you publish an API to the Portal, Tyk actually publishes a way for developers to enroll in a policy, not into the API directly. Therefore, you should first set up a security policy for the developers, before proceeding with the publishing.
-
-To do that, you can use the following command:
-
-```yml
-cat <<EOF | kubectl apply -f -
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
- name: standard-pol
-spec:
- name: standard-pol
- active: true
- state: active
- access_rights_array:
- - name: httpbin
-   namespace: default
-   versions:
-     - Default
-EOF
-```
-
-The above command will create a basic security policy and attribute it to the `httpbin` API that was previously created.
-
-2. Creating an API description
-
-The Tyk Classic Developer Portal enables you to host your API documentation in Swagger/OpenAPI or API Blueprint for developers to use. In the case of Swagger/OpenAPI, you can either paste your Swagger content (JSON or YAML) in the CRD, or via a link to a public Swagger hosted URL, which can then be rendered by using Swagger UI.
-
-Create a file called `apidesc.yaml`, then add the following;
-
-```yml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: APIDescription
-metadata:
- name: standard-desc
-spec:
- name: HTTPBIN API
- policyRef:
-  name: standard-pol
-  namespace: default
- docs:
-  doc_type: swagger_custom_url
-  documentation: "https://httpbin.org/spec.json"
- show: true
- version: v2
-```
-
-3. Apply the changes
-
-```console
-kubectl apply -f apidesc.yaml
-```
-Or, if you don’t have the manifest with you, you can run the following command:
-
-```yml
-cat <<EOF | kubectl apply -f -
-apiVersion: tyk.tyk.io/v1alpha1
-kind: APIDescription
-metadata:
- name: standard-desc
-spec:
- name: HTTPBIN API
- policyRef:
-  name: standard-pol
-  namespace: default
- docs:
-  doc_type: swagger_custom_url
-  documentation: "https://httpbin.org/spec.json"
- show: true
- version: v2
-EOF
-```
-
-4. Creating a PortalAPICatalog resource
-
-Unlike other platforms, Tyk will not auto-publish your APIs to the Portal, instead they are presented as a facade, you choose what APIs and what Policies to expose to the Portal. You can configure what APIs and what Policies to expose to the Portal via Tyk Operator by creating a PortalAPICatalog resource.
-
-Create a file called `api_portal.yaml`, then add the following:
-
-```yml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: PortalAPICatalogue
-metadata:
- name: test-httpbin-api
-spec:
- apis:
- - apiDescriptionRef:
-    name: standard-desc
-    namespace: default
-```
-
-You have added your API Descriptions under `apis`.
-
-5. Apply the changes
-
-```console
-kubectl apply -f api_portal.yaml
-```
-
-Now your new API and its documentation is loaded to the Developer Portal.
-
-**APIDescription CRD**
-
-Different types of documents are supported:
-
-Swagger Documents:
-
-- `doc_type: swagger`
-- `documentation`: Base64 encoded swagger doc
-
-Swagger Hosted URL:
-
-- `doc_type: swagger_custom_url`
-- `documentation`: The URL to the swagger documentation, for example *"https://httpbin.org/spec.json"*
-
-GraphQL:
-
-- `doc_type: graphql`
-
+``
 
 
 #### Set Up Manifest for GraphQL
@@ -2471,6 +2337,139 @@ spec:
       enabled: true
       path: /playground
 ```
+
+### Publish Your API to Dev Portal
+For Tyk Self Managed or Tyk Cloud, you can set up a Developer Portal to expose a facade of your APIs and then allow third-party developers to register and use your APIs.
+You can make use of Tyk Operator CRDs to publish the APIs as part of your CI/CD workflow. If you have followed this Getting Started guide to create the httpbin example API, you can publish it to your Tyk Classic Developer Portal in a few steps.
+
+{{< note success >}}
+
+**Note**  
+Currently Operator only supports publishing Tyk Classic API to the Tyk Classic Portal.
+{{< /note >}}
+
+#### Publish an API with Tyk Operator
+1. **Creating a security policy**
+
+When you publish an API to the Portal, Tyk actually publishes a way for developers to enroll in a policy, not into the API directly. Therefore, you should first set up a security policy for the developers, before proceeding with the publishing.
+
+To do that, you can use the following command:
+
+```yml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+ name: standard-pol
+spec:
+ name: standard-pol
+ active: true
+ state: active
+ access_rights_array:
+ - name: httpbin
+   namespace: default
+   versions:
+     - Default
+EOF
+```
+
+The above command will create a basic security policy and attribute it to the `httpbin` API that was previously created.
+
+2. **Creating an API description**
+
+The Tyk Classic Developer Portal enables you to host your API documentation in Swagger/OpenAPI or API Blueprint for developers to use. In the case of Swagger/OpenAPI, you can either paste your Swagger content (JSON or YAML) in the CRD, or via a link to a public Swagger hosted URL, which can then be rendered by using Swagger UI.
+
+Create a file called `apidesc.yaml`, then add the following;
+
+```yml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: APIDescription
+metadata:
+ name: standard-desc
+spec:
+ name: HTTPBIN API
+ policyRef:
+  name: standard-pol
+  namespace: default
+ docs:
+  doc_type: swagger_custom_url
+  documentation: "https://httpbin.org/spec.json"
+ show: true
+ version: v2
+```
+
+3. **Apply the changes**
+
+```console
+kubectl apply -f apidesc.yaml
+```
+Or, if you don’t have the manifest with you, you can run the following command:
+
+```yml
+cat <<EOF | kubectl apply -f -
+apiVersion: tyk.tyk.io/v1alpha1
+kind: APIDescription
+metadata:
+ name: standard-desc
+spec:
+ name: HTTPBIN API
+ policyRef:
+  name: standard-pol
+  namespace: default
+ docs:
+  doc_type: swagger_custom_url
+  documentation: "https://httpbin.org/spec.json"
+ show: true
+ version: v2
+EOF
+```
+
+4. **Creating a PortalAPICatalog resource**
+
+Unlike other platforms, Tyk will not auto-publish your APIs to the Portal, instead they are presented as a facade, you choose what APIs and what Policies to expose to the Portal. You can configure what APIs and what Policies to expose to the Portal via Tyk Operator by creating a PortalAPICatalog resource.
+
+Create a file called `api_portal.yaml`, then add the following:
+
+```yml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: PortalAPICatalogue
+metadata:
+ name: test-httpbin-api
+spec:
+ apis:
+ - apiDescriptionRef:
+    name: standard-desc
+    namespace: default
+```
+
+You have added your API Descriptions under `apis`.
+
+5. **Apply the changes**
+
+```console
+kubectl apply -f api_portal.yaml
+```
+
+Now your new API and its documentation is loaded to the Developer Portal.
+
+**APIDescription CRD**
+
+Different types of documents are supported:
+
+Swagger Documents:
+
+- `doc_type: swagger`
+- `documentation`: Base64 encoded swagger doc
+
+Swagger Hosted URL:
+
+- `doc_type: swagger_custom_url`
+- `documentation`: The URL to the swagger documentation, for example *"https://httpbin.org/spec.json"*
+
+GraphQL:
+
+- `doc_type: graphql`
+
 
 
 ### Control Kubernetes Ingress Resources
@@ -2886,6 +2885,588 @@ The following table shows an example of path matching if the listen-path is set 
 | Exact                  | /httpbin/ | /httpbin                  | No. Ingress cannot find referenced service.           |
 | Prefix                 | /httpbin/ | /httpbin                  | No. Ingress cannot find referenced service.           |  
 | ImplementationSpecific | /httpbin/ | /httpbin                  | No. Ingress cannot find referenced service.           | 
+
+### Multi-Organization Management With Tyk Operator
+
+If you want to set up multi-tenant API management with Tyk, follow these steps to define an OperatorContext for connecting and authenticating with a Tyk Dashboard and reference it in your API definitions for specific configurations.
+
+#### Defining OperatorContext
+
+An [OperatorContext]({{< ref "/product-stack/tyk-operator/key-concepts/operator-context" >}}) specifies the parameters for connecting and authenticating with a Tyk Dashboard. Below is an example of how to define an `OperatorContext`:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: OperatorContext
+metadata:
+  name: team-alpha
+  namespace: default
+spec:
+  env:
+    # The mode of the admin api
+    # ce - community edition (open source gateway)
+    # pro - dashboard (requires a license)
+    mode: pro
+    # Org ID to use
+    org: *YOUR_ORGANIZATION_ID*
+    # The authorization token this will be set in x-tyk-authorization header on the
+    # client while talking to the admin api
+    auth: *YOUR_API_ACCESS_KEY*
+    # The url to the Tyk Dashboard API
+    url: http://dashboard.tyk.svc.cluster.local:3000
+    # Set this to true if you want to skip tls certificate and host name verification
+    # this should only be used in testing
+    insecureSkipVerify: true
+    # For ingress the operator creates and manages ApiDefinition resources, use this to configure
+    # which ports the ApiDefinition resources managed by the ingress controller binds to.
+    # Use this to override default ingress http and https port
+    ingress:
+      httpPort: 8000
+      httpsPort: 8443
+```
+
+For better security, you can also replace sensitive data with values contained within a referenced secret with `.spec.secretRef`.
+
+In this example, API access key `auth` and organization ID `org` are not specified in the manifest. They are provided through a Kubernetes secret named `tyk-operator-conf` in `alpha` namespace. The secret contains keys `TYK_AUTH` and `TYK_ORG` which correspond to the `auth` and `org` fields respectively.
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: OperatorContext
+metadata:
+  name: team-alpha
+  namespace: default
+spec:
+  secretRef:
+    name: tyk-operator-conf ## Secret containing keys TYK_AUTH and TYK_ORG
+    namespace: alpha
+  env:
+    mode: pro
+    url: http://tyk.tykce-control-plane.svc.cluster.local:8001
+    insecureSkipVerify: true
+    ingress:
+      httpPort: 8000
+      httpsPort: 8443
+    user_owners:
+    - a1b2c3d4f5e6f7
+    user_group_owners:
+    - 1a2b3c4d5f6e7f
+```
+
+You can provide the following fields through secret as referenced by `secretRef`. The table shows mappings between `.spec.env` properties and secret `.spec.data` keys. If a value is configured in both the secret and OperatorContext `spec.env` field, the value from secret will take precedence.
+
+| Secret key | .spec.env |
+|------------|-----------|
+| TYK_MODE	 | mode |
+| TYK_URL    | url |
+| TYK_AUTH	 | auth |
+| TYK_ORG	   | org |
+| TYK_TLS_INSECURE_SKIP_VERIFY | insecureSkipVerify |
+| TYK_USER_OWNERS (comma separated list) | user_owners |
+| TYK_USER_GROUP_OWNERS (comma separated list) | user_group_owners |
+
+#### Using contextRef in API Definitions
+
+Once an `OperatorContext` is defined, you can reference it in your API Definition objects using `contextRef`. Below is an example:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+  namespace: alpha
+spec:
+  contextRef:
+    name: team-alpha
+    namespace: default
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+In this example, the `ApiDefinition` object references the `team-alpha` context, ensuring that the configuration is applied within the `alpha` organization.
+
+### Internal Looping With Tyk Operator
+
+The concept of [internal looping]({{< ref "advanced-configuration/transform-traffic/looping" >}}) allows you to use URL Rewriting to redirect your URL to *another API endpoint* or to *another API* in the Gateway. In Tyk, looping is generally targeted using the `tyk://<API_ID>/<path>` scheme, which requires prior knowledge of the `API_ID`. Tyk Operator simplifies the management and transformation of API traffic within Kubernetes environments by abstracting APIs as objects, managing them and dynamically assigning `API_ID`s by its Kubernetes metedata name and namespace.
+
+---
+
+#### Configuring looping to internal ApiDefinition resources
+
+Looping can be configured within Tyk Operator for [URL Rewrites](#url-rewrites), [URL Rewrite Triggers](#url-rewrite-triggers) and [Proxy to internal APIs](#proxy-to-internal-apis) by configuring the `rewrite_to_internal` in `url_rewrite`, `rewrite_to_internal` in `triggers`, and `proxy.target_internal` fields respectively with these properties:
+
+- **Path**: The `path` property specifies the endpoint on the target API where the request should be directed. This is the portion of the URL that follows the domain and is crucial for ensuring that the request reaches the correct resource. For example, setting a value of `"/myendpoint"` means that the request will be forwarded to the `/myendpoint` path on the target API.
+
+- **Query**: The `query` property allows you to append additional query parameters to the target URL. These parameters can be used to modify the behavior of the target API or to pass along specific request information. For instance, setting `query: "check_limits=true"` will include this query string in the redirected request, potentially triggering special handling by the target API.
+
+- **Target**: The `target` property identifies the API resource to which the request should be routed. It consists of two components: `name` and `namespace`. The `name` is the identifier of the target API, while the `namespace` specifies the Kubernetes namespace where the API resource resides. Together, these elements ensure that Tyk Operator accurately locates and routes the request to the intended API. For example, `name: "proxy-api"` and `namespace: "default"` direct the request to the `proxy-api` resource in the `default` namespace.
+
+Tyk Operator would dynamically update the API definition by generating internal looping URL in the form of `tyk://<API_ID>/<path>`. This mechanism is essential for routing traffic within a microservices architecture or when managing APIs across different namespaces in Kubernetes. Using this object you can effectively manage and optimize API traffic within your Tyk Gateway.
+
+---
+
+#### URL Rewrites {#url-rewrites}
+
+[URL rewriting]({{< ref "transform-traffic/url-rewriting" >}}) in Tyk enables the alteration of incoming API request paths to align with the expected endpoint format of your backend services.
+
+Assume that we wish to redirect incoming `GET /basic/` requests to an API defined by an ApiDefinition object named `proxy-api` in the `default` namespace. We want the `/basic/` prefix to be stripped from the request path and the redirected path should be of the format `/proxy/$1`, where the context variable `$1` is substituted with the remainder of the path request. For example `GET /basic/456` should become `GET /proxy/456`.
+
+In this case we can use a `rewrite_to_internal` object to instruct Tyk Operator to automatically generate the API rewrite URL on our behalf for the API identified by name `proxy-api` in the `default` namespace:
+
+```yaml
+url_rewrites:
+  - path: "/{id}"
+    match_pattern: "/basic/(.*)"
+    method: GET
+    rewrite_to_internal:
+      target:
+        name: proxy-api
+        namespace: default
+      path: proxy/$1
+```
+
+In the above example an incoming request of `/basic/456` would be matched by the `match_pattern` rule `/basic/(.*)` for `GET` requests specified in the `method` field. The `456` part of the URL will be captured and replaces `{id}` in the `path` field. Tyk Operator will use the `rewrite_to_internal` configuration to generate the URL rewrite for the API named `proxy-api` in the `default` namespace, and update the `rewrite_to` field accordingly:
+
+```yaml
+url_rewrites:
+- match_pattern: /basic/(.*)
+  method: GET
+  path: /{id}
+  rewrite_to: tyk://ZGVmYXVsdC9wcm94eS1hcGk/proxy/$1
+```
+
+Here we can see that the `rewrite_to` field has been generated with the value `tyk://ZGVmYXVsdC9wcm94eS1hcGk/proxy/$1` where `ZGVmYXVsdC9wcm94eS1hcGk` represents the API ID for the `proxy-api` API resource in the `default` namespace. Notice also that path `proxy/$1` is appended to the base URL `tyk://ZGVmYXVsdC9wcm94eS1hcGk` and contains the context variable `$1`. This will be substituted with the value of `{id}` in the `path` configuration parameter.
+
+#### URL Rewrite Triggers {#url-rewrite-triggers}
+
+[Triggers]({{< ref "product-stack/tyk-gateway/middleware/url-rewrite-middleware#url-rewrite-triggers" >}}) are configurations that specify actions based on certain conditions present in HTTP headers, query parameters, path parameters etc.
+
+Triggers are essential for executing specific actions when particular criteria are met, such as rewriting URLs. They are useful for automating actions based on real-time data received in requests. For example, you might use triggers to:
+
+- Redirect users to different APIs in the Gateway based on their authentication status.
+- Enforce business rules by redirecting requests to different APIs in the Gateway based on certain parameters.
+
+The process for configuring internal looping in triggers to is similar to that explained in section [URL Rewrites](#url-rewrites").
+
+Assume that we wish to instruct Tyk Operator to redirect all *Basic Authentication* requests to the API identified by `basic-auth-internal` within the `default` namespace. Subsequently, we can use a `rewrite_to_internal` object as follows:
+
+```yaml
+triggers:
+  - "on": "all"
+    options:
+      header_matches:
+        "Authorization":
+          match_rx: "^Basic"
+    rewrite_to_internal:
+      target:
+        name: basic-auth-internal
+        namespace: default
+      path: "basic/$2"
+```
+
+Here we we can see that a trigger is configured for all requests that include an `Authorization` header containing `Basic` in the header value.
+
+A `rewrite_to_internal` configuration object is used to instruct Tyk Operator to generate a redirect to the API identified by the `basic-auth-internal` API resource in the `default` namespace. The redirect path will be prefixed with `basic`. For example, a basic authentication request to path `/` will be redirected to `/basic/`.
+
+Tyk Operator will automatically generate a URL Rewrite (`rewrite_to`) to redirect the request to the API identified by `basic-auth-internal` within the `default` namespace as follows:
+
+```yaml
+triggers:
+- "on": all
+  options:
+    header_matches:
+      Authorization:
+        match_rx: ^Basic
+  rewrite_to: tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs/basic/$2
+```
+
+Here we can see that the `rewrite_to` field has been generated with the value `tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs/proxy/$1` where `ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs` represents the API ID for the `proxy-api` API resource in the `default` namespace. Notice also that path `basic/$2` is appended to the base URL `tyk://ZGVmYXVsdC9iYXNpYy1hdXRoLWludGVybmFs` and contains the context variable `$2`. This will be substituted with the remainder of the request path.
+
+#### Proxy to Internal APIs {#proxy-to-internal-apis}
+
+Internal looping can also be used for [proxying to internal APIs]({{< ref "advanced-configuration/transform-traffic/looping" >}}).
+
+Assume that we wish to redirect all incoming requests on listen path `/users` to an API defined by an ApiDefinition object named `users-internal-api` in the `default` namespace.
+
+In this case we can use a `proxy.target_internal` field to instruct Tyk Operator to automatically generate the target URL on our behalf for the API identified by name `users-internal-api` in the `default` namespace:
+
+```yaml {linenos=true, linenostart=1, hl_lines=["12-15"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: users
+spec:
+  name: Users API
+  protocol: http
+  active: true
+  use_keyless: true
+  proxy:
+    target_url: ""
+    target_internal:
+      target:
+        name: users-internal-api
+        namespace: default
+    listen_path: /users
+    strip_listen_path: true
+```
+
+The proxy object’s `target_internal` field references other API resources. This field shares the same properties as those described for `rewrite_to_internal`, ensuring consistent configuration.
+
+Tyk Operator will automatically generate the target URL to redirect the request to the API identified by `users-internal-api` within the `default` namespace as follows:
+
+```yaml
+  target_url: "tyk://ZGVmYXVsdC91c2Vycy1pbnRlcm5hbC1hcGk"
+```
+
+---
+
+#### Example
+
+Assume a business has legacy customers who authenticate with a service using *Basic Authentication*. The business also wants to support API Keys, enabling both client types to access the same ingress.
+
+To facilitate this, Tyk must be configured for dynamic authentication, accommodating both *Basic Authentication* and *Auth Token* methods.
+
+This setup requires configuring four API Definitions within Tyk:
+
+1. Entry Point API
+2. BasicAuth Internal API
+3. AuthToken Internal API
+4. Proxy Internal API
+
+When a request arrives at the ingress route, a URL rewrite can direct it to either the *BasicAuth Internal* or *AuthToken Internal* API, depending on the authentication method used.
+
+These internal APIs will authenticate the requests. Assuming successful authentication (the happy path), they will forward the requests to the *Proxy Internal API*, which handles the proxying to the underlying service.
+
+</br>
+
+{{< note success >}}
+**Note**
+
+There are no actual HTTP redirects in this scenario, meaning that there is no performance penalty in performing any of these *Internal Redirects*.
+
+{{< /note >}}
+
+##### Entry Point API
+
+The *Entry Point* API is the first point of entry for a client request. It inspects the header to determine if the incoming client request requires authentication using *Basic Authentication* or *Auth Token*. Consequently, it then redirects the request to the *BasicAuth Internal* or *AuthToken Internal* API depending upon the header included in the client request.
+
+The API definition resource for the *Entry Point* API is listed below. It is configured to listen for requests on the `/entry` path and forward requests upstream to `http://example.com`
+
+We can see that there is a URL Rewrite rule (`url_rewrites`) with two triggers configured to match Basic Authentication and Auth Token requests:
+
+- **Basic Authentication trigger**: Activated for incoming client requests that include an *Authorization* header containing a value starting with *Basic*. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the *BasicAuthInternal* API, identified by name `basic-auth-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/basic/<path>`.
+- **Auth Token trigger**: Activated for incoming client requests that include an *Authorization* header containing a value starting with *Bearer*. In this case a `rewrite_to_internal` configuration object is used to instruct Tyk Operator to redirect the request to the *AuthTokenInternal* API, identified by name `auth-token-internal` in the `default` namespace. The request URL is rewritten, modifying the path to `/token/<path>`.
+
+ ```yaml {linenos=true, linenostart=1, hl_lines=["21-45"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: entrypoint-api
+spec:
+  name: Entrypoint API
+  protocol: http
+  active: true
+  proxy:
+    listen_path: /entry
+    target_url: http://example.com
+  use_keyless: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+        use_extended_paths: true
+        extended_paths:
+          url_rewrites:
+            - path: "/{id}"
+              match_pattern: "/(.*)/(.*)"
+              method: GET
+              triggers:
+                - "on": "all"
+                  options:
+                    header_matches:
+                      "Authorization":
+                        match_rx: "^Basic"
+                  rewrite_to_internal:
+                    target:
+                      name: basic-auth-internal
+                      namespace: default
+                    path: "basic/$2"
+                - "on": "all"
+                  options:
+                    header_matches:
+                      "Authorization":
+                        match_rx: "^Bearer"
+                  rewrite_to_internal:
+                    target:
+                      name: auth-token-internal
+                      namespace: default
+                    path: "token/$2"
+```
+
+##### BasicAuth Internal API
+
+The *BasicAuth Internal* API listens to requests on path `/basic` and forwards them upstream to `http://example.com`.
+
+The API is configured with a URL rewrite rule in `url_rewrites` to redirect incoming `GET /basic/` requests to the API in the Gateway represented by name `proxy-api` in the `default` namespace. The `/basic/` prefix will be stripped from the request URL and the URL will be rewritten with the format `/proxy/$1`. The context variable `$1` is substituted with the remainder of the path request. For example `GET /basic/456` will become `GET /proxy/456`.
+
+Furthermore, a header transform rule is configured within `transform_headers` to add the header `x-transform-api` with value `basic-auth`, to the request.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["21-35"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: basic-auth-internal
+spec:
+  name: BasicAuth Internal API
+  protocol: http
+  proxy:
+    listen_path: "/basic"
+    target_url: http://example.com
+  active: true
+  use_keyless: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+        use_extended_paths: true
+        extended_paths:
+          url_rewrites:
+            - path: "/{id}"
+              match_pattern: "/basic/(.*)"
+              method: GET
+              rewrite_to_internal:
+                target:
+                  name: proxy-api
+                  namespace: default
+                path: proxy/$1
+          transform_headers:
+            - add_headers:
+                x-transform-api: "basic-auth"
+              method: GET
+              path: "/{id}"
+              delete_headers: []
+```
+
+##### AuthToken Internal API
+
+The *AuthToken Internal* API listens to requests on path `/token` and forwards them upstream to `http://example.com`.
+
+The API is configured with a URL rewrite rule in `url_rewrites` to redirect incoming `GET /token/` requests to the API in the Gateway represented by name `proxy-api` in the `default` namespace. The `/token/` prefix will be stripped from the request URL and the URL will be rewritten to the format `/proxy/$1`. The context variable `$1` is substituted with the remainder of the path request. For example `GET /token/456` will become `GET /proxy/456`.
+
+Furthermore, a header transform rule is configured within `transform_headers` to add the header `x-transform-api` with value `token-auth`, to the request.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["21-35"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: auth-token-internal
+spec:
+  name: AuthToken Internal API
+  protocol: http
+  proxy:
+    listen_path: "/token"
+    target_url: http://example.com
+  active: true
+  use_keyless: true
+  version_data:
+    default_version: Default
+    not_versioned: true
+    versions:
+      Default:
+        name: Default
+        use_extended_paths: true
+        extended_paths:
+          url_rewrites:
+            - path: "/{id}"
+              match_pattern: "/token/(.*)"
+              method: GET
+              rewrite_to_internal:
+                target:
+                  name: proxy-api
+                  namespace: default
+                path: proxy/$1
+          transform_headers:
+            - add_headers:
+                x-transform-api: "token-auth"
+              method: GET
+              path: "/{id}"
+              delete_headers: []
+```
+
+##### Proxy Internal API
+
+The *Proxy Internal* API is keyless and responsible for listening to requests on path `/proxy` and forwarding upstream to `http://httpbin.org`. The listen path is stripped from the request before it is sent upstream.
+
+This API receives requests forwarded from the internal *AuthToken Internal* and *BasicAuth Internal APIs*. Requests will contain the header `x-transform-api` with value `token-auth` or `basic-auth`, depending upon which internal API the request originated from.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["10-13"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: proxy-api
+spec:
+  name: Proxy API
+  protocol: http
+  active: true
+  internal: true
+  proxy:
+    listen_path: "/proxy"
+    target_url: http://httpbin.org
+    strip_listen_path: true
+  use_keyless: true
+```
+
+### Manage API Ownership With Tyk Operator
+This guide explains how to efficiently manage API Ownerships within Tyk using Tyk Operator Custom Resources (CRs).
+
+Please consult the [API Ownership]({{< ref "product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership">}}) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context]({{< ref "/product-stack/tyk-operator/key-concepts/operator-context" >}}) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
+
+The guide includes practical examples for managing API ownership via OperatorContext. Key topics include defining user owners and user group owners in OperatorContext for connecting and authenticating with a Tyk Dashboard, and using `contextRef` in `TykOasApiDefinition` or `ApiDefinition` objects to ensure configurations are applied within specific organizations. The provided YAML examples illustrate how to set up these configurations.
+
+#### How API Ownership works in Tyk Operator
+
+In Tyk Dashboard, API Ownership ensures that only designated 'users' who own an API can modify it. This security model is crucial for maintaining control over API configurations, especially in a multi-tenant environment where multiple teams or departments may have different responsibilities and permissions.
+
+Tyk Operator is designed to interact with Tyk Dashboard as a system user. For the Tyk Dashboard, Tyk Operator is just another user that must adhere to the same access controls and permissions as any other user. This means:
+
+- Tyk Operator needs the correct access rights to modify any APIs.
+- It must be capable of managing APIs according to the ownership rules set in Tyk Dashboard.
+
+To facilitate API ownership and ensure secure operations, Tyk Operator must be able to 'impersonate' different users for API operations. This is where `OperatorContext` comes into play. Users can define different `OperatorContext` objects that act as different agents to connect to Tyk Dashboard. Each `OperatorContext` can specify different access parameters, including the user access key and organization it belongs to. Within `OperatorContext`, users can specify the IDs of owner users or owner user groups. All APIs managed through that `OperatorContext` will be owned by the specified users and user groups, ensuring compliance with Tyk Dashboard's API ownership model.
+
+{{< img src="/img/operator/tyk-api-ownership.svg" alt="Enabling API ownership with OperatorContext" width="600" >}}
+
+#### OperatorContext
+
+Here's how `OperatorContext` allows Tyk Operator to manage APIs under different ownerships:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: OperatorContext
+metadata:
+  name: team-alpha
+  namespace: default
+spec:
+  env:
+    # The mode of the admin api
+    # ce - community edition (open source gateway)
+    # pro - dashboard (requires a license)
+    mode: pro
+    # Org ID to use
+    org: *YOUR_ORGANIZATION_ID*
+    # The authorization token this will be set in x-tyk-authorization header on the
+    # client while talking to the admin api
+    auth: *YOUR_API_ACCESS_KEY*
+    # The url to the Tyk Dashboard API
+    url: http://dashboard.tyk.svc.cluster.local:3000
+    # Set this to true if you want to skip tls certificate and host name verification
+    # this should only be used in testing
+    insecureSkipVerify: true
+    # For ingress the operator creates and manages ApiDefinition resources, use this to configure
+    # which ports the ApiDefinition resources managed by the ingress controller binds to.
+    # Use this to override default ingress http and https port
+    ingress:
+      httpPort: 8000
+      httpsPort: 8443
+    # Optional - The list of users who are authorized to update/delete the API.
+    # The user pointed by auth needs to be in this list, if not empty.
+    user_owners:
+    - a1b2c3d4e5f6
+    # Optional - The list of groups of users who are authorized to update/delete the API.
+    # The user pointed by auth needs to be a member of one of the groups in this list, if not empty.
+    user_group_owners:
+    - 1a2b3c4d5e6f
+```
+
+#### Tyk OAS API
+
+Once an `OperatorContext` is defined, you can reference it in your Tyk OAS API Definition objects using `contextRef`. Below is an example:
+
+```yaml {hl_lines=["40-43"],linenos=true}
+apiVersion: v1
+data:
+  test_oas.json: |-
+    {
+        "info": {
+          "title": "Petstore",
+          "version": "1.0.0"
+        },
+        "openapi": "3.0.3",
+        "components": {},
+        "paths": {},
+        "x-tyk-api-gateway": {
+          "info": {
+            "name": "Petstore",
+            "state": {
+              "active": true
+            }
+          },
+          "upstream": {
+            "url": "https://petstore.swagger.io/v2"
+          },
+          "server": {
+            "listenPath": {
+              "value": "/petstore/",
+              "strip": true
+            }
+          }
+        }
+      }
+kind: ConfigMap
+metadata:
+  name: cm
+  namespace: default
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: petstore
+spec:
+  contextRef:
+    name: team-alpha
+    namespace: default
+  tykOAS:
+    configmapRef:
+      name: cm
+      namespace: default
+      keyName: test_oas.json
+```
+
+In this example, the `TykOasApiDefinition` object references the `team-alpha` context, ensuring that it is managed under the ownership of the specified users and user groups.
+
+#### Tyk Classic API
+
+Similarly, if you are using Tyk Classic API, you can reference it in your API Definition objects using `contextRef`. Below is an example:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: httpbin
+  namespace: alpha
+spec:
+  contextRef:
+    name: team-alpha
+    namespace: default
+  name: httpbin
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://httpbin.org
+    listen_path: /httpbin
+    strip_listen_path: true
+```
+
+In this example, the `ApiDefinition` object references the `team-alpha` context, ensuring that it is managed under the ownership of the specified users and user groups.
 
 
 
