@@ -258,14 +258,14 @@ Using `OperatorContext` offers flexibility for multi-tenancy, helping organizati
 ### Install and Configure Tyk Operator
 
 We assume you have already installed Tyk. If you don’t have it, check out [Tyk
-Cloud]({{<ref "deployment-and-operations/tyk-cloud-platform/quick-start">}}) or [Tyk Self
-Managed]({{<ref "getting-started/installation">}}) page. [Tyk Helm
-Chart]({{<ref "product-stack/tyk-charts/overview">}}) is the preferred (and easiest) way to install Tyk on Kubernetes.
+Cloud]({{<ref "/deployment-and-operations/tyk-cloud-platform/quick-start">}}) or [Tyk Self
+Managed]({{<ref "/getting-started/installation">}}) page. [Tyk Helm
+Chart]({{<ref "/product-stack/tyk-charts/overview">}}) is the preferred (and easiest) way to install Tyk on Kubernetes.
 
 In order for policy ID matching to work correctly, Dashboard must have `allow_explicit_policy_id` and
 `enable_duplicate_slugs` set to `true` and Gateway must have `policies.allow_explicit_policy_id` set to `true`.
 
-Tyk Operator needs a [user credential]({{<ref "product-stack/tyk-operator/key-concepts/operator-user">}}) to connect with
+Tyk Operator needs a [user credential](#operator-user) to connect with
 Tyk Dashboard. The Operator user should have write access to the resources it is going to manage, e.g. APIs, Certificates,
 Policies, and Portal. It is the recommended practice to turn off write access for other users for the above resources. See
 [Using Tyk Operator to enable GitOps with Tyk]({{< ref "getting-started/key-concepts/gitops-with-tyk" >}}) about

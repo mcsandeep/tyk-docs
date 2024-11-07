@@ -14,13 +14,13 @@ Here are the supported features:
 
 | Type                    | Support | Supported From | Comments | Sample                                                                                                         |
 | ----------------------- | ------- | -------------- | -------- | -------------------------------------------------------------------------------------------------------------- |
-| HTTP                    | ✅      | v0.1           | -        | [HTTP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-proxy">}})               |
-| HTTPS                   | ✅      | v0.4           | -        | [HTTPS Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#https-proxy">}})             |
-| TCP                     | ✅      | v0.1           | -        | [TCP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-tcp">}})                            |
+| HTTP                    | ✅      | v0.1           | -        | [HTTP Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-http#http-proxy">}})               |
+| HTTPS                   | ✅      | v0.4           | -        | [HTTPS Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-http#https-proxy">}})             |
+| TCP                     | ✅      | v0.1           | -        | [TCP Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-tcp">}})                            |
 | TLS                     | ✅      | v0.1           | -        |                                                                                                                |
-| GraphQL - Proxy         | ✅      | v0.1           | -        | [GraphQL Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-graphql">}})                    |
-| Universal Data Graph v1 | ✅      | v0.1           | -        | [UDG v1 Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-udg#udg-v1-tyk-31-or-before">}}) |
-| Universal Data Graph v2 | ✅      | v0.12          | -        | [UDG v2 Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-udg#udg-v2-tyk-32-and-above">}}) |
+| GraphQL - Proxy         | ✅      | v0.1           | -        | [GraphQL Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-grapqhl">}})                    |
+| Universal Data Graph v1 | ✅      | v0.1           | -        | [UDG v1 Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-udg#udg-v1-tyk-31-or-before">}}) |
+| Universal Data Graph v2 | ✅      | v0.12          | -        | [UDG v2 Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-udg#udg-v2-tyk-32-and-above">}}) |
 | GraphQL - Federation    | ✅      | v0.12          | -        | [GraphQL Federation]({{<ref "product-stack/tyk-operator/advanced-configurations/graphql-federation">}})        |
 
 ## Management of APIs
@@ -40,9 +40,9 @@ Here are the supported features:
 
 | Type             | Supported | Supported From | Comments | Sample                                                                                                                 |
 | ---------------- | --------- | -------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Path-Based Proxy | ✅        | v0.1           | -        | [HTTP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-proxy">}})                       |
-| Host-Based Proxy | ✅        | v0.1           | -        | [HTTP Host-based Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-host-based-proxy">}}) |
-| Target URL       | ✅        | v0.1           | -        | [HTTP Proxy]({{<ref "product-stack/tyk-operator/getting-started/quick-start-http#http-proxy">}})                       |
+| Path-Based Proxy | ✅        | v0.1           | -        | [HTTP Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-http#http-proxy">}})                       |
+| Host-Based Proxy | ✅        | v0.1           | -        | [HTTP Host-based Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-http#http-host-based-proxy">}}) |
+| Target URL       | ✅        | v0.1           | -        | [HTTP Proxy]({{<ref "/api-management/automations/#set-up-manifest-for-http#http-proxy">}})                       |
 
 ## Client to Gateway Authentication and Authorization
 
