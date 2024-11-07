@@ -121,7 +121,7 @@ For teams operating within Kubernetes, Tyk Operator integrates seamlessly, provi
 
 ### Tyk Streams
 
-**[Tyk Streams](/tyk-streams)** is Tyk’s real-time data streaming tool for APIs, enabling applications to receive data as events happen:
+**[Tyk Streams](/product-stack/tyk-streaming/overview)** is Tyk’s real-time data streaming tool for APIs, enabling applications to receive data as events happen:
 
 - **Real-Time Data**: Pushes live data to clients in real time.
 - **Event-Driven Architecture**: Triggers immediate responses to data changes.
@@ -157,7 +157,7 @@ The Identity Broker centralizes identity and access management, making it easier
 
 ### Tyk Helm Charts
 
-**[Tyk Helm Charts](/tyk-helm-charts)** provide templated configurations for deploying Tyk components in Kubernetes, enabling efficient setup and management:
+**[Tyk Helm Charts](/product-stack/tyk-charts/overview)** provide templated configurations for deploying Tyk components in Kubernetes, enabling efficient setup and management:
 
 - **Efficient Deployment**: Simplifies installation and configuration within Kubernetes clusters.
 - **Version Control**: Manages versioning and consistency across deployments.
@@ -196,16 +196,16 @@ Now that you’ve been introduced to the Tyk suite, you have a strong foundation
 
 ## Where to Go Next
 
-1. **[Getting Started with Tyk Gateway](/tyk-gateway/get-started)**  
+1. **[Getting Started with Tyk Gateway](/tyk-oss-gateway/)**  
    Start by setting up the Tyk Gateway, where you’ll configure your first API and explore the foundational capabilities of traffic management, security, and monitoring.
 
-2. **[Set Up and Configure the Tyk Dashboard](/tyk-dashboard/get-started)**  
+2. **[Set Up and Configure the Tyk Dashboard](/tyk-dashboard)**  
    Dive into the Tyk Dashboard to manage your API lifecycle from a user-friendly interface, allowing you to monitor, configure, and scale your APIs with ease.
 
-3. **[Explore API Security](/api-management/security)**  
+3. **[Explore API Security](/basic-config-and-security/security/authentication--authorization)**  
    Secure your APIs with Tyk’s robust authentication options like OAuth2, JWT, and HMAC, and learn how to apply rate limiting and quota policies to protect your resources.
 
-4. **[Implement Multi-Region Deployments with MDCB](/tyk-multi-data-centre/get-started)**  
+4. **[Implement Multi-Region Deployments with MDCB](/tyk-multi-data-centre)**  
    If your infrastructure requires high availability and global reach, explore Tyk’s Multi Data Centre Bridge to deploy and manage APIs across different regions.
 
 5. **[Use Tyk Sync for Consistent Configuration Management](/product-stack/tyk-sync/overview)**  
