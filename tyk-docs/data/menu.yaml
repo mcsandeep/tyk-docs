@@ -3873,10 +3873,6 @@ menu:
             category: Directory
             show: True
             menu:
-              - title: "Manage API metadata"
-                path: /product-stack/tyk-operator/advanced-configurations/management-of-api
-                category: Page
-                show: True
               - title: "GraphQL Federation"
                 path: /product-stack/tyk-operator/advanced-configurations/graphql-federation
                 category: Page
