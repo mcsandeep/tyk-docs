@@ -55,7 +55,6 @@ Tyk offers a comprehensive suite of components designed to address every aspect 
 - **[Tyk Helm Charts](/tyk-helm-charts/)**: Simplifies the deployment of Tyk components within Kubernetes environments.
 - **[Universal Data Graph](/universal-data-graph/)**: Provides a single GraphQL endpoint that aggregates data from multiple sources, simplifying access to complex data.
 
-
 Each component plays a specific role in managing the API lifecycle, from initial deployment and configuration to real-time data streaming and developer access. Together, they create a cohesive API management ecosystem that can handle the unique challenges of production environments.
 
 You can learn more about the components that make up Tyk, [here](/tyk-components).
