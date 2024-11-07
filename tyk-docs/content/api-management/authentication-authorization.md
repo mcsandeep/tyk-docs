@@ -181,12 +181,12 @@ This seems like a complicated process and very verbose - however in actuality, t
      * Specify a valid redirect URI.
      * Associate the client with the access policy you created.
 
-     {{< img src="/img/dashboard/system-management/oauth-api-oauth-clients.png" alt="OAuth Clients" >}}
-     {{< img src="/img/dashboard/system-management/oauth-add-new-client.png" alt="Add New OAuth Client" >}}
+     {{< img src="/img/api-management/security/create-oauth-from-api-list.png" alt="OAuth Clients" >}}
+     {{< img src="/img/api-management/security/fill-out-client-details-oauth.png" alt="Add New OAuth Client" >}}
 
 6. **Access Client Credentials**: After client creation, view the generated Client ID and Secret.
 
-    {{< img src="/img/dashboard/system-management/oauth-client-secret-details.png" alt="View Client ID and Secret" >}}
+    {{< img src="/img/api-management/security/client-secret-oauth.png" alt="View Client ID and Secret" >}}
 
 #### Enabling OAuth 2.0 via an API Definition
 
@@ -1218,7 +1218,7 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
 1. Log in to your Tyk Dashboard.
 2. Create a new HTTP API (the default `http://httpbin.org` upstream URL is fine).
 
-   {{< img src="/img/keycloak-jwt/create-api-step-1.png" alt="Create a new HTTP API" >}}
+   {{< img src="/img/api-management/security/jwt-keycloak-api-create.png" alt="Create a new HTTP API" >}}
 
 3. Scroll to the Authentication mode section and select JWT from the list.
 4. Select RSA public Key as JWT Signing method.
@@ -1226,33 +1226,32 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
 6. Add an Identity Source and Policy Field Name. The defaults of `sub` and `pol` are fine.
 7. Click on the update button to save the API.
 
-   {{< img src="/img/keycloak-jwt/create-api-step-2.png" alt="Create API" >}}
+   {{< img src="/img/api-management/security/jwt-keycloak-set-auth.png" alt="Create API" >}}
 
 8. Create a policy to manage access to your API.
 9. Navigate to the Policies section on the left-hand side menu.
 10. Click on Add Policy on the top right-hand side of your screen.
 11. Select your API from the Add API Access Rights list.
 
-   {{< img src="/img/keycloak-jwt/create-policy-step-1.png" alt="Select API for Security Policy" >}}
+   {{< img src="/img/api-management/security/jwt-keycloak-add-policy.png" alt="Select API for Security Policy" >}}
 
 12. Click on the Configurations tab and choose a policy name and TLL.
 
-    {{< img src="/img/keycloak-jwt/create-policy-step-2.png" alt="Create API Security Policy" >}}
-    {{< img src="/img/keycloak-jwt/create-policy-step-3.png" alt="API Security Policy Result" >}}
+    {{< img src="/img/api-management/security/jwt-keycloak-add-policy-cont.png" alt="Create API Security Policy" >}}
 
 13. Add the default policy to the API.
 
-    {{< img src="/img/keycloak-jwt/create-api-step-3.png" alt="Add default policy to API" >}}
+    {{< img src="/img/api-management/security/jwt-keycloak-api-set-policy.png" alt="Add default policy to API" >}}
 
 14. Test access to the API using curl.
 15. Retrieve the API URL.
 
-    {{< img src="/img/keycloak-jwt/create-api-step-4.png" alt="Add default Policy to API" >}}
+    {{< img src="/img/api-management/security/jwt-keycloak-get-api-url.png" alt="Add default Policy to API" >}}
 
 16. Test with curl. Make sure to replace `TOKEN` with the JWT you received from the curl earlier.
 
     ```bash
-    curl 'http://tyk.gateway.local/keycloak-jwt/get' \
+    curl 'friendly-slipper-gw.aws-use1.cloud-ara.tyk.io/keycloak.jwt/get' \
         -H "Authorization: Bearer TOKEN"
     ```
 
@@ -1594,13 +1593,13 @@ To enable multi-chained authentication in your GUI, follow these steps:
 
     Select the Use Multiple Auth Mechanisms option from the drop-down list. This will open a window that provides checkboxes for each supported auth type to be chained. Note that it is not possible to set the order of chained auth methods.
 
-    {{< img src="/img/2.10/multiple_auth_methods.png" alt="Select Multiple Auth" >}}
+    {{< img src="/img/api-management/security/multiple-auth-choose-auth.png" alt="Select Multiple Auth" >}}
 
 3.  Select Your Preferred Auth Methods and Base Identity Provider
 
     Choose the authentication methods you want to chain together and select the base identity provider. The baseline provider will be the one that provides the current request context with the session object, defining the "true" access control list, rate limit, and quota to apply to the user.
 
-    {{< img src="/img/2.10/select_multiple_auth_methods.png" alt="Select Auth Methods" >}}
+    {{< img src="/img/api-management/security/multiple-auth-methods.png" alt="Select Auth Methods" >}}
 
     Once these are set up, you will see the traditional configuration screens for each of the auth methods selected in the checkboxes. Configure them as you would regular authentication modes.
 
@@ -1764,7 +1763,7 @@ To set up Dynamic Client mTLS, we need to follow these steps:
 
 In the API Designer, set the Authentication Type to Auth Token under Target Details > Authentication mode. Then select Enable Client Certificate.
 
-{{< img src="/img/2.10/client_cert.png" alt="Enable Client Certificate" >}}
+{{< img src="/img/api-management/security/client-mtls-api-setup.png" alt="Enable Client Certificate" >}}
 
 ##### Generate a Self-Signed Key Pair
 
@@ -1803,8 +1802,6 @@ Instead of manually creating keys, you can allow developers to upload their own 
 2. **Create a Catalog Entry:** Create a catalog entry for this policy.
 3. **Request a Key through the Portal:** As a developer, request a key for the API through the Portal. This will present a screen where the developer can upload their public certificate.
 
-   {{< img src="/img/2.10/client_mtls_add_cert.png" alt="Add Key Certificate" >}}
-
 4. **Make an API Request Using the Uploaded Certificate:** After adding the public certificate, developers can make API requests using their cert + private key:
 
    ```bash
@@ -1824,9 +1821,6 @@ In the API authentication settings, choose mTLS as the authentication type and o
 ##### Set the Base Identity
 
 The base identity can be anything, as the client certificate will be the primary authentication method.
-
-{{< img src="/img/2.10/client_mtls_multiple_auth.png" alt="enable_cert" >}}
-
 
 
 ##### Setup Static mTLS in Tyk Operator using the Tyk Classic API Definition{#tyk-operator-classic}
