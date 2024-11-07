@@ -144,7 +144,7 @@ The following custom resources can be used to configure APIs and policies at [Ty
 | SecurityPolicy     | tyk.tyk.io  | v1alpha1  | Defines configuration of [security policies]({{<ref "getting-started/key-concepts/what-is-a-security-policy">}}). Operator supports linking ApiDefinition custom resources in SecurityPolicy's access list so that API IDs do not need to be hardcoded in the resource manifest.        |
 | SubGraph           | tyk.tyk.io  | v1alpha1  | Defines a [GraphQL federation subgraph]({{<ref "getting-started/key-concepts/graphql-federation#subgraphs-and-supergraphs">}}).                                           |
 | SuperGraph         | tyk.tyk.io  | v1alpha1  | Defines a [GraphQL federation supergraph]({{<ref "getting-started/key-concepts/graphql-federation#subgraphs-and-supergraphs">}}).                                        |
-| OperatorContext    | tyk.tyk.io  | v1alpha1  | Manages the context in which the Tyk Operator operates, affecting its overall behavior and environment. See [Operator Context]({{<ref "product-stack/tyk-operator/key-concepts/operator-context">}}) for details. |
+| OperatorContext    | tyk.tyk.io  | v1alpha1  | Manages the context in which the Tyk Operator operates, affecting its overall behavior and environment. See [Operator Context](#multi-tenancy-in-tyk) for details. |
 
 ##### Tyk Classic Developer Portal
 
@@ -197,7 +197,7 @@ For more details on Kubernetes CRD versioning practices, refer to the Kubernetes
 
 
 #### Operator User
-Tyk Operator is a Kubernetes Controller that manages Tyk Custom Resources (CRs) such as API Definitions and Security Policies. Developers define these resources as [Custom Resource (CRs)]({{<ref "product-stack/tyk-operator/key-concepts/custom-resources">}}), and Tyk Operator ensures that the desired state is reconciled with the Tyk Gateway or Dashboard. This involves creating, updating, or deleting API configurations until the target state matches the desired state.
+Tyk Operator is a Kubernetes Controller that manages Tyk Custom Resources (CRs) such as API Definitions and Security Policies. Developers define these resources as [Custom Resource (CRs)](#custom-resources-in-tyk), and Tyk Operator ensures that the desired state is reconciled with the Tyk Gateway or Dashboard. This involves creating, updating, or deleting API configurations until the target state matches the desired state.
 
 For the Tyk Dashboard, Tyk Operator functions as a system user, bound by Organization and RBAC rules.
 
@@ -253,6 +253,26 @@ By setting different `OperatorContext` configurations, you can define unique acc
 Using `OperatorContext` offers flexibility for multi-tenancy, helping organizations manage and isolate API configurations based on their specific team or departmental needs.
 
 {{< img src="/img/operator/tyk-operator-context.svg" alt="Multi-tenancy in Kubernetes Tyk Operator" width="600" >}}
+
+#### TLS Certificates
+
+Tyk Operator is designed to offer a seamless Kubernetes-native experience by managing TLS certificates stored within Kubernetes for your API needs. Traditionally, to use a certificate (e.g., as a client certificate, domain certificate, or certificate for accessing an upstream service), you would need to manually upload the certificate to Tyk and then reference it using a 'Certificate ID' in your API definitions. This process can become cumbersome, especially in a Kubernetes environment where certificates are often managed as secrets and may rotate frequently.
+
+To address this challenge, Tyk Operator allows you to directly reference certificates stored as Kubernetes secrets within your custom resource definitions (CRDs). This reduces operational overhead, minimizes the risk of API downtime due to certificate mismatches, and provides a more intuitive experience for API developers.
+
+### Benefits of Managing Certificates with Tyk Operator
+- **Reduced operational overhead**: Automates the process of updating certificates when they rotate.
+- **Minimized risk of API downtime**: Ensures that APIs continue to function smoothly, even when certificates are updated.
+- **Improved developer experience**: Removes the need for API developers to manage certificate IDs manually.
+
+### Examples
+
+| Certificate Type | Supported in ApiDefinition | Supported in TykOasApiDefinition |
+|------------------|-------------|---------|
+| Client certifates | ✅ [Client mTLS]({{<ref "basic-config-and-security/security/mutual-tls/client-mtls#tyk-operator-classic">}}) | ✅ [Client mTLS]({{<ref "basic-config-and-security/security/mutual-tls/client-mtls#tyk-operator-oas">}}) |
+| Custom domain certificates | ✅ [TLS and SSL]({{<ref "basic-config-and-security/security/tls-and-ssl#tyk-operator-classic">}}) | ✅ [TLS and SSL]({{<ref "basic-config-and-security/security/tls-and-ssl#tyk-operator-oas">}}) |
+| Public keys pinning | ✅ [Certificate pinning]({{<ref "security/certificate-pinning#tyk-operator-classic">}}) | ✅ [Certificate pinning]({{<ref "security/certificate-pinning#tyk-operator-oas">}}) |
+| Upstream mTLS | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-classic">}}) | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-oas">}}) |
 
 
 ### Install and Configure Tyk Operator
@@ -409,7 +429,7 @@ of k8s namespaces. For example:
 
 **Watch custom ingress class**
 
-You can configure [Tyk Operator as Ingress Controller]({{<ref "product-stack/tyk-operator/tyk-ingress-controller">}}) so
+You can configure [Tyk Operator as Ingress Controller](#control-kubernetes-ingress-resources) so
 that [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources can be managed by Tyk as
 APIs. By default, Tyk Operator looks for the value `tyk` in Ingress resources `kubernetes.io/ingress.class` annotation
 and will ignore all other ingress classes. If you want to override this default behavior, you may do so by setting
@@ -2887,7 +2907,7 @@ If you want to set up multi-tenant API management with Tyk, follow these steps t
 
 #### Defining OperatorContext
 
-An [OperatorContext]({{< ref "/product-stack/tyk-operator/key-concepts/operator-context" >}}) specifies the parameters for connecting and authenticating with a Tyk Dashboard. Below is an example of how to define an `OperatorContext`:
+An [OperatorContext](#multi-tenancy-in-tyk) specifies the parameters for connecting and authenticating with a Tyk Dashboard. Below is an example of how to define an `OperatorContext`:
 
 ```yaml
 apiVersion: tyk.tyk.io/v1alpha1
@@ -3319,10 +3339,287 @@ spec:
   use_keyless: true
 ```
 
-### Manage API Ownership With Tyk Operator
-This guide explains how to efficiently manage API Ownerships within Tyk using Tyk Operator Custom Resources (CRs).
+### Manage API MetaData
 
-Please consult the [API Ownership]({{< ref "product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership">}}) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context]({{< ref "/product-stack/tyk-operator/key-concepts/operator-context" >}}) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
+
+#### API Name
+
+##### Tyk OAS API
+
+API name can be set through `x-tyk-api-gateway.info.name` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
+
+To set the name of an API in the `ApiDefinition`, use the `spec.name` string field. This name is displayed on the Tyk Dashboard and should concisely describe what the API represents.
+
+Example:
+
+```yaml {linenos=true, linenostart=1, hl_lines=["6-6"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: example-api # This is the metadata name of the Kubernetes resource
+spec:
+  name: Example API # This is the "API NAME" in Tyk
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://example.com
+    listen_path: /example
+    strip_listen_path: true
+```
+
+#### API Status
+
+##### API Active Status
+
+An active API will be loaded to the Gateway, while an inactive API will not, resulting in a 404 response when called.
+
+##### Tyk OAS API
+
+API active state can be set through `x-tyk-api-gateway.info.state.active` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
+
+The active status of an API can be set by modifying the `spec.active` configuration parameter. When set to `true`, this enables the API so that Tyk will listen for and process requests made to the `listenPath`. 
+
+```yaml {linenos=true, linenostart=1, hl_lines=["9-9"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: inactive-api
+spec:
+  name: Inactive API
+  use_keyless: true
+  protocol: http
+  active: false
+  proxy:
+    target_url: http://inactive.example.com
+    listen_path: /inactive
+    strip_listen_path: true
+```
+
+#### API Accessibility
+
+An API can be configured as internal so that external requests are not processed. 
+
+##### Tyk OAS API
+
+API accessibility can be set through `x-tyk-api-gateway.info.state.internal` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
+
+API accessibility can be set through the `spec.internal` configuration parameter as shown in the example below.
+
+```yaml {linenos=true, linenostart=1, hl_lines=["10-10"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: inactive-api
+spec:
+  name: Inactive API
+  use_keyless: true
+  protocol: http
+  active: true
+  internal: true
+  proxy:
+    target_url: http://inactive.example.com
+    listen_path: /inactive
+    strip_listen_path: true
+```
+
+#### API ID
+
+##### Creating a new API
+
+If you're creating a new API using Tyk Operator, you don't need to specify the ID. The API ID will be generated in a deterministic way.
+
+##### Tyk OAS API
+
+The generated ID is stored in `status.id` field. Run the following command to inspect generated API ID of a Tyk OAS API.
+
+```bash
+% kubectl get tykoasapidefinition [API_NAME] --namespace [NAMESPACE] -o jsonpath='{.status.id}'
+ZGVmYXVsdC9wZXRzdG9yZQ
+```
+
+In this example, the generated API ID is `ZGVmYXVsdC9wZXRzdG9yZQ`.
+
+##### Tyk Classic API
+
+The generated ID is stored in `status.api_id` field. Run the following command to inspect generated API ID of a Tyk Classic API.
+
+```bash
+% kubectl get apidefinition [API_NAME] --namespace [NAMESPACE] -o jsonpath='{.status.api_id}'
+ZGVmYXVsdC90ZXN0
+```
+
+In this example, the generated API ID is `ZGVmYXVsdC90ZXN0`.
+
+#### Updating an existing API
+
+##### Tyk OAS API
+
+If you already have API configurations created in the Tyk Dashboard and want to start using Tyk Operator to manage these APIs, you can include the existing API ID in the manifest under the `x-tyk-api-gateway.info.id` field in [Tyk OAS API Definition]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) object.
+
+##### Tyk Classic API
+
+If you already have API configurations created in the Tyk Dashboard and want to start using Tyk Operator to manage these APIs, you can include the existing API ID in the manifest under the `spec.api_id` field. This way, when you apply the manifest, Tyk Operator will not create a new API in the Dashboard. Instead, it will update the original API with the Kubernetes spec.
+
+Example
+
+```yaml  {linenos=true, linenostart=1, hl_lines=["8-8"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: existing-api
+  namespace: default
+spec:
+  name: Existing API
+  api_id: 12345
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://existing.example.com
+    listen_path: /existing
+    strip_listen_path: true
+```
+
+In this example, the API with ID `12345` will be updated according to the provided spec instead of creating a new API.
+
+
+#### API Categories
+[API categories]({{< ref "product-stack/tyk-dashboard/advanced-configurations/api-categories">}}) are configured differently for Tyk OAS APIs and Tyk Classic APIs. Please see below for examples.
+
+##### Tyk OAS API
+
+API categories can be specified through `categories` field in `TykOasApiDefinition` CRD.
+
+Here's an example:
+
+```yaml  {linenos=true, linenostart=1, hl_lines=["7-9"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: oas-api-with-categories
+  namespace: tyk
+spec:
+  categories:
+  - category 1
+  - category 2
+  tykOAS:
+    configmapRef:
+      keyName: oas-api-definition.json
+      name: tyk-oas-api-config
+      namespace: tyk
+```
+
+##### Tyk Classic API
+
+For a Tyk Classic API, you can specify the category name using the `name` field with a `#` qualifier. This will categorize the API in the Tyk Dashboard. See [How API categories work]({{<ref "product-stack/tyk-dashboard/advanced-configurations/api-categories#tyk-classic-apis">}}) to learn about limitations on API names.
+
+Example
+
+```yaml  {linenos=true, linenostart=1, hl_lines=["6-6"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: categorized-api
+spec:
+  name: "my-classic-api #global #staging"
+  use_keyless: true
+  protocol: http
+  active: true
+  proxy:
+    target_url: http://categorized.example.com
+    listen_path: /categorized
+    strip_listen_path: true
+```
+
+#### API Versioning
+[API versioning]({{<ref "product-stack/tyk-gateway/advanced-configurations/api-versioning/api-versioning">}}) are configured differently for [Tyk OAS APIs](#tyk-oas-api) and [Tyk Classic APIs](#tyk-classic-api). Please see below for examples.
+
+##### Configuring API Version in Tyk OAS API Definition{#tyk-oas-api}
+
+In the [Tyk OAS API Definition]({{<ref "getting-started/key-concepts/oas-versioning#configuring-api-versioning-in-the-tyk-oas-api-definition">}}), versioning can be configured via `x-tyk-api-gateway.versioning` object of the Base API, where the child API's IDs are specified. In the Kubernetes environment with Tyk Operator, where we reference API resources through its Kubernetes name and namespace, this is not desired. Therefore, we add support for versioning configurations through the field `versioning` in `TykOasApiDefinition` custom resource definition (CRD).
+
+Here's an example:
+
+```yaml{linenos=true, linenostart=1, hl_lines=["12-24"]}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: order-api
+  namespace: default
+spec:
+  tykOAS:
+    configmapRef:
+      namespace: default
+      name: order-api
+      keyName: order-api-definition-v1.json
+  versioning:
+    enabled: true
+    location: header
+    key: x-api-version
+    name: v1
+    default: v1
+    fallbackToDefault: true
+    stripVersioningData: true
+    versions:
+      - name: v2
+        tykOasApiDefinitionRef:
+          name: order-api-v2
+          namespace: default
+---
+apiVersion: tyk.tyk.io/v1alpha1
+kind: TykOasApiDefinition
+metadata:
+  name: order-api-v2
+  namespace: default
+spec:
+  tykOAS:
+    configmapRef:
+      namespace: default
+      name: order-api-v2
+      keyName: order-api-definition-v2.json
+```
+
+In this example, two different versions of an API are defined: `order-api` (v1) and `order-api-v2` (v2).
+
+`versioning` is configured at `order-api` (v1), the Base API, and it has similiar structure as [Tyk OAS API Definition]({{<ref "getting-started/key-concepts/oas-versioning#configuring-api-versioning-in-the-tyk-oas-api-definition">}}):
+
+- `versioning`: This object configures API versioning for the `order-api`.
+    - `enabled`: Set to true to enable versioning.
+    - `name`: an identifier for this version of the API (v1).
+    - `default`: Specifies the default version (v1), which will be used if no version is specified in the request.
+    - `location`: Specifies where the version key is expected (in this case, in the header). It can be set to `header` or `url-param`.
+    - `key`: Specifies the versioning identifier key (`x-api-version`) to identify the version. In this example, the version is determined by an HTTP header named `x-api-version`.
+    - `fallbackToDefault`: When set to true, if an unspecified or invalid version is requested, the default version (v1) will be used.
+    - `stripVersioningData`: When true, removes versioning identifier (like headers or query parameters) from the upstream request to avoid exposing internal versioning details.
+    - `urlVersioningPattern`: Specifies a regex that matches the format that you use for the versioning identifier (name) if you are using stripVersioningData and fallBackToDefault with location=url with Tyk 5.5.0 or later
+    - `versions`: Defines the list of API versions available:
+        - `name`: an identifier for this version of the API (v2).
+        - `tykOasApiDefinitionRef`: Refers to a separate TykOasApiDefinition resource that represent a new API version.
+          - `name`: Kubernetes metadata name of the resource (`order-api-v2`).
+          - `namespace`: Kubernetes metadata namespace of the resource (`default`).
+
+With Tyk Operator, you can easily associate different versions of your APIs using their Kubernetes names. This eliminates the need to include versioning information directly within the base API's definition (`x-tyk-api-gateway.versioning` object), which typically requires referencing specific API IDs. Instead, the Operator allows you to manage versioning declaratively in the `TykOasApiDefinition` CRD, using the `versioning` field to specify versions and their Kubernetes references (names and namespaces).
+
+When using the CRD for versioning configuration, you don't have to worry about knowing or managing the unique API IDs within Tyk. The Tyk Operator handles the actual API definition configuration behind the scenes, reducing the complexity of version management.
+
+In case if there is original versioning information in the base API Definition, the versioning information will be kept and be merged with what is specified in CRD. If there are conflicts between the OAS API Definition and CRD, we will make use of CRD values as the final configuration. 
+
+Tyk Operator would also protect you from accidentally deleting a version of an API that is being referenced by another API, maintaining your API integrity.
+
+##### Configuring API Version in Tyk Classic API Definition{#tyk-classic-api}
+
+For Tyk Classic API, versioning can be configured via `ApiDefinition` custom resource definition (CRD). See [Tyk Classic versioning]({{<ref "getting-started/key-concepts/versioning">}}) for a comprehensive example of configuring API versioning for Tyk Classic API with Tyk Operator.
+
+### API Ownership
+
+Please consult the [API Ownership](#manage-api-ownership-with-tyk-operator) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context](#multi-tenancy-in-tyk) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
 
 The guide includes practical examples for managing API ownership via OperatorContext. Key topics include defining user owners and user group owners in OperatorContext for connecting and authenticating with a Tyk Dashboard, and using `contextRef` in `TykOasApiDefinition` or `ApiDefinition` objects to ensure configurations are applied within specific organizations. The provided YAML examples illustrate how to set up these configurations.
 
@@ -3913,7 +4210,12 @@ Log in to your Tyk Dashboard to verify that the API definitions have been publis
 
 ### What Features Are Supported By Tyk Operator?
 
-#### API Types
+#### APIDefinition CRD
+Tyk stores API configurations as JSON objects called API Definitions. If you are using Tyk Dashboard to manage Tyk, then these are stored in either Postgres or MongoDB, as specified in the database settings. On the other hand, if you are using Tyk OSS, these configurations are stored as files in the /apps directory of the Gateway which is located at the default path /opt/tyk-gateway.
+
+An API Definition has many settings and middlewares that influence the way incoming requests are processed.
+
+##### API Types
 Tyk supports various API types, including HTTP, HTTPS, TCP, TLS, and GraphQL. It also includes Universal Data Graph versions for unified data access and federation, allowing seamless querying across multiple services.
 
 | Type                           | Support | Supported From | Comments                     |
@@ -3927,7 +4229,7 @@ Tyk supports various API types, including HTTP, HTTPS, TCP, TLS, and GraphQL. It
 | Universal Data Graph v2        | ✅      | v0.12          | Supports the newer Universal Data Graph v2 for more advanced data handling. |
 | GraphQL - Federation           | ✅      | v0.12          | Supports GraphQL Federation for querying multiple services as one API. |
 
-#### Management of APIs
+##### Management of APIs
 Tyk offers flexible API management features such as setting active/inactive status, categorizing and naming APIs, versioning, and defining ownership within teams or organizations for streamlined administration.
 
 | Type                           | Support | Supported From | Comments                     |
@@ -3939,7 +4241,7 @@ Tyk offers flexible API management features such as setting active/inactive stat
 | API Ownership                  | ✅      | v0.12          | Define ownership of APIs within teams or organizations. |
 | API Versioning                 | ✅      | v0.1           | Enable version control for APIs. |
 
-#### Traffic Routing
+##### Traffic Routing
 Tyk enables traffic routing through path-based or host-based proxies and allows redirection to specific target URLs, providing control over how requests are directed to backend services.
 
 | Type                        | Supported | Supported From | Comments                     |
@@ -3948,7 +4250,7 @@ Tyk enables traffic routing through path-based or host-based proxies and allows 
 | Host-Based Proxy            | ✅        | v0.1           | Route traffic based on the request host. |
 | Target URL                  | ✅        | v0.1           | Redirect traffic to a specific target URL. |
 
-#### Client to Gateway Authentication and Authorization
+##### Client to Gateway Authentication and Authorization
 Tyk provides multiple authentication options for client-to-gateway interactions, including keyless access, JWT, client mTLS, IP allow/block lists, and custom authentication plugins for enhanced security.
 
 | Type                          | Supported | Supported From | Comments                                        |
@@ -3967,7 +4269,7 @@ Tyk provides multiple authentication options for client-to-gateway interactions,
 | IP Allowlist                  | ✅        | v0.5           | Allows access only from specific IP addresses.  |
 | IP Blocklist                  | ✅        | v0.5           | Blocks access from specific IP addresses.       |
 
-#### Gateway to Upstream Authentication
+##### Gateway to Upstream Authentication
 Tyk supports secure upstream connections through mutual TLS, certificate pinning, and public key verification to ensure data integrity between the gateway and backend services.
 
 | Type                                            | Supported | Supported From | Comments                     |
@@ -3976,7 +4278,7 @@ Tyk supports secure upstream connections through mutual TLS, certificate pinning
 | Public Key Certificate Pinning                  | ✅        | v0.9           | Ensures that the upstream certificate matches a known key. |
 | Upstream Request Signing                        | ❌        | -              | Upstream request signing is not implemented. |
 
-#### API-level (Global) Features
+##### API-level (Global) Features
 Tyk offers global features for APIs, such as detailed traffic logging, CORS management, rate limiting, header transformations, and analytics plugins, with support for tagging, load balancing, and dynamic variables.
 
 | Feature                              | Supported | Supported From | Comments                                                               |
@@ -4000,7 +4302,7 @@ Tyk offers global features for APIs, such as detailed traffic logging, CORS mana
 | Looping                              | ✅        | v0.6           | Enables internal looping of API requests. |
 | Round Robin Load Balancing           | ✅        | -              | Supports round-robin load balancing across upstream servers. |
 
-#### Endpoint-level Features
+##### Endpoint-level Features
 For specific API endpoints, Tyk includes features like caching, circuit breaking, request validation, URL rewriting, and response transformations, allowing for precise control over request processing and response handling at an endpoint level.
 
 | Endpoint Middleware               | Supported | Supported From | Comments                                       |
@@ -4030,6 +4332,87 @@ For specific API endpoints, Tyk includes features like caching, circuit breaking
 | Virtual Endpoint                  | ✅        | v0.1           | Allows creation of dynamic virtual endpoints.  |
 | Per-Endpoint Plugin               | ❌        | -              | Plugin support per endpoint is not available.  |
 | Persist Graphql                   | ❌        | -              | Not supported in this version.                 |
+
+
+#### TykOasAPIDefinition CRD
+The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API Definition object]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}) within a Kubernetes environment. This CRD enables the integration and management of Tyk API definitions using Kubernetes-native tools, simplifying the process of deploying and managing OAS APIs on the Tyk Dashboard.
+
+##### TykOasApiDefinition Features
+
+`TykOasApiDefinition` can support all [features of the Tyk OAS API]({{<ref "getting-started/using-oas-definitions/oas-reference">}}). You just need to provide the Tyk OAS API definition via a ConfigMap. In addition to managing the CRUD (Create, Read, Update, Delete) of Tyk OAS API resources, the Tyk Operator helps you better manage resources through object linking to Ingress, Security Policies, and certificates stored as Kubernetes secrets. See below for a list of Operator features and examples:
+
+| Features | Support | Supported From | Comments | Example |
+|----------|---------|-----------------|----------|--------|
+| API Category | ✅      | v1.0 | - | [Manage API Categories](#api-categories) |
+| API Version | ✅      | v1.0 | - | [Manage API versioning](#api-versioning) |
+| API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership](#manage-api-ownership-with-tyk-operator) |
+| Client Certificates | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
+| Custom Domain Certificates | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
+| Public keys pinning | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
+| Upstream mTLS | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
+| Kubernetes Ingress | ✅      | v1.0 | - | [Kubernetes Ingress Controller](#control-kubernetes-ingress-resources) |
+| Link with SecurityPolicy | ✅      | v1.0 | - | [Protect an API](#add-a-security-policy-to-your-oas-api) |
+
+
+
+#### Version Compatability
+Ensuring compatibility between different versions is crucial for maintaining stable and efficient operations. This document provides a comprehensive compatibility matrix for Tyk Operator with various versions of Tyk and Kubernetes. By understanding these compatibility details, you can make informed decisions about which versions to deploy in your environment, ensuring that you leverage the latest features and maintain backward compatibility where necessary.
+
+##### Compatibility with Tyk
+Tyk Operator can work with all version of Tyk beyond Tyk 3.x+. Since Tyk is backward compatible, you can safely use the
+latest version of Tyk Operator to work with any version of Tyk.
+However, if you're using a feature that was not yet available on an earlier version of Tyk, e.g. Defining a Subgraph with Tyk 3.x, you'll see error in Tyk Operator controller manager logs.
+
+See [Release notes]({{<ref "product-stack/tyk-operator/release-notes/overview.md">}}) to check for each Tyk Operator release,
+which version of Tyk it is tested against.
+
+| Tyk Version          | 3.2 | 4.0 | 4.1 | 4.2 | 4.3 | 5.0 | 5.2 | 5.3 | 5.4 | 5.5 | 5.6 |
+| -------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Tyk Operator v0.13   | Y   |     |     |     | Y   |     |     |     |     |     |     |
+| Tyk Operator v0.14   | Y   | Y   |     |     | Y   | Y   |     |     |     |     |     |
+| Tyk Operator v0.14.1 | Y   | Y   |     |     | Y   | Y   |     |     |     |     |     |
+| Tyk Operator v0.15.0 | Y   | Y   |     |     | Y   | Y   |     |     |     |     |     |
+| Tyk Operator v0.15.1 | Y   | Y   |     |     | Y   | Y   |     |     |     |     |     |
+| Tyk Operator v0.16.0 | Y   | Y   |     |     | Y   | Y   | Y   |     |     |     |     |
+| Tyk Operator v0.17.0 | Y   | Y   |     |     | Y   | Y   | Y   | Y   |     |     |     |
+| Tyk Operator v0.17.1 | Y   | Y   |     |     |     | Y   | Y   | Y   |     |     |     |
+| Tyk Operator v0.18.0 | Y   | Y   |     |     |     | Y   | Y   | Y   |  Y  |     |     |
+| Tyk Operator v1.0.0  | Y   | Y   |     |     |     | Y   |     | Y   |     | Y   | Y   |
+
+##### Compatibility with Kubernetes Version
+
+See [Release notes](https://github.com/TykTechnologies/tyk-operator/releases) to check for each Tyk Operator release,
+which version of Kubernetes it is tested against.
+
+| Kubernetes Version   | 1.19 | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 | 1.25 | 1.26 | 1.27 | 1.28 | 1.29 | 1.30 |
+| -------------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Tyk Operator v0.13   | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |      |
+| Tyk Operator v0.14   | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |      |
+| Tyk Operator v0.14.1 |      | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |
+| Tyk Operator v0.15.0 |      | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |
+| Tyk Operator v0.15.1 |      | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |
+| Tyk Operator v0.16.0 |      | Y    | Y    | Y    | Y    | Y    | Y    | Y    |      |      |      |      |
+| Tyk Operator v0.17.0 |      |      |      |      |      |      | Y    | Y    | Y    | Y    | Y    |      |
+| Tyk Operator v0.17.1 |      |      |      |      |      |      | Y    | Y    | Y    | Y    | Y    |      |
+| Tyk Operator v0.18.0 |      |      |      |      |      |      | Y    | Y    | Y    | Y    | Y    |      |
+| Tyk Operator v1.0.0  |      |      |      |      |      |      | Y    | Y    | Y    | Y    | Y    | Y    |
+
+
+#### Security Policy CRD
+The SecurityPolicy custom resource defines configuration of [Tyk Security Policy object]({{<ref "basic-config-and-security/security/security-policies">}}).
+
+Here are the supported features:
+
+| Features                       | Support   | Supported From | Example |
+|--------------------------------|-----------|----------------|---------|
+| API Access                     | ✅        | v0.1           | [API Access](#define-the-security-policy-manifest)        |
+| Rate Limit, Throttling, Quotas | ✅        | v0.1           | [Rate Limit, Throttling, Quotas](#define-the-security-policy-manifest)        |
+| Meta Data & Tags               | ✅        | v0.1           | [Tags and Meta-data](#define-the-security-policy-manifest})        |
+| Path and Method based permissions | ✅     | v0.1           | [Path based permission](#security-policy-example)        |
+| Partitions                     | ✅        | v0.1           | [Partitioned policies](#security-policy-example)       |
+| Per API limit                  | ✅        | v1.0           | [Per API Limit](#security-policy-example)        |
+| Per-Endpoint limit             | ✅        | v1.0           | [Per Endpoint Limit](#security-policy-example)        |
+
 
 
 
@@ -4200,6 +4583,5 @@ With Tyk’s automation tools, you now have a set of options for streamlining AP
 
 To continue building on what you’ve set up here, explore the following topics:
 
-- **Secure Your API Using Client mTLS** If you plan to secure your API using Client mTLS, also review [Manage TLS certificates]({{<ref "product-stack/tyk-operator/advanced-configurations/tls-certificate">}}) documentation to see how to let Tyk Operator manage the TLS certificates stored in Kubernetes.
-- **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/advanced-configuration/)
+- **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/product-stack/tyk-operator/advanced-configurations/custom-plugins)
 - **CI/CD Integrations**: Learn how to embed Tyk automation into your CI/CD pipeline, enabling continuous deployment and reducing release cycle times.

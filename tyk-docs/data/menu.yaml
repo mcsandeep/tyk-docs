@@ -3877,18 +3877,6 @@ menu:
                 path: /product-stack/tyk-operator/advanced-configurations/management-of-api
                 category: Page
                 show: True
-              - title: "Manage API categories"
-                path: /product-stack/tyk-operator/advanced-configurations/api-categories
-                category: Page
-                show: True
-              - title: "Manage API versioning"
-                path: /product-stack/tyk-operator/advanced-configurations/api-versioning
-                category: Page
-                show: True
-              - title: "Manage TLS certificate"
-                path: /product-stack/tyk-operator/advanced-configurations/tls-certificate
-                category: Page
-                show: True
               - title: "GraphQL Federation"
                 path: /product-stack/tyk-operator/advanced-configurations/graphql-federation
                 category: Page
