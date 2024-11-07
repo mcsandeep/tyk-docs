@@ -3,9 +3,41 @@ title: Authentication and Authorization
 description: Learn how to apply security options to lock down your APIs with Tyk. Here you will find everything there is to know about Authentication and Authorization in Tyk.
 tags: ["Authentication", "Authorization", "Tyk Authentication", "Tyk Authorization", "Secure APIs"]
 aliases:
-  - /security/your-apis/
+  - /advanced-configuration/integrate/api-auth-mode/json-web-tokens
+  - /advanced-configuration/integrate/api-auth-mode/oidc-auth0-example
+  - /advanced-configuration/integrate/api-auth-mode/open-id-connect
+  - /basic-config-and-security/security/authentication--authorization
+  - /basic-config-and-security/security/authentication--authorization/oauth2-0/auth-code-grant
+  - /basic-config-and-security/security/authentication--authorization/oauth2-0/client-credentials-grant
+  - /basic-config-and-security/security/authentication--authorization/oauth2-0/refresh-token-grant
+  - /basic-config-and-security/security/authentication--authorization/oauth2-0/username-password-grant
   - /basic-config-and-security/security/authentication-authorization/
-  - /basic-config-and-security/security/authentication-&-authorization/
+  - /basic-config-and-security/security/authentication-authorization/basic-auth
+  - /basic-config-and-security/security/authentication-authorization/bearer-tokens
+  - /basic-config-and-security/security/authentication-authorization/ext-oauth-middleware
+  - /basic-config-and-security/security/authentication-authorization/go-plugin-authentication
+  - /basic-config-and-security/security/authentication-authorization/hmac-signatures
+  - /basic-config-and-security/security/authentication-authorization/json-web-tokens
+  - /basic-config-and-security/security/authentication-authorization/json-web-tokens/jwt-auth0
+  - /basic-config-and-security/security/authentication-authorization/json-web-tokens/jwt-keycloak
+  - /basic-config-and-security/security/authentication-authorization/json-web-tokens/split-token
+  - /basic-config-and-security/security/authentication-authorization/multiple-auth
+  - /basic-config-and-security/security/authentication-authorization/oauth-2-0
+  - /basic-config-and-security/security/authentication-authorization/open-keyless
+  - /basic-config-and-security/security/authentication-authorization/openid-connect
+  - /basic-config-and-security/security/authentication-authorization/physical-key-expiry
+  - /basic-config-and-security/security/authentication-authorization/python-etc-plugin-authentication
+  - /basic-config-and-security/security/mutual-tls
+  - /basic-config-and-security/security/mutual-tls/client-mtls
+  - /basic-config-and-security/security/mutual-tls/concepts
+  - /basic-config-and-security/security/mutual-tls/upstream-mtls
+  - /basic-config-and-security/security/your-apis/oauth20/revoke-oauth-tokens
+  - /security/your-apis
+  - /security/your-apis/bearer-tokens
+  - /security/your-apis/json-web-tokens
+  - /security/your-apis/openid-connect
+  - /tyk-apis/tyk-gateway-api/api-definition-objects/jwt/docs/basic-config-and-security/security/authentication-authorization/json-web-tokens
+
 ---
 ## Introduction
 In API management, authentication and authorization are responsible for controlling access to your APIs and protecting sensitive data. Each serves a distinct purpose:
