@@ -923,11 +923,11 @@ The server regenerates the signature using the same secret and compares it with 
 {{< note success >}}
 **Note**  
 
-Tyk's dedicated OpenID Connect Authentication middleware will be deprecated from Tyk 5.7.0. Tyk's [JSON Web Token (JWT)]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens#about-jwts" >}}) authentication method also allows you to integrate with an OIDC provider, so the dedicated OIDC middleware will be deprecated to reduce duplication and potential for misconfiguration.
+Tyk's dedicated OpenID Connect Authentication middleware will be deprecated from Tyk 5.7.0. Tyk's [JSON Web Token (JWT)](#use-json-web-tokens-jwt) authentication method also allows you to integrate with an OIDC provider, so the dedicated OIDC middleware will be deprecated to reduce duplication and potential for misconfiguration.
 {{< /note >}}
 
 
-[OpenID Connect](https://openid.net/developers/how-connect-works) (OIDC) builds on top of OAuth 2.0, adding authentication. You can secure your APIs on Tyk by integrating with any standards compliant OIDC provider using [JSON Web Tokens]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}) (JWTs).
+[OpenID Connect](https://openid.net/developers/how-connect-works) (OIDC) builds on top of OAuth 2.0, adding authentication. You can secure your APIs on Tyk by integrating with any standards compliant OIDC provider using [JSON Web Tokens](#use-json-web-tokens-jwt) (JWTs).
 JWTs offer a simple way to use the third-party Identity Provider (IdP) without needing any direct integration between the Tyk and 3rd-party systems.
 
 To integrate a 3rd party OAuth2/OIDC IdP with Tyk, all you will need to do is ensure that your IdP can issue OAuth2 JWT access tokens as opposed to opaque tokens.
@@ -1654,7 +1654,7 @@ For example, to have keys live in Redis for only 24 hours (and be deleted 24 hou
 There is a risk, when configuring API-level lifetime, that a key will be deleted before it has expired, as `session_lifetime` is applied regardless of whether the key is active or expired. To protect against this, you can configure the [session_lifetime_respects_key_expiration]({{< ref "tyk-oss-gateway/configuration#session_lifetime_respects_key_expiration" >}}) parameter in your `tyk.conf`, so that keys that have exceeded their lifetime will not be deleted from Redis until they have expired.
 {{< /note >}}
 
-This feature works nicely with [JWT]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}) or [OIDC]({{< ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) authentication methods, as the keys are created in Redis the first time they are in use so you know when they will be removed. Be extra careful in the case of keys created by Tyk (Auth token or JWT with individual secrets) and set a long `session_lifetime`, otherwise the user might try to use the key **after** it has already been removed from Redis.
+This feature works nicely with [JWT](#use-json-web-tokens-jwt) or [OIDC]({{< ref "basic-config-and-security/security/authentication-authorization/openid-connect">}}) authentication methods, as the keys are created in Redis the first time they are in use so you know when they will be removed. Be extra careful in the case of keys created by Tyk (Auth token or JWT with individual secrets) and set a long `session_lifetime`, otherwise the user might try to use the key **after** it has already been removed from Redis.
 
 #### Gateway-level key lifetime control
 
