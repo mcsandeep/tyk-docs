@@ -4,44 +4,44 @@ linkTitle: Automation Tools
 tags: ["Tyk API Management", "Open Source", "Self-Managed", "Tyk Cloud", "API Gateway"]
 title: Automation Tools
 aliases:
-  - /tyk-operator
-  - /tyk-stack/tyk-operator/secure-an-api
-  - /product-stack/tyk-operator/getting-started/create-an-oas-api
-  - /product-stack/tyk-sync/tutorials/tutorial-synchronise-api-configurations
-  - /product-stack/tyk-sync/tutorials/tutorial-backup-api-configurations
-  - /product-stack/tyk-operator/getting-started/quick-start-udg
-  - /product-stack/tyk-sync/commands/sync-dump
-  - /tyk-stack/tyk-operator/access-an-api
   - /product-stack/tyk-operator/advanced-configurations/client-authentication
-  - /product-stack/tyk-sync/installing-tyk-sync
   - /product-stack/tyk-operator/getting-started/create-an-api-overview
-  - /product-stack/tyk-operator/key-concepts/operator-context
-  - /tyk-stack/tyk-operator/publish-an-api
-  - /product-stack/tyk-sync/commands/sync-examples
-  - /product-stack/tyk-sync/tutorials/tutorial-update-api-configurations
-  - /tyk-stack/tyk-operator/installing-tyk-operator
+  - /product-stack/tyk-operator/getting-started/create-an-oas-api
+  - /product-stack/tyk-operator/getting-started/example-tyk-oas-api
+  - /product-stack/tyk-operator/getting-started/quick-start-graphql
   - /product-stack/tyk-operator/getting-started/quick-start-http
   - /product-stack/tyk-operator/getting-started/quick-start-tcp
-  - /product-stack/tyk-operator/getting-started/example-tyk-oas-api
-  - /product-stack/tyk-operator/getting-started/secure-an-oas-api
-  - /tyk-stack/tyk-operator/tyk-operator-reconciliation
-  - /product-stack/tyk-operator/key-concepts/operator-user
-  - /product-stack/tyk-sync/commands/sync-publish
-  - /product-stack/tyk-operator/getting-started/quick-start-graphql
+  - /product-stack/tyk-operator/getting-started/quick-start-udg
   - /product-stack/tyk-operator/getting-started/secure-an-api-overview
-  - /product-stack/tyk-operator/key-concepts/custom-resources
-  - /product-stack/tyk-sync/overview
-  - /product-stack/tyk-operator/troubleshooting/tyk-operator-changes-not-applied
-  - /tyk-stack/tyk-operator/create-an-api
+  - /product-stack/tyk-operator/getting-started/secure-an-oas-api
   - /product-stack/tyk-operator/getting-started/security-policy-example
-  - /product-stack/tyk-sync/commands/sync-sync
-  - /product-stack/tyk-operator/troubleshooting/tyk-operator-reconciliation-troubleshooting
-  - /product-stack/tyk-sync/commands/sync-update
+  - /product-stack/tyk-operator/key-concepts/custom-resources
+  - /product-stack/tyk-operator/key-concepts/operator-context
+  - /product-stack/tyk-operator/key-concepts/operator-user
   - /product-stack/tyk-operator/reference/api-definition
   - /product-stack/tyk-operator/reference/security-policy
   - /product-stack/tyk-operator/reference/tyk-oas-api-definition
+  - /product-stack/tyk-operator/troubleshooting/tyk-operator-changes-not-applied
+  - /product-stack/tyk-operator/troubleshooting/tyk-operator-reconciliation-troubleshooting
   - /product-stack/tyk-operator/tyk-ingress-controller
+  - /product-stack/tyk-sync/commands/sync-dump
+  - /product-stack/tyk-sync/commands/sync-examples
+  - /product-stack/tyk-sync/commands/sync-publish
+  - /product-stack/tyk-sync/commands/sync-sync
+  - /product-stack/tyk-sync/commands/sync-update
+  - /product-stack/tyk-sync/installing-tyk-sync
+  - /product-stack/tyk-sync/overview
+  - /product-stack/tyk-sync/tutorials/tutorial-backup-api-configurations
+  - /product-stack/tyk-sync/tutorials/tutorial-synchronise-api-configurations
+  - /product-stack/tyk-sync/tutorials/tutorial-update-api-configurations
+  - /tyk-operator
+  - /tyk-stack/tyk-operator/access-an-api
+  - /tyk-stack/tyk-operator/create-an-api
+  - /tyk-stack/tyk-operator/installing-tyk-operator
   - /tyk-stack/tyk-operator/migration
+  - /tyk-stack/tyk-operator/publish-an-api
+  - /tyk-stack/tyk-operator/secure-an-api
+  - /tyk-stack/tyk-operator/tyk-operator-reconciliation
 ---
 ## Introduction
 Managing APIs across multiple environments can quickly become complex. Updating and overseeing multiple configurations, security policies, and deployments requires a significant amount of effort without the right tools. Tyk’s suite of automation tools simplifies this process by enabling automated control over API management tasks, helping teams ensure reliability, reduce manual errors, and maintain consistency across deployments.
