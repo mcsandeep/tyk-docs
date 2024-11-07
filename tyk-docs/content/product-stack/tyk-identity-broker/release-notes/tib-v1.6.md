@@ -48,10 +48,9 @@ An example is given below for illustrative purposes only. Tested Versions and Co
 
 | Third Party Dependency                                     | Tested Versions        | Compatible Versions    | Comments | 
 | ---------------------------------------------------------- | ---------------------- | ---------------------- | -------- | 
-| [GoLang](https://go.dev/dl/)                               | 1.19, 1.20, 1.21       | 1.19, 1.20, 1.21       | All our binaries | 
-| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.x, 6.x, 7.0 | 4.4.x, 5.x, 6.x and 7.0.x | Used by Tyk Identity Broker | 
-| [PostgreSQL](https://www.postgresql.org/download/)         | 12.x - 16.x LTS        | 12.x - 16.x            | Used by Tyk Identity Broker | 
-| [Redis](https://redis.io/download/)         | 6.x - 7.0        | 6.x - 7.0            | Used by Tyk Identity Broker | 
+| [GoLang](https://go.dev/dl/)                               | 1.21       | 1.21       | All our binaries |
+| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.x, 6.x, 7.0 | 4.4.x, 5.x, 6.x and 7.0.x | Used by Tyk Identity Broker |
+| [Redis](https://redis.io/download/)         | 6.x - 7.0        | 6.x - 7.0            | Used by Tyk Identity Broker |
 
 Given the time difference between your upgrade and the release of this version, we recommend customers verify the ongoing support of third-party dependencies they install, as their status may have changed since the release.
 
@@ -109,7 +108,7 @@ Each change log item should be expandable. The first line summarises the changel
 
 This release adds support for JSON Web Encryption (JWE) in OIDC Single Sign-On (SSO) with TIB, providing enhanced security for token handling in authentication flows. This feature enables processing and validation of JWE tokens, with configuration options for setting the private key required for decryption.
 
-For more details, refer to the [OIDC SSO with JWE]({{<ref "/tyk-stack/tyk-identity-broker/about-profiles">}}) documentation.
+For more details, refer to the [OIDC SSO with JWE]({{<ref "/tyk-stack/tyk-identity-broker/about-profiles#social-profile-fields">}}) documentation.
 </details>
 </li>
 
@@ -131,7 +130,3 @@ Please refer to the [upgrading Tyk]({{< ref "upgrading-tyk" >}}) page for furthe
 
 ### FAQ
 Please visit our [Developer Support]({{< ref "frequently-asked-questions/faq" >}}) page for further information relating to reporting bugs, upgrading Tyk, technical support and how to contribute.
-
-### Miscellaneous (Optional)
-<!-- For each specific release if there is additional miscellaneous information or announcements that will be helpful to the customer then squads
-should add additional sections to their release notes. -->
