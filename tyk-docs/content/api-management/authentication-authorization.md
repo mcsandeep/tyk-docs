@@ -27,6 +27,11 @@ aliases:
   - /basic-config-and-security/security/authentication-authorization/openid-connect
   - /basic-config-and-security/security/authentication-authorization/physical-key-expiry
   - /basic-config-and-security/security/authentication-authorization/python-etc-plugin-authentication
+  - /basic-config-and-security/security/authentication-&-authorization
+  - /basic-config-and-security/security/authentication-&-authorization/oauth2-0/auth-code-grant
+  - /basic-config-and-security/security/authentication-&-authorization/oauth2-0/client-credentials-grant
+  - /basic-config-and-security/security/authentication-&-authorization/oauth2-0/refresh-token-grant
+  - /basic-config-and-security/security/authentication-&-authorization/oauth2-0/username-password-grant
   - /basic-config-and-security/security/mutual-tls
   - /basic-config-and-security/security/mutual-tls/client-mtls
   - /basic-config-and-security/security/mutual-tls/concepts
