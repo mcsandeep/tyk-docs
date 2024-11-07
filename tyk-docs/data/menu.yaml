@@ -3877,14 +3877,6 @@ menu:
                 path: /product-stack/tyk-operator/advanced-configurations/management-of-api
                 category: Page
                 show: True
-              - title: "Manage multiple organisations"
-                path: /product-stack/tyk-operator/getting-started/tyk-operator-multiple-organisations
-                category: Page
-                show: True
-              - title: "Manage API ownership"
-                path: /product-stack/tyk-operator/getting-started/tyk-operator-api-ownership
-                category: Page
-                show: True
               - title: "Manage API categories"
                 path: /product-stack/tyk-operator/advanced-configurations/api-categories
                 category: Page
@@ -3903,10 +3895,6 @@ menu:
                 show: True
               - title: "Custom Plugins"
                 path: /product-stack/tyk-operator/advanced-configurations/custom-plugins
-                category: Page
-                show: True
-              - title: "Looping"
-                path: /product-stack/tyk-operator/advanced-configurations/internal-looping
                 category: Page
                 show: True
           - title: "Reference"
