@@ -3881,26 +3881,6 @@ menu:
                 path: /product-stack/tyk-operator/advanced-configurations/custom-plugins
                 category: Page
                 show: True
-          - title: "Reference"
-            category: Directory
-            show: True
-            menu:
-              - title: "TykOasApiDefinition CRD"
-                path: /product-stack/tyk-operator/reference/tyk-oas-api-definition
-                category: Page
-                show: True
-              - title: "ApiDefinition CRD"
-                path: /product-stack/tyk-operator/reference/api-definition
-                category: Page
-                show: True
-              - title: "SecurityPolicy CRD"
-                path: /product-stack/tyk-operator/reference/security-policy
-                category: Page
-                show: True
-              - title: "Version compatibility"
-                path: /product-stack/tyk-operator/reference/version-compatibility
-                category: Page
-                show: True
           - title: "Release notes"
             category: Directory
             show: True
