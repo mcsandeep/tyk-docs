@@ -215,7 +215,7 @@ securitySchemes: {
 
 All you need to do in the Tyk configuration is to enable the authentication and specify the header details.
 
-For more configuration options check the [JWT documentation]({{< ref "/content/api-management/authentication-authorization#use-json-web-tokens-jwt.md" >}}).
+For more configuration options check the [JWT documentation]({{< ref "/api-management/authentication-authorization#use-json-web-tokens-jwt.md" >}}).
 
 ### OAuth
 
@@ -272,7 +272,7 @@ Example:
 }
 ```
 
-All you need to do in the Tyk configuration is to enable OAuth and specify the header details. See [OAuth documentation]({{< ref "/content/api-management/authentication-authorization#set-up-oauth-20-authorization.md" >}}) for more details.
+All you need to do in the Tyk configuration is to enable OAuth and specify the header details. See [OAuth documentation]({{< ref "/api-management/authentication-authorization#set-up-oauth-20-authorization.md" >}}) for more details.
 
 ### Multiple Authentication mechanisms
 
@@ -339,7 +339,7 @@ For the above OAS configuration, Tyk looks at only the first `security` object:
   }
 }
 ```
-Please observe the presence of the `baseIdentityProvider` field, as this is required when enabling multiple authentication mechanisms at the same time. See [Multiple Auth documentation]({{< ref "/content/api-management/authentication-authorization#multiple-chained-authentication.md" >}}) for more details.
+Please observe the presence of the `baseIdentityProvider` field, as this is required when enabling multiple authentication mechanisms at the same time. See [Multiple Auth documentation]({{< ref "/api-management/authentication-authorization#multiple-chained-authentication.md" >}}) for more details.
 
 ### Other Authentication mechanisms
 
@@ -349,7 +349,7 @@ For now, the only authentication mechanisms enabled with OAS API Definition conf
 - JSON Web Token (JWT)
 - Oauth.
 
-If you’re interested in protecting your APIs using a different mechanism such as HMAC or OpenID Connect, see [Authentication and Authorization]({{< ref "/content/api-management/authentication-authorization" >}}) for more details.
+If you’re interested in protecting your APIs using a different mechanism such as HMAC or OpenID Connect, see [Authentication and Authorization]({{< ref "/api-management/authentication-authorization" >}}) for more details.
 
 ### Automatically protecting OAS API Definition APIs
 
