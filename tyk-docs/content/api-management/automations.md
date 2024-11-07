@@ -129,7 +129,7 @@ Tyk Operator manages multiple custom resources to help users create and maintain
 
 **TykOasApiDefinition**: Available from Tyk Operator v1.0. It represents a [Tyk OAS API configuration]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}). Tyk OAS API is based on the OpenAPI specification (OAS) and is the recommended format for standard HTTP APIs. Tyk Operator supports all [Tyk OAS API feature]({{<ref "getting-started/using-oas-definitions/oas-reference">}}) as they become available on the Gateway.
 
-**ApiDefinition**: Available on all versions of Tyk Operator. It represents a [Tyk Classic API configuration]({{<ref "tyk-gateway-api/api-definition-objects">}}). Tyk Classic API is the traditional format used for defining all APIs in Tyk, and now the recommended format for non-HTTP APIs such as TCP, GraphQL, and Universal Data Graph (UDG). Tyk Operator supports the major features of Tyk Classic API and the feature support details can be tracked at our [reference]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
+**ApiDefinition**: Available on all versions of Tyk Operator. It represents a [Tyk Classic API configuration]({{<ref "tyk-gateway-api/api-definition-objects">}}). Tyk Classic API is the traditional format used for defining all APIs in Tyk, and now the recommended format for non-HTTP APIs such as TCP, GraphQL, and Universal Data Graph (UDG). Tyk Operator supports the major features of Tyk Classic API and the feature support details can be tracked [here](#apidefinition-crd).
 
 These custom resources enable users to leverage Kubernetes' declarative configuration management to define, modify, and version their APIs, seamlessly integrating with other Kubernetes-based workflows and tools.
 
@@ -1322,7 +1322,7 @@ spec:
 ### Set Up Tyk Classic API
 
 #### Create a Tyk Classic API
-First, specify the details of your API using the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
+First, specify the details of your API using the [ApiDefinition CRD](#apidefinition-crd), then deploy it to create the corresponding Kubernetes resource. Tyk Operator will take control of the CRD and create the actual API in the Tyk data plane.
 
 ##### Create an ApiDefinition resource in YAML format
 Create a file called `httpbin.yaml`, then add the following:
@@ -1407,7 +1407,7 @@ $ curl -i localhost:8080/httpbin/get
 
 We have an ApiDefinition called `httpbin`, as specified in `spec.name` field, which listens to path `/httpbin` and proxies requests to [http://httpbin.org](http://httpbin.org), as specified under `spec.proxy` field. Now, any requests coming to the `/httpbin` endpoint will be proxied to the target URL that we defined in `spec.proxy.target_url`, which is [http://httpbin.org](http://httpbin.org) in our example.
 
-You can visit the [ApiDefinition CRD]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page to see all the latest API Definitions fields and features we support.
+You can visit the [ApiDefinition CRD](#apidefinition-crd) page to see all the latest API Definitions fields and features we support.
 
 ##### Configure Kubernetes service as an upstream target
 
@@ -1584,7 +1584,7 @@ Content-Length: 46
 
 **Note**  
 
-Tyk Operator supported authentication types are listed in the [API Definition features]({{<ref "product-stack/tyk-operator/reference/api-definition">}}) page.
+Tyk Operator supported authentication types are listed in the [API Definition features](#apidefinition-crd) section.
 
 {{< /note >}}
 

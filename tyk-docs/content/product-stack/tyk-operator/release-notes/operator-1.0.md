@@ -158,7 +158,7 @@ Each change log item should be expandable. The first line summarises the changel
 
 The `TykOasApiDefinition` custom resource allows you to manage Tyk OAS APIs directly within your Kubernetes environment. You can now categorize APIs, manage multiple versions, and simplify SSL certificate management by referencing Kubernetes secrets. This enhancement offers a Kubernetes-native approach to managing Tyk APIs, streamlining operations and reducing the complexity of versioning and certificate handling across different environments.
 
-Learn More: [Create Tyk OAS API]({{<ref "product-stack/tyk-operator/getting-started/create-an-oas-api">}})
+Learn More: [Create Tyk OAS API]({{<ref "/api-management/automations#set-up-oas-api">}})
 </details>
 </li>
 <li>
@@ -176,7 +176,7 @@ Learn More: [Tyk Ingress Controller]({{<ref "product-stack/tyk-operator/tyk-ingr
 
 This release introduces the ability to configure specific rate limits, quotas, and throttling rules at the API level using the `access_rights_array` in the security policy. Each API now has the flexibility to inherit global limit settings or apply custom limits, making it easier to control API usage on a per-API basis. This provides enhanced granularity in managing traffic, ensuring optimal resource allocation and improved performance under heavy loads.
 
-Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-api-limit">}})
+Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "/api-management/automations#security-policy-example#per-api-limit">}})
 </details>
 </li>
 <li>
@@ -185,7 +185,7 @@ Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "product-stack/tyk-
 
 By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
 
-Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "product-stack/tyk-operator/getting-started/security-policy-example#per-endpoint-rate-limit">}})
+Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "/api-management/automations#security-policy-example#per-endpoint-rate-limit">}})
 </details>
 </li>
 <li>
