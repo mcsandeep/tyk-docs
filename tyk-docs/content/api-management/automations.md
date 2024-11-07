@@ -523,14 +523,14 @@ $ helm delete tyk-operator -n tyk-operator-system
 ### Set Up OAS API
 Setting up OpenAPI Specification (OAS) APIs with Tyk involves preparing an OAS-compliant API definition and configuring it within your Kubernetes cluster using Tyk Operator. This process allows you to streamline API management by storing the OAS definition in a Kubernetes ConfigMap and linking it to Tyk Gateway through a TykOasApiDefinition resource. 
 
-### Migrate Existing APIs to Tyk Operator 
+#### Migrate Existing APIs to Tyk Operator 
 If you have existing APIs and Policies running on your Tyk platform, and you want to start using Tyk Operator to manage them, you probably would not want to re-create the APIs and Policies on the platform using Operator CRDs. It is because you will lose keys, policies, and analytics linked to the APIs. You can instead link existing APIs and Policies to a CRD by specifying the API ID or Policy ID in the CRD spec. This way, Operator will update the existing API or Policy according to the CRD spec. Any keys, policies and analytics linked to the API will continue to operate the same. This is great for idempotency.
 
-#### Export existing configurations to CRDs
+##### Export existing configurations to CRDs
 
 Instead of creating the API and Policy CRDs from scratch, you can try exporting them from Dashboard using a snapshot tool. You can find the detail usage guide [here](https://github.com/TykTechnologies/tyk-operator/blob/master/pkg/snapshot/README.md). This is great if you want to have a quick start. However, this is still a PoC feature so we recommend you to double check the output files before applying them to your cluster.
 
-#### Migration of existing API
+##### Migration of existing API
 
 If there are existing APIs that you want to link to a CRD, it's very easy to do so. You need to simply add the `api_id` from your API Definition to the YAML of your `ApiDefinition` type. Then, the Operator will take care of the rest.
 
@@ -573,7 +573,7 @@ apidefinition.tyk.tyk.io/my-existing-api created
 The source of truth for the API definition is now the CRD, meaning it will override any differences in your existing API definition.
 {{< /note >}}
 
-#### Migration of existing Policy
+##### Migration of existing Policy
 If you have existing pre-Operator policies, you can easily link them to a CRD, which will allow you to modify them through the YAML moving forward.
 Simply set the id field in the SecurityPolicy YAML to the _id field in the existing Policy's JSON. This will allow the Operator to make the link.
 Note that the YAML becomes the source of truth and will overwrite any changes between it and the existing Policy.
@@ -621,7 +621,7 @@ securitypolicy.tyk.tyk.io/new-httpbin-policy created
 Now the changes in the YAML were applied to the existing Policy. You can now manage this policy through the CRD moving forward.
 Note, if this resource is unintentionally deleted, the Operator will recreate it with the same `id` field as above, allowing keys to continue to work as before the delete event.
 
-#### Idempotency
+##### Idempotency
 
 Because of the ability to declaratively define the `api_id`, this gives us the ability to preserve Keys that are tied to APIs or policies which are tied to APIs.
 Imagine any use case where you have keys tied to policies, and policies tied to APIs.
@@ -779,7 +779,7 @@ The Tyk Operator will automatically detect the change and update the API in the 
 `kubectl replace` without `--save-config` option is used here instead of `kubectl apply` because we do not want to save the OAS API definition in its annotation. If you want to enable `--save-config` option or use `kubectl apply`, the OAS API definition size would be further limited to at most 262144 bytes.
 {{< /note >}}
 
-##### OAS API Examples
+##### OAS API Example
 This example shows the minimum resources and fields required to define a Tyk OAS API using Tyk Operator. 
 
 ```yaml{hl_lines=["7-7", "41-44"],linenos=true}
