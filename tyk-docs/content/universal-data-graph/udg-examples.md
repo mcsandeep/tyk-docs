@@ -18,7 +18,7 @@ We offer 3 ways of importing an example into Tyk:
 
 ## Import via tyk-sync
 
-Please follow the [tyk-sync documentation]({{< ref "/api-management/automations#examples-publish-command >}}) to learn more about this approach.
+Please follow the [tyk-sync documentation]({{< ref "/api-management/automations#examples-publish-command" >}}) to learn more about this approach.
 
 ## Import via Tyk Dashboard API Import
 
