@@ -273,12 +273,12 @@ Tyk Operator is designed to offer a seamless Kubernetes-native experience by man
 
 To address this challenge, Tyk Operator allows you to directly reference certificates stored as Kubernetes secrets within your custom resource definitions (CRDs). This reduces operational overhead, minimizes the risk of API downtime due to certificate mismatches, and provides a more intuitive experience for API developers.
 
-### Benefits of Managing Certificates with Tyk Operator
+##### Benefits of Managing Certificates with Tyk Operator
 - **Reduced operational overhead**: Automates the process of updating certificates when they rotate.
 - **Minimized risk of API downtime**: Ensures that APIs continue to function smoothly, even when certificates are updated.
 - **Improved developer experience**: Removes the need for API developers to manage certificate IDs manually.
 
-### Examples
+##### Examples
 
 | Certificate Type | Supported in ApiDefinition | Supported in TykOasApiDefinition |
 |------------------|-------------|---------|
@@ -288,7 +288,7 @@ To address this challenge, Tyk Operator allows you to directly reference certifi
 | Upstream mTLS | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-classic">}}) | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-oas">}}) |
 
 
-### Install and Configure Tyk Operator
+##### Install and Configure Tyk Operator
 
 We assume you have already installed Tyk. If you don’t have it, check out [Tyk
 Cloud]({{<ref "/deployment-and-operations/tyk-cloud-platform/quick-start">}}) or [Tyk Self
@@ -1990,7 +1990,7 @@ spec:
     target_url: http://httpbin.default.svc:8000
     listen_path: /httpbin
     strip_listen_path: true
-``
+```
 
 
 #### Set Up Manifest for GraphQL
@@ -3630,13 +3630,13 @@ Tyk Operator would also protect you from accidentally deleting a version of an A
 
 For Tyk Classic API, versioning can be configured via `ApiDefinition` custom resource definition (CRD). See [Tyk Classic versioning]({{<ref "getting-started/key-concepts/versioning">}}) for a comprehensive example of configuring API versioning for Tyk Classic API with Tyk Operator.
 
-### API Ownership
+#### API Ownership
 
 Please consult the [API Ownership](#manage-api-ownership-with-tyk-operator) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context](#multi-tenancy-in-tyk) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
 
 The guide includes practical examples for managing API ownership via OperatorContext. Key topics include defining user owners and user group owners in OperatorContext for connecting and authenticating with a Tyk Dashboard, and using `contextRef` in `TykOasApiDefinition` or `ApiDefinition` objects to ensure configurations are applied within specific organizations. The provided YAML examples illustrate how to set up these configurations.
 
-#### How API Ownership works in Tyk Operator
+##### How API Ownership works in Tyk Operator
 
 In Tyk Dashboard, API Ownership ensures that only designated 'users' who own an API can modify it. This security model is crucial for maintaining control over API configurations, especially in a multi-tenant environment where multiple teams or departments may have different responsibilities and permissions.
 
@@ -3649,7 +3649,7 @@ To facilitate API ownership and ensure secure operations, Tyk Operator must be a
 
 {{< img src="/img/operator/tyk-api-ownership.svg" alt="Enabling API ownership with OperatorContext" width="600" >}}
 
-#### OperatorContext
+##### OperatorContext
 
 Here's how `OperatorContext` allows Tyk Operator to manage APIs under different ownerships:
 
