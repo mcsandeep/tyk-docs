@@ -441,93 +441,54 @@ This grant will generate a notification sent from the Gateway to the OAuth Notif
 
 The Refresh Token Grant Type is used to obtain a new access token when the current access token has expired or is about to expire. This allows clients to maintain a valid access token without requiring the user to re-authenticate.
 
-This process involves two main steps:
-
+This process involves two steps:
 * Obtain a Refresh Token during the initial authorization.
 * Use the Refresh Token to request a new Access Token.
 
 {{< img src="/img/diagrams/diagram_docs_refresh-token-grant-type@2x.png" alt="Refresh Token grant type flow" >}}
 
-##### Request a Refresh Token
+{{< note success >}}
+**Note**  
 
-When you initially request an access token using the Authorization Code Grant Type, you can also receive a refresh token. This refresh token can be used later to obtain a new access token without requiring the user to re-authenticate.
+Refresh tokens are single use only so cannot be reused, and when they are used they also invalidate the token they are associated with.
+{{< /note >}}
 
-```bash
+##### Request new token
+
+```shell
 curl -X POST \
   https://tyk.cloud.tyk.io/oauth-api/oauth/token/ \
   -H 'Authorization: Basic ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=authorization_code&client_id=ed59158fa2344e94b3e6278e8ab85142&code=EaG1MK7LS8GbbwCAUwDo6Q&redirect_uri=http%3A%2F%2Fexample.com%2Fclient-redirect-uri'
+  -d 'grant_type=refresh_token&client_id=ed59158fa2344e94b3e6278e8ab85142&client_secret=MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1&refresh_token=YjdhOWFmZTAtNmExZi00ZTVlLWIwZTUtOGFhNmIwMWI3MzJj'
 ```
 
-**Request:**
+| Request | Value                                                                                                                                         |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method  | `POST`                                                                                                                                        |
+| URL     | Uses the special OAuth endpoint `/oauth/token` appended to the API URI e.g. `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`. |
 
-| Parameter       | Value                                                                                                                                                 |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Method**      | `POST`                                                                                                                                                 |
-| **URL**         | Uses the special OAuth endpoint `/oauth/token` appended to the API URI, e.g., `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`.            |
-| **Authorization** | Basic authorization, using the client ID and client secret of the OAuth client base64 encoded with a colon separator.                                      |
-| **Content-Type** | `application/x-www-form-urlencoded`                                                                                                                     |
+| Header          | Value                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Authorization` | `Basic` authorization, using the `client id` and `client secret` of the OAuth client base64 encoded with colon separator. E.g. `<oauth-client-id>:<oauth-client-secret>`, in this case `ed59158fa2344e94b3e6278e8ab85142:MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1`, which base64 encoded is `ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x`. |
+| `Content-Type`  | `application/x-www-form-urlencoded`                                                                                                                                                                                                                                                                                                                                                                                 |
 
-**Data:**
+| Data            | Value                                                                                                                                                    |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `grant_type`    | `refresh_token`                                                                                                                                          |
+| `client_id`     | The OAuth client id, in this case `ed59158fa2344e94b3e6278e8ab85142`.                                                                                    |
+| `client_secret` | The OAuth client secret, in this case `MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1`.                                                                |
+| `refresh_token` | The refresh token (`refresh_token`) provided in response to the original token request, in this case `YjdhOWFmZTAtNmExZi00ZTVlLWIwZTUtOGFhNmIwMWI3MzJj`. |
 
-| Parameter       | Value                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------- |
-| `grant_type`     | `authorization_code`                                                                               |
-| `client_id`     | The OAuth client ID, e.g., `ed59158fa2344e94b3e6278e8ab85142`.                                    |
-| `code`          | The authorization code provided in the response to the previous request, e.g., `EaG1MK7LS8GbbwCAUwDo6Q`. |
-| `redirect_uri`  | The OAuth client redirect URI, e.g., `http://example.com/client-redirect-uri`, URL encoded as `http%3A%2F%2Fexample.com%2Fclient-redirect-uri`.            |
+### Response
 
-**Response:**
+Response provides a new token as `access_token` and a new refresh token as `refresh_token` in the returned JSON:
 
-The response includes an access token, a refresh token, and additional information about the token's lifespan.
-
-```yaml
+```json
 {
-  "access_token": "abcd1234token",
+  "access_token": "580defdbe1d21e0001c67e5c2a0a6c98ba8b4a059dc5825388501573",
   "expires_in": 3600,
   "refresh_token": "NWQzNGVhMTItMDE4Ny00MDFkLTljOWItNGE4NzI1ZGI1NGU2",
-  "token_type": "bearer"
-}
-```
-
-##### Use the Refresh Token to Request a New Access Token
-
-When the access token expires, the client can use the refresh token to obtain a new access token without requiring user interaction.
-
-```bash
-curl -X POST \
-  https://tyk.cloud.tyk.io/oauth-api/oauth/token/ \
-  -H 'Authorization: Basic ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=refresh_token&refresh_token=NWQzNGVhMTItMDE4Ny00MDFkLTljOWItNGE4NzI1ZGI1NGU2&client_id=ed59158fa2344e94b3e6278e8ab85142'
-```
-
-**Request:**
-
-| Parameter       | Value                                                                                                                                                 |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Method**      | `POST`                                                                                                                                                 |
-| **URL**         | Uses the special OAuth endpoint `/oauth/token` appended to the API URI, e.g., `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`.            |
-| **Authorization** | Basic authorization, using the client ID and client secret of the OAuth client base64 encoded with a colon separator.                                      |
-| **Content-Type** | `application/x-www-form-urlencoded`                                                                                                                     |
-
-**Data:**
-
-| Parameter       | Value                                                                                                          |
-| --------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `grant_type`     | `refresh_token`                                                                                                  |
-| `refresh_token` | The refresh token obtained in the initial authorization, e.g., `NWQzNGVhMTItMDE4Ny00MDFkLTljOWItNGE4NzI1ZGI1NGU2`. |
-| `client_id`     | The OAuth client ID, e.g., `ed59158fa2344e94b3e6278e8ab85142`.                                                |
-
-**Response:**
-
-The response provides a new access token that can be used to access the API.
-
-```yaml
-{
-  "access_token": "new_abcd1234token",
-  "expires_in": 3600,
   "token_type": "bearer"
 }
 ```
@@ -543,134 +504,51 @@ The process is only a single step:
 
 {{< img src="/img/diagrams/diagram_docs_client-credentials-grant-type@2x.png" alt="Client Credentials grant type flow" >}}
 
-##### Request an Access Token
+##### Token Request
 
-The client application authenticates directly with the authorization server using its client credentials (client ID and secret) to request an access token.
+This request provides the client credentials in exchange for an API token.
 
-```bash
+```shell
 curl -X POST \
   https://tyk.cloud.tyk.io/oauth-api/oauth/token/ \
   -H 'Authorization: Basic ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x' \
   -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=client_credentials&client_id=ed59158fa2344e94b3e6278e8ab85142'
+  -d 'grant_type=client_credentials&client_id=ed59158fa2344e94b3e6278e8ab85142&client_secret=MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1'
 ```
 
-**Request:**
+| Request | Value                                                                                                                                         |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method  | `POST`                                                                                                                                        |
+| URL     | Uses the special OAuth endpoint `/oauth/token` appended to the API URI e.g. `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`. |
 
-| Parameter       | Value                                                                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Method**      | `POST`                                                                                                                                                  |
-| **URL**         | Uses the special OAuth endpoint `/oauth/token` appended to the API URI, e.g., `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`.             |
-| **Authorization** | Basic authorization, using the client ID and client secret of the OAuth client base64 encoded with colon separator.                                       |
-| **Content-Type** | `application/x-www-form-urlencoded`                                                                                                                      |
+| Header          | Value                                                                                                                                                                                                                                                                                                                                                                                                               |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Authorization` | `Basic` authorization, using the `client id` and `client secret` of the OAuth client base64 encoded with colon separator. E.g. `<oauth-client-id>:<oauth-client-secret>`, in this case `ed59158fa2344e94b3e6278e8ab85142:MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1`, which base64 encoded is `ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x`. |
+| `Content-Type`  | `application/x-www-form-urlencoded`                                                                                                                                                                                                                                                                                                                                                                                 |
 
-**Data:**
+| Data            | Value                                                                                     |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| `grant_type`    | `client_credentials`                                                                      |
+| `client_id`     | The OAuth client id, in this case `ed59158fa2344e94b3e6278e8ab85142`.                     |
+| `client_secret` | The OAuth client secret, in this case `MGQ3NzE2MGQtYTUyZC00ZTVlLWJjMTItMjE2MTM1MmE3N2M1`. |
 
-| Parameter      | Value                                                                                |
-| -------------- | -------------------------------------------------------------------------------------- |
-| `grant_type`    | `client_credentials`                                                                  |
-| `client_id`    | The OAuth client ID, e.g., `ed59158fa2344e94b3e6278e8ab85142`.                        |
+##### Response
 
-**Response:**
+Response provides the token as `access_token` in the returned JSON which can then be used to access the API:
 
-The response provides an access token that can be used by the client to access resources.
-
-```yaml
+```json
 {
-  "access_token": "abcd1234token",
+  "access_token": "580defdbe1d21e0001c67e5c40e93eac3d23494697470b90d7c81593",
   "expires_in": 3600,
   "token_type": "bearer"
 }
 ```
+{{< note success >}}
+**Note**  
 
-##### Use the Access Token
+It does not provide a refresh token.
+{{< /note >}}
 
-The client can now use the access token to access the API on behalf of itself.
-
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Bearer abcd1234token'
-```
-
-**Request:**
-
-| Parameter       | Value                                                |
-| --------------- | ----------------------------------------------------- |
-| **Method**      | `GET`                                                 |
-| **URL**         | The API endpoint for the protected resource.          |
-| **Authorization** | Bearer token, e.g., `Bearer abcd1234token`.         |
-
-
-#### Use Username and Password Grant
-
-The Username and Password Grant Type is used in scenarios where the client application collects the user's credentials directly. This flow is suitable for first-party applications.
-
-The process is only a single step:
-
-* Request an Access Token
-
-{{< img src="/img/diagrams/diagram_docs_username-_-password-grant-type@2x.png" alt="Username and Password grant type flow" >}}
-
-##### Request an Access Token
-
-The client application sends the user's credentials (username and password) to the authorization server in exchange for an access token.
-
-```bash
-curl -X POST \
-  https://tyk.cloud.tyk.io/oauth-api/oauth/token/ \
-  -H 'Authorization: Basic ZWQ1OTE1OGZhMjM0NGU5NGIzZTYyNzhlOGFiODUxNDI6TUdRM056RTJNR1F0WVRVeVpDMDBaVFZsTFdKak1USXRNakUyTVRNMU1tRTNOMk0x' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -d 'grant_type=password&username=user@example.com&password=yourpassword&client_id=ed59158fa2344e94b3e6278e8ab85142'
-```
-
-**Request:**
-
-| Parameter       | Value                                                                                                                                                 |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Method**      | `POST`                                                                                                                                                 |
-| **URL**         | Uses the special OAuth endpoint `/oauth/token` appended to the API URI, e.g., `https://<your-gateway-host>/<your-api-listen-path>/oauth/token`.            |
-| **Authorization** | Basic authorization, using the client ID and client secret of the OAuth client base64 encoded with colon separator.                                      |
-| **Content-Type** | `application/x-www-form-urlencoded`                                                                                                                     |
-
-**Data:**
-
-| Parameter      | Value                                                        |
-| -------------- | ----------------------------------------------------------- |
-| `grant_type`    | `password`                                                    |
-| `username`    | The user's username, e.g., `user@example.com`.               |
-| `password`    | The user's password.                                           |
-| `client_id`    | The OAuth client ID, e.g., `ed59158fa2344e94b3e6278e8ab85142`. |
-
-**Response:**
-
-The response provides an access token that can be used by the client to access resources.
-
-```yaml
-{
-  "access_token": "abcd1234token",
-  "expires_in": 3600,
-  "token_type": "bearer"
-}
-```
-
-##### Use the Access Token
-
-The client can now use the access token to access the API on behalf of the user.
-
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Bearer abcd1234token'
-```
-
-**Request:**
-
-| Parameter       | Value                                                |
-| --------------- | ----------------------------------------------------- |
-| **Method**      | `GET`                                                 |
-| **URL**         | The API endpoint for the protected resource.          |
-| **Authorization** | Bearer token, e.g., `Bearer abcd1234token`.         |
 
 
 #### Use Bearer Tokens
@@ -816,40 +694,394 @@ curl -X POST \
 
 Basic Authentication is a straightforward method where the user's credentials (username and password) are sent in an HTTP header encoded in Base64.
 
-#### Access a Protected Resource
+#### How does Basic Authentication work?
 
-The client application sends an HTTP request with an `Authorization` header containing the word "Basic" followed by a base64-encoded string of the username and password.
+An API request made using Basic Authentication will have an `Authorization` header that contains the API key.
 
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ='
+The value of the `Authorization` header will be in the form:
+
+```
+Basic base64Encode(username:password)
 ```
 
-**Request:**
+A real request could look something like:
 
-| Parameter       | Value                                                           |
-| --------------- | -------------------------------------------------------------- |
-| **Method**      | `GET`                                                            |
-| **URL**         | The API endpoint for the protected resource.                     |
-| **Authorization** | Basic authorization using base64 encoded credentials, e.g., `dXNlcm5hbWU6cGFzc3dvcmQ=`. |
+```
+GET /api/widgets/12345 HTTP/1.1
+Host: localhost:8080
+Authorization: Basic am9obkBzbWl0aC5jb206MTIzNDU2Nw==
+Cache-Control: no-cache
+```
+
+In this example the username is `john@smith.com` and the password is `1234567` (see [base64encode.org](https://www.base64encode.org))
+
+#### The problem with Basic Authentication
+
+With Basic Authentication, the authentication credentials are transferred from client to server (in our case, the Tyk Gateway) as encoded plain text. This is not a particularly secure way to transfer the credentials as it is highly susceptible to intercept; as the security of user authentication is usually of critical importance to API owners, Tyk recommends that Basic Authentication should only ever be used in conjunction with a TLS such as SSL.
+
+#### Protect your API with Basic Authentication
+
+Authentication type is configured within your API Definition; this can be done via the [Tyk Dashboard](#Enable-Basic-Authentication-using-the-Tyk-Dashboard) or directly within the [API Definition file](#Enable-Basic-Authentication-in-your-file-based-API-Definition").
+
+#### Enable Basic Authentication using the Tyk Dashboard
+
+1. Select your API from the **System Management > APIs** menu
+2. Scroll to the **Authentication** options
+3. Select **Basic Authentication** from the drop-down list
+4. Select **Strip Authorization Data** to strip any authorization data from your API requests.
+5. Tyk will by default assume you are using the `Authorization` header, but you can change this by setting the **Auth Key Header** name value
+6. You can select whether to use a URL query string parameter as well as a header, and what parameter to use. If this is left blank, it will use the **Auth Key Header** name value.
+7. You can select whether to use a **cookie value**. If this is left blank, it will use the Header name value.
+
+{{< img src="/img/2.10/basic_auth_settings.png" alt="Target Details: Basic Auth" >}}
+
+#### Enable Basic Authentication in your file-based API Definition 
+
+To enable Basic Authentication, the API Definition file needs to be set up to allow basic authentication rather than expecting a standard access token; this is achieved  by setting `use_basic_auth` to true:
+
+```{.copyWrapper}
+{
+  "name": "Tyk Test API",
+  ...
+  "use_basic_auth": true,
+  ...
+}
+```
+
+As you can see in the above example, enabling Basic Authentication is as simple as setting a flag for the feature in your API Definition object. Since Basic Authentication is a standard, Tyk will always look for the credentials as part of the `Authorization` header.
+
+#### Enable basic authentication using Tyk Operator
+
+Please consult the Tyk Operator supporting documentation for an example of how to [enable basic authentication]({{< ref "product-stack/tyk-operator/advanced-configurations/client-authentication#basic-authentication" >}}) with Tyk Operator.
+
+#### Create a Basic Authentication user
+
+When using Basic Authentication, the API key used to access the API is not generated by the Tyk system, instead you need to create at least one Basic Authentication user in the Tyk Gateway. Tyk will compare the Basic Authentication key provided in the request against the list of users you have created.
+
+#### Using Tyk Dashboard
+
+You can use the Tyk Dashboard to register a Basic Authentication key that can then be used to access your API. 
+
+When you select the API, you can see that Basic Authentication settings are automatically displayed in the Authentication tab:
+
+{{< img src="/img/2.10/add_key_basic_auth.png" alt="Basic Auth tab" >}}
+
+Then add a username & password and save!
+
+Now you can curl the API in two different ways:
+
+```
+$ curl http://localhost:8080/basicauth/get \
+  --header "Authorization: Basic $(echo -n 'myusername:mypassword' | base64)"
+<200 response>
+
+$ curl http://myusername:mypassword@localhost:8080/basicauth/get
+<200 response from upstream>
+```
+We have full tutorials to guide you to [create an API Key]({{< ref "getting-started/create-api-key" >}}) via the Dashboard. 
+
+#### Using the Tyk Gateway API
+
+This command creates a new basic authentication user in the Tyk Gateway with the user name `testuser` and password `mickey-mouse` by sending a `POST` command to the `/tyk/keys/` endpoint of Tyk Gateway API:
+
+```{.copyWrapper}
+curl -X POST -H "x-tyk-authorization: 352d20fe67be67f6340b4c0605b044c3" \
+ -s \
+ -H "Content-Type: application/json" \
+ -X POST \
+ -d '{
+    "allowance": 1000,
+    "rate": 1000,
+    "per": 1,
+    "expires": -1,
+    "quota_max": -1,
+    "org_id": "53ac07777cbb8c2d53000002",
+    "quota_renews": 1449051461,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+        "{API-ID}": {
+            "api_id": "{API-ID}",
+            "api_name": "{API-NAME}",
+            "versions": ["Default"]
+        }
+    },
+    "meta_data": {},
+    "basic_auth_data": {
+        "password": "mickey-mouse"
+    }
+ }' http://{your-tyk-gateway-host}:{port}/tyk/keys/testuser | python -mjson.tool
+```
+
+{{< note success >}}
+**Note**  
+
+You use `POST` to create a new user and `PUT` to update an existing entry.
+
+Be careful to ensure that the `org_id` is set correctly and consistently so that the Basic Authentication user is created in the correct organization.
+{{< /note >}}
+
+#### Using the Tyk Dashboard API
+
+This command creates a new basic authentication user in the Tyk Gateway with the user name `testuser2` and password `minnie-mouse` by sending a `POST` command to the `/tyk/keys/` endpoint of Tyk Dashboard API:
+
+```{.copyWrapper}
+curl -X POST -H "Authorization: 907aed9f88514f175f1dccf8a921f741"
+ -s
+ -H "Content-Type: application/json"
+ -X POST
+ -d '{
+    "allowance": 1000,
+    "rate": 1000,
+    "per": 1,
+    "expires": -1,
+    "quota_max": -1,
+    "org_id": "53ac07777cbb8c2d53000002",
+    "quota_renews": 1449051461,
+    "quota_remaining": -1,
+    "quota_renewal_rate": 60,
+    "access_rights": {
+      "{API-ID}": {
+        "api_id": "{API-ID}", 
+        "api_name": "{API-NAME}", 
+        "versions": [
+            "Default"
+        ]
+      }
+    },
+    "meta_data": {},
+    "basic_auth_data": {
+      "password": "minnie-mouse"
+    }
+ }' http://{your-tyk-dashboard-host}:{port}/api/apis/keys/basic/testuser2 | python -mjson.tool
+```
+
+[See Basic Authentication via the Dashboard API]({{< ref "tyk-apis/tyk-dashboard-api/basic-authentication" >}})
+
+{{< note success >}}
+**Note**  
+
+You use `POST` to create a new user and `PUT` to update an existing entry.
+
+Be careful to ensure that the `org_id` is set correctly and consistently so that the Basic Authentication user is created in the correct organization.
+{{< /note >}}
+
+#### Extracting credentials from the request body
+
+In some cases, for example when dealing with SOAP, user credentials can be passed within the request body. To handle this situation, you can configure basic auth plugin to extract username and password from the body, by providing regexps like this:
+
+```{.copyWrapper}
+"basic_auth": {
+    "extract_from_body": true,
+    "body_user_regexp": "<User>(.*)</User>",
+    "body_password_regexp": "<Password>(.*)</Password>"
+}
+```
+
+Note that the regexp should contain only one match group, which points to the actual value.
 
 
 ### Integrate External OAuth Middleware
 
-Tyk can integrate with external OAuth providers to delegate authentication and authorization. This allows you to leverage existing OAuth infrastructures while using Tyk as the API gateway.
+Tyk offers two types of OAuth authentication flow; Tyk itself as the identity provider (IdP) and Tyk connecting to an external 3rd party IdP. ‘External OAuth’ is what we call this second mechanism. To call an API that is protected by OAuth, you need to have an access token from the third party IDP (it could be an opaque token or a JWT). 
 
-#### Connect Tyk to an External OAuth Provider
+For subsequent calls the access token is provided alongside the API call and needs to be validated. With JWT, Tyk can confirm the validity of the JWT with the secret provided in your config. The secret signs the JWT when created and confirms that none of its contents has changed. 
 
-Set up Tyk to interact with the external OAuth provider's token introspection endpoint. This allows Tyk to validate tokens issued by providers such as Auth0 or Okta.
+For this reason, information like the expiry date which are often set within the JWT cannot be changed after the JWT has been initially created and signed. This means you are not able to revoke a token before the expiry set in the JWT with the standard JWT flow. With OAuth you can use [OAuth introspection](https://www.rfc-editor.org/rfc/rfc7662) to overcome this. With introspection, you can validate the access token via an introspection endpoint that validates the token. 
 
-**Example:**
+Let’s see how external OAuth middleware is configured.
 
-* Configure the external OAuth provider's token introspection endpoint in Tyk.
-* Set up the necessary client credentials in Tyk's dashboard or configuration file.
+#### OAS contract
 
+```yaml
+externalOAuthServer:
+  enabled: true,
+  providers: # only one item in the array for now (we're going to support just one IDP config in the first iteration)
+  - jwt: #validate JWTs generated by 3rd party Oauth servers (like Okta)
+      enabled: true
+      signingMethod: HMAC/RSA/ECDSA # to verify signing method used in jwt
+      source: key # secret to verify signature
+      issuedAtValidationSkew: 0
+      notBeforeValidationSkew: 0
+      expiresAtValidationSkew: 0
+      identityBaseField: # identity claimName
+    introspection: # array for introspection details
+      enabled: true/false
+      clientID: # for introspection request
+      clientSecret: # for introspection request, if empty will use oAuth.secret
+      url: # token introspection endpoint
+      cache: # Tyk will cache the introspection response when `cache.enabled` is set to `true`
+        enabled: true/false,
+        timeout: 0 # The duration (in seconds) for which Tyk will retain the introspection outcome in its cache. If the value is "0", it indicates that the introspection outcome will be stored in the cache until the token's expiration.
+      identityBaseField: # identity claimName
+```
 
-* Configure the external OAuth provider's token introspection endpoint in Tyk Classic.
+#### Tyk Classic API definition contract
+
+```yaml
+"external_oauth": {
+  "enabled": true,
+  "providers": [
+    {
+      "jwt": {
+        "enabled": false,
+        "signing_method": rsa/ecdsa/hmac,
+        "source": # jwk url/ base64 encoded static secret / base64 encoded jwk url
+        "identity_base_field": # identity claim name
+        "expires_at_validation_skew": # validation skew config for exp
+        "not_before_validation_skew": # validation skew config for nbf
+        "issued_at_validation_skew" : # validation skew config for iat
+      },
+      "introspection": {
+        "enabled": true,
+        "url": # introspection endpoint url
+        "client_id": # client id used for introspection
+        "client_secret": # client secret to be filled here (plain text for now, TODO: decide on a more secure mechanism)
+        "identity_base_field": # identity claim name
+        "cache": {
+          "enabled": true,
+          "timeout": # timeout in seconds
+        }
+      }
+    }
+  ]
+}
+```
+- `externalOAuthServer` set `enabled` to `true` to enable the middleware.
+- `providers` is an array of multiple IDP configurations, with each IDP config being an element in the `providers` array. 
+- You can use this config to use JWT self validation using `jwt` or use introspection via `instropection` in the `providers` section .
+
+{{< note success >}}
+**Note**  
+
+For now, you’ll be limiting `providers` to have only one element, ie one IDP configured.
+{{< /note >}}
+
+#### JWT
+
+There could be cases when you don’t need to introspect a JWT access token from a third party IDP, and instead you can just validate the JWT. This is similar to existing JWT middleware, adding it in External OAuth middleware for semantic reasons.
+
+- `enabled` - enables JWT validation.
+- `signingMethod` - specifies the signing method used to sign the JWT.
+- `source` - the secret source, it can be one of:
+  - a base64 encoded static secret
+  - a valid JWK url in plain text
+  - a valid JWK url in base64 encoded format
+- `issuedAtValidationSkew` , `notBeforeValidationSkew`, `expiresAtValidationSkew` can be used to [configure clock skew]({{< ref "/content/basic-config-and-security/security/authentication-authorization/json-web-tokens.md#jwt-clock-skew-configuration" >}}) for json web token validation.
+- `identityBaseField` - the identity key name for claims. If empty it will default to `sub`.
+
+#### Example: Tyk OAS API definition with JWT validation enabled
+
+```json
+"securitySchemes": {
+  "external_jwt": {
+    "enabled": true,
+    "header": {
+      "enabled": true,
+      "name": "Authorization"
+    },
+    "providers": [
+      {
+        "jwt": {
+          "enabled": true,
+          "signingMethod": "hmac",
+          "source": "dHlrLTEyMw==",
+          "identityBaseField": "sub"
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Example: Tyk Classic API definition with JWT validation enabled
+
+```json
+"external_oauth": {
+  "enabled": true,
+  "providers": [
+      {
+          "jwt": {
+              "enabled": true,
+              "signing_method": "hmac",
+              "source": "dHlrLTEyMw==",
+              "issued_at_validation_skew": 0,
+              "not_before_validation_skew": 0,
+              "expires_at_validation_skew": 0,
+              "identity_base_field": "sub"
+          },
+          "introspection": {
+              "enabled": false,
+              "url": "",
+              "client_id": "",
+              "client_secret": "",
+              "identity_base_field": "",
+              "cache": {
+                  "enabled": false,
+                  "timeout": 0
+              }
+          }
+      }
+  ]
+}
+```
+#### Introspection
+
+For cases where you need to introspect the OAuth access token, Tyk uses the information in the `provider.introspection` section of the contract. This makes a network call to the configured introspection endpoint with the provided `clientID` and `clientSecret` to introspect the access token.
+
+- `enabled` - enables OAuth introspection
+- `clientID` - clientID used for OAuth introspection, available from IDP
+- `clientSecret` - secret used to authenticate introspection call, available from IDP
+- `url` - endpoint URL to make the introspection call
+- `identityBaseField` - the identity key name for claims. If empty it will default to `sub`.
+
+##### Caching
+
+Introspection via a third party IdP is a network call. Sometimes it may be inefficient to call the introspection endpoint every time an API is called. Caching is the solution for this situation. Tyk caches the introspection response when `enabled` is set to `true` inside the `cache` configuration of `introspection`. Then it retrieves the value from the cache until the `timeout` value finishes. However, there is a trade-off here. When the timeout is long, it may result in accessing the upstream with a revoked access token. When it is short, the cache is not used as much resulting in more network calls. 
+
+The recommended way to handle this balance is to never set the `timeout` value beyond the expiration time of the token, which would have been returned in the `exp` parameter of the introspection response.
+
+See the example introspection cache configuration:
+
+```yaml
+"introspection": {
+  ...
+  "cache": {
+    "enabled": true,
+    "timeout": 60 // in seconds
+  }
+}
+```
+##### Example: Tyk OAS API definition external OAuth introspection enabled
+
+```json
+"securitySchemes": {
+  "keycloak_oauth": {
+    "enabled": true,
+    "header": {
+      "enabled": true,
+      "name": "Authorization"
+    },
+    "providers": [
+      {
+        "introspection": {
+          "enabled": true,
+          "url": "http://localhost:8080/realms/tyk/protocol/openid-connect/token/introspect",
+          "clientId": "introspection-client",
+          "clientSecret": "DKyFN0WXu7IXWzR05QZOnnSnK8uAAZ3U",
+          "identityBaseField": "sub",
+          "cache": {
+            "enabled": true,
+            "timeout": 3
+          }
+        }
+      }
+    ]
+  }
+}
+```
+##### Example: Tyk Classic API definition with external OAuth introspection enabled
+
 ```json
 "external_oauth": {
   "enabled": true,
@@ -880,27 +1112,6 @@ Set up Tyk to interact with the external OAuth provider's token introspection en
 }
 ```
 
-* Set up the necessary [client credentials in Tyk's dashboard](/api-management/authentication-authorization/#use-client-credentials-grant) or configuration file.
-
-
-
-#### Use the Validated Token to Access Protected Resources
-
-After Tyk validates the token with the external provider, the client can access the protected resources as usual.
-
-```bash
-curl -X GET \
-  https://api.example.com/protected-resource \
-  -H 'Authorization: Bearer VALIDATED_ACCESS_TOKEN'
-```
-
-**Request:**
-
-| Parameter       | Value                                       |
-| --------------- | ------------------------------------------ |
-| **Method**      | `GET`                                        |
-| **URL**         | The API endpoint for the protected resource. |
-| **Authorization** | Bearer token, e.g., `Bearer VALIDATED_ACCESS_TOKEN`. |
 
 ### Authenticate Using Go Plugins
 
@@ -1618,6 +1829,10 @@ To enable this mode, set the `base_identity_provided_by` field in your API Defin
 The provider set here will then be the one that provides the session object that determines rate limits, ACL rules, and quotas.
 
 Tyk will chain the auth mechanisms as they appear in the code and will default to an auth token if none are specified. You can explicitly set auth token support by setting `use_standard_auth` to `true`.
+
+#### Enable Multi (Chained) Authentication with Tyk Operator
+
+Please consult the [Tyk Operator](/product-stack/tyk-operator/advanced-configurations/client-authentication#multiple-chained-auth) supporting documentation for an example of how to enable multi chained authentication with Tyk Operator.
 
 
 ## Use Python CoProcess and JSVM Plugin Authentication
