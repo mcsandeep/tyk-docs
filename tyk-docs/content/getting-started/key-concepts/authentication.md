@@ -215,7 +215,7 @@ securitySchemes: {
 
 All you need to do in the Tyk configuration is to enable the authentication and specify the header details.
 
-For more configuration options check the [JWT documentation]({{< ref "/api-management/authentication-authorization#use-json-web-tokens-jwt.md" >}}).
+For more configuration options check the [JWT documentation]({{< ref "/api-management/authentication-authorization#use-json-web-tokens-jwt" >}}).
 
 ### OAuth
 
@@ -272,7 +272,7 @@ Example:
 }
 ```
 
-All you need to do in the Tyk configuration is to enable OAuth and specify the header details. See [OAuth documentation]({{< ref "/api-management/authentication-authorization#set-up-oauth-20-authorization.md" >}}) for more details.
+All you need to do in the Tyk configuration is to enable OAuth and specify the header details. See [OAuth documentation]({{< ref "/api-management/authentication-authorization#set-up-oauth-20-authorization" >}}) for more details.
 
 ### Multiple Authentication mechanisms
 
@@ -339,7 +339,7 @@ For the above OAS configuration, Tyk looks at only the first `security` object:
   }
 }
 ```
-Please observe the presence of the `baseIdentityProvider` field, as this is required when enabling multiple authentication mechanisms at the same time. See [Multiple Auth documentation]({{< ref "/api-management/authentication-authorization#multiple-chained-authentication.md" >}}) for more details.
+Please observe the presence of the `baseIdentityProvider` field, as this is required when enabling multiple authentication mechanisms at the same time. See [Multiple Auth documentation]({{< ref "/api-management/authentication-authorization#multiple-chained-authentication" >}}) for more details.
 
 ### Other Authentication mechanisms
 

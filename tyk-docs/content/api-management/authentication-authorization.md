@@ -735,7 +735,7 @@ Authentication type is configured within your API Definition; this can be done v
 6. You can select whether to use a URL query string parameter as well as a header, and what parameter to use. If this is left blank, it will use the **Auth Key Header** name value.
 7. You can select whether to use a **cookie value**. If this is left blank, it will use the Header name value.
 
-{{< img src="/img/api-management/security/basic-auth-setup.png" alt="Target Details: Basic Auth" >}}
+{{< img src="/img/api-management/security/basic-auth-api-setup.png" alt="Target Details: Basic Auth" >}}
 
 ##### Enable Basic Authentication in your file-based API Definition 
 
@@ -969,7 +969,7 @@ There could be cases when you don’t need to introspect a JWT access token from
   - a base64 encoded static secret
   - a valid JWK url in plain text
   - a valid JWK url in base64 encoded format
-- `issuedAtValidationSkew` , `notBeforeValidationSkew`, `expiresAtValidationSkew` can be used to [configure clock skew]({{< ref "/content/basic-config-and-security/security/authentication-authorization/json-web-tokens.md#jwt-clock-skew-configuration" >}}) for json web token validation.
+- `issuedAtValidationSkew` , `notBeforeValidationSkew`, `expiresAtValidationSkew` can be used to [configure clock skew](#adjust-jwt-clock-skew-configuration) for json web token validation.
 - `identityBaseField` - the identity key name for claims. If empty it will default to `sub`.
 
 #### Example: Tyk OAS API definition with JWT validation enabled
