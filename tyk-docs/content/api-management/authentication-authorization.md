@@ -1278,55 +1278,6 @@ This will walk you through securing your APIs with JWTs via Auth0. We also have 
 
    {{< img src="/img/auth0/auth0-basic-info.png" alt="Auth0 Application Basic Information" >}}
 
-##### Create Your API in Tyk
-
-1. Log in to your Tyk Dashboard.
-2. Create a new HTTP API (the default `http://httpbin.org` upstream URL is fine).
-
-   {{< img src="/img/auth0/tyk-create-api.png" alt="Tyk Create HTTP API" >}}
-
-3. From the Authentication section, select JSON Web Token (JWT) as your authentication mode.
-4. Select RSA public Key as the JWT signing method.
-5. Enter your Auth0 Application Domain from Step 8 above to complete the `jwks_uri` endpoint `https://<<your-auth0-domain>>/.well-known/jwks.json`
-6. Copy your `jwks_uri` into the Public Key field.
-
-   {{< img src="/img/auth0/tyk-api-auth.png" alt="Tyk API Authentication" >}}
-
-7. Add an Identity Source and Policy Field Name. The defaults of `sub` and `pol` are fine.
-8. Save your API.
-9. From the System Management section, select Policies.
-10. Click Add Policy.
-11. Select your Auth0 API.
-
-    {{< img src="/img/auth0/tyk-api-auth.png" alt="Tyk Policy access rights" >}}
-
-12. You can keep the rest of the access rights at the defaults.
-13. Click the Configurations tab and enter a Policy Name and a Keys Expiry after the period.
-
-    {{< img src="/img/auth0/policy-access-rights.png" alt="Tyk Policy Configuration" >}}
-
-14. Click Create Policy.
-15. Edit your JWT Auth0 API and add the policy you created as the Default Policy from the Authentication section.
-
-    {{< img src="/img/auth0/api-default-policy.png" alt="Tyk API Default Policy Configuration" >}}
-
-16. From the top of the API, copy the API URL.
-17. From a terminal window, use the API URL and the Auth0 generated token.
-
-    ```bash
-    curl -X GET {API URL}  -H "Accept: application/json" -H "Authorization: Bearer {token}"
-    ```
-
-    If using the `httpbin` upstream URL as in the example Tyk API, you should see the HTML returned for the httpbin service in your terminal.
-
-    If there is an error with the request, you will see the following error message.
-
-    ```yaml
-    {
-      "error": "Key not authorized: Unexpected signing method."
-    }
-    ```
-
 #### JWT and Keycloak with Tyk
 
 This guide will walk you through securing your APIs with JWTs via Keycloak.
@@ -1412,7 +1363,12 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
     }
     ```
 
-##### Create Your API in Tyk
+##### Running in k8s
+
+If you are looking to POC this functionality in Kubernetes, you can run a fully worked-out example using our tyk-k8s-demo library. You can read more [here]({{< ref "getting-started/quick-start/tyk-k8s-demo" >}}).
+
+
+#### Create Your JWT API in Tyk
 
 1. Log in to your Tyk Dashboard.
 2. Create a new HTTP API (the default `http://httpbin.org` upstream URL is fine).
@@ -1454,9 +1410,8 @@ This guide will walk you through securing your APIs with JWTs via Keycloak.
         -H "Authorization: Bearer TOKEN"
     ```
 
-##### Running in k8s
 
-If you are looking to POC this functionality in Kubernetes, you can run a fully worked-out example using our tyk-k8s-demo library. You can read more [here]({{< ref "getting-started/quick-start/tyk-k8s-demo" >}}).
+
 
 #### Split Token
 
