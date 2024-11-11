@@ -26,9 +26,9 @@ Follow these steps to quickly create and manage your APIs in Tyk Cloud.
 ## Prerequisites
 
 Before you begin, make sure you have:
-- A Tyk Cloud account.
+- [A Tyk Cloud account](create-account).
 - Admin access to the Tyk Dashboard.
-- A backend service that your API will proxy (e.g., a RESTful API).
+- (optional) A backend service that your API will proxy (e.g., a RESTful API) - or you can use the httpbin service.
 
 
 ## Set Up Your API
@@ -57,19 +57,6 @@ Start by creating a new API in Tyk Cloud:
 <br>
 
 6. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
-
-#### Example API Creation Payload
-
-```json
-{
-  "name": "My First API",
-  "slug": "my-first-api",
-  "protocol": "https",
-  "target_url": "https://my-backend-service.com",
-  "listen_path": "/my-first-api/",
-  "strip_listen_path": true
-}
-```
 
 Save your API configuration once complete.
 
