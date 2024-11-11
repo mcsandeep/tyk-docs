@@ -121,7 +121,6 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
   {{< /note >}}
   
 
-
 ## Test Your API
 
 After configuring and deploying your API, it’s essential to test it to ensure it performs as expected. Follow these steps to verify your API setup:
