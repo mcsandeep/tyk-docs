@@ -11,6 +11,8 @@ tags:
 - Tyk Cloud
 - API Gateway
 title: Create Tyk Account
+aliases:
+    - /tyk-cloud/initial-portal-config
 ---
 
 
@@ -134,7 +136,7 @@ Upgrading restores full functionality, letting you continue from where you pause
 Now that you have your Tyk account set up, here are some recommended next steps:
 
 - **Explore the Dashboard**: Familiarize yourself with the [Tyk Cloud interface](/tyk-dashboard).
-- **Create Your First API**: Follow our guide on [setting up and securing your first API](/configure-api).
+- **Create Your First API**: Follow our guide on [setting up and securing your first API](/configure-first-api).
 - **Customize Your Portal**: Learn how to customize the developer portal for your API consumers.
 - **Set Up Email Notifications**: Configure email notifications for important events and updates.
 

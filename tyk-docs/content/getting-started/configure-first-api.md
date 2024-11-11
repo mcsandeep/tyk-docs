@@ -26,7 +26,7 @@ Follow these steps to quickly create and manage your APIs in Tyk Cloud.
 ## Prerequisites
 
 Before you begin, make sure you have:
-- [A Tyk Cloud account](create-account).
+- [A Tyk Cloud account](/create-account).
 - Admin access to the Tyk Dashboard.
 - (optional) A backend service that your API will proxy (e.g., a RESTful API) - or you can use the httpbin service.
 
@@ -180,6 +180,6 @@ With your API live, monitor its traffic and analyze performance:
 
 ## Next Steps
 
-Congratulations! You've successfully created, secured, and deployed your first API in Tyk Cloud. Next, explore more advanced features like [rate-limiting](getting-started/key-concepts/rate-limiting/) or [OAuth2](api-management/authentication-authorization).
+Congratulations! You've successfully created, secured, and deployed your first API in Tyk Cloud. Next, explore more advanced features like [rate-limiting](/getting-started/key-concepts/rate-limiting/) or [OAuth2](/basic-config-and-security/security/authentication--authorization).
 
 Explore more features in your dashboard to optimize and scale your API offerings.
