@@ -71,7 +71,7 @@ Start by creating a new API in Tyk Cloud:
 
 6. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
 
-    {{< img src="/img/getting-started/apis-add-authentication.png" alt="Add Authentication" >}
+    {{< img src="/img/getting-started/apis-add-authentication.png" alt="Add Authentication" >}}
 
 Save your API configuration once complete.
 
