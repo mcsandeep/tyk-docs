@@ -39,7 +39,9 @@ Start by creating a new API in Tyk Cloud:
 2. **Navigate to APIs** and click **Create New API**.
 3. **Configure API Details**:
    - **API Name**: Name your API (e.g., `My First API`).
-   - **Target URL**: Provide the URL of your backend service (e.g., `https://my-backend-service.com`).
+   - **API Type**: Choose from HTTP, TCP, GraphQL, UDG, or Federation, depending on your use case.
+   - **API Style**: Select OpenAPI for standardized HTTP APIs or Classic for flexible configurations and non-HTTP APIs.
+   - **Target URL**: Provide the URL of your backend service (e.g., `http://httpbin.org`).
    - **API Slug**: Define the path through which your API will be accessible (e.g., `/my-first-api/`).
 
   {{< img src="/img/getting-started/apis-create-new-api.png" alt="Create New API" >}}
@@ -47,16 +49,29 @@ Start by creating a new API in Tyk Cloud:
 <br>
 
 4. **Connect to Your Desired Gateway**
+  You may be prompted to choose between a Gateway and an Edge Gateway. 
+  - Edge Gateways generally provide low-latency, regionally distributed API processing, ideal for a global user base.
+  - Regular Gateways centralize API management, offering comprehensive API processing without additional edge optimizations.
+
   {{< img src="/img/getting-started/apis-connect-gateways.png" alt="Connect Gateways" >}}
 
 <br>
 
 5. **Configure Settings**
+
+  Configure your API settings:
+    - API Rate Limiting: Set limits on the number of requests (e.g., 100 requests per minute) to control usage and prevent abuse.
+    - Service Discovery: Enable dynamic backend discovery with tools like Consul or Kubernetes, ensuring traffic is directed to healthy instances.
+    - Upstream Client Certificates: Use client certificates for secure backend connections via mutual TLS (mTLS), adding an extra layer of security.
+    - Certificate Public Key Pinning: Pin specific public keys to validate certificate authenticity and prevent unauthorized access.
+
   {{< img src="/img/getting-started/apis-configure-settings.png" alt="Configure Settings" >}}
 
 <br>
 
 6. **Authentication**: Choose the desired authentication method (e.g., **API Key**).
+
+    {{< img src="/img/getting-started/apis-add-authentication.png" alt="Add Authentication" >}
 
 Save your API configuration once complete.
 
@@ -79,7 +94,7 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
 
 3. **Add a Policy or API to Your Key**:
    - You can either add your key to an existing **Policy** or assign it to an individual **API**.
-   - For this guide, we will assign the key to an API. You can:
+   - For this guide, we will assign the key to the "My First API" which we created in the previous step. You can:
      - Scroll through your **API Name list**,
      - Use the **Search field**,
      - Or **Group by Authentication Type** or **Category** to filter APIs.
@@ -93,14 +108,35 @@ The Tyk Dashboard provides the simplest way to generate a new API key. Follow th
    - **Metadata**: Add metadata such as user IDs, which can be used by middleware components.
 
 5. **Click "CREATE"**:
-   - Once the key is created, a **Key successfully generated** pop-up will be displayed showing your key. **Copy the key** to your clipboard and save it for future reference as it will not be shown again.
-
-   {{< img src="/img/getting-started/apis-create-key.png" alt="APIs Create Key" >}}
-<br>
-   - And that should result in a successfully generated key!
+   - Once the key is created, a **Key successfully generated** pop-up will be displayed showing your key. **Copy the key** to your clipboard and save it for future reference as it will not be shown again. And that should result in a successfully generated key!
 
    {{< img src="/img/getting-started/apis-keys-success.png" alt="Key Success" >}}
   
+
+  {{< note success >}}
+  **Note**  
+
+  When creating a key in Tyk, you should copy the key ID. This is the identifier you’ll need for referencing the key in your API requests or configurations. The hash is generally used internally by Tyk and is not required for most user-facing tasks.
+
+  {{< /note >}}
+  
+
+
+## Test Your API
+
+After configuring and deploying your API, it’s essential to test it to ensure it performs as expected. Follow these steps to verify your API setup:
+
+1. **Retrieve Your API Key**:
+   - Copy the **API Key ID** from the previous step as you'll need it to authenticate requests to your API.
+
+2. **Make a Test Request**:
+   - Use a tool like [Postman](https://www.postman.com/) or `curl` to send a request to your API endpoint.
+   - Example request using `curl`:
+     ```bash
+     curl -H "Authorization: {YOUR_API_KEY_ID}" https://{YOUR_TYK_GATEWAY_URL}/my-first-api/
+     ```
+   - Replace `{YOUR_API_KEY_ID}` with the actual key ID and `{YOUR_TYK_GATEWAY_URL}` with your gateway's URL.
+
 
 ## Monitor Traffic and Analyze API Performance
 
@@ -113,30 +149,6 @@ With your API live, monitor its traffic and analyze performance:
 3. **Analyze Data**: Use traffic trends to identify performance issues or optimize API behavior.
 
 {{< img src="/img/getting-started/apis-analytics.png" alt="APIs Analytics" >}}
-
-
-
-#### Example Traffic Analytics Response
-
-```json
-{
-  "requests": 1500,
-  "errors": 5,
-  "latency": {
-    "average": 120,
-    "p95": 180
-  }
-}
-```
-
-- **Requests**: The total number of API requests made within the monitored period.
-
-- **Errors**: The number of failed requests, indicating issues or errors encountered during API calls.
-
-- **Latency**:
-  - **Average**: The average time (in milliseconds) it takes for the API to respond to a request.
-  - **95th Percentile (p95)**: The time within which 95% of the requests are responded to, providing insight into the upper range of response times.
-
 
 
 ### View Log Data

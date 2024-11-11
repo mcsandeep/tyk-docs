@@ -39,7 +39,7 @@ Tyk is organized into a few key categories:
 {{< img src="/img/getting-started/overview-options.png" alt="Overview options" >}}
 
 From the overview options, you can start adding APIs immediately. 
-If you are new here, we suggest that you start with an example API and see how our pre-configured APIs are setup- we have examples for GraphQL, OAS, and UDG (Universal Data Graph) APIs. If you have a specific API that you that you have already setup, you can import it using an OpenAPI document, a Tyk API document, or through a WSDL/XML file. 
+If you are new here, we suggest that you start with an example API and see how our pre-configured APIs are setup- we have examples for GraphQL, Tyk OAS, and UDG (Universal Data Graph) APIs. If you have a specific API that you that you have already setup, you can import it using an OpenAPI document, a Tyk API document, or through a WSDL/XML file. 
 Otherwise, you can design an API from scratch or a template if you have configured a Tyk template previously.
 
 
@@ -52,7 +52,7 @@ Otherwise, you can design an API from scratch or a template if you have configur
 
 * **API Templates**: API Templates allow you to create APIs with preconfigured settings quickly. You can set these up manually or save them from an API which you've already created. You can learn more about API Templates [here](/product-stack/tyk-dashboard/advanced-configurations/templates/template-overview/).
 
-* **Examples**: In Examples, you will find a few sample projects we put together to help you in your journey. We suggest you start with the OAS APIs and move on to GraphQL and UDG APIs to supplement learning how to setup your API.
+* **Examples**: In Examples, you will find a few sample projects we put together to help you in your journey. We suggest you start with the Tyk OAS APIs and move on to GraphQL and UDG APIs to supplement learning how to setup your API.
 
 * **Data Graphs**: Universal Data Graphs (UDGs) are a way for you to combine APIs into one usable interface. Using GraphQL, you can access multiple APIs in a single query. In this tab, you can configure your UDGs. You can learn more about Data Graph concepts and how to use them in Tyk, [here](/universal-data-graph/).
 
