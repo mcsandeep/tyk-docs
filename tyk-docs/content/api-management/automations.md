@@ -119,7 +119,7 @@ If you use Tyk Operator to manage your APIs, you should set up RBAC such that hu
 “GitOps” refers to the operating model of using Git as the “single source of truth” to drive continuous delivery for infrastructure and software through automated CI/CD workflow.
 
 ##### Tyk Operator in your GitOps workflow
-You can install Argo CD, Flux CD or the GitOps tool of your choice in a cluster, and connect it to the Git repository where you version control your API manifests. The tool can alert on any divergence between Git and what’s running on a cluster. If there’s a difference, Tyk Operator has a Kubernetes controller to automatically reconcile the API configurations on your Tyk Gateway or Tyk Dashboard. 
+You can install Argo CD, Flux CD or the GitOps tool of your choice in a cluster, and connect it to the Git repository where you version control your API manifests. The tool can synchronise changes from Git to your cluster. The API manifest updates in cluster would be detected by Tyk Operator, which has a Kubernetes controller to automatically reconcile the API configurations on your Tyk Gateway or Tyk Dashboard. 
 
 **Kubernetes-Native Developer Experience** 
 API Developers enjoy a smoother Continuous Integration process as they can develop, test, and deploy the microservices. API configurations together use familiar development toolings and pipeline.
