@@ -63,9 +63,6 @@ In this guide, we’ll walk through the primary tools for automating API managem
 
 * **Tyk Operator for Kubernetes**: Automate API deployments within Kubernetes environments.
 * **Tyk Sync**: Sync configurations across environments for consistent API management.
-* **Programmatic API Management**: Use Tyk’s APIs to automate tasks such as token management and policy updates.
-* **Multi-Environment Deployments**: Simplify deployments across various staging, testing, and production environments.
-
 
 ## Prerequisites
 
@@ -102,7 +99,7 @@ Using Tyk Operator within Kubernetes allows you to manage API lifecycles declara
 ### What is Tyk Operator?
 If you’re using Kubernetes, or if you’re building an API that operates within a Kubernetes environment, the Tyk Operator is a powerful tool for automating the API lifecycle.
 
-Tyk Operator integrates directly with Kubernetes, allowing you to define and manage APIs as code. This means you can deploy, update, and secure APIs using the same declarative configuration approach Kubernetes uses for other application components. 
+Tyk Operator is a native Kubernetes operator, allowing you to define and manage APIs as code. This means you can deploy, update, and secure APIs using the same declarative configuration approach Kubernetes uses for other application components. 
 
 {{< img src="/img/operator/tyk-operator.svg" alt="Tyk Operator" width="600" >}}
 
@@ -130,8 +127,8 @@ API Developers enjoy a smoother Continuous Integration process as they can devel
 **Reliability** 
 With declarative API configurations, you have a single source of truth to recover after any system failures, reducing the meantime to recovery from hours to minutes.
 
-##### Single source of Truth for API configurations
-Tyk Operator will reconcile any divergence between Git and the actual state in [Tyk Gateway](/tyk-oss-gateway/) or [Tyk Dashboard](/tyk-dashboard/). Therefore, you should maintain the API definition manifests as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
+##### Single Source of Truth for API Configurations
+Tyk Operator will reconcile any divergence between the Kubernetes desired state and the actual state in [Tyk Gateway](/tyk-oss-gateway/) or [Tyk Dashboard](/tyk-dashboard/). Therefore, you should maintain the API definition manifests in Kubernetes as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
 
 
 #### Custom Resources in Tyk
@@ -143,6 +140,8 @@ Tyk Operator manages multiple custom resources to help users create and maintain
 **TykOasApiDefinition**: Available from Tyk Operator v1.0. It represents a [Tyk OAS API configuration]({{<ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc">}}). Tyk OAS API is based on the OpenAPI specification (OAS) and is the recommended format for standard HTTP APIs. Tyk Operator supports all [Tyk OAS API feature]({{<ref "getting-started/using-oas-definitions/oas-reference">}}) as they become available on the Gateway.
 
 **ApiDefinition**: Available on all versions of Tyk Operator. It represents a [Tyk Classic API configuration]({{<ref "tyk-gateway-api/api-definition-objects">}}). Tyk Classic API is the traditional format used for defining all APIs in Tyk, and now the recommended format for non-HTTP APIs such as TCP, GraphQL, and Universal Data Graph (UDG). Tyk Operator supports the major features of Tyk Classic API and the feature support details can be tracked [here](#apidefinition-crd).
+
+**SecurityPolicy**: Available on all versions of Tyk Operator. It represents a [Tyk Security Policy configuration](security-policy-example). Security Policies in Tyk provide a way to define and enforce security controls, including authentication, authorization, and rate limiting for APIs managed in Tyk. Tyk Operator supports essential features of Security Policies, allowing users to centrally manage access control and security enforcement for all APIs across clusters.
 
 These custom resources enable users to leverage Kubernetes' declarative configuration management to define, modify, and version their APIs, seamlessly integrating with other Kubernetes-based workflows and tools.
 
@@ -288,7 +287,7 @@ To address this challenge, Tyk Operator allows you to directly reference certifi
 | Upstream mTLS | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-classic">}}) | ✅ [Upstream mTLS via Operator]({{<ref "basic-config-and-security/security/mutual-tls/upstream-mtls#tyk-operator-oas">}}) |
 
 
-##### Install and Configure Tyk Operator
+### Install and Configure Tyk Operator
 
 We assume you have already installed Tyk. If you don’t have it, check out [Tyk
 Cloud]({{<ref "/deployment-and-operations/tyk-cloud-platform/quick-start">}}) or [Tyk Self
@@ -990,347 +989,6 @@ curl -v "TYK_GATEWAY_URL/petstore/store/inventory"
 Replace TYK_GATEWAY_URL with a URL of Tyk Gateway.
 
 Request should fail with a `401 Unauthorized` response now as an API key is required for access. Your API has been secured by Tyk Gateway.
-
-#### Add a Security Policy to your OAS API
-To further protect access to your APIs, you will want to add a security policy. 
-Below, we take you through how to define the security policy but you can also find [Security Policy Example](#Security-Policy-Example) below.
-
-##### Define the Security Policy manifest
-
-To create a security policy, you must define a Kubernetes manifest using the `SecurityPolicy` CRD. The following example illustrates how to configure a default policy for trial users for a Tyk Classic API named `httpbin` and a Tyk OAS API named `petstore`.
-
-```yaml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: trial-policy                    # Unique Kubernetes name
-spec:
-  name: Default policy for trial users  # Descriptive name for the policy
-  state: active
-  active: true
-  access_rights_array:
-    - name: httpbin                     # Kubernetes name of referenced API
-      namespace: default                # Kubernetes namespace of referenced API
-      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
-      versions:
-        - Default                       # The default version of Tyk Classic API is "Default"
-    - name: petstore
-      namespace: default
-      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` if you are referencing Tyk OAS API
-      versions:
-        - ""                            # The default version of Tyk OAS API is ""
-  quota_max: 1000
-  quota_renewal_rate: 3600
-  rate: 120
-  per: 60
-  throttle_interval: -1
-  throttle_retry_limit: -1
-```
-
-Save the manifest locally in a file, e.g. `trial-policy.yaml`
-
-In this example, we have defined a security policy as described below:
-
-**Define Security Policy status and metadata**
-
-  - **`name`**: A descriptive name for the security policy.
-  - **`active`**: Marks the policy as active (true or false).
-  - **`state`**: The current state of the policy. It can have one of three values:
-    - **`active`**: Keys connected to this policy are enabled and new keys can be created.
-    - **`draft`**: Keys connected to this policy are disabled; no new keys can be created.
-    - **`deny`**: Policy is not published to Gateway; no keys can be created.
-  - **`tags`**: A list of tags to categorize or label the security policy, e.g.
-
-    ```yaml
-    tags:
-      - Hello
-      - World
-    ```
-
-  - **`meta_data`**: Key-value pairs for additional metadata related to the policy, e.g.
-
-    ```yaml
-    meta_data:
-      key: value
-      hello: world
-    ```
-
-**Define Access Lists for APIs**
-
-  - **`access_rights_array`**: Defines the list of APIs that the security policy applies to and the versions of those APIs.
-    - **`name`**: The Kubernetes metadata name of the API resource to which the policy grants access.
-    - **`namespace`**: The Kubernetes namespace where the API resource is deployed.
-    - **`kind`**: Both Tyk OAS APIs (`TykOasApiDefinition`) and Tyk Classic APIs (`ApiDefinition`) can be referenced here. The API format can be specified by `kind` field. If omitted, `ApiDefinition` is assumed.
-    - **`versions`**: Specifies the API versions the policy will cover. If the API is not versioned, include the default version here. The default version of a Classic API is "Default". The default version of an OAS API is "".
-
-In this example, the security policy will apply to an `ApiDefinition` resource named `httpbin` in the `default` namespace and a `TykOasApiDefinition` resource named `petstore` in the `default` namespace. Note that with Tyk Operator, you do not need to specify API ID as in the raw [Policy definition]({{<ref "basic-config-and-security/security/security-policies/policies-guide">}}). Tyk Operator will automatically retrieve the API ID of referenced API Definition resources for you.
-
-**Define Rate Limits, Usage Quota, and Throttling**
-
-- **`rate`**: The maximum number of requests allowed per time period (Set to `-1` to disable).
-- **`per`**: The time period (in seconds) for the rate limit (Set to `-1` to disable).
-- **`throttle_interval`**: The interval (in seconds) between each request retry  (Set to `-1` to disable).
-- **`throttle_retry_limit`**: The maximum number of retry attempts allowed  (Set to `-1` to disable).
-- **`quota_max`**: The maximum number of requests allowed over a quota period (Set to `-1` to disable).
-- **`quota_renewal_rate`**: The time, in seconds, after which the quota is renewed.
-
-In this example, trial users under this security policy can gain access to the `httpbin` API at a rate limit of maximum 120 times per 60 seconds (`"rate": 120, "per": 60`), with a usage quota of 1000 every hour (`"quota_max": 1000, "quota_renewal_rate": 3600`), without any request throttling (`throttle_interval: -1, throttle_retry_limit: -1`).
-
-##### Apply the Security Policy manifest
-Once you have defined your security policy manifest, apply it to your Kubernetes cluster using the `kubectl apply` command:
-
-```bash
-kubectl apply -f trial-policy.yaml
-```
-
-##### Verify the Security Policy
-
-After applying the manifest, you can verify that the security policy has been created successfully by running:
-
-```bash
-kubectl describe securitypolicy trial-policy
-
-...
-Status:
-  Latest CRD Spec Hash:  901732141095659136
-  Latest Tyk Spec Hash:  5475428707334545086
-  linked_apis:
-    Kind:       ApiDefinition
-    Name:       httpbin
-    Namespace:  default
-    Kind:       TykOasApiDefinition
-    Name:       petstore
-    Namespace:  default
-  pol_id:       66e9a27bfdd3040001af6246
-Events:         <none>
-```
-
-From the `status` field, you can see that this security policy has been linked to `httpbin` and `petstore` APIs.
-
-
-##### Security Policy Example
-###### Key-Level Per-API Rate Limits and Quota{#per-api-limit}
-
-By configuring per-API limits, you can set specific rate limits, quotas, and throttling rules for each API in the access rights array. When these per-API settings are enabled, the API inherits the global limit settings unless specific limits and quotas are set in the `limit` field for that API.
-
-The following manifest defines a security policy with per-API rate limits and quotas for two APIs: `httpbin` and `petstore`.
-
-```yaml {hl_lines=["15-21", "27-33", "40-41"],linenos=true}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: policy-per-api-limits
-spec:
-  name: Policy with Per API Limits
-  state: active
-  active: true
-  access_rights_array:
-    - name: httpbin                     # Kubernetes name of referenced API
-      namespace: default                # Kubernetes namespace of referenced API
-      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
-      versions:
-        - Default                       # The default version of Tyk Classic API is "Default"
-      limit:                            # APILimit stores quota and rate limit on ACL level
-        rate: 10                        # Max 10 requests per 60 seconds
-        per: 60                         # Time period for rate limit
-        quota_max: 100                  # Max 100 requests allowed over the quota period
-        quota_renewal_rate: 3600        # Quota renewal period in seconds (1 hour)
-        throttle_interval: -1           # No throttling between retries
-        throttle_retry_limit: -1        # No limit on request retries
-    - name: petstore
-      namespace: default
-      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
-      versions:
-        - ""                            # The default version of Tyk OAS API is ""
-      limit:
-        rate: 5                         # Max 5 requests per 60 seconds
-        per: 60                         # Time period for rate limit
-        quota_max: 100                  # Max 100 requests allowed over the quota period
-        quota_renewal_rate: 3600        # Quota renewal period in seconds (1 hour)
-        throttle_interval: -1           # No throttling between retries
-        throttle_retry_limit: -1        # No limit on request retries
-  rate: -1                              # Disable global rate limit
-  per: -1                               # Disable global rate limit period
-  throttle_interval: -1                 # Disable global throttling
-  throttle_retry_limit: -1              # Disable global retry limit
-  quota_max: -1                         # Disable global quota
-  quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
-```
-
-With this security policy applied:
-
-For the `httpbin` API:
-- The rate limit allows a maximum of 10 requests per 60 seconds.
-- The quota allows a maximum of 100 requests per hour (3600 seconds).
-- There is no throttling or retry limit (throttle_interval and throttle_retry_limit are set to -1).
-
-For the `petstore` API:
-- The rate limit allows a maximum of 5 requests per 60 seconds.
-- The quota allows a maximum of 100 requests per hour (3600 seconds).
-- There is no throttling or retry limit (throttle_interval and throttle_retry_limit are set to -1).
-
-Global Rate Limits and Quota:
-- All global limits (rate, quota, and throttling) are disabled (-1), so they do not apply.
-
-By setting per-API rate limits and quotas, you gain granular control over how each API is accessed and used, allowing you to apply different limits for different APIs as needed. This configuration is particularly useful when you want to ensure that critical APIs have stricter controls while allowing more flexibility for others. Use this example as a guideline to tailor your security policies to your specific requirements.
-
-**Key-Level Per-Endpoint Rate Limits{#per-endpoint-rate-limit}**
-
-By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
-
-The following manifest defines a security policy with per-endpoint rate limits for two APIs: `httpbin` and `petstore`.
-
-```yaml {hl_lines=["15-29", "35-49"],linenos=true}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: policy-per-api-limits
-spec:
-  name: Policy with Per API Limits
-  state: active
-  active: true
-  access_rights_array:
-    - name: httpbin                     # Kubernetes name of referenced API
-      namespace: default                # Kubernetes namespace of referenced API
-      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
-      versions:
-        - Default                       # The default version of Tyk Classic API is "Default"
-      endpoints:                        # Per-endpoint rate limits
-        - path: /anything
-          methods:
-            - name: POST
-              limit:
-                rate: 5
-                per: 60
-            - name: PUT
-              limit:
-                rate: 5
-                per: 60
-            - name: GET
-              limit:
-                rate: 10
-                per: 60
-    - name: petstore
-      namespace: default
-      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
-      versions:
-        - ""                            # The default version of Tyk OAS API is ""
-      endpoints:                        # Per-endpoint rate limits
-        - path: /pet
-          methods:
-            - name: POST
-              limit:
-                rate: 5
-                per: 60
-            - name: PUT
-              limit:
-                rate: 5
-                per: 60
-            - name: GET
-              limit:
-                rate: 10
-                per: 60
-  rate: -1                              # Disable global rate limit
-  per: -1                               # Disable global rate limit period
-  throttle_interval: -1                 # Disable global throttling
-  throttle_retry_limit: -1              # Disable global retry limit
-  quota_max: -1                         # Disable global quota
-  quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
-```
-
-**Path based permissions{#path-based-permissions}**
-
-You can secure your APIs by specifying [allowed URLs]({{<ref "security/security-policies/secure-apis-method-path">}}) (methods and paths) for each API within a security policy. This is done using the `allowed_urls` field under `access_rights_array`.
-
-The following manifest defines a security policy that allows access only to specific URLs and HTTP methods for two APIs: `httpbin`(a Tyk Classic API) and `petstore` (a Tyk OAS API).
-
-```yaml {hl_lines=["15-18", "24-28"],linenos=true}
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: policy-with-allowed-urls
-spec:
-  name: Policy with allowed URLs
-  state: active
-  active: true
-  access_rights_array:
-    - name: httpbin                     # Kubernetes name of referenced API
-      namespace: default                # Kubernetes namespace of referenced API
-      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
-      versions:
-        - Default                       # The default version of Tyk Classic API is "Default"
-      allowed_urls:                     # Define allowed paths and methods
-        - url: /get                     # Only allow access to the "/get" path
-          methods:
-            - GET                       # Only allow the GET method
-    - name: petstore
-      namespace: default
-      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
-      versions:
-        - ""                            # The default version of Tyk OAS API is ""
-      allowed_urls:                     # Define allowed paths and methods
-        - url: "/pet/(.*)"              # Allow access to any path starting with "/pet/"
-          methods:
-            - GET                       # Allow GET method
-            - POST                      # Allow POST method
-```
-
-With this security policy applied:
-
-- Allowed access:
-    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/petstore/pet/10` returns a `200 OK` response.
-    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/httpbin/get` returns a `200 OK` response.
-
-- Restricted access:
-    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/petstore/pet` returns a `403 Forbidden` response with the message:
-        
-    ```json
-        { "error": "Access to this resource has been disallowed" }
-    ```
-
-    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/httpbin/anything` returns a `403 Forbidden` response with the message:
-
-    ```json
-        { "error": "Access to this resource has been disallowed" }
-    ```
-
-**Partitioned policies{#partitioned-policies}**
-
-[Partitioned policies]({{<ref "basic-config-and-security/security/security-policies/partitioned-policies">}}) allow you to selectively enforce different segments of a security policy, such as quota, rate limiting, access control lists (ACL), and GraphQL complexity rules. This provides flexibility in applying different security controls as needed.
-
-To configure a partitioned policy, set the segments you want to enable in the `partitions` field:
-
-```yaml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: partitioned-policy-example
-spec:
-  name: Partitioned Policy Example
-  state: active
-  active: true
-  access_rights_array:
-    - name: httpbin                     # Kubernetes name of referenced API
-      namespace: default                # Kubernetes namespace of referenced API
-      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
-      versions:
-        - Default                       # The default version of Tyk Classic API is "Default"
-    - name: petstore
-      namespace: default
-      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` if you are referencing Tyk OAS API
-      versions:
-        - ""                            # The default version of Tyk OAS API is ""
-  partitions:
-    quota: false                        # Do not enforce quota rules
-    rate_limit: false                   # Do not enforce rate limiting rules
-    acl: true                           # Enforce access control rules
-    complexity: false                   # Do not enforce GraphQL complexity rules
-```
-
-- **`quota`**: Set to true to enforce quota rules (limits the number of requests allowed over a period).
-- **`rate_limit`**: Set to true to enforce rate limiting rules (limits the number of requests per second or minute).
-- **`acl`**: Set to true to enforce access control rules (controls which APIs or paths can be accessed).
-- **`complexity`**: Set to true to enforce GraphQL complexity rules (limits the complexity of GraphQL queries to prevent resource exhaustion).
 
 ### Set Up Tyk Classic API
 
@@ -2365,6 +2023,351 @@ spec:
       enabled: true
       path: /playground
 ```
+
+### Add a Security Policy to your API
+To further protect access to your APIs, you will want to add a security policy. 
+Below, we take you through how to define the security policy but you can also find [Security Policy Example](#Security-Policy-Example) below.
+
+##### Define the Security Policy manifest
+
+To create a security policy, you must define a Kubernetes manifest using the `SecurityPolicy` CRD. The following example illustrates how to configure a default policy for trial users for a Tyk Classic API named `httpbin` and a Tyk OAS API named `petstore`.
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: trial-policy                    # Unique Kubernetes name
+spec:
+  name: Default policy for trial users  # Descriptive name for the policy
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` if you are referencing Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+  quota_max: 1000
+  quota_renewal_rate: 3600
+  rate: 120
+  per: 60
+  throttle_interval: -1
+  throttle_retry_limit: -1
+```
+
+Save the manifest locally in a file, e.g. `trial-policy.yaml`
+
+In this example, we have defined a security policy as described below:
+
+**Define Security Policy status and metadata**
+
+  - **`name`**: A descriptive name for the security policy.
+  - **`active`**: Marks the policy as active (true or false).
+  - **`state`**: The current state of the policy. It can have one of three values:
+    - **`active`**: Keys connected to this policy are enabled and new keys can be created.
+    - **`draft`**: Keys connected to this policy are disabled; no new keys can be created.
+    - **`deny`**: Policy is not published to Gateway; no keys can be created.
+  - **`tags`**: A list of tags to categorize or label the security policy, e.g.
+
+    ```yaml
+    tags:
+      - Hello
+      - World
+    ```
+
+  - **`meta_data`**: Key-value pairs for additional metadata related to the policy, e.g.
+
+    ```yaml
+    meta_data:
+      key: value
+      hello: world
+    ```
+
+**Define Access Lists for APIs**
+
+  - **`access_rights_array`**: Defines the list of APIs that the security policy applies to and the versions of those APIs.
+    - **`name`**: The Kubernetes metadata name of the API resource to which the policy grants access.
+    - **`namespace`**: The Kubernetes namespace where the API resource is deployed.
+    - **`kind`**: Both Tyk OAS APIs (`TykOasApiDefinition`) and Tyk Classic APIs (`ApiDefinition`) can be referenced here. The API format can be specified by `kind` field. If omitted, `ApiDefinition` is assumed.
+    - **`versions`**: Specifies the API versions the policy will cover. If the API is not versioned, include the default version here. The default version of a Classic API is "Default". The default version of an OAS API is "".
+
+In this example, the security policy will apply to an `ApiDefinition` resource named `httpbin` in the `default` namespace and a `TykOasApiDefinition` resource named `petstore` in the `default` namespace. Note that with Tyk Operator, you do not need to specify API ID as in the raw [Policy definition]({{<ref "basic-config-and-security/security/security-policies/policies-guide">}}). Tyk Operator will automatically retrieve the API ID of referenced API Definition resources for you.
+
+**Define Rate Limits, Usage Quota, and Throttling**
+
+- **`rate`**: The maximum number of requests allowed per time period (Set to `-1` to disable).
+- **`per`**: The time period (in seconds) for the rate limit (Set to `-1` to disable).
+- **`throttle_interval`**: The interval (in seconds) between each request retry  (Set to `-1` to disable).
+- **`throttle_retry_limit`**: The maximum number of retry attempts allowed  (Set to `-1` to disable).
+- **`quota_max`**: The maximum number of requests allowed over a quota period (Set to `-1` to disable).
+- **`quota_renewal_rate`**: The time, in seconds, after which the quota is renewed.
+
+In this example, trial users under this security policy can gain access to the `httpbin` API at a rate limit of maximum 120 times per 60 seconds (`"rate": 120, "per": 60`), with a usage quota of 1000 every hour (`"quota_max": 1000, "quota_renewal_rate": 3600`), without any request throttling (`throttle_interval: -1, throttle_retry_limit: -1`).
+
+##### Apply the Security Policy manifest
+Once you have defined your security policy manifest, apply it to your Kubernetes cluster using the `kubectl apply` command:
+
+```bash
+kubectl apply -f trial-policy.yaml
+```
+
+##### Verify the Security Policy
+
+After applying the manifest, you can verify that the security policy has been created successfully by running:
+
+```bash
+kubectl describe securitypolicy trial-policy
+
+...
+Status:
+  Latest CRD Spec Hash:  901732141095659136
+  Latest Tyk Spec Hash:  5475428707334545086
+  linked_apis:
+    Kind:       ApiDefinition
+    Name:       httpbin
+    Namespace:  default
+    Kind:       TykOasApiDefinition
+    Name:       petstore
+    Namespace:  default
+  pol_id:       66e9a27bfdd3040001af6246
+Events:         <none>
+```
+
+From the `status` field, you can see that this security policy has been linked to `httpbin` and `petstore` APIs.
+
+
+##### Security Policy Example
+###### Key-Level Per-API Rate Limits and Quota{#per-api-limit}
+
+By configuring per-API limits, you can set specific rate limits, quotas, and throttling rules for each API in the access rights array. When these per-API settings are enabled, the API inherits the global limit settings unless specific limits and quotas are set in the `limit` field for that API.
+
+The following manifest defines a security policy with per-API rate limits and quotas for two APIs: `httpbin` and `petstore`.
+
+```yaml {hl_lines=["15-21", "27-33", "40-41"],linenos=true}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: policy-per-api-limits
+spec:
+  name: Policy with Per API Limits
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+      limit:                            # APILimit stores quota and rate limit on ACL level
+        rate: 10                        # Max 10 requests per 60 seconds
+        per: 60                         # Time period for rate limit
+        quota_max: 100                  # Max 100 requests allowed over the quota period
+        quota_renewal_rate: 3600        # Quota renewal period in seconds (1 hour)
+        throttle_interval: -1           # No throttling between retries
+        throttle_retry_limit: -1        # No limit on request retries
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+      limit:
+        rate: 5                         # Max 5 requests per 60 seconds
+        per: 60                         # Time period for rate limit
+        quota_max: 100                  # Max 100 requests allowed over the quota period
+        quota_renewal_rate: 3600        # Quota renewal period in seconds (1 hour)
+        throttle_interval: -1           # No throttling between retries
+        throttle_retry_limit: -1        # No limit on request retries
+  rate: -1                              # Disable global rate limit
+  per: -1                               # Disable global rate limit period
+  throttle_interval: -1                 # Disable global throttling
+  throttle_retry_limit: -1              # Disable global retry limit
+  quota_max: -1                         # Disable global quota
+  quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
+```
+
+With this security policy applied:
+
+For the `httpbin` API:
+- The rate limit allows a maximum of 10 requests per 60 seconds.
+- The quota allows a maximum of 100 requests per hour (3600 seconds).
+- There is no throttling or retry limit (throttle_interval and throttle_retry_limit are set to -1).
+
+For the `petstore` API:
+- The rate limit allows a maximum of 5 requests per 60 seconds.
+- The quota allows a maximum of 100 requests per hour (3600 seconds).
+- There is no throttling or retry limit (throttle_interval and throttle_retry_limit are set to -1).
+
+Global Rate Limits and Quota:
+- All global limits (rate, quota, and throttling) are disabled (-1), so they do not apply.
+
+By setting per-API rate limits and quotas, you gain granular control over how each API is accessed and used, allowing you to apply different limits for different APIs as needed. This configuration is particularly useful when you want to ensure that critical APIs have stricter controls while allowing more flexibility for others. Use this example as a guideline to tailor your security policies to your specific requirements.
+
+**Key-Level Per-Endpoint Rate Limits{#per-endpoint-rate-limit}**
+
+By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
+
+The following manifest defines a security policy with per-endpoint rate limits for two APIs: `httpbin` and `petstore`.
+
+```yaml {hl_lines=["15-29", "35-49"],linenos=true}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: policy-per-api-limits
+spec:
+  name: Policy with Per API Limits
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+      endpoints:                        # Per-endpoint rate limits
+        - path: /anything
+          methods:
+            - name: POST
+              limit:
+                rate: 5
+                per: 60
+            - name: PUT
+              limit:
+                rate: 5
+                per: 60
+            - name: GET
+              limit:
+                rate: 10
+                per: 60
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+      endpoints:                        # Per-endpoint rate limits
+        - path: /pet
+          methods:
+            - name: POST
+              limit:
+                rate: 5
+                per: 60
+            - name: PUT
+              limit:
+                rate: 5
+                per: 60
+            - name: GET
+              limit:
+                rate: 10
+                per: 60
+  rate: -1                              # Disable global rate limit
+  per: -1                               # Disable global rate limit period
+  throttle_interval: -1                 # Disable global throttling
+  throttle_retry_limit: -1              # Disable global retry limit
+  quota_max: -1                         # Disable global quota
+  quota_renewal_rate: 60                # Quota renewal rate in seconds (1 minute)
+```
+
+**Path based permissions{#path-based-permissions}**
+
+You can secure your APIs by specifying [allowed URLs]({{<ref "security/security-policies/secure-apis-method-path">}}) (methods and paths) for each API within a security policy. This is done using the `allowed_urls` field under `access_rights_array`.
+
+The following manifest defines a security policy that allows access only to specific URLs and HTTP methods for two APIs: `httpbin`(a Tyk Classic API) and `petstore` (a Tyk OAS API).
+
+```yaml {hl_lines=["15-18", "24-28"],linenos=true}
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: policy-with-allowed-urls
+spec:
+  name: Policy with allowed URLs
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+      allowed_urls:                     # Define allowed paths and methods
+        - url: /get                     # Only allow access to the "/get" path
+          methods:
+            - GET                       # Only allow the GET method
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` for Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+      allowed_urls:                     # Define allowed paths and methods
+        - url: "/pet/(.*)"              # Allow access to any path starting with "/pet/"
+          methods:
+            - GET                       # Allow GET method
+            - POST                      # Allow POST method
+```
+
+With this security policy applied:
+
+- Allowed access:
+    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/petstore/pet/10` returns a `200 OK` response.
+    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/httpbin/get` returns a `200 OK` response.
+
+- Restricted access:
+    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/petstore/pet` returns a `403 Forbidden` response with the message:
+        
+    ```json
+        { "error": "Access to this resource has been disallowed" }
+    ```
+
+    - `curl -H "Authorization: Bearer $KEY_AUTH" http://tyk-gw.org/httpbin/anything` returns a `403 Forbidden` response with the message:
+
+    ```json
+        { "error": "Access to this resource has been disallowed" }
+    ```
+
+**Partitioned policies{#partitioned-policies}**
+
+[Partitioned policies]({{<ref "basic-config-and-security/security/security-policies/partitioned-policies">}}) allow you to selectively enforce different segments of a security policy, such as quota, rate limiting, access control lists (ACL), and GraphQL complexity rules. This provides flexibility in applying different security controls as needed.
+
+To configure a partitioned policy, set the segments you want to enable in the `partitions` field:
+
+```yaml
+apiVersion: tyk.tyk.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: partitioned-policy-example
+spec:
+  name: Partitioned Policy Example
+  state: active
+  active: true
+  access_rights_array:
+    - name: httpbin                     # Kubernetes name of referenced API
+      namespace: default                # Kubernetes namespace of referenced API
+      kind: ApiDefinition               # `ApiDefinition` (Default) or `TykOasApiDefinition`
+      versions:
+        - Default                       # The default version of Tyk Classic API is "Default"
+    - name: petstore
+      namespace: default
+      kind: TykOasApiDefinition         # Use `TykOasApiDefinition` if you are referencing Tyk OAS API
+      versions:
+        - ""                            # The default version of Tyk OAS API is ""
+  partitions:
+    quota: false                        # Do not enforce quota rules
+    rate_limit: false                   # Do not enforce rate limiting rules
+    acl: true                           # Enforce access control rules
+    complexity: false                   # Do not enforce GraphQL complexity rules
+```
+
+- **`quota`**: Set to true to enforce quota rules (limits the number of requests allowed over a period).
+- **`rate_limit`**: Set to true to enforce rate limiting rules (limits the number of requests per second or minute).
+- **`acl`**: Set to true to enforce access control rules (controls which APIs or paths can be accessed).
+- **`complexity`**: Set to true to enforce GraphQL complexity rules (limits the complexity of GraphQL queries to prevent resource exhaustion).
+
+
+
+
 
 ### Publish Your API to Dev Portal
 For Tyk Self Managed or Tyk Cloud, you can set up a Developer Portal to expose a facade of your APIs and then allow third-party developers to register and use your APIs.
