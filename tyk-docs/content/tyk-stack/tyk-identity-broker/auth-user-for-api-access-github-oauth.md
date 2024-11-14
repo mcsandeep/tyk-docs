@@ -13,9 +13,10 @@ aliases:
 
 {{< youtube gqUaDM4aJTw >}}
 
-## JWE step-by-step guide
+## Implementing JWE with OIDC in Tyk Identity Broker: A Step-by-Step Guide
 
 ### Prerequisites
+- Tyk Identity Broker v1.6.1+ or Tyk Dashboard v5.7.0+ (JWE feature is available from these versions and in all subsequent releases).
 - An Identity Provider (IdP) that supports JSON Web Encryption (JWE)
 - A certificate with a private key for Tyk (used to decrypt the ID token)
 - A public key file for the IdP (used to encrypt the ID token)
