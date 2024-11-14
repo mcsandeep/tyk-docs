@@ -26,7 +26,7 @@ aliases:
 #### Step 1. Prepare encryption keys
 1.1. Load the certificate with the private key into Tyk:
    - For embedded TIB in Dashboard: Use Tyk Dashboard's certificate manager. In the next image you can see the module in dashboard that allows to upload certificates:
-     {{< img src="/img/dashboard/certificate-manager/index.png" alt="Certificate manager" >}}
+     {{< img src="/img/dashboard/certificate-manager/adding-certificate.gif" alt="Certificate manager" >}}
    - For standalone TIB: Store the certificate as a file accessible to Tyk
 1.2. Load the public key into your IdP for ID token encryption (process varies by IdP)
 
