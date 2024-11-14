@@ -19,7 +19,7 @@ Our minor releases are supported until our next minor comes out.
 
 ### Release Highlights
 
-Tyk Sync 2.1 has been updated to support API configurations from Tyk 5.7.0.
+Tyk Sync 2.0.1 has been updated to support API configurations from Tyk 5.7.0.
 
 Please refer to the [changelog]({{< ref "#Changelog-v2.0.1">}}) below for detailed explanation.
 
