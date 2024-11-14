@@ -43,6 +43,7 @@ aliases:
   - Add the following fields to the `ProviderConfig` section:
 
     ```json
+     ...
      "ProviderConfig": {
       "JWE": {
         "Enabled": true,
