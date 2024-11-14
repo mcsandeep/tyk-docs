@@ -107,9 +107,72 @@ Each change log item should be expandable. The first line summarises the changel
 <ul>
 <li>
 <details>
-<summary>Add changelog summary</summary>
+<summary>Implemented backend Telemetry tracking with configurable option</summary>
 
-Add changelog description
+Introduced backend telemetry tracking and added a new "disable_telemetry" field in the dashboard configuration, allowing users to enable or disable telemetry data collection.
+</details>
+</li>
+<li>
+<details>
+<summary>Added confirmation prompt for Stream deletion</summary>
+
+Introduced a confirmation prompt when deleting a stream, notifying users that this action will stop all data streaming and cannot be undone. This change ensures users are fully aware of the impact before proceeding with deletion.
+</details>
+</li>
+<li>
+<details>
+<summary>Implemented logic for config framework selection in Streaming API creation</summary>
+
+Added logic for the Streaming API creation process, allowing users to select config frameworks for inputs, processors, and outputs. An 'Advanced' option is also available, which leaves the code editor empty while generating and displaying the YAML Bento config based on the user's selections.
+</details>
+</li>
+<li>
+<details>
+<summary>Enhanced info messages for securing Streaming & Events APIs in Policies & Keys</summary>
+
+Included new info messages and tooltips in the Policies & Keys section to guide users on securing Streaming & Events APIs. Updated messaging clarifies the combination of API types and revised copy in the Global Rate Limiting and Quota sections to better explain usage limits for keys and plans.
+</details>
+</li>
+<li>
+<details>
+<summary>Integrated step-by-step UI for Config framework selection in Streaming API creation</summary>
+
+Developed a step-by-step UI for Streaming API creation, enabling users to select a config framework for inputs, processors, and outputs. The dynamic wizard steps are integrated into the Tyk UI library to prefill configurations based on selections and prevent the combination of 'Custom' with other frameworks.
+</details>
+</li>
+<li>
+<details>
+<summary>Enabled URL view and copy functionality in external playgrounds tab</summary>
+
+Enabled URL view and copy functionality in the External Playgrounds tab, supporting scenarios with multiple organisations and URLs for playgrounds.
+</details>
+</li>
+<li>
+<details>
+<summary>Introduced /streams endpoint to Dashboard API</summary>
+
+Rolled out the /streams endpoint to the Tyk Dashboard API, dedicated to creating Stream and Events APIs in Tyk Streams. Documentation for the endpoint and its methods is available in the Tyk Docs.
+</details>
+</li>
+<li>
+<details>
+<summary>Implemented HubSpot form for contacting Tyk during trial period</summary>
+
+Introduced a HubSpot form on the Tyk Dashboard, allowing users to easily contact Tyk support during their trial period.
+</details>
+</li>
+<li>
+<details>
+<summary>Split streaming API into new type in API designer</summary>
+
+Separated Streaming API into its own type in the API Designer, introducing a new selection card for easier creation and configuration. Navigation enhancements, including a shortcut menu item, provide quicker access to the streaming configuration UI.
+</details>
+</li>
+<li>
+<details>
+<summary>Displayed Streaming API in API overview table</summary>
+
+Added "Streams" as an API type in the API Overview table, making it easier for API developers to identify APIs categorised as Streams & Events.
 </details>
 </li>
 </ul>
@@ -127,16 +190,44 @@ Each change log item should be expandable. The first line summarises the changel
 <ul>
 <li>
 <details>
-<summary>Add changelog summary</summary>
+<summary>Removed AJV validation for Streams config editor</summary>
 
-Add changelog summary
+Eliminated AJV validation in the Streams Config Editor to prevent false positives on valid YAML configurations. The frontend now solely checks the YAML structure, providing users with greater flexibility without enforcing strict Bento-specific schema rules.
 </details>
 </li>
 <li>
 <details>
-<summary>Add changelog summary</summary>
+<summary>Hid unnecessary field from API Designer page for Streams</summary>
 
-Add changelog summary
+Removed an unnecessary field from the API Designer page under the Streams section to enhance clarity. This update impacts the Event Handlers, Detailed Activity Logs, Caching, and Endpoints tabs.
+</details>
+</li>
+<li>
+<details>
+<summary>Displayed path parameters in UI for request validation during Import/Patch</summary>
+
+Path-level parameters are now displayed in the UI for the validate request middleware during import or patch. This update allows the middleware to be applied with just the defined path-level parameters.
+</details>
+</li>
+<li>
+<details>
+<summary>Deprecated SQLite Support from Dashboard for RHEL8 Compatibility</summary>
+
+Removed SQLite support to enhance portability and security, ensuring the released binary can now be built statically and no longer relies on system libraries. This change supports continued compatibility with RHEL8.
+</details>
+</li>
+<li>
+<details>
+<summary>Deprecated External OAuth and OpenID Connect options in Dashboard</summary>
+
+The External OAuth and OpenID Connect authentication options have been deprecated in the Tyk Dashboard. Users are advised to utilize JWT Auth with external IDPs for a more complete integration, while existing functionality remains operational to avoid breaking changes.
+</details>
+</li>
+<li>
+<details>
+<summary>Updated NPM dependencies for Tyk-Analytics-UI</summary>
+
+Updated the NPM dependencies for the Dashboard UI to ensure compatibility 
 </details>
 </li>
 </ul>
@@ -151,16 +242,30 @@ Each change log item should be expandable. The first line summarises the changel
 <ul>
 <li>
 <details>
-<summary>Add changelog summary</summary>
+<summary>Fixed navigation issue with "Back to APIs Page" Button on Streams API page</summary>
 
-Add changelog description
+Resolved an issue where the "Back to APIs Page" button was unresponsive on the Streams API page. The button now correctly redirects users to the main APIs page for all API types.
 </details>
 </li>
 <li>
 <details>
-<summary>Add changelog summary</summary>
+<summary>Resolved search box limitation on Tyk OAS and Streams API pages</summary>
 
-Add changelog description
+Corrected an issue where the search box on the Tyk OAS and Streams API pages only accepted a single character. Users can now input complete search terms, allowing for more accurate searches.
+</details>
+</li>
+<li>
+<details>
+<summary>Fixed request validation for Path Parameters During Import/Patch</summary>
+
+Resolved a bug where enabling validate request middleware during import/patch OAS requests did not trigger validation when only common parameters were specified. Now, path parameters are properly validated during these operations.
+</details>
+</li>
+<li>
+<details>
+<summary>User group dropdown limitations in Dashboard</summary>
+
+Fixed an issue with the user group dropdown in the Dashboard, ensuring that all available user groups are displayed when creating a new user.
 </details>
 </li>
 </ul>
