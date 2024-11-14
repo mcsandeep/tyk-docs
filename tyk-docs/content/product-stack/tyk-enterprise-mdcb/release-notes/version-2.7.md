@@ -1,7 +1,7 @@
 ---
 title: Tyk MDCB v2.7 Release Notes
 description: "Tyk Multi Data-Center Bridge v2.7 release notes"
-tags: ["release notes", "MDCB", "Tyk Multi Data-Center", "Tyk Multi Data-Center", "v2.7", "2.7"]
+tags: ["release notes", "MDCB", "Tyk Multi Data-Center", "Tyk Multi Data-Center", "v2.7", "2.7.0", "2.7.1", "2.7.2"]
 ---
 
 Licensed Protected Product
@@ -10,6 +10,65 @@ Licensed Protected Product
 
 ## Support Lifetime
 Our minor releases are supported until our next minor comes out.
+
+## 2.7.2 Release Notes
+
+##### Release date DD Mon YYYY <<update>>
+
+#### Breaking Changes
+This release has no breaking changes.
+
+#### 3rd Party Dependencies & Tools
+| Third Party Dependency                                     | Tested Versions        | Compatible Versions    | Comments | 
+| ---------------------------------------------------------- | ---------------------- | ---------------------- | -------- | 
+| [Redis](https://redis.io/download/)  | 6.2.x, 7.x  | 6.2.x, 7.x  | Used by MDCB | 
+| [MongoDB](https://www.mongodb.com/try/download/community)  | 5.0.x, 6.0.x, 7.0.x | 4.4.x, 5.0.x, 6.0.x, 7.0.x | Used by MDCB | 
+| [PostgreSQL](https://www.postgresql.org/download/)         | 12.x - 16.x LTS        | 12.x - 16.x            | Used by MDCB | 
+
+Given the time difference between your upgrade and the release of this version, we recommend customers verify the ongoing support of third-party dependencies they install, as their status may have changed since the release.
+
+#### Deprecations
+There are no deprecations in this release.
+
+#### Release Highlights
+
+#### Support Tyk 5.7
+Tyk MDCB 2.7.2 has been updated to support API configurations from Tyk 5.7.0.
+
+#### Downloads
+- [Docker image v2.7.2](https://hub.docker.com/r/tykio/tyk-mdcb-docker/tags?page=&page_size=&ordering=&name=v2.7.2)
+- ```bash
+  docker pull tykio/tyk-mdcb-docker:v2.7.2
+  ```
+
+
+### Changelog {#Changelog-v2.7.2}
+
+#### Updated
+<ul>
+ 
+ <li>
+ <details>
+ <summary>Update for compatibility with API definitions for Tyk v5.7</summary>
+
+MDCB 2.7.2 supports Tyk API definitions up to Tyk Gateway v5.7.0. Please use MDCB 2.7.2+ with Tyk Gateway v5.7.0+.
+ </details>
+ </li>
+ </ul>
+
+#### Security Fixes
+<ul>
+ 
+ <li>
+ <details>
+ <summary>Fixed the following CVEs:</summary>
+
+- [CVE-2024-27304](https://nvd.nist.gov/vuln/detail/CVE-2024-27304)
+ </details>
+ </li>
+ </ul>
+
+---
 
 ## 2.7.1 Release Notes
 
