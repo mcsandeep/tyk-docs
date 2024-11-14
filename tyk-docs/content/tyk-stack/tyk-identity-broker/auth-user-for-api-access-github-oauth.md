@@ -25,7 +25,8 @@ aliases:
 
 #### Step 1. Prepare encryption keys
 1.1. Load the certificate with the private key into Tyk:
-   - For embedded TIB in Dashboard: Use Tyk Dashboard's certificate manager
+   - For embedded TIB in Dashboard: Use Tyk Dashboard's certificate manager. In the next image you can see the module in dashboard that allows to upload certificates:
+     {{< img src="/img/dashboard/certificate-manager/index.png" alt="Certificate manager" >}}
    - For standalone TIB: Store the certificate as a file accessible to Tyk
 1.2. Load the public key into your IdP for ID token encryption (process varies by IdP)
 
@@ -37,6 +38,8 @@ aliases:
   - Select Social > OIDC as the provider
   - Enter the client key and client secret from the IdP
   - Copy the callback URL from TIB and add it to the IdP client's allowed redirect URLs
+
+{{< img src="/img/tib/profiles/tib-profile-creation.gif" alt="Profile creation" >}}
 3.2. Test the basic SSO flow to ensure it's working correctly
 
 #### Step 4. Enable JWE
