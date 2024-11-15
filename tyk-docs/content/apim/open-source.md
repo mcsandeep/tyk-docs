@@ -11,7 +11,7 @@ aliases:
   - /apim/open-source/getting-started/
 ---
 
-
+To Get started, simply install [Tyk Open Source]({{< ref "apim/open-source/installation/#other-tyk-open-source-components" >}}), and then create your first API!
 
 Open source is at the heart of what we do. Anything that is API Gateway-related, lives in the Gateway, or is critical for the Gateway to work is open and freely available via our [Github](https://github.com/TykTechnologies/).
 
