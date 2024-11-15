@@ -4114,7 +4114,7 @@ menu:
             category: Page
             show: True
           - title: "Configure Streams API using dashboard"
-            path: /product-stack/tyk-streaming/streams-ui
+            path: /product-stack/tyk-streaming/streams-configuration-using-ui
             category: Page
             show: True
           - title: "Quick Start"
