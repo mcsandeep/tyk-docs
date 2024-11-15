@@ -219,12 +219,14 @@ Support for adding sidecar containers for Tyk components, enhancing flexibility 
 <details>
 <summary>Updated default versions of Tyk components</summary>
 Tyk Charts 2.1 will install the following Tyk component versions by default.
-- Tyk Gateway v5.3.8
-- Tyk Dashboard v5.3.8
-- Tyk Pump v1.11.1
-- Tyk MDCB v2.7.2
-- Tyk Developer Portal v1.12.0
-- Tyk Operator v1.1.0
+ <ul>
+  <li>- Tyk Gateway v5.3.8</li>
+  <li>- Tyk Dashboard v5.3.8</li>
+  <li>- Tyk Pump v1.11.1</li>
+  <li>- Tyk MDCB v2.7.2</li>
+  <li>- Tyk Developer Portal v1.12.0</li>
+  <li>- Tyk Operator v1.1.0</li>
+ </ul>
 </details>
 </li>
 
