@@ -1,5 +1,5 @@
 ---
-title: Tyk Streams
+title: Configure Streams API using dashboard
 description: Guide to creating a streaming api using dashboard
 tags: [ "streaming", "events", "event-driven architecture", "event-driven architectures", "kafka" ]
 publishdate: 2024-11-15
