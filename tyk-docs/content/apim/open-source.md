@@ -30,4 +30,4 @@ Please show your support for the Gateway by clicking the GitHub link, then addin
 
 ## Get Started
 
-To Get started, simply install [Tyk Open Source]({{< ref "apim/open-source/installation" >}}), and then create your first API!
+To Get started, simply install [Tyk Open Source]({{< ref "apim/open-source/installation#test-anchor-validation" >}}), and then create your first API!
