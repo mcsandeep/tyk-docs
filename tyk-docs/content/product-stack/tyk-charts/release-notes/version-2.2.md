@@ -22,7 +22,11 @@ Our minor releases are supported until our next minor comes out.
 ### Release Highlights
 <!-- Required. Use similar ToV to previous release notes. For example for a patch release: -->
 
-// Added the ability to specify a static IP for Kubernetes LoadBalancer services, giving users more control over network configurations for the Tyk Gateway and Dashboard. Added an option to configure the Dashboard container port, addressing issues with restricted port permissions. // Updated the default versions of Tyk components.
+The Tyk Helm Charts v2.2.0 release brings exciting new features, improvements, and crucial fixes to enhance deployment flexibility, customization, and reliability. Here are the highlights:
+* Sidecar containers support
+* Dashboard enhancements: Configurable audit log storage, Open Policy Agent (OPA) settings
+* Gateway enhancements: Custom liveness and readiness probes, enhanced logging configuration, customizable HPA behavior
+* Operator updates: Custom deployment annotations, 
 
 For a comprehensive list of changes, please refer to the detailed [changelog](#Changelog-v2.2.0) below.
 
