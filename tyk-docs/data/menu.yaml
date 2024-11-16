@@ -14,6 +14,10 @@ menu:
         path: /apim
         category: Page
         show: True
+        - title: "Migration To Tyk"
+        path: /migration-to-tyk
+        category: Page
+        show: True
       - title: "Open Source API Gateway"
         category: Directory
         show: True
