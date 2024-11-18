@@ -4121,7 +4121,7 @@ Or go to [Tyk Stack helm chart]({{<ref "product-stack/tyk-charts/tyk-stack-chart
 
 #### Tyk Operator and Ingress 
 For a GitOps workflow used with a **Tyk Self-Managed** installation or setting the Tyk Gateway as a Kubernetes ingress controller, Tyk Operator enables you to manage API definitions, security policies and other Tyk features using Kubernetes manifest files.
-To get started go to [Tyk Operator]({{< ref "/api-management/automations#automate-api-management-in-kubernetes-environments" >}}).
+To get started go to [Tyk Operator]({{< ref "/tyk-operator#what-is-tyk-operator?" >}}).
 
 
 #### Install Tyk Stack with Helm Chart (PostgreSQL)
