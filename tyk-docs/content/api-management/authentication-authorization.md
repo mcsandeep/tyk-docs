@@ -721,7 +721,7 @@ With Basic Authentication, the authentication credentials are transferred from c
 
 ##### Protect your API with Basic Authentication
 
-Authentication type is configured within your API Definition; this can be done via the [Tyk Dashboard](#enable-basic-authentication-using-the-tyk-dashboard) or directly within the [API Definition file](#enable-basic-authentication-in-your-file-based-api-definition").
+Authentication type is configured within your API Definition; this can be done via the [Tyk Dashboard](#enable-basic-authentication-using-the-tyk-dashboard) or directly within the [API Definition file](#enable-basic-authentication-in-your-file-based-api-definition).
 
 
 #### Enable Basic Auth
@@ -1118,7 +1118,7 @@ See the example introspection cache configuration:
 ### Authenticate Using Go Plugins
 
 Go Plugin Authentication allows you to implement custom authentication logic using the Go programming language. This method is useful for scenarios where you need to implement specialized authentication mechanisms that are not natively supported by Tyk.
-To learn more about using Tyk Golang Plugins, go [here](/plugins/supported-languages/golang#authentication-with-a-golang-plugin)
+To learn more about using Tyk Golang Plugins, go [here](/plugins/supported-languages/golang/#authentication-with-a-golang-plugin)
 
 
 ### Sign Requests with HMAC
