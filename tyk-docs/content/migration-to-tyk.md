@@ -746,13 +746,6 @@ For example:
 **Optional - Tyk Ingress**
 To set up an ingress for your Tyk Gateways see our [Tyk Operator GitHub repository](https://github.com/TykTechnologies/tyk-operator).
 
-**Next Steps**
-Follow the Tutorials on the Open Source tabs for the following:
-
-1. [Add an API]({{< ref "getting-started/create-api.md" >}})
-2. [Create a Security Policy]({{< ref "getting-started/create-security-policy.md" >}})
-3. [Create an API Key]({{< ref "getting-started/create-api-key.md" >}})
-
 
 ### Automate with Ansible
 
@@ -1501,20 +1494,20 @@ Do you want to contribute to or run the product from source?
 Visit our [GitHub repo](https://github.com/TykTechnologies/tyk) for more details:
 
 
-# Transition to Tyk Cloud
+## Transition to Tyk Cloud
 
 This page explains what Tyk Cloud is and how the Tyk SaaS solution makes it easy for you to optimize your platforms in just a few clicks, so that you can manage your APIs seamlessly.  
 
 {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="Cloud free trial" >}}
 
 
-## Understand Tyk Cloud
+### Understand Tyk Cloud
 
-### What is Tyk Cloud?
+#### What is Tyk Cloud?
 
 Tyk Cloud is a full SaaS service that enables you to run and operate Tyk using your chosen cloud provider, in whichever region you like. This powerful solution includes use of the Tyk API Gateway, Tyk Dashboard, Tyk Developer Portal, Universal Data Graph and more. All without having to manage an infrastructure.
 
-### Where is Tyk Cloud hosted?
+#### Where is Tyk Cloud hosted?
 
 Tyk Cloud is currently available to auto-deploy on AWS.
 Paid plans and Enterprise trials allow users to select one of 6 AWS locations as their home region as well as the locations of their Cloud Data Planes. The 6 AWS regions to choose from are:
@@ -1526,15 +1519,15 @@ Paid plans and Enterprise trials allow users to select one of 6 AWS locations as
 - aws-ap-southeast-2, Australia
 
 
-## Why Tyk Cloud?
+### Why Tyk Cloud?
 
-### Next Level SaaS
+#### Next Level SaaS
 
 Tyk is cloud native and has always been a true multi-cloud product and now we’re taking it to the next level with our next level SaaS platform, Tyk Cloud.
 
 Now you don’t need to worry about vendor lock-in, or complex deployments, you can benefit from being able to optimize your platforms across and between a myriad of providers such as AWS, Google Cloud etc.
 
-### Quick deployments Wherever you need them
+#### Quick deployments Wherever you need them
 
 Want to handle Govt API traffic in Singapore? With just a few clicks your data and Tyk Gateways are live and secured in the AWS Gov cloud. Want to add local Gateways in Australia to improve performance and resilience? It’s just a click away. Want to deploy your management layer to your own hosted servers rather than a cloud provider? We make it simple.
 
@@ -1542,14 +1535,14 @@ The new Tyk Cloud platform allows you to quickly setup the full Tyk Enterprise A
 
 Seamlessly wire your environments between cloud providers, and your own infrastructure, anywhere in the world at the click of a button, not only eliminating lock-in but making it possible to expand your platform to cater for the changing needs of your clients.
 
-### Designed for Enterprises
+#### Designed for Enterprises
 
 Tyk Cloud is designed for Enterprises who may have multi-organizations and multi-teams, so you can combine or isolate your platform and the underlying providers, the choice is completely yours!
 
 To make it even simpler, Tyk Cloud is pre-configured so you can be up and running within a few clicks, no laborious tasks for your internal teams and best practice configuration and security is delivered out of the box.
 
 
-## Start a Free Trial
+### Start a Free Trial
 
 {{< note trial >}}
 **Note**
@@ -1567,7 +1560,7 @@ This guide will lead you through the following steps:
 
 No installation required!
 
-### Step 1: Sign Up for Tyk Cloud
+#### Step 1: Sign Up for Tyk Cloud
 
 To begin your Tyk Cloud journey, follow these simple steps to sign up for an account:
 
@@ -1579,7 +1572,7 @@ To begin your Tyk Cloud journey, follow these simple steps to sign up for an acc
 
 All the necessary infrastructure has been reserved for you for the next 48 hours, and you can now access the Tyk Dashboard to start creating your first API.
 
-### Step 2: Get started with your first API with Tyk Dashboard
+#### Step 2: Get started with your first API with Tyk Dashboard
 
 * Click on "Add API" to access the Tyk Dashboard directly. If you closed your window in the meantime, simply log in to your Tyk Cloud account and you will be redirected to the Tyk Dashboard.
 
@@ -1614,11 +1607,11 @@ All the necessary infrastructure has been reserved for you for the next 48 hours
 
 * Click "Save" to create your API. Congratulations! You've just set up your first API.
 
-### Step 3: Set up a Policy and Key
+#### Step 3: Set up a Policy and Key
 
 In this step, we will guide you through the process of creating a policy and key system to secure your APIs.
 
-#### Create a Policy:
+##### Create a Policy:
 
 * Click on "Policies" under the "API Security" section on the left-hand side.
 * Click on the button "ADD POLICY".
@@ -1634,7 +1627,7 @@ In this step, we will guide you through the process of creating a policy and key
 * Click on the button "Create Policy".
 {{< img src="/img/cloud/tyk-cloud-policy-configurations.png" alt="Policy configuration" >}}
 
-#### Create a Key:
+##### Create a Key:
 
 * Click on "Keys" under the "API Security" section on the left-hand side.
 * Click on the button "ADD KEY".
@@ -1658,9 +1651,9 @@ Congratulations! Your key has now been created!
 
 Now that your API is created, you can explore and manage it through the Tyk Dashboard.
 
-### Step 4: Send a test API request to the secured endpoint
+#### Step 4: Send a test API request to the secured endpoint
 
-#### Postman
+##### Postman
 
 After creating a Policy and a Key, proceed to "Postman" to test and interact with the API you've just created.
 
@@ -1690,7 +1683,7 @@ After creating a Policy and a Key, proceed to "Postman" to test and interact wit
 
 {{< img src="/img/cloud/tyk-cloud-postman-authorization.png" alt="Key section" >}}
 
-#### Curl
+##### Curl
 
 To test and interact with the API, you can also use the curl command:
 
@@ -1707,11 +1700,11 @@ mEyNTVkNzIxM2NkIiwiaCI6Im11cm11cjEyOCJ9"'
 
 {{< img src="/img/cloud/tyk-cloud-cmd-example.png" alt="Key section" >}}
 
-## Import Existing APIs
+### Import Existing APIs
 
 Tyk supports importing both API Blueprint and Swagger (OpenAPI) JSON definitions from either the Gateway or the Dashboard. Tyk will output the converted file to to `stdout`. Below are the commands you can use to get Tyk to switch to command mode and generate the respective API definitions for both API Blueprint and Swagger files.
 
-### API Blueprint is being deprecated
+#### API Blueprint is being deprecated
 
 Our support for API Blueprint is being deprecated. We have been packaging [aglio](https://github.com/danielgtaylor/aglio) in our Docker images for the Dashboard which enables rendering API Blueprint Format in the portal. This module is no longer maintained and is not compatible with newer NodeJS. If you wish to continue using this feature, you can do so by installing the module yourself in your Dockerfile. The imapct of this change is that our Docker images will no longer contain this functionality.
 
@@ -1720,9 +1713,9 @@ As a work around, you can do the following:
 * Create API Blueprint in JSON format using the Apiary [Drafter](https://github.com/apiaryio/drafter) tool
 * Convert API Blueprint to OpenAPI (Swagger) using the Apiary [API Elements CLI](https://github.com/apiaryio/api-elements.js/tree/master/packages/cli) tool.
 
-### Import APIs via the Gateway
+#### Import APIs via the Gateway
 
-#### Using API Blueprint
+##### Using API Blueprint
 
 {{< note success >}}
 **Note**  
@@ -1740,7 +1733,7 @@ All imported Blueprints must be in the JSON representation of Blueprint's markdo
 
 Tyk outputs all new API definitions to `stdout`, so redirecting the output to a file is advised in order to generate new definitions to use in a real configuration.
 
-##### Importing a Blueprint as a new API:
+**Importing a Blueprint as a new API:**
 
 Create a new definition from the Blueprint:
 
@@ -1748,7 +1741,7 @@ Create a new definition from the Blueprint:
 ./tyk --import-blueprint=blueprint.json --create-api --org-id=<id> --upstream-target="http://widgets.com/api/"
 ```
 
-##### Importing a definition as a version in an existing API:
+**Importing a definition as a version in an existing API:**
 
 Add a version to a definition:
 
@@ -1756,15 +1749,15 @@ Add a version to a definition:
 ./tyk --import-blueprint=blueprint.json --for-api=<path> --as-version="version_number"
 ```
 
-##### Creating your API versions as a mock
+**Creating your API versions as a mock**
 
 As the API Blueprint definition allows for example responses to be embedded, these examples can be imported as forced replies, in effect mocking out the API. To enable this mode, when generating a new API or importing as a version, simply add the `--as-mock` parameter.
 
-#### Using Swagger (OpenAPI)
+##### Using Swagger (OpenAPI)
 
 Tyk supports importing Swagger documents to create API definitions and API versions. Swagger imports do not support mocking though, so sample data and replies will need to be added manually later.
 
-##### Importing a Swagger document as a new API
+**Importing a Swagger document as a new API**
 
 Create a new definition from Swagger:
 
@@ -1778,7 +1771,7 @@ When creating a new definition from an OAS 3.0 spec, you will have to manually a
 {{< /note >}}
 
 
-##### Importing a Swagger document as a version into an existing API
+**Importing a Swagger document as a version into an existing API**
 
 Add a version to a definition:
 
@@ -1786,7 +1779,7 @@ Add a version to a definition:
 ./tyk --import-swagger=petstore.json --for-api=<path> --as-version="version_number"
 ```
 
-##### Mocks
+**Mocks**
 
 Tyk supports API mocking using our versioning `use_extended_paths` setup, adding mocked URL data to one of the three list types (white_list, black_list or ignored). In order to handle a mocked path, use an entry that has `action` set to `reply`:
 
@@ -1810,17 +1803,17 @@ Tyk supports API mocking using our versioning `use_extended_paths` setup, adding
 
 See [Versioning]({{< ref "getting-started/key-concepts/versioning" >}}) for more details.
 
-### Import APIs via the Dashboard API
+#### Import APIs via the Dashboard API
 
 {{% include "import-api-include" %}}
 
-### Import APIs via the Dashboard UI
+#### Import APIs via the Dashboard UI
 
-#### Step 1: Select "APIs" from the "System Management" section
+##### Step 1: Select "APIs" from the "System Management" section
 
 {{< img src="/img/2.10/apis_menu.png" alt="API listing" >}}
 
-#### Step 2: Click "IMPORT API"
+##### Step 2: Click "IMPORT API"
 
 {{< img src="/img/2.10/import_api_button.png" alt="Add API button location" >}}
 
@@ -1843,7 +1836,7 @@ For WSDL:
 
 {{< img src="/img/2.10/import_api_wsdl.png" alt="Import WSDL" >}}
 
-#### Step 3: Enter API Information
+##### Step 3: Enter API Information
 
 You need to enter the following information:
 
@@ -1852,11 +1845,11 @@ You need to enter the following information:
 * An optional **Service Name** and **Port** (WSDL only)
 * Copy code into the editor
 
-#### Step 4: Click "Generate API"
+##### Step 4: Click "Generate API"
 
 Your API will appear in your APIs list. If you select **EDIT** from the **ACTIONS** drop-down list, you can see the endpoints (from the [Endpoint Designer](https://tyk.io/docs/transform-traffic/endpoint-designer/)) that have been created as part of the import process.
 
-### Creating a new API Version by importing an API Definition using Tyk Dashboard
+#### Creating a new API Version by importing an API Definition using Tyk Dashboard
 
 As well as importing new APIs, with Tyk, you can also use import to create a new version of an existing Tyk Classic API.
 
@@ -1881,7 +1874,7 @@ As well as importing new APIs, with Tyk, you can also use import to create a new
 {{< img src="/img/oas/version-endpoints.png" alt="Version Endpoints" >}}
 
 
-## Begin with Tyk Cloud
+### Begin with Tyk Cloud
 
 This section walks you through how to start using Tyk Cloud, creating organization, environment and users before creating an API. If you are in a hurry, try the [Quick Start guide]({{< ref "../deployment-and-operations/tyk-cloud-platform/quick-start.md" >}}) for a 5 min version of this tutorial. 
 
@@ -1895,13 +1888,13 @@ At the end of this process you will have a simple API set up via a Tyk Dashboard
 
 Depending on your initial requirements in terms of Environments, Teams and Users, the setup process should take between 15 to 30 minutes.
 
-### Hierarchy
+#### Hierarchy
 
 This diagram shows how _Organization, Teams, Environments, Control Planes and Cloud Data Planes_ fit in with each other and which object contains which:
 
 {{< img src="/img/cloud/Onboarding_Diagram_2-1_Ara.png" alt="Hierarchy of Organization, Teams, Environments, Control Planes and Cloud Data Planes" >}}
 
-### Prerequisites
+#### Prerequisites
 
 The following information would be useful so you can set up Tyk Cloud as quickly as possible:
 
@@ -1909,21 +1902,21 @@ The following information would be useful so you can set up Tyk Cloud as quickly
 * We have some specific terminology used within Tyk Cloud. It would be useful to checkout our [Glossary]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md" >}}) so you understand what we are referring to.
 
 
-## Complete Cloud Setup Tasks
+### Complete Cloud Setup Tasks
 
 
-### Create an Account
+#### Create an Account
 
 You can use Tyk Cloud to manage your APIs effectively and with minimal effort. This page explains how to create an account, in order to start doing so.
 
-#### What happens when you create your Tyk Cloud account?
+##### What happens when you create your Tyk Cloud account?
 
 When you create your Tyk Cloud account, we do the following for you:
 
 * Assign the account creator as a [Billing admin]({{< ref "tyk-cloud/teams-&-users/user-roles.md" >}}) for the Organization. This user role allows you to manage the billing and plans for your org. You can also add other billing admins as required.
 * Assign the new account to our [48 hours free trial plan](https://tyk.io/sign-up/#cloud)
 
-#### Creating your first account
+##### Creating your first account
 
 [Start here](https://tyk.io/sign-up/#cloud).
 
@@ -1934,16 +1927,16 @@ When you create your Tyk Cloud account, we do the following for you:
 * After completing the Account Creation form, click **Start Organization Setup**.
 
 
-### Set Up Your Organisation
+#### Set Up Your Organisation
 
 Now that you have created the new Tyk Cloud account with your basic details, it is time to set up your organization. This page will tell you how to set up your organization and also about the two ways of setting it up.
 
-#### What is an organization?
+##### What is an organization?
 
 * An organization is the main entity for all your data (Environments, APIs, Users, etc)
 * An Organization is connected to a single region and once connected, cannot be changed.
   
-#### Steps to set up your organization  
+##### Steps to set up your organization  
 
 * **Step 1 - Name your Organization:** Give your organization a name. This is up to you, but most users use their company name.
 
@@ -1955,15 +1948,15 @@ Now that you have created the new Tyk Cloud account with your basic details, it 
 Tyk Cloud can currently be deployed across 2 AWS regions in the USA plus UK, Germany and Singapore. If you have any concerns about Brexit impacting the way you store data you should read [AWS regularly updated Brexit statement](https://aws.amazon.com/compliance/gdpr-center/brexit/).
 {{< /note >}}
 
-#### Types of Setups
+##### Types of Setups
 
 You can now select how to configure your deployment.
 
-##### Option 1: Demo Setup
+**Option 1: Demo Setup**
 
 Our demo setup will quickly configure your first deployment setup automatically, creating your first team, Cloud Control Plane and Cloud Data Plane.
 
-##### Option 2: Manual Setup
+**Option 2: Manual Setup**
 
 This setup option gives you full control on creating the following:
 
@@ -1973,16 +1966,16 @@ This setup option gives you full control on creating the following:
 
 For a manual setup you'll get started by [setting up your first team]({{< ref "/tyk-cloud/getting-started-tyk-cloud/setup-team.md" >}}).
 
-### Create Your First Team
+#### Create Your First Team
 
 Following organization setup, you will have to set up your team(s) on Tyk Cloud. This page will tell you all about the process.
 
-#### What is a team?
+##### What is a team?
 
 * A team is a sub-grouping inside an organization. 
 * Inside a team, you can define users(team members) and roles(permissions that can be applied to a user or a team of users).
 
-#### Steps to set up your team
+##### Steps to set up your team
 
 After creating your Organization you'll land on the success screen. Click **Get Started**.
 
@@ -1990,7 +1983,7 @@ After creating your Organization you'll land on the success screen. Click **Get 
 
 * **Step Two - Invite your Users:** Invite your [users]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#user" >}}) to your team. You'll only need their email address and which of the available [roles]({{< ref "tyk-cloud/troubleshooting-&-support/glossary#role" >}}) you want to assign to them. This step is optional and can be completed within the dashboard later.
 
-#### User Roles in Tyk Cloud
+##### User Roles in Tyk Cloud
 
 Out of the box, the following roles are setup:
 
@@ -2000,15 +1993,15 @@ Out of the box, the following roles are setup:
 
 Next you'll create an [Environment]({{< ref "tyk-cloud/getting-started-tyk-cloud/setup-environment" >}}).
 
-### Configure Environment and Deployments
+#### Configure Environment and Deployments
 
 An Environment allows you to group deployments together. In this step we will create an Environment and configure our first Control Plane and Cloud Data Plane deployments.
 
-#### What is an environment?
+##### What is an environment?
 
 An environment is a grouping of ‘deployments’ that can have multiple Control Planes and Cloud Data Planes.
 
-#### Steps to set up your environment
+##### Steps to set up your environment
 
 * **Step 1 - Name your Environment:** Give your [Environment]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#environment" >}}) a name. You may find it useful to reflect the names used within your organization such as Development, Production etc.
   
@@ -2035,7 +2028,7 @@ Here's a video on how to set up your Tyk Cloud Environment.
 
 Next you'll [set up your first API]({{< ref "tyk-cloud/getting-started-tyk-cloud/first-api" >}}) from the Tyk Dashboard.
 
-### Deploy and Add Your First API
+#### Deploy and Add Your First API
 
 Your onboarding is now complete! The next step will be to setup a very basic API to demonstrate how APIs are managed within Tyk Cloud.
 
@@ -2050,7 +2043,7 @@ It is not possible to rollback to previous versions of Tyk components with Tyk O
 For further details, please refer to the [release notes]({{< ref "product-stack/tyk-gateway/release-notes/version-5.3.md" >}}) for Tyk Gateway v5.3.0.
 {{< /warning >}}
 
-#### Steps to add an API in Tyk Cloud
+##### Steps to add an API in Tyk Cloud
 
 * **Step 1 - Access the Dashboard:** Go to the Control Plane overview and click the dashboard link in the Ingress list. You'll be redirected to the Tyk Dashboard for your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}).
 * **Step 2 - Add a New API:** Click the APIs menu item and then click **Add New API**.
@@ -2101,11 +2094,11 @@ Want to learn more from one of our team?
 {{< button_left href="https://tyk.io/book-a-demo/" color="green" content="Book a demo" >}}
 
 
-### Test Your API
+#### Test Your API
 
 Your first API has been added. What's next? Testing it! This page shows how you can test an API that you have added to Tyk Cloud, to ensure that it’s functioning correctly. You'll now access the API you setup in [Task 5]({{< ref "tyk-cloud/getting-started-tyk-cloud/first-api" >}}) from the Cloud Data Plane within Tyk Cloud.
 
-#### Steps to test your API
+##### Steps to test your API
 
 * **Step 1 - Access the Gateway Ingress:** From the Cloud Data Plane overview, copy the Ingress link and open it in a browser tab. You will get a 404 error.
   
@@ -2114,19 +2107,18 @@ Your first API has been added. What's next? Testing it! This page shows how you 
 
 Next you'll [view the analytics]({{< ref "tyk-cloud/getting-started-tyk-cloud/view-analytics" >}}) for your API in the Dashboard.
 
-### View Analytics
+#### View Analytics
 
 We have now created and tested our API. How do we know that they are performing well? This page walks you through how to then view your API analytics so that you can ensure your APIs are performing perfectly. 
 
-#### Steps to check your API analytics
+##### Steps to check your API analytics
 
 * **Step 1 - Access the Dashboard:** You'll now look at the analytics for the API you created in [Task 5]({{< ref "tyk-cloud/getting-started-tyk-cloud/first-api" >}}).If you're not still in the Tyk Dashboard for your Control Plane, click the dashboard link in the Control Plane Ingress list. Click the Gateway Dashboard menu item and you can see the successful calls made to your API from the Cloud Data Plane you created.
   
 * **Step 2 - Create an Error:** From the Cloud Data Plane, make a call that will throw an error. For example, use `me-app` instead of `my-app`. You should see the error displayed in the Analytics.
 
 
-### Review Your Setup
-
+#### Review Your Setup
 
 This summary page explains the steps required to implement Tyk Cloud, which enables you to manage your APIs seamlessly. 
 
@@ -2146,9 +2138,9 @@ What to go through next:
 * Adding [Plugins and Middleware]({{< ref "tyk-cloud/using-plugins" >}}) to your Control Plane
 
 
-## Additional Cloud Configuration
+### Additional Cloud Configuration
 
-### Configure Initial Portal
+#### Configure Initial Portal
 
 After deploying your Control Plane, you need to perform some initial configuration for the Developer Portal to prevent seeing any `Page Not Found` errors when trying to access the portal. You need to set up a Home page from the Control Plane Dashboard.
 
@@ -2174,7 +2166,7 @@ You should now be able to access your Portal from **Open Your Portal** from the 
 
 {{< img src="/img/2.10/portal_menu.png" alt="Portal Menu" >}}
 
-#### Further Portal Configuration
+##### Further Portal Configuration
 
 Our Developer Portal is completely customizable. See [Portal Customization]({{< ref "tyk-developer-portal/customise" >}}) for more details.
 
@@ -2187,13 +2179,13 @@ This section covers the administration of the various components of your Tyk Clo
 
 It also covers links to how to start [managing your APIs]({{< ref "tyk-cloud/environments-&-deployments/managing-apis.md" >}}) via the Tyk Dashboard, accessible from your Control Plane.
 
-### Manage Environments and Deployments
+#### Manage Environments and Deployments
 
-#### Set Up Organisations
+##### Set Up Organisations
 
 Your Organization is your "container" for all your Environments, Control Planes and Cloud Data Planes. When you setup your Organization when [creating your account]({{< ref "tyk-cloud/getting-started-tyk-cloud/create-account" >}}), you assign it to a Home Region where all your data is stored. You cannot change this home region after creating your organization.
 
-##### Organization Overview Screen
+**Organization Overview Screen**
 
 If you are an Organization Admin, when you log in you will see the Overview screen for the Organization you are connected to. If you are a team admin or team member you will see the Team Overview Screen. The Organization Overview screen displays the following info:
 
@@ -2203,31 +2195,31 @@ If you are an Organization Admin, when you log in you will see the Overview scre
 * All Environments
 
 
-##### Quick Stats
+**Quick Stats**
 
 {{< img src="/img/admin/tyk-cloud-org-overview.png" alt="Quick Stats" >}}
 
 This section gives you an "at a glance" overview of your organization. This section is designed to show what your plan entitles your organization to and how much of your entitlement is currently used in relation to Teams, Control Planes, Cloud Data Plane Deployments and the distribution of those deployments across the available entitlement regions.
 
-##### Teams
+**Teams**
 
 {{< img src="/img/admin/tyk-cloud-org-teams.png" alt="Teams" >}}
 
 This section shows the number of teams created within the organization, the number of environments the team is assigned to, and the Control Plane and Deployed Cloud Data Planes within those environments.
 
-##### Deployments
+**Deployments**
 
 The default view for this section is Group by Control Plane and shows all deployments across all teams.
 
 {{< img src="/img/admin/tyk-cloud-org-deployments.png" alt="Deployments Grouped by Control Plane" >}}
 
-##### Environments
+**Environments**
 
 The Environments section shows the environments created within your organization, the team they belong to and active deployments within each environment.
 
 {{< img src="/img/admin/org_admin_environments.png" alt="Environments" >}}
 
-#### Adjust Environments
+##### Adjust Environments
 
 Environments are used to group your [Control Plane]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#control-plane" >}}) and [Cloud Data Planes]({{< ref "tyk-cloud/troubleshooting-&-support/glossary.md#cloud-data-plane" >}}) into logical groups. For example you may want to create environments that reflect different departments of your organization.
 
@@ -2237,7 +2229,7 @@ Environments are used to group your [Control Plane]({{< ref "tyk-cloud/troublesh
 The number of Environments you can create is determined by your [plan]({{< ref "tyk-cloud/account-billing/plans" >}})
 {{< /note >}}
 
-##### Prerequisites
+**Prerequisites**
 
 The following [user roles]({{< ref "tyk-cloud/teams-&-users/user-roles" >}}) can perform Environment Admin tasks:
 
@@ -2253,7 +2245,7 @@ You should also have created a team to assign to any new environment.
 3. Give your new Environment a name
 4. Click **Create**
 
-###### Editing an Existing Environment
+##### Editing an Existing Environment
 
 An Org Admin can perform the following:
 
@@ -2278,16 +2270,16 @@ An Org Admin can perform the following:
 Deleting an environment will also delete all the Control Planes and Cloud Data Planes associated with it
 {{< /warning >}}
 
-#### Control Planes
+##### Control Planes
 
 Control Planes are situated in your Organization's home region and provide links to an instance of the [Tyk Dashboard]({{< ref "tyk-dashboard" >}}) and the [Developer Portal]({{< ref "tyk-developer-portal" >}}). The Dashboard is where you perform all your API tasks. The developer portal allows your 3rd party developers access to your APIs. Cloud Data Planes are then connected to your Control Planes.
 
 
-##### Prerequisites
+**Prerequisites**
 
 All [user roles]({{< ref "tyk-cloud/teams-&-users/user-roles" >}}) can edit, deploy, undeploy, restart, redeploy all deployments within a team. Only the Organization Admin and the Team Admin can create or delete deployments.
 
-##### Adding a new Control Plane
+**Adding a new Control Plane**
 
 Watch our video on setting up a Control Plane and a Cloud Data Plane.
 
@@ -2306,7 +2298,7 @@ The number of Control Planes you can add is dependent on your [plan]({{< ref "ty
 5. (Optional) Enter a [custom domain]({{< ref "tyk-cloud/using-custom-domains" >}}) if required
 6. (Optional) Enable [plugins]({{< ref "tyk-cloud/using-plugins" >}}) if required
 
-##### Edit Control Planes
+**Edit Control Planes**
 
 You can edit the following Control Plane settings:
 * Change the Control Plane name
@@ -2327,7 +2319,7 @@ To edit an existing Control Plane:
 
 {{< img src="/img/admin/cp-edit.png" alt="Edit drop-down" >}}
 
-##### Upgrade Control Planes
+**Upgrade Control Planes**
 
 To upgrade an existing Control Plane:
 
@@ -2348,17 +2340,17 @@ To upgrade an existing Control Plane:
 
 {{< img src="/img/admin/cp-edge-upgrade-deployed.png" alt="Deployed notification" >}}
 
-#### Gateways Configuration
+##### Gateways Configuration
 
 Cloud Data Planes do all the heavy lifting of actually managing your requests: traffic proxying, access control, data transformation, logging and more.
 
 
-##### Prerequisites
+**Prerequisites**
 
 All [user roles]({{< ref "tyk-cloud/teams-&-users/user-roles" >}}) can edit, deploy, undeploy, restart, redeploy all deployments within a team. Only the Organization Admin and the Team Admin can create or delete deployments.
 
 
-##### Adding a new Cloud Data Plane
+**Adding a new Cloud Data Plane**
 
 Watch our video on setting up a Control Plane and a Cloud Data Plane.
 
@@ -2377,7 +2369,7 @@ The number of Cloud Data Planes you can add is dependent on your [plan]({{< ref 
 5. (Optional) Enter a [custom domain]({{< ref "tyk-cloud/using-custom-domains" >}}) if required
 6. (Optional) Enable [plugins]({{< ref "tyk-cloud/using-plugins" >}}) if required
 
-##### Edit Cloud Data Planes
+**Edit Cloud Data Planes**
 
 You can edit the following Control Plane settings:
 * Change the Gateway name
@@ -2399,7 +2391,7 @@ To edit an existing Cloud Data Plane:
 {{< img src="/img/admin/cp-edit.png" alt="Cloud Data Plane drop-down" >}}
 
 
-##### Upgrade Cloud Data Planes
+**Upgrade Cloud Data Planes**
 
 To upgrade an existing Cloud Data Plane:
 
@@ -2420,7 +2412,7 @@ To upgrade an existing Cloud Data Plane:
 
 {{< img src="/img/admin/cp-edge-upgrade-deployed.png" alt="Deployed notification" >}}
 
-#### Manage APIs
+##### Manage APIs
 
 You can manage your APIs in *Tyk Dashboard* UI. To access it, click on your desired Control Plane name in the [Deployments](https://dashboard.cloud-ara.tyk.io/deployments) screen and then on the *MANAGE APIS* button
 
@@ -2435,7 +2427,7 @@ From there you have access to the full scope of Tyk API management functionality
 * [Adding Segment Tags]({{< ref "tyk-cloud/troubleshooting-&-support/faqs.md#q8-how-do-segment-tags-work-with-tyk-cloud" >}})
 
 
-#### Deploy Hybrid Gateways
+##### Deploy Hybrid Gateways
 
 [Tyk Cloud](https://tyk.io/cloud/) hosts and manages the control planes for you. You can deploy the data planes across multiple locations:
 
@@ -2444,13 +2436,13 @@ From there you have access to the full scope of Tyk API management functionality
 
 This page describes the deployment of hybrid data planes and how to connect them to Tyk Cloud, in both Kubernetes and Docker environments.
 
-##### Prerequisites
+**Prerequisites**
 
 * Tyk Cloud Account, register here if you don't have one yet: {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="free trial" >}}
 * A Redis instance for each data plane, used as ephemeral storage for distributed rate limiting, token storage and analytics. You will find instructions for a simple Redis installation in the steps below.
 * No incoming firewall rules are needed, as the connection between Tyk Hybrid Gateways and Tyk Cloud is always initiated from the Gateways, not from Tyk Cloud.
 
-##### Tyk Hybrid Gateway configuration
+**Tyk Hybrid Gateway configuration**
 
 The hybrid gateways in the data plane connect to the control plane in Tyk Cloud using the *Tyk Dashboard* API Access Credentials. Follow the guides below to create the configuration that we will be used in later sections to create a deployment:
 
@@ -2482,7 +2474,7 @@ This will reveal instructions that you can use to connect your hybrid data plane
 {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-revealed-instructions.png" alt="Tyk Cloud hybrid detailed instructions" >}}
 
 
-##### Deploy with Docker
+**Deploy with Docker**
 
 **1. In your terminal, clone the demo application [Tyk Gateway Docker](https://github.com/TykTechnologies/tyk-gateway-docker) repository**
 
@@ -2584,7 +2576,8 @@ Content-Length: 59
 {"status":"pass","version":"4.3.3","description":"Tyk GW"}
 ```
 
-##### Deploy in Kubernetes with Helm Chart
+**Deploy in Kubernetes with Helm Chart**
+</br>
 **Prerequisites**
 
 * [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
@@ -2639,7 +2632,8 @@ Now Tyk Gateway should be accessible through service `gateway-svc-hybrid-dp-tyk-
 For the complete installation guide and configuration options, please see [Tyk Data Plane Chart]({{<ref "product-stack/tyk-charts/tyk-data-plane-chart">}}).
 
 
-##### Remove hybrid data plane configuration
+**Remove hybrid data plane configuration**
+</br>
 {{< warning success >}}
 **Warning**
 
@@ -2660,28 +2654,28 @@ Confirm the removal by clicking _DELETE HYBRID DATA PLANE_
 
   {{< img src="/img/hybrid-gateway/tyk-cloud-hybrid-confirm-config-removal.png" alt="Tyk Cloud hybrid confirm removal of configs" >}}
 
-#### Secure Your APIs
+##### Secure Your APIs
 
 If you decide to use Tyk Cloud to protect your APIs, you need to make APIs accessible to your Tyk Cloud Data Planes so that Tyk can connect your clients to them. A common question that arises is, “how do I secure my APIs (backend services)?”.
 
 Here are the most popular ways to secure your APIs.
 
-##### 1. Mutual TLS or Client authorization
+**1. Mutual TLS or Client authorization**
 
-1. This is the most secure method to protect your APIs. With Client  authorization, you need to add your Tyk Gateway certificates to an allow-list in all your backends and they will then accept access requests only from clients that present these pre authorized certificates. There are a few limitations with this approach:
+- This is the most secure method to protect your APIs. With Client  authorization, you need to add your Tyk Gateway certificates to an allow-list in all your backends and they will then accept access requests only from clients that present these pre authorized certificates. There are a few limitations with this approach:
   
     a. Depending on your setup, you might need to add it to every backend service. If you have a Load Balancer (LB), then it can be set at the LB level.
     
     b. Sometimes the LBs (like Application Load Balancers) do not support mTLS and then you need to find other solutions, like [Request Signing](#2-request-signing).  Another option that might be possible, is to front your services or your LB with an L7 API Gateway (Like Tyk!) to do mTLS with the Tyk Cloud Data Planes on Tyk Cloud.
 
-2. You need to be able to update the list in case certificates expire or get revoked.
+- You need to be able to update the list in case certificates expire or get revoked.
 
-##### 2. Request Signing
+**2. Request Signing**
 
 Tyk can [sign the request with HMAC or RSA]({{< ref "product-stack/tyk-gateway/release-notes/archived-releases/version-2.9.md#hmac-request-signing" >}}), before sending it to the API target. This is an implementation of an [RFC Signing HTTP Messages(draft 10)](https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures-10). This RFC was designed to provide authenticity of the digital signature of the client. In our flow, the Tyk Cloud Data Planes, as the client, using a certificate private key, will add a header signature to the request. The API, using a pre-agreed public key (based on a meaningful keyId identifier) will verify the authenticity of the request coming from your Tyk Cloud Data Plane.
  A limitation is that the APIs or LB need to implement this signature verification and be able to update the certificates as mentioned in [Mutual TLS or Client authorization](#1-mutual-tls-or-client-authorization).
 
-##### 3. IP Whitelisting
+**3. IP Whitelisting**
 
  Each Tyk Cloud organization is dedicated to an IP range which is unique to them. This allows you to restrict access to your APIs to only API requests coming from your Tyk Cloud organization.  
 
@@ -2689,11 +2683,11 @@ IP Whitelisting is susceptible to IP Spoofing, and it is recommended to be combi
 
 In order to find your organization’s IP range, please open a support ticket with our support team, which is available to all paying customers.
 
-##### 4. Post plugin with OAuth flow
+**4. Post plugin with OAuth flow**
 
 The custom plugin approach is mentioned last because it involves writing a bit of code. However, if your appetite allows for it, custom plugins offer the most flexibility of all these solutions.  You can use Tyk’s custom plugins to execute an OAuth flow, for example, between Tyk (as the client) and your authorization server, and inject a Bearer token into the request. The backend service will need to validate the bearer as usual. You can write [custom plugins]({{< ref "tyk-cloud/using-plugins.md" >}}) in a variety of languages.
 
-##### Where to Authenticate?
+**Where to Authenticate?**
 
 No matter which option or combination of options you choose, it is best to keep this authentication layer outside your application logic. This glue code should be placed in your ingress, whatever that might be. By keeping this logic outside your application, you keep a separation between the business logic and the boilerplate code.  You can even use the Tyk Open Source API Gateway as an ingress to protect your APIs, and it is compatible with all the methods mentioned above.
 
@@ -2707,18 +2701,18 @@ You can set up Tyk Cloud to use a custom domain. Using custom domains is availab
 Wild cards are not supported by Tyk Cloud in custom domain certificates
 {{< /note >}}
 
-##### Custom Domains with Control Planes
+**Custom Domains with Control Planes**
 
 * Currently, you can only use **one custom domain** per Control Plane deployment.
 * The custom domain in this case ties to a **Tyk Developer Portal**. Please set up a **CNAME DNS** record such that it points to the "Portal" ingress as displayed on your Control Plane deployment page.
   
-##### Custom Domains with Cloud Data Planes
+**Custom Domains with Cloud Data Planes**
 
 You can set multiple custom domains on a Cloud Data Plane. In this instance please set up your CNAME DNS records such that they point to the only ingress displayed on your Cloud Data Plane deployment page.
 
 Note: While you can set multiple custom domains for a Cloud Data Plane, a single custom domain cannot be used for multiple Cloud Data Planes.
 
-##### How to set up a Custom Domain
+**How to set up a Custom Domain**
 
 In this example we are going to set up a custom domain called `Cloud Data Plane.corp.com` for a Cloud Data Plane deployment.
 
@@ -3986,9 +3980,9 @@ Can only view and manage the overview, environments and deployments.
 
 
 
-# Configure Tyk Self-Managed
+## Configure Tyk Self-Managed
 
-## Quick Start
+### Quick Start
 
 New to *Tyk Self Managed*? Click the button below to kickstart your journey with the basics.
 
@@ -3997,30 +3991,30 @@ New to *Tyk Self Managed*? Click the button below to kickstart your journey with
 
 {{< button_left href="https://tyk.io/sign-up#self" color="green" content="Get started" >}}
 
-### What’s Included in the Quick Start?
+#### What’s Included in the Quick Start?
 - View an example API secured through the Tyk Gateway, configured with rate limiting.
 - Login to Tyk Dashboard to view API analytics and update the configuration of the API (e.g. with further authentication options).
 - Update rate limits for the example API.
 
-### Trial Prerequisites
+#### Trial Prerequisites
 The recommended way to start your evaluation is via *Docker*. Follow the [instructions](https://docs.docker.com/get-docker/) to install *Docker*.
 
 
-### Next Step - Proof of Concept (PoC)
+#### Next Step - Proof of Concept (PoC)
 
 You have completed the quick start guide above and wonder what's next, please read below.
 
-#### PoC Guide 
+##### PoC Guide 
 To find out more, visit our [Tyk Technical PoC Guide](https://tyk.io/customer-engineering/poc/technical-guide/).
 
 {{< button_left href="https://tyk.io/contact/" color="green" content="Contact us" >}}
 
 
-#### Tyk Demo - The Perfect PoC Experience
+##### Tyk Demo - The Perfect PoC Experience
 Head over to our **Tyk Demo** guides in [Kubernetes]({{<ref "getting-started/quick-start/tyk-k8s-demo">}}) or [Docker]({{<ref "getting-started/quick-start/tyk-demo">}}). These guides, with zero to none effort, will spin up the full Tyk infrastructure (Tyk stack) with examples of Tyk's capabilities and integrations out-of-the-box.
 
 
-## Understand Licensing and Deployment Models
+### Understand Licensing and Deployment Models
 
 Tyk Self-Managed is the easiest way to install Tyk Full Lifecycle API Management solution in your infrastructure. There is no calling home, and there are no usage limits. You have full control. 
 
@@ -4028,9 +4022,9 @@ When selecting a Tyk Self-managed license [(see the pricing page to compare the 
 
 Are you still figuring out your requirements for your deployment around performance, resilience, availability, latency, or multi-region deployment? Look at our [API management architectural and deployment patterns 101](https://tyk.io/blog/res-api-management-architectural-and-deployment-patterns-101/) post to learn more. 
 
-### 3 questions to ask yourself to select your deployment model
+#### 3 questions to ask yourself to select your deployment model
 
-#### 1. How many environments do you manage?
+##### 1. How many environments do you manage?
 
 An environment is a single grouping of a control plane and multiple gateways, representing your development lifecycle. For example, staging and production would be 2 environments. 
 
@@ -4038,30 +4032,30 @@ If you have teams working on two different projects, deployed in different envir
 
 You get extra developer licenses (a single control plane with 1 connected gateway for local testing on a developer's workstation) for development and testing on local computers. 
 
-#### 2. How many gateways do you need per environment?
+##### 2. How many gateways do you need per environment?
 
 We recommend a minimum of 2 gateways per environment for redundancy & fail over. Rolling updates or blue green deployment might require additional gateways to ensure high availability during deployments.
 
 You might also need more depending on your average load or to handle seasonal peak traffic. See [Planning for Production]({{< ref "planning-for-production.md" >}}) to learn more. 
 
-#### 3. Are you deploying your software stack in multiple regions or datacenter?
+##### 3. Are you deploying your software stack in multiple regions or datacenter?
 
 Do you need support for centrally managing your APIs while deploying edge gateways into multiple regions or datacenter? Do you want to ensure [data sovereignty](https://tyk.io/blog/strategies-for-dealing-with-data-sovereignty-at-scale/) in each of the regions you are deploying your APIs?
 
-### Launch - perfect to get started
+#### Launch - perfect to get started
 
 ✅ For single teams just getting started
 
 {{< img src="/img/diagrams/tyk-selfmanaged-launch.png" alt="Tyk Self-managed Launch">}}
 
-### Flex - for multiple teams within a single data center or cloud 
+#### Flex - for multiple teams within a single data center or cloud 
 
 ✅ For multiple teams that require high availability and horizontal scaling <br/>
 ✅ For Kubernetes-based deployment within one cluster / region 
 
 {{< img src="/img/diagrams/tyk-selfmanaged-flex.png" alt="Tyk Self-managed Flex">}}
 
-### Global Multi-team - for the largest global enterprises at scale
+#### Global Multi-team - for the largest global enterprises at scale
 
 ✅ For managing your APIs centrally while deploying edge gateways in independent clusters / regions <br />
 ✅ For the highest availability across data centers <br />
@@ -4073,14 +4067,14 @@ The license starts with 3 environments and 2 regions, can be extended to more en
 {{< img src="/img/diagrams/tyk-selfmanaged-multiteam.png" alt="Tyk Self-managed Global Multi-team">}}
 
 
-###  Don't see what you need?
+#### Don't see what you need?
 
 [Contact us](https://tyk.io/contact/) to discuss custom or enterprise deployments.
 
 
-## Choose Installation Type for Tyk Self-Managed
+### Choose Installation Type for Tyk Self-Managed
 
-### Use Kubernetes
+#### Use Kubernetes
 
 The main way to install *Tyk Self-Managed* in a Kubernetes cluster is via Helm charts. 
 We are actively working to add flexibility and more user flows to our chart. Please reach out
@@ -4093,21 +4087,21 @@ Get started with one of our quick start guides:
 
 Or go to [Tyk Stack helm chart]({{<ref "product-stack/tyk-charts/tyk-stack-chart">}}) for detailed installation instructions and configuration options.
 
-#### Tyk Operator and Ingress 
+##### Tyk Operator and Ingress 
 For a GitOps workflow used with a **Tyk Self-Managed** installation or setting the Tyk Gateway as a Kubernetes ingress controller, Tyk Operator enables you to manage API definitions, security policies and other Tyk features using Kubernetes manifest files.
 To get started go to [Tyk Operator]({{< ref "/tyk-operator#what-is-tyk-operator?" >}}).
 
 
-#### Install Tyk Stack with Helm Chart (PostgreSQL)
+##### Install Tyk Stack with Helm Chart (PostgreSQL)
 
 The following guides provide instructions to install Redis, PostgreSQL, and Tyk stack with default configurations. It is intended for quick start only. For production, you should install and configure Redis and PostgreSQL separately.
 
-##### Prerequisites
+**Prerequisites**
 
 * [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
 * [Helm 3+](https://helm.sh/docs/intro/install/)
 
-##### Quick Start with PostgreSQL
+**Quick Start**
 
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
 - Redis for key storage
@@ -4206,12 +4200,11 @@ You are now ready to [create an API]({{<ref "getting-started/create-api">}}).
 
 For the complete installation guide and configuration options, please see [Tyk Stack Helm Chart]({{<ref "product-stack/tyk-charts/tyk-stack-chart">}}).
 
-#### Install Tyk Stack with Helm Chart (MongoDB)
-
+##### Install Tyk Stack with Helm Chart (MongoDB)
 
 The following guides provide instructions to install Redis, MongoDB, and Tyk stack with default configurations. It is intended for quick start only. For production, you should install and configure Redis and MongoDB separately.
 
-##### Prerequisites
+**Prerequisites**
 
 * [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
 * [Helm 3+](https://helm.sh/docs/intro/install/)
@@ -4222,7 +4215,7 @@ The following guides provide instructions to install Redis, MongoDB, and Tyk sta
 If you want to enable Tyk Enterprise Developer Portal, please use [PostgreSQL]({{<ref "/deployment-and-operations/tyk-self-managed/deployment-lifecycle/installations/kubernetes/tyk-helm-tyk-stack-postgresql">}}). MongoDB is not supported in Developer Portal.
 {{< /note >}}
 
-##### Quick Start with MongoDB
+**Quick Start**
 
 The following quick start guide explains how to use the Tyk Stack Helm chart to configure a Dashboard that includes:
 - Redis for key storage
@@ -4341,7 +4334,7 @@ You are now ready to [create an API]({{<ref "getting-started/create-api">}}).
 For the complete installation guide and configuration options, please see [Tyk Stack Helm Chart]({{<ref "product-stack/tyk-charts/tyk-stack-chart">}}).
 
 
-#### Install Tyk Stack on Windows with Helm
+##### Install Tyk Stack on Windows with Helm
 
 
 {{< note success >}}
@@ -4366,7 +4359,7 @@ This demo is great for proof of concept and demo purposes, but if you want to te
 You use this at your own risk. Tyk is not supported on the Windows platform. However you can test it as a proof of concept using our Pro Demo Docker installation.
 {{< /note >}}
 
-##### Prerequisites
+**Prerequisites**
 
 - MS Windows 10 Pro
 - [Tyk Helm Chart](https://github.com/TykTechnologies/tyk-helm-chart)
@@ -4390,11 +4383,11 @@ This demo installation was tested with the following tools/versions:
 * minikube v1.7.1 (k8s v 1.17.2)
 * kubectl v 1.17.0 (Note that kubectl is packaged with Docker Desktop for Windows, but the version may be incompatible with k8s)
 
-##### Installation
+**Installation**
 
-Now you have your prerequisites, follow the instructions from our [Tyk Helm Chart]({{< ref "/content/tyk-self-managed/tyk-helm-chart.md#installation" >}}) page.
+Now you have your prerequisites, follow the instructions from our [Tyk Helm Chart]({{< ref "/content/tyk-self-managed/tyk-helm-chart#installation" >}}) page.
 
-#### Use Legacy Helm Chart
+##### Use Legacy Helm Chart
 
 {{< warning success >}}
 **Warning**
@@ -4404,13 +4397,13 @@ Now you have your prerequisites, follow the instructions from our [Tyk Helm Char
 We recommend all users migrate to the `tyk-stack` Chart. Please review the [Configuration]({{<ref "product-stack/tyk-charts/tyk-stack-chart">}}) section of the new helm chart and cross-check with your existing configurations while planning for migration. 
 {{< /warning >}}
 
-##### Introduction
+**Introduction**
 
 Tyk Helm chart is the preferred (and easiest) way to install **Tyk Self-Managed** on Kubernetes.
 The helm chart `tyk-helm/tyk-pro` will install full Tyk platform with **Tyk Manager**, **Tyk Gateways** and **Tyk Pump** into your Kubernetes cluster. You can also choose to enable the installation of **Tyk Operator** (to manage your APIs in a declarative way).
 
-##### Prerequisites
-
+**Prerequisites**
+</br>
 **1. Tyk License**
 If you are evaluating Tyk on Kubernetes, [contact us](https://tyk.io/about/contact/) to obtain a temporary license.
 
@@ -4429,7 +4422,7 @@ Installed [Helm 3](https://helm.sh/)
 Tyk Helm Chart is using Helm v3 version (i.e. not Helm v2).
 
 
-##### Installation
+**Installation**
 
 As well as our official Helm repo, you can also find it in [ArtifactHub](https://artifacthub.io/packages/helm/tyk-helm/tyk-pro).
 <div class="artifacthub-widget" data-url="https://artifacthub.io/packages/helm/tyk-helm/tyk-pro" data-theme="light" data-header="true" data-responsive="true"><blockquote><p lang="en" dir="ltr"><b>tyk-pro</b>: This chart deploys our full Tyk platform. The Tyk Gateway is a fully open source Enterprise API Gateway, supporting REST, GraphQL, TCP and gRPC protocols. The Tyk Gateway is provided ‘Batteries-included’, with no feature lockout. It enables organizations and businesses around the world to protect, secure, and process APIs and well as review and audit the consumed apis.</p>&mdash; Open in <a href="https://artifacthub.io/packages/helm/tyk-helm/tyk-pro">Artifact Hub</a></blockquote></div><script async src="https://artifacthub.io/artifacthub-widget.js"></script>
@@ -4625,14 +4618,14 @@ the **Segment Tags (Node Segmentation)** section in your Tyk Dashboard.
 Check [Tyk Gateway Sharding]({{< ref "/content/advanced-configuration/manage-multiple-environments.md#api-sharding" >}}) for more details.
 
 
-#### Other Tyk Components
+##### Other Tyk Components
 
-##### Installing Tyk Enterprise Developer Portal
+**Installing Tyk Enterprise Developer Portal**
 If you are deploying the **Tyk Enterprise Developer Portal**, set the appropriate values under the `enterprisePortal` section in your `values.yaml`. Please visit [Tyk Enterprise Developer Portal installation]({{< ref "product-stack/tyk-enterprise-developer-portal/deploy/install-tyk-enterprise-portal/install-portal-using-helm" >}}) for a step by step guide.
 
 >**Note**: Helm chart supports Enterprise Portal v1.2.0+
 
-##### Installing Tyk Self-managed Control Plane
+**Installing Tyk Self-managed Control Plane**
 If you are deploying the **Tyk Control plane**, a.k.a **MDCB**, for a **Tyk Multi Data Center Bridge** deployment then you set
 the `mdcb.enabled: true` option in the local `values.yaml` to add of the **MDCB** component to your installation.
 Check [Tyk Control plane]({{< ref "tyk-multi-data-centre" >}}) for more configuration details.
@@ -4640,7 +4633,7 @@ Check [Tyk Control plane]({{< ref "tyk-multi-data-centre" >}}) for more configur
 This setting enables multi-cluster, multi Data-Center API management from a single dashboard.
 
 
-##### Tyk Identity Broker (TIB)
+**Tyk Identity Broker (TIB)**
 The **Tyk Identity Broker** (TIB) is a micro-service portal that provides a bridge between various Identity Management Systems
 such as LDAP, OpenID Connect providers and legacy Basic Authentication providers, to your Tyk installation.
 See [TIB]({{< ref "tyk-identity-broker/getting-started" >}}) for more details.
@@ -4662,31 +4655,23 @@ This chart implies there's a **ConfigMap** with a `profiles.json` definition in 
 to set the name of this **ConfigMap** (`tyk-tib-profiles-conf` by default).
 
 
-
-### Next Steps Tutorials
-Follow the Tutorials on the **Self-Managed** tabs for the following:
-
-1. [Add an API]({{< ref "getting-started/create-api" >}})
-2. [Create a Security Policy]({{< ref "getting-started/create-security-policy" >}})
-3. [Create an API Key]({{< ref "getting-started/create-api-key" >}})
+#### Explore Demos and Proof of Concepts
 
 
-### Explore Demos and Proof of Concepts
-
-
-#### Kubernetes Demo
+##### Kubernetes Demo
 
 The [tyk-k8s-demo](https://github.com/TykTechnologies/tyk-k8s-demo) repository allows you to start up an entire Tyk Stack
 with all its dependencies as well as other tools that can integrate with Tyk.
 The repository will spin up everything in Kubernetes using `helm` and bash magic
 to get you started.
 
-##### Purpose
+**Purpose**
 Minimize the amount of effort needed to start up the Tyk infrastructure and
 show examples of how Tyk can be set up in k8s using different deployment
 architectures as well as different integrations.
 
-##### Prerequisites
+**Prerequisites**
+</br>
 
 **Required Packages**
 
@@ -4729,21 +4714,23 @@ minikube start
 minikube addons enable ingress
 ```
 
-##### Quick Start
+**Quick Start**
 ```bash
 ./up.sh --deployments portal,operator-httpbin tyk-stack
 ```
 This quick start command will start up the entire Tyk stack along with the
 Tyk Enterprise Portal, Tyk Operator, and httpbin CRD example.
 
-##### Possible deployments
+**Possible deployments**
 - `tyk-stack`: A comprehensive Tyk Self Managed setup for a single region
 - `tyk-cp`: Tyk control plane in a multi-region Tyk deployment
 - `tyk-dp`: Data plane of hybrid gateways that connect to either Tyk Cloud or a Tyk Control Plane, facilitating scalable deployments
 - `tyk-gateway`: Open Source Software (OSS) version of Tyk, self-managed and suitable for single-region deployments
 
  
-##### Dependencies Options
+**Dependencies Options**
+</br>
+
 **Redis Options**
 - `redis`: Bitnami Redis deployment
 - `redis-cluster`: Bitnami Redis Cluster deployment
@@ -4800,7 +4787,8 @@ started, along with instructions on how to access them. Afterward, the k6 job wi
 generating traffic for 15 minutes. To monitor live traffic, you can use the credentials provided by the script to 
 access Grafana or the Tyk Dashboard
 
-##### Usage
+**Usage**
+</br>
 
 **Start Tyk deployment**
 Create and start up the deployments
@@ -4861,7 +4849,7 @@ For more information about cloud CLIs:
 - Azure:
   - [az](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-##### Customization
+**Customization**
 This repository can also act as a guide to help you get set up with Tyk. If you just want to know how to set up a specific
 tool with Tyk, you can run the repository with the `--dry-run` and `--verbose` flags. This will output all the commands that
 the repository will run to stand up any installation. This can help debug as well as figure out what
@@ -4878,7 +4866,7 @@ TYK_MDCB_SYNCWORKER_HASHKEYS=true
 TYK_GW_SLAVEOPTIONS_SYNCHRONISERENABLED=true
 ```
 
-##### Variables
+**Variables**
 The script has defaults for minimal settings in [this env file](https://github.com/TykTechnologies/tyk-k8s-demo/tree/main/.env.example),
 and it will give errors if something is missing.
 You can also add or change any Tyk environment variables in the `.env` file,
@@ -4915,21 +4903,21 @@ and they will be mapped to the respective `extraEnvs` section in the helm charts
 | INGRESS_CLASSNAME                    |        `nginx`        | The ingress classname to be used to associate the k8s ingress objects with the ingress controller/load balancer |
 
 
-#### Docker Demo
+##### Docker Demo
 
 [Tyk-demo](https://github.com/TykTechnologies/tyk-demo) is a repository that enables you to start up locally an entire Tyk stack with all its dependencies and integrations such as
 [SLIs and SLOs with Prometheus and Grafana](https://github.com/TykTechnologies/tyk-demo/tree/master/deployments/slo-prometheus-grafana)
 or [OpenTelemetry with Jaeger](https://github.com/TykTechnologies/tyk-demo/tree/master/deployments/otel-jaeger).
 
 
-##### Purpose
+**Purpose**
 
 With *tyk-demo* repository, using docker-compose, you can set up quickly a **complete** Tyk stack, including
 dependencies and integrations.
 
 Minimize the amount of effort needed to start up the Tyk infrastructure and show end-to-end complete examples of how to set up various capabilities in Tyk as well as different integrations.
 
-##### Key Features
+**Key Features**
 
 - Full Tyk stack deployment
 - Pre-configured demo APIs
@@ -4940,7 +4928,8 @@ Watch the video *What Is Tyk Demo* for an overview and learn about the key featu
 
 {{< youtube-seo id="MqVPyWg1YZM" title="Overview of Tyk Demo and its features" >}}
 
-##### Prerequisites
+**Prerequisites**
+</br>
 
 **1. Docker compose**
 Make sure you have [docker compose](https://docs.docker.com/compose/install/) and that docker is running on your machine.
@@ -4950,7 +4939,7 @@ This Demo deploys and runs the full Tyk platform which is a licensed product. Pl
 
 {{< button_left href="https://tyk.io/sign-up#self" color="green" content="Get started" >}}
 
-##### Quick Start
+**Quick Start**
 
 The following steps will enable you to quickly get started:
 
@@ -4984,16 +4973,16 @@ To complete the instruction above we have a tutorial video of tyk demo that cove
 {{< youtube-seo id="bm0XZGYJa0w" title="Step-by-step guide to spin up Tyk Demo" >}}
 
 
-#### Docker Compose Setup
+##### Docker Compose Setup
 
 This page outlines how to run Tyk Stack using Docker Compose.
 
-##### Who is this page for?
+**Who is this page for?**
 This is the guide we recommend for a easy quick start. The instructions are the ones shared with you when you register to a [free trial]({{< ref "getting-started/quick-start" >}}).
 
 You can also use this guide for your PoC since it spins up a full Tyk Self Managed stack for you using our project *Docker Pro Demo*, however, if you are interested in learning Tyk, there's an option for [Tyk Demo]({{< ref "deployment-and-operations/tyk-self-managed/tyk-demos-and-pocs/overview" >}}) which is a project that spins up full Tyk stack that includes a prepopulate API definitions of all kinds, with various middleware options and can also spin up supporting tools such as Prometheus, Keycloak (IDP) etc.
 
-##### What's included?
+**What's included?**
 The *Tyk Pro Docker Demo* is our [Self-Managed]({{< ref "tyk-on-premises" >}}) solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed on your machine, which contains 5 containers: Tyk Gateway, Tyk Dashboard, Tyk Pump, Redis and MongoDB. This demo is great for proof of concept and demo purposes, but if you want to test performance, you will need to move each component to a separate machine.
 
 {{< warning success >}}
@@ -5008,7 +4997,7 @@ This demo is NOT intended for production use or performance testing, since it us
 The Tyk Pro Docker demo does not provide access to the [Developer Portal]({{< ref "tyk-developer-portal/tyk-enterprise-developer-portal" >}}).
 {{< /note >}}
 
-##### Prerequisites
+**Prerequisites**
 
 * Our [Tyk Pro Docker demo on GitHub](https://github.com/TykTechnologies/tyk-pro-docker-demo)
 * A Tyk Pro [trial license](https://pages.tyk.io/get-started-with-tyk)
@@ -5085,7 +5074,7 @@ Click **Bootstrap** to save the details.
 You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the username and password created in the Dashboard
 Setup screen.
 
-##### Removing the demo installation
+**Removing the demo installation**
 
 To delete all containers as well as remove all volumes from your host:
 
@@ -5100,7 +5089,7 @@ docker-compose down -v
 docker-compose -f ./docker-compose.yml -f ./docker-compose.postgres.yml down -v
 ```
 
-##### Using Windows
+**Using Windows**
 
 
 The Tyk Pro Docker demo is our full [On-Premises](https://tyk.io/api-gateway/on-premise/) Pro solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed Pro on your machine, which contains 5 containers: Tyk Gateway, Tyk Dashboard, Tyk Pump, Redis and MongoDB. This demo is great for proof of concept and demo purposes, but if you want to test performance, you will need to move each component to a separate machine.
@@ -5295,7 +5284,7 @@ This creates the developer portal URL. For the `Authorization` Header, the Value
 }
 ```
 
-#### Using WSL
+**Using WSL**
 
 The Tyk Pro Docker demo is our full [Self-Managed]({{< ref "/content/tyk-on-premises.md" >}}) solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed on your machine, which contains 5 containers: Tyk Gateway, Tyk Dashboard, Tyk Pump, Redis and MongoDB. This demo is great for proof of concept and demo purposes, but if you want to test performance, you will need to move each component to a separate machine.
 
@@ -5406,13 +5395,13 @@ You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the usernam
 
 To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}) follow our Self-Managed [tutorial on publishing an API to the Portal Catalog]({{< ref "/content/getting-started/tutorials/publish-api.md" >}}).
 
-### Install Tyk Self Managed on Red Hat (RHEL / CentOS)
+#### Install Tyk Self Managed on Red Hat (RHEL / CentOS)
 
 Select the preferred way of installing Tyk by selecting **Shell** or **Ansible** tab for instructions.
 
-#### Install Tyk Self Managed Through Shell
+##### Install Tyk Self Managed Through Shell
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | CentOS | 7 | ✅ |
@@ -5421,7 +5410,8 @@ Select the preferred way of installing Tyk by selecting **Shell** or **Ansible**
 | RHEL | 7 | ✅ |
 
 
-##### Install and Configure Dependencies
+**Install and Configure Dependencies**
+</br>
 
 **Redis**
 
@@ -5432,7 +5422,7 @@ Tyk Gateway has a [dependency]({{< ref "/planning-for-production/redis#supported
 Tyk Dashboard has a dependency on a storage database that can be [PostgreSQL]({{< ref "/planning-for-production/database-settings/postgresql" >}}) or [MongoDB]({{< ref "/planning-for-production/database-settings/mongodb" >}}).
   
 
-##### Option 1: Install PostgreSQL
+**Option 1: Install PostgreSQL**
 
 Check the PostgreSQL supported [versions]({{< ref "/planning-for-production/database-settings/postgresql" >}}). Follow the steps provided by [PostgreSQL](https://www.postgresql.org/download/linux/redhat/) to install it.
 
@@ -5465,7 +5455,7 @@ Create a DB (my example is tyk_analytics)
 ```console
 sudo -u tyk createdb tyk_analytics
 ```
-##### Option 2: Install MongoDB
+**Option 2: Install MongoDB**
 <br>
 Check the MongoDB supported [versions]({{< ref "/planning-for-production/database-settings/mongodb" >}}). Follow the steps provided by [MongoDB](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-red-hat/) to install it.
 
@@ -5477,8 +5467,7 @@ sudo systemctl enable mongod
 sudo systemctl start mongod
 ```
 
-##### Install Tyk Self-Managed on Red Hat (RHEL) / CentOS
-
+##### Install Tyk Self Managed Through Ansible
 You can install Tyk on RHEL or CentOS using our YUM repositories. Follow the guides and tutorials in this section to have Tyk up and running in no time.
 
 The order is to install Tyk Dashboard, then Tyk Pump and then Tyk Gateway for a full stack.
@@ -5494,9 +5483,7 @@ For a production environment, we recommend that the Tyk Gateway, Tyk Dashboard a
 {{< /note >}}
 
 
-#### Install Tyk Self Managed Through Ansible
-
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | CentOS | 7 | ✅ |
@@ -5504,11 +5491,11 @@ For a production environment, we recommend that the Tyk Gateway, Tyk Dashboard a
 | RHEL | 7 | ✅ |
 
 
-##### Requirements
+**Requirements**
 
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) - required for running the commands below. 
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```console
@@ -5541,7 +5528,7 @@ $ ansible-playbook playbook.yaml -t tyk-pro -t redis -t `mongodb` or `pgsql`
 
 You can choose to not install Redis, MongoDB or PostgreSQL by removing the `-t redis` or `-t mongodb` or `-t pgsql` However Redis and MongoDB or PostgreSQL are a requirement and need to be installed for the Tyk Pro installation to run.
 
-##### Variables
+**Variables**
 - `vars/tyk.yaml`
 
 | Variable | Default | Comments |
@@ -5617,9 +5604,9 @@ Read more about MongoDB configuration [here](https://github.com/ansible-collecti
 Read more about PostgreSQL configuration [here](https://github.com/geerlingguy/ansible-role-postgresql).
 
 
-### Install Dashboard on Red Hat (RHEL) / CentOS
+#### Install Dashboard on Red Hat (RHEL) / CentOS
 
-#### Install Dashboard Through Ansible
+##### Install Dashboard Through Ansible
 <br />
 {{< note >}}
 **Requirements**
@@ -5627,7 +5614,7 @@ Read more about PostgreSQL configuration [here](https://github.com/geerlingguy/a
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) is required to run the following commands. Instructions on how install Tyk Dashboard with shell is in the <b>Shell</b> tab.
 {{< /note >}}
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repository
 
 ```bash
@@ -5653,7 +5640,7 @@ $ sh scripts/init.sh
 $ ansible-playbook playbook.yaml -t tyk-dashboard
 ```
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | Amazon Linux | 2 | ✅ |
@@ -5662,7 +5649,7 @@ $ ansible-playbook playbook.yaml -t tyk-dashboard
 | RHEL | 8 | ✅ |
 | RHEL | 7 | ✅ |
 
-##### Variables
+**Variables**
 - `vars/tyk.yaml`
 
 | Variable | Default | Comments |
@@ -5676,18 +5663,18 @@ $ ansible-playbook playbook.yaml -t tyk-dashboard
 | dash.service.tls | `false` | Set to `true` to enable SSL connections |
 
 
-#### Install Tyk Dashboard Through Shell
+##### Install Tyk Dashboard Through Shell
 
 Tyk has its own signed RPMs in a YUM repository hosted by the kind folks at [packagecloud.io](https://packagecloud.io/tyk/tyk-dashboard/install#manual-rpm), which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
 This configuration should also work (with some tweaks) for CentOS.
 
-##### Prerequisites
+**Prerequisites**
 
 *   Ensure port `3000` is open: This is used by the Dashboard to provide the GUI and the Classic Developer Portal.
 *   Follow the steps provided in this link [Getting started on Red Hat (RHEL / CentOS)]({{< ref "tyk-on-premises/redhat-rhel-centos.md" >}}) to install and configure Tyk dependencies.
 
-##### Step 1: Set up YUM Repositories
+**Step 1: Set up YUM Repositories**
 
 First, install two package management utilities `yum-utils` and a file downloading tool `wget`:
 ```bash
@@ -5698,7 +5685,7 @@ Then install Python:
 sudo yum install python3
 ```
 
-##### Step 2: Configure and Install the Tyk Dashboard
+**Step 2: Configure and Install the Tyk Dashboard**
 
 Create a file named `/etc/yum.repos.d/tyk_tyk-dashboard.repo` that contains the repository configuration settings for YUM repositories `tyk_tyk-dashboard` and `tyk_tyk-dashboard-source` used to download packages from the specified URLs, including GPG key verification and SSL settings, on a Linux system.
 
@@ -5737,7 +5724,7 @@ Install Tyk dashboard:
 sudo yum install -y tyk-dashboard
 ```
 
-##### Step 3: Confirm Redis and MongoDB or PostgreSQL are running
+**Step 3: Confirm Redis and MongoDB or PostgreSQL are running**
 Start Redis since it is always required by the Dashboard.
 ```bash
 sudo service redis start
@@ -5749,7 +5736,7 @@ sudo systemctl start mongod
 ```bash
 sudo systemctl start postgresql-13
 ```
-##### Step 4: Configure Tyk Dashboard
+**Step 4: Configure Tyk Dashboard**
 
 We can set the Dashboard up with a similar setup command, the script below will get the Dashboard set up for the local instance.
 Make sure to use the actual DNS hostname or the public IP of your instance as the last parameter.
@@ -5789,7 +5776,7 @@ With these values your are configuring the following:
 *   `--tyk_node_port=8080`: Tell the Dashboard that the Tyk node it should communicate with is on port 8080.
 *   `--portal_root=/portal`: We want the Portal to be shown on /portal of whichever domain we set for the Portal.
 
-##### Step 5: Start Tyk Dashboard
+**Step 5: Start Tyk Dashboard**
 ```bash
 sudo service tyk-dashboard start
 ```
@@ -5827,20 +5814,20 @@ sudo systemctl restart postgresql-13
 ```
  {{< /note >}}
 
-##### Step 6: Enter Dashboard license
+**Step 6: Enter Dashboard license**
 
 Add your license in `/var/opt/tyk-dashboard/tyk_analytics.conf` in the `license` field.
 
 If all is going well, you will be taken to a Dashboard setup screen - we'll get to that soon.
 
-##### Step 7: Restart the Dashboard process
+**Step 7: Restart the Dashboard process**
 
 Because we've just entered a license via the UI, we need to make sure that these changes get picked up, so to make sure things run smoothly, we restart the Dashboard process (you only need to do this once) and (if you have it installed) then start the gateway:
 ```bash
 sudo service tyk-dashboard restart 
 ```
 
-##### Step 8 - Go to the Tyk Dashboard URL
+**Step 8 - Go to the Tyk Dashboard URL**
 
 Go to the following URL to access to the Tyk Dashboard:
 
@@ -5852,7 +5839,7 @@ You should get to the Tyk Dashboard Setup screen:
 
 {{< img src="/img/dashboard/system-management/bootstrap_screen.png" alt="Tyk Dashboard Bootstrap Screen" >}}
 
-##### Step 9 - Create your Organization and Default User
+**Step 9 - Create your Organization and Default User**
 
 You need to enter the following:
 
@@ -5873,18 +5860,18 @@ For a password, we recommend a combination of alphanumeric characters, with both
 
 Click **Bootstrap** to save the details.
 
-##### Step 10 - Login to the Dashboard
+**Step 10 - Login to the Dashboard**
 
 You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the username and password created in the Dashboard Setup screen.
 
-#### Configure your Developer Portal
+##### Configure your Developer Portal
 
 To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}) follow our Self-Managed [tutorial on publishing an API to the Portal Catalog]({{< ref "/content/getting-started/tutorials/publish-api.md" >}}).
 
 
-### Install Tyk Pump on Red Hat (RHEL) / CentOS
+#### Install Tyk Pump on Red Hat (RHEL) / CentOS
 
-#### Install Tyk Pump Through Ansible
+##### Install Tyk Pump Through Ansible
 <br />
 {{< note >}}
 **Requirements**
@@ -5892,7 +5879,7 @@ To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) is required to run the following commands. Instructions on how install Tyk Pump with shell is in the <b>Shell</b> tab.
 {{< /note >}}
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -5918,7 +5905,7 @@ $ sh scripts/init.sh
 $ ansible-playbook playbook.yaml -t tyk-pump
 ```
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | Amazon Linux | 2 | ✅ |
@@ -5928,7 +5915,7 @@ $ ansible-playbook playbook.yaml -t tyk-pump
 | RHEL | 7 | ✅ |
 
 
-#### Configure Tyk Pump Through Shell
+##### Configure Tyk Pump Through Shell
 
 Tyk has it's own signed RPMs in a YUM repository hosted by the kind folks at [packagecloud.io](https://packagecloud.io), which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
@@ -5938,11 +5925,11 @@ We're installing on a `t2.micro` because this is a tutorial, you'll need more RA
 
 This configuration should also work (with some tweaks) for CentOS.
 
-##### Prerequisites
+**Prerequisites**
 
 We are assuming that Redis and either MongoDB or SQL are installed (these are installed as part of the Tyk Gateway and Dashboard installation guides)
 
-##### Step 1: Set up YUM Repositories
+**Step 1: Set up YUM Repositories**
 
 First, we need to install some software that allows us to use signed packages:
 ```bash
@@ -5973,7 +5960,7 @@ Finally we'll need to update our local cache, so run:
 sudo yum -q makecache -y --disablerepo='*' --enablerepo='tyk_tyk-pump'
 ```
 
-##### Step 2: Install Packages
+**Step 2: Install Packages**
 
 We're ready to go, you can now install the relevant packages using yum:
 ```bash
@@ -5981,13 +5968,14 @@ sudo yum install -y tyk-pump
 ```
 
 **(You may be asked to accept the GPG key for our repos and when the package installs, hit yes to continue.)**
+<br>
 
-##### Step 3: Configure Tyk Pump
+**Step 3: Configure Tyk Pump**
 
 If you don't complete this step, you won't see any analytics in your Dashboard, so to enable the analytics service, we need to ensure Tyk Pump is running and configured properly.
 
 
-##### Configure Tyk Pump for MongoDB
+**Configure Tyk Pump for MongoDB**
 <br>
 {{< note success >}}
 **Note**
@@ -5998,7 +5986,7 @@ You need to replace `<hostname>` for `--redishost=<hostname>`, and `<Mongo IP Ad
 ```bash
 sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --mongo=mongodb://<IP Address>:<Mongo Port>/tyk_analytics
 ```
-##### Configure Tyk Pump for SQL
+**Configure Tyk Pump for SQL**
 <br>
 {{< note success >}}
 **Note**
@@ -6010,7 +5998,7 @@ sudo /opt/tyk-pump/install/setup.sh --redishost=<hostname> --redisport=6379 --po
 ```
 
 
-##### Step 4: Start Tyk Pump
+**Step 4: Start Tyk Pump**
 ```bash
 sudo service tyk-pump start
 ```
@@ -6023,15 +6011,15 @@ sudo journalctl -u tyk-pump
 ```
 
 
-### Deploy Gateway on Red Hat (RHEL) / CentOS
+#### Deploy Tyk Gateway on Red Hat (RHEL) / CentOS
 
-#### Install Gateway Through Ansible
+##### Install Tyk Gateway Through Ansible
 
-##### Requirements
+**Requirements**
 
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) - required for running the commands below. Use the **Shell** tab for instructions to install Tyk from a shell.
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -6057,7 +6045,7 @@ $ sh scripts/init.sh
 $ ansible-playbook playbook.yaml -t `tyk-gateway-pro` or `tyk-gateway-hybrid`
 ```
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | Amazon Linux | 2 | ✅ |
@@ -6066,7 +6054,7 @@ $ ansible-playbook playbook.yaml -t `tyk-gateway-pro` or `tyk-gateway-hybrid`
 | RHEL | 8 | ✅ |
 | RHEL | 7 | ✅ |
 
-##### Variables
+**Variables**
 - `vars/tyk.yaml`
 
 | Variable | Default | Comments |
@@ -6086,7 +6074,7 @@ $ ansible-playbook playbook.yaml -t `tyk-gateway-pro` or `tyk-gateway-hybrid`
 | gateway.rpc.apiKey | | This the API key of a user used to authenticate and authorize the Gateway’s access through MDCB. The user should be a standard Dashboard user with minimal privileges so as to reduce any risk if the user is compromised. The suggested security settings are read for Real-time notifications and the remaining options set to deny |
 | gateway.rpc.groupId | | This is the `zone` that this instance inhabits, e.g. the cluster/data-center the Gateway lives in. The group ID must be the same across all the Gateways of a data-center/cluster which are also sharing the same Redis instance. This ID should also be unique per cluster (otherwise another Gateway cluster can pick up your keyspace events and your cluster will get zero updates). |
 
-#### Install Tyk Gateway Through Shell
+##### Install Tyk Gateway Through Shell
 
 Tyk has it's own signed RPMs in a YUM repository hosted by the kind folks at [packagecloud.io](https://packagecloud.io/tyk/tyk-dashboard/install#manual-rpm), which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
@@ -6096,12 +6084,12 @@ We're installing on a `t2.micro` because this is a tutorial, you'll need more RA
 
 This configuration should also work (with some tweaks) for CentOS.
 
-##### Prerequisites
+**Prerequisites**
 
 *   Ensure port `8080` is open: this is used in this guide for Gateway traffic (API traffic to be proxied)
 *   EPEL (Extra Packages for Enterprise Linux) is a free, community based repository project from Fedora which provides high quality add-on software packages for Linux distribution including RHEL, CentOS, and Scientific Linux. EPEL isn’t a part of RHEL/CentOS but it is designed for major Linux distributions. In our case we need it for Redis. Install EPEL using the instructions here.
 
-##### Step 1: Set up YUM Repositories
+**Step 1: Set up YUM Repositories**
 
 First, we need to install some software that allows us to use signed packages:
 ```bash
@@ -6110,7 +6098,7 @@ sudo yum install pygpgme yum-utils wget
 
 Next, we need to set up the various repository configurations for Tyk and MongoDB:
 
-##### Step 2: Create Tyk Gateway Repository Configuration
+**Step 2: Create Tyk Gateway Repository Configuration**
 
 Create a file named `/etc/yum.repos.d/tyk_tyk-gateway.repo` that contains the repository configuration below https://packagecloud.io/tyk/tyk-gateway/install#manual-rpm:
 ```bash
@@ -6127,7 +6115,7 @@ sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
 ```
 
-##### Step 3: Install Packages
+**Step 3: Install Packages**
 
 We're ready to go, you can now install the relevant packages using yum:
 ```bash
@@ -6136,7 +6124,7 @@ sudo yum install -y redis tyk-gateway
 
 *(you may be asked to accept the GPG key for our two repos and when the package installs, hit yes to continue)*
 
-##### Step 4: Start Redis
+**Step 4: Start Redis**
 
 In many cases Redis will not be running, so let's start those:
 ```bash
@@ -6145,13 +6133,13 @@ sudo service redis start
 
 When Tyk is finished installing, it will have installed some init scripts, but it will not be running yet. The next step will be to setup the Gateway – thankfully this can be done with three very simple commands.
 
-#### Configure Tyk Gateway with the Dashboard
+##### Configure Tyk Gateway with the Dashboard
 
-##### Prerequisites
+**Prerequisites**
 
 This configuration assumes that you have already installed Tyk Dashboard, and have decided on the domain names for your Dashboard and your Portal. **They must be different**. For testing purposes, it is easiest to add hosts entries to your (and your servers) `/etc/hosts` file.
 
-##### Set up Tyk Gateway with Quick Start Script
+**Set up Tyk Gateway with Quick Start Script**
 
 You can set up the core settings for Tyk Gateway with a single setup script, however for more involved deployments, you will want to provide your own configuration file.
 
@@ -6172,7 +6160,7 @@ What we've done here is told the setup script that:
 *   `--redishost=<hostname>`: Use Redis on the hostname: localhost.
 *   `--redisport=6379`: Use the default Redis port.
 
-##### Starting Tyk
+**Starting Tyk**
 
 The Tyk Gateway can be started now that it is configured. Use this command to start the Tyk Gateway:
 ```bash
@@ -6189,16 +6177,16 @@ Tyk Gateway has full domain support built-in, you can:
 *   If you have set a hostname for the Gateway, then all non-domain-bound APIs will be on this hostname + the `listen_path`.
 
 
-### Install Tyk on Debian or Ubuntu
+#### Install Tyk on Debian or Ubuntu
  
 
-#### Install Tyk through Ansible
+##### Install Tyk through Ansible
 
-##### Requirements
+**Requirements**
 
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) - required for running the commands below. Use the **Shell** tab for instructions to install Tyk from a shell.
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```console
@@ -6231,7 +6219,7 @@ $ ansible-playbook playbook.yaml -t tyk-pro -t redis -t `mongodb` or `pgsql`
 
 You can choose to not install Redis, MongoDB or PostgreSQL by removing the `-t redis` or `-t mongodb` or `-t pgsql` However Redis and MongoDB or PostgreSQL are a requirement and need to be installed for the Tyk Pro installation to run.
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | Debian | 10 | ✅ |
@@ -6241,7 +6229,7 @@ You can choose to not install Redis, MongoDB or PostgreSQL by removing the `-t r
 | Ubuntu | 18 | ✅ |
 | Ubuntu | 16 | ✅ |
 
-##### Variables
+**Variables**
 - `vars/tyk.yaml`
 
 | Variable | Default | Comments |
@@ -6317,13 +6305,13 @@ Read more about MongoDB configuration [here](https://github.com/ansible-collecti
 Read more about PostgreSQL configuration [here](https://github.com/geerlingguy/ansible-role-postgresql).
 
 
-#### Install Tyk Through Shell 
+##### Install Tyk Through Shell 
 
-##### Requirements
+**Requirements**
 
 Before installing the Tyk components in the order below, you need to first install Redis and MongoDB/SQL.
 
-##### Option 1: Install MongoDB 4.0
+**Option 1: Install MongoDB 4.0**
 
 You should follow the [online tutorial for installing MongoDb](https://docs.mongodb.com/v4.0/tutorial/install-mongodb-on-ubuntu/). We will be using version 4.0. As part of the Mongo installation you need to perform the following:
 
@@ -6335,7 +6323,7 @@ You should follow the [online tutorial for installing MongoDb](https://docs.mong
 6. Check the `mongod` service is running
 
 
-##### Option 2: Install SQL
+**Option 2: Install SQL**
 
 You should follow the [online tutorial for installing PostgreSQL](https://www.postgresql.org/download/linux/ubuntu/). We will be using version 13. As part of the PostgreSQL installation you need to perform the following:
 
@@ -6348,13 +6336,13 @@ You should follow the [online tutorial for installing PostgreSQL](https://www.po
 
 See [SQL configuration]({{< ref "/content/planning-for-production/database-settings/postgresql.md" >}}) for details on installing SQL in a production environment.
 
-##### Install Redis
+**Install Redis**
 
 ```console
 $ sudo apt-get install -y redis-server
 ```
 
-#### Install Tyk Pro on Ubuntu
+##### Install Tyk Pro on Ubuntu
 
 Installing Tyk on Ubuntu is very straightforward using our APT repositories, follow the guides and tutorials in this section to have Tyk up and running in no time.
 
@@ -6371,12 +6359,10 @@ For a production environment, we recommend that the Gateway, Dashboard and Pump 
 {{< /note >}}
 
 
-
-
-#### Install and Configure Tyk Dashboard on Ubuntu
+##### Install and Configure Tyk Dashboard on Ubuntu
 
   
-##### Install Tyk Dashboard Through Ansible
+**Install Tyk Dashboard Through Ansible**
 <br />
 {{< note >}}
 **Requirements**
@@ -6433,7 +6419,7 @@ $ ansible-playbook playbook.yaml -t tyk-dashboard
 | dash.service.tls | `false` | Set to `true` to enable SSL connections |
 
 
-##### <a name="install-tyk-dashboard-ubuntu"></a>Install Tyk Dashboard Through Shell
+**Install Tyk Dashboard Through Shell**
 
 Tyk has its own APT repositories hosted by the kind folks at [packagecloud.io](https://packagecloud.io/tyk), which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
@@ -6657,17 +6643,17 @@ You can now log in to the Tyk Dashboard from `127.0.0.1:3000`, using the usernam
 To set up your [Developer Portal]({{< ref "/content/tyk-developer-portal.md" >}}) follow our Self-Managed [tutorial on publishing an API to the Portal Catalog]({{< ref "/content/getting-started/tutorials/publish-api.md" >}}).
 
 
-#### Install and Configure Tyk Pump for Analytics
+##### Install and Configure Tyk Pump for Analytics
 
 
-##### What is Tyk Pump?
+**What is Tyk Pump?**
 
 Tyk Pump is responsible for moving analytics between the API Gateway and the Dashboard database, it can also send data to other sinks such as ElasticSearch, StatsD and InfluxDB.
 
 Tyk has it's own APT repositories hosted by the kind folks at [packagecloud.io](https://packagecloud.io/tyk), which makes it easy, safe and secure to install a trusted distribution of the Tyk Pump application.
 
 
-##### Install Tyk Pump Through Ansible
+**Install Tyk Pump Through Ansible**
 <br />
 {{< note >}}
 **Requirements**
@@ -6712,7 +6698,7 @@ $ ansible-playbook playbook.yaml -t tyk-pump
 | Ubuntu | 16 | ✅ |
 
 
-#### Install Tyk Pump Through Shell
+##### Install Tyk Pump Through Shell
 
 This tutorial has been tested Ubuntu 16.04 & 18.04 with few if any modifications.
 
@@ -6842,9 +6828,9 @@ sudo tail -f /var/log/upstart/tyk-pump.log
 ```
 
 
-#### Install Tyk Gateway on Ubuntu
+##### Install Tyk Gateway on Ubuntu
 
-##### Install Tyk Gateway Through Ansible
+**Install Tyk Gateway Through Ansible**
 <br />
 {{< note >}}
 **Requirements**
@@ -6908,7 +6894,7 @@ $ ansible-playbook playbook.yaml -t `tyk-gateway-pro` or `tyk-gateway-hybrid`
 | gateway.rpc.groupId | | This is the `zone` that this instance inhabits, e.g. the cluster/data-center the Gateway lives in. The group ID must be the same across all the Gateways of a data-center/cluster which are also sharing the same Redis instance. This ID should also be unique per cluster (otherwise another Gateway cluster can pick up your keyspace events and your cluster will get zero updates). |
 
 
-##### <a name="install-tyk-ubuntu-gateway"></a>Install Tyk Gateway Through Shell
+**Install Tyk Gateway Through Shell**
 
 Tyk has it's own APT repositories hosted by the kind folks at [packagecloud.io](https://packagecloud.io/tyk), which makes it easy, safe and secure to install a trusted distribution of the Tyk Gateway stack.
 
@@ -6998,13 +6984,13 @@ gpg:                using RSA key F3781522A858A2C43D3BC997CA041CD1466FA2F8
 gpg: Good signature from "Team Tyk (package signing) <team@tyk.io>" [ultimate]
 ```
 
-#### Configure Tyk Gateway On The Dashboard
+##### Configure Tyk Gateway On The Dashboard
 
-##### Prerequisites
+**Prerequisites**
 
 This configuration assumes that you have already installed the Tyk Dashboard, and have decided on the domain names for your Dashboard and your Portal. **They must be different**. For testing purposes, it is easiest to add hosts entries to your (and your servers) `/etc/hosts` file.
 
-##### Set up Tyk On The Dashboard
+**Set up Tyk On The Dashboard**
 
 You can set up the core settings for Tyk Gateway with a single setup script, however for more involved deployments, you will want to provide your own configuration file.
 
@@ -7026,7 +7012,7 @@ What we've done here is told the setup script that:
 *   `--redishost=<hostname>`: Use Redis on your hostname.
 *   `--redisport=6379`: Use the default Redis port.
 
-##### Starting Tyk
+**Starting Tyk**
 
 The Tyk Gateway can be started now that it is configured. Use this command to start the Tyk Gateway:
 ```bash
@@ -7046,17 +7032,17 @@ Tyk Gateway has full domain support built-in, you can:
 
 {{</note>}}
 
-### Deployment Options
+#### Deployment Options
 
 
-#### Deploy via AWS Marketplace
+##### Deploy via AWS Marketplace
 
 
 Tyk offers a flexible and powerful API management solution through **Tyk Cloud** on the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-pboluroscnqro). Tyk Cloud is an end-to-end managed API platform where both the control plane and gateways are installed on AWS for a seamless, fully cloud-hosted experience.
 
 For those who need more deployment flexibility, Tyk Cloud also supports a [Hybrid Gateway]({{< ref "tyk-cloud/environments-deployments/hybrid-gateways" >}}) option. In this setup, the control plane remains hosted and managed by Tyk on AWS, while the gateways can be deployed on your preferred cloud provider or on-premises environment—allowing you to meet data locality and compliance needs without sacrificing control.
 
-##### Available AWS Deployment Regions
+**Available AWS Deployment Regions**
 
 You can deploy Tyk Cloud in the following AWS regions:
 
@@ -7069,7 +7055,7 @@ You can deploy Tyk Cloud in the following AWS regions:
 
 Getting started with Tyk Cloud via the AWS Marketplace is quick and easy. Sign up today to access Tyk’s comprehensive API management tools designed to scale with your needs.
 
-##### Install Tyk on AWS EC2
+**Install Tyk on AWS EC2**
   
 
 1. Spin up an [EC2 instance](https://aws.amazon.com/ec2/instance-types/), AWS Linux2 preferably, T2.Medium is fine
@@ -7130,7 +7116,7 @@ http://<public-ec2-ip>:3000
 and fill out the Bootstrap form!
 **If you see any page besides the Bootstrap page, you have pasted the license key incorrectly**
 
-##### Enable SSL for the Gateway & Dashboard
+**Enable SSL for the Gateway & Dashboard**
 
 1. Add the following to `confs/tyk.conf`
 
@@ -7210,7 +7196,7 @@ wget https://raw.githubusercontent.com/sedkis/tyk/master/scripts/bootstrap-ssl.s
 9. Done! use the generated user and password to log into The Tyk Dashboard
 
 
-#### Deploy via Ansible
+##### Deploy via Ansible
 
 {{< note >}}
 **Requirements**
@@ -7218,7 +7204,7 @@ wget https://raw.githubusercontent.com/sedkis/tyk/master/scripts/bootstrap-ssl.s
 [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) is required to run the following commands. 
 {{< /note >}}
 
-##### Getting Started
+**Getting Started**
 1. clone the [tyk-ansible](https://github.com/TykTechnologies/tyk-ansible) repositry
 
 ```bash
@@ -7257,7 +7243,7 @@ You can choose to not install Redis, MongoDB or PostgreSQL by removing the `-t r
 For a production environment, we recommend that the Gateway, Dashboard and Pump are installed on separate machines. If installing multiple Gateways, you should install each on a separate machine. See [Planning for Production]({{< ref "planning-for-production" >}}) For more details.
 {{< /note >}}
 
-##### Supported Distributions
+**Supported Distributions**
 | Distribution | Version | Supported |
 | --------- | :---------: | :---------: |
 | Amazon Linux | 2 | ✅ |
@@ -7272,7 +7258,7 @@ For a production environment, we recommend that the Gateway, Dashboard and Pump 
 | Ubuntu | 18 | ✅ |
 | Ubuntu | 16 | ✅ |
 
-##### Variables
+**Variables**
 - `vars/tyk.yaml`
 
 | Variable | Default | Comments |
@@ -7348,7 +7334,7 @@ Read more about MongoDB configuration [here](https://github.com/ansible-collecti
 Read more about PostgreSQL configuration [here](https://github.com/geerlingguy/ansible-role-postgresql).
 
 
-#### Deploy via Bootstrap
+##### Deploy via Bootstrap
   
 To list the available flags, execute `tyk-analytics bootstrap -h`:
 
@@ -7368,7 +7354,7 @@ To list the available flags, execute `tyk-analytics bootstrap -h`:
 ```
 
 
-##### Description
+**Description**
 
 The `bootstrap` command makes bootstrapping easier. It helps you to create organizations and users. The command needs a
  config file path. By default, it looks at `tyk_analytics.conf` in the directory where the `tyk-analytics` binary is located.
@@ -7384,7 +7370,7 @@ The `bootstrap` command makes bootstrapping easier. It helps you to create organ
   it without flags and use interactive mode. 
 
 
-##### Environment Variables
+**Environment Variables**
 
 You can override the config values by environment variables. See [how to configure an environment variable]({{< ref "tyk-environment-variables" >}}). 
 
@@ -7397,7 +7383,7 @@ For example, you can override hostname, port, mongo url, redis host and redis po
 - **TYK_DB_REDISPORT**
 
 
-#### Deploy with Docker
+##### Deploy with Docker
 
 
 Tyk has three containers that are available to set up a Docker installation:
@@ -7413,14 +7399,14 @@ From v5.5.0 onwards, these images are based on [distroless](https://github.com/G
 We also have a [Docker Tyk Pro Demo]({{< ref "tyk-on-premises/docker/docker-pro-demo" >}}), which installs our full Self-Managed solution, which includes our Gateway, Dashboard, and analytics processing pipeline. This demo will run Tyk Self-Managed on your machine.
 
 
-#### Deploy with Heroku
+##### Deploy with Heroku
   
-##### Install Tyk API Gateway on Heroku
+**Install Tyk API Gateway on Heroku**
 
 A full Tyk Self-Managed installation can be deployed to Heroku dynos and workers using [Heroku Container Registry and Runtime](https://devcenter.heroku.com/articles/) functionality. This guide will utilize [Tyk Docker images](https://hub.docker.com/u/tykio/) with a small amount of customization as well as an external MongoDB service.
 
 
-##### Prerequisites
+**Prerequisites**
 
 1. Docker daemon installed and running locally
 2. [Heroku account](https://www.heroku.com/), the free plan is sufficient for a basic PoC but not recommended for production usage
@@ -7430,7 +7416,7 @@ A full Tyk Self-Managed installation can be deployed to Heroku dynos and workers
 6. Checkout the [Tyk quickstart repository](https://github.com/TykTechnologies/tyk-pro-heroku) from GitHub
 7. Python 2 or 3 in order to execute the bootstrap script
 
-##### Creating Heroku Apps
+**Creating Heroku Apps**
 
 We will create two Heroku apps, one for the Tyk Gateway (with [Redis add-on](https://devcenter.heroku.com/articles/heroku-redis) attached to it) and another for the Dashboard and Pump.
 
@@ -7506,7 +7492,7 @@ heroku config -a evening-beach-40625 | grep REDIS_URL
 
 Their outputs should match.
 
-##### Deploy the Dashboard
+**Deploy the Dashboard**
 
 It's recommended to start with the Dashboard so in your Heroku quickstart clone run:
 ```{.copyWrapper}
@@ -7701,7 +7687,7 @@ heroku dyno:scale -a evening-beach-40625
 pump=1:Free web=1:Free
 ```
 
-##### Deploy the Gateway
+**Deploy the Gateway**
 
 The process is very similar for the Tyk Gateway, except it doesn't have a worker process and doesn't need access to MongoDB.
 
@@ -7772,7 +7758,7 @@ You're ready to follow the guide on [creating and managing your APIs]({{< ref "g
 To use the [geographic log distribution]({{< ref "tyk-stack/tyk-manager/analytics/geographic-distribution" >}}) feature in the Dashboard please supply the GeoLite2 DB in the `gateway` directory, uncomment the marked line in `Dockerfile.web` and set the `analytics_config.enable_geo_ip` setting (or `TYK_GW_ANALYTICSCONFIG_ENABLEGEOIP` env var) to `true`.
 {{< /note >}}
 
-##### Heroku Private Spaces
+**Heroku Private Spaces**
 
 Most instructions are valid for [Heroku Private Spaces runtime](https://devcenter.heroku.com/articles/private-spaces). However there are several differences to keep in mind.
 
@@ -7807,7 +7793,7 @@ The minimal Heroku Redis add-on plan that installs into your private space is cu
 
 Apps in private spaces don't enable SSL/TLS by default. It needs to be configured in the app settings along with the domain name for it. If it's not enabled, please make sure that configs that refer to corresponding hosts are using HTTP instead of HTTPS and related ports (80 for HTTP).
 
-##### Gateway Plugins
+**Gateway Plugins**
 
 In order to enable [rich plugins]({{< ref "plugins/supported-languages/rich-plugins" >}}) for the Gateway, please set the following Heroku config option to either `python` or `lua` depending on the type of plugins used:
 ```{.copyWrapper}
@@ -7828,7 +7814,7 @@ After re-starting the Gateway, the logs should be showing something similar to t
 
 Set this variable back to an empty value in order to revert back to the default behavior.
 
-##### Upgrading or Customizing Tyk
+**Upgrading or Customizing Tyk**
 
 Since this deployment is based on Docker images and containers, upgrading or making changes to the deployment is as easy as building a new image and pushing it to the registry.
 
@@ -7840,18 +7826,18 @@ Once these changes have been made just run `heroku container:push --recursive -a
 Please refer to [Heroku documentation on containers and registry](https://devcenter.heroku.com/articles/container-registry-and-runtime) for more information.
 
 
-### Deploy with Microsoft Azure
+#### Deploy with Microsoft Azure
   
-#### Introduction
+##### Introduction
 [Azure](https://azure.microsoft.com/en-us/overview/what-is-azure/) is Microsoft's cloud services platform. It supports both the running of [Ubuntu Servers](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Canonical.UbuntuServer?tab=Overview), as well as [Docker](https://www.docker.com/docker-azure) and [Docker-Compose](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/docker-compose-quickstart).
 
 For more details, see the [Azure Documentation](https://docs.microsoft.com/en-us/azure/).
 
-#### Tyk Installation Options for Azure 
+##### Tyk Installation Options for Azure 
 
 Azure allows you to install Tyk in the following ways:
 
-##### On-Premises
+**On-Premises**
 
 1. Via our [Ubuntu Setup]({{< ref "tyk-on-premises/debian-ubuntu" >}}) on an installed Ubuntu Server on Azure.
 2. Via our [Docker Installation]({{< ref "tyk-on-premises/docker" >}}) using Azure's Docker support.
@@ -7863,24 +7849,24 @@ See our video for installing Tyk on Ubuntu via Azure:
 We also have a [blog post](https://tyk.io/getting-started-with-tyk-on-microsoft-azure-and-ubuntu/) that walks you through installing Tyk on Azure.
 
 
-### Deploy to Google Cloud
+#### Deploy to Google Cloud
   
-#### Introduction
+##### Introduction
 
 [GCP](https://cloud.google.com/) is Google's Cloud services platform. It supports both the running of [Ubuntu Servers](https://console.cloud.google.com/marketplace/browse?q=ubuntu%2020.04) and [Docker](https://cloud.google.com/build/docs/cloud-builders).
 
 For more details, see the [Google Cloud Documentation](https://cloud.google.com/docs).
 
-#### Tyk Installation Options for Google CLoud 
+##### Tyk Installation Options for Google CLoud 
 
 Google Cloud allows you to install Tyk in the following ways:
 
-##### On-Premises
+**On-Premises**
 
 1. Via our [Ubuntu Setup]({{< ref "tyk-on-premises/debian-ubuntu" >}}) on an installed Ubuntu Server within Google Cloud.
 2. Via our [Docker Installation]({{< ref "tyk-on-premises/docker" >}}) using Google Cloud's Docker support.
 
-##### Tyk Pump on GCP
+**Tyk Pump on GCP**
 
 When running Tyk Pump in GCP using [Cloud Run](https://cloud.google.com/run/docs/overview/what-is-cloud-run) it is available 24/7. However, since it is serverless you also need to ensure that the _CPU always allocated_ option is configured to ensure availability of the analytics. Otherwise, for each request there will be a lag between the Tyk Pump container starting up and having the CPU allocated. Subsequently, the analytics would only be available during this time.
 
@@ -7889,7 +7875,7 @@ When running Tyk Pump in GCP using [Cloud Run](https://cloud.google.com/run/docs
 2. Update the Tyk Gateway [configuration]({{< ref "tyk-oss-gateway/configuration#analytics_configstorage_expiration_time" >}}) to keep the stats for 3 mins to allow Tyk Pump to process them. This value should be greater than the Pump [purge delay]({{< ref "tyk-pump/tyk-pump-configuration/tyk-pump-environment-variables#purge_delay" >}}) to ensure the analytics data exists long enough in Redis to be processed by the Pump. 
 
 
-# Planning for Production
+## Planning for Production
 
 Preparing Tyk for production involves setting up an API infrastructure that can handle high performance and ensure reliability. This section provides detailed guidance on evaluating performance, optimizing configurations, and implementing strategies to maintain availability in demanding environments.
 
@@ -7898,7 +7884,7 @@ Start by assessing performance benchmarks to understand how your system can hand
 Each topic is designed to address specific production needs, making it easy to focus on the areas most relevant to your deployment. Whether you’re scaling your setup, enhancing reliability, or optimizing performance, this section equips you with the practical knowledge needed for success.
 
 
-## Evaluate Performance Benchmarks
+### Evaluate Performance Benchmarks
 
 As an API Gateway introduces an extra hop and is also the single point of entry into the ecosystem, it needs to be super performant.  Tyk was designed to be performant from day one, which is also why it is written in GO.
 
@@ -7920,7 +7906,7 @@ Step by step process to performance tuning your Gateway for that squeeze.
 Best practice guide for setting up a manual performance test on AWS .
 
 
-### Database Management
+#### Database Management
 
 Visit the following pages to see how to configure the Database for Production:
 * [Redis]({{< ref "planning-for-production/redis.md" >}})
@@ -7930,10 +7916,10 @@ Visit the following pages to see how to configure the Database for Production:
 Please consult the [data storage configuration]({{< ref "product-stack/tyk-dashboard/advanced-configurations/data-storage-configuration" >}}) guide for further information relating to how to configure Tyk's data storage across different database engines.
 
 
-#### Redis
+##### Redis
 {{< redis-versions >}}
 
-##### Split out Your Databases
+**Split out Your Databases**
 
 This is a no-brainer, but keep Redis and MongoDB off the system running the Gateway, they both use lots of RAM, and with Redis and the Gateway constantly communicating you will be facing resource contention on the CPU for a marginal decrease in latency.
 
@@ -7950,7 +7936,7 @@ The network topology we like to use is:
 If you are making use of the Tyk Caching feature, then it is possible to use a secondary Redis server or Redis cluster to store cache data. This can be very useful in high-traffic APIs where latency is at a premium.
 
 
-##### Make sure you have enough Redis connections
+**Make sure you have enough Redis connections**
 
 Tyk makes heavy use of Redis in order to provide a fast and reliable service, in order to do so effectively, it keeps a passive connection pool ready. For high-performance setups, this pool needs to be expanded to handle more simultaneous connections, otherwise you may run out of Redis connections.
 
@@ -7970,13 +7956,13 @@ To set your maximums and minimums, edit your `tyk.conf` and `tyk_analytics.conf`
 
 Set the `max_idle` value to something large, we usually leave it at around `2000` for HA deployments, and then set your `max_active` to your upper limit (as in, how many additional connections over the idle pool should be used).
 
-##### Protection of Redis data
+**Protection of Redis data**
 
 Tyk uses Redis to store API tokens and OAuth clients, so it is advisable to *not* treat Redis instances as ephemeral. The exception to this is when you are using Tyk Multi Data Center Bridge, but you will still need to retain the master Redis instance.
 
 You must ensure that Redis is persisted, or at least in a configuration where it is easy to restore or failover. So, for example, with Elasticache, making sure there are many read-replicas and regular snapshots can ensure that your data survives a failure.
 
-##### Redis Encryption
+**Redis Encryption**
 
 Redis supports [SSL/TLS encryption](https://redis.io/topics/encryption) from version 6 as an optional feature, enhancing the security of data in transit. To configure TLS or mTLS connections between an application and Redis, consider the following settings in Tyk's configuration files:
 
@@ -8006,7 +7992,7 @@ From **Tyk 5.3**, additional options are available for more granular control:
 - Follow the steps for a secure TLS connection.
 - Provide paths for `cert_file` and `key_file` for your application's TLS certificate and private key, enabling Redis server to verify your application's identity.
 
-##### Example Gateway Configuration
+**Example Gateway Configuration**
 ```json
 "storage": {
   "type": "redis",
@@ -8022,11 +8008,11 @@ From **Tyk 5.3**, additional options are available for more granular control:
 }
 ```
 
-##### Capping Analytics
+**Capping Analytics**
 Tyk Gateways can generate a lot of analytics data. Be sure to read about [capping your Dashboard analytics]({{< ref "tyk-stack/tyk-manager/analytics/capping-analytics-data-storage" >}})
 
 
-##### Redis Sizing Guidelines
+**Redis Sizing Guidelines**
 
 The average single request analytics record (without detailed logging turned on) is around 1KB.
 
@@ -8044,7 +8030,7 @@ You can calculate your Redis RAM requirements by entering your known values in t
 {{< redis-calculator >}}
 
 
-#### MongoDB Sizing
+##### MongoDB Sizing
 
 The aggregate record size depends on the number of APIs and Keys you have. Each counter size ~50b, and every aggregated value has its own counter. 
 
@@ -8056,7 +8042,7 @@ So for 1 million requests per day, it will generate 1KB * 1M request stats (1GB)
 
 Per month: 30GB request logs + 30MB aggregate logs
 
-##### MongoDB Working Data
+**MongoDB Working Data**
 
 Working data in terms of MongoDB is the data you query most often. The graphs displayed on the Tyk Dashboard, except for the Log browser, use aggregated data. 
 
@@ -8069,23 +8055,23 @@ Note, that in order to do fast queries, even from the disk, MongoDB uses indexes
 For an aggregate collection, the average index size is 6% from the overall collection. For requests stats it is around 30%. 
 
 
-##### Example
+**MongoDB Sizing Example**
 If you serve 1 million requests per day, and require fast access to the last seven days of request logs (usually way less, and the performance of the log viewer is not a concern), with 3 months of aggregated logs, the memory requirements for MongoDB can be as follows:
 
 Request_logs_index ( 30% * (1GB * 7) ) + aggregated(3month * 30MB) ~= 2.1GB + 90MB = ~ 2.2GB
 
 In addition to storing working data in memory, MongoDB also requires space for some internal data structures. In general multiplying the resulting number by 2x should be enough. In the above example, your MongoDB server should have around 4.4GB of available memory.
 
-##### MongoDB Database Storage Calculator
+**MongoDB Database Storage Calculator**
 You can calculate your MongoDB storage requirements by entering your known values in the middle section of the calculator settings below:
 
 {{< database-calculator >}}
 
-##### Supported Versions
+**Supported Versions**
 
 {{< include "mongodb-versions-include" >}}
 
-##### Choose a MongoDB driver
+**Choose a MongoDB driver**
 
 From Tyk 5.0.2, we added an option to use the official MongoDB Go driver to connect to MongoDB. 
 
@@ -8100,7 +8086,7 @@ You can configure which driver to use with the MongoDB driver option:
 * [Configure MDCB MongoDB driver]({{< ref "tyk-multi-data-centre/mdcb-configuration-options#analyticsdriver" >}})
 * [Configure Pump MongoDB driver](https://github.com/TykTechnologies/tyk-pump#driver-type)
 
-##### Split out your DB
+**Split out your DB**
 
 This is a no-brainer, but keep Redis and MongoDB off the system running the Gateway, they both use lots of RAM, and with Redis and the Gateway constantly communicating you will be facing resource contention on the CPU for a marginal decrease in latency.
 
@@ -8114,14 +8100,14 @@ The network topology we like to use is:
 *   One Tyk Dashboard node installed on a separate machine
 *   One Tyk Pump node installed on a separate machine that handles data transitions
 
-##### Special notes for DocumentDB
+**Special notes for DocumentDB**
 {{< note success >}} 
 **Note** 
 
 If you are using [DocumentDB](https://aws.amazon.com/documentdb/), [capped collections]({{< ref "tyk-stack/tyk-manager/analytics/capping-analytics-data-storage" >}}) are not supported. See [here](https://docs.aws.amazon.com/documentdb/latest/developerguide/mongo-apis.html) for more details. 
 {{< /note >}} 
 
-##### Special notes for MongoDB Atlas
+**Special notes for MongoDB Atlas**
 In order to integrate with [MongoDB Atlas](https://www.mongodb.com/atlas/database), make sure the IP firewall connections are whitelisted on the Atlas side, and then use the following Tyk Dashboard configurations to connect: 
 ``` 
 - TYK_DB_MONGOURL=mongodb://admin:password@tykdb-shard-00-00.h42pp.mongodb.net:27017,tykdb-shard-00-01.h42pp.mongodb.net:27017,tykdb-shard-00-02.h42pp.mongodb.net:27017/tyk_analytics?authSource=admin - TYK_DB_ENABLECLUSTER=false - TYK_DB_MONGOUSESSL=true 
@@ -8130,15 +8116,15 @@ In order to integrate with [MongoDB Atlas](https://www.mongodb.com/atlas/databas
 More information on these configuration variables [here]({{< ref "tyk-dashboard/configuration" >}}). 
 
 
-#### Configuring PostgreSQL
+##### Configuring PostgreSQL
 
 How you configure your PostgreSQL installation depends on whether you are installing Tyk from fresh using PostgreSQL, or are migrating from an existing MongoDB instance.
 
-##### Supported Versions
+**Supported Versions**
 
 {{< include "sql-versions-include" >}}
 
-##### Migrating from an existing MongoDB instance
+**Migrating from an existing MongoDB instance**
 
 For v4.0 we have provided a migration command that will help you migrate all data from the main storage layer (APIs, Policies, Users, UserGroups, Webhooks, Certificates, Portal Settings, Portal Catalogs, Portal Pages, Portal CSS etc.).
 
@@ -8173,7 +8159,7 @@ You will see output listing the transfer of each database table. For example: `M
 4. You can now remove your `mongo_url` (or `TYK_DB_MONGOURL` environment variable) from your `tyk-analytics.conf`
 5. Restart your Tyk Dashboard
 
-##### PostgreSQL sizing
+**PostgreSQL sizing**
 
 The aggregate record size depends on the number of APIs and Keys you have. Each counter size ~50b, and every aggregated value has its own counter. 
 
@@ -8185,20 +8171,20 @@ So for 1 million requests per day, it will generate 1KB * 1M request stats (1GB)
 
 Per month: 30GB request logs + 30MB aggregate logs
 
-##### PostgreSQL Database Storage Calculator
+**PostgreSQL Database Storage Calculator**
 You can calculate your PostgreSQL storage requirements by entering your known values in the middle section of the calculator settings below:
 
 {{< database-calculator >}}
 
 
-## Ensure High Availability
+### Ensure High Availability
 
 Ensuring high availability is essential for delivering a reliable API experience, especially when maintaining service level agreements (SLAs) for your clients. Whether it involves limiting round-trip times, guaranteeing timely responses, creating self-healing architectures, or isolating failing services, high availability measures ensure that your infrastructure remains resilient under pressure.
 
 Tyk provides a comprehensive suite of features to help you achieve these goals. Circuit breakers allow you to detect and mitigate failures before they cascade, while enforced timeouts ensure that slow requests do not compromise overall system performance. With tailored configurations for both OAS and Classic deployments, Tyk empowers you to build robust, fail-safe API environments that prioritize uptime and enforce SLA requirements.
 
 
-### Circuit Breakers
+#### Circuit Breakers
 
 
 A circuit breaker is a protective mechanism that helps to maintain system stability by preventing repeated failures and overloading of services that are erroring. When a network or service failure occurs, the circuit breaker prevents further calls to that service, allowing the affected service time to recover while ensuring that the overall system remains functional. It is a critical component in ensuring the resilience and reliability of a distributed system.
@@ -8209,25 +8195,25 @@ Tyk can trigger events when the circuit breaker trips and when it resets. These 
 
 {{< img src="/img/diagrams/diagram_docs_circuit-breakers@2x.png" alt="Circuit breaker example" >}}
 
-#### When to use a circuit breaker
+##### When to use a circuit breaker
 
-##### Protection of critical API endpoints
+**Protection of critical API endpoints**
 
 Circuit breakers can be used to safeguard essential API endpoints from overloading, ensuring their availability and performance. By implementing circuit breakers, users can prevent these endpoints from being overwhelmed, maintaining their reliability and responsiveness.
 
-##### Handling temporary issues
+**Handling temporary issues**
 
 Circuit breakers can help handle temporary issues in the system, such as temporary outages or performance degradation, by opening and closing the circuit when conditions are unfavorable, allowing the system to recover and resume normal operation.
 
-##### Implementing retry logic
+**Implementing retry logic**
 
 Circuit breakers can be used to automatically manage the retry of failed requests after a hold-off period, increasing the chances of successful execution.
 
-##### Implementing fallback mechanisms
+**Implementing fallback mechanisms**
 
 Circuit breakers can trigger alternative workflows or fallback mechanisms when the primary system fails, ensuring uninterrupted service delivery despite system failures.
 
-#### How the circuit breaker works
+##### How the circuit breaker works
 
 Similarly to the circuit breaker in an electrical installation, Tyk's circuit breaker middleware monitors the flow and trips (breaks the connection) if it detects errors. Whilst the electrical circuit breaker monitors the flow of electricity and trips if it detects overcurrent (e.g. a short-circuit), Tyk's monitors the responses back from the upstream service and trips if it detects too many failures.
 
@@ -8241,13 +8227,13 @@ Thus, if the _sample size_ is set to 100 and the _failure rate_ is set to 0.5 (5
 
 Once the breaker has been tripped it will remain _open_, blocking calls to the endpoint until a configurable cooldown (or return-to-service) period has elapsed. While the breaker is _open_, requests to the endpoint will return `HTTP 503 Service temporarily unavailable`.
 
-##### Half-open mode
+**Half-open mode**
 
 In some scenarios the upstream service might recover more quickly than the configured cooldown period. The middleware supports a _half-open_ mode that facilitates an early return-to-service so that API clients do not have to wait until the end of the cooldown before the circuit breaker is reset.
 
 In the _half-open_ mode, Tyk will periodically issue requests to the upstream service to check whether the path has been restored (while continuing to block client requests). If the Gateway detects that the path has been reconnected, the circuit breaker will be automatically reset (following the electrical circuit analogy, the circuit breaker is _closed_) and requests will be passed to the upstream again.
 
-##### Configuring the circuit breaker
+**Configuring the circuit breaker**
 
 The circuit breaker is configured using only three parameters:
 - sample size
@@ -8266,15 +8252,15 @@ There is also an option to enable or disable the _half-open_ state if this would
 If you are using the Service Discovery module, every time the breaker trips, Tyk will attempt to refresh the Gateway list.
 {{< /note >}}
 
-##### Using the circuit breaker with multiple upstream hosts
+**Using the circuit breaker with multiple upstream hosts**
 
 The circuit breaker works at the endpoint level independent of the number of upstream hosts are servicing the requests. Thus, if you have multiple upstream targets for an API, the sample and failure counts are accumulated across **all** upstream requests. If the failure rate exceeds the threshold, the circuit breaker will trip even if only some of your upstream hosts are failing. Operating in _half-open_ mode will of course cause the breaker to reset if a responsive upstream receives a request, but the `BreakerTripped` (or `BreakerTriggered`) event should alert you to the fact that at least one host is failing.
 
-##### Using the circuit breaker with multiple Tyk Gateways
+**Using the circuit breaker with multiple Tyk Gateways**
 
 Circuit breakers operate on a single Tyk Gateway, they do not centralise or pool back-end data. This ensures optimum speed of response and resilience to Gateway failure. Subsequently, in a load balanced environment where multiple Tyk Gateways are used, some traffic can spill through even after the circuit breaker has tripped on one Gateway as other Gateways continue to serve traffic to the upstream before their own breakers trip.
 
-##### Circuit breaker events
+**Circuit breaker events**
 
 The circuit breaker automatically controls the flow of requests to the upstream services quickly and efficiently, but it is equally important to alert you to the fact that there is an issue and to confirm when traffic will recommence once the issue is resolved. Tyk's [Event]({{< ref "basic-config-and-security/report-monitor-trigger-events" >}}) system provides the method by which the circuit breaker can alert you to these occurrences.
 
@@ -8286,7 +8272,7 @@ For the generic `BreakerTriggered` event, the state change will be indicated in 
 - when a breaker trips `CircuitEvent = 0`
 - when a breaker resets `CircuitEvent = 1`
 
-##### API-level circuit breaker
+**API-level circuit breaker**
 
 Tyk does not have an API-level circuit breaker that can be applied across all endpoints. If you are using the Tyk Dashboard, however, then you are able to use an [Open Policy Agent]({{< ref "tyk-dashboard/open-policy-agent.md" >}}) to append a circuit breaker to every API/Service using the regex `.*` path.
 
@@ -8303,7 +8289,7 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
  -->
 
 
-##### Using the Circuit Breaker middleware with Tyk OAS APIs
+**Using the Circuit Breaker middleware with Tyk OAS APIs**
 
 
 Tyk's [circuit breaker]({{< ref "planning-for-production/ensure-high-availability/circuit-breakers" >}}) middleware is configured at the endpoint level, where it monitors the rate of failure responses (HTTP 500 or higher) received from the upstream service. If that failure rate exceeds the configured threshold, the circuit breaker will trip and Tyk will block further requests to that endpoint (returning `HTTP 503 Service temporarily unavailable`) until the end of a recovery (cooldown) time period.
@@ -8312,7 +8298,7 @@ When working with Tyk OAS APIs the circuit breaker is configured in the [Tyk OAS
 
 If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "product-stack/tyk-gateway/middleware/circuit-breaker-tyk-classic" >}}) page.
 
-#### Configuring the Circuit Breaker in the Tyk OAS API Definition
+##### Configuring the Circuit Breaker in the Tyk OAS API Definition
 
 The design of the Tyk OAS API Definition takes advantage of the `operationId` defined in the OpenAPI Document that declares both the path and method for which the middleware should be added. Endpoint `paths` entries (and the associated `operationId`) can contain wildcards in the form of any string bracketed by curly braces, for example `/status/{code}`. These wildcards are so they are human readable and do not translate to variable names. Under the hood, a wildcard translates to the “match everything” regex of: `(.*)`.
 
@@ -8388,11 +8374,11 @@ It will configure the circuit breaker so that if a minimum of 10 requests (`samp
 
 The configuration above is a complete and valid Tyk OAS API Definition that you can import into Tyk to try out the circuit breaker.
 
-#### Configuring the Circuit Breaker in the API Designer
+##### Configuring the Circuit Breaker in the API Designer
 
 Adding the circuit breaker to your API endpoints is easy when using the API Designer in the Tyk Dashboard, simply follow these steps:
 
-##### Step 1: Add an endpoint
+**Step 1: Add an endpoint**
 
 From the **API Designer** add an endpoint that matches the path and method to which you want to apply the middleware.
 
@@ -8402,13 +8388,13 @@ From the **API Designer** add an endpoint that matches the path and method to wh
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-no-middleware.png" alt="Tyk OAS API Designer showing no middleware enabled on endpoint" >}}
 
-##### Step 2: Select the Circuit Breaker middleware
+**Step 2: Select the Circuit Breaker middleware**
 
 Select **ADD MIDDLEWARE** and choose the **Circuit Breaker** middleware from the *Add Middleware* screen.
 
 {{< img src="/img/dashboard/api-designer/tyk-oas-circuit-breaker.png" alt="Adding the Circuit Breaker middleware" >}}
 
-##### Step 3: Configure the middleware
+**Step 3: Configure the middleware**
 
 Set the circuit breaker configuration parameters so that Tyk can protect your upstream service if it experiences failure:
 - threshold failure rate for the proportion of requests that can error before the breaker is tripped (a value between 0.0 and 1.0)
@@ -8420,12 +8406,12 @@ Set the circuit breaker configuration parameters so that Tyk can protect your up
 
 Select **ADD MIDDLEWARE** to apply the change to the middleware configuration.
 
-##### Step 4: Save the API
+**Step 4: Save the API**
 
 Select **SAVE API** to apply the changes to your API.
 
 
-#### Using the Circuit Breaker middleware with Tyk Classic APIs
+##### Using the Circuit Breaker middleware with Tyk Classic APIs
 
 
 Tyk's [circuit breaker]({{< ref "planning-for-production/ensure-high-availability/circuit-breakers" >}}) middleware is configured at the endpoint level, where it monitors the rate of failure responses (HTTP 500 or higher) received from the upstream service. If that failure rate exceeds the configured threshold, the circuit breaker will trip and Tyk will block further requests to that endpoint (returning `HTTP 503 Service temporarily unavailable`) until the end of a recovery (cooldown) time period.
@@ -8436,7 +8422,7 @@ If you're using the newer Tyk OAS APIs, then check out the [Tyk OAS]({{< ref "pr
 
 If you're using Tyk Operator then check out the [confguring the Circuit Breaker in Tyk Operator](#tyk-operator) section below.
 
-#### Configuring the Circuit Breaker in the Tyk Classic API Definition {#tyk-classic}
+##### Configuring the Circuit Breaker in the Tyk Classic API Definition {#tyk-classic}
 
 To configure the circuit breaker you must add a new `circuit_breakers` object to the `extended_paths` section of your API definition, with the following configuration:
 - `path`: the endpoint path
@@ -8465,17 +8451,17 @@ In this example the circuit breaker has been configured to monitor HTTP `GET` re
 
 When the breaker has tripped, it will return `HTTP 503 Service temporarily unavailable` in response to any calls to `GET /status/200`.
 
-#### Configuring the Circuit Breaker in the API Designer
+##### Configuring the Circuit Breaker in the API Designer
 
 You can use the API Designer in the Tyk Dashboard to configure the circuit breaker middleware for your Tyk Classic API by following these steps.
 
-##### Step 1: Add an endpoint for the path and select the Circuit Breaker plugin
+**Step 1: Add an endpoint for the path and select the Circuit Breaker plugin**
 
 From the **Endpoint Designer** add an endpoint that matches the path for which you want to deploy the circuit breaker. Select the **Circuit Breaker** plugin.
 
 {{< img src="/img/2.10/circuit_breaker.png" alt="Plugin dropdown list" >}}
 
-##### Step 2: Configure the circuit breaker
+**Step 2: Configure the circuit breaker**
 
 You can set up the various configurations options for the breaker in the drawer by clicking on it:
 
@@ -8485,17 +8471,17 @@ You can set up the various configurations options for the breaker in the drawer 
 - **Sample size (requests)**: The number of samples to take for a circuit breaker window
 - **Return to service in (s)**: The cool-down period of the breaker to return to service (seconds)
 
-##### Step 3: Save the API
+**Step 3: Save the API**
 
 Use the *save* or *create* buttons to save the changes and activate the middleware.
 
-##### Step 4: Optionally configure webhooks to respond to the circuit breaker events
+**Step 4: Optionally configure webhooks to respond to the circuit breaker events**
 
 The Dashboard supports the separate `BreakerTripped` and `BreakerReset` events, but not the combined `BreakerTriggered` [event type]({{< ref "basic-config-and-security/report-monitor-trigger-events/event-types" >}}). You should use **API Designer > Advanced Options** to add a Webhook plugin to your endpoint for each event.
 
 {{< img src="/img/dashboard/system-management/webhook-breaker.png" alt="Webhook events" >}}
 
-#### Confguring the Circuit Breaker in Tyk Operator {#tyk-operator}
+##### Confguring the Circuit Breaker in Tyk Operator {#tyk-operator}
 
 The example API Definition below configures an API to listen on path `/httpbin-timeout-breaker` and forwards requests upstream to http://httpbin.org. A hard timeout value of 2 seconds is configured for path `/delay/{delay_seconds}`. This will return a `504 Gateway Timeout` response to the client if the upstream response is not received before expiry of the timer.
 
@@ -8541,7 +8527,7 @@ A circuit breaker has been configured to monitor `HTTP GET` requests to the `/st
 
 When the breaker has tripped, it will return HTTP 503 Service temporarily unavailable in response to any calls to GET /status/500.
 
-### Enforced Timeouts
+#### Enforced Timeouts
 
 
 In any system, a task or operation takes a certain period of time to complete. When a client makes a request to the Tyk Gateway, it will be dependent upon the responsiveness of the upstream service before it can continue. If the upstream service is suffering from resource overload or congestion the response may be returned too late leading to unacceptable experience for the end user or even to instability in the system.
@@ -8550,25 +8536,25 @@ Tyk's Enforced Timeout middleware can be used to apply a maximum time that the G
 
 This feature helps to maintain system stability and prevents unresponsive or long-running tasks from affecting the overall performance of the system. The enforced timeout can be customized and configured to suit specific requirements, providing control over resource allocation and ensuring optimal system functionality.
 
-#### When to use an enforced timeout
+##### When to use an enforced timeout
 
-##### Resource management
+**Resource management**
 
 The enforced timeout can be implemented to manage system resources efficiently, particularly in high-traffic environments, preventing long-running tasks from monopolising resources, ensuring fair distribution and optimal performance.
 
-##### Task prioritization
+**Task prioritization**
 
 Prioritizing critical tasks by setting timeouts based on their expected time-to-complete helps to ensure that essential tasks are completed by reducing the impact of non-responsive upstream services.
 
-##### Security measures
+**Security measures**
 
 Limiting task durations can help protect against potential security breaches or malicious activities by setting time constraints on user sessions or API requests.
 
-##### Time-sensitive operations
+**Time-sensitive operations**
 
 For time-sensitive tasks, enforced timeouts can guarantee timely completion and avoid delays or missed deadlines.
 
-#### How the enforced timeout middleware works
+##### How the enforced timeout middleware works
 
 The enforced timeout middleware is enabled and configured at the endpoint level.
 
@@ -8593,7 +8579,7 @@ If you're using Tyk Classic APIs, then you can find details and examples of how 
  -->
 
 
-#### Using the Enforced Timeout middleware with Tyk OAS APIs
+##### Using the Enforced Timeout middleware with Tyk OAS APIs
 
 
 Tyk's [enforced timeout]({{< ref "planning-for-production/ensure-high-availability/enforced-timeouts" >}}) middleware is configured at the endpoint level, where it sets a limit on the response time from the upstream service. If the upstream takes too long to respond to a request, Tyk will terminate the request and return `504 Gateway Timeout` to the client.
@@ -8602,7 +8588,7 @@ When working with Tyk OAS APIs the enforced timeout is configured in the [Tyk OA
 
 If you're using the legacy Tyk Classic APIs, then check out the [Tyk Classic]({{< ref "product-stack/tyk-gateway/middleware/enforced-timeout-tyk-classic" >}}) page.
 
-##### Configuring an enforced timeout in the Tyk OAS API Definition
+**Configuring an enforced timeout in the Tyk OAS API Definition**
 
 The design of the Tyk OAS API Definition takes advantage of the `operationId` defined in the OpenAPI Document that declares both the path and method for which the middleware should be added. Endpoint `paths` entries (and the associated `operationId`) can contain wildcards in the form of any string bracketed by curly braces, for example `/status/{code}`. These wildcards are so they are human readable and do not translate to variable names. Under the hood, a wildcard translates to the “match everything” regex of: `(.*)`.
 
@@ -8667,7 +8653,7 @@ In this example Tyk OAS API definition, the enforced timeout has been configured
 
 The configuration above is a complete and valid Tyk OAS API Definition that you can import into Tyk to try out the enforced timeout.
 
-##### Configuring an enforced timeout in the API Designer
+**Configuring an enforced timeout in the API Designer**
 
 Adding the enforced timeout to your API endpoints is easy when using the API Designer in the Tyk Dashboard, simply follow these steps:
 
@@ -8700,7 +8686,7 @@ Select **ADD MIDDLEWARE** to apply the change to the middleware configuration.
 Select **SAVE API** to apply the changes to your API.
 
 
-#### Using the Enforced Timeout middleware with Tyk Classic APIs
+##### Using the Enforced Timeout middleware with Tyk Classic APIs
 
 
 Tyk's [enforced timeout]({{< ref "planning-for-production/ensure-high-availability/enforced-timeouts" >}}) middleware is configured at the endpoint level, where it sets a limit on the response time from the upstream service. If the upstream takes too long to respond to a request, Tyk will terminate the request and return `504 Gateway Timeout` to the client.
@@ -8711,7 +8697,7 @@ If you're using the newer Tyk OAS APIs, then check out the [Tyk OAS]({{< ref "pr
 
 If you're using Tyk Operator then check out the [configuring an enforced timeout in Tyk Operator](#tyk-operator) section below.
 
-##### Configuring an enforced timeout in the Tyk Classic API Definition {#tyk-classic}
+**Configuring an enforced timeout in the Tyk Classic API Definition {#tyk-classic}**
 
 To configure an enforced timeout you must add a new `hard_timeouts` object to the `extended_paths` section of your API definition.
 
@@ -8737,7 +8723,7 @@ In this example the enforced timeout has been configured to monitor requests to 
 
 If the upstream response is not received before the expiry of the timer, that request will be terminated and Tyk will return `504 Gateway Timeout` to the client.
 
-##### Configuring an enforced timeout in the API Designer
+**Configuring an enforced timeout in the API Designer**
 
 You can use the API Designer in the Tyk Dashboard to configure the enforced timeout middleware for your Tyk Classic API by following these steps.
 
@@ -8757,7 +8743,7 @@ Then enter the timeout to be enforced for the endpoint (in seconds):
 
 Use the *save* or *create* buttons to save the changes and activate the middleware.
 
-#### Configuring an enforced timeout in Tyk Operator {#tyk-operator}
+##### Configuring an enforced timeout in Tyk Operator {#tyk-operator}
 
 The process for configuring the middleware in Tyk Operator is similar to that explained in [configuring an enforced timeout in the Tyk Classic API Definition](#tyk-classic). It is possible to configure an enforced timeout using the `hard_timeouts` object within the `extended_paths` section of the API Definition.
 
@@ -8816,7 +8802,7 @@ Content-Length: 57
 }
 ```
 
-### Set Up Liveness Health Checks
+#### Set Up Liveness Health Checks
 
 Health checks are extremely important in determining the status of an
 application - in this instance, the Tyk Gateway. Without them, it can be hard to
@@ -8872,7 +8858,7 @@ An example of the response from this API is as follows:
 }
 ```
 
-#### Status Levels
+##### Status Levels
 
 The following status levels can be returned in the JSON response.
 
@@ -8882,7 +8868,7 @@ The following status levels can be returned in the JSON response.
 
 - **fail**: Indicates that Redis AND the Tyk Dashboard are unavailable, and can and indicate other failures. The impact is high (i.e. no configuration changes are available for API/policies/keys, no quotas are applied, and no analytics).
 
-#### Configure health check
+##### Configure health check
 
 By default, the liveness health check runs on the `/hello` path. But
 it can be configured to run on any path you want to set. For example:
@@ -8894,24 +8880,22 @@ health_check_endpoint_name: "status"
 
 This configures the health check to run on `/status` instead of `/hello`.
 
-##### Refresh Interval
+**Refresh Interval**
 
 The Health check endpoint will refresh every 10 seconds.
 
-##### HTTP error code
-
-
+**HTTP error code**
 The Health check endpoint will always return a `HTTP 200 OK` response if the polled health check endpoint is available on your Tyk Gateway. If `HTTP 200 OK` is not returned, your Tyk Gateway is in an error state.
 
 
 For MDCB installations the `/hello` endpoint can be polled in either your Management or Worker Gateways. It is recommended to use the `/hello` endpoint behind a load balancer for HA purposes.
 
-#### Health check examples
+**Health check examples**
 
 The following examples show how the Health check endpoint returns
 
 
-##### Pass Status
+**Pass Status**
 
 The following is returned for a `pass` status level for the Open Source Gateway:
 
@@ -8936,7 +8920,7 @@ Date: Wed, 14 Apr 2021 17:36:09 GMT
 }
 ```
 
-##### Redis outage
+**Redis outage**
 
 ```
 $ http :8080/hello
@@ -8965,7 +8949,7 @@ Date: Wed, 14 Apr 2021 14:58:06 GMT
 }
 ```
 
-##### Dashboard outage
+**Dashboard outage**
 
 ```
 $ http :8080/hello
@@ -8993,7 +8977,7 @@ Date: Wed, 14 Apr 2021 15:52:47 GMT
   "version": "v3.1.2"
 }
 ```
-##### Dashboard and Redis outage
+**Dashboard and Redis outage**
 
 ```
 $ http :8080/hello
@@ -9024,7 +9008,7 @@ Date: Wed, 14 Apr 2021 17:53:33 GMT
 ```
 
 
-##### MDCB Worker Gateway RPC outage
+**MDCB Worker Gateway RPC outage**
 
 ```
 $  http :8080/hello
@@ -9054,7 +9038,7 @@ Date: Wed, 14 Apr 2021 17:21:24 GMT
 }
 ```
 
-### Load Balancing
+#### Load Balancing
 
 
 Tyk supports native round-robin load-balancing in its proxy. This means that Tyk will rotate requests through a list of target hosts as requests come in. This can be very useful in microservice architectures where clusters of specialized services are launched for high availability.
@@ -9082,7 +9066,7 @@ You must fill in the `target_list` section.
 
 See [Service Discovery]({{< ref "planning-for-production/ensure-high-availability/service-discovery" >}}) to see how you can integrate a service discovery system such as Consul or etcd with Tyk and enable dynamic load balancing support.
 
-#### Configure load balancing and weighting via the Dashboard
+##### Configure load balancing and weighting via the Dashboard
 
 To set up load balancing via the Dashboard, from the **Core Settings** tab in the **API Designer** select **Enable round-robin load balancing** from the **API Settings** options:
 
@@ -9096,7 +9080,7 @@ You can now add your Load Balancing **Upstream targets** and apply weighting to 
 Weighting is new from v1.10 of the Dashboard
 {{< /note >}}
 
-#### Configure load balancing via Tyk Operator
+##### Configure load balancing via Tyk Operator
 
 Load balancing is configured within Tyk Operator, using the following configuration parameters within the proxy configuration block:
 
@@ -9125,12 +9109,12 @@ spec:
         - "httpbingo.org"
 ```
 
-#### gRPC load balancing
+##### gRPC load balancing
 
 You can also perform [gRPC Load balancing]({{< ref "key-concepts/grpc-proxy#grpc-load-balancing" >}}).
 
 
-### Service Discovery
+#### Service Discovery
 
 Service Discovery is a very useful feature for when you have a dynamically changing upstream service set.
 
@@ -9142,13 +9126,13 @@ This is what the service discovery module does.
 
 We recommend using the SD module in conjunction with the circuit breaker features, as this makes detection and discovery of failures at the gateway level much more dynamic and responsive.
 
-#### Service Discovery: Dashboard
+##### Service Discovery: Dashboard
 
 The Service Discovery settings are located in the Core tab from the API Designer.
 
 {{< img src="/img/2.10/service_discovery_settings.png" alt="Service discovery" >}}
 
-##### Configuring Service Discovery via the Dashboard
+**Configuring Service Discovery via the Dashboard**
 
 Select **Enable service discovery** to enable the discovery module.
 
@@ -9211,7 +9195,7 @@ In the above example, the **port data path** would be `port`.
 *   **Cache timeout**: Tyk caches target data from a discovery service, in order to make this dynamic you can set a cache value when the data expires and new data is loaded. Setting it too low will cause Tyk to call the SD service too often, setting it too high could mean that failures are not recovered from quickly enough.
 
 
-#### Service Discovery Config: API Definition
+##### Service Discovery Config: API Definition
 
 Service discovery is configured on a per-API basis, and is set up in the API Object under the `proxy` section of your API Definition:
 
@@ -9279,9 +9263,9 @@ In the above example, the `port_data_path` would be `port`.
 
 *   `service_discovery.target_path`: Use this setting to set a target path to append to the discovered endpoint, since many SD services only provide host and port data, it is important to be able to target a specific resource on that host, setting this value will enable that.
 
-#### Service Discovery Examples
+##### Service Discovery Examples
 
-##### Mesosphere Example
+**Mesosphere Example**
 
 For integrating service discovery with Mesosphere, you can use the following configuration parameters:
 
@@ -9295,7 +9279,7 @@ For integrating service discovery with Mesosphere, you can use the following con
   portPath = "ports"
 ```
 
-##### Eureka Example
+**Eureka Example**
 
 For integrating service discovery with Eureka, you can use the following configuration parameters (this assumes that the endpoint will return JSON and not XML, this is achieved by creating an API Definition that injects the header that requests the data type and using this API Definition as the endpoint):
 
@@ -9309,7 +9293,7 @@ For integrating service discovery with Eureka, you can use the following configu
   portPath = "port.$"
 ```
 
-##### Etcd Example
+**Etcd Example**
 
 For integrating with etcd, you can use the following configurations:
 
@@ -9323,7 +9307,7 @@ For integrating with etcd, you can use the following configurations:
   portPath = ""
 ```
 
-##### Zookeeper Example
+**Zookeeper Example**
 
 For this, you need to spin up a REST server that communicates with the Zookeeper instance.
 Here is one open source project, ZooREST, that does just that: https://github.com/Difrex/zoorest
@@ -9353,7 +9337,7 @@ Then, you can use the following Tyk SD configurations:
   portPath = ""
 ```
 
-##### Consul Example
+**Consul Example**
 
 For integrating service discovery with Consul, you can use the following configuration parameters:
 
@@ -9367,7 +9351,7 @@ For integrating service discovery with Consul, you can use the following configu
   portPath = "ServicePort"
 ```
 
-##### Linkerd Example
+**Linkerd Example**
 
 {{< note success >}}
 **Note**  
@@ -9409,18 +9393,18 @@ This is needed since Tyk appends a "Host" header when proxying the request and t
 
 [The original Community Contribution](https://community.tyk.io/t/using-tyk-gateway-with-linkerd/1568)
 
-### Conduct Uptime Tests
+#### Conduct Uptime Tests
 
 
 As of v1.9 Tyk supports a kind of built-in "uptime awareness" of the underlying services and hosts that it is managing traffic for by actively polling user-defined endpoints at set intervals.
 
 Tyk uptime awareness is not meant to replace traditional uptime monitoring tools, in fact, it is designed to supplement them by offering a way to bypass unhealthy nodes when they are down as part of Tyk's role as an API Gateway.
 
-#### Compatibility 
+##### Compatibility 
 
 Uptime tests is only available for Tyk Self-Managed users. It is not available on Tyk Cloud.
 
-#### How do the uptime tests work?
+##### How do the uptime tests work?
 
 When uptime tests are added into a Tyk cluster, a single Gateway will elect itself as primary. Gateways remain as primary using a dead man's switch, by keeping a key active in Redis. Primaries are re-elected or confirmed every few seconds. If one Gateway stops or fails, another can detect the failure and elect itself as the primary.
 
@@ -9429,7 +9413,7 @@ The primary Gateway will then run the uptime tests allocated to the cluster (sha
 The Gateway running the uptime test will have a worker pool defined so that it can execute tests simultaneously every few seconds determined by a Gateway-configurable interval loop. Depending on how many uptime tests are being run, this worker pool should be increased or decreased as needed.
 
 
-#### Initial configuration
+##### Initial configuration
 
 To configure uptime tests, add the relevant section to your `tyk.conf`:
 
@@ -9453,7 +9437,7 @@ To configure uptime tests, add the relevant section to your `tyk.conf`:
 *   `time_wait`: The number of seconds between running tests. In this example it is set to `300` seconds.
 *   `checker_pool_size`: The worker pool for uptime tests. In this example we have configured Tyk to keep `50` idle workers in memory to send tests to, in other words, with this configuration, you are pretty much guaranteed asynchronous testing for up to 50 tests.
 
-#### Configure with the API Definition
+##### Configure with the API Definition
 
 Uptime test check lists sit within API configurations, so in your API Definition add a section for the tests:
 
@@ -9505,31 +9489,31 @@ Or a long form, which allows for a full request to be checked or mocked:
 *   `timeout`: The `timeout` in milli seconds.
 
 
-#### Configure with the Dashboard
+##### Configure with the Dashboard
 
 To add an uptime test using the dashboard is very simple. Make sure that you have fulfilled the prerequisite configuration in your Gateway to enable the tester.
 
-##### Step 1: Select the Uptime Tests tab
+**Step 1: Select the Uptime Tests tab**
 
 From the API Designer select the **Uptime Tests** tab:
 
 {{< img src="/img/2.10/uptime_tests.png" alt="Uptime tests tab location" >}}
 
-##### Step 2: Click Add
+**Step 2: Click Add**
 
 Click **Add** to add a test:
 
 {{< img src="/img/2.10/uptime_test_add.png" alt="Add button location" >}}
 
-##### Step 3: Enter Path Details
+**Step 3: Enter Path Details**
 
 From the **Path Details** pop-up, complete the details and click **Add** to add the test:
 
 {{< img src="/img/2.10/uptime_test_path_details.png" alt="Test details form and add button location" >}}
 
-#### Events
+##### Events
 
-##### Uptime and downtime events
+**Uptime and downtime events**
 
 When Tyk detects downtime on a test, it will trigger a system event called `HostDown`, when that host returns to service, it will trigger `HostUp`. These events are triggered in the same event system as other Tyk Events, and therefore can have any kind of action performed:
 
@@ -9541,9 +9525,9 @@ Please see the section on the event system on how to add event handlers to your 
 
 Since tests are on a URL-by-URL basis, you could potentially see multiple `HostDown` events for a single host where multiple endpoints are being tested.
 
-#### Load balancing and Service Discovery
+##### Load balancing and Service Discovery
 
-##### Downtime detection and service availability
+**Downtime detection and service availability**
 
 If you have configured Tyk to use round-robin load balancing, you can enable an option in the `proxy` section of your API Definition that will check the hostname of the outbound Tyk request (to your service) against the downtime list to see if the server is active, if the host is marked as "down" Tyk will skip to the next host in its list before making the request:
 
@@ -9562,29 +9546,29 @@ ie: `www.myapi.com:3000`
 ```
 
 
-# Manage Multi-Environment and Distributed Setups
+## Manage Multi-Environment and Distributed Setups
 
-## Store Configuration with Key-Value Store
-### Using external Key Value storage with Tyk
+### Store Configuration with Key-Value Store
+#### Using external Key Value storage with Tyk
 
 
 With Tyk Gateway you can store configuration data (typically authentication secrets or upstream server locations) in Key-Value (KV) systems such as [Vault]({{< ref "deployment-and-operations/tyk-self-managed/deployment-lifecycle/deployment-to-production/key-value-storage/vault">}}), and [Consul]({{< ref "deployment-and-operations/tyk-self-managed/deployment-lifecycle/deployment-to-production/key-value-storage/consul">}}) and then reference these values during configuration of the Tyk Gateway or APIs deployed on the Gateway.
 
-### When to use external Key-Value storage
+#### When to use external Key-Value storage
 
-#### Simplify migration of APIs between environments
+##### Simplify migration of APIs between environments
 
 Easily manage and update secrets and other configuration across multiple environments (e.g., development, staging, production) without modifying the configuration files.
 
-#### Ensure separation of concerns
+##### Ensure separation of concerns
 
 Securely store sensitive information like API keys, passwords, and certificates in a centralised location. Not everybody needs access to these secrets: authorized people can maintain them and just pass along the reference used to access them from the KV store.
 
-#### Support per-machine variables
+##### Support per-machine variables
 
 Storing local settings within the Tyk Gateway's configuration file allows you to have per instance variables, such as a machine ID, and inject these into API requests and responses using [transformation middleware]({{< ref "advanced-configuration/transform-traffic" >}}).
 
-### How external Key-Value storage works
+#### How external Key-Value storage works
 
 There are two parts to external Key-Value storage - the KV store and the Tyk configuration object (API definition or Tyk Gateway config file).
 
@@ -9603,26 +9587,26 @@ The exception to this is for specific [transformation middleware]({{< ref "tyk-c
 If Tyk Gateway cannot communicate with the KV store, it will log an error and will treat the referenced key value as empty, continuing to load the Gateway or API, or to process the transformation middleware as appropriate.
 {{< /note >}}
 
-### Supported storage options
+#### Supported storage options
 
 Tyk Gateway supports the following locations for storage of key-value data, providing flexibility to choose the most suitable approach for your deployment and the data you are storing:
 
-#### Consul
+##### Consul
 
 HashiCorp [Consul](https://www.consul.io) is a service networking solution that is used to connect and configure applications across dynamic, distributed infrastructure. Consul KV is a simple Key-Value store provided as a core feature of Consul that can be used to store and retrieve Tyk Gateway configuration across multiple data centers.
 - to retrieve the value assigned to a `KEY` in Consul you will use `consul://KEY` or `$secret_consul.KEY` notation depending on the [location]({{< ref "tyk-configuration-reference/kv-store#how-to-access-the-externally-stored-data" >}}) of the reference
 
-#### Vault
+##### Vault
 
 [Vault](https://vaultproject.io) from Hashicorp is a tool for securely accessing secrets. It provides a unified interface to any secret while providing tight access control and recording a detailed audit log. Tyk Gateway can use Vault to manage and retrieve sensitive secrets such as API keys and passwords.
 - to retrieve the value assigned to a `KEY` in Vault you will use `vault://KEY` or `$secret_vault.KEY` notation depending on the [location]({{< ref "tyk-configuration-reference/kv-store#how-to-access-the-externally-stored-data" >}}) of the reference
 
-#### Tyk Gateway config file
+##### Tyk Gateway config file
 
 The `secrets` section in the [Tyk Gateway configuration file]({{< ref "tyk-oss-gateway/configuration#secrets" >}}) allows you to store settings that are specific to a single Tyk Gateway instance. This is useful for storing instance-specific configuration to be injected into API middleware or if you prefer using configuration files.
 - to retrieve the value assigned to a `KEY` in the `secrets` config you will use `secrets://KEY` or `$secret_conf.KEY` notation depending on the [location]({{< ref "tyk-configuration-reference/kv-store#how-to-access-the-externally-stored-data" >}}) of the reference
 
-#### Environment variables
+##### Environment variables
 
 Tyk Gateway can access data declared in environment variables. This is a simple and straightforward way to manage secrets, especially in containerised environments like Docker or Kubernetes.
 - if you want to set the local "secrets" section (equivalent to the `secrets` section in the [Gateway config file]({{< ref "tyk-configuration-reference/kv-store#tyk-gateway-config-file" >}})) using environment variables, you should use the following notation: `TYK_GW_SECRETS=key:value,key2:value2`
@@ -9630,7 +9614,7 @@ Tyk Gateway can access data declared in environment variables. This is a simple 
 then this will allow you to access those KV data
 - to retrieve the value assigned to an environment variable `VAR_NAME` you will use `env://VAR_NAME` or `$secret_env.VAR_NAME` notation depending on the [location]({{< ref "tyk-configuration-reference/kv-store#how-to-access-the-externally-stored-data" >}}) of the reference
 
-### How to access the externally stored data
+#### How to access the externally stored data
 
 You can configure Tyk Gateway to retrieve values from KV stores in the following places:
 - Tyk Gateway configuration file (`tyk.conf`)
@@ -9642,7 +9626,7 @@ You can configure Tyk Gateway to retrieve values from KV stores in the following
 You can use keys from different KV stores (e.g. Consul and environment variables) in the same configuration object (Gateway config or API definition).
 {{< /note >}}
 
-#### From the Tyk Gateway configuration file
+##### From the Tyk Gateway configuration file
 
 In Tyk Gateway's configuration file (`tyk.conf`), you can retrieve values from KV stores for the following [fields]({{< ref "tyk-oss-gateway/configuration" >}}):
 - `secret`
@@ -9669,11 +9653,11 @@ When the Gateway starts, Tyk will read the *Value* from Vault and use this as th
 
 Note that all of these references are read (and replaced with the values read from the KV location) on Gateway start when loading the `tyk.conf` file.
 
-#### From API Definitions
+##### From API Definitions
 
 From Tyk Gateway v5.3.0 onwards, you can store [any string field]({{< ref "tyk-configuration-reference/kv-store#other-string-fields" >}}) from the API definition in any of the supported KV storage options; for earlier versions of Tyk Gateway only the [Target URL and Listen Path]({{< ref "tyk-configuration-reference/kv-store#target-url-and-listen-path" >}}) fields and [certain transformation middleware]({{< ref "tyk-configuration-reference/kv-store#transformation-middleware" >}}) configurations were supported. 
 
-##### Target URL and Listen Path
+**Target URL and Listen Path**
 
 To reference the *Value* assigned to a *Key* in one of the KV stores for **Target URL** or **Listen Path** use the following notation:
 - Consul: `consul://path/to/key`
@@ -9705,7 +9689,7 @@ From v5.3.0 onward, environment variables can have any `KEY_NAME`, and the full 
 
 {{< /note >}}
 
-##### Transformation middleware
+**Transformation middleware**
 
 Key-value references can be included in the following middleware, with the values retrieved dynamically when the middleware is called (during processing of an API request or response):
 - [request body transform]({{< ref "transform-traffic/request-body" >}})
@@ -9745,7 +9729,7 @@ When a call is made to `GET /anything`, Tyk will retrieve the *Value* assigned t
 
 These references are read (and replaced with the values read from the KV location) during the processing of the API request or response.
 
-##### Using environment variables with transformation middleware
+**Using environment variables with transformation middleware**
 
 There are some subtleties with the use of environment variables as KV storage for the transformation middleware.
 
@@ -9781,7 +9765,7 @@ or
 ````
 {{< /note >}}
 
-##### Other `string` fields
+**Other `string` fields**
 
 To reference the *Value* assigned to a *Key* in one of the KV stores from the API Definition use the following notation:
 - Consul: `consul://key`
@@ -9825,11 +9809,11 @@ Then within your API definition you could use the *Value* for the authentication
 
 When the Gateway starts, Tyk will read the *Value* from the `secrets` section in the Gateway config file and use this to identify the header where Tyk Gateway should look for the [Authentication]({{< ref "tyk-apis/tyk-gateway-api/oas/x-tyk-oas-doc#authentication" >}}) token in requests to your Tyk OAS API.
 
-### Using Consul as a KV store
+#### Using Consul as a KV store
 
 HashiCorp [Consul](https://www.consul.io) is a service networking solution that is used to connect and configure applications across dynamic, distributed infrastructure. Consul KV is a simple Key-Value (KV) store provided as a core feature of Consul that can be used to store and retrieve Tyk Gateway configuration across multiple data centers.
 
-#### How to configure Tyk to access Consul
+##### How to configure Tyk to access Consul
 
 Configuring Tyk Gateway to read values from Consul is straightforward - you simply configure the connection in your Tyk Gateway config file (`tyk.conf`) by adding the `kv` section as follows:
 
@@ -9871,22 +9855,22 @@ Configuring Tyk Gateway to read values from Consul is straightforward - you simp
 
 Alternatively, you can configure it using the equivalent [environment variables]({{< ref "tyk-oss-gateway/configuration#kvconsuladdress" >}}).
 
-#### Where to store data in Consul
+##### Where to store data in Consul
 
 When you want to reference KV data from Tyk Gateway config or transform middleware, you can store your KV pairs wherever you like within the Consul KV store. You can provide the Consul path to the key in the reference using the notation appropriate to the calling [location]({{< ref "deployment-and-operations/tyk-self-managed/deployment-lifecycle/deployment-to-production/key-value-storage/consul#how-to-access-data-stored-in-consul" >}}).
 
 From Tyk Gateway 5.3.0, you can reference KV data from any `string` field in the API definition. For these you should create a folder named `tyk-apis` in the root of your Consul KV store and store all keys in a flat structure there (sub-directories not currently supported). You should not include the `tyk-apis` path in the reference so, for example, given a key-value pair `"foo":"bar"` stored in `tyk-apis` in Consul, you would reference this from the API definition using `consul://foo`.
 
-#### How to access data stored in Consul
+##### How to access data stored in Consul
 
 The notation used to refer to a KV pair stored in Consul depends upon the location of the reference as follows.
 
-##### Tyk Gateway configuration file
+**Tyk Gateway configuration file**
 
 As described [here]({{< ref "tyk-configuration-reference/kv-store#from-the-tyk-gateway-configuration-file" >}}), from Tyk Gateway's configuration file (`tyk.conf`) you can retrieve values from Consul using the following notation:
 - `consul://path/to/KEY`
 
-##### API definition
+**API definition**
 
 The **Target URL** and **Listen Path** key-value pairs can be stored in any directory in the Consul KV store as they are accessed using a different mechanism than other fields in the API definition. If storing these in a sub-directory, you can retrieve the values from Consul by providing the directory path within Consul KV using the following notation:
 - `consul://path/to/KEY`
@@ -9898,12 +9882,12 @@ From Tyk Gateway v5.3.0 onwards, you can store KV pairs to be used in **any `str
 - `consul://KEY`
 
 
-### Using Vault as a KV store
+#### Using Vault as a KV store
 
 
 [Vault](https://vaultproject.io) from Hashicorp is a tool for securely accessing secrets. It provides a unified interface to any secret while providing tight access control and recording a detailed audit log. Tyk Gateway can use Vault to manage and retrieve sensitive secrets such as API keys and passwords.
 
-#### How to configure Tyk to access Vault
+##### How to configure Tyk to access Vault
 
 Configuring Tyk Gateway to read values from Vault is straightforward - you simply configure the connection in your Tyk Gateway config file (`tyk.conf`) by adding the `kv` section as follows:
 
@@ -9933,13 +9917,13 @@ Configuring Tyk Gateway to read values from Vault is straightforward - you simpl
 
 Alternatively, you can configure it using the equivalent [environment variables]({{< ref "tyk-oss-gateway/configuration#kvvaulttoken" >}}).
 
-#### How key-value data is stored in Vault
+##### How key-value data is stored in Vault
 
 In traditional systems secrets are typically stored individually, each with their own unique key. Vault, however, allows for a more flexible approach where multiple *keys* can be grouped together and stored under a single *secret*. This grouping allows for better organization and management of related secrets, making it easier to retrieve and manage them collectively.
 
 When retrieving data from Vault, you use the dot notation (`secret.key`) to access the *value* from a specific *key* within a *secret*.
 
-##### Example of storing key value data in Vault
+**Example of storing key value data in Vault**
 
 If you want to store a *secret* named `tyk` with a *key* `gw` and *value* `123` in Vault then, from the command line, you would:
 1. Enable the `kv` secrets engine in Vault under the path `my-secret` using:  
@@ -9980,22 +9964,22 @@ This would return a response along these lines, note that the response contains 
 As explained [below]({{< ref "deployment-and-operations/tyk-self-managed/deployment-lifecycle/deployment-to-production/key-value-storage/vault#tyk-gateway-configuration-file" >}}), you could retrieve this value from within your Tyk Gateway config file using: 
    `TYK_GW_SECRET=vault://my-secret/tyk.gw`
 
-#### Where to store data in Vault
+##### Where to store data in Vault
 
 When you want to reference KV data from Tyk Gateway config or transform middleware, you can store your Vault *secrets* wherever you like within the KV store. You can provide the Vault path to the key in the reference using the notation appropriate to the calling [location]({{< ref "deployment-and-operations/tyk-self-managed/deployment-lifecycle/deployment-to-production/key-value-storage/vault#how-to-access-data-stored-in-vault" >}}).
 
 From Tyk Gateway 5.3.0, you can reference KV data from any `string` field in the API definition. For these you should create a folder named `tyk-apis` in the root of your Vault KV store and store all *secrets* in a flat structure there (sub-directories not currently supported). You should not include the `tyk-apis` path in the reference so, for example, given a key-value pair `"foo":"bar"` stored in a secret named `my-secret` in `/tyk-apis` in Vault, you would reference this from the API definition using `vault://my-secret.foo`.
 
-#### How to access data stored in Vault
+##### How to access data stored in Vault
 
 The notation used to refer to a key-value pair stored in Vault depends upon the location of the reference as follows.
 
-##### Tyk Gateway configuration file
+**Tyk Gateway configuration file**
 
 As described [here]({{< ref "tyk-configuration-reference/kv-store#from-the-tyk-gateway-configuration-file" >}}), from Tyk Gateway's configuration file (`tyk.conf`) you can retrieve values from Vault using the following notation:
 - `vault://path/to/secret.KEY`
 
-##### API definition
+**API definition**
 
 The **Target URL** and **Listen Path** key-value pairs can be stored in any directory in the Vault KV store as they are accessed using a different mechanism than other fields in the API definition. If storing these in a sub-directory, you can retrieve the values from Vault by providing the directory path within Consul KV using the following notation:
 - `vault://path/to/secret.KEY`
@@ -10007,12 +9991,12 @@ From Tyk Gateway v5.3.0 onwards, you can store KV pairs to be used in **any `str
 - `vault://KEY`
 
 
-## Implement Multi-Data Centre Setup
+### Implement Multi-Data Centre Setup
     
 
 Tyk’s Multi Data Center Bridge (MDCB) is a separately licensed extension to the Tyk control plane that performs management and synchronisation of logically or geographically distributed clusters of Tyk API Gateways. We use it ourselves to support our Tyk Cloud offering.
 
-### Challenges of managing APIs in a distributed environment
+#### Challenges of managing APIs in a distributed environment
 
 When your users are spread geographically and want to access your APIs from different parts of the world you can optimize the performance, value and utility of your APIs by deploying API Gateways in data centers local to them.
 
@@ -10036,7 +10020,7 @@ As the complexity of your architecture increases, this maintenance becomes an in
 
 This is where Tyk’s Multi Data Center Bridge (MDCB) comes in.
 
-#### How does Tyk Multi Data Center Bridge help manage your APIs in a distributed environment?
+##### How does Tyk Multi Data Center Bridge help manage your APIs in a distributed environment?
 
 The Tyk MDCB makes it possible to manage federated global deployments easily, from a central Dashboard: you can confidently deploy a multi-data center, geographically isolated set of Tyk Gateway clusters for maximum redundancy, failover, latency optimization, and uptime.
 
@@ -10046,7 +10030,7 @@ By deploying MDCB, API Management with Tyk becomes a service that can be easily 
 
 {{< img src="/img/mdcb/mdcb-intro3.png" width="800" height="975" alt="Distributed API Gateways with MDCB" >}}
 
-#### How does MDCB work?
+##### How does MDCB work?
 
 MDCB acts as a broker between the Tyk Gateway instances that you deploy in data centers around the world. A single Control Plane (Management) Gateway is used as reference: you configure APIs, keys and quotas in one central location; MDCB looks after the propagation of these to the Data Plane (or Worker) Gateways, ensuring the synchronisation of changes.
 
@@ -10058,9 +10042,9 @@ MDCB keeps your Tyk API Gateways highly available because all the Worker Gateway
 
 What happens if the worst happens and Worker Gateways fail while the link to the Control Plane is down? We’ve thought of that: Tyk will automatically configure the new Workers that spin up using the last known set of API resources in the worker’s cluster, minimizing the impact on availability of your services.
 
-#### When might you deploy MDCB?
+##### When might you deploy MDCB?
 
-##### Managing geographically distributed gateways to minimize latency and protect data sovereignty
+**Managing geographically distributed gateways to minimize latency and protect data sovereignty**
 
 Consider Acme Global Bank: they have customers in the USA and the EU. Due to compliance, security and performance requirements they need to deploy their Tyk API Gateways locally in each of those regions. They need to manage the deployment and synchronisation of APIs and associated resources (e.g. keys, policies and certificates) between the data centers to ensure global service for their customers.
 
@@ -10070,7 +10054,7 @@ Tyk MDCB enables Acme Global Bank to power this architecture by creating a prima
 
 {{< img src="/img/mdcb/mdcb-acme-global-bank2.png" width="600" height="750" alt="Acme Global Bank with MDCB" >}}
 
-##### Managing a complex deployment of services with internal and externally facing APIs
+**Managing a complex deployment of services with internal and externally facing APIs**
 
 Consider Acme Telecoms: they have a large nationally distributed workforce and complex self-hosted IT systems; are using Tyk API Gateways to deploy internal and external APIs; and have different teams managing and consuming different sets of APIs across multiple sites. They need to ensure data segregation, availability, and access for internal and external users and partners.
 
@@ -10080,13 +10064,13 @@ Combining Tyk’s built-in multi-tenancy capability with MDCB enables Acme Telec
 
 {{< img src="/img/mdcb/mdcb-acme-telecoms2.png" width="600" height="750" alt="Acme Telecoms with MDCB" >}}
 
-#### There are many reasons why MDCB may be just what you need
+##### There are many reasons why MDCB may be just what you need
 
 Beyond the two usage scenarios described here, there are many others where MDCB will provide you with the power and flexibility you need to manage your own particular situation.
 
 Here are some examples of the benefits that deploying Tyk MDCB can bring:
 
-##### Flexible architecture
+**Flexible architecture**
 
 - You can control geographic distribution of traffic, restricting traffic to data centers/regions of your choice.
 - You can put your Tyk API Gateways close to users, but still have a single management layer.
@@ -10095,7 +10079,7 @@ Here are some examples of the benefits that deploying Tyk MDCB can bring:
 - You can deploy gateways with whichever mix of cloud vendors you wish.
 - You can mix and match cloud and on premises data centers.
 
-##### Improved resiliency, security and uptime
+**Improved resiliency, security and uptime**
 
 - Each Data Plane (Worker) Gateway operates autonomously using a locally stored copy of the API resources it needs.
 - The Control Plane (Management) Gateway maintains synchronisation of these configurations across your Tyk deployment via the MDCB backbone link.
@@ -10104,47 +10088,47 @@ Here are some examples of the benefits that deploying Tyk MDCB can bring:
 - The MDCB backbone runs on a resilient compressed RPC channel that is designed to handle ongoing and unreliable connectivity; all traffic on the backbone is encrypted and so safer to use over the open internet or inter-data center links.
 - Improved data security through separation of traffic into completely separate clusters within your network.
 
-##### Reduced latency
+**Reduced latency**
 
 - Deploying Data Plane (Worker) Gateways close to your geographically distributed API consumers helps reduce their perceived request latency.
 - Deploying Worker Gateways close to your backend services will minimize round trip time servicing API requests.
 - The Worker Gateways cache keys and other configuration locally, so all operations can be geographically localised.
 - All traffic to and from one Gateway cluster will have rate limiting, authentication and authorization performed within the data center rather than “calling home” to a central control point; this reduces the  API request round trip time.
 
-##### Improved Infrastructure Management
+**Improved Infrastructure Management**
 
 - Due to the shared control plane, all Worker Gateways report into a single Tyk Dashboard. This provides a simple, consistent place to manage your APIM deployment.
 - This allows a shared infra team to offer API management and API Gateways as a service, globally, across multiple clouds and Self-Managed regions, from a single pane of glass.
 
 
-### MDCB Components
+#### MDCB Components
 
 Here we will give an overview of the main elements of a Tyk Multi Data Center (distributed) solution, clarifying the terminology used by Tyk.
 {{< img src="/img/mdcb/mdcb-components.png" width="800" height="975" alt="A Tyk Multi Data Center Bridge deployment" >}}
 
-#### Tyk Gateway 
+##### Tyk Gateway 
 - The workhorse of any deployment, Tyk’s lightweight Open Source API gateway that exposes your APIs for consumption by your users. It is a reverse proxy that secures your APIs, manages session and policies, monitors, caches and manipulates requests/responses when needed before/after it proxies them to and from the upstream.
 
-#### Tyk Dashboard
+##### Tyk Dashboard
 - Tyk’s management platform used to control the creation of API configurations, policies and keys in a persistent manner. It provides analytic information on the traffic the Gateways have processed which includes aggregated API usage and detailed information per transaction.
 
-#### Tyk Multi Data Center Bridge (MDCB)
+##### Tyk Multi Data Center Bridge (MDCB)
 - The backbone of the distributed Tyk deployment, connecting the distributed Data Plane deployments back to the Control Plane.
 
-#### Tyk Pump
+##### Tyk Pump
 - Tyk’s open source analytics purger that can be used to export transaction logs from the Tyk deployment to the visualisation tool or other data store of your choice
 
-#### Tyk Developer Portal
+##### Tyk Developer Portal
 - The access point for your API Consumers where you publish your API catalog(s) and they obtain API keys.
 
-#### Redis
+##### Redis
 - An in-memory data store used as a database, cache and message broker. We use it as pub/sub broker for inter-Gateway communication, and as a cache for API configurations, keys, certificates, and temporary store for analytics records.
 
-#### MongoDB/SQL
+##### MongoDB/SQL
 - A persistent data store for API configurations, policies, analytics and aggregated analytics, Dashboard organizations, configurations, dashboard users, portal developers and configuration.
 
 
-### Control Plane
+#### Control Plane
 {{< img src="/img/mdcb/mdcb-control-plane.png" width="800" height="975" alt="The Tyk Control Plane" >}}
 
 The Control Plane must consist of the following elements:
@@ -10156,11 +10140,11 @@ The Control Plane must consist of the following elements:
 
 To improve resilience and availability, multiple instances of each Tyk component should be deployed and load balanced within the Control Plane.
 
-#### Optional Components
+##### Optional Components
 - One or more **Tyk Pumps** can be deployed within the Control Plane to export analytics data (request/response logs) to your [data sink of choice]({{< ref "tyk-stack/tyk-pump/other-data-stores" >}}) for further analytics and visualisation.
 - A **Tyk Developer Portal** can be added to enhance the end-user experience when accessing your APIs.
  
-### Data Plane
+#### Data Plane
 {{< img src="/img/mdcb/mdcb-data-plane.png" width="800" height="975"  alt="The Tyk Data Plane" >}}
 
 The Data Plane deployment must consist of the following elements:
@@ -10170,11 +10154,11 @@ The Data Plane deployment must consist of the following elements:
 To provide resilience and availability, multiple Gateways should be deployed and load balanced within the cluster.
 If you want this Data Plane deployment to be resilient, available, and independent from the Control Plane during a disconnection event, it is advised to make the Redis data store persistent.
   
-#### Optional Components
+##### Optional Components
 - A **Tyk Pump** specifically configured as a [Hybrid Pump]({{< ref "product-stack/tyk-charts/tyk-data-plane-chart#hybrid-pump" >}}) can be deployed with the Data Plane gateways to export analytics data (request/response logs) to your [data sink of choice]({{< ref "tyk-stack/tyk-pump/other-data-stores" >}}) for further analytics and visualisation.
  
 
-### Minimizing latency with MDCB
+#### Minimizing latency with MDCB
 
 As described [previously]({{< ref "/tyk-multi-data-centre.md#managing-geographically-distributed-gateways-to-minimize-latency-and-protect-data-sovereignty" >}}), Acme Global Bank has operations and customers in both the EU and USA.
 
@@ -10190,9 +10174,9 @@ In this example we will show you how to create the Acme Global Bank deployment u
 
 ---
 
-#### Step-by-step instructions to deploy the Acme Global Bank scenario with Kubernetes in a public cloud (here we’ve used Google Cloud Platform):
+##### Step-by-step instructions to deploy the Acme Global Bank scenario with Kubernetes in a public cloud (here we’ve used Google Cloud Platform):
 
-##### Pre-requisites and configuration
+**Pre-requisites and configuration**
 
 1. What you need to install/set-up
     - Tyk Pro license (Dashboard and MDCB keys - obtained from Tyk)
@@ -10218,7 +10202,7 @@ In this example we will show you how to create the Acme Global Bank deployment u
        - `LICENSE=<dashboard_license>`
        - `MDCB_LICENSE=<mdcb_license>`
 
-##### Deploy Tyk Stack to create the Control and Data Planes
+**Deploy Tyk Stack to create the Control and Data Planes**
 
 1. Create the Tyk Control Plane
      - `./up.sh -r redis-cluster -e load-balancer tyk-cp`
@@ -10253,7 +10237,7 @@ Note that you need to run the same command twice, once setting `<worker-namespac
 *`tyk-worker-eu` (Data Plane #2)*
 {{< img src="/img/mdcb/mdcb-poc1-screenshot7.png" alt="Data Plane #2" >}}
 
-##### Testing the deployment to prove the concept
+**Testing the deployment to prove the concept**
 As you know, the Tyk Multi Data Center Bridge provides a link from the Control Plane to the Data Plane (worker) gateways, so that we can control all the remote gateways from a single dashboard.
 
 1. Access Tyk Dashboard
@@ -10282,7 +10266,7 @@ Pretty cool, huh?
 
 There’s a lot more that you could do - for example by deploying real APIs (after all, this is a real Tyk deployment) and configuring different Organization Ids for each Data Plane to control which APIs propagate to which workers (allowing you to ensure data localisation, as required by the Acme Global Bank).
 
-##### Closing everything down
+**Closing everything down**
 We’ve provided a simple script to tear down the demo as follows:
 1. `./down.sh -n tyk-worker-us`
 2. `./down.sh -n tyk-worker-eu`
@@ -10291,17 +10275,17 @@ We’ve provided a simple script to tear down the demo as follows:
 **Don’t forget to tear down your clusters in GCP if you no longer need them!**
 
 
-### Setup MDCB Control Plane
-n
+#### Setup MDCB Control Plane
+
 The [Tyk control plane]({{< ref "tyk-multi-data-centre/mdcb-components.md#control-plane" >}}) contains all the
 standard components of a standard Tyk Self-Managed installation with the addition of the Multi Data Center Bridge (MDCB).
 
-#### Installing MDCB Component On Linux
+##### Installing MDCB Component On Linux
 The MDCB component must be able to connect to Redis and MongoDB/PostgreSQL directly from within the Control Plane deployment. It does not require access to the Tyk Gateway(s) or Dashboard application.
 
 The MDCB component will however, by default, expose an RPC service on port 9091, to which the [Tyk Data Plane]({{< ref "tyk-multi-data-centre/mdcb-components.md#data-plane" >}}) data centers, i.e. the worker gateway(s) that serves API traffic, will need connectivity.
 
-##### Prerequisites
+**Prerequisites**
 We will assume that your account manager has provided you with a valid MDCB and Dashboard License and the command to enable you to download the MDCB package.
 We will assume that the following components are up and running in your Controller DC:
 
@@ -10317,7 +10301,7 @@ We will assume that the following components are up and running in your Controll
 When using SQL rather than MongoDB in a production environment, we only support PostgreSQL.
 {{< /note >}}
 
-##### Installing using RPM and Debian packages
+**Installing using RPM and Debian packages**
 To download the relevant MDCB package from PackageCloud:
 
 ```curl
@@ -10344,7 +10328,7 @@ Or
 sudo yum install tyk-sink
 ```
 
-#### Installing in a Kubernetes Cluster with our Helm Chart
+##### Installing in a Kubernetes Cluster with our Helm Chart
 
 The [Tyk Control Plane]({{<ref "product-stack/tyk-charts/tyk-control-plane-chart">}}) helm chart is pre-configured to install Tyk control plane for multi data center API management from a single Dashboard with the MDCB component.
 
@@ -10352,12 +10336,13 @@ Below is a concise instruction on how to set up an MDCB Control Plane with Redis
 
 To access the comprehensive installation instructions and configuration options, please see [Tyk Control Plane Helm Chart]({{<ref "product-stack/tyk-charts/tyk-control-plane-chart">}}).
 
-##### Prerequisites
+**Prerequisites**
 - [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
 - [Helm 3+](https://helm.sh/docs/intro/install/)
 - MDCB and Dashboard license
 
-##### Quick Start
+**Quick Start**
+<br>
 
 **Step 1 - Setup required credentials**
 
@@ -10460,10 +10445,10 @@ Now Tyk Dashboard and Tyk MDCB should be accessible through service `dashboard-s
 
 You can use the MDCB connection details included in the installation output, to install the [MDCB Data Plane]({{<ref "tyk-multi-data-centre/setup-worker-data-centres">}}).
 
-### Configuration
+#### Configuration
 If you install MDCB component with package, modify your `/opt/tyk-sink/tyk_sink.conf` file as follows:
 
-#### Configuration Example
+##### Configuration Example
 ```json
 {
   "listen_port": 9091,
@@ -10535,7 +10520,7 @@ sudo systemctl start tyk-sink
 sudo systemctl enable tyk-sink
 ```
 
-### Use MDCB For Health Checks
+#### Use MDCB For Health Checks
 
 It is possible to perform a health check on the MDCB service. This allows you to determine if the service is running, so is useful when using MDCB with load balancers.
 
@@ -10553,9 +10538,9 @@ To use the health check service, call the `/health` endpoint i.e. `http://my-mdc
 
 Please note that an HTTP 200 OK response from the `/health` endpoint merely indicates that the MDCB service is operational. However, it is important to note that the service may not yet be ready for use if it is unable to establish a connection with its dependent components (such as Redis and Data store) or if they are offline. Upgrade to v2.7.0 and later to have more accurate health checking.
 
-### Troubleshooting
+#### Troubleshooting
 
-#### Check that the MDCB service is running 
+##### Check that the MDCB service is running 
 
 ```console
 sudo systemctl status tyk-sink
@@ -10576,7 +10561,7 @@ tyk-sink.service - Multi Data Center Bridge for the Tyk API Gateway
       └─1798 /opt/tyk-sink/tyk-sink -c /opt/tyk-sink/tyk_sink.conf
 ```
 
-#### Check that MDCB is listening on port 9091
+##### Check that MDCB is listening on port 9091
 
 ```console
 sudo netstat -tlnp
@@ -10591,7 +10576,7 @@ Proto Recv-Q Send-Q Local Address           Foreign Address         State       
 tcp6       0      0 :::9091                 :::*                    LISTEN      1798/tyk-sink
 ```
 
-#### Check the logs for MDCB
+##### Check the logs for MDCB
 
 ```{.copyWrapper}
 > sudo journalctl -u tyk-sink 
@@ -10607,7 +10592,7 @@ May 06 11:50:38 master tyk-sink[1798]: time="2018-05-06T11:50:38Z" level=info ms
 May 06 11:50:42 master tyk-sink[1798]: time="2018-05-06T11:50:42Z" level=info msg="Ping!"
 ```
 
-#### Check MDCB configurations
+##### Check MDCB configurations
 
 From MDCB v2.7.0, a secured HTTP endpoint `/config` can be enabled that allows you to query configuration of MDCB.
 
@@ -10642,7 +10627,7 @@ Alternatively, you can issue a request to the `/env` endpoint to return your MDC
 curl -H "x-tyk-authorization: <secured-endpoint-secret>" https://my-mdcb-host:8181/env
 ```
 
-### Gateway configuration
+#### Gateway configuration
 
 Before a worker gateway can connect to MDCB, it is important to enable the organization that owns all the APIs to be distributed to be allowed to utilize Tyk MDCB. To do this, the organization record needs to be modified with two flags using the [Tyk Dashboard Admin API](https://tyk.io/docs/dashboard-admin-api/).
 
@@ -10719,18 +10704,18 @@ This should return:
 ```
  
 
-### Setup MDCB Data Plane
+#### Setup MDCB Data Plane
 
 You may configure an unlimited number of [Tyk Data Planes]({{< ref "tyk-multi-data-centre/mdcb-components#data-plane" >}}) containing Worker Gateways for ultimate High Availablity (HA). We recommend that you deploy your worker gateways as close to your upstream services as possible in order to reduce latency.
 
 It is a requirement that all your Worker Gateways in a Data Plane data center share the same Redis DB in order to take advantage of Tyk's DRL and quota features.
 Your Data Plane can be in the same physical data center as the Control Plane with just a logical network separation. If you have many Tyk Data Planes, they can be deployed in a private-cloud, public-cloud, or even on bare-metal.
 
-#### Installing in a Kubernetes Cluster with our Helm Chart
+##### Installing in a Kubernetes Cluster with our Helm Chart
 
 The [Tyk Data Plane]({{<ref "product-stack/tyk-charts/tyk-data-plane-chart">}}) helm chart is pre-configured to install Tyk Gateway and Tyk Pump that connects to MDCB or Tyk Cloud, our SaaS MDCB Control Plane. After setting up Tyk Control Plane with Helm Chart, obtain the required connection details from installation output and configure data plane chart as below. For Tyk Cloud users, following [Tyk Cloud instructions]({{<ref "tyk-cloud/environments-deployments/hybrid-gateways">}}) to deploy your hybrid gateways.
 
-##### Prerequisites
+**Prerequisites**
 
 * [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
 * [Helm 3+](https://helm.sh/docs/intro/install/)
@@ -10742,7 +10727,7 @@ The following quick start guide explains how to use the [Tyk Data Plane Helm cha
 
 At the end of this quickstart Tyk Gateway should be accessible through service `gateway-svc-tyk-dp-tyk-gateway` at port `8080`. Pump is also configured with Hybrid Pump which sends aggregated analytics to MDCB, and Prometheus Pump which expose metrics locally at `:9090/metrics`.
 
-##### 1. Set connection details
+**1. Set connection details**
 
 Set the below environment variables and replace values with connection details to your MDCB control plane. See [Tyk Data Plane]({{<ref "product-stack/tyk-charts/tyk-data-plane-chart#obtain-remote-control-plane-connection-details-from-tyk-control-plane-chart">}}) documentation on how to get the connection details.
 
@@ -10754,7 +10739,7 @@ GROUP_ID=your-group-id
 MDCB_USESSL=false
 ```
 
-##### 2. Then use Helm to install Redis and Tyk
+**2. Then use Helm to install Redis and Tyk**
 
 ```bash
 NAMESPACE=tyk-dp
@@ -10778,14 +10763,14 @@ helm upgrade tyk-dp tyk-helm/tyk-data-plane -n $NAMESPACE --create-namespace \
   --set global.redis.passSecret.keyName=redis-password
 ```
 
-##### 3. Done!
+**3. Done!**
 
 Now Tyk Gateway should be accessible through service `gateway-svc-tyk-dp-tyk-gateway` at port `8080`. Pump is also configured with Hybrid Pump which sends aggregated analytics to MDCB, and Prometheus Pump which expose metrics locally at `:9090/metrics`.
 
 For the complete installation guide and configuration options, please see [Tyk Data Plane Chart]({{<ref "product-stack/tyk-charts/tyk-data-plane-chart">}}).
 
 
-#### Configuring an existing Tyk Gateway
+##### Configuring an existing Tyk Gateway
 If you have Redis and a working Tyk Gateway deployed, follow below steps to configure your gateways to work in RPC mode.
 
 {{< note >}}
@@ -10794,11 +10779,11 @@ If you have Redis and a working Tyk Gateway deployed, follow below steps to conf
 If you have deployed Gateway with `tyk-data-plane` Chart, you don't need to go through following steps to configure Tyk Gateway. The necessary configurations has been set in `tyk-data-plane` chart templates.
 {{< /note >}}
 
-##### Prerequisites
+**Prerequisites**
 - Redis
 - A working headless/open source Tyk Gateway deployed
 
-##### Worker Gateway Configuration
+**Worker Gateway Configuration**
 
 Modify the Tyk Gateway configuration (`tyk.conf`) as follows:
 `"use_db_app_configs": false,`
@@ -10861,15 +10846,15 @@ The most important elements here are:
 Once this is complete, you can restart the Tyk Gateway in the Data Plane, and it will connect to the MDCB instance, load its API definitions, and is ready to proxy traffic.
 
 
-# Monitor and Observe Your Setup
+## Monitor and Observe Your Setup
 
 A common question that gets asked is how to monitor the Tyk components.
 
-## Tyk Gateway
+### Tyk Gateway
 
 The Gateway & Redis are the only components that will have a high on-demand performance requirement, which needs to scale with your API traffic.
 
-### Tyk Gateway CPU Utilization
+#### Tyk Gateway CPU Utilization
 
 Tyk Gateway is CPU bound. It will have better performance the more cores you throw at Tyk. Tyk will automatically spread itself across all available cores to handle the traffic. Be sure to limit the cores in a Kubernetes deployment otherwise, the Gateway will attempt to consume all cores in a node.
 
@@ -10877,7 +10862,7 @@ Performance benchmarks on how Tyk performs across different CPU architectures, e
 
 A healthy and performant Tyk Gateway should have a CPU utilization of under 60%. If the average CPU utilization is above 60%, then we recommend you scale your Tyk Gateway services. A higher figure than 60% introduces risk because if one Gateway fails, the traffic spillover to healthy nodes might be overwhelming and result in a cascading failure.
 
-### Liveness Health Check
+#### Liveness Health Check
 
 Health checks are extremely important in determining the status of our Tyk Components. Depending on your setup and configuration, the statuses of the following components will be returned: **Gateway**, **Dashboard**, **Redis** and **RPC**. 
 
@@ -10913,7 +10898,7 @@ curl -X GET "http://localhost:8080/hello"
 
 For information about our health check endpoint, please visit our [Liveness Health Check]({{< ref "planning-for-production/ensure-high-availability/health-check" >}}) documentation.
 
-## Tyk Dashboard & Tyk MDCB
+### Tyk Dashboard & Tyk MDCB
 
 These other Tyk components won’t see load proportional to your API requests.  However, the Dashboard (and MDCB on Global deployments) synchronise the Gateways and need to be given enough resources to manage this process.
 
@@ -10923,13 +10908,13 @@ The Tyk MDCB liveness health check endpoint can be configured [here]({{< ref "ty
 
 Currently, Tyk Dashboard and MDCB liveness endpoints only report whether the service is operational. It is important to note that the service may not yet be ready for use if it is unable to establish a connection with its dependent components (such as Redis and Datastore) or if they are offline.
 
-## Tyk Pump
+### Tyk Pump
 
 The Tyk Pump component offers a built-in Liveness Health Check endpoint [here]({{< ref "tyk-pump/tyk-pump-configuration/tyk-pump-environment-variables#health-check" >}}). 
 
 Currently, the receipt of an HTTP 200 OK response merely indicates that the Pump service is operational. However, it is important to note that the service may not yet be ready for use if it is unable to establish a connection with its dependent components (such as Redis and Datastore) or if they are offline.
 
-### Database Sizing
+#### Database Sizing
 
 Based on the Tyk recommended approach for setting up your databases, our team has built tools that will help engineers better understand and plan their infrastructure around their use case:
 
@@ -10938,7 +10923,7 @@ Based on the Tyk recommended approach for setting up your databases, our team ha
 * [MongoDB Sizing](https://tyk.io/docs/planning-for-production/database-settings/mongodb-sizing/)
 
 
-### Database Monitoring
+#### Database Monitoring
 
 Monitoring guides from our partner:
 
