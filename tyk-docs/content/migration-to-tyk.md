@@ -2577,7 +2577,7 @@ Content-Length: 59
 ```
 
 **Deploy in Kubernetes with Helm Chart**
-</br>
+<br>
 **Prerequisites**
 
 * [Kubernetes 1.19+](https://kubernetes.io/docs/setup/)
@@ -2633,7 +2633,7 @@ For the complete installation guide and configuration options, please see [Tyk D
 
 
 **Remove hybrid data plane configuration**
-</br>
+<br>
 {{< warning success >}}
 **Warning**
 
@@ -4385,7 +4385,7 @@ This demo installation was tested with the following tools/versions:
 
 **Installation**
 
-Now you have your prerequisites, follow the instructions from our [Tyk Helm Chart]({{< ref "/content/tyk-self-managed/tyk-helm-chart#installation" >}}) page.
+Now you have your prerequisites, follow the instructions from our [Tyk Helm Chart]({{< ref "/tyk-self-managed/tyk-helm-chart#installation" >}}) page.
 
 ##### Use Legacy Helm Chart
 
@@ -4403,7 +4403,7 @@ Tyk Helm chart is the preferred (and easiest) way to install **Tyk Self-Managed*
 The helm chart `tyk-helm/tyk-pro` will install full Tyk platform with **Tyk Manager**, **Tyk Gateways** and **Tyk Pump** into your Kubernetes cluster. You can also choose to enable the installation of **Tyk Operator** (to manage your APIs in a declarative way).
 
 **Prerequisites**
-</br>
+<br>
 **1. Tyk License**
 If you are evaluating Tyk on Kubernetes, [contact us](https://tyk.io/about/contact/) to obtain a temporary license.
 
@@ -4671,7 +4671,7 @@ show examples of how Tyk can be set up in k8s using different deployment
 architectures as well as different integrations.
 
 **Prerequisites**
-</br>
+<br>
 
 **Required Packages**
 
@@ -4729,7 +4729,7 @@ Tyk Enterprise Portal, Tyk Operator, and httpbin CRD example.
 
  
 **Dependencies Options**
-</br>
+<br>
 
 **Redis Options**
 - `redis`: Bitnami Redis deployment
@@ -4788,7 +4788,7 @@ generating traffic for 15 minutes. To monitor live traffic, you can use the cred
 access Grafana or the Tyk Dashboard
 
 **Usage**
-</br>
+<br>
 
 **Start Tyk deployment**
 Create and start up the deployments
@@ -4929,7 +4929,7 @@ Watch the video *What Is Tyk Demo* for an overview and learn about the key featu
 {{< youtube-seo id="MqVPyWg1YZM" title="Overview of Tyk Demo and its features" >}}
 
 **Prerequisites**
-</br>
+<br>
 
 **1. Docker compose**
 Make sure you have [docker compose](https://docs.docker.com/compose/install/) and that docker is running on your machine.
@@ -5411,7 +5411,7 @@ Select the preferred way of installing Tyk by selecting **Shell** or **Ansible**
 
 
 **Install and Configure Dependencies**
-</br>
+<br>
 
 **Redis**
 
