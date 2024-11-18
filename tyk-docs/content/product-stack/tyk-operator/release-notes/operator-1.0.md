@@ -194,7 +194,7 @@ Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "/api-management/automat
 
 This update extends the security policy to include TykOasApiDefinition resources within the `access_rights_array`, allowing you to manage security policies for both Tyk Classic APIs and Tyk OAS APIs. By specifying the API kind, you can now apply rate limits, quotas, and other access controls to Tyk OAS APIs, streamlining security management in mixed environments.
 
-Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api">}})
+Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-api">}})
 </details>
 </li>
 <li>
