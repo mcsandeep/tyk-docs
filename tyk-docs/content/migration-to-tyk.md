@@ -125,14 +125,13 @@ You'll find step-by-step instructions for deploying Tyk in various environments�
 
 Whether you're running self-managed setups or moving to the cloud, this guide empowers you to configure Tyk to meet your specific needs, ensuring a smooth transition with minimal downtime. Explore best practices, deployment options, and production-ready configurations to harness the full potential of Tyk.
 
-# Overview
+## Overview 
 
-
-## Follow Best Practices 
+### Best Practices 
 
   In today's digital landscape, the efficient and secure exchange of data and functionality between applications is crucial for business growth. API Management serves as the backbone of digital ecosystems, enhancing security and operational efficiency to secure digital assets and streamline operations.
 
-### Security: Safeguarding Your Digital Assets
+#### Security: Safeguarding Your Digital Assets
 
 APIs are the gateways that allow information to flow between applications, partners and customers. While APIs offer unparalleled opportunities, they also bring security concerns. API Management offers crucial security measures to protect businesses:
 
@@ -141,7 +140,7 @@ APIs are the gateways that allow information to flow between applications, partn
 - Rate Limiting
 - API Key Management
 
-### Operations: Streamlining API Creation and Deployment
+#### Operations: Streamlining API Creation and Deployment
 
 API Management isn't just about security; it also streamlines the creation and deployment of APIs, ensuring they operate seamlessly:
 
@@ -155,8 +154,7 @@ In conclusion, API Management is the cornerstone of modern business success, enh
 
 The aim of this is to evolve with content that targets best practices for API management, targeting security and operations.
 
-## Discover Tyk Open Source
-
+### Tyk Open Source
 
 Open source is at the heart of what we do. Anything that is API Gateway-related, lives in the Gateway, or is critical for the Gateway to work is open and freely available via our [Github](https://github.com/TykTechnologies/).
 
@@ -173,18 +171,16 @@ Please show your support for the Gateway by clicking the GitHub link, then addin
 
 {{< include "oss-product-list-include" >}}
 
-### Get Started
+#### Get Started
 
 To Get started, simply install [Tyk Open Source]({{< ref "apim/open-source/installation" >}}), and then create your first API!
 
 
-## What is Tyk On-Premises / Self-Managed ?
+#### What is Tyk On-Premises / Self-Managed ?
 
 Tyk Self-Managed allows you to easily install our Full Lifecycle API Management solution in your own infrastructure. There is no calling home, and there are no usage limits.  You have full control.
 
-
-
-### Tyk Components
+#### Tyk Components
 The full Tyk Self-Managed system consists of:
 <!-- todo: oss labels: -->
 * [Tyk Gateway]({{< ref "tyk-oss-gateway" >}}):  Tyk Gateway is provided ‘Batteries-included’, with no feature lockout. It is an open source enterprise API Gateway, supporting REST, GraphQL, TCP and gRPC protocols, that protects, secures and processes your APIs.
@@ -193,25 +189,23 @@ The full Tyk Self-Managed system consists of:
 * [Tyk Identity Broker]({{< ref "tyk-identity-broker" >}}) (Optional): Tyk Identify Broker handles integrations with third-party IDP's. It (TIB) is a component providing a bridge between various Identity Management Systems such as LDAP, Social OAuth (e.g. GPlus, Twitter, GitHub) or Basic Authentication providers, to your Tyk installation.
 * [Tyk Multi-Data Center Bridge]({{< ref "tyk-multi-data-centre" >}}) (Optional, add-on): Tyk Multi-Data Center Bridge allows for the configuration of a Tyk ecosystem that spans many data centers and clouds. It also (MDCB) acts as a broker between Tyk Gateway Instances that are isolated from one another and typically have their own Redis DB.
 
-
-
-### Architecture
+#### Architecture
 {{< img src="/img/diagrams/diagram_docs_pump-data-flow@2x.png" alt="Tyk Self-Managed Archtecture" >}}
 
-### Dependencies & Database Support
+#### Dependencies & Database Support
 
-#### MongoDB / PostgreSQL
+##### MongoDB / PostgreSQL
 
 Tyk Dashboard requires a persistent datastore for its operations. By default MongoDB is used. From Tyk v4.0, we also support PostgreSQL. See [Database Options]({{< ref "tyk-dashboard/database-options.md" >}}) for a list of versions and drop-in replacements we support.
 
-#### Redis
+##### Redis
 
 Tyk Gateway requires Redis for its operations. See [supported Redis versions]({{< ref "planning-for-production/redis#supported-versions">}}) for the list of releases.
 
 Visit the [Gateway page]({{< ref "tyk-oss-gateway" >}}) for more info.
 
 
-### Init Systems
+#### Init Systems
 
 Tyk packages support [systemd](https://www.freedesktop.org/wiki/Software/systemd/), [Upstart](http://upstart.ubuntu.com/cookbook/) (both 0.6.x and 1.x) and SysVinit Linux init systems. During package installation only one is chosen depending on the operating system support, e.g.:
 
@@ -224,15 +218,15 @@ Note that any init scripts of your choosing can be used instead of automatically
 
 This init system variance implies there are different ways to manage the services and collect service logs.
 
-#### Upstart
+##### Upstart
 For Upstart, service management can be performed through the `initctl` or a set of `start`, `stop`, `restart` and `status` commands. Upstart 1.x also works with the `service` command.
 
-#### systemd
+##### systemd
 For systemd, either `systemctl` or `service` commands may be utilized.
 
 The `service` command can usually be used with SysVinit scripts, as well as invoking them directly.
 
-## Service logs availability ##
+### Service logs availability
 
 *   Upstart 0.6.x and SysVinit: log files are located in `/var/logs` for every respective service, e.g. `/var/logs/tyk-gateway.stderr` and `/var/logs/tyk-gateway.stdout`
 *   Upstart 1.x: by default everything is stored in `/var/logs/upstart` directory, e.g. `/var/logs/upstart/tyk-gateway.log`
@@ -242,23 +236,23 @@ The `service` command can usually be used with SysVinit scripts, as well as invo
 Please consult with respective init system documentation for more details on how to use and configure it.
 
 
-### Free Trial
+#### Free Trial
 
 Sign up for a free trial to test it out:
 
 {{< button_left href="https://tyk.io/sign-up#self" color="green" content="Try for free" >}}
 
 
-### Installing Tyk Self-Managed
+#### Installing Tyk Self-Managed
 Please visit our [Self-Managed installation]({{< ref "tyk-self-managed/install" >}}) page to get started.
 
 
-### Licensing
+#### Licensing
 
 Read more about licensing [here]({{< ref "tyk-on-premises/licensing" >}}).
 
 
-## Start with Tyk Cloud
+### Tyk Cloud
 
 Tyk cloud is a fully managed service that makes it easy for API teams to create, secure, publish and maintain APIs at any scale, anywhere in the world. Tyk Cloud includes everything you need to manage your global API ecosystem: [Tyk Gateways]({{< ref "tyk-oss-gateway" >}}), [Tyk Dashboard]({{< ref "tyk-dashboard" >}}), [Tyk Developer Portal]({{< ref "tyk-developer-portal" >}}) and [Universal Data Graph]({{< ref "universal-data-graph" >}}).
 
@@ -274,17 +268,17 @@ Start using Tyk on our servers. Nothing to install:
 
 
 
-### Tyk Cloud Overview
+#### Tyk Cloud Overview
 
 This page explains what Tyk Cloud is and how the Tyk SaaS solution makes it easy for you to optimize your platforms in just a few clicks, so that you can manage your APIs seamlessly.  
 
 {{< button_left href="https://tyk.io/sign-up/#cloud" color="green" content="Cloud free trial" >}}
 
-#### What is Tyk Cloud?
+##### What is Tyk Cloud?
 
 Tyk Cloud is a full SaaS service that enables you to run and operate Tyk using your chosen cloud provider, in whichever region you like. This powerful solution includes use of the Tyk API Gateway, Tyk Dashboard, Tyk Developer Portal, Universal Data Graph and more. All without having to manage an infrastructure.
 
-#### Where is Tyk Cloud hosted?
+##### Where is Tyk Cloud hosted?
 
 Tyk Cloud is currently available to auto-deploy on AWS.
 Paid plans and Enterprise trials allow users to select one of 6 AWS locations as their home region as well as the locations of their Cloud Data Planes. The 6 AWS regions to choose from are:
@@ -296,7 +290,7 @@ Paid plans and Enterprise trials allow users to select one of 6 AWS locations as
 - aws-ap-southeast-2, Australia
 
 
-#### Why Tyk Cloud?
+##### Why Tyk Cloud?
 
 **Next Level SaaS**
 
@@ -320,7 +314,7 @@ To make it even simpler, Tyk Cloud is pre-configured so you can be up and runnin
 
 
 
-### Quickstarts
+#### Quickstarts
 
 {{< grid >}}
 
@@ -330,48 +324,48 @@ Quick Start
 
 {{< /grid >}}
 
-### Feature setups
+#### Feature setups
 
 {{< grid >}}
 
 {{< badge title="Configuration" href="tyk-cloud/configuration-options/using-plugins/python-custom-auth/" >}}
 
-### Python custom plugins
+#### Python custom plugins
 
 Implement your own custom logic with Python based plugins
 {{< /badge >}}
 
 {{< badge title="Configuration" href="tyk-cloud/using-custom-domains/" >}}
 
-### Using custom domains
+#### Using custom domains
 
 Configure custom domain for your Dashboard and Developer Portal
 {{< /badge >}}
 
 {{< badge title="Administration" href="tyk-cloud/environments-deployments/managing-environments" >}}
 
-### Manage environments
+#### Manage environments
 
 Create and manage multiple environments within your Tyk Cloud organization
 {{< /badge >}}
 
 {{< badge title="Administration" href="tyk-cloud/environments-deployments/managing-control-planes" >}}
 
-### Manage deployments
+#### Manage deployments
 
 Create and manage your Cloud Control Plane and Cloud Data Plane deployments
 {{< /badge >}}
 
 {{< badge title="Administration" href="tyk-cloud/teams-users/" >}}
 
-### Manage teams & users
+#### Manage teams & users
 
 Create teams in your organization, define roles and manage user access
 {{< /badge >}}
 
 {{< badge title="Account" href="tyk-cloud/account-billing/" >}}
 
-### Manage billing
+#### Manage billing
 
 Upgrade your subscription, billing details or card information
 {{< /badge >}}
@@ -380,10 +374,10 @@ Upgrade your subscription, billing details or card information
 
 
 
-# Prepare for your Migration
+## Prepare for your Migration
 
 
-## Get Started with Tyk Open Source
+### Get Started with Tyk Open Source
 New to Tyk Gateway? In this page you'll get started with the basics - install Tyk and test it live in less than 2 minutes.
 
 We recommend [Tyk Gateway docker compose](https://github.com/TykTechnologies/tyk-gateway-docker) as the quickest way to get started. Later, you can move to one of our other supported distributions if you prefer.
@@ -411,7 +405,7 @@ docker-compose up -d
 
 Congratulations, you’re done!!!
 
-### Test Installation
+#### Test Installation
 
 Your Tyk Gateway is now configured and ready to use. Confirm this by checking against the ‘hello’ endpoint:
 
@@ -424,20 +418,16 @@ The output should be similar to that shown below:
 {"status": "pass", "version": "v5.1", "description": "Tyk GW"}
 ```
 
-#### Virtual Deployment
+##### Virtual Deployment
 [Killercoda](https://killercoda.com/about) gives you instant access to a real Linux or Kubernetes command-line environment via your browser. 
 You can try this [Killercoda Tyk scenario](https://killercoda.com/tyk-tutorials/scenario/Tyk-install-OSS-docker-compose) to walk through the installation of our Open Source Gateway using Docker Compose (the exact same flow shown above).
 
-#### Next Steps
-
-Next, [add your first API to Tyk ]({{< ref "getting-started/create-api" >}}) and follow the *Open Source* instructions.
-
-### Kubernetes
+#### Kubernetes
 
 This pages has shown the fasted way to get up and running with Tyk Open Source. If you are interested in deploying Tyk stack on a Kubernetes cluster please use our [Helm Charts]{{< ref "tyk-oss/ce-helm-chart-new">}}
 
 
-## Install Gateway on your Setup
+### Install Gateway on your Setup
 
 The backbone of all our products is our open source Gateway. You can install our Open Source / Community Edition on the following platforms:
 
@@ -470,39 +460,33 @@ Visit our Gateway GitHub Repo.
 {{< /grid >}}
 
 
-### Architecture
+#### Architecture
 
 The Tyk Gateway can run completely independently, requiring only a Redis database, and can scale horizontally:
 
 {{< img src="/img/diagrams/oss-architecture.png" alt="Open Source Architecture" >}}
 
 
-### Other Tyk Open Source components
+#### Other Tyk Open Source components
 
 Combine with the other [Tyk OSS products]({{< ref "tyk-stack" >}}) For even more power, such as analytics exporting, version control integration, and more.
 
 {{< img src="/img/diagrams/oss-flow.png" alt="Open Source Components" >}}
 
-
-### Next Steps
-
-Once installed, let's go create [your first API]({{< ref "getting-started/create-api" >}}).
-
-
-### Install with Docker
+#### Install with Docker
 
 
 We will show you two methods of installing our Community Edition Gateway on Docker.
 The quickest way to get started is using docker-compose. Visit our [Dockerhub](https://hub.docker.com/u/tykio/) to view the official images.
 
-#### Prerequisites
+##### Prerequisites
 
 The following are required for a Tyk OSS installation:
  - Redis   - Required for all Tyk installations.
              Simple Redis installation instructions are included below.
  - MongoDB - Required only if you chose to use the MongoDB Tyk Pump with your Tyk OSS installation. Same goes with any [other pump data stores]({{< ref "tyk-stack/tyk-pump/other-data-stores.md" >}}) you choose to use.
 
-#### How To Install?
+##### How To Install?
 
 **Step 1 - Create a network**
 
@@ -535,7 +519,7 @@ docker run \
 ```
 
 
-#### Test Installation
+##### Test Installation
 
 Your Tyk Gateway is now configured and ready to use. Confirm this by making a network request to the 'hello' endpoint:
 
@@ -547,16 +531,6 @@ Output should be similar to that shown below:
 ```json
 {"status":"pass","version":"v3.2.1","description":"Tyk GW"}
 ```
-
-
-#### Next Steps
-
-Follow the Tutorials on the Community Edition tabs for the following:
-
-1. [Add an API]({{< ref "getting-started/create-api" >}})
-2. [Create a Security Policy]({{< ref "getting-started/create-security-policy" >}})
-3. [Create an API Key]({{< ref "getting-started/create-api-key" >}})
-
 
 
 #### Deploy with Kubernetes
