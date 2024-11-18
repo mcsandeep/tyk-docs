@@ -39,7 +39,7 @@ In the below example, the authentication token is set by default to the `Authori
 - `use_param`: Set to true to allow the token to be passed as a query parameter.
 - `param_name`: Specify the parameter name if use_param is enabled.
 - `use_certificate`: Enable client certificate. This allows you to create dynamic keys based on certificates.
-- `validate_signature`: Enable [signature validation]({{<ref "/api-management/authentication-authorization#use-bearer-tokens#signature-validation">}}).
+- `validate_signature`: Enable [signature validation]({{<ref "/api-management/authentication-authorization#use-bearer-tokens">}}).
 
 ```yaml {hl_lines=["13-35"],linenos=false}
 apiVersion: tyk.tyk.io/v1alpha1
@@ -85,7 +85,7 @@ This configuration uses [JWT tokens]({{<ref "/api-management/authentication-auth
 
 Users can configure JWT authentication by defining the following fields:
 
-- `jwt_signing_method`: Specify the method used to sign the JWT. Refer to [JWT Signing Method]({{<ref "/api-management/authentication-authorization#use-json-web-tokens-jwt#jwt-signing-method">}}) for supported methods.
+- `jwt_signing_method`: Specify the method used to sign the JWT. Refer to [JWT Signing Method]({{<ref "/api-management/authentication-authorization#use-json-web-tokens-jwt">}}) for supported methods.
 - `jwt_source`: Specify the public key used for verifying the JWT.
 - `jwt_identity_base_field`: Define the identity source, typically set to `sub` (subject), which uniquely identifies the user or entity.
 - `jwt_policy_field_name`: Specify the claim within the JWT payload that indicates the policy ID to apply.
@@ -259,7 +259,7 @@ spec:
 
 This setup allows for [multiple authentication]({{<ref "/api-management/authentication-authorization#multiple-chained-authentication">}}) methods to be chained together, requiring clients to pass through each specified authentication provider.
 
-To enable multiple (chained) auth, you should set `base_identity_provided_by` field to one of the supported chained enums. Consult [Enable Multi (Chained) Authentication in your API Definition]({{<ref "/api-management/authentication-authorization#multiple-chained-authentication#enable-multi-chained-authentication-in-your-api-definition">}}) for the supported auths.
+To enable multiple (chained) auth, you should set `base_identity_provided_by` field to one of the supported chained enums. Consult [Enable Multi (Chained) Authentication in your API Definition]({{<ref "/api-management/authentication-authorization#multiple-chained-authentication">}}) for the supported auths.
 
 In this example, we are creating an API definition with basic authentication and mTLS with basic authentication as base identity for `httpbin-multiple-authentications`.
 

@@ -18,10 +18,10 @@ To address this challenge, Tyk Operator allows you to directly reference certifi
 
 | Certificate Type | Supported in ApiDefinition | Supported in TykOasApiDefinition |
 |------------------|-------------|---------|
-| Client certifates | ✅ [Client mTLS]({{<ref "/api-management/authentication-authorization#client-mtls#tyk-operator-classic">}}) | ✅ [Client mTLS]({{<ref "/api-management/authentication-authorization#client-mtls#tyk-operator-oas">}}) |
+| Client certifates | ✅ [Client mTLS]({{<ref "/api-management/authentication-authorization#client-mtls">}}) | ✅ [Client mTLS]({{<ref "/api-management/authentication-authorization#client-mtls">}}) |
 | Custom domain certificates | ✅ [TLS and SSL]({{<ref "basic-config-and-security/security/tls-and-ssl#tyk-operator-classic">}}) | ✅ [TLS and SSL]({{<ref "basic-config-and-security/security/tls-and-ssl#tyk-operator-oas">}}) |
 | Public keys pinning | ✅ [Certificate pinning]({{<ref "security/certificate-pinning#tyk-operator-classic">}}) | ✅ [Certificate pinning]({{<ref "security/certificate-pinning#tyk-operator-oas">}}) |
-| Upstream mTLS | ✅ [Upstream mTLS via Operator]({{<ref "/api-management/authentication-authorization#upstream-mtls#tyk-operator-classic">}}) | ✅ [Upstream mTLS via Operator]({{<ref "/api-management/authentication-authorization#upstream-mtls#tyk-operator-oas">}}) |
+| Upstream mTLS | ✅ [Upstream mTLS via Operator]({{<ref "/api-management/authentication-authorization#upstream-mtls">}}) | ✅ [Upstream mTLS via Operator]({{<ref "/api-management/authentication-authorization#upstream-mtls">}}) |
 
 ## Conclusion
 By integrating Kubernetes secrets management with Tyk Operator, you can simplify the process of managing TLS certificates for your APIs, enhance security, and provide a more native Kubernetes experience. Use the examples provided to set up your API configurations with client certificates, custom domain certificates, or certificate pinning, all managed efficiently within your Kubernetes environment.

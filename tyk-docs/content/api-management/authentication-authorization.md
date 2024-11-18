@@ -721,7 +721,7 @@ With Basic Authentication, the authentication credentials are transferred from c
 
 ##### Protect your API with Basic Authentication
 
-Authentication type is configured within your API Definition; this can be done via the [Tyk Dashboard](#Enable-Basic-Authentication-using-the-Tyk-Dashboard) or directly within the [API Definition file](#Enable-Basic-Authentication-in-your-file-based-API-Definition").
+Authentication type is configured within your API Definition; this can be done via the [Tyk Dashboard](#enable-basic-authentication-using-the-tyk-dashboard) or directly within the [API Definition file](#enable-basic-authentication-in-your-file-based-api-definition").
 
 
 #### Enable Basic Auth
@@ -1118,7 +1118,7 @@ See the example introspection cache configuration:
 ### Authenticate Using Go Plugins
 
 Go Plugin Authentication allows you to implement custom authentication logic using the Go programming language. This method is useful for scenarios where you need to implement specialized authentication mechanisms that are not natively supported by Tyk.
-To learn more about using Tyk Golang Plugins, go [here](/plugins/supported-languages/golang/#authentication-with-a-golang-plugin)
+To learn more about using Tyk Golang Plugins, go [here](/plugins/supported-languages/golang#authentication-with-a-golang-plugin)
 
 
 ### Sign Requests with HMAC
@@ -1182,7 +1182,7 @@ To protect an API with JWT, we need to execute the following steps:
 ##### Set Authentication Mode
 
 1. Select JSON Web Tokens as the Authentication mode
-2. [Set the cryptographic signing method](#jwt-signing-method) to `HMAC (shared)` and the public secret as `tyk123`
+2. [Set the cryptographic signing method](#set-up-jwt-signing-method) to `HMAC (shared)` and the public secret as `tyk123`
 3. Set the Identity Source and Policy Field Name
 
 {{< img src="/img/api-management/security/jwt-hmac.png" alt="Target Details: JSON Web Token" >}}
@@ -1540,7 +1540,7 @@ Select the cryptographic method to verify JWT signatures from the following opti
 - RSA public key
 - HMAC shared secret
 - ECDSA
-- [Public JWKS URL](#dynamic-public-key-rotation-using-public-jwks-url)
+- [Public JWKS URL](#enable-dynamic-public-key-rotation-using-jwks)
 
 {{< note success >}}
 **Note**: Leave the field blank to configure at the key level.
