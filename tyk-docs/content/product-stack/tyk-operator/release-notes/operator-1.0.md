@@ -123,7 +123,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/TykTechnologies/tyk-charts/
 ```
 
 
-Go to the [Upgrading Tyk Operator]({{<ref "/api-management/automations#install-and-configure-tyk-operator#upgrading-tyk-operator">}}) section for detailed upgrade instructions.
+Go to the [Upgrading Tyk Operator]({{<ref "/api-management/automations#upgrading-tyk-operator">}}) section for detailed upgrade instructions.
 
 
 ### Downloads
@@ -176,7 +176,7 @@ Learn More: [Tyk Ingress Controller]({{<ref "/api-management/automations#control
 
 This release introduces the ability to configure specific rate limits, quotas, and throttling rules at the API level using the `access_rights_array` in the security policy. Each API now has the flexibility to inherit global limit settings or apply custom limits, making it easier to control API usage on a per-API basis. This provides enhanced granularity in managing traffic, ensuring optimal resource allocation and improved performance under heavy loads.
 
-Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "/api-management/automations#security-policy-example#per-api-limit">}})
+Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "/api-management/automations#security-policy-example">}})
 </details>
 </li>
 <li>
@@ -185,7 +185,7 @@ Learn More: [Key-Level Per-API Rate Limits and Quota]({{<ref "/api-management/au
 
 By configuring key-level per-endpoint limits, you can restrict the request rate for specific API clients to a specific endpoint of an API.
 
-Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "/api-management/automations#security-policy-example#per-endpoint-rate-limit">}})
+Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "/api-management/automations#security-policy-example">}})
 </details>
 </li>
 <li>
@@ -194,7 +194,7 @@ Learn More: [Key-Level Per-Endpoint Rate Limits]({{<ref "/api-management/automat
 
 This update extends the security policy to include TykOasApiDefinition resources within the `access_rights_array`, allowing you to manage security policies for both Tyk Classic APIs and Tyk OAS APIs. By specifying the API kind, you can now apply rate limits, quotas, and other access controls to Tyk OAS APIs, streamlining security management in mixed environments.
 
-Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api#security-policy-manifest">}})
+Learn More: [TykOasApiDefinition in Security Policy]({{<ref "/api-management/automations#add-a-security-policy-to-your-oas-api">}})
 </details>
 </li>
 <li>
