@@ -14,6 +14,12 @@ aliases:
   - /advanced-configuration/integrate/api-auth-mode/json-web-tokens
 ---
 
+{{< note success >}}
+**Note** 
+
+Tyk’s dedicated OpenID Connect (OIDC) Authentication middleware has been deprecated as of Tyk 5.7.0. For OIDC integration, please use Tyk’s J[JSON Web Tokens (JWT)](https://tyk.io/docs/basic-config-and-security/security/authentication-authorization/json-web-tokens/#about-jwts), which provides equivalent functionality while reducing duplication and minimising the potential for misconfiguration.
+{{< /note >}}
+
 [OpenID Connect](https://openid.net/developers/how-connect-works) (OIDC) builds on top of OAuth 2.0, adding authentication. You can secure your APIs on Tyk by integrating with any standards compliant OIDC provider using [JSON Web Tokens]({{< ref "basic-config-and-security/security/authentication-authorization/json-web-tokens" >}}) (JWTs).
 JWTs offer a simple way to use the third-party Identity Provider (IdP) without needing any direct integration between the Tyk and 3rd-party systems.
 
