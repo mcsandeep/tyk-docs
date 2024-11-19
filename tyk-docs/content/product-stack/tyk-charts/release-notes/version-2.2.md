@@ -220,7 +220,7 @@ Support for adding sidecar containers for Tyk components, enhancing flexibility 
 <details>
 <summary>Updated default versions of Tyk components</summary>
 
- Tyk Charts 2.1 will install the following Tyk component versions by default.
+ Tyk Charts 2.2 will install the following Tyk component versions by default.
 
   - Tyk Gateway v5.3.8
   - Tyk Dashboard v5.3.8
