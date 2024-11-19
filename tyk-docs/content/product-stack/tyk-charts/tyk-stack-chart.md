@@ -794,6 +794,12 @@ tyk-dev-portal:
 
 #### Tyk Developer Portal Database
 
+{{< note success >}}
+**Note** 
+
+SQLite support has reached end of life as of Tyk 5.7.0. To avoid disruption, please transition to [PostgreSQL](https://tyk.io/docs/planning-for-production/database-settings/postgresql/#introduction), [MongoDB](https://tyk.io/docs/planning-for-production/database-settings/mongodb/), or one of the listed compatible alternatives.
+{{< /note >}}
+
 By default, Tyk Developer Portal use `sqlite3` to store portal metadata. If you want to use other SQL Database, please modify the section below.
 
 ```yaml
