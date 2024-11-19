@@ -226,7 +226,7 @@ For systemd, either `systemctl` or `service` commands may be utilized.
 
 The `service` command can usually be used with SysVinit scripts, as well as invoking them directly.
 
-### Service logs availability
+#### Service logs availability
 
 *   Upstart 0.6.x and SysVinit: log files are located in `/var/logs` for every respective service, e.g. `/var/logs/tyk-gateway.stderr` and `/var/logs/tyk-gateway.stdout`
 *   Upstart 1.x: by default everything is stored in `/var/logs/upstart` directory, e.g. `/var/logs/upstart/tyk-gateway.log`
