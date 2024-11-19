@@ -95,17 +95,17 @@ Finally, you will be taken to the Tyk Dashboard. Select "Design From Scratch" an
 
 Once you've created your account, Tyk will automatically:
 
-- Assigns Billing Admin Role: You are designated as the Billing Admin for your organization, granting you full access to manage billing details and subscription plans.
+- **Assigns Billing Admin Role**: You are designated as the Billing Admin for your organization, granting you full access to manage billing details and subscription plans.
 
-- Activates 48-Hour Free Trial: Your account is enrolled in a 48-hour free trial of Tyk Cloud, allowing you to explore its features and capabilities without immediate commitment.
+- **Activates 48-Hour Free Trial**: Your account is enrolled in a 48-hour free trial of Tyk Cloud, allowing you to explore its features and capabilities without immediate commitment.
 
-- Creates Initial Organization: An organization is automatically established, serving as the primary entity for managing your environments, APIs, and users.
+- **Creates Initial Organization**: An organization is automatically established, serving as the primary entity for managing your environments, APIs, and users.
 
-- Establishes Default Team: A default team is set up within your organization, providing a collaborative space for managing APIs and related resources.
+- **Establishes Default Team**: A default team is set up within your organization, providing a collaborative space for managing APIs and related resources.
 
-- Deploys Control Plane: A control plane is deployed in your selected home region, centralizing the management of your APIs, policies, and configurations.
+- **Deploys Control Plane**: A control plane is deployed in your selected home region, centralizing the management of your APIs, policies, and configurations.
 
-- Deploys Gateway: A Tyk Gateway is deployed to manage and route incoming API traffic, handling authentication, rate limiting, and analytics to ensure secure, reliable access.
+- **Deploys Gateway**: A Tyk Gateway is deployed to manage and route incoming API traffic, handling authentication, rate limiting, and analytics to ensure secure, reliable access.
 
 For certain Tyk Cloud configurations, you may also get an Edge Gateway deployment option, allowing gateways to be positioned closer to users for lower latency and optimized routing. This is ideal for multi-region or global API setups but may require additional configuration or regional deployment options through Tyk’s Multi Data Centre Bridge (MDCB) if set up manually.
 

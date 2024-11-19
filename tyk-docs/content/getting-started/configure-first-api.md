@@ -44,12 +44,12 @@ Start by creating a new API in Tyk Cloud:
    - **Target URL**: Provide the URL of your backend service (e.g., `http://httpbin.org`).
    - **API Slug**: Define the path through which your API will be accessible (e.g., `/my-first-api/`).
 
-  {{< img src="/img/getting-started/apis-create-new-api.png" alt="Create New API" >}}
+  {{< img src="/img/getting-started/create-account-design-from-scratch.png" alt="Create New API" >}}
 
 <br>
 
 4. **Connect to Your Desired Gateway**
-  You may be prompted to choose between a Gateway and an Edge Gateway. 
+  You may be prompted to choose between a Gateway and an Edge Gateway, which are already created for you.
   - Edge Gateways generally provide low-latency, regionally distributed API processing, ideal for a global user base.
   - Regular Gateways centralize API management, offering comprehensive API processing without additional edge optimizations.
 
@@ -57,15 +57,30 @@ Start by creating a new API in Tyk Cloud:
 
 <br>
 
+
 5. **Configure Settings**
+Configure your API settings:
 
-  Configure your API settings:
-    - API Rate Limiting: Set limits on the number of requests (e.g., 100 requests per minute) to control usage and prevent abuse.
-    - Service Discovery: Enable dynamic backend discovery with tools like Consul or Kubernetes, ensuring traffic is directed to healthy instances.
-    - Upstream Client Certificates: Use client certificates for secure backend connections via mutual TLS (mTLS), adding an extra layer of security.
-    - Certificate Public Key Pinning: Pin specific public keys to validate certificate authenticity and prevent unauthorized access.
+  - API Name: Should be the same as in Step 3.
+  - Expiration Date: Set an end date for this API, where access will expire after this date. This can be edited at any time.
+  - Gateway Status: Setting this to "Active" will publish your API and make it public. When in the "Disabled" state, your API will stay in a draft state until you are ready to publish it.
+  - Access: Your API can be set to either "internal" or "external", determining whether you want to keep your API accessible only through Tyk or to external services, respectively.
 
-  {{< img src="/img/getting-started/apis-configure-settings.png" alt="Configure Settings" >}}
+{{< img src="/img/getting-started/apis-configure-settings-1.png" alt="Configure Settings" >}}
+
+Scrolling down, configure further settings for setting up securing your APIs. 
+{{< note success >}}
+  **Note**  
+
+  These are not necessary to add now but they are good to explore.
+  {{< /note >}}
+
+  - API Rate Limiting: Set limits on the number of requests (e.g., 100 requests per minute) to control usage and prevent abuse.
+  - Service Discovery: Enable dynamic backend discovery with tools like Consul or Kubernetes, ensuring traffic is directed to healthy instances.
+  - Upstream Client Certificates: Use client certificates for secure backend connections via mutual TLS (mTLS), adding an extra layer of security.
+  - Certificate Public Key Pinning: Pin specific public keys to validate certificate authenticity and prevent unauthorized access.
+
+  {{< img src="/img/getting-started/apis-configure-settings-2.png" alt="Configure Settings cont" >}}
 
 <br>
 
@@ -176,8 +191,6 @@ With your API live, monitor its traffic and analyze performance:
 - **Status**: The HTTP status code returned by the API, indicating the result of the request (e.g., 200 for success).
 
 - **Response Time**: The time (in milliseconds) taken for the API to respond to the request.
-
-
 
 
 ## Deploy Developer Portal
