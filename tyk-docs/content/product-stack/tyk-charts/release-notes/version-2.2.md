@@ -180,6 +180,7 @@ This enhancement enables fine-tuned control over logging behavior directly from 
 <li>
 <details>
 <summary>Gateway: Customizable HPA behavior</summary>
+
 Users can now define custom HPA behavior settings directly in the Helm values file via a new field a new field: `.Values.gateway.autoscaling.behavior`.
 
 This enhancement provides more flexibility in configuring HPA scaling behavior, allowing tailored performance tuning for Gateway deployments.
