@@ -69,7 +69,7 @@ In this guide, we’ll walk through the primary tools for automating API managem
 Before diving into lifecycle automations with Tyk, ensure you have the following:
 
 - **A Tyk installation** (Self-Managed or Cloud)
-  - If you don't have Tyk installed, follow our [installation guide](/tyk-self-managed/install/)
+  - If you don't have Tyk installed, follow our [installation guide]({{<ref "tyk-self-managed/install">}})
   - For Tyk Cloud, sign up [here](https://tyk.io/sign-up/)
   - Tyk Operator license key. Starting from Tyk Operator v1.0, a valid license key is required.
 
@@ -81,12 +81,12 @@ Before diving into lifecycle automations with Tyk, ensure you have the following
   - Verify your installation by running `helm version` in your terminal
 
 - **Tyk Dashboard v3+ access** (for Tyk Sync setup)
-  - Learn how to set up the Tyk Dashboard [here](/tyk-dashboard/)
+  - Learn how to set up the Tyk Dashboard [here]({{<ref "tyk-dashboard">}})
 
 - **Basic knowledge of Kubernetes, YAML, and API concepts** (important for Tyk Operator and Tyk Sync)
   - For Kubernetes, visit the [official tutorials](https://kubernetes.io/docs/tutorials/)
   - For YAML, check out this [YAML tutorial](https://yaml.org/spec/1.2/spec.html)
-  - For API concepts, review our [API management basics](/getting-started/key-concepts/)
+  - For API concepts, review our [API management basics]({{<ref "getting-started/key-concepts">}})
 
 
 If you're missing any of these prerequisites, please follow the provided links to set up the necessary components before proceeding with the lifecycle automation steps.
@@ -129,7 +129,7 @@ API Developers enjoy a smoother Continuous Integration process as they can devel
 With declarative API configurations, you have a single source of truth to recover after any system failures, reducing the meantime to recovery from hours to minutes.
 
 ##### Single Source of Truth for API Configurations
-Tyk Operator will reconcile any divergence between the Kubernetes desired state and the actual state in [Tyk Gateway](/tyk-oss-gateway/) or [Tyk Dashboard](/tyk-dashboard/). Therefore, you should maintain the API definition manifests in Kubernetes as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
+Tyk Operator will reconcile any divergence between the Kubernetes desired state and the actual state in [Tyk Gateway]({{<ref "tyk-oss-gateway">}}) or [Tyk Dashboard]({{<ref "tyk-dashboard">}}). Therefore, you should maintain the API definition manifests in Kubernetes as the single source of truth for your system. If you update your API configurations using Tyk Dashboard, those changes would be reverted by Tyk Operator eventually.
 
 
 #### Custom Resources in Tyk
@@ -3633,7 +3633,7 @@ For Tyk Classic API, versioning can be configured via `ApiDefinition` custom res
 
 #### API Ownership
 
-Please consult the [API Ownership](/product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership#when-to-use-api-ownership) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context](#multi-tenancy-in-tyk) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
+Please consult the [API Ownership]({{<ref "products-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership#when-to-use-api-ownership">}}) documentation for the fundamental concepts of API Ownership in Tyk and [Operator Context](#multi-tenancy-in-tyk) documentation for an overview of the use of OperatorContext to manage resources for different teams effectively.
 
 The guide includes practical examples for managing API ownership via OperatorContext. Key topics include defining user owners and user group owners in OperatorContext for connecting and authenticating with a Tyk Dashboard, and using `contextRef` in `TykOasApiDefinition` or `ApiDefinition` objects to ensure configurations are applied within specific organizations. The provided YAML examples illustrate how to set up these configurations.
 
@@ -3794,9 +3794,9 @@ Tyk Sync works with *Tyk Dashboard* installation. With Tyk Dashboard, Tyk Sync s
 
 **Working with OAS APIs**
 
-Starting with Sync v1.5+ and Dashboard v5.3.2+, Tyk Sync supports both [Tyk OAS APIs](/getting-started/key-concepts/high-level-concepts) and [Tyk Classic APIs](/getting-started/key-concepts/what-is-an-api-definition#api-definition-types) when working with the Tyk Dashboard, without requiring special flags or configurations.
+Starting with Sync v1.5+ and Dashboard v5.3.2+, Tyk Sync supports both [Tyk OAS APIs]({{<ref "getting-started/key-concepts/high-level-concepts">}}) and [Tyk Classic APIs]({{<ref "getting-started/key-concepts/what-is-an-api-definition#api-definition-types">}}) when working with the Tyk Dashboard, without requiring special flags or configurations.
 
-For Sync versions v1.4.1 to v1.4.3, enabling Tyk Sync for Tyk OAS APIs requires the [allow-unsafe-oas](/tyk-dashboard/configuration#allow_unsafe_oas) configuration in the Dashboard, along with the `--allow-unsafe-oas` flag when invoking Tyk Sync. Note that Tyk Sync versions v1.4.1 to 1.4.3 do not support API Category for Tyk OAS APIs.
+For Sync versions v1.4.1 to v1.4.3, enabling Tyk Sync for Tyk OAS APIs requires the [allow-unsafe-oas]({{<ref "tyk-dashboard/configuration#allow_unsafe_oas">}}) configuration in the Dashboard, along with the `--allow-unsafe-oas` flag when invoking Tyk Sync. Note that Tyk Sync versions v1.4.1 to 1.4.3 do not support API Category for Tyk OAS APIs.
 
 **Working with Open Source Gateway**
 
@@ -4359,7 +4359,7 @@ The TykOasApiDefinition Custom Resource Definition (CRD) manages [Tyk OAS API De
 |----------|---------|-----------------|----------|--------|
 | API Category | ✅      | v1.0 | - | [Manage API Categories](#api-categories) |
 | API Version | ✅      | v1.0 | - | [Manage API versioning](#api-versioning) |
-| API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership](/product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership#when-to-use-api-ownership) |
+| API Ownership via OperatorContext | ✅      | v1.0 | - | [API Ownership]({{<ref "product-stack/tyk-dashboard/advanced-configurations/user-management/api-ownership#when-to-use-api-ownership">}}) |
 | Client Certificates | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
 | Custom Domain Certificates | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
 | Public keys pinning | ✅      | v1.0 | - | [Manage TLS certificate](#tls-certificates) |
@@ -4428,28 +4428,6 @@ Here are the supported features:
 | Per-Endpoint limit             | ✅        | v1.0           | [Per Endpoint Limit](#security-policy-example)        |
 
 
-
-
-
-
-### Tyk Operator changes not applied
-
-**Problem:** Changes made through Tyk Operator are not reflected in your Tyk installation.
-
-**Solution:**
-
-1. Check Kubernetes events:
-   ```bash
-   kubectl get events --sort-by=.metadata.creationTimestamp
-   ```
-   This command shows recent events in your cluster, which may provide clues about why the changes weren't applied.
-
-2. Verify Operator logs:
-   ```bash
-   kubectl logs -l app=tyk-operator
-   ```
-   This command shows logs from the Tyk Operator pod, which may contain error messages or other useful information.
-
 ### How are Tyk configurations synchronized to Git?
 
 Tyk Sync allows you to dump configurations to a local directory, which can then be committed to a Git repository. This enables version control and easy synchronization across environments.
@@ -4481,26 +4459,7 @@ tyk-configs/
     └── operator-context.yaml
 ```
 
-### How do I handle environment-specific configurations?
-
-Use Tyk Operator's `OperatorContext` resource to define environment-specific variables. You can also use Kubernetes secrets and ConfigMaps to manage sensitive or environment-specific data.
-
-Example `OperatorContext`:
-```yaml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: OperatorContext
-metadata:
-  name: production-context
-spec:
-  env:
-    TYK_DB_ORGID: "prod-org-id"
-    TYK_DB_APIAUTH: "prod-api-secret"
-```
-
-This YAML defines environment-specific variables for a production context, which can be referenced in your API definitions and policies.
-
-
-### Reconciliation Troubleshooting
+### Tyk Operator changes not applied
 
 From [Tyk Operator v0.15.0](https://github.com/TykTechnologies/tyk-operator/releases/tag/v0.15.0), we introduce a new status [subresource](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#subresources) in APIDefinition CRD, called _latestTransaction_ which holds information about reconciliation status.
 
@@ -4579,7 +4538,7 @@ metadata:
 spec:
   env:
     TYK_MODE: pro
-    TYK_URL: http://tyk-gateway-prod:8080
+    TYK_URL: http://tyk-dashboard-staging
     TYK_AUTH: prod-secret
 ---
 apiVersion: tyk.tyk.io/v1alpha1
@@ -4589,7 +4548,7 @@ metadata:
 spec:
   env:
     TYK_MODE: pro
-    TYK_URL: http://tyk-gateway-staging:8080
+    TYK_URL: http://tyk-dashboard-staging
     TYK_AUTH: staging-secret
 ```
 
@@ -4627,36 +4586,16 @@ It's a good practice to maintain separate branches or tags for different environ
 While Tyk Operator is designed to work within a Kubernetes environment, you can still use it to manage non-Kubernetes Tyk installations. You'll need to:
 
 1. Run Tyk Operator in a Kubernetes cluster.
-2. Configure the `OperatorContext` to point to your external Tyk installation:
-
+2. Configure Tyk Operator to point to your external Tyk installation, e.g. via `tyk-operator-conf`, environment variable, or OperatorContext:
 ```yaml
-apiVersion: tyk.tyk.io/v1alpha1
-kind: OperatorContext
-metadata:
-  name: external-tyk
-spec:
-  env:
     TYK_MODE: pro
-    TYK_URL: http://external-tyk-gateway:8080
-    TYK_AUTH: external-secret
+    TYK_URL: http://external-tyk-dashboard
+    TYK_AUTH: api-access-key
+    TYK_ORG: org-id
 ```
 
 This allows you to manage your external Tyk installation using Kubernetes resources.
 
-### How do I migrate from Tyk Classic to Tyk OAS definitions?
-
-To migrate from Tyk Classic to Tyk OAS definitions:
-
-1. Export your existing API definitions using Tyk Sync:
-   ```bash
-   tyk-sync dump -d http://dashboard:3000 -s <secret> -t ./classic-apis
-   ```
-
-2. Use the Tyk OAS Converter tool (if available) or manually convert your Classic definitions to OAS format.
-
-3. Update your CI/CD pipelines and Tyk Operator configurations to work with the new OAS definitions.
-
-4. Gradually replace Classic definitions with OAS definitions in your Tyk installation.
 
 ## Conclusion
 
@@ -4664,6 +4603,5 @@ With Tyk’s automation tools, you now have a set of options for streamlining AP
 
 To continue building on what you’ve set up here, explore the following topics:
 
-- **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here](/product-stack/tyk-operator/advanced-configurations/custom-plugins)
-- **GraphQL Support**: You can learn more about how to support GraphQL resources via Tyk Operator [here](/product-stack/tyk-operator/advanced-configurations/custom-plugins)
-- **CI/CD Integrations**: Learn how to embed Tyk automation into your CI/CD pipeline, enabling continuous deployment and reducing release cycle times.
+- **Advanced Tyk API Management**: Leverage more of Tyk’s API capabilities for custom integrations and further automation possibilities. You can learn more about Tyk's custom integrations [here]({{<ref "product-stack/tyk-operator/advanced-configurations/custom-plugins">}})
+- **GraphQL Support**: You can learn more about how to support GraphQL resources via Tyk Operator [here]({{<ref "product-stack/tyk-operator/advanced-configurations/custom-plugins">}})
