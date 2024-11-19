@@ -38,6 +38,9 @@ Navigate to the Tyk sign-up page at [https://tyk.io/sign-up/](https://tyk.io/sig
 
 On the sign-up page, select the "Start your 48-hour free trial" option to begin your Tyk Cloud experience.
 
+{{< img src="/img/getting-started/create-account-start-trial.png" alt="Start Trial" >}}
+
+
 ### Step 3: Complete the Account Creation Form
 
 Fill out the account creation form with your details:
@@ -49,51 +52,44 @@ Fill out the account creation form with your details:
 - Company Name (if applicable)
 - Work Role and How We Can Help
 
-### Step 4: Choose Your Setup
 
-After completing the form, you can select which setup you'd like to kickoff your Tyk journey with.
-
-- If you're a new user, we suggest starting with the automatic setup. This will preconfigure your deployments, automatically setting up your control pane and gateways so you can familiarize yourself with what Tyk offers.
-
-- If you want to have more control, skip the automatic setup and personalize it yourself. You can tailor your setup to your organization's specific needs, manually setting up the teams, environments, control panes, and gateways. 
-
-{{< img src="/img/2.10/create-account-setup-choice.png" alt="Create Account Setup" >}}
+{{< img src="/img/getting-started/create-account-free-trial-info.png" alt="Create Account Free Trial" >}}
 
 
-### Step 5: Verify Your Email
-
+### Step 4: Check Your Email
 Check your email inbox for a verification message from Tyk. Click the verification link to confirm your email address.
 
-### Step 6: Access the Developer Portal
+{{< img src="/img/getting-started/create-account-resend-email.png" alt="Create Account Resend Email" >}}
 
-Once your account is set up, you can access the Tyk Developer Portal. The portal allows you to manage your APIs, view analytics, and customize your API consumer experience.
 
-Watch our video on configuring your Tyk Cloud Developer Portal.
+In your inbox, you should find this email (press "Log in"):
 
-{{< youtube 8_SPUake84w >}}
+{{< img src="/img/getting-started/create-account-view-email.png" alt="Create Account View Email" >}}
 
-1. From the Control Plane Dashboard, select **Pages** from the **Portal Management** menu
-2. Click **Add Page**
 
-{{< img src="/img/getting-started/create-account-portal-pages.png" alt="Add Portal Page" >}}
 
-3. In the Settings, give your page a name and slug. Below we've called it Home
-4. Select **Check to make this page the Home page**
-5. Select **Default Home page template** from the Page type drop-down list
-6. You can leave the Registered Fields sections for now
+### Step 5: Create Password
+After finding the email and logging in, set your password, organization name (any name which you want to represent your environment), and control plane region (select the control plane which is closest to your location).
 
-{{< img src="/img/getting-started/create-account-portal-pages.png" alt="Portal Home page settings" >}}
+{{< img src="/img/getting-started/create-account-set-password.png" alt="Create Account Set Password" >}}
 
-7. Click **Save**.
 
-You should now be able to access your Portal from **Open Your Portal** from the **Your Developer Portal** menu.
 
-{{< img src="/img/getting-started/portal_menu.png" alt="Portal Menu" >}}
+### Step 6: Deploy and Take Tutorial
+Once your password, organization, and control plane are setup, continue to the next page where your environment will be deployed. This may take 2-5 minutes, you can peruse the tutorial to learn how to use the dashboard while you wait.
 
-## Further Portal Configuration
+{{< img src="/img/getting-started/create-account-deploy-tutorial.png" alt="Create Account Deploy Tutorial" >}}
 
-Our Developer Portal is completely customizable. See [Portal Customization]({{< ref "tyk-developer-portal/customise" >}}) for more details.
 
+After a few minutes, the "Add API" button should appear. Select it and you will be taken to the dashboard.
+
+{{< img src="/img/getting-started/create-account-add-api.png" alt="Create Account Add API" >}}
+
+
+### Step 7: Start Creating APIs
+Finally, you will be taken to the Tyk Dashboard. Select "Design From Scratch" and continue on to [our tutorial](/getting-started/configure-first-api) to learn how to setup and secure your APIs.
+
+{{< img src="/img/getting-started/create-account-design-from-scratch.png" alt="Create Account Design From Scratch" >}}
 
 ## What Happens Next?
 
@@ -113,9 +109,6 @@ Once you've created your account, Tyk will automatically:
 
 For certain Tyk Cloud configurations, you may also get an Edge Gateway deployment option, allowing gateways to be positioned closer to users for lower latency and optimized routing. This is ideal for multi-region or global API setups but may require additional configuration or regional deployment options through Tyk’s Multi Data Centre Bridge (MDCB) if set up manually.
 
-## Accessing Your Tyk Cloud Dashboard
-
-After verifying your email, you can log in to your Tyk Cloud Dashboard. This is where you'll manage your APIs, analytics, and more.
 
 
 {{< note success >}}
@@ -137,7 +130,6 @@ Now that you have your Tyk account set up, here are some recommended next steps:
 
 - **Explore the Dashboard**: Familiarize yourself with the [Tyk Cloud interface](/tyk-dashboard).
 - **Create Your First API**: Follow our guide on [setting up and securing your first API](/getting-started/configure-first-api).
-- **Customize Your Portal**: Learn how to customize the developer portal for your API consumers.
 - **Set Up Email Notifications**: Configure email notifications for important events and updates.
 
 ## Need Help?
