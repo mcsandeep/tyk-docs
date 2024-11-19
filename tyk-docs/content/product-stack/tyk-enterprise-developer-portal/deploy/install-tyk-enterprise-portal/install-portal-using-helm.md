@@ -42,6 +42,12 @@ Where `TYK_ORG` and `TYK_AUTH` are the Tyk Dashboard Organization ID and the Tyk
 
 ## Config settings
 
+{{< note success >}}
+**Note** 
+
+SQLite support has reached end of life as of Tyk 5.7.0. To avoid disruption, please transition to [PostgreSQL](https://tyk.io/docs/planning-for-production/database-settings/postgresql/#introduction), [MongoDB](https://tyk.io/docs/planning-for-production/database-settings/mongodb/), or one of the listed compatible alternatives.
+{{< /note >}}
+
 You must set the following values in the `values.yaml` or with `--set {field-name}={field-value}` with the helm upgrade command:
 
 | Field Name | Description |
