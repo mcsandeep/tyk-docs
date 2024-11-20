@@ -20,7 +20,7 @@ There are three different levels of granularity that can be used when configurin
 
 ### Applying a size limit for a specific API
 
-The API-level rate limit has not yet been implemented for Tyk OAS APIs.
+The API-level size limit has not yet been implemented for Tyk OAS APIs.
 
 You can work around this by implementing a combination of endpoint-level rate limits and [allow]({{< ref "product-stack/tyk-gateway/middleware/allow-list-tyk-oas#configuring-the-allow-list-in-the-tyk-oas-api-definition" >}}) or [block]({{< ref "product-stack/tyk-gateway/middleware/block-list-tyk-oas#configuring-the-block-list-in-the-api-designer" >}}) lists.
 
