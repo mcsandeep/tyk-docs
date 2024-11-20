@@ -542,6 +542,16 @@ PORTAL_CORS_ALLOWED_METHODS=GET,POST,HEAD
 **Type:** `int` <br/>
 **Description**: Defines the frequency of the notifications job that fetch notifications from the portal's database in minutes. The default value is `30` minutes.
 
+### PORTAL_RESPONSE_HEADERS
+**Config file:** ResponseHeaders <br/>
+**Type:** `string` <br/>
+**Description**: Security HTTP headers provide security measures for web applications. These headers are used to communicate security-related information to the browser, helping to protect against various types of attacks such as cross-site scripting (XSS), clickjacking, and other forms of injection attacks.
+
+To configure using an environment variable:
+```console
+PORTAL_RESPONSE_HEADERS=[{"Key":"header-key", "Value":"value-for-given-key"}]
+```
+
 ## Sample config file
 ```json
 {
